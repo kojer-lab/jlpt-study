@@ -316,7 +316,7 @@ function now(){return Date.now()}
 function dateLabel(ts){if(!ts)return"새 단어";const d=new Date(ts);return d.toLocaleDateString("ko-KR",{month:"numeric",day:"numeric"})+" 복습"}
 function plain(s){const d=document.createElement("div");d.innerHTML=s;return d.textContent||d.innerText||""}
 function readingOf(html){const d=document.createElement("div");d.innerHTML=html;let out="";const walk=n=>{if(n.nodeType===3)out+=n.nodeValue;else if(n.nodeType===1){if(n.classList.contains("furi"))out+=n.dataset.r||n.textContent;else [...n.childNodes].forEach(walk)}};[...d.childNodes].forEach(walk);return out;}
-const WORD_IMAGES={unagasu:"assets/words/unagasu.webp",kutsugaesu:"assets/words/kutsugaesu.webp",todokooru:"assets/words/todokooru.webp",mikiwameru:"assets/words/mikiwameru.webp",misueru:"assets/words/misueru.webp",samatageru:"assets/words/samatageru.webp",katayoru:"assets/words/katayoru.webp",makanau:"assets/words/makanau.webp",tadoru:"assets/words/tadoru.webp",ninau:"assets/words/ninau.webp"};
+const WORD_IMAGES={kutsugaesu:"assets/words/kutsugaesu.webp"};
 function todayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
 
 const words=[
