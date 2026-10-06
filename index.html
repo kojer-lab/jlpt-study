@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#4f46e5">
-<title>JLPT N1 Study v3.3 Content Pack</title>
+<title>JLPT N1 Study v3.4 Daily Anki</title>
 <style>
 :root{
   --bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e5e9f0;
@@ -102,7 +102,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="topbar"><div><h1>오늘 공부할 N1</h1><div class="sub">단어는 SRS로 복습 시점을 자동 계산하고, 문제는 오답 이유까지 남깁니다.</div></div><div class="pill" id="todayText"></div></div>
       <div class="grid4">
         <div class="card stat"><div class="label">오늘 복습</div><div class="num" id="dueStat">0</div><div class="progress"><span id="dueBar"></span></div></div>
-        <div class="card stat"><div class="label">총 문제 풀이</div><div class="num" id="solvedStat">0</div></div>
+        <div class="card stat"><div class="label">오늘 새 단어</div><div class="num" id="newStat">0</div><div class="label" id="dailyNewSub" style="margin-top:6px">하루 10개</div></div>
         <div class="card stat"><div class="label">정답률</div><div class="num" id="accuracyStat">0%</div></div>
         <div class="card stat"><div class="label">오답노트</div><div class="num" id="mistakeStat">0</div></div>
       </div>
@@ -124,7 +124,15 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
     </section>
 
     <section class="view" id="wordsView">
-      <div class="topbar"><div><h1>단어 학습</h1><div class="sub">뜻과 예문 번역은 먼저 생각한 뒤 눌러서 확인하세요.</div></div><span class="pill" id="wordCountPill"></span></div>
+      <div class="topbar"><div><h1>단어 학습</h1><div class="sub">매일 정한 개수만 새 단어로 나오고, 본 단어는 SRS 복습으로 넘어갑니다.</div></div><span class="pill" id="wordCountPill"></span></div>
+      <div class="card" style="max-width:780px;margin:0 auto 12px;box-shadow:none">
+        <div class="toolbar" style="justify-content:space-between">
+          <div><strong>하루 새 단어</strong><div class="label" style="margin-top:4px">TOPIK 단어장처럼 오늘 배울 새 단어 수를 정합니다.</div></div>
+          <select id="dailyNewLimit" class="ghost" style="width:auto;min-width:110px">
+            <option value="5">5개</option><option value="10">10개</option><option value="15">15개</option><option value="20">20개</option><option value="30">30개</option><option value="50">50개</option>
+          </select>
+        </div>
+      </div>
       <div class="word-shell"><div class="card word-card">
         <div class="word-meta"><span id="wordIndexText"></span><span id="wordDueText"></span></div>
         <div class="word-main" id="wordMain"></div>
@@ -288,15 +296,16 @@ const F=(b,r)=>`<span class="furi" data-r="${r}">${b}</span>`;
 const DAY=86400000, MIN=60000;
 const STORE_KEY="jlptN1StudyV3";
 const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
-const defaultState={solved:0,correct:0,mistakes:[],srs:{},_updatedAt:0};
+const defaultState={solved:0,correct:0,mistakes:[],srs:{},settings:{dailyNewLimit:10,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},_updatedAt:0};
 function freshState(){return JSON.parse(JSON.stringify(defaultState));}
-function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.settings=Object.assign({dailyNewLimit:10,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
 function loadState(){try{return normalizeState(JSON.parse(localStorage.getItem(STORE_KEY)||"{}"));}catch(e){return freshState();}}
 function persistState(s){localStorage.setItem(STORE_KEY,JSON.stringify(s));}
 function saveState(s,opts={}){if(opts.touch!==false)s._updatedAt=Date.now();persistState(s);if(!opts.skipCloud)scheduleCloudPush();updateSyncUI();}
 function now(){return Date.now()}
 function dateLabel(ts){if(!ts)return"새 단어";const d=new Date(ts);return d.toLocaleDateString("ko-KR",{month:"numeric",day:"numeric"})+" 복습"}
 function plain(s){const d=document.createElement("div");d.innerHTML=s;return d.textContent||d.innerText||""}
+function todayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
 
 const words=[
 {id:"unagasu",w:F("促","うなが")+"す",meaning:"촉구하다 / 재촉하다 / 행동을 하도록 유도하다",examples:[
@@ -559,6 +568,31 @@ function rateWord(id,rating){let s=getSrs(id),t=now();
 }
 function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
 function unseenWords(){return words.filter(w=>getSrs(w.id).reviews===0)}
+function ensureDailyNew(save=true){
+ const key=todayKey(),limit=state.settings.dailyNewLimit||10;
+ let changed=false;
+ if(state.dailyNew.date!==key){state.dailyNew={date:key,ids:[],updatedAt:Date.now()};changed=true}
+ const valid=new Set(words.map(w=>w.id));
+ let ids=state.dailyNew.ids.filter(id=>valid.has(id));
+ if(ids.length!==state.dailyNew.ids.length)changed=true;
+ const studied=ids.filter(id=>getSrs(id).reviews>0);
+ const pending=ids.filter(id=>getSrs(id).reviews===0);
+ const keepPending=pending.slice(0,Math.max(0,limit-studied.length));
+ let next=[...studied,...keepPending];
+ if(next.length<limit){
+   const used=new Set(next);
+   for(const w of unseenWords()){
+     if(used.has(w.id))continue;
+     next.push(w.id);used.add(w.id);
+     if(next.length>=limit)break;
+   }
+ }
+ if(JSON.stringify(next)!==JSON.stringify(state.dailyNew.ids)){changed=true;ids=next}else ids=next;
+ state.dailyNew.ids=ids;
+ if(changed){state.dailyNew.updatedAt=Date.now();if(save)saveState(state)}
+ return ids.map(id=>words.find(w=>w.id===id)).filter(Boolean);
+}
+function todayNewPending(){return ensureDailyNew(false).filter(w=>getSrs(w.id).reviews===0)}
 function refreshAll(){renderHome();renderStats();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
@@ -566,14 +600,34 @@ function showView(name){document.querySelectorAll(".view").forEach(v=>v.classLis
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=0;readingQ=0;showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}const fu=e.target.closest(".furi");if(fu&&!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){e.preventDefault();e.stopPropagation();fu.classList.toggle("show")}});
 
-function renderHome(){const due=dueWords().length;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("solvedStat").textContent=state.solved;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"})}
+function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"})}
 
-function renderWord(){const w=words[wordIndex],s=getSrs(w.id);$("wordIndexText").textContent=`${wordIndex+1} / ${words.length}`;$("wordCountPill").textContent=`${words.length} words`;$("wordDueText").textContent=s.reviews?`${dateLabel(s.due)} · ${s.interval}일 간격`:"새 단어";$("wordMain").innerHTML=w.w;$("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");$("showMeaningBtn").textContent="단어 뜻 보기";$("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");renderRating($("wordRating"),w.id,s,false)}
+function renderWord(){
+ const queue=todayNewPending();
+ $("dailyNewLimit").value=String(state.settings.dailyNewLimit||10);
+ $("wordCountPill").textContent=`오늘 새 단어 ${queue.length}개 남음`;
+ if(!queue.length){
+   $("wordIndexText").textContent="오늘 분량 완료";$("wordDueText").textContent=`하루 ${state.settings.dailyNewLimit}개`;
+   $("wordMain").innerHTML="🎉";
+   $("wordMeaning").textContent="오늘의 새 단어 학습을 마쳤습니다. 복습 시간이 되면 ‘오늘의 복습’에 다시 나타납니다.";
+   $("wordMeaning").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");
+   $("wordExamples").innerHTML="";$("wordRating").innerHTML="";$("prevWordBtn").classList.add("hidden");$("nextWordBtn").classList.add("hidden");return;
+ }
+ $("showMeaningBtn").classList.remove("hidden");$("prevWordBtn").classList.remove("hidden");$("nextWordBtn").classList.remove("hidden");
+ if(wordIndex>=queue.length)wordIndex=0;
+ const w=queue[wordIndex],s=getSrs(w.id);
+ $("wordIndexText").textContent=`${wordIndex+1} / ${queue.length}`;
+ $("wordDueText").textContent="오늘의 새 단어";
+ $("wordMain").innerHTML=w.w;$("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");$("showMeaningBtn").textContent="단어 뜻 보기";
+ $("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+ renderRating($("wordRating"),w.id,s,false);
+}
 function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
 $("showMeaningBtn").addEventListener("click",()=>{const h=$("wordMeaning").classList.toggle("hidden");$("showMeaningBtn").textContent=h?"단어 뜻 보기":"단어 뜻 숨기기"});
 $("wordExamples").addEventListener("click",e=>{const b=e.target.closest(".ex-reveal");if(!b)return;const box=b.nextElementSibling;const h=box.classList.toggle("hidden");b.textContent=h?"예문 뜻 보기":"예문 뜻 숨기기"});
-$("prevWordBtn").addEventListener("click",()=>{wordIndex=(wordIndex-1+words.length)%words.length;renderWord()});$("nextWordBtn").addEventListener("click",()=>{wordIndex=(wordIndex+1)%words.length;renderWord()});
-$("wordRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(b.dataset.word,b.dataset.rate);wordIndex=(wordIndex+1)%words.length;renderWord()});
+$("prevWordBtn").addEventListener("click",()=>{const q=todayNewPending();if(!q.length)return;wordIndex=(wordIndex-1+q.length)%q.length;renderWord()});$("nextWordBtn").addEventListener("click",()=>{const q=todayNewPending();if(!q.length)return;wordIndex=(wordIndex+1)%q.length;renderWord()});
+$("wordRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(b.dataset.word,b.dataset.rate);wordIndex=0;renderWord()});
+$("dailyNewLimit").addEventListener("change",()=>{const n=Math.max(1,Math.min(50,Number($("dailyNewLimit").value)||10));state.settings={dailyNewLimit:n,updatedAt:Date.now()};ensureDailyNew(false);saveState(state);wordIndex=0;renderWord();refreshAll()});
 
 function startQuiz(mode){quizMode=mode;quizOrder=[...Array(quizData[mode].length).keys()].sort(()=>Math.random()-.5);quizIndex=0;renderQuiz()}
 function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘":"文法 · 문법";$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.q;$("quizChoices").innerHTML=item.c.map((c,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${c}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden")}
@@ -661,6 +715,8 @@ function updateSyncUI(){
 function mergeStudyStates(a,b){
  a=normalizeState(a);b=normalizeState(b);const out=freshState();
  out.solved=Math.max(a.solved,b.solved);out.correct=Math.max(a.correct,b.correct);
+ const sa=a.settings||{dailyNewLimit:10,updatedAt:0},sb=b.settings||{dailyNewLimit:10,updatedAt:0};out.settings=Number(sa.updatedAt||0)>=Number(sb.updatedAt||0)?sa:sb;
+ const da=a.dailyNew||{date:"",ids:[],updatedAt:0},db=b.dailyNew||{date:"",ids:[],updatedAt:0};out.dailyNew=Number(da.updatedAt||0)>=Number(db.updatedAt||0)?da:db;
  const ids=new Set([...Object.keys(a.srs||{}),...Object.keys(b.srs||{})]);
  ids.forEach(id=>{const x=a.srs[id],y=b.srs[id];if(!x)out.srs[id]=y;else if(!y)out.srs[id]=x;else{const tx=Number(x.updatedAt||x.last||0),ty=Number(y.updatedAt||y.last||0);out.srs[id]=tx>=ty?x:y}});
  const mm=new Map();[...(a.mistakes||[]),...(b.mistakes||[])].forEach(m=>{const old=mm.get(m.id);if(!old)mm.set(m.id,Object.assign({},m));else{const newer=Number(m.updatedAt||0)>=Number(old.updatedAt||0)?m:old;mm.set(m.id,Object.assign({},newer,{count:Math.max(Number(old.count)||0,Number(m.count)||0),updatedAt:Math.max(Number(old.updatedAt)||0,Number(m.updatedAt)||0)}))}});
@@ -729,7 +785,7 @@ let listeningReady=false;function setupListening(){if(listeningReady)return;list
 function applyTheme(){const d=localStorage.getItem("jlptN1ThemeV3")==="dark";document.body.classList.toggle("dark",d);$("themeBtn").textContent=d?"☀️ 라이트모드":"🌙 다크모드"}function toggleTheme(){localStorage.setItem("jlptN1ThemeV3",document.body.classList.contains("dark")?"light":"dark");applyTheme()}$("themeBtn").addEventListener("click",toggleTheme);$("mobileTheme").addEventListener("click",toggleTheme);
 function applyFuri(){const m=localStorage.getItem("jlptN1FuriV3")||"interactive";$("furiMode").value=m;document.body.classList.toggle("furi-always",m==="always");document.body.classList.toggle("furi-off",m==="off")}$("furiMode").addEventListener("change",()=>{localStorage.setItem("jlptN1FuriV3",$("furiMode").value);applyFuri()});$("mobileFuri").addEventListener("click",()=>{const cur=localStorage.getItem("jlptN1FuriV3")||"interactive",next=cur==="interactive"?"always":cur==="always"?"off":"interactive";localStorage.setItem("jlptN1FuriV3",next);applyFuri();$("mobileFuri").textContent=next==="interactive"?"あ":next==="always"?"振":"×"});
 
-applyTheme();applyFuri();renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
+applyTheme();applyFuri();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
 </script>
 </body>
 </html>
