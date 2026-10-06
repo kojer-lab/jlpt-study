@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#4f46e5">
-<title>JLPT N1 Study v3.1 Sync</title>
+<title>JLPT N1 Study v3.2</title>
 <style>
 :root{
   --bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e5e9f0;
@@ -214,7 +214,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="topbar"><div><h1>PC · 모바일 동기화</h1><div class="sub">Supabase에 학습 기록만 저장해서 PC와 모바일에서 같은 SRS·오답 기록을 사용합니다.</div></div><span class="pill cloud-mini"><span class="sync-dot" id="cloudTopDot"></span><span id="cloudTopText">미연결</span></span></div>
 
       <div class="sync-grid">
-        <div class="card">
+        <div class="card" id="cloudConfigCard">
           <div class="cloud-kicker">① Supabase 연결</div>
           <div class="sync-form">
             <div class="field"><label for="supabaseUrlInput">Project URL</label><input id="supabaseUrlInput" type="url" inputmode="url" placeholder="https://xxxx.supabase.co" autocomplete="off"></div>
@@ -242,19 +242,20 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div style="margin-top:10px"><span class="label">마지막 동기화</span><div id="lastSyncText">-</div></div>
         <div class="sync-actions">
           <button class="primary" id="syncNowBtn" type="button">지금 동기화</button>
+          <button class="secondary" id="showCloudConfigBtn" type="button">연결 설정 변경</button>
           <button class="secondary" id="pushCloudBtn" type="button">이 기기 → 클라우드</button>
           <button class="secondary" id="pullCloudBtn" type="button">클라우드 → 이 기기</button>
         </div>
         <div class="sync-note">일반 사용에서는 자동 동기화가 켜집니다. 두 기기에서 동시에 오프라인으로 공부한 경우에는 SRS 항목별 최근 기록을 우선해 합칩니다. 총 문제 수·정답 수는 중복 집계를 피하기 위해 더 큰 값을 우선합니다.</div>
       </div>
 
-      <div class="section-title">처음 한 번만 해야 할 일</div>
+      <div id="cloudSetupGuide"><div class="section-title">처음 한 번만 해야 할 일</div>
       <div class="card" style="line-height:1.8">
         1. Supabase 프로젝트를 만들고 함께 제공한 <strong>supabase_schema.sql</strong>을 SQL Editor에서 실행합니다.<br>
         2. Project URL과 Anon/Publishable Key를 위에 붙여 넣습니다.<br>
         3. 계정을 만든 뒤 PC와 모바일에서 같은 계정으로 로그인합니다.<br>
         4. 이후에는 문제를 풀거나 SRS 버튼을 누른 뒤 약 1~2초 내에 자동 업로드됩니다.
-      </div>
+      </div></div>
     </section>
 
     <section class="view" id="statsView">
@@ -266,7 +267,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="card stat"><div class="label">누적 실수</div><div class="num" id="lapseStat">0</div></div>
       </div>
       <div class="section-title">저장 방식</div>
-      <div class="card" style="line-height:1.8">각 단어마다 <strong>다음 복습 시각(due), 복습 간격(interval), 난이도 계수(ease), 복습 횟수(reviews), 다시 누른 횟수(lapses)</strong>를 저장합니다. 클라우드 미연결 시에는 이 브라우저에만 저장되고, Supabase 로그인 후에는 PC와 모바일 사이에 자동 동기화됩니다.</div>
+      <div class="card" style="line-height:1.8">각 단어마다 <strong>다음 복습 시각(due), 복습 간격(interval), 난이도 계수(ease), 연속 정답(streak), 복습 횟수(reviews), 다시 누른 횟수(lapses)</strong>를 저장합니다. 클라우드 미연결 시에는 이 브라우저에만 저장되고, Supabase 로그인 후에는 PC와 모바일 사이에 자동 동기화됩니다.</div>
       <div class="section-title">백업</div>
       <div class="card"><div class="data-actions"><button class="secondary" id="exportBtn" type="button">학습 데이터 내보내기</button><label class="secondary file-label">학습 데이터 가져오기<input type="file" id="importInput" accept="application/json"></label><button class="secondary" id="resetBtn" type="button">전체 초기화</button></div></div>
     </section>
@@ -360,22 +361,40 @@ const readingSets={
 
 let state=loadState();let wordIndex=0;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
-function getSrs(id){return state.srs[id]||{due:0,interval:0,ease:2.3,reviews:0,lapses:0,last:0};}
+function getSrs(id){return Object.assign({due:0,interval:0,ease:2.5,reviews:0,lapses:0,last:0,streak:0,updatedAt:0},state.srs[id]||{});}
 function setSrs(id,s){state.srs[id]=s;saveState(state)}
 function nextPreview(s,rating){
  if(rating==="again")return"10분";
- if(rating==="hard")return (s.reviews?Math.max(1,Math.round((s.interval||1)*1.2)):1)+"일";
- if(rating==="good")return (s.reviews?Math.max(2,Math.round((s.interval||1)*s.ease)):3)+"일";
- return (s.reviews?Math.max(4,Math.round((s.interval||1)*(s.ease+.8))):7)+"일";
+ if(!s.reviews){
+   if(rating==="hard")return"1일";
+   if(rating==="good")return"3일";
+   return"7일";
+ }
+ if(rating==="hard")return Math.max(1,Math.round((s.interval||1)*1.25))+"일";
+ if(rating==="good")return Math.max(2,Math.round((s.interval||1)*Math.max(1.8,s.ease)))+"일";
+ return Math.max(4,Math.round((s.interval||1)*(Math.max(1.8,s.ease)+.75)))+"일";
 }
 function rateWord(id,rating){let s=getSrs(id),t=now();
- if(rating==="again"){s.interval=0;s.due=t+10*MIN;s.ease=Math.max(1.3,s.ease-.2);s.lapses++}
- if(rating==="hard"){s.interval=s.reviews?Math.max(1,Math.round((s.interval||1)*1.2)):1;s.due=t+s.interval*DAY;s.ease=Math.max(1.3,s.ease-.15)}
- if(rating==="good"){s.interval=s.reviews?Math.max(2,Math.round((s.interval||1)*s.ease)):3;s.due=t+s.interval*DAY;s.ease=Math.min(3.0,s.ease+.03)}
- if(rating==="easy"){s.interval=s.reviews?Math.max(4,Math.round((s.interval||1)*(s.ease+.8))):7;s.due=t+s.interval*DAY;s.ease=Math.min(3.2,s.ease+.15)}
+ if(rating==="again"){
+   s.interval=0;s.due=t+10*MIN;s.ease=Math.max(1.3,s.ease-.2);s.lapses++;s.streak=0;
+ }
+ if(rating==="hard"){
+   s.interval=s.reviews?Math.max(1,Math.round((s.interval||1)*1.25)):1;
+   s.due=t+s.interval*DAY;s.ease=Math.max(1.3,s.ease-.12);s.streak=(s.streak||0)+1;
+ }
+ if(rating==="good"){
+   const bonus=1+Math.min(.25,(s.streak||0)*.03);
+   s.interval=s.reviews?Math.max(2,Math.round((s.interval||1)*Math.max(1.8,s.ease)*bonus)):3;
+   s.due=t+s.interval*DAY;s.ease=Math.min(3.0,s.ease+.04);s.streak=(s.streak||0)+1;
+ }
+ if(rating==="easy"){
+   const bonus=1+Math.min(.35,(s.streak||0)*.04);
+   s.interval=s.reviews?Math.max(4,Math.round((s.interval||1)*(Math.max(1.8,s.ease)+.75)*bonus)):7;
+   s.due=t+s.interval*DAY;s.ease=Math.min(3.2,s.ease+.12);s.streak=(s.streak||0)+1;
+ }
  s.reviews++;s.last=t;s.updatedAt=t;setSrs(id,s);refreshAll();
 }
-function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()})}
+function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
 function unseenWords(){return words.filter(w=>getSrs(w.id).reviews===0)}
 function refreshAll(){renderHome();renderStats();}
 
@@ -405,7 +424,7 @@ $("readingChoices").addEventListener("click",e=>{const b=e.target.closest(".choi
 $("nextReadingBtn").addEventListener("click",()=>{const set=readingSets[readingMode];if(readingQ<set.questions.length-1){readingQ++;renderReading()}else{readingQ=0;renderReading();window.scrollTo({top:0,behavior:"smooth"})}});
 
 function startReview(){reviewQueue=dueWords();reviewIndex=0;renderReview()}
-function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords().length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>${s.lapses}회 다시</span></div><div class="word-main">${w.w}</div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
+function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords().length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>연속 ${s.streak||0} · 다시 ${s.lapses}회</span></div><div class="word-main">${w.w}</div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
 
 function renderMistakes(){const root=$("mistakeList");if(!state.mistakes.length){root.innerHTML='<div class="card review-empty">아직 저장된 오답이 없습니다.</div>';return}root.innerHTML=state.mistakes.map(m=>`<div class="card mistake"><div><div class="tag">${m.type}</div><div class="q" style="margin-top:8px">${m.q}</div>${m.translation?`<div class="translation"><strong>문제 뜻</strong><br>${m.translation}</div>`:""}<div style="margin-top:12px;line-height:1.8"><strong>정답</strong> ${m.correct}<br><br><strong>해설</strong><br>${m.explanation}</div>${m.details&&m.details.length?`<div class="detail-list">${m.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:""}<div class="meta">틀린 횟수 ${m.count}회</div></div><button type="button" class="secondary" data-delete="${m.id}">삭제</button></div>`).join("")}
 $("mistakeList").addEventListener("click",e=>{const b=e.target.closest("[data-delete]");if(!b)return;state.mistakes=state.mistakes.filter(x=>x.id!==b.dataset.delete);saveState(state);renderMistakes();refreshAll()});$("clearMistakesBtn").addEventListener("click",()=>{if(confirm("오답노트를 모두 삭제할까요?")){state.mistakes=[];saveState(state);renderMistakes();refreshAll()}});
@@ -431,6 +450,10 @@ function setSyncStatus(kind,title,msg){
 }
 function updateSyncUI(){
  const cfg=loadCloudConfig(),meta=loadCloudMeta();
+ const configured=!!(cfg.url&&cfg.key);
+ if($("cloudConfigCard"))$("cloudConfigCard").classList.toggle("hidden",configured);
+ if($("cloudSetupGuide"))$("cloudSetupGuide").classList.toggle("hidden",configured);
+ if($("showCloudConfigBtn"))$("showCloudConfigBtn").classList.toggle("hidden",!configured);
  if($("supabaseUrlInput")&&!$("supabaseUrlInput").matches(":focus"))$("supabaseUrlInput").value=cfg.url||"";
  if($("supabaseKeyInput")&&!$("supabaseKeyInput").matches(":focus"))$("supabaseKeyInput").value=cfg.key||"";
  if($("cloudUserText"))$("cloudUserText").textContent=cloudUser?.email||"-";
@@ -494,12 +517,17 @@ async function syncNow(mode="merge"){
 }
 function bindCloudControls(){
  if(!$("saveCloudConfigBtn"))return;
- $("saveCloudConfigBtn").addEventListener("click",async()=>{const url=$("supabaseUrlInput").value.trim().replace(/\/$/,""),key=$("supabaseKeyInput").value.trim();if(!url||!key){alert("Project URL과 공개용 키를 모두 입력하세요.");return}saveCloudConfig({url,key});await initializeCloudClient(false);alert("연결 정보를 저장했습니다. 이제 로그인하세요.")});
+ $("saveCloudConfigBtn").addEventListener("click",async()=>{const url=$("supabaseUrlInput").value.trim().replace(/\/$/,""),key=$("supabaseKeyInput").value.trim();if(!url||!key){alert("Project URL과 공개용 키를 모두 입력하세요.");return}saveCloudConfig({url,key});await initializeCloudClient(false);updateSyncUI();alert("연결 정보를 저장했습니다. 이제 로그인하세요.")});
  $("clearCloudConfigBtn").addEventListener("click",async()=>{if(!confirm("이 기기에 저장된 Supabase 연결 정보를 삭제할까요? 학습 기록 자체는 삭제되지 않습니다."))return;try{if(cloudClient)await cloudClient.auth.signOut()}catch(e){}localStorage.removeItem(CLOUD_CONFIG_KEY);cloudClient=null;cloudUser=null;updateSyncUI()});
  $("cloudSignupBtn").addEventListener("click",async()=>{if(!cloudClient){alert("먼저 Supabase 연결 정보를 저장하세요.");return}const email=$("syncEmailInput").value.trim(),password=$("syncPasswordInput").value;if(!email||password.length<6){alert("이메일과 6자 이상의 비밀번호를 입력하세요.");return}setSyncStatus("busy","가입 처리 중","Supabase 계정을 만들고 있습니다.");const {data,error}=await cloudClient.auth.signUp({email,password});if(error){setSyncStatus("bad","가입 실패",error.message);return}cloudUser=data.session?.user||null;updateSyncUI();if(data.session){await syncNow("merge");alert("계정을 만들고 로그인했습니다.")}else alert("계정을 만들었습니다. Supabase 설정에 따라 이메일 확인 후 로그인해야 할 수 있습니다.")});
  $("cloudLoginBtn").addEventListener("click",async()=>{if(!cloudClient){alert("먼저 Supabase 연결 정보를 저장하세요.");return}const email=$("syncEmailInput").value.trim(),password=$("syncPasswordInput").value;if(!email||!password){alert("이메일과 비밀번호를 입력하세요.");return}setSyncStatus("busy","로그인 중","계정을 확인하고 있습니다.");const {data,error}=await cloudClient.auth.signInWithPassword({email,password});if(error){setSyncStatus("bad","로그인 실패",error.message);return}cloudUser=data.user;updateSyncUI();await syncNow("merge")});
  $("cloudLogoutBtn").addEventListener("click",async()=>{if(cloudClient)await cloudClient.auth.signOut();cloudUser=null;updateSyncUI()});
  $("syncNowBtn").addEventListener("click",()=>syncNow("merge"));
+ $("showCloudConfigBtn").addEventListener("click",()=>{
+   $("cloudConfigCard").classList.remove("hidden");
+   $("cloudSetupGuide").classList.remove("hidden");
+   window.scrollTo({top:0,behavior:"smooth"});
+ });
  $("pushCloudBtn").addEventListener("click",()=>{if(confirm("이 기기의 현재 기록으로 클라우드를 덮어쓸까요?"))syncNow("push")});
  $("pullCloudBtn").addEventListener("click",()=>{if(confirm("클라우드 기록으로 이 기기의 현재 기록을 덮어쓸까요?"))syncNow("pull")});
  $("mobileCloud").addEventListener("click",()=>showView("cloud"));
