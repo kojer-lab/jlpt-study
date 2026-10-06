@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4f46e5">
+<title>JLPT N1 Study v3.1 Sync</title>
+<style>
+:root{
+  --bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e5e9f0;
+  --accent:#4f46e5;--accent-soft:#eef2ff;--good:#15803d;--bad:#b91c1c;--warn:#b45309;
+  --shadow:0 10px 28px rgba(28,39,64,.08);--radius:16px;
+}
+body.dark{
+  --bg:#10131a;--panel:#181d27;--text:#f3f6fb;--muted:#a8b0bf;--line:#2c3442;
+  --accent:#9088ff;--accent-soft:#252542;--good:#4ade80;--bad:#fb7185;--warn:#fbbf24;
+  --shadow:0 10px 28px rgba(0,0,0,.24);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Noto Sans JP",Arial,sans-serif}
+button,input,select{font:inherit}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+.app{min-height:100vh;display:grid;grid-template-columns:248px minmax(0,1fr)}
+.sidebar{position:sticky;top:0;height:100vh;background:var(--panel);border-right:1px solid var(--line);padding:22px 16px;z-index:30}
+.brand{display:flex;gap:10px;align-items:center;font-weight:850;font-size:20px;margin:2px 4px 24px}
+.brand-badge{width:36px;height:36px;display:grid;place-items:center;background:var(--accent);color:white;border-radius:11px;font-size:13px}
+.nav{display:grid;gap:7px}
+.nav button{border:0;background:transparent;color:var(--text);padding:11px 12px;border-radius:11px;text-align:left;cursor:pointer}
+.nav button.active,.nav button:hover{background:var(--accent-soft);color:var(--accent);font-weight:750}
+.sidebar-bottom{position:absolute;left:16px;right:16px;bottom:18px;display:grid;gap:8px}
+.ghost{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 12px;border-radius:10px;cursor:pointer;width:100%}
+.mobile-header,.bottom-nav{display:none}
+.main{width:100%;max-width:1180px;margin:0 auto;padding:32px 34px 54px}
+.view{display:none}.view.active{display:block}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1.65;margin-top:7px}
+.pill,.tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:13px}
+.tag{background:var(--accent-soft);color:var(--accent);border:0;font-weight:750;padding:5px 9px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.stat .label{font-size:13px;color:var(--muted)}.stat .num{font-size:30px;font-weight:850;margin-top:7px}.label{font-size:12px;color:var(--muted)}
+.progress{height:9px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:12px}.progress>span{display:block;height:100%;background:var(--accent);width:0}
+.section-title{font-size:18px;font-weight:850;margin:28px 0 12px}
+.action{cursor:pointer;transition:.16s}.action:hover{transform:translateY(-2px)}.action strong{display:block;font-size:18px;margin-bottom:6px}.action p{margin:0;color:var(--muted);line-height:1.55}
+.primary,.secondary,.soft-btn{border:0;border-radius:11px;padding:11px 16px;cursor:pointer;font-weight:720}
+.primary{background:var(--accent);color:#fff}.secondary{background:var(--panel);color:var(--text);border:1px solid var(--line)}.soft-btn{background:var(--accent-soft);color:var(--accent)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.toolbar button.active{background:var(--accent);color:white;border-color:var(--accent)}
+.quiz-shell{max-width:820px;margin:0 auto}.quiz-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.counter{color:var(--muted);font-size:13px}
+.question{font-size:23px;line-height:1.8;font-weight:750;margin:12px 0 20px}.passage{font-size:17px;line-height:2.05;background:var(--bg);border:1px solid var(--line);border-radius:13px;padding:18px;margin-bottom:18px}
+.choices{display:grid;gap:10px}.choice{width:100%;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:14px 15px;border-radius:12px;text-align:left;line-height:1.65;cursor:pointer}.choice:hover{border-color:var(--accent)}.choice.correct{border-color:var(--good);background:rgba(34,197,94,.08)}.choice.wrong{border-color:var(--bad);background:rgba(239,68,68,.08)}.choice:disabled{cursor:default}
+.explain{display:none;margin-top:16px;padding:16px;background:var(--accent-soft);border-radius:12px;line-height:1.8}.explain.show{display:block}.translation{margin-top:12px;background:var(--panel);border-left:4px solid var(--accent);padding:12px 14px;border-radius:8px}.detail-list{display:grid;gap:8px;margin-top:12px}.detail{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.next-row{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.furi{position:relative;display:inline;white-space:nowrap;cursor:help}.furi::before{content:attr(data-r);position:absolute;left:50%;bottom:92%;transform:translateX(-50%);font-size:.52em;line-height:1;white-space:nowrap;color:var(--accent);font-weight:750;opacity:0;pointer-events:none;z-index:5}.furi:hover::before,.furi.show::before,body.furi-always .furi::before{opacity:1}body.furi-off .furi::before{opacity:0!important}body.furi-off .furi{cursor:default}
+.word-shell{max-width:780px;margin:0 auto}.word-card{text-align:center;padding:28px 22px}.word-main{font-size:42px;font-weight:850;line-height:1.55;margin:6px 0 12px}.word-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;gap:12px}.reveal-btn{border:1px dashed var(--line);background:var(--panel);color:var(--muted);padding:10px 13px;border-radius:10px;cursor:pointer}.reveal-btn:hover{border-color:var(--accent);color:var(--accent)}.reveal-box{margin-top:9px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;line-height:1.7}.hidden{display:none!important}.examples{display:grid;gap:10px;margin-top:15px;text-align:left}.example{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}.example-jp{font-size:17px;line-height:1.95}.example-ko{margin-top:9px;line-height:1.65}
+.rating{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:17px}.rate-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:11px 6px;border-radius:10px;cursor:pointer}.rate-btn strong{display:block}.rate-btn small{display:block;color:var(--muted);margin-top:3px;font-size:11px}.rate-btn:hover{border-color:var(--accent)}
+.review-empty{text-align:center;padding:42px 20px;color:var(--muted)}
+.srs-chip{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted);font-size:12px}
+.reading-modes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.reading-modes button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:8px 12px;cursor:pointer}.reading-modes button.active{background:var(--accent);color:white;border-color:var(--accent)}
+.long-passage{font-size:17px;line-height:2.15}.reading-source{margin-top:13px;font-size:12px;color:var(--muted)}
+.listen-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:14px}.track-list{display:grid;gap:8px}.track{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:12px;border-radius:11px;text-align:left;cursor:pointer}.track.active{border-color:var(--accent);background:var(--accent-soft)}.track small{display:block;color:var(--muted);margin-top:3px}.audio-status{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.5}.warning{background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.35);padding:12px;border-radius:10px;color:var(--text);line-height:1.6}
+.mistakes{display:grid;gap:12px}.mistake{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.mistake .q{font-weight:750;line-height:1.6}.mistake .meta{font-size:12px;color:var(--muted);margin-top:7px}
+.data-actions{display:flex;flex-wrap:wrap;gap:8px}.file-label{display:inline-flex;align-items:center;cursor:pointer}.file-label input{display:none}
+.news-badge{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:800;font-size:13px}.dot{width:8px;height:8px;background:var(--accent);border-radius:50%}
+.sync-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.sync-form{display:grid;gap:11px}.field{display:grid;gap:6px}.field label{font-size:12px;color:var(--muted);font-weight:700}.field input{width:100%;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:11px 12px;outline:none}.field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.sync-status{display:flex;align-items:center;gap:9px;line-height:1.6}.sync-dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:0 0 auto}.sync-dot.ok{background:var(--good)}.sync-dot.busy{background:var(--warn)}.sync-dot.bad{background:var(--bad)}.sync-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.sync-note{font-size:12px;color:var(--muted);line-height:1.65;margin-top:10px}.cloud-user{font-weight:800;word-break:break-all}.cloud-kicker{display:flex;align-items:center;gap:8px;color:var(--accent);font-weight:800;margin-bottom:10px}.cloud-mini{display:inline-flex;align-items:center;gap:6px}.cloud-mini .sync-dot{width:8px;height:8px}.danger-btn{border:1px solid rgba(185,28,28,.35);background:rgba(239,68,68,.07);color:var(--bad);border-radius:11px;padding:11px 16px;cursor:pointer;font-weight:720}
+@media(max-width:960px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}.listen-grid{grid-template-columns:1fr}.sync-grid{grid-template-columns:1fr}}
+@media(max-width:760px){
+  body{padding-bottom:78px}.app{display:block}.sidebar{display:none}.mobile-header{display:flex;position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px 14px;align-items:center;justify-content:space-between}.dark .mobile-header{background:rgba(24,29,39,.95)}.mobile-brand{display:flex;align-items:center;gap:8px;font-weight:850}.mobile-brand .brand-badge{width:31px;height:31px;border-radius:9px}.mobile-tools{display:flex;gap:7px}.mobile-tools button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text)}
+  .main{padding:18px 14px 34px;max-width:none}.topbar{align-items:flex-start;margin-bottom:18px}h1{font-size:25px}.topbar>.pill{display:none}.grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:16px;border-radius:14px}.stat .num{font-size:26px}.section-title{margin-top:23px}.question{font-size:20px;line-height:1.7}.passage,.long-passage{font-size:16px;line-height:1.95}.choice{min-height:52px;padding:13px}.word-card{padding:20px 14px}.word-main{font-size:36px}.rating{grid-template-columns:repeat(2,1fr)}.next-row{position:sticky;bottom:84px;background:linear-gradient(transparent,var(--bg) 32%);padding-top:20px}.next-row .primary,.next-row .secondary{min-height:46px}.listen-grid{display:block}.track-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:8px;margin-bottom:10px}.track{min-width:200px}.toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.toolbar>*{flex:0 0 auto}.reading-modes{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.reading-modes button{flex:0 0 auto}
+  .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--panel);border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -7px 20px rgba(0,0,0,.06)}.bottom-nav button{border:0;background:transparent;color:var(--muted);display:grid;gap:2px;place-items:center;padding:5px 2px;font-size:11px;border-radius:9px}.bottom-nav button span{font-size:19px;line-height:1}.bottom-nav button.active{color:var(--accent);background:var(--accent-soft);font-weight:750}.mistake{display:block}.mistake>button{margin-top:10px}.data-actions{display:grid}.data-actions>*{width:100%;justify-content:center}.mobile-only{display:block!important}
+}
+@media(min-width:761px){.mobile-only{display:none!important}}
+</style>
+</head>
+<body>
+<div class="mobile-header">
+  <div class="mobile-brand"><div class="brand-badge">N1</div>JLPT N1 STUDY</div>
+  <div class="mobile-tools"><button id="mobileCloud" type="button" title="클라우드 동기화">☁</button><button id="mobileFuri" type="button" title="후리가나">あ</button><button id="mobileTheme" type="button" title="테마">◐</button></div>
+</div>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-badge">N1</div>JLPT N1 STUDY</div>
+    <nav class="nav">
+      <button type="button" data-view="home" class="active">🏠 홈</button>
+      <button type="button" data-view="words">🗂 단어 학습</button>
+      <button type="button" data-view="quizhub">🧩 문제 풀이</button>
+      <button type="button" data-view="listening">🎧 청해</button>
+      <button type="button" data-view="review">🔁 오늘의 복습</button>
+      <button type="button" data-view="mistakes">📝 오답노트</button>
+      <button type="button" data-view="cloud">☁️ PC·모바일 동기화</button>
+      <button type="button" data-view="stats">📊 통계 · 데이터</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <select id="furiMode" class="ghost"><option value="interactive">후리가나: 터치/마우스</option><option value="always">후리가나: 항상</option><option value="off">후리가나: 숨김</option></select>
+      <button class="ghost" id="themeBtn" type="button">🌙 다크모드</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="view active" id="homeView">
+      <div class="topbar"><div><h1>오늘 공부할 N1</h1><div class="sub">단어는 SRS로 복습 시점을 자동 계산하고, 문제는 오답 이유까지 남깁니다.</div></div><div class="pill" id="todayText"></div></div>
+      <div class="grid4">
+        <div class="card stat"><div class="label">오늘 복습</div><div class="num" id="dueStat">0</div><div class="progress"><span id="dueBar"></span></div></div>
+        <div class="card stat"><div class="label">총 문제 풀이</div><div class="num" id="solvedStat">0</div></div>
+        <div class="card stat"><div class="label">정답률</div><div class="num" id="accuracyStat">0%</div></div>
+        <div class="card stat"><div class="label">오답노트</div><div class="num" id="mistakeStat">0</div></div>
+      </div>
+      <div class="card" style="margin-top:14px;padding:14px 16px;box-shadow:none">
+        <div class="sync-status"><span class="sync-dot" id="homeSyncDot"></span><div><strong id="homeSyncTitle">이 기기에서만 저장 중</strong><div class="label" id="homeSyncSub">클라우드를 연결하면 PC와 모바일 학습 기록이 자동으로 맞춰집니다.</div></div></div>
+      </div>
+      <div class="section-title">바로 시작</div>
+      <div class="grid3">
+        <div class="card action" data-go="review"><strong>🔁 오늘의 복습</strong><p>복습 예정일이 된 단어만 자동으로 모아서 보여줍니다.</p></div>
+        <div class="card action" data-go="reading"><strong>📖 독해</strong><p>단문·중문·장문·오늘의 시사독해를 단계별로 풉니다.</p></div>
+        <div class="card action" data-go="listening"><strong>🎧 공식 청해</strong><p>JLPT 공식 N1 실제 녹음 음원을 바로 재생합니다.</p></div>
+      </div>
+      <div class="section-title">오늘의 시사독해</div>
+      <div class="card action" data-go="newsreading">
+        <div class="news-badge"><span class="dot"></span>2026.10.06 · 時事読解</div>
+        <h2 style="margin:10px 0 6px">研究費とクラウドファンディング</h2>
+        <div class="sub">일본 의료 연구자들의 크라우드펀딩 활용을 소재로 만든 N1 지문입니다.</div>
+      </div>
+    </section>
+
+    <section class="view" id="wordsView">
+      <div class="topbar"><div><h1>단어 학습</h1><div class="sub">뜻과 예문 번역은 먼저 생각한 뒤 눌러서 확인하세요.</div></div><span class="pill" id="wordCountPill"></span></div>
+      <div class="word-shell"><div class="card word-card">
+        <div class="word-meta"><span id="wordIndexText"></span><span id="wordDueText"></span></div>
+        <div class="word-main" id="wordMain"></div>
+        <button type="button" class="reveal-btn" id="showMeaningBtn">단어 뜻 보기</button>
+        <div class="reveal-box hidden" id="wordMeaning"></div>
+        <div class="examples" id="wordExamples"></div>
+        <div class="rating" id="wordRating"></div>
+        <div class="next-row"><button class="secondary" type="button" id="prevWordBtn">이전</button><button class="primary" type="button" id="nextWordBtn">다음</button></div>
+      </div></div>
+    </section>
+
+    <section class="view" id="quizhubView">
+      <div class="topbar"><div><h1>문제 풀이</h1><div class="sub">어휘·문법·독해를 원하는 방식으로 골라서 풀 수 있습니다.</div></div></div>
+      <div class="grid3">
+        <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p>읽기, 의미, 뉘앙스와 용법을 확인합니다.</p></div>
+        <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p>문장 뜻과 1~4번 선택지의 오답 이유까지 설명합니다.</p></div>
+        <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>짧은 글부터 실제 N1에 가까운 긴 글까지 단계별로 풉니다.</p></div>
+      </div>
+    </section>
+
+    <section class="view" id="quizView">
+      <div class="quiz-shell">
+        <div class="quiz-head"><div class="tag" id="quizTypeTag"></div><div class="counter" id="quizCounter"></div></div>
+        <div class="card">
+          <div class="passage hidden" id="quizPassage"></div>
+          <div class="question" id="quizQuestion"></div>
+          <div class="choices" id="quizChoices"></div>
+          <div class="explain" id="quizExplanation"></div>
+          <div class="next-row"><button class="primary hidden" id="nextQuizBtn" type="button">다음 문제</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="readingView">
+      <div class="topbar"><div><h1>독해</h1><div class="sub">길이에 따라 난이도를 바꾸고, 장문에서는 여러 문제를 같은 지문으로 풉니다.</div></div></div>
+      <div class="reading-modes" id="readingModes">
+        <button type="button" data-mode="short" class="active">短文 단문</button><button type="button" data-mode="medium">中文 중문</button><button type="button" data-mode="long">長文 장문</button><button type="button" data-mode="news">時事 최신 소식</button>
+      </div>
+      <div class="quiz-shell"><div class="card">
+        <div class="tag" id="readingTag"></div>
+        <div class="passage long-passage" id="readingPassage"></div>
+        <div class="question" id="readingQuestion"></div>
+        <div class="choices" id="readingChoices"></div>
+        <div class="explain" id="readingExplanation"></div>
+        <div class="reading-source" id="readingSource"></div>
+        <div class="next-row"><button class="primary hidden" type="button" id="nextReadingBtn">다음 문제</button></div>
+      </div></div>
+    </section>
+
+    <section class="view" id="listeningView">
+      <div class="topbar"><div><h1>청해</h1><div class="sub">합성음은 사용하지 않고 JLPT 공식 N1 실제 음원을 연결합니다.</div></div></div>
+      <div class="listen-grid">
+        <div class="card"><div class="label">2018 Official Practice Workbook</div><div class="track-list" id="trackList">
+          <button type="button" class="track active" data-audio="https://www.jlpt.jp/samples/sample2018/mp3/N1Q1.mp3" data-name="問題 1 · 課題理解"><strong>問題 1 · 課題理解</strong><small>Task-based comprehension</small></button>
+          <button type="button" class="track" data-audio="https://www.jlpt.jp/samples/sample2018/mp3/N1Q2.mp3" data-name="問題 2 · ポイント理解"><strong>問題 2 · ポイント理解</strong><small>Point comprehension</small></button>
+          <button type="button" class="track" data-audio="https://www.jlpt.jp/samples/sample2018/mp3/N1Q3.mp3" data-name="問題 3 · 概要理解"><strong>問題 3 · 概要理解</strong><small>Summary comprehension</small></button>
+          <button type="button" class="track" data-audio="https://www.jlpt.jp/samples/sample2018/mp3/N1Q4.mp3" data-name="問題 4 · 即時応答"><strong>問題 4 · 即時応答</strong><small>Quick response</small></button>
+          <button type="button" class="track" data-audio="https://www.jlpt.jp/samples/sample2018/mp3/N1Q5.mp3" data-name="問題 5 · 統合理解"><strong>問題 5 · 統合理解</strong><small>Integrated comprehension</small></button>
+        </div></div>
+        <div class="card">
+          <div class="tag" id="audioName">問題 1 · 課題理解</div>
+          <audio id="audioPlayer" controls preload="none" style="width:100%;margin:16px 0" src="https://www.jlpt.jp/samples/sample2018/mp3/N1Q1.mp3"></audio>
+          <div class="toolbar"><button class="secondary" type="button" data-speed="0.8">0.8x</button><button class="secondary active" type="button" data-speed="1">1.0x</button><button class="secondary" type="button" data-speed="1.2">1.2x</button></div>
+          <div class="audio-status" id="audioStatus">음원을 선택하고 재생하세요.</div>
+          <div class="section-title" style="margin-top:22px">문제 풀기</div>
+          <div class="warning">공식 청해 문제 문구와 그림을 HTML 안에 그대로 복제하지 않고, 공식 문제 페이지와 실제 음원만 연결했습니다. 모바일에서는 아래 버튼으로 공식 문제를 열어두고 음원을 재생하는 방식이 가장 안정적입니다.</div>
+          <div class="next-row" style="justify-content:flex-start;position:static;background:none;padding-top:12px">
+            <a class="primary" target="_blank" rel="noopener" href="https://www.jlpt.jp/e/samples/sampleindex.html" style="text-decoration:none">공식 문제 · 정답 · 스크립트 열기</a>
+            <a class="secondary" id="directAudioLink" target="_blank" rel="noopener" href="https://www.jlpt.jp/samples/sample2018/mp3/N1Q1.mp3" style="text-decoration:none">음원 새 창</a>
+          </div>
+          <div class="audio-status">※ ChatGPT 파일 미리보기에서는 외부 음원이 CSP로 차단될 수 있습니다. Safari/Chrome 또는 GitHub Pages처럼 일반 웹페이지로 열면 이 제한을 피할 수 있습니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="reviewView">
+      <div class="topbar"><div><h1>오늘의 복습</h1><div class="sub">SRS가 오늘 다시 볼 때라고 판단한 단어만 모았습니다.</div></div><span class="pill" id="reviewCountPill"></span></div>
+      <div id="reviewArea"></div>
+    </section>
+
+    <section class="view" id="mistakesView">
+      <div class="topbar"><div><h1>오답노트</h1><div class="sub">틀린 문제의 뜻과 상세 해설을 함께 저장합니다.</div></div><button class="secondary" id="clearMistakesBtn" type="button">전체 삭제</button></div>
+      <div class="mistakes" id="mistakeList"></div>
+    </section>
+
+    <section class="view" id="cloudView">
+      <div class="topbar"><div><h1>PC · 모바일 동기화</h1><div class="sub">Supabase에 학습 기록만 저장해서 PC와 모바일에서 같은 SRS·오답 기록을 사용합니다.</div></div><span class="pill cloud-mini"><span class="sync-dot" id="cloudTopDot"></span><span id="cloudTopText">미연결</span></span></div>
+
+      <div class="sync-grid">
+        <div class="card">
+          <div class="cloud-kicker">① Supabase 연결</div>
+          <div class="sync-form">
+            <div class="field"><label for="supabaseUrlInput">Project URL</label><input id="supabaseUrlInput" type="url" inputmode="url" placeholder="https://xxxx.supabase.co" autocomplete="off"></div>
+            <div class="field"><label for="supabaseKeyInput">Anon / Publishable Key</label><input id="supabaseKeyInput" type="password" placeholder="sb_publishable_... 또는 anon key" autocomplete="off"></div>
+          </div>
+          <div class="sync-actions"><button class="primary" id="saveCloudConfigBtn" type="button">연결 정보 저장</button><button class="secondary" id="clearCloudConfigBtn" type="button">연결 정보 삭제</button></div>
+          <div class="sync-note">이 키는 Supabase의 공개용 키입니다. <strong>service_role 키는 절대 입력하지 마세요.</strong> 실제 보호는 아래 SQL의 RLS 정책으로 합니다.</div>
+        </div>
+
+        <div class="card">
+          <div class="cloud-kicker">② 같은 계정으로 로그인</div>
+          <div class="sync-form">
+            <div class="field"><label for="syncEmailInput">이메일</label><input id="syncEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com"></div>
+            <div class="field"><label for="syncPasswordInput">비밀번호</label><input id="syncPasswordInput" type="password" autocomplete="current-password" placeholder="Supabase 로그인 비밀번호"></div>
+          </div>
+          <div class="sync-actions"><button class="primary" id="cloudLoginBtn" type="button">로그인</button><button class="secondary" id="cloudSignupBtn" type="button">계정 만들기</button><button class="secondary hidden" id="cloudLogoutBtn" type="button">로그아웃</button></div>
+          <div class="sync-note">PC와 모바일에서 같은 이메일 계정으로 로그인하면 됩니다. Supabase 설정에 따라 가입 후 이메일 확인이 필요할 수 있습니다.</div>
+        </div>
+      </div>
+
+      <div class="section-title">동기화 상태</div>
+      <div class="card">
+        <div class="sync-status"><span class="sync-dot" id="cloudStatusDot"></span><div><strong id="cloudStatusTitle">클라우드 미연결</strong><div class="sub" id="cloudStatusText" style="margin-top:2px">먼저 Project URL과 공개용 키를 저장하세요.</div></div></div>
+        <div style="margin-top:14px"><span class="label">로그인 계정</span><div class="cloud-user" id="cloudUserText">-</div></div>
+        <div style="margin-top:10px"><span class="label">마지막 동기화</span><div id="lastSyncText">-</div></div>
+        <div class="sync-actions">
+          <button class="primary" id="syncNowBtn" type="button">지금 동기화</button>
+          <button class="secondary" id="pushCloudBtn" type="button">이 기기 → 클라우드</button>
+          <button class="secondary" id="pullCloudBtn" type="button">클라우드 → 이 기기</button>
+        </div>
+        <div class="sync-note">일반 사용에서는 자동 동기화가 켜집니다. 두 기기에서 동시에 오프라인으로 공부한 경우에는 SRS 항목별 최근 기록을 우선해 합칩니다. 총 문제 수·정답 수는 중복 집계를 피하기 위해 더 큰 값을 우선합니다.</div>
+      </div>
+
+      <div class="section-title">처음 한 번만 해야 할 일</div>
+      <div class="card" style="line-height:1.8">
+        1. Supabase 프로젝트를 만들고 함께 제공한 <strong>supabase_schema.sql</strong>을 SQL Editor에서 실행합니다.<br>
+        2. Project URL과 Anon/Publishable Key를 위에 붙여 넣습니다.<br>
+        3. 계정을 만든 뒤 PC와 모바일에서 같은 계정으로 로그인합니다.<br>
+        4. 이후에는 문제를 풀거나 SRS 버튼을 누른 뒤 약 1~2초 내에 자동 업로드됩니다.
+      </div>
+    </section>
+
+    <section class="view" id="statsView">
+      <div class="topbar"><div><h1>통계 · 데이터</h1><div class="sub">기본은 localStorage에 저장하고, 클라우드를 연결하면 Supabase와 자동 동기화합니다.</div></div></div>
+      <div class="grid4">
+        <div class="card stat"><div class="label">학습한 단어</div><div class="num" id="learnedWordsStat">0</div></div>
+        <div class="card stat"><div class="label">오늘 복습 예정</div><div class="num" id="dueWordsStat">0</div></div>
+        <div class="card stat"><div class="label">최장 복습 간격</div><div class="num" id="maxIntervalStat">0일</div></div>
+        <div class="card stat"><div class="label">누적 실수</div><div class="num" id="lapseStat">0</div></div>
+      </div>
+      <div class="section-title">저장 방식</div>
+      <div class="card" style="line-height:1.8">각 단어마다 <strong>다음 복습 시각(due), 복습 간격(interval), 난이도 계수(ease), 복습 횟수(reviews), 다시 누른 횟수(lapses)</strong>를 저장합니다. 클라우드 미연결 시에는 이 브라우저에만 저장되고, Supabase 로그인 후에는 PC와 모바일 사이에 자동 동기화됩니다.</div>
+      <div class="section-title">백업</div>
+      <div class="card"><div class="data-actions"><button class="secondary" id="exportBtn" type="button">학습 데이터 내보내기</button><label class="secondary file-label">학습 데이터 가져오기<input type="file" id="importInput" accept="application/json"></label><button class="secondary" id="resetBtn" type="button">전체 초기화</button></div></div>
+    </section>
+  </main>
+</div>
+
+<nav class="bottom-nav">
+  <button type="button" data-view="home" class="active"><span>⌂</span>홈</button>
+  <button type="button" data-view="words"><span>単</span>단어</button>
+  <button type="button" data-view="quizhub"><span>問</span>문제</button>
+  <button type="button" data-view="listening"><span>🎧</span>청해</button>
+  <button type="button" data-view="review"><span>↻</span>복습</button>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const F=(b,r)=>`<span class="furi" data-r="${r}">${b}</span>`;
+const DAY=86400000, MIN=60000;
+const STORE_KEY="jlptN1StudyV3";
+const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
+const defaultState={solved:0,correct:0,mistakes:[],srs:{},_updatedAt:0};
+function freshState(){return JSON.parse(JSON.stringify(defaultState));}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
+function loadState(){try{return normalizeState(JSON.parse(localStorage.getItem(STORE_KEY)||"{}"));}catch(e){return freshState();}}
+function persistState(s){localStorage.setItem(STORE_KEY,JSON.stringify(s));}
+function saveState(s,opts={}){if(opts.touch!==false)s._updatedAt=Date.now();persistState(s);if(!opts.skipCloud)scheduleCloudPush();updateSyncUI();}
+function now(){return Date.now()}
+function dateLabel(ts){if(!ts)return"새 단어";const d=new Date(ts);return d.toLocaleDateString("ko-KR",{month:"numeric",day:"numeric"})+" 복습"}
+function plain(s){const d=document.createElement("div");d.innerHTML=s;return d.textContent||d.innerText||""}
+
+const words=[
+{id:"unagasu",w:F("促","うなが")+"す",meaning:"촉구하다 / 재촉하다 / 행동을 하도록 유도하다",examples:[
+ {jp:`${F("政府","せいふ")}は${F("企業","きぎょう")}に${F("早急","そうきゅう")}な${F("対応","たいおう")}を${F("促","うなが")}した。`,ko:"정부는 기업에 신속한 대응을 촉구했다."},
+ {jp:`${F("議論","ぎろん")}を${F("促","うなが")}すため、まず${F("問題点","もんだいてん")}を${F("共有","きょうゆう")}した。`,ko:"논의를 촉진하기 위해 우선 문제점을 공유했다."}]},
+{id:"fumaeru",w:F("踏","ふ")+"まえる",meaning:"근거로 삼아 고려하다 / ~을 바탕으로 하다",examples:[
+ {jp:`${F("結果","けっか")}を${F("踏","ふ")}まえて${F("判断","はんだん")}する。`,ko:"결과를 바탕으로 판단한다."},
+ {jp:`${F("過去","かこ")}の${F("経験","けいけん")}を${F("踏","ふ")}まえた${F("計画","けいかく")}が${F("必要","ひつよう")}だ。`,ko:"과거의 경험을 바탕으로 한 계획이 필요하다."}]},
+{id:"kutsugaesu",w:F("覆","くつがえ")+"す",meaning:"뒤집다 / 기존의 결정·상식·예상을 뒤엎다",examples:[
+ {jp:`${F("従来","じゅうらい")}の${F("常識","じょうしき")}を${F("覆","くつがえ")}す${F("研究結果","けんきゅうけっか")}だ。`,ko:"기존의 상식을 뒤엎는 연구 결과다."},
+ {jp:`${F("裁判","さいばん")}で${F("一審","いっしん")}の${F("判決","はんけつ")}が${F("覆","くつがえ")}された。`,ko:"재판에서 1심 판결이 뒤집혔다."}]},
+{id:"todokooru",w:F("滞","とどこお")+"る",meaning:"정체되다 / 일이 밀리다 / 흐름이 원활하지 않다",examples:[
+ {jp:`${F("手続","てつづ")}きが${F("滞","とどこお")}っている。`,ko:"절차가 정체되어 있다."},
+ {jp:`${F("大雨","おおあめ")}の${F("影響","えいきょう")}で${F("物流","ぶつりゅう")}が${F("滞","とどこお")}った。`,ko:"폭우의 영향으로 물류가 지연되었다."}]},
+{id:"manugareru",w:F("免","まぬが")+"れる",meaning:"면하다 / 좋지 않은 일·책임에서 벗어나다",examples:[
+ {jp:`${F("責任","せきにん")}を${F("免","まぬが")}れることはできない。`,ko:"책임을 피할 수는 없다."},
+ {jp:`${F("早","はや")}めに${F("避難","ひなん")}したため、${F("被害","ひがい")}を${F("免","まぬが")}れた。`,ko:"일찍 대피했기 때문에 피해를 면했다."}]},
+{id:"tazusawaru",w:F("携","たずさ")+"わる",meaning:"관여하다 / 어떤 일에 종사하다",examples:[
+ {jp:`${F("長年","ながねん")}、${F("教育","きょういく")}に${F("携","たずさ")}わってきた。`,ko:"오랫동안 교육에 종사해 왔다."},
+ {jp:`この${F("企画","きかく")}には${F("多","おお")}くの${F("専門家","せんもんか")}が${F("携","たずさ")}わっている。`,ko:"이 기획에는 많은 전문가가 참여하고 있다."}]},
+{id:"hodokosu",w:F("施","ほどこ")+"す",meaning:"시행하다 / 조치를 취하다 / 베풀다",examples:[
+ {jp:`${F("必要","ひつよう")}な${F("処置","しょち")}を${F("施","ほどこ")}す。`,ko:"필요한 조치를 취하다."},
+ {jp:`${F("建物","たてもの")}に${F("耐震補強","たいしんほきょう")}を${F("施","ほどこ")}した。`,ko:"건물에 내진 보강을 실시했다."}]},
+{id:"kaerimiru",w:F("顧","かえり")+"みる",meaning:"돌이켜보다 / 되돌아보다 / 고려하다",examples:[
+ {jp:`${F("過去","かこ")}を${F("顧","かえり")}みる。`,ko:"과거를 되돌아보다."},
+ {jp:`${F("自分","じぶん")}の${F("行動","こうどう")}を${F("顧","かえり")}みる${F("必要","ひつよう")}がある。`,ko:"자신의 행동을 되돌아볼 필요가 있다."}]},
+{id:"toboshii",w:F("乏","とぼ")+"しい",meaning:"부족하다 / 빈약하다 / 충분하지 않다",examples:[
+ {jp:`${F("経験","けいけん")}が${F("乏","とぼ")}しい。`,ko:"경험이 부족하다."},
+ {jp:`この${F("地域","ちいき")}は${F("水","みず")}に${F("乏","とぼ")}しい。`,ko:"이 지역은 물이 부족하다."}]},
+{id:"shiiru",w:F("強","し")+"いる",meaning:"강요하다 / 억지로 하게 하다",examples:[
+ {jp:`${F("相手","あいて")}に${F("負担","ふたん")}を${F("強","し")}いてはいけない。`,ko:"상대에게 부담을 강요해서는 안 된다."},
+ {jp:`${F("会社","かいしゃ")}は${F("従業員","じゅうぎょういん")}に${F("無理","むり")}な${F("残業","ざんぎょう")}を${F("強","し")}いた。`,ko:"회사는 종업원에게 무리한 야근을 강요했다."}]},
+{id:"konen",w:F("懸念","けねん"),meaning:"우려 / 걱정 / 염려",examples:[
+ {jp:`${F("安全性","あんぜんせい")}への${F("懸念","けねん")}が${F("高","たか")}まっている。`,ko:"안전성에 대한 우려가 커지고 있다."},
+ {jp:`${F("費用","ひよう")}の${F("増加","ぞうか")}を${F("懸念","けねん")}する${F("声","こえ")}もある。`,ko:"비용 증가를 우려하는 목소리도 있다."}]},
+{id:"minaosu",w:F("見直","みなお")+"す",meaning:"재검토하다 / 다시 살펴 개선하다",examples:[
+ {jp:`${F("制度","せいど")}を${F("見直","みなお")}す${F("必要","ひつよう")}がある。`,ko:"제도를 재검토할 필요가 있다."},
+ {jp:`${F("生活習慣","せいかつしゅうかん")}を${F("見直","みなお")}した。`,ko:"생활 습관을 다시 점검했다."}]}
+];
+
+const quizData={
+ vocab:[
+  {q:`「${F("踏","ふ")}まえる」に${F("最","もっと")}も${F("近","ちか")}い${F("意味","いみ")}は？`,c:["무시하다","근거로 삼아 고려하다","강제로 시키다","뒤집어엎다"],a:1,translation:"「踏まえる」와 가장 가까운 의미는?",e:"「踏まえる」는 사실·결과·경험 등을 판단의 바탕으로 삼는다는 뜻입니다. 단순히 ‘생각하다’보다 ‘근거를 두고 고려하다’의 뉘앙스가 강합니다."},
+  {q:`「${F("促","うなが")}す」の${F("意味","いみ")}として${F("最","もっと")}も${F("適切","てきせつ")}なものは？`,c:["재촉하거나 행동을 유도하다","숨기다","포기하다","늦추다"],a:0,translation:"「促す」의 의미로 가장 적절한 것은?",e:"「促す」는 상대가 행동하도록 재촉하거나 진행·성장 등이 빨라지도록 유도한다는 뜻입니다. 「催促する」보다 사용 범위가 넓습니다."},
+  {q:`「${F("覆","くつがえ")}す」の${F("読","よ")}み${F("方","かた")}は？`,c:["くつがえす","おおす","ふくす","かえす"],a:0,translation:"「覆す」의 읽는 법은?",e:"정답은 くつがえす입니다. N1에서는 「常識を覆す」「判決を覆す」처럼 추상적인 판단이나 결정을 뒤집는 용법이 중요합니다."},
+  {q:`「${F("懸念","けねん")}」の${F("意味","いみ")}として${F("近","ちか")}いものは？`,c:["확신","우려","기대","합의"],a:1,translation:"「懸念」의 의미로 가까운 것은?",e:"「懸念」는 앞으로 문제가 생길 가능성에 대한 우려나 걱정을 뜻하는 격식 있는 표현입니다."}
+ ],
+ grammar:[
+  {q:`${F("彼","かれ")}の${F("実力","じつりょく")}を（　）、${F("今回","こんかい")}の${F("合格","ごうかく")}は${F("当然","とうぜん")}の${F("結果","けっか")}だと${F("言","い")}える。`,c:[`${F("踏","ふ")}まえれば`,`${F("皮切","かわき")}りに`,`よそに`,`限りに`],a:0,translation:"그의 실력을 고려하면, 이번 합격은 당연한 결과라고 할 수 있다.",e:"‘그의 실력’을 판단 근거로 삼아 ‘합격은 당연하다’고 결론 내리는 문장입니다.",details:["① 踏まえれば: ‘~을 고려하면 / 바탕으로 하면’. 정답입니다.","② 皮切りに: ‘~을 시작으로’. 같은 종류의 일이 이어질 때 씁니다.","③ よそに: ‘~을 아랑곳하지 않고’. 여기서는 의미가 반대가 됩니다.","④ 限りに: ‘이번을 마지막으로’ 같은 한정·종료 표현에 가깝습니다."]},
+  {q:`このイベントは${F("東京","とうきょう")}を（　）、${F("全国各地","ぜんこくかくち")}で${F("開催","かいさい")}される${F("予定","よてい")}だ。`,c:[`${F("皮切","かわき")}りに`,`ものともせず`,`禁じ得ず`,`余儀なく`],a:0,translation:"이 이벤트는 도쿄를 시작으로 전국 각지에서 개최될 예정이다.",e:"도쿄 개최를 첫 시작으로 같은 이벤트가 전국으로 이어지는 구조입니다.",details:["① 皮切りに: 첫 일을 계기로 같은 종류의 일이 이어짐. 정답입니다.","② ものともせず: 장애·위험을 아랑곳하지 않음.","③ 禁じ得ず: 감정을 억누를 수 없음.","④ 余儀なく: 보통 ～を余儀なくされる 형태로 씁니다."]},
+  {q:`${F("彼","かれ")}は${F("周囲","しゅうい")}の${F("反対","はんたい")}を（　）、${F("計画","けいかく")}を${F("最後","さいご")}まで${F("実行","じっこう")}した。`,c:["ものともせず","こととて","にかたくなく","極まりなく"],a:0,translation:"그는 주변의 반대를 아랑곳하지 않고 계획을 끝까지 실행했다.",e:"‘반대’라는 장애물에도 굴하지 않고 행동했다는 문맥이므로 「～をものともせず」가 맞습니다.",details:["① ものともせず: 역경·반대·위험을 문제 삼지 않음. 정답.","② こととて: ‘~인 사정이라서’라는 이유 표현.","③ にかたくなく: 「想像にかたくない」처럼 ‘쉽게 ~할 수 있다’의 형식.","④ 極まりなく: ‘더없이 ~하다’라는 정도 강조 표현."]},
+  {q:`${F("長年","ながねん")}の${F("努力","どりょく")}が${F("報","むく")}われた${F("彼","かれ")}の${F("喜","よろこ")}びは、${F("想像","そうぞう")}に（　）。`,c:["かたくない","すぎない","たえない","及ばない"],a:0,translation:"오랜 노력이 보답받은 그의 기쁨은 쉽게 상상할 수 있다.",e:"「想像にかたくない」는 ‘상상하기 어렵지 않다 → 쉽게 상상할 수 있다’라는 정형 표현입니다.",details:["① かたくない: 정답. 想像にかたくない로 자주 출제됩니다.","② すぎない: ‘~에 지나지 않는다’가 되어 의미가 다릅니다.","③ たえない: 感謝にたえない / 見るにたえない 등 다른 구조로 씁니다.","④ 及ばない: 想像も及ばない라면 ‘상상도 미치지 못한다’라는 반대에 가까운 뜻입니다."]}
+ ]
+};
+
+const readingSets={
+ short:{title:"短文 · 단문",passage:`${F("効率","こうりつ")}を${F("重視","じゅうし")}するあまり、${F("私","わたし")}たちは「${F("早","はや")}く${F("答","こた")}えを${F("出","だ")}すこと」そのものを${F("能力","のうりょく")}だと${F("考","かんが")}えがちである。しかし、${F("複雑","ふくざつ")}な${F("問題","もんだい")}ほど、すぐに${F("結論","けつろん")}を${F("出","だ")}さず、${F("前提","ぜんてい")}を${F("疑","うたが")}いながら${F("考","かんが")}え${F("続","つづ")}ける${F("姿勢","しせい")}が${F("必要","ひつよう")}になる。${F("時間","じかん")}をかけることは、${F("必","かなら")}ずしも${F("非効率","ひこうりつ")}ではない。`,questions:[{q:`${F("筆者","ひっしゃ")}が${F("最","もっと")}も${F("言","い")}いたいことは${F("何","なに")}か。`,c:["どんな問題も早く解くべきだ","複雑な問題では、結論を急がない姿勢も重要だ","効率を重視する考え方は完全に間違っている","時間をかければ必ず正しい答えが出る"],a:1,translation:"필자가 가장 말하고 싶은 것은 무엇인가?",e:"정답은 ②입니다. 효율 자체를 부정하는 것이 아니라, 복잡한 문제에서는 결론을 서두르지 않는 사고 과정도 중요하다고 말합니다. ③과 ④는 본문보다 지나치게 강한 주장입니다."}]},
+ medium:{title:"中文 · 중문",passage:`${F("新","あたら")}しい${F("技術","ぎじゅつ")}が${F("社会","しゃかい")}に${F("導入","どうにゅう")}されるとき、${F("便利","べんり")}さや${F("速度","そくど")}ばかりが${F("評価","ひょうか")}されることがある。だが、ある${F("仕組","しく")}みが${F("便利","べんり")}であることと、その${F("仕組","しく")}みがすべての${F("人","ひと")}にとって${F("望","のぞ")}ましいことは${F("同","おな")}じではない。たとえば、${F("自動化","じどうか")}によって${F("作業","さぎょう")}が${F("簡単","かんたん")}になっても、その${F("変化","へんか")}に${F("対応","たいおう")}するための${F("知識","ちしき")}や${F("費用","ひよう")}を${F("負担","ふたん")}できない${F("人","ひと")}もいる。${F("技術","ぎじゅつ")}そのものを${F("否定","ひてい")}するのではなく、${F("利益","りえき")}と${F("負担","ふたん")}がどのように${F("分配","ぶんぱい")}されるのかまで${F("考","かんが")}えることが、${F("社会","しゃかい")}に${F("技術","ぎじゅつ")}を${F("根付","ねづ")}かせるうえで${F("欠","か")}かせない。`,questions:[{q:"本文の内容と合うものはどれか。",c:["便利な技術はすべての人に同じ利益を与える","技術の導入では利益だけでなく負担の分配も考える必要がある","自動化は社会に不要である","費用のかかる技術は導入すべきではない"],a:1,translation:"본문 내용과 일치하는 것은?",e:"정답은 ②입니다. 필자는 기술을 부정하지 않고, 이익과 부담이 누구에게 어떻게 돌아가는지까지 봐야 한다고 합니다."},{q:`「その${F("変化","へんか")}」は${F("何","なに")}を${F("指","さ")}すか。`,c:["作業が自動化されること","費用がなくなること","技術を否定すること","知識を共有しないこと"],a:0,translation:"‘그 변화’는 무엇을 가리키는가?",e:"바로 앞에서 자동화로 작업이 간단해지는 변화를 설명하고 있으므로 ①이 맞습니다."}]},
+ long:{title:"長文 · 장문",passage:`${F("情報","じょうほう")}が${F("不足","ふそく")}していた${F("時代","じだい")}には、${F("多","おお")}くの${F("情報","じょうほう")}を${F("集","あつ")}めることそれ${F("自体","じたい")}に${F("価値","かち")}があった。ところが、${F("現在","げんざい")}は${F("状況","じょうきょう")}が${F("逆","ぎゃく")}になりつつある。${F("検索","けんさく")}すれば${F("大量","たいりょう")}の${F("資料","しりょう")}が${F("見","み")}つかり、${F("専門家","せんもんか")}の${F("解説","かいせつ")}から${F("個人","こじん")}の${F("感想","かんそう")}まで、ほとんど${F("同","おな")}じ${F("画面","がめん")}に${F("並","なら")}ぶ。${F("問題","もんだい")}は、${F("情報","じょうほう")}がないことではなく、どれを${F("信頼","しんらい")}し、どれを${F("自分","じぶん")}の${F("判断","はんだん")}に${F("使","つか")}うかである。<br><br>${F("人","ひと")}はしばしば、${F("自分","じぶん")}がすでに${F("持","も")}っている${F("考","かんが")}えと${F("一致","いっち")}する${F("情報","じょうほう")}を${F("選","えら")}びやすい。しかも、${F("短","みじか")}く${F("分","わ")}かりやすい${F("説明","せつめい")}ほど${F("記憶","きおく")}に${F("残","のこ")}りやすいため、${F("複雑","ふくざつ")}な${F("条件","じょうけん")}や${F("例外","れいがい")}を${F("含","ふく")}む${F("説明","せつめい")}は${F("敬遠","けいえん")}されがちだ。しかし、${F("現実","げんじつ")}の${F("問題","もんだい")}は、${F("一","ひと")}つの${F("原因","げんいん")}だけで${F("説明","せつめい")}できるものばかりではない。${F("簡単","かんたん")}な${F("答","こた")}えを${F("求","もと")}めるほど、${F("本来","ほんらい")}なら${F("検討","けんとう")}すべき${F("要素","ようそ")}を${F("見落","みお")}とす${F("危険","きけん")}がある。<br><br>だからといって、すべての${F("情報","じょうほう")}を${F("疑","うたが")}い、${F("何","なに")}も${F("判断","はんだん")}しないことが${F("慎重","しんちょう")}さなのではない。${F("重要","じゅうよう")}なのは、${F("情報源","じょうほうげん")}がどこなのか、どのような${F("根拠","こんきょ")}に${F("基","もと")}づいているのか、そして${F("自分","じぶん")}にとって${F("不都合","ふつごう")}な${F("事実","じじつ")}も${F("含","ふく")}まれているかを${F("確","たし")}かめることだ。${F("判断","はんだん")}とは、${F("情報","じょうほう")}を${F("集","あつ")}める${F("作業","さぎょう")}の${F("終","お")}わりに${F("自動的","じどうてき")}に${F("得","え")}られるものではない。${F("異","こと")}なる${F("情報","じょうほう")}を${F("比較","ひかく")}し、${F("自分","じぶん")}の${F("前提","ぜんてい")}を${F("点検","てんけん")}する${F("過程","かてい")}そのものが、${F("判断","はんだん")}なのである。`,questions:[{q:"筆者によると、現在の情報環境で重要になっていることは何か。",c:["できるだけ多くの情報を集めること","短い説明だけを読むこと","情報を選び、根拠を確認して判断に使うこと","専門家の意見だけを信じること"],a:2,translation:"필자에 따르면 현재 정보 환경에서 중요해진 것은 무엇인가?",e:"정보의 양이 아니라 무엇을 신뢰하고 판단에 사용할지 고르는 능력이 중요하다는 것이 글 전체의 중심입니다."},{q:"簡単な答えを求めすぎることの問題として、筆者が挙げているものは何か。",c:["情報を集められなくなる","検討すべき要素を見落とす可能性がある","専門家の説明が長くなる","判断する必要がなくなる"],a:1,translation:"간단한 답을 지나치게 추구할 때 생기는 문제로 필자가 든 것은?",e:"복잡한 조건과 예외를 버리고 단순한 설명만 택하면 검토해야 할 요소를 놓칠 위험이 있다고 했습니다."},{q:"この文章で筆者が考える「判断」に最も近いものはどれか。",c:["十分な情報が集まれば自然に生まれる結論","自分に都合のよい情報を選ぶこと","異なる情報を比較し、自分の前提も点検する過程","疑わしい情報をすべて無視すること"],a:2,translation:"이 글에서 필자가 생각하는 ‘판단’과 가장 가까운 것은?",e:"마지막 문장에서 판단은 서로 다른 정보를 비교하고 자신의 전제를 점검하는 과정 그 자체라고 명확히 말합니다."}]},
+ news:{title:"時事読解 · 2026.10.06",passage:`${F("日本","にほん")}の${F("医療研究","いりょうけんきゅう")}では、${F("研究費","けんきゅうひ")}を${F("確保","かくほ")}するためにクラウドファンディングを${F("利用","りよう")}する${F("動","うご")}きが${F("広","ひろ")}がっている。${F("背景","はいけい")}には、${F("公的","こうてき")}な${F("研究支援","けんきゅうしえん")}が${F("伸","の")}び${F("悩","なや")}む${F("一方","いっぽう")}で、${F("海外","かいがい")}での${F("研究","けんきゅう")}や${F("資材","しざい")}にかかる${F("費用","ひよう")}が${F("上","あ")}がっていることがある。${F("名古屋大学","なごやだいがく")}のある${F("准教授","じゅんきょうじゅ")}は${F("昨年","さくねん")}、${F("目標","もくひょう")}300${F("万円","まんえん")}の${F("企画","きかく")}で148${F("人","にん")}から${F("約","やく")}420${F("万円","まんえん")}を${F("集","あつ")}めた。<br><br>クラウドファンディングには、${F("必要","ひつよう")}な${F("資金","しきん")}を${F("得","え")}るだけでなく、${F("研究","けんきゅう")}の${F("目的","もくてき")}を${F("社会","しゃかい")}に${F("知","し")}ってもらうという${F("利点","りてん")}もある。${F("一方","いっぽう")}で、${F("一般","いっぱん")}の${F("人","ひと")}に${F("説明","せつめい")}しやすいテーマほど${F("資金","しきん")}を${F("集","あつ")}めやすく、${F("重要","じゅうよう")}であっても${F("成果","せいか")}が${F("見","み")}えにくい${F("基礎研究","きそけんきゅう")}は${F("不利","ふり")}になるのではないかという${F("懸念","けねん")}もある。したがって、この${F("方法","ほうほう")}が${F("広","ひろ")}がるほど、${F("寄付","きふ")}を${F("集","あつ")}められるかどうかだけで${F("研究","けんきゅう")}の${F("価値","かち")}を${F("判断","はんだん")}しない${F("仕組","しく")}みも${F("必要","ひつよう")}になるだろう。`,source:"2026-10-06 The Japan Times의 일본 의료 연구 크라우드펀딩 보도를 바탕으로 N1 학습용으로 새로 작성한 지문.",sourceUrl:"https://www.japantimes.co.jp/news/2026/10/06/japan/science-health/madical-research-crowdfunding/",questions:[{q:"本文によると、医療研究者がクラウドファンディングを利用する背景は何か。",c:["研究者の数が急に減ったから","公的支援が伸びにくい一方で研究費用が上昇しているから","海外研究が禁止されたから","寄付だけが公的に認められているから"],a:1,translation:"본문에 따르면 의료 연구자가 크라우드펀딩을 이용하는 배경은 무엇인가?",e:"공적 연구 지원은 정체되어 있는데 연구 비용은 오르는 상황이 배경이라고 설명합니다."},{q:"筆者が最後に指摘している課題は何か。",c:["研究者が社会に説明してはいけないこと","寄付を集めやすい研究だけが高く評価される危険","クラウドファンディングを法律で禁止する必要","すべての研究費を海外から集める必要"],a:1,translation:"필자가 마지막에 지적하는 과제는 무엇인가?",e:"대중에게 설명하기 쉬운 연구만 자금을 모으기 쉬워질 수 있으므로, 모금액만으로 연구 가치를 판단해서는 안 된다는 문제의식입니다."}]}
+};
+
+let state=loadState();let wordIndex=0;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
+const $=id=>document.getElementById(id);
+function getSrs(id){return state.srs[id]||{due:0,interval:0,ease:2.3,reviews:0,lapses:0,last:0};}
+function setSrs(id,s){state.srs[id]=s;saveState(state)}
+function nextPreview(s,rating){
+ if(rating==="again")return"10분";
+ if(rating==="hard")return (s.reviews?Math.max(1,Math.round((s.interval||1)*1.2)):1)+"일";
+ if(rating==="good")return (s.reviews?Math.max(2,Math.round((s.interval||1)*s.ease)):3)+"일";
+ return (s.reviews?Math.max(4,Math.round((s.interval||1)*(s.ease+.8))):7)+"일";
+}
+function rateWord(id,rating){let s=getSrs(id),t=now();
+ if(rating==="again"){s.interval=0;s.due=t+10*MIN;s.ease=Math.max(1.3,s.ease-.2);s.lapses++}
+ if(rating==="hard"){s.interval=s.reviews?Math.max(1,Math.round((s.interval||1)*1.2)):1;s.due=t+s.interval*DAY;s.ease=Math.max(1.3,s.ease-.15)}
+ if(rating==="good"){s.interval=s.reviews?Math.max(2,Math.round((s.interval||1)*s.ease)):3;s.due=t+s.interval*DAY;s.ease=Math.min(3.0,s.ease+.03)}
+ if(rating==="easy"){s.interval=s.reviews?Math.max(4,Math.round((s.interval||1)*(s.ease+.8))):7;s.due=t+s.interval*DAY;s.ease=Math.min(3.2,s.ease+.15)}
+ s.reviews++;s.last=t;s.updatedAt=t;setSrs(id,s);refreshAll();
+}
+function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()})}
+function unseenWords(){return words.filter(w=>getSrs(w.id).reviews===0)}
+function refreshAll(){renderHome();renderStats();}
+
+function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+ if(name==="home")renderHome();if(name==="words")renderWord();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
+function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingQ=0;showView("reading");renderReading()}else showView(target)}
+document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}const fu=e.target.closest(".furi");if(fu&&!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){e.preventDefault();e.stopPropagation();fu.classList.toggle("show")}});
+
+function renderHome(){const due=dueWords().length;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("solvedStat").textContent=state.solved;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"})}
+
+function renderWord(){const w=words[wordIndex],s=getSrs(w.id);$("wordIndexText").textContent=`${wordIndex+1} / ${words.length}`;$("wordCountPill").textContent=`${words.length} words`;$("wordDueText").textContent=s.reviews?`${dateLabel(s.due)} · ${s.interval}일 간격`:"새 단어";$("wordMain").innerHTML=w.w;$("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");$("showMeaningBtn").textContent="단어 뜻 보기";$("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");renderRating($("wordRating"),w.id,s,false)}
+function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
+$("showMeaningBtn").addEventListener("click",()=>{const h=$("wordMeaning").classList.toggle("hidden");$("showMeaningBtn").textContent=h?"단어 뜻 보기":"단어 뜻 숨기기"});
+$("wordExamples").addEventListener("click",e=>{const b=e.target.closest(".ex-reveal");if(!b)return;const box=b.nextElementSibling;const h=box.classList.toggle("hidden");b.textContent=h?"예문 뜻 보기":"예문 뜻 숨기기"});
+$("prevWordBtn").addEventListener("click",()=>{wordIndex=(wordIndex-1+words.length)%words.length;renderWord()});$("nextWordBtn").addEventListener("click",()=>{wordIndex=(wordIndex+1)%words.length;renderWord()});
+$("wordRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(b.dataset.word,b.dataset.rate);wordIndex=(wordIndex+1)%words.length;renderWord()});
+
+function startQuiz(mode){quizMode=mode;quizOrder=[...Array(quizData[mode].length).keys()].sort(()=>Math.random()-.5);quizIndex=0;renderQuiz()}
+function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘":"文法 · 문법";$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.q;$("quizChoices").innerHTML=item.c.map((c,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${c}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden")}
+$("quizChoices").addEventListener("click",e=>{const b=e.target.closest(".choice");if(!b||quizAnswered)return;quizAnswered=true;const item=quizData[quizMode][quizOrder[quizIndex]],idx=+b.dataset.i;[...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});recordAnswer(quizMode,item,idx);const details=item.details?`<div class="detail-list">${item.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:"";$("quizExplanation").innerHTML=`<strong>${idx===item.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${item.a+1}. ${item.c[item.a]}<div class="translation"><strong>문제 뜻</strong><br>${item.translation||""}</div><div style="margin-top:12px"><strong>해설</strong><br>${item.e}</div>${details}`;$("quizExplanation").classList.add("show");$("nextQuizBtn").classList.remove("hidden");refreshAll()});
+$("nextQuizBtn").addEventListener("click",()=>{if(quizIndex<quizOrder.length-1){quizIndex++;renderQuiz()}else showView("quizhub")});
+function recordAnswer(type,item,idx){state.solved++;if(idx===item.a)state.correct++;else{const id=type+"-"+plain(item.q),t=Date.now();let m=state.mistakes.find(x=>x.id===id);if(m){m.count++;m.updatedAt=t}else state.mistakes.unshift({id,type,q:item.q,correct:item.c[item.a],translation:item.translation||"",explanation:item.e,details:item.details||[],count:1,updatedAt:t})}saveState(state)}
+
+function renderReading(){const set=readingSets[readingMode],q=set.questions[readingQ];readingAnswered=false;document.querySelectorAll("#readingModes button").forEach(b=>b.classList.toggle("active",b.dataset.mode===readingMode));$("readingTag").textContent=set.title+` · ${readingQ+1}/${set.questions.length}`;$("readingPassage").innerHTML=set.passage;$("readingQuestion").innerHTML=q.q;$("readingChoices").innerHTML=q.c.map((c,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${c}</button>`).join("");$("readingExplanation").className="explain";$("readingExplanation").innerHTML="";$("readingSource").innerHTML=set.source?`${set.source} <a target="_blank" rel="noopener" href="${set.sourceUrl}">원문 출처</a>`:"";$("nextReadingBtn").classList.add("hidden")}
+$("readingModes").addEventListener("click",e=>{const b=e.target.closest("button[data-mode]");if(!b)return;readingMode=b.dataset.mode;readingQ=0;renderReading()});
+$("readingChoices").addEventListener("click",e=>{const b=e.target.closest(".choice");if(!b||readingAnswered)return;readingAnswered=true;const set=readingSets[readingMode],q=set.questions[readingQ],idx=+b.dataset.i;[...$("readingChoices").children].forEach((x,i)=>{x.disabled=true;if(i===q.a)x.classList.add("correct");if(i===idx&&idx!==q.a)x.classList.add("wrong")});recordAnswer("reading",q,idx);$("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${q.c[q.a]}<div class="translation"><strong>문제 뜻</strong><br>${q.translation}</div><div style="margin-top:12px"><strong>해설</strong><br>${q.e}</div>`;$("readingExplanation").classList.add("show");$("nextReadingBtn").classList.remove("hidden");refreshAll()});
+$("nextReadingBtn").addEventListener("click",()=>{const set=readingSets[readingMode];if(readingQ<set.questions.length-1){readingQ++;renderReading()}else{readingQ=0;renderReading();window.scrollTo({top:0,behavior:"smooth"})}});
+
+function startReview(){reviewQueue=dueWords();reviewIndex=0;renderReview()}
+function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords().length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>${s.lapses}회 다시</span></div><div class="word-main">${w.w}</div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
+
+function renderMistakes(){const root=$("mistakeList");if(!state.mistakes.length){root.innerHTML='<div class="card review-empty">아직 저장된 오답이 없습니다.</div>';return}root.innerHTML=state.mistakes.map(m=>`<div class="card mistake"><div><div class="tag">${m.type}</div><div class="q" style="margin-top:8px">${m.q}</div>${m.translation?`<div class="translation"><strong>문제 뜻</strong><br>${m.translation}</div>`:""}<div style="margin-top:12px;line-height:1.8"><strong>정답</strong> ${m.correct}<br><br><strong>해설</strong><br>${m.explanation}</div>${m.details&&m.details.length?`<div class="detail-list">${m.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:""}<div class="meta">틀린 횟수 ${m.count}회</div></div><button type="button" class="secondary" data-delete="${m.id}">삭제</button></div>`).join("")}
+$("mistakeList").addEventListener("click",e=>{const b=e.target.closest("[data-delete]");if(!b)return;state.mistakes=state.mistakes.filter(x=>x.id!==b.dataset.delete);saveState(state);renderMistakes();refreshAll()});$("clearMistakesBtn").addEventListener("click",()=>{if(confirm("오답노트를 모두 삭제할까요?")){state.mistakes=[];saveState(state);renderMistakes();refreshAll()}});
+
+function renderStats(){const ss=Object.values(state.srs),learned=ss.filter(x=>x.reviews>0).length,due=dueWords().length,maxInt=ss.reduce((m,x)=>Math.max(m,x.interval||0),0),lapses=ss.reduce((n,x)=>n+(x.lapses||0),0);$("learnedWordsStat").textContent=learned;$("dueWordsStat").textContent=due;$("maxIntervalStat").textContent=maxInt+"일";$("lapseStat").textContent=lapses}
+$("exportBtn").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="jlpt-n1-study-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+$("importInput").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const obj=JSON.parse(r.result);state=Object.assign({},defaultState,obj);saveState(state);refreshAll();alert("학습 데이터를 가져왔습니다.")}catch(err){alert("올바른 백업 파일이 아닙니다.")}};r.readAsText(f)});
+$("resetBtn").addEventListener("click",()=>{if(confirm("모든 학습 기록을 초기화할까요? 클라우드가 연결되어 있으면 빈 기록도 동기화됩니다.")){state=freshState();saveState(state);refreshAll();alert("초기화했습니다.")}});
+
+
+// ----- PC / Mobile cloud sync (Supabase) -----
+let cloudClient=null,cloudUser=null,cloudAuthSubscription=null,cloudPushTimer=null,cloudSyncing=false;
+function loadCloudConfig(){try{return JSON.parse(localStorage.getItem(CLOUD_CONFIG_KEY)||"{}")}catch(e){return{}}}
+function saveCloudConfig(cfg){localStorage.setItem(CLOUD_CONFIG_KEY,JSON.stringify(cfg||{}))}
+function loadCloudMeta(){try{return JSON.parse(localStorage.getItem(CLOUD_META_KEY)||"{}")}catch(e){return{}}}
+function setCloudMeta(patch){const m=Object.assign(loadCloudMeta(),patch);localStorage.setItem(CLOUD_META_KEY,JSON.stringify(m));return m}
+function formatSyncTime(ts){if(!ts)return"-";try{return new Date(ts).toLocaleString("ko-KR")}catch(e){return"-"}}
+function setSyncStatus(kind,title,msg){
+ const ids=["cloudStatusDot","cloudTopDot","homeSyncDot"];ids.forEach(id=>{const el=$(id);if(el)el.className="sync-dot"+(kind?" "+kind:"")});
+ if($("cloudStatusTitle"))$("cloudStatusTitle").textContent=title||"";if($("cloudStatusText"))$("cloudStatusText").textContent=msg||"";
+ if($("cloudTopText"))$("cloudTopText").textContent=title||"";
+ if($("homeSyncTitle"))$("homeSyncTitle").textContent=title||"";if($("homeSyncSub"))$("homeSyncSub").textContent=msg||"";
+}
+function updateSyncUI(){
+ const cfg=loadCloudConfig(),meta=loadCloudMeta();
+ if($("supabaseUrlInput")&&!$("supabaseUrlInput").matches(":focus"))$("supabaseUrlInput").value=cfg.url||"";
+ if($("supabaseKeyInput")&&!$("supabaseKeyInput").matches(":focus"))$("supabaseKeyInput").value=cfg.key||"";
+ if($("cloudUserText"))$("cloudUserText").textContent=cloudUser?.email||"-";
+ if($("lastSyncText"))$("lastSyncText").textContent=formatSyncTime(meta.lastSyncAt);
+ if($("cloudLogoutBtn"))$("cloudLogoutBtn").classList.toggle("hidden",!cloudUser);
+ if($("cloudLoginBtn"))$("cloudLoginBtn").classList.toggle("hidden",!!cloudUser);
+ if($("cloudSignupBtn"))$("cloudSignupBtn").classList.toggle("hidden",!!cloudUser);
+ if(!cfg.url||!cfg.key){setSyncStatus("","이 기기에서만 저장 중","클라우드를 연결하면 PC와 모바일 학습 기록이 자동으로 맞춰집니다.");return}
+ if(!cloudClient){setSyncStatus("busy","클라우드 설정됨","연결을 준비하고 있습니다.");return}
+ if(!cloudUser){setSyncStatus("busy","로그인 필요","PC와 모바일에서 같은 계정으로 로그인하세요.");return}
+ if(cloudSyncing){setSyncStatus("busy","동기화 중","클라우드와 학습 기록을 맞추고 있습니다.");return}
+ setSyncStatus("ok","동기화 연결됨",meta.lastSyncAt?"마지막 동기화: "+formatSyncTime(meta.lastSyncAt):"학습하면 자동으로 동기화됩니다.");
+}
+function mergeStudyStates(a,b){
+ a=normalizeState(a);b=normalizeState(b);const out=freshState();
+ out.solved=Math.max(a.solved,b.solved);out.correct=Math.max(a.correct,b.correct);
+ const ids=new Set([...Object.keys(a.srs||{}),...Object.keys(b.srs||{})]);
+ ids.forEach(id=>{const x=a.srs[id],y=b.srs[id];if(!x)out.srs[id]=y;else if(!y)out.srs[id]=x;else{const tx=Number(x.updatedAt||x.last||0),ty=Number(y.updatedAt||y.last||0);out.srs[id]=tx>=ty?x:y}});
+ const mm=new Map();[...(a.mistakes||[]),...(b.mistakes||[])].forEach(m=>{const old=mm.get(m.id);if(!old)mm.set(m.id,Object.assign({},m));else{const newer=Number(m.updatedAt||0)>=Number(old.updatedAt||0)?m:old;mm.set(m.id,Object.assign({},newer,{count:Math.max(Number(old.count)||0,Number(m.count)||0),updatedAt:Math.max(Number(old.updatedAt)||0,Number(m.updatedAt)||0)}))}});
+ out.mistakes=[...mm.values()].sort((x,y)=>(Number(y.updatedAt)||0)-(Number(x.updatedAt)||0));
+ out._updatedAt=Math.max(Number(a._updatedAt)||0,Number(b._updatedAt)||0,Date.now());return out;
+}
+function sameState(a,b){try{return JSON.stringify(a)===JSON.stringify(b)}catch(e){return false}}
+async function initializeCloudClient(runSync=true){
+ const cfg=loadCloudConfig();cloudUser=null;
+ if(cloudAuthSubscription){try{cloudAuthSubscription.unsubscribe()}catch(e){}cloudAuthSubscription=null}
+ if(!cfg.url||!cfg.key){cloudClient=null;updateSyncUI();return}
+ if(!window.supabase){cloudClient=null;setSyncStatus("bad","동기화 모듈 로드 실패","Supabase 라이브러리를 불러오지 못했습니다. 인터넷 연결 또는 브라우저 차단 설정을 확인하세요.");return}
+ try{
+  cloudClient=window.supabase.createClient(cfg.url,cfg.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:"jlpt-n1-auth-v31"}});
+  const sessionResult=await cloudClient.auth.getSession();cloudUser=sessionResult.data.session?.user||null;
+  const sub=cloudClient.auth.onAuthStateChange((event,session)=>{cloudUser=session?.user||null;updateSyncUI();if(cloudUser&&event!=="TOKEN_REFRESHED")setTimeout(()=>syncNow("merge"),100)});cloudAuthSubscription=sub.data.subscription;
+  updateSyncUI();if(cloudUser&&runSync)await syncNow("merge");
+ }catch(err){cloudClient=null;setSyncStatus("bad","연결 실패",err.message||"Supabase 연결에 실패했습니다.")}
+}
+async function pushCloudState(showMessage=false){
+ if(!cloudClient||!cloudUser||cloudSyncing)return false;if(!navigator.onLine){if(showMessage)setSyncStatus("bad","오프라인","인터넷 연결 후 다시 시도하세요.");return false}
+ cloudSyncing=true;updateSyncUI();
+ try{const payload={user_id:cloudUser.id,state:state,updated_at:new Date().toISOString()};const {error}=await cloudClient.from("jlpt_study_state").upsert(payload,{onConflict:"user_id"});if(error)throw error;setCloudMeta({lastSyncAt:Date.now()});return true}
+ catch(err){setSyncStatus("bad","업로드 실패",err.message||"클라우드 저장에 실패했습니다.");return false}
+ finally{cloudSyncing=false;updateSyncUI()}
+}
+function scheduleCloudPush(){if(!cloudClient||!cloudUser||cloudSyncing)return;clearTimeout(cloudPushTimer);cloudPushTimer=setTimeout(()=>pushCloudState(false),1400)}
+async function syncNow(mode="merge"){
+ if(!cloudClient||!cloudUser){updateSyncUI();return false}if(!navigator.onLine){setSyncStatus("bad","오프라인","인터넷 연결 후 다시 시도하세요.");return false}
+ cloudSyncing=true;updateSyncUI();
+ try{
+  const {data,error}=await cloudClient.from("jlpt_study_state").select("state,updated_at").eq("user_id",cloudUser.id).maybeSingle();if(error)throw error;
+  if(mode==="pull"){
+   if(!data?.state)throw new Error("클라우드에 저장된 학습 기록이 없습니다.");
+   state=normalizeState(data.state);saveState(state,{touch:false,skipCloud:true});refreshAll();
+  }else if(mode==="push"||!data?.state){
+   const {error:upErr}=await cloudClient.from("jlpt_study_state").upsert({user_id:cloudUser.id,state:state,updated_at:new Date().toISOString()},{onConflict:"user_id"});if(upErr)throw upErr;
+  }else{
+   const merged=mergeStudyStates(state,data.state);state=merged;saveState(state,{touch:false,skipCloud:true});refreshAll();
+   if(!sameState(merged,data.state)){const {error:upErr}=await cloudClient.from("jlpt_study_state").upsert({user_id:cloudUser.id,state:merged,updated_at:new Date().toISOString()},{onConflict:"user_id"});if(upErr)throw upErr}
+  }
+  setCloudMeta({lastSyncAt:Date.now()});setSyncStatus("ok","동기화 완료","PC와 모바일에서 같은 학습 기록을 사용할 수 있습니다.");return true;
+ }catch(err){setSyncStatus("bad","동기화 실패",err.message||"동기화에 실패했습니다.");return false}
+ finally{cloudSyncing=false;updateSyncUI()}
+}
+function bindCloudControls(){
+ if(!$("saveCloudConfigBtn"))return;
+ $("saveCloudConfigBtn").addEventListener("click",async()=>{const url=$("supabaseUrlInput").value.trim().replace(/\/$/,""),key=$("supabaseKeyInput").value.trim();if(!url||!key){alert("Project URL과 공개용 키를 모두 입력하세요.");return}saveCloudConfig({url,key});await initializeCloudClient(false);alert("연결 정보를 저장했습니다. 이제 로그인하세요.")});
+ $("clearCloudConfigBtn").addEventListener("click",async()=>{if(!confirm("이 기기에 저장된 Supabase 연결 정보를 삭제할까요? 학습 기록 자체는 삭제되지 않습니다."))return;try{if(cloudClient)await cloudClient.auth.signOut()}catch(e){}localStorage.removeItem(CLOUD_CONFIG_KEY);cloudClient=null;cloudUser=null;updateSyncUI()});
+ $("cloudSignupBtn").addEventListener("click",async()=>{if(!cloudClient){alert("먼저 Supabase 연결 정보를 저장하세요.");return}const email=$("syncEmailInput").value.trim(),password=$("syncPasswordInput").value;if(!email||password.length<6){alert("이메일과 6자 이상의 비밀번호를 입력하세요.");return}setSyncStatus("busy","가입 처리 중","Supabase 계정을 만들고 있습니다.");const {data,error}=await cloudClient.auth.signUp({email,password});if(error){setSyncStatus("bad","가입 실패",error.message);return}cloudUser=data.session?.user||null;updateSyncUI();if(data.session){await syncNow("merge");alert("계정을 만들고 로그인했습니다.")}else alert("계정을 만들었습니다. Supabase 설정에 따라 이메일 확인 후 로그인해야 할 수 있습니다.")});
+ $("cloudLoginBtn").addEventListener("click",async()=>{if(!cloudClient){alert("먼저 Supabase 연결 정보를 저장하세요.");return}const email=$("syncEmailInput").value.trim(),password=$("syncPasswordInput").value;if(!email||!password){alert("이메일과 비밀번호를 입력하세요.");return}setSyncStatus("busy","로그인 중","계정을 확인하고 있습니다.");const {data,error}=await cloudClient.auth.signInWithPassword({email,password});if(error){setSyncStatus("bad","로그인 실패",error.message);return}cloudUser=data.user;updateSyncUI();await syncNow("merge")});
+ $("cloudLogoutBtn").addEventListener("click",async()=>{if(cloudClient)await cloudClient.auth.signOut();cloudUser=null;updateSyncUI()});
+ $("syncNowBtn").addEventListener("click",()=>syncNow("merge"));
+ $("pushCloudBtn").addEventListener("click",()=>{if(confirm("이 기기의 현재 기록으로 클라우드를 덮어쓸까요?"))syncNow("push")});
+ $("pullCloudBtn").addEventListener("click",()=>{if(confirm("클라우드 기록으로 이 기기의 현재 기록을 덮어쓸까요?"))syncNow("pull")});
+ $("mobileCloud").addEventListener("click",()=>showView("cloud"));
+}
+
+let listeningReady=false;function setupListening(){if(listeningReady)return;listeningReady=true;const player=$("audioPlayer");$("trackList").addEventListener("click",e=>{const b=e.target.closest(".track");if(!b)return;document.querySelectorAll(".track").forEach(x=>x.classList.remove("active"));b.classList.add("active");player.src=b.dataset.audio;$("audioName").textContent=b.dataset.name;$("directAudioLink").href=b.dataset.audio;$("audioStatus").textContent="선택한 공식 음원을 불러왔습니다.";player.load();player.play().catch(()=>{$("audioStatus").textContent="자동 재생이 차단되었습니다. 재생 버튼을 눌러주세요."})});document.querySelectorAll("[data-speed]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-speed]").forEach(x=>x.classList.remove("active"));b.classList.add("active");player.playbackRate=Number(b.dataset.speed)}));player.addEventListener("error",()=>{$("audioStatus").textContent="이 미리보기 환경에서 외부 음원이 차단되었습니다. Safari/Chrome 또는 GitHub Pages에서 열거나 ‘음원 새 창’을 사용하세요."})}
+
+function applyTheme(){const d=localStorage.getItem("jlptN1ThemeV3")==="dark";document.body.classList.toggle("dark",d);$("themeBtn").textContent=d?"☀️ 라이트모드":"🌙 다크모드"}function toggleTheme(){localStorage.setItem("jlptN1ThemeV3",document.body.classList.contains("dark")?"light":"dark");applyTheme()}$("themeBtn").addEventListener("click",toggleTheme);$("mobileTheme").addEventListener("click",toggleTheme);
+function applyFuri(){const m=localStorage.getItem("jlptN1FuriV3")||"interactive";$("furiMode").value=m;document.body.classList.toggle("furi-always",m==="always");document.body.classList.toggle("furi-off",m==="off")}$("furiMode").addEventListener("change",()=>{localStorage.setItem("jlptN1FuriV3",$("furiMode").value);applyFuri()});$("mobileFuri").addEventListener("click",()=>{const cur=localStorage.getItem("jlptN1FuriV3")||"interactive",next=cur==="interactive"?"always":cur==="always"?"off":"interactive";localStorage.setItem("jlptN1FuriV3",next);applyFuri();$("mobileFuri").textContent=next==="interactive"?"あ":next==="always"?"振":"×"});
+
+applyTheme();applyFuri();renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
+</script>
+</body>
+</html>
