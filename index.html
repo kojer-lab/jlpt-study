@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#4f46e5">
-<title>JLPT N1 Study v3.7 TOPIK Word Flow</title>
+<title>JLPT N1 Study v3.8 Focused Anki</title>
 <style>
 :root{
   --bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e5e9f0;
@@ -56,6 +56,15 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .word-shell{max-width:560px;margin:0 auto}.word-card{overflow:hidden;padding:0;text-align:center}.word-card-body{padding:20px 22px 22px}.word-visual{width:100%;aspect-ratio:1.55/1;background:#fff;border-bottom:1px solid var(--line);overflow:hidden}.word-visual img{width:100%;height:100%;display:block;object-fit:cover}.word-main{font-size:42px;font-weight:850;line-height:1.35;margin:0;text-align:center}.word-reading{color:var(--muted);font-size:14px;margin-top:4px}.word-title-row{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0 12px;text-align:center}.word-title-row>div{width:100%}.word-title-row .star-btn{position:absolute;right:0;top:50%;transform:translateY(-50%)}.word-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;gap:12px}.star-btn{width:44px;height:44px;flex:0 0 auto;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:#a4a8b3;font-size:25px;line-height:1;cursor:pointer}.star-btn.on{color:#f5a700;background:#fff8df;border-color:#f5d77d}.word-mode-tabs{display:flex;gap:7px;flex-wrap:wrap}.word-mode-tabs button{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:8px 11px;border-radius:999px;cursor:pointer}.word-mode-tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:750}.word-tools-card{max-width:560px;margin:0 auto 12px;box-shadow:none}.reveal-btn{border:1px dashed var(--line);background:var(--panel);color:var(--muted);padding:10px 13px;border-radius:10px;cursor:pointer}.reveal-btn:hover{border-color:var(--accent);color:var(--accent)}.reveal-box{margin-top:9px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;line-height:1.7}.hidden{display:none!important}.examples{display:grid;gap:10px;margin-top:15px;text-align:left}.example{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}.example-jp{font-size:17px;line-height:1.95}.example-ko{margin-top:9px;line-height:1.65}
 .rating{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:17px}.rate-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:11px 6px;border-radius:10px;cursor:pointer}.rate-btn strong{display:block}.rate-btn small{display:block;color:var(--muted);margin-top:3px;font-size:11px}.rate-btn:hover{border-color:var(--accent)}
 .review-empty{text-align:center;padding:42px 20px;color:var(--muted)}
+.word-dashboard{max-width:560px;margin:0 auto 14px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--accent-soft),var(--panel))}
+.word-dashboard-title{font-size:20px;font-weight:850;margin-bottom:5px}
+.word-dashboard-sub{color:var(--muted);font-size:13px;line-height:1.6}
+.word-goal{margin:13px 0;padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.word-goal-head{display:flex;justify-content:space-between;align-items:end;gap:10px}.word-goal-head strong{font-size:18px}.word-goal-head span{font-size:12px;color:var(--muted)}
+.word-goal-track{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:10px}.word-goal-fill{height:100%;background:var(--accent);border-radius:999px;transition:width .25s}
+.word-dash-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}.word-dash-stat{text-align:center;padding:11px 6px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}.word-dash-stat strong{display:block;font-size:23px}.word-dash-stat span{display:block;margin-top:4px;color:var(--muted);font-size:11px}
+.word-dash-setting{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}.word-dash-setting label{font-size:13px;font-weight:800}.word-dash-setting select{min-width:100px;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 10px;border-radius:10px;font-weight:800}
+.word-start{width:100%;min-height:52px;font-size:16px}.word-dash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.word-study-head{max-width:560px;margin:0 auto 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}.word-study-progress{font-size:13px;color:var(--muted);font-weight:800}.word-focus-hint{color:var(--muted);font-size:12px;margin:5px 0 12px;text-align:center}
 .srs-chip{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted);font-size:12px}
 .reading-modes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.reading-modes button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:8px 12px;cursor:pointer}.reading-modes button.active{background:var(--accent);color:white;border-color:var(--accent)}
 .long-passage{font-size:17px;line-height:2.15}.reading-source{margin-top:13px;font-size:12px;color:var(--muted)}
@@ -67,7 +76,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 @media(max-width:960px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}.listen-grid{grid-template-columns:1fr}.sync-grid{grid-template-columns:1fr}}
 @media(max-width:760px){
   body{padding-bottom:78px}.app{display:block}.sidebar{display:none}.mobile-header{display:flex;position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px 14px;align-items:center;justify-content:space-between}.dark .mobile-header{background:rgba(24,29,39,.95)}.mobile-brand{display:flex;align-items:center;gap:8px;font-weight:850}.mobile-brand .brand-badge{width:31px;height:31px;border-radius:9px}.mobile-tools{display:flex;gap:7px}.mobile-tools button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text)}
-  .main{padding:12px 12px 28px;max-width:none}.topbar{align-items:flex-start;margin-bottom:14px}h1{font-size:25px}.topbar>.pill{display:none}.grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:16px;border-radius:14px}.stat .num{font-size:26px}.section-title{margin-top:23px}.question{font-size:20px;line-height:1.7}.passage,.long-passage{font-size:16px;line-height:1.95}.choice{min-height:52px;padding:13px}.word-shell{max-width:430px}.word-tools-card{max-width:430px;padding:10px 12px}.word-card{padding:0;border-radius:18px}.word-card-body{padding:11px 14px 15px}.word-visual{height:min(170px,21vh);aspect-ratio:auto}.word-visual img{object-fit:cover;object-position:center 46%}.word-meta{font-size:12px}.word-main{font-size:34px;line-height:1.22}.word-reading{display:none!important}.word-title-row{margin:10px 0 9px;align-items:center;justify-content:center;text-align:center}.star-btn{width:38px;height:38px;font-size:23px}.reveal-btn{padding:7px 10px;border-radius:9px;font-size:14px}.reveal-box{margin-top:6px;padding:8px 10px;line-height:1.55;font-size:14px}.examples{gap:7px;margin-top:9px}.example{padding:8px 10px;border-radius:9px}.example .label{font-size:11px}.example-jp{font-size:15px;line-height:1.55}.example .reveal-btn{margin-top:6px!important}.example-ko{margin-top:6px;line-height:1.5}.rating{grid-template-columns:repeat(2,1fr);gap:6px;margin-top:9px}.rate-btn{padding:8px 4px;border-radius:9px}.rate-btn small{font-size:10px;margin-top:1px}.next-row{position:static;bottom:auto;background:none;padding-top:0;margin-top:8px}.next-row .primary,.next-row .secondary{min-height:40px;padding:8px 14px}#wordsView{padding-bottom:8px}#wordsView>.topbar{display:none}.listen-grid{display:block}.track-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:8px;margin-bottom:10px}.track{min-width:200px}.toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.toolbar>*{flex:0 0 auto}.reading-modes{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.reading-modes button{flex:0 0 auto}
+  .main{padding:12px 12px 28px;max-width:none}.topbar{align-items:flex-start;margin-bottom:14px}h1{font-size:25px}.topbar>.pill{display:none}.grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:16px;border-radius:14px}.stat .num{font-size:26px}.section-title{margin-top:23px}.question{font-size:20px;line-height:1.7}.passage,.long-passage{font-size:16px;line-height:1.95}.choice{min-height:52px;padding:13px}.word-shell{max-width:430px}.word-dashboard{max-width:430px;padding:14px}.word-study-head{max-width:430px}.word-tools-card{max-width:430px;padding:10px 12px}.word-card{padding:0;border-radius:18px}.word-card-body{padding:11px 14px 15px}.word-visual{height:min(170px,21vh);aspect-ratio:auto}.word-visual img{object-fit:cover;object-position:center 46%}.word-meta{font-size:12px}.word-main{font-size:34px;line-height:1.22}.word-reading{display:none!important}.word-title-row{margin:10px 0 9px;align-items:center;justify-content:center;text-align:center}.star-btn{width:38px;height:38px;font-size:23px}.reveal-btn{padding:7px 10px;border-radius:9px;font-size:14px}.reveal-box{margin-top:6px;padding:8px 10px;line-height:1.55;font-size:14px}.examples{gap:7px;margin-top:9px}.example{padding:8px 10px;border-radius:9px}.example .label{font-size:11px}.example-jp{font-size:15px;line-height:1.55}.example .reveal-btn{margin-top:6px!important}.example-ko{margin-top:6px;line-height:1.5}.rating{grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}.rate-btn{padding:8px 2px;border-radius:9px;font-size:12px}.rate-btn small{font-size:9px;margin-top:2px}.next-row{position:static;bottom:auto;background:none;padding-top:0;margin-top:8px}.next-row .primary,.next-row .secondary{min-height:40px;padding:8px 14px}#wordsView{padding-bottom:8px}#wordsView>.topbar{display:none}.listen-grid{display:block}.track-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:8px;margin-bottom:10px}.track{min-width:200px}.toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.toolbar>*{flex:0 0 auto}.reading-modes{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.reading-modes button{flex:0 0 auto}
   .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--panel);border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -7px 20px rgba(0,0,0,.06)}.bottom-nav button{border:0;background:transparent;color:var(--muted);display:grid;gap:2px;place-items:center;padding:5px 2px;font-size:11px;border-radius:9px}.bottom-nav button span{font-size:19px;line-height:1}.bottom-nav button.active{color:var(--accent);background:var(--accent-soft);font-weight:750}.mistake{display:block}.mistake>button{margin-top:10px}.data-actions{display:grid}.data-actions>*{width:100%;justify-content:center}.mobile-only{display:block!important}
 }
 @media(min-width:761px){.mobile-only{display:none!important}}
@@ -124,32 +133,42 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
     </section>
 
     <section class="view" id="wordsView">
-      <div class="topbar"><div><h1>단어 학습</h1><div class="sub">오늘 배정된 단어를 순서대로 학습하고, 복습 시점은 SRS가 자동으로 계산합니다.</div></div><span class="pill" id="wordCountPill"></span></div>
-      <div class="card word-tools-card">
-        <div class="word-mode-tabs" id="wordModeTabs">
-          <button type="button" data-wordmode="daily" class="active">오늘 새 단어</button>
-          <button type="button" data-wordmode="starred">★ 별표 단어</button>
+      <div class="topbar"><div><h1>단어 학습</h1><div class="sub">학습 목표를 확인한 뒤 시작하면, 다른 요소를 숨기고 단어 한 장에 집중합니다.</div></div><span class="pill" id="wordCountPill"></span></div>
+      <div id="wordDashboard" class="word-dashboard">
+        <div class="word-dashboard-title">오늘의 단어 학습</div>
+        <div class="word-dashboard-sub">복습할 단어를 먼저 처리하고, 설정한 수만큼 새 단어를 이어서 학습합니다.</div>
+        <div class="word-goal">
+          <div class="word-goal-head"><strong id="wordGoalText">0 / 50개</strong><span>현재 단어 은행</span></div>
+          <div class="word-goal-track"><div class="word-goal-fill" id="wordGoalFill"></div></div>
         </div>
-        <div class="toolbar" style="justify-content:space-between;margin-top:11px">
-          <div><strong>하루 새 단어</strong><div class="label" style="margin-top:4px">오늘 배울 새 단어 수</div></div>
-          <div class="toolbar">
-            <select id="dailyNewLimit" class="ghost" style="width:auto;min-width:100px">
-              <option value="5">5개</option><option value="10">10개</option><option value="15">15개</option><option value="20">20개</option><option value="30">30개</option><option value="50">50개</option>
-            </select>
-          </div>
+        <div class="word-dash-stats">
+          <div class="word-dash-stat"><strong id="wordDashDue">0</strong><span>지금 복습</span></div>
+          <div class="word-dash-stat"><strong id="wordDashNew">0</strong><span>오늘 새 단어</span></div>
+          <div class="word-dash-stat"><strong id="wordDashTotal">0</strong><span>오늘 학습</span></div>
+          <div class="word-dash-stat"><strong id="wordDashMastered">0</strong><span>정착</span></div>
         </div>
+        <div class="word-dash-setting">
+          <label for="dailyNewLimit">하루 새 단어</label>
+          <select id="dailyNewLimit"><option value="5">5개</option><option value="10">10개</option><option value="15">15개</option><option value="20">20개</option><option value="30">30개</option><option value="50">50개</option></select>
+        </div>
+        <button class="primary word-start" type="button" id="startWordStudy">오늘 학습 시작</button>
+        <div class="word-dash-actions"><button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button><button class="secondary" type="button" data-go="review">복습만 보기</button></div>
       </div>
-      <div class="word-shell"><div class="card word-card">
-        <div class="word-card-body">
-          <div class="word-meta"><span id="wordIndexText"></span><span id="wordDueText"></span></div>
-          <div class="word-title-row"><div><div class="word-main" id="wordMain"></div><div class="word-reading" id="wordReading"></div></div><button type="button" class="star-btn" id="wordStarBtn" aria-label="별표">☆</button></div>
-          <button type="button" class="reveal-btn" id="showMeaningBtn">단어 뜻 보기</button>
-          <div class="reveal-box hidden" id="wordMeaning"></div>
-          <div class="examples" id="wordExamples"></div>
-          <div class="rating" id="wordRating"></div>
-          <div class="next-row"><button class="secondary" type="button" id="prevWordBtn">이전</button><button class="primary" type="button" id="nextWordBtn">다음</button></div>
-        </div>
-      </div></div>
+      <div id="wordStudyPanel" class="hidden">
+        <div class="word-study-head"><button class="secondary" type="button" id="exitWordStudy">← 학습 목표</button><div class="word-study-progress" id="wordStudyProgress"></div></div>
+        <div class="word-shell"><div class="card word-card">
+          <div class="word-card-body">
+            <div class="word-meta"><span id="wordIndexText"></span><span id="wordDueText"></span></div>
+            <div class="word-title-row"><div><div class="word-main" id="wordMain"></div><div class="word-reading" id="wordReading"></div></div><button type="button" class="star-btn" id="wordStarBtn" aria-label="별표">☆</button></div>
+            <div class="word-focus-hint" id="wordFocusHint">뜻을 먼저 떠올린 뒤 확인하세요.</div>
+            <button type="button" class="primary word-start" id="showMeaningBtn">뜻 · 예문 보기</button>
+            <div class="reveal-box hidden" id="wordMeaning"></div>
+            <div class="examples hidden" id="wordExamples"></div>
+            <div class="rating hidden" id="wordRating"></div>
+            <div class="next-row hidden"><button class="secondary" type="button" id="prevWordBtn">이전</button><button class="primary" type="button" id="nextWordBtn">다음</button></div>
+          </div>
+        </div></div>
+      </div>
     </section>
 
     <section class="view" id="quizhubView">
@@ -541,7 +560,7 @@ const readingSets={
  ]
 };
 
-let state=loadState();let wordIndex=0,wordMode="daily";let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
+let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
 function getSrs(id){return Object.assign({due:0,interval:0,ease:2.5,reviews:0,lapses:0,last:0,streak:0,updatedAt:0},state.srs[id]||{});}
 function setSrs(id,s){state.srs[id]=s;saveState(state)}
@@ -609,46 +628,88 @@ function todayNewPending(){return ensureDailyNew(false).filter(w=>getSrs(w.id).r
 function refreshAll(){renderHome();renderStats();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
- if(name==="home")renderHome();if(name==="words")renderWord();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
+ if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=0;readingQ=0;showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}const fu=e.target.closest(".furi");if(fu&&!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){e.preventDefault();e.stopPropagation();fu.classList.toggle("show")}});
 
 function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"})}
 
-function currentWordQueue(){return wordMode==="starred"?starredWords():ensureDailyNew(false)}
+function buildWordStudyQueue(){
+ const due=dueWords(),fresh=todayNewPending(),seen=new Set();
+ return [...due,...fresh].filter(w=>w&&!seen.has(w.id)&&seen.add(w.id));
+}
+function currentWordQueue(){return wordMode==="starred"?wordSessionQueue:wordSessionQueue}
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
+function renderWordDashboard(){
+ const daily=ensureDailyNew(false),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
+ const learned=words.filter(w=>getSrs(w.id).reviews>0).length;
+ const mastered=words.filter(w=>getSrs(w.id).reviews>0&&getSrs(w.id).interval>=30).length;
+ $("dailyNewLimit").value=String(state.settings.dailyNewLimit||10);
+ $("wordGoalText").textContent=`${learned} / ${words.length}개`;
+ $("wordGoalFill").style.width=(words.length?Math.min(100,learned/words.length*100):0)+"%";
+ $("wordDashDue").textContent=due.length;$("wordDashNew").textContent=fresh.length;
+ $("wordDashTotal").textContent=due.length+fresh.length;$("wordDashMastered").textContent=mastered;
+ $("wordCountPill").textContent=`현재 ${words.length} words`;
+ const total=due.length+fresh.length;
+ $("startWordStudy").disabled=total===0;
+ $("startWordStudy").textContent=total?`오늘 학습 시작 · ${total}장`:"오늘 학습 완료 ✓";
+}
+function showWordDashboard(){
+ wordSessionQueue=[];wordSessionDone=0;wordSessionTotal=0;wordIndex=0;wordMode="daily";
+ $("wordStudyPanel").classList.add("hidden");$("wordDashboard").classList.remove("hidden");
+ renderWordDashboard();wordTop();
+}
+function startWordStudy(mode="daily"){
+ wordMode=mode;wordIndex=0;wordSessionDone=0;
+ wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
+ wordSessionTotal=wordSessionQueue.length;
+ if(!wordSessionTotal){renderWordDashboard();return}
+ $("wordDashboard").classList.add("hidden");$("wordStudyPanel").classList.remove("hidden");
+ renderWord();wordTop();
+}
+function finishWordStudy(){
+ $("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
+ $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
+ $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";
+ $("showMeaningBtn").textContent="학습 목표로 돌아가기";$("showMeaningBtn").classList.remove("hidden");$("showMeaningBtn").dataset.finished="1";
+ $("wordMeaning").classList.add("hidden");$("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
+}
 function renderWord(){
  const queue=currentWordQueue();
- $("dailyNewLimit").value=String(state.settings.dailyNewLimit||10);
- document.querySelectorAll("#wordModeTabs [data-wordmode]").forEach(b=>b.classList.toggle("active",b.dataset.wordmode===wordMode));
- $("wordCountPill").textContent=wordMode==="starred"?`별표 ${queue.length}개`:`오늘 단어 ${queue.length}개`;
- if(!queue.length){
-   $("wordIndexText").textContent=wordMode==="starred"?"별표 없음":"오늘 분량 완료";$("wordDueText").textContent=wordMode==="starred"?"☆를 눌러 저장하세요":`하루 ${state.settings.dailyNewLimit}개`;
-   $("wordMain").innerHTML=wordMode==="starred"?"☆":"🎉";$("wordReading").textContent="";
-   $("wordStarBtn").classList.add("hidden");
-   $("wordMeaning").textContent=wordMode==="starred"?"헷갈리는 단어에서 ☆를 누르면 여기에 모아 다시 볼 수 있습니다.":"오늘의 새 단어 학습을 마쳤습니다. 복습 시간이 되면 ‘오늘의 복습’에 다시 나타납니다.";
-   $("wordMeaning").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");
-   $("wordExamples").innerHTML="";$("wordRating").innerHTML="";$("prevWordBtn").classList.add("hidden");$("nextWordBtn").classList.add("hidden");return;
- }
- $("wordStarBtn").classList.remove("hidden");$("showMeaningBtn").classList.remove("hidden");$("prevWordBtn").classList.remove("hidden");$("nextWordBtn").classList.remove("hidden");
+ if(!queue.length){finishWordStudy();return}
+ $("showMeaningBtn").dataset.finished="";
+ $("wordStarBtn").classList.remove("hidden");$("showMeaningBtn").classList.remove("hidden");
  if(wordIndex>=queue.length)wordIndex=0;
  const w=queue[wordIndex],sr=getSrs(w.id);
- $("wordIndexText").textContent=`${wordIndex+1} / ${queue.length}`;
- $("wordDueText").textContent=wordMode==="starred"?(sr.reviews?`${dateLabel(sr.due)} · ${sr.interval}일`:"새 단어"):(sr.reviews?"오늘 학습 완료":"오늘의 새 단어");
+ $("wordStudyProgress").textContent=`${Math.min(wordSessionDone+1,wordSessionTotal)} / ${wordSessionTotal}`;
+ $("wordIndexText").textContent=wordMode==="starred"?`★ ${wordSessionDone+1} / ${wordSessionTotal}`:`${wordSessionDone+1} / ${wordSessionTotal}`;
+ $("wordDueText").textContent=sr.reviews?(sr.due<=now()?"복습":"학습 중"):"새 단어";
  $("wordMain").innerHTML=w.w;$("wordReading").textContent="";
  $("wordStarBtn").textContent=isStarred(w.id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(w.id));$("wordStarBtn").dataset.word=w.id;
- $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");$("showMeaningBtn").textContent="단어 뜻 보기";
+ $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
+ $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");
+ $("showMeaningBtn").textContent="뜻 · 예문 보기";
  $("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+ $("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
  renderRating($("wordRating"),w.id,sr,false);
 }
 function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
-$("showMeaningBtn").addEventListener("click",()=>{const h=$("wordMeaning").classList.toggle("hidden");$("showMeaningBtn").textContent=h?"단어 뜻 보기":"단어 뜻 숨기기"});
+$("showMeaningBtn").addEventListener("click",()=>{
+ if($("showMeaningBtn").dataset.finished==="1"){showWordDashboard();return}
+ $("wordMeaning").classList.remove("hidden");$("wordExamples").classList.remove("hidden");$("wordRating").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");$("wordFocusHint").textContent="확인했다면 기억 정도를 선택하세요.";
+});
 $("wordExamples").addEventListener("click",e=>{const b=e.target.closest(".ex-reveal");if(!b)return;const box=b.nextElementSibling;const h=box.classList.toggle("hidden");b.textContent=h?"예문 뜻 보기":"예문 뜻 숨기기"});
-$("prevWordBtn").addEventListener("click",()=>{const q=currentWordQueue();if(!q.length)return;wordIndex=(wordIndex-1+q.length)%q.length;renderWord();wordTop()});$("nextWordBtn").addEventListener("click",()=>{const q=currentWordQueue();if(!q.length)return;wordIndex=(wordIndex+1)%q.length;renderWord();wordTop()});
-$("wordRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;const q=currentWordQueue();rateWord(b.dataset.word,b.dataset.rate);if(wordMode==="daily"&&q.length)wordIndex=(wordIndex+1)%q.length;else wordIndex=0;renderWord();wordTop()});
-$("wordStarBtn").addEventListener("click",()=>{const id=$("wordStarBtn").dataset.word;if(!id)return;toggleStar(id);if(wordMode==="starred")wordIndex=0;renderWord()});
-$("wordModeTabs").addEventListener("click",e=>{const b=e.target.closest("[data-wordmode]");if(!b)return;wordMode=b.dataset.wordmode;wordIndex=0;renderWord();wordTop()});
-$("dailyNewLimit").addEventListener("change",()=>{const n=Math.max(1,Math.min(50,Number($("dailyNewLimit").value)||10));state.settings=Object.assign({},state.settings,{dailyNewLimit:n,updatedAt:Date.now()});ensureDailyNew(false);saveState(state);wordIndex=0;renderWord();refreshAll()});
+$("wordRating").addEventListener("click",e=>{
+ const b=e.target.closest("[data-rate]");if(!b)return;
+ const currentId=b.dataset.word;rateWord(currentId,b.dataset.rate);
+ wordSessionDone++;wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
+ wordIndex=0;renderWord();wordTop();
+});
+$("wordStarBtn").addEventListener("click",()=>{const id=$("wordStarBtn").dataset.word;if(!id)return;toggleStar(id);$("wordStarBtn").textContent=isStarred(id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(id))});
+$("dailyNewLimit").addEventListener("change",()=>{const n=Math.max(1,Math.min(50,Number($("dailyNewLimit").value)||10));state.settings=Object.assign({},state.settings,{dailyNewLimit:n,updatedAt:Date.now()});ensureDailyNew(false);saveState(state);renderWordDashboard();refreshAll()});
+$("startWordStudy").addEventListener("click",()=>startWordStudy("daily"));
+$("startStarredStudy").addEventListener("click",()=>startWordStudy("starred"));
+$("exitWordStudy").addEventListener("click",showWordDashboard);
 
 function startQuiz(mode){quizMode=mode;quizOrder=[...Array(quizData[mode].length).keys()].sort(()=>Math.random()-.5);quizIndex=0;renderQuiz()}
 function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘":"文法 · 문법";$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.q;$("quizChoices").innerHTML=item.c.map((c,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${c}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden")}
