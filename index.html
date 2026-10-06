@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#4f46e5">
-<title>JLPT N1 Study v3.9 Furigana UX</title>
+<title>JLPT N1 Study v4.0 Anki Undo</title>
 <style>
 :root{
   --bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e5e9f0;
@@ -64,7 +64,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .word-goal-track{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:10px}.word-goal-fill{height:100%;background:var(--accent);border-radius:999px;transition:width .25s}
 .word-dash-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}.word-dash-stat{text-align:center;padding:11px 6px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}.word-dash-stat strong{display:block;font-size:23px}.word-dash-stat span{display:block;margin-top:4px;color:var(--muted);font-size:11px}
 .word-dash-setting{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}.word-dash-setting label{font-size:13px;font-weight:800}.word-dash-setting select{min-width:100px;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 10px;border-radius:10px;font-weight:800}
-.word-start{width:100%;min-height:52px;font-size:16px}.word-dash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.word-study-head{max-width:560px;margin:0 auto 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}.word-study-progress{font-size:13px;color:var(--muted);font-weight:800}.word-focus-hint{color:var(--muted);font-size:12px;margin:5px 0 12px;text-align:center}
+.word-start{width:100%;min-height:52px;font-size:16px}.word-dash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.word-study-head{max-width:560px;margin:0 auto 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}.word-study-left{display:flex;align-items:center;gap:7px}.word-undo{padding:10px 12px}.word-undo:disabled{opacity:.38;cursor:default}.word-study-progress{font-size:13px;color:var(--muted);font-weight:800}.word-focus-hint{color:var(--muted);font-size:12px;margin:5px 0 12px;text-align:center}
 .srs-chip{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted);font-size:12px}
 .reading-modes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.reading-modes button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:8px 12px;cursor:pointer}.reading-modes button.active{background:var(--accent);color:white;border-color:var(--accent)}
 .long-passage{font-size:17px;line-height:2.15}.reading-source{margin-top:13px;font-size:12px;color:var(--muted)}
@@ -76,7 +76,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 @media(max-width:960px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}.listen-grid{grid-template-columns:1fr}.sync-grid{grid-template-columns:1fr}}
 @media(max-width:760px){
   body{padding-bottom:78px}.app{display:block}.sidebar{display:none}.mobile-header{display:flex;position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px 14px;align-items:center;justify-content:space-between}.dark .mobile-header{background:rgba(24,29,39,.95)}.mobile-brand{display:flex;align-items:center;gap:8px;font-weight:850}.mobile-brand .brand-badge{width:31px;height:31px;border-radius:9px}.mobile-tools{display:flex;gap:7px}.mobile-tools button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text)}
-  .main{padding:12px 12px 28px;max-width:none}.topbar{align-items:flex-start;margin-bottom:14px}h1{font-size:25px}.topbar>.pill{display:none}.grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:16px;border-radius:14px}.stat .num{font-size:26px}.section-title{margin-top:23px}.question{font-size:20px;line-height:1.7}.passage,.long-passage{font-size:16px;line-height:1.95}.choice{min-height:52px;padding:13px}.word-shell{max-width:430px}.word-dashboard{max-width:430px;padding:14px}.word-study-head{max-width:430px}.word-tools-card{max-width:430px;padding:10px 12px}.word-card{padding:0;border-radius:18px}.word-card-body{padding:11px 14px 15px}.word-visual{height:min(170px,21vh);aspect-ratio:auto}.word-visual img{object-fit:cover;object-position:center 46%}.word-meta{font-size:12px}.word-main{font-size:34px;line-height:1.22}.word-reading{display:none!important}.word-title-row{margin:10px 0 9px;align-items:center;justify-content:center;text-align:center}.star-btn{width:38px;height:38px;font-size:23px}.reveal-btn{padding:7px 10px;border-radius:9px;font-size:14px}.reveal-box{margin-top:6px;padding:8px 10px;line-height:1.55;font-size:14px}.examples{gap:7px;margin-top:9px}.example{padding:8px 10px;border-radius:9px}.example .label{font-size:11px}.example-jp{font-size:15px;line-height:2.05;padding-top:8px}.example .reveal-btn{margin-top:6px!important}.example-ko{margin-top:6px;line-height:1.5}.rating{grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}.rate-btn{padding:8px 2px;border-radius:9px;font-size:12px}.rate-btn small{font-size:9px;margin-top:2px}.next-row{position:static;bottom:auto;background:none;padding-top:0;margin-top:8px}.next-row .primary,.next-row .secondary{min-height:40px;padding:8px 14px}#wordsView{padding-bottom:8px}#wordsView>.topbar{display:none}.listen-grid{display:block}.track-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:8px;margin-bottom:10px}.track{min-width:200px}.toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.toolbar>*{flex:0 0 auto}.reading-modes{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.reading-modes button{flex:0 0 auto}
+  .main{padding:12px 12px 28px;max-width:none}.topbar{align-items:flex-start;margin-bottom:14px}h1{font-size:25px}.topbar>.pill{display:none}.grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:16px;border-radius:14px}.stat .num{font-size:26px}.section-title{margin-top:23px}.question{font-size:20px;line-height:1.7}.passage,.long-passage{font-size:16px;line-height:1.95}.choice{min-height:52px;padding:13px}.word-shell{max-width:430px}.word-dashboard{max-width:430px;padding:14px}.word-study-head{max-width:430px;gap:6px}.word-study-left{gap:5px}.word-study-head .secondary{padding:9px 10px;font-size:12px}.word-tools-card{max-width:430px;padding:10px 12px}.word-card{padding:0;border-radius:18px}.word-card-body{padding:11px 14px 15px}.word-visual{height:min(170px,21vh);aspect-ratio:auto}.word-visual img{object-fit:cover;object-position:center 46%}.word-meta{font-size:12px}.word-main{font-size:34px;line-height:1.22}.word-reading{display:none!important}.word-title-row{margin:10px 0 9px;align-items:center;justify-content:center;text-align:center}.star-btn{width:38px;height:38px;font-size:23px}.reveal-btn{padding:7px 10px;border-radius:9px;font-size:14px}.reveal-box{margin-top:6px;padding:8px 10px;line-height:1.55;font-size:14px}.examples{gap:7px;margin-top:9px}.example{padding:8px 10px;border-radius:9px}.example .label{font-size:11px}.example-jp{font-size:15px;line-height:2.05;padding-top:8px}.example .reveal-btn{margin-top:6px!important}.example-ko{margin-top:6px;line-height:1.5}.rating{grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}.rate-btn{padding:8px 2px;border-radius:9px;font-size:12px}.rate-btn small{font-size:9px;margin-top:2px}.next-row{position:static;bottom:auto;background:none;padding-top:0;margin-top:8px}.next-row .primary,.next-row .secondary{min-height:40px;padding:8px 14px}#wordsView{padding-bottom:8px}#wordsView>.topbar{display:none}.listen-grid{display:block}.track-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:8px;margin-bottom:10px}.track{min-width:200px}.toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.toolbar>*{flex:0 0 auto}.reading-modes{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.reading-modes button{flex:0 0 auto}
   .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--panel);border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -7px 20px rgba(0,0,0,.06)}.bottom-nav button{border:0;background:transparent;color:var(--muted);display:grid;gap:2px;place-items:center;padding:5px 2px;font-size:11px;border-radius:9px}.bottom-nav button span{font-size:19px;line-height:1}.bottom-nav button.active{color:var(--accent);background:var(--accent-soft);font-weight:750}.mistake{display:block}.mistake>button{margin-top:10px}.data-actions{display:grid}.data-actions>*{width:100%;justify-content:center}.mobile-only{display:block!important}
 }
 @media(min-width:761px){.mobile-only{display:none!important}}
@@ -155,7 +155,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="word-dash-actions"><button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button><button class="secondary" type="button" data-go="review">복습만 보기</button></div>
       </div>
       <div id="wordStudyPanel" class="hidden">
-        <div class="word-study-head"><button class="secondary" type="button" id="exitWordStudy">← 학습 목표</button><div class="word-study-progress" id="wordStudyProgress"></div></div>
+        <div class="word-study-head"><div class="word-study-left"><button class="secondary" type="button" id="exitWordStudy">← 학습 목표</button><button class="secondary word-undo" type="button" id="undoWordRating" disabled>↶ 전 단어</button></div><div class="word-study-progress" id="wordStudyProgress"></div></div>
         <div class="word-shell"><div class="card word-card">
           <div class="word-card-body">
             <div class="word-meta"><span id="wordIndexText"></span><span id="wordDueText"></span></div>
@@ -560,7 +560,7 @@ const readingSets={
  ]
 };
 
-let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
+let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[];let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
 function getSrs(id){return Object.assign({due:0,interval:0,ease:2.5,reviews:0,lapses:0,last:0,streak:0,updatedAt:0},state.srs[id]||{});}
 function setSrs(id,s){state.srs[id]=s;saveState(state)}
@@ -655,20 +655,21 @@ function renderWordDashboard(){
  $("startWordStudy").textContent=total?`오늘 학습 시작 · ${total}장`:"오늘 학습 완료 ✓";
 }
 function showWordDashboard(){
- wordSessionQueue=[];wordSessionDone=0;wordSessionTotal=0;wordIndex=0;wordMode="daily";
+ wordSessionQueue=[];wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;wordMode="daily";
  $("wordStudyPanel").classList.add("hidden");$("wordDashboard").classList.remove("hidden");
  renderWordDashboard();wordTop();
 }
 function startWordStudy(mode="daily"){
- wordMode=mode;wordIndex=0;wordSessionDone=0;
+ wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];
  wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
  wordSessionTotal=wordSessionQueue.length;
  if(!wordSessionTotal){renderWordDashboard();return}
  $("wordDashboard").classList.add("hidden");$("wordStudyPanel").classList.remove("hidden");
  renderWord();wordTop();
 }
+function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wordSessionHistory.length===0}
 function finishWordStudy(){
- $("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
+ updateWordUndo();$("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
  $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
  $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";
  $("showMeaningBtn").textContent="학습 목표로 돌아가기";$("showMeaningBtn").classList.remove("hidden");$("showMeaningBtn").dataset.finished="1";
@@ -676,6 +677,7 @@ function finishWordStudy(){
 }
 function renderWord(){
  const queue=currentWordQueue();
+ updateWordUndo();
  if(!queue.length){finishWordStudy();return}
  $("showMeaningBtn").dataset.finished="";
  $("wordStarBtn").classList.remove("hidden");$("showMeaningBtn").classList.remove("hidden");
@@ -701,9 +703,23 @@ $("showMeaningBtn").addEventListener("click",()=>{
 $("wordExamples").addEventListener("click",e=>{const b=e.target.closest(".ex-reveal");if(!b)return;const box=b.nextElementSibling;const h=box.classList.toggle("hidden");b.textContent=h?"예문 뜻 보기":"예문 뜻 숨기기"});
 $("wordRating").addEventListener("click",e=>{
  const b=e.target.closest("[data-rate]");if(!b)return;
- const currentId=b.dataset.word;rateWord(currentId,b.dataset.rate);
+ const currentId=b.dataset.word,currentWord=words.find(w=>w.id===currentId);
+ const hadSrs=Object.prototype.hasOwnProperty.call(state.srs,currentId);
+ const before=hadSrs?JSON.parse(JSON.stringify(state.srs[currentId])):null;
+ wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate});
+ rateWord(currentId,b.dataset.rate);
  wordSessionDone++;wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
  wordIndex=0;renderWord();wordTop();
+});
+$("undoWordRating").addEventListener("click",()=>{
+ const h=wordSessionHistory.pop();if(!h)return;
+ if(h.hadSrs)state.srs[h.id]=h.before;else delete state.srs[h.id];
+ if(h.word&&!wordSessionQueue.some(w=>w.id===h.id))wordSessionQueue.unshift(h.word);
+ wordSessionDone=Math.max(0,wordSessionDone-1);wordIndex=0;
+ saveState(state);refreshAll();renderWord();wordTop();
+ requestAnimationFrame(()=>{
+   if(!$("showMeaningBtn").classList.contains("hidden"))$("showMeaningBtn").click();
+ });
 });
 $("wordStarBtn").addEventListener("click",()=>{const id=$("wordStarBtn").dataset.word;if(!id)return;toggleStar(id);$("wordStarBtn").textContent=isStarred(id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(id))});
 $("dailyNewLimit").addEventListener("change",()=>{const n=Math.max(1,Math.min(50,Number($("dailyNewLimit").value)||10));state.settings=Object.assign({},state.settings,{dailyNewLimit:n,updatedAt:Date.now()});ensureDailyNew(false);saveState(state);renderWordDashboard();refreshAll()});
