@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 
-from fugashi import Tagger
+from sudachipy import dictionary, tokenizer as sudachi_tokenizer
 
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/"data"/"n1-reading-furigana-source.json"
@@ -12,7 +12,7 @@ KANJI_RE=re.compile(r"[一-龯々〆ヵヶ]")
 TAG_RE=re.compile(r"<[^>]+>")
 PARA_RE=re.compile(r"(?:<br\s*/?>\s*){2,}",re.I)
 
-tagger=Tagger()
+tokenizer=dictionary.Dictionary().create()\nSPLIT_MODE=sudachi_tokenizer.Tokenizer.SplitMode.C
 
 def kata_to_hira(s):
     out=[]
@@ -25,11 +25,9 @@ def kata_to_hira(s):
     return "".join(out)
 
 def reading_of(tok):
-    feat=tok.feature
-    for name in ("kana","pron","pronBase","kanaBase"):
-        val=getattr(feat,name,None)
-        if val and val!="*":
-            return kata_to_hira(str(val))
+    val=tok.reading_form()
+    if val and val!="*":
+        return kata_to_hira(str(val))
     return None
 
 def wrap_surface(surface,reading):
@@ -56,8 +54,8 @@ def wrap_surface(surface,reading):
 
 def annotate_plain(text):
     out=[]
-    for tok in tagger(text):
-        out.append(wrap_surface(tok.surface,reading_of(tok)))
+    for tok in tokenizer.tokenize(text,SPLIT_MODE):
+        out.append(wrap_surface(tok.surface(),reading_of(tok)))
     return "".join(out)
 
 def annotate(raw):
