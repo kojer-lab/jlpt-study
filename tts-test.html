@@ -341,6 +341,13 @@ async function playN1(){
    ["n1FirstMetric","n1TotalMetric","n1StallMetric","n1StallTotalMetric","n1StallMaxMetric","n1SlowMetric"].forEach(id=>$(id).textContent="측정 중");
    const prebuffer=Math.max(1,Math.min(n1Lines.length,Number($("prebufferCount").value)||2));
    const job=startN1Producer();
+   const finalPromise=job.producer.then(final=>{
+     $("n1TotalMetric").textContent=fmt(final.total);
+     $("n1SlowMetric").textContent=fmt(final.slowest);
+     if(!$("persistDuringTest").checked)updateCache();
+     if(!stopRequested)setStatus("전체 음성 생성 완료 "+fmt(final.total)+" · 재생은 계속 진행 중입니다.","ok","n1Status");
+     return final;
+   });
    const firstReadyStarted=performance.now();
    await Promise.all(job.slots.slice(0,prebuffer).map(x=>x.promise));
    const firstReady=performance.now()-firstReadyStarted;
@@ -359,13 +366,10 @@ async function playN1(){
      await playUrl(r.url);
      if(i<n1Lines.length-1&&!stopRequested)await new Promise(res=>setTimeout(res,180));
    }
-   const final=await job.producer;
-   if(!$("persistDuringTest").checked)updateCache();
-   $("n1TotalMetric").textContent=fmt(final.total);
+   const final=await finalPromise;
    $("n1StallMetric").textContent=stallCount+"회";
    $("n1StallTotalMetric").textContent=fmt(stallTotal);
    $("n1StallMaxMetric").textContent=fmt(stallMax);
-   $("n1SlowMetric").textContent=fmt(final.slowest);
    if(!stopRequested)setStatus("완료 · "+ENGINE[activeEngine||selectedEngine()].label+" · 선행 "+prebuffer+"개 · 첫 재생 "+fmt(firstReady)+" · 전체 생성 "+fmt(final.total)+" · 중간 멈춤 "+stallCount+"회 / "+fmt(stallTotal)+" · 최장 "+fmt(stallMax),"ok","n1Status");
  }catch(err){
    console.error(err);
