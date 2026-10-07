@@ -21310,6 +21310,13 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-65fc20eed5": {
     "meaning": "보장 / 보증 / 안전 보장",
+    "examples": [
+      {
+        "jp": "彼女の誠実さは私が保証します。",
+        "ko": "그녀의 성실함은 제가 보증합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-800e05bcf1": {
@@ -23650,13 +23657,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-7f3a84fff7": {
-    "examples": [
-      {
-        "jp": "私は洋風の家に住んでいます。",
-        "ko": "나는 서양식 집에 살고 있습니다.",
-        "exampleSource": "manual-review"
-      }
-    ],
+    "meaning": "서양식 / 서양풍",
     "meaningSource": "manual-review"
   },
   "oj-47f993e9c4": {
@@ -24498,6 +24499,56 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
+    "meaningSource": "manual-review"
+  },
+  "oj-184ff21342": {
+    "meaning": "펌프",
+    "examples": [
+      {
+        "jp": "ポンプはちゃんと動かなかった。",
+        "ko": "펌프가 제대로 작동하지 않았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f3edf29743": {
+    "meaning": "야생 / 야생 상태",
+    "examples": [
+      {
+        "jp": "彼は野生に戻りたいと思っている。",
+        "ko": "그는 야생으로 돌아가고 싶어 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7e068a9494": {
+    "meaning": "맞선 / 정식 결혼 상대 소개",
+    "meaningSource": "manual-review"
+  },
+  "oj-5fe2bc62e1": {
+    "meaning": "미지 / 아직 알려지지 않음",
+    "meaningSource": "manual-review"
+  },
+  "oj-d7a2fbbfc9": {
+    "meaning": "어둠 / 암흑 / 암거래",
+    "meaningSource": "manual-review"
+  },
+  "oj-7e3f27dbb0": {
+    "meaning": "복잡한 / 까다로운 / 뒤얽힌",
+    "meaningSource": "manual-review"
+  },
+  "oj-cf54ac0087": {
+    "meaning": "유망한 / 전망이 좋은",
+    "meaningSource": "manual-review"
+  },
+  "oj-145570d162": {
+    "meaning": "예금 / 은행에 돈을 맡김",
+    "meaningSource": "manual-review"
+  },
+  "oj-fc653283bc": {
+    "meaning": "아주 / 상당히 / 어지간히",
     "meaningSource": "manual-review"
   }
 };
