@@ -13622,5 +13622,643 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-44a1e074f7": {
+    "examples": [
+      {
+        "jp": "それは推測に基づいている。",
+        "ko": "그것은 추측에 근거하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-69b03989d5": {
+    "examples": [
+      {
+        "jp": "津波が水田を押し流し、町は浸水しました。",
+        "ko": "쓰나미가 논을 휩쓸고 마을은 침수되었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-78c700a939": {
+    "examples": [
+      {
+        "jp": "今日はすがすがしいお天気ですね。",
+        "ko": "오늘은 상쾌한 날씨네요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fa16d0fa2f": {
+    "meaning": "건강한 / 건강하게 잘 자라는",
+    "examples": [
+      {
+        "jp": "インコやオウムと仲良く楽しく健やかに暮らすために、飼鳥の行動学やペットロスについて考える。",
+        "ko": "잉꼬나 앵무새와 사이좋고 즐겁고 건강하게 살기 위해 사육조의 행동학과 펫로스에 대해 생각한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d2062ce3a7": {
+    "meaning": "헹구다 / 씻어 내다 / 오명을 씻다",
+    "examples": [
+      {
+        "jp": "彼は汚名をそそいだ。",
+        "ko": "그는 오명을 씻었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ae0b1c0956": {
+    "meaning": "진행 / 진척 / 나아감",
+    "examples": [
+      {
+        "jp": "晩婚化傾向は今後もますます進みそうだ。",
+        "ko": "만혼화 경향은 앞으로도 더욱 진행될 것 같다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0f8d581ad8": {
+    "meaning": "옷자락 / 바짓단 / 산기슭",
+    "examples": [
+      {
+        "jp": "カレンの裾が捲れている。",
+        "ko": "카렌의 옷자락이 말려 올라가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a7941c36e8": {
+    "examples": [
+      {
+        "jp": "スタジオに入れません。",
+        "ko": "스튜디오에 들어갈 수 없습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c3ca467b1d": {
+    "examples": [
+      {
+        "jp": "スチームショベルは片方に三階建て、もう片方に四階建ての地下を掘りました。",
+        "ko": "스팀 셔블은 한쪽은 3층, 다른 쪽은 4층 깊이의 지하를 팠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-484290c451": {
+    "examples": [
+      {
+        "jp": "労働者達はストライキ中です。",
+        "ko": "노동자들은 파업 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0ebbd144f0": {
+    "meaning": "스트로보 / 플래시 조명",
+    "examples": [
+      {
+        "jp": "ここでストロボ撮影をしてもいいですか。",
+        "ko": "여기서 플래시 촬영을 해도 되나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0a3108b49a": {
+    "meaning": "날렵하다 / 재빠르다",
+    "examples": [
+      {
+        "jp": "リスはすばしこく木を登る。",
+        "ko": "다람쥐는 재빠르게 나무를 오른다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-139bcb98dd": {
+    "examples": [
+      {
+        "jp": "そのクモは素早い反撃をする。",
+        "ko": "그 거미는 재빠르게 반격한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3d2a593a0f": {
+    "meaning": "흠뻑 젖음 / 비에 완전히 젖은 상태",
+    "examples": [
+      {
+        "jp": "強い雨のため私はずぶ濡れになった。",
+        "ko": "거센 비 때문에 나는 흠뻑 젖었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e688cdb877": {
+    "examples": [
+      {
+        "jp": "ホワイト氏はスプリングフィールドのあるホテルの支配人でした。",
+        "ko": "화이트 씨는 스프링필드에 있는 어느 호텔의 지배인이었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-02214493b2": {
+    "examples": [
+      {
+        "jp": "どこでもスペースのある所にそれを置きなさい。",
+        "ko": "공간이 있는 곳이면 어디든 그것을 놓으세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c97f669a80": {
+    "examples": [
+      {
+        "jp": "赤いスポーツカーを買ったんだ。",
+        "ko": "빨간 스포츠카를 샀어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e11f113050": {
+    "meaning": "끝내다 / 처리하다 / 간단히 마치다",
+    "examples": [
+      {
+        "jp": "電話で済まそうと思いました。",
+        "ko": "전화로 해결하려고 했습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5cda34a1a0": {
+    "meaning": "맑게 하다 / 태연한 표정을 짓다",
+    "examples": [
+      {
+        "jp": "あの社長秘書はいつも澄ましている。",
+        "ko": "그 사장 비서는 언제나 태연한 표정을 짓고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f71c5d995e": {
+    "meaning": "천황 / 일본의 황제",
+    "examples": [
+      {
+        "jp": "天皇は国民の統合の象徴である。",
+        "ko": "천황은 국민 통합의 상징이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5abd8e3509": {
+    "meaning": "질질 / 미적미적 / 미끄러지며",
+    "examples": [
+      {
+        "jp": "私はぬかるんだ斜面をずるずると滑り下りた。",
+        "ko": "나는 진흙투성이 비탈을 질질 미끄러져 내려갔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1bd79302aa": {
+    "meaning": "순조롭게 / 막힘없이 / 날씬하게",
+    "examples": [
+      {
+        "jp": "スーザンは賢いから試験にすんなり通ると思うよ。",
+        "ko": "수전은 영리하니까 시험에 순조롭게 붙을 것 같아.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-534cb7e2f0": {
+    "meaning": "제도 / 체제 / ~제",
+    "meaningSource": "manual-review"
+  },
+  "oj-757a20aae1": {
+    "meaning": "~제 / ~로 만든 제품",
+    "meaningSource": "manual-review"
+  },
+  "oj-ac9ee9e6da": {
+    "examples": [
+      {
+        "jp": "雨の量が作物の生育に影響するのですか。",
+        "ko": "강수량이 작물의 생육에 영향을 주나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f9a5606644": {
+    "examples": [
+      {
+        "jp": "これは私たちの研究の成果です。",
+        "ko": "이것은 우리 연구의 성과입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4b235d70bd": {
+    "meaning": "정답 / 올바른 해답",
+    "meaningSource": "manual-review"
+  },
+  "oj-e0a7a58f49": {
+    "examples": [
+      {
+        "jp": "彼は教師をして生計を立てている。",
+        "ko": "그는 교사 일을 하며 생계를 꾸리고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7c2d1e9d1c": {
+    "examples": [
+      {
+        "jp": "彼の政権はきっと崩壊する。",
+        "ko": "그의 정권은 분명 무너질 것이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-20c69c9076": {
+    "examples": [
+      {
+        "jp": "その機械は精巧に出来ているので、すぐ壊れる。",
+        "ko": "그 기계는 정교하게 만들어져 있어서 쉽게 망가진다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c99eb11ad1": {
+    "examples": [
+      {
+        "jp": "組合に制裁を加えることは妥当ではない。",
+        "ko": "조합에 제재를 가하는 것은 타당하지 않다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f423d4f4d1": {
+    "examples": [
+      {
+        "jp": "彼は新しい政策を決定していた。",
+        "ko": "그는 새로운 정책을 결정해 두었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3478d73bed": {
+    "examples": [
+      {
+        "jp": "浅間山は今静止している。",
+        "ko": "아사마산은 지금 활동을 멈춘 상태다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-57e3dad789": {
+    "examples": [
+      {
+        "jp": "このオレンジはすぐに成熟します。",
+        "ko": "이 오렌지는 곧 익습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-44498bcb07": {
+    "meaning": "청순 / 순수하고 깨끗한 인상",
+    "examples": [
+      {
+        "jp": "写真が暴露された後で女優の清純なイメージが汚された。",
+        "ko": "사진이 폭로된 뒤 그 여배우의 청순한 이미지가 훼손되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-129bdb801c": {
+    "examples": [
+      {
+        "jp": "赤ん坊は正常な発育を示した。",
+        "ko": "아기는 정상적인 발육을 보였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-28e2537426": {
+    "meaning": "제압하다 / 통제하다 / 차지하다",
+    "examples": [
+      {
+        "jp": "彼らは国会で過半数を制した。",
+        "ko": "그들은 국회에서 과반수를 차지했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d35a033fc4": {
+    "meaning": "정연함 / 질서정연함",
+    "examples": [
+      {
+        "jp": "その別荘は清潔で整然としていた。",
+        "ko": "그 별장은 깨끗하고 정돈되어 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d12b4a5275": {
+    "meaning": "정장 차림 / 화려하게 차려입음",
+    "examples": [
+      {
+        "jp": "盛装なさる必要はありません。",
+        "ko": "정장을 차려입으실 필요는 없습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a3ccbcbc24": {
+    "meaning": "청탁 / 맑음과 흐림, 선과 악",
+    "examples": [
+      {
+        "jp": "清濁あわせのむ。",
+        "ko": "좋고 나쁜 것을 가리지 않고 모두 받아들인다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7aec647ab2": {
+    "examples": [
+      {
+        "jp": "その法律は明治時代に制定された。",
+        "ko": "그 법률은 메이지 시대에 제정되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ba345bb807": {
+    "meaning": "제철 / 철을 생산함",
+    "examples": [
+      {
+        "jp": "その製鉄工場を建てるのは非常に大変な事業だった。",
+        "ko": "그 제철소를 짓는 것은 매우 큰 사업이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-048029554e": {
+    "meaning": "맑은 날씨 / 쾌청",
+    "examples": [
+      {
+        "jp": "雨天の後には晴天が来る。",
+        "ko": "비 오는 날 뒤에는 맑은 날이 온다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e2de8e9146": {
+    "examples": [
+      {
+        "jp": "私たちは成年に達すると選挙権を手にする。",
+        "ko": "우리는 성년에 이르면 선거권을 갖게 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3f6acc49f6": {
+    "examples": [
+      {
+        "jp": "私たちの学校では制服を着る。",
+        "ko": "우리 학교에서는 교복을 입는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6baf342ae6": {
+    "meaning": "제조법 / 만드는 방법",
+    "examples": [
+      {
+        "jp": "チーズの製法を教えてください。",
+        "ko": "치즈 제조법을 알려 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2609d258b1": {
+    "examples": [
+      {
+        "jp": "精密検査をしましょう。",
+        "ko": "정밀검사를 합시다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-44daa3efae": {
+    "meaning": "세무서",
+    "examples": [
+      {
+        "jp": "税務署は控除を認めた。",
+        "ko": "세무서는 공제를 인정했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0ebede63ff": {
+    "examples": [
+      {
+        "jp": "あなたの姓名を教えてください。",
+        "ko": "성명을 알려 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-265c8a1e27": {
+    "examples": [
+      {
+        "jp": "彼の声明は疑いの余地がない。",
+        "ko": "그의 성명은 의심의 여지가 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fefc750558": {
+    "examples": [
+      {
+        "jp": "合衆国には小火器の販売に関する法律上の制約はほとんどない。",
+        "ko": "미국에는 소형 화기 판매에 관한 법적 제약이 거의 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9d947bdc2b": {
+    "examples": [
+      {
+        "jp": "生理は規則正しくあります。",
+        "ko": "생리는 규칙적입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4831341731": {
+    "examples": [
+      {
+        "jp": "彼の勢力は国中に及んでいる。",
+        "ko": "그의 세력은 전국에 미치고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-747fdb8e2c": {
+    "meaning": "정렬 / 줄을 맞춰 섬",
+    "examples": [
+      {
+        "jp": "軍隊は戦闘の配置で整列していた。",
+        "ko": "군대는 전투 대형으로 정렬해 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c6f82893d4": {
+    "meaning": "재촉하다 / 서두르게 하다",
+    "examples": [
+      {
+        "jp": "急かしたくはないけど、次のバスに乗ろう。",
+        "ko": "재촉하고 싶지는 않지만 다음 버스를 타자.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-02d1463696": {
+    "meaning": "아들 / 내 아들(다소 옛스러운 표현)",
+    "examples": [
+      {
+        "jp": "叔父の兄の倅が変なビジネスに手を染めて、家名を落とすことになった。",
+        "ko": "삼촌 형의 아들이 수상한 사업에 손을 대 가문의 명예를 떨어뜨리게 되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7cb281dd9f": {
+    "examples": [
+      {
+        "jp": "彼はついに責務を果たした。",
+        "ko": "그는 마침내 책무를 다했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9d4204d1c1": {
+    "meaning": "아첨 / 듣기 좋은 말 / 인사치레",
+    "examples": [
+      {
+        "jp": "その客室乗務員はお世辞が上手い。",
+        "ko": "그 승무원은 아첨을 잘한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c7bba044f2": {
+    "examples": [
+      {
+        "jp": "あの人たちは同じ世代です。",
+        "ko": "저 사람들은 같은 세대입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-381b8e830c": {
+    "meaning": "절실함 / 매우 심각하고 절박함",
+    "examples": [
+      {
+        "jp": "太っているのが私の切実な問題です。",
+        "ko": "살이 찐 것이 나에게는 절실한 문제입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7f9c65e164": {
+    "examples": [
+      {
+        "jp": "彼はあらゆる種類の人と接触する。",
+        "ko": "그는 온갖 종류의 사람들과 접촉한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-44e52d6c83": {
+    "examples": [
+      {
+        "jp": "関係代名詞は「接続詞+代名詞」のはたらきをしています。",
+        "ko": "관계대명사는 ‘접속사 + 대명사’의 기능을 합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cefafca065": {
+    "examples": [
+      {
+        "jp": "仕事場にコンピューターを設置した。",
+        "ko": "작업장에 컴퓨터를 설치했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
