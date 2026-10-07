@@ -187,7 +187,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         </div></div>
       </div>
       <div id="wordLibraryPanel" class="word-library hidden">
-        <div class="word-library-head"><div><div class="word-library-title">N1 전체 단어장</div><div class="sub">안키 학습과 별개로 자유롭게 찾아보고 들을 수 있습니다.</div></div><button class="secondary" type="button" id="exitWordLibrary">← 학습 화면</button></div>
+        <div class="word-library-head"><div><div class="word-library-title">N1 전체 단어장</div><div class="sub">안키 학습과 별개로 자유롭게 찾아보고 들을 수 있습니다. <a href="data/ATTRIBUTION.md" target="_blank" rel="noopener">어휘 데이터 출처</a></div></div><button class="secondary" type="button" id="exitWordLibrary">← 학습 화면</button></div>
         <div class="word-library-tools">
           <input id="wordLibrarySearch" type="search" placeholder="단어 · 읽기 · 뜻 검색" autocomplete="off">
           <select id="wordLibraryFilter" aria-label="단어 필터"><option value="all">전체 단어</option><option value="new">미학습</option><option value="learned">학습함</option><option value="starred">★ 별표</option></select>
@@ -368,6 +368,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
 <script src="data/n1-extra-words-3.js"></script>
+<script src="data/n1-extra-words-openjlpt.js"></script>
 <script src="data/n1-extra-grammar.js"></script>
 <script src="data/n1-extra-reading.js"></script>
 <script src="data/n1-daily-news.js"></script>
@@ -783,7 +784,7 @@ const quizData={
 
 };
 
-const extraWordRaw=[...(window.N1_EXTRA_WORDS_1||[]),...(window.N1_EXTRA_WORDS_2||[]),...(window.N1_EXTRA_WORDS_3||[])];
+const extraWordRaw=[...(window.N1_EXTRA_WORDS_1||[]),...(window.N1_EXTRA_WORDS_2||[]),...(window.N1_EXTRA_WORDS_3||[]),...(window.N1_OPENJLPT_WORDS||[])];
 const extraWords=extraWordRaw.map(x=>({
  id:x.id,
  w:/[一-龯々]/.test(x.w)?F(x.w,x.r):x.w,
