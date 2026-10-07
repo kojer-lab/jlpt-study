@@ -20,7 +20,9 @@ concurrency:
 
 jobs:
   sync:
-    if: github.actor != 'github-actions[bot]'
+    # Deprecated: the live site now uses the six enriched OpenJLPT chunk files.
+    # Keep this workflow inert so it can never overwrite the Korean-enriched bank.
+    if: ${{ false }}
     runs-on: ubuntu-22.04
     timeout-minutes: 240
     steps:
