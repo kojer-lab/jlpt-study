@@ -463,6 +463,16 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-word-breakdowns-21.js?v=20261007-wb21"></script>
 <script src="data/n1-word-breakdowns-22.js?v=20261007-wb22"></script>
 <script src="data/n1-word-breakdowns-23.js?v=20261007-wb23"></script>
+<script src="data/n1-word-breakdowns-24.js?v=20261007-wb24"></script>
+<script src="data/n1-word-breakdowns-25.js?v=20261007-wb25"></script>
+<script src="data/n1-word-breakdowns-26.js?v=20261007-wb26"></script>
+<script src="data/n1-word-breakdowns-27.js?v=20261007-wb27"></script>
+<script src="data/n1-word-breakdowns-28.js?v=20261007-wb28"></script>
+<script src="data/n1-word-breakdowns-29.js?v=20261007-wb29"></script>
+<script src="data/n1-word-breakdowns-30.js?v=20261007-wb30"></script>
+<script src="data/n1-word-breakdowns-31.js?v=20261007-wb31"></script>
+<script src="data/n1-word-breakdowns-32.js?v=20261007-wb32"></script>
+<script src="data/n1-word-breakdowns-33.js?v=20261007-wb33"></script>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -956,7 +966,7 @@ for(const w of words){
 }
 const wordById=new Map(words.map(w=>[w.id,w]));
 const wordFuriganaBank=window.N1_WORD_FURIGANA||{};
-const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{},window.N1_WORD_BREAKDOWNS_4||{},window.N1_WORD_BREAKDOWNS_5||{},window.N1_WORD_BREAKDOWNS_6||{},window.N1_WORD_BREAKDOWNS_7||{},window.N1_WORD_BREAKDOWNS_8||{},window.N1_WORD_BREAKDOWNS_9||{},window.N1_WORD_BREAKDOWNS_10||{},window.N1_WORD_BREAKDOWNS_11||{},window.N1_WORD_BREAKDOWNS_12||{},window.N1_WORD_BREAKDOWNS_13||{},window.N1_WORD_BREAKDOWNS_14||{},window.N1_WORD_BREAKDOWNS_15||{},window.N1_WORD_BREAKDOWNS_16||{},window.N1_WORD_BREAKDOWNS_17||{},window.N1_WORD_BREAKDOWNS_18||{},window.N1_WORD_BREAKDOWNS_19||{},window.N1_WORD_BREAKDOWNS_20||{},window.N1_WORD_BREAKDOWNS_21||{},window.N1_WORD_BREAKDOWNS_22||{},window.N1_WORD_BREAKDOWNS_23||{}];
+const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{},window.N1_WORD_BREAKDOWNS_4||{},window.N1_WORD_BREAKDOWNS_5||{},window.N1_WORD_BREAKDOWNS_6||{},window.N1_WORD_BREAKDOWNS_7||{},window.N1_WORD_BREAKDOWNS_8||{},window.N1_WORD_BREAKDOWNS_9||{},window.N1_WORD_BREAKDOWNS_10||{},window.N1_WORD_BREAKDOWNS_11||{},window.N1_WORD_BREAKDOWNS_12||{},window.N1_WORD_BREAKDOWNS_13||{},window.N1_WORD_BREAKDOWNS_14||{},window.N1_WORD_BREAKDOWNS_15||{},window.N1_WORD_BREAKDOWNS_16||{},window.N1_WORD_BREAKDOWNS_17||{},window.N1_WORD_BREAKDOWNS_18||{},window.N1_WORD_BREAKDOWNS_19||{},window.N1_WORD_BREAKDOWNS_20||{},window.N1_WORD_BREAKDOWNS_21||{},window.N1_WORD_BREAKDOWNS_22||{},window.N1_WORD_BREAKDOWNS_23||{},window.N1_WORD_BREAKDOWNS_24||{},window.N1_WORD_BREAKDOWNS_25||{},window.N1_WORD_BREAKDOWNS_26||{},window.N1_WORD_BREAKDOWNS_27||{},window.N1_WORD_BREAKDOWNS_28||{},window.N1_WORD_BREAKDOWNS_29||{},window.N1_WORD_BREAKDOWNS_30||{},window.N1_WORD_BREAKDOWNS_31||{},window.N1_WORD_BREAKDOWNS_32||{},window.N1_WORD_BREAKDOWNS_33||{}];
 const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
 const wordBreakdownBySurface=new Map();
 function wordBreakdownSurfaceKey(w){return w?`${plain(w.w)}\t${readingOf(w.w)}`:""}
