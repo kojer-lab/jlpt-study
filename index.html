@@ -442,6 +442,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-word-breakdowns-1.js?v=20261007-wb01"></script>
 <script src="data/n1-word-breakdowns-2.js?v=20261007-wb02"></script>
 <script src="data/n1-word-breakdowns-3.js?v=20261007-wb03"></script>
+<script src="data/n1-word-breakdowns-4.js?v=20261007-wb04"></script>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -934,7 +935,7 @@ for(const w of words){
  }
 }
 const wordById=new Map(words.map(w=>[w.id,w]));
-const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{}];
+const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{},window.N1_WORD_BREAKDOWNS_4||{}];
 const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
 const wordBreakdownBySurface=new Map();
 for(const w of words){
