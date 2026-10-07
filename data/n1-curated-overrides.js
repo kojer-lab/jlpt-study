@@ -4330,5 +4330,505 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+"oj-74fba72b6f": {
+    "meaning": "허무하다 / 어이없이 싱겁다 / 너무 빨리 끝나다",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"きゅうか\">休暇</span>はいつもあっけなく<span class=\"furi\" data-r=\"お\">終</span>わる。",
+        "ko": "휴가는 늘 허무할 만큼 빨리 끝난다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c052d729c7": {
+    "meaning": "아니나 다를까 / 예상대로",
+    "examples": [
+      {
+        "jp": "案の定、彼は疑念を抱いていた。",
+        "ko": "아니나 다를까, 그는 의심을 품고 있었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-73a0f22579": {
+    "meaning": "적당함 / 대충함 / 무책임함",
+    "examples": [
+      {
+        "jp": "いいかげんに<span class=\"furi\" data-r=\"しごと\">仕事</span>をするな。",
+        "ko": "일을 대충 하지 마."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e21dfd4766": {
+    "meaning": "코골이",
+    "examples": [
+      {
+        "jp": "いびきとたばこの<span class=\"furi\" data-r=\"す\">吸</span>い<span class=\"furi\" data-r=\"す\">過</span>ぎは<span class=\"furi\" data-r=\"じっさい\">実際</span>に<span class=\"furi\" data-r=\"かんれん\">関連</span>がある。",
+        "ko": "코골이와 과도한 흡연은 실제로 관련이 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-774c34ef39": {
+    "meaning": "치켜세우다 / 부추기다 / 추켜세우다",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"かれ\">彼</span>をおだてれば、<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"なん\">何</span>でもしてくれる。",
+        "ko": "그를 치켜세우면 뭐든 해 줄 거야."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-af9c173d83": {
+    "meaning": "주뼛주뼛 / 겁먹고 망설이는 모양",
+    "examples": [
+      {
+        "jp": "彼女の前に出るときまっておどおどする。",
+        "ko": "그녀 앞에만 서면 늘 주뼛주뼛하게 된다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2bde908249": {
+    "meaning": "휘젓다 / 뒤흔들다 / 어지럽히다",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"かのじょ\">彼女</span>はちいさな<span class=\"furi\" data-r=\"きん\">金</span>のスプーンで<span class=\"furi\" data-r=\"こうちゃ\">紅茶</span>をかき<span class=\"furi\" data-r=\"まわ\">回</span>した。",
+        "ko": "그녀는 작은 금 숟가락으로 홍차를 저었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4a24741cdf": {
+    "meaning": "풀이 죽어 / 맥없이 / 크게 낙담하여",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"かれ\">彼</span>はがっくりひざをついた。",
+        "ko": "그는 맥없이 무릎을 꿇었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7ab6d50625": {
+    "meaning": "잘난 체함 / 느끼함 / 멋을 부림",
+    "examples": [
+      {
+        "jp": "彼のきざな態度は頭にくる。",
+        "ko": "그의 잘난 체하는 태도는 정말 짜증 난다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d5ab320203": {
+    "meaning": "꼼꼼함 / 빈틈없음 / 반듯함",
+    "examples": [
+      {
+        "jp": "お<span class=\"furi\" data-r=\"かね\">金</span>の<span class=\"furi\" data-r=\"こと\">事</span>では<span class=\"furi\" data-r=\"かのじょ\">彼女</span>は<span class=\"furi\" data-r=\"きちょうめん\">几帳面</span>です。",
+        "ko": "돈 문제에 관해서 그녀는 아주 꼼꼼하다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-47871e07a3": {
+    "meaning": "겸연쩍다 / 쑥스럽다 / 민망하다",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"わたし\">私</span>は<span class=\"furi\" data-r=\"あやま\">誤</span>りを<span class=\"furi\" data-r=\"してき\">指摘</span>されて<span class=\"furi\" data-r=\"き\">決</span>まり<span class=\"furi\" data-r=\"わる\">悪</span>い<span class=\"furi\" data-r=\"おも\">思</span>いをした。",
+        "ko": "실수를 지적받아 몹시 겸연쩍었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7752eb179f": {
+    "meaning": "휴전 / 전투를 일시 중지함",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"かれ\">彼</span>らは<span class=\"furi\" data-r=\"きゅうせん\">休戦</span><span class=\"furi\" data-r=\"じょうけん\">条件</span>で<span class=\"furi\" data-r=\"ごうい\">合意</span>した。",
+        "ko": "그들은 휴전 조건에 합의했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0500973033": {
+    "meaning": "화려하다 / 눈부시다 / 호화롭다",
+    "examples": [
+      {
+        "jp": "きらびやかでいて重厚な宮殿を前に言葉も出ない。",
+        "ko": "화려하면서도 웅장한 궁전 앞에서 말문이 막혔다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d17666b653": {
+    "meaning": "간지럽다 / 쑥스럽다",
+    "examples": [
+      {
+        "jp": "やめて。くすぐったい。",
+        "ko": "그만해. 간지러워."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8d2dc17edc": {
+    "meaning": "경사 / 기울기 / 비탈",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"やね\">屋根</span>は<span class=\"furi\" data-r=\"するど\">鋭</span>い<span class=\"furi\" data-r=\"かくど\">角度</span>で<span class=\"furi\" data-r=\"けいしゃ\">傾斜</span>している。",
+        "ko": "지붕은 가파른 각도로 경사져 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-38cbad27b0": {
+    "meaning": "경비 / 비용 / 지출",
+    "examples": [
+      {
+        "jp": "その<span class=\"furi\" data-r=\"じぎょう\">事業</span>の<span class=\"furi\" data-r=\"けいひ\">経費</span>は１<span class=\"furi\" data-r=\"おく\">億</span><span class=\"furi\" data-r=\"えん\">円</span>にのぼる。",
+        "ko": "그 사업의 경비는 1억 엔에 이른다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-eb830c293c": {
+    "meaning": "더러움 / 오점 / 불명예",
+    "examples": [
+      {
+        "jp": "お<span class=\"furi\" data-r=\"とう\">父</span>さんの<span class=\"furi\" data-r=\"はさん\">破産</span>は<span class=\"furi\" data-r=\"かめい\">家名</span>の<span class=\"furi\" data-r=\"けが\">汚</span>れでした。",
+        "ko": "아버지의 파산은 집안의 명예에 오점이 되었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d7246d0f6f": {
+    "meaning": "수척해지다 / 풀이 죽다",
+    "examples": [
+      {
+        "jp": "彼女、しばらく見ない間にげっそりと痩せちゃったけど、何か大きな病気でもしたのかな。",
+        "ko": "한동안 못 본 사이에 너무 수척해졌는데, 큰 병이라도 앓았던 걸까?"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a47d96fcce": {
+    "meaning": "현상 / 경품을 걸고 모집하는 일 / 경품",
+    "examples": [
+      {
+        "jp": "懸賞ってほんとに当たるのかね。",
+        "ko": "경품 추첨 같은 건 정말 당첨되기는 하는 걸까?"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2db513025c": {
+    "meaning": "검약 / 절약 / 근검",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"しゅうにゅう\">収入</span>が<span class=\"furi\" data-r=\"ひく\">低</span>いと<span class=\"furi\" data-r=\"けんやく\">倹約</span>せざるを<span class=\"furi\" data-r=\"え\">得</span>なくなる。",
+        "ko": "수입이 적으면 절약하지 않을 수 없게 된다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-969ea280e7": {
+    "meaning": "코멘트 / 의견 / 논평",
+    "examples": [
+      {
+        "jp": "コメントを<span class=\"furi\" data-r=\"ようい\">用意</span>してきてください。",
+        "ko": "의견을 준비해 와 주세요."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4b1e1efe84": {
+    "meaning": "검소함 / 소박함",
+    "examples": [
+      {
+        "jp": "ドイツ人は質素な国民だ。",
+        "ko": "독일인은 검소한 국민이다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-11e095629c": {
+    "meaning": "사면 / 비탈면 / 경사진 면",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"いわ\">岩</span>は<span class=\"furi\" data-r=\"おか\">丘</span>の<span class=\"furi\" data-r=\"しゃめん\">斜面</span>を<span class=\"furi\" data-r=\"ころ\">転</span>がり<span class=\"furi\" data-r=\"お\">落</span>ちた。",
+        "ko": "바위가 언덕의 비탈면을 굴러 떨어졌다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8e3037b894": {
+    "meaning": "종래 / 지금까지 / 기존의",
+    "examples": [
+      {
+        "jp": "彼は従来の習慣と違ったことをした。",
+        "ko": "그는 종래의 관습과 다른 일을 했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4c7f08ecc1": {
+    "meaning": "삭제 / 소거 / 제거",
+    "examples": [
+      {
+        "jp": "一番下の背景レイヤーを消去します。",
+        "ko": "맨 아래 배경 레이어를 삭제합니다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8b9fc4a8ec": {
+    "meaning": "전용 / 특정 대상만 사용함",
+    "examples": [
+      {
+        "jp": "ドアにいちばん近い駐車場所は重役専用です。",
+        "ko": "문에서 가장 가까운 주차 공간은 임원 전용입니다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5e17635f80": {
+    "meaning": "증강 / 강화 / 늘림",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"ごいりょく\">語彙力</span>を<span class=\"furi\" data-r=\"ぞうきょう\">増強</span>したい。",
+        "ko": "어휘력을 더 늘리고 싶다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-457aa713b6": {
+    "meaning": "즉하다 / 사실·상황 등에 맞추다 / 근거하다",
+    "examples": [
+      {
+        "jp": "彼の伝記は全くの事実に即して書かれたものだ。",
+        "ko": "그의 전기는 전적으로 사실에 근거해 쓰였다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-abed633dee": {
+    "meaning": "소재 / 재료 / 원료",
+    "examples": [
+      {
+        "jp": "この素材は決してすり減ったりしない。",
+        "ko": "이 소재는 결코 닳지 않는다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-576dd99374": {
+    "meaning": "대개 / 대체로 / 대부분",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"よる\">夜</span>にはたいがい<span class=\"furi\" data-r=\"いえ\">家</span>にいる。",
+        "ko": "그는 밤에는 대개 집에 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a62d0c6462": {
+    "meaning": "~에 대해 / ~에 대하여",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"ひひょう\">批評</span>に<span class=\"furi\" data-r=\"たい\">対</span>してたいへん<span class=\"furi\" data-r=\"びんかん\">敏感</span>だ。",
+        "ko": "그는 비판에 대해 매우 민감하다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fbea2e401a": {
+    "meaning": "태만 / 게으름 / 직무를 소홀히 함",
+    "examples": [
+      {
+        "jp": "彼は義務怠慢で非難された。",
+        "ko": "그는 직무 태만으로 비난받았다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-43461422a9": {
+    "meaning": "나른하다 / 몸이 무겁다 / 기운이 없다",
+    "examples": [
+      {
+        "jp": "だるいし<span class=\"furi\" data-r=\"あたま\">頭</span>がずきずきする。",
+        "ko": "몸이 나른하고 머리가 욱신거린다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-57978c598e": {
+    "meaning": "통감 / 뼈저리게 느낌",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"わたし\">私</span>はその<span class=\"furi\" data-r=\"じじつ\">事実</span>を<span class=\"furi\" data-r=\"つうかん\">痛感</span>した。",
+        "ko": "나는 그 사실을 뼈저리게 느꼈다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5680067b6b": {
+    "meaning": "~이 딸림 / ~이 붙음",
+    "examples": [
+      {
+        "jp": "ああ、バスタブ付きがいいな。",
+        "ko": "아, 욕조가 딸린 방이 좋겠어."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-54a5fd6985": {
+    "meaning": "이음매 / 연결 부분",
+    "examples": [
+      {
+        "jp": "いすの<span class=\"furi\" data-r=\"つ\">継</span>ぎ<span class=\"furi\" data-r=\"め\">目</span>はぐらぐらしていた。",
+        "ko": "의자의 이음매가 흔들리고 있었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-00c77c36b3": {
+    "meaning": "일을 감당할 수 있다 / 직책을 수행할 수 있다",
+    "examples": [
+      {
+        "jp": "彼はとてもその仕事が勤まらなかった。",
+        "ko": "그는 도저히 그 일을 감당할 수 없었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b341206308": {
+    "meaning": "강해지다 / 심해지다",
+    "examples": [
+      {
+        "jp": "その<span class=\"furi\" data-r=\"ことば\">言葉</span>で<span class=\"furi\" data-r=\"かれ\">彼</span>に<span class=\"furi\" data-r=\"たい\">対</span>する<span class=\"furi\" data-r=\"ぎわく\">疑惑</span>はさらに<span class=\"furi\" data-r=\"つよ\">強</span>まった。",
+        "ko": "그 말로 인해 그에 대한 의혹은 더욱 강해졌다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e1ea2bb61d": {
+    "meaning": "다시 시작함 / 다시 찾아감",
+    "examples": [
+      {
+        "jp": "あす出直します。",
+        "ko": "내일 다시 오겠습니다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a33f42ca60": {
+    "meaning": "동등 / 같은 수준·지위",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"おとこ\">男</span>と<span class=\"furi\" data-r=\"おんな\">女</span>は<span class=\"furi\" data-r=\"どうとう\">同等</span>だと<span class=\"furi\" data-r=\"せつ\">切</span>に<span class=\"furi\" data-r=\"かん\">感</span>じる。",
+        "ko": "남자와 여자는 동등하다고 절실히 느낀다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e4735c6771": {
+    "meaning": "어떻게든 / 그럭저럭",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"わたし\">私</span>はどうにか<span class=\"furi\" data-r=\"かぞく\">家族</span>を<span class=\"furi\" data-r=\"やしな\">養</span>っている。",
+        "ko": "나는 어떻게든 가족을 부양하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c7ae16d498": {
+    "meaning": "끊기다 / 중단되다",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"こうつう\">交通</span>の<span class=\"furi\" data-r=\"なが\">流</span>れにはとぎれがなかった。",
+        "ko": "교통의 흐름은 끊이지 않았다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d7b013684f": {
+    "meaning": "득점 / 얻은 점수",
+    "examples": [
+      {
+        "jp": "ハーフタイムでの<span class=\"furi\" data-r=\"とくてん\">得点</span>はどうでしたか。",
+        "ko": "하프타임 때 점수는 어땠나요?"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2a6adce990": {
+    "meaning": "문단속 / 문을 잠그는 일",
+    "examples": [
+      {
+        "jp": "あと、戸締りよろしくな。",
+        "ko": "그리고 문단속 잘 부탁해."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-aa3dae369b": {
+    "meaning": "풍부하다 / 많이 지니다",
+    "examples": [
+      {
+        "jp": "その<span class=\"furi\" data-r=\"どじょう\">土壌</span>は<span class=\"furi\" data-r=\"ふしょく\">腐植</span>に<span class=\"furi\" data-r=\"と\">富</span>んでいます。",
+        "ko": "그 토양은 부식질이 풍부하다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6964beadb0": {
+    "meaning": "제거하다 / 없애다 / 치우다",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"わたし\">私</span>は<span class=\"furi\" data-r=\"にわ\">庭</span>から<span class=\"furi\" data-r=\"ざっそう\">雑草</span>を<span class=\"furi\" data-r=\"と\">取</span>り<span class=\"furi\" data-r=\"のぞ\">除</span>いた。",
+        "ko": "나는 정원에서 잡초를 제거했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-08c6648742": {
+    "meaning": "중매인 / 결혼을 중개하는 사람",
+    "examples": [
+      {
+        "jp": "あの夫婦は私たちの仲人です。",
+        "ko": "저 부부가 우리 중매인입니다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bad8c2fee2": {
+    "meaning": "매혹적이다 / 고민스럽다 / 마음을 괴롭히다",
+    "examples": [
+      {
+        "jp": "彼女は悩ましい目つきで僕を見た。",
+        "ko": "그녀는 매혹적인 눈빛으로 나를 바라봤다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f3e15d0ae8": {
+    "meaning": "짐 꾸리기 / 포장",
+    "examples": [
+      {
+        "jp": "荷作りはもう終わりましたか。",
+        "ko": "짐은 벌써 다 꾸렸나요?"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a8b71cab9b": {
+    "meaning": "비틀리다 / 뒤틀리다 / 꼬이다",
+    "examples": [
+      {
+        "jp": "ほのかな<span class=\"furi\" data-r=\"ひかり\">光</span>が<span class=\"furi\" data-r=\"おれ\">俺</span>のねじれた<span class=\"furi\" data-r=\"しかい\">視界</span>を<span class=\"furi\" data-r=\"げんえい\">幻影</span>に<span class=\"furi\" data-r=\"か\">変</span>えてゆく。",
+        "ko": "희미한 빛이 뒤틀린 내 시야를 환영으로 바꿔 간다."
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
