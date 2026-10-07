@@ -946,6 +946,16 @@ const extraWords=extraWordRaw.map(x=>({
 words.push(...extraWords);
 for(const w of words)if(!w.category)w.category="vocab";
 
+function functionalFuri(surface,reading){
+ surface=String(surface||"");reading=String(reading||"");
+ if(!/[一-龯々〆ヵヶ]/.test(surface)||!reading)return surface;
+ const kana=/[ぁ-ゖァ-ヺー～]/;
+ let start=0,endS=surface.length,endR=reading.length;
+ while(start<endS&&start<endR&&surface[start]===reading[start]&&kana.test(surface[start]))start++;
+ while(endS>start&&endR>start&&surface[endS-1]===reading[endR-1]&&kana.test(surface[endS-1])){endS--;endR--}
+ const head=surface.slice(0,start),base=surface.slice(start,endS),rd=reading.slice(start,endR),tail=surface.slice(endS);
+ return base&&rd&&/[一-龯々〆ヵヶ]/.test(base)?head+F(base,rd)+tail:F(surface,reading);
+}
 const functionalPatternReading={
  "敢えて":"あえて","案の定":"あんのじょう","が最後":"がさいご","か否か":"かいなか","かと思いきや":"かとおもいきや",
  "極まりない":"きわまりない","も同然だ":"もどうぜんだ","ならいざ知らず":"ならいざしらず","何しろ":"なにしろ",
@@ -977,7 +987,7 @@ for(const x of functionalRaw){
    existing.examples=combined.filter(ex=>{const key=plain(ex.jp||"");if(!key||seen.has(key))return false;seen.add(key);return true}).slice(0,2);
    continue;
  }
- const html=/[一-龯々]/.test(surface)?F(surface,x.r||surface):surface;
+ const html=functionalFuri(surface,x.r||surface);
  words.push({
    id:x.id,w:html,meaning:x.meaning||"",examples:functionalExamples,source:x.source||"manual-functional",
    meaningEn:"",meaningLang:"ko",meaningSource:x.meaningSource||"manual-functional",category:x.category||"vocab"
