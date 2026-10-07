@@ -30,8 +30,10 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
     <div class="sub">단어·예문과 실제 N1 청해 길이에서 로딩/생성 속도를 직접 재봅니다. 같은 문장을 두 번째 재생할 때는 메모리 캐시를 사용합니다.</div>
     <div class="actions">
       <select id="engineMode" aria-label="TTS 엔진 모드">
-        <option value="auto">현재 방식 · Auto q8</option>
-        <option value="webgpu">속도 테스트 · WebGPU fp32</option>
+        <option value="webgpu">Mac 합격 · WebGPU fp32</option>
+        <option value="webgpu_q4f16">iPhone 실험 · WebGPU q4f16</option>
+        <option value="wasm_q4">iPhone 저메모리 · WASM q4</option>
+        <option value="auto">기존 비교 · Auto q8</option>
       </select>
       <button class="primary" id="loadBtn">모델 불러오기</button><button id="stopBtn">재생 정지</button>
     </div>
@@ -43,10 +45,12 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
       <div class="metric"><span>현재 메모리 캐시</span><b id="cacheMetric">0개</b></div>
       <div class="metric"><span>기기 영구 캐시</span><b id="diskCacheMetric">확인 중</b></div>
       <div class="metric"><span>WebGPU</span><b id="gpuMetric">확인 중</b></div>
-      <div class="metric"><span>현재 엔진</span><b id="engineMetric">Auto q8</b></div>
+      <div class="metric"><span>shader-f16</span><b id="f16Metric">확인 중</b></div>
+      <div class="metric"><span>기기</span><b id="deviceMetric">확인 중</b></div>
+      <div class="metric"><span>현재 엔진</span><b id="engineMetric">WebGPU fp32</b></div>
     </div>
     <div class="actions"><button id="precacheWords">⚡ 단어 3개 미리 준비</button><button id="clearAudioCache">음성 캐시 비우기</button></div>
-    <div class="note">비교할 때는 먼저 ‘음성 캐시 비우기’를 누르세요. Auto q8과 WebGPU fp32는 캐시 키를 분리했습니다. 엔진을 한번 불러온 뒤 다른 엔진을 시험하려면 페이지를 새로고침하세요.</div>
+    <div class="note">iPhone 진단용입니다. 엔진별 캐시는 분리됩니다. 정확한 비교는 ‘음성 캐시 비우기’ → 엔진 선택 → 테스트 순서로 하고, 엔진을 바꿀 때는 페이지를 새로고침하세요. q4f16은 실험 모드라 기기에서 실패하면 WASM q4를 시험하면 됩니다.</div>
   </div>
 
   <div class="card">
@@ -78,11 +82,24 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
         <button class="choice" data-answer="4"><span class="num">4</span><span>部長に日程を確認する</span></button>
       </div>
       <div class="actions">
+        <select id="prebufferCount" aria-label="선행 버퍼 개수">
+          <option value="2">선행 버퍼 2개 · 빠른 시작</option>
+          <option value="3">선행 버퍼 3개 · iPhone 권장</option>
+          <option value="4">선행 버퍼 4개 · 안정 우선</option>
+        </select>
         <button class="primary" id="n1Play">⚡ 최적화 생성 · 재생</button>
         <button id="n1Prepare">전체 미리 준비</button>
         <button id="showScript">스크립트 보기</button>
       </div>
-      <div class="status" id="n1Status">아직 생성하지 않았습니다. 첫 소리까지 걸리는 시간과 전체 준비 시간을 따로 측정합니다.</div>
+      <div class="status" id="n1Status">아직 생성하지 않았습니다. 이번 버전은 재생 중 버퍼 대기 횟수와 시간을 자동으로 기록합니다.</div>
+      <div class="metrics">
+        <div class="metric"><span>첫 재생까지</span><b id="n1FirstMetric">—</b></div>
+        <div class="metric"><span>전체 생성</span><b id="n1TotalMetric">—</b></div>
+        <div class="metric"><span>중간 멈춤</span><b id="n1StallMetric">—</b></div>
+        <div class="metric"><span>멈춤 총합</span><b id="n1StallTotalMetric">—</b></div>
+        <div class="metric"><span>최장 멈춤</span><b id="n1StallMaxMetric">—</b></div>
+        <div class="metric"><span>가장 느린 조각</span><b id="n1SlowMetric">—</b></div>
+      </div>
       <div class="answer" id="answerBox"><b>정답 3.</b> 회의실 예약과 부장 확인은 이미 끝났고, 자료 인쇄는 내일 해도 됩니다. 따라서 남자가 가장 먼저 해야 할 일은 참가자들에게 시간 변경을 알리는 것입니다.</div>
       <div class="script" id="scriptBox">
         <div class="script-line"><span class="speaker">ナレーション</span>会社で、女の人と男の人が話しています。男の人はこのあと、まず何をしなければなりませんか。</div>
@@ -137,8 +154,10 @@ const audioCache=new Map();
 const DB_NAME="jlpt-kokoro-audio-v1",STORE="audio";
 let dbPromise=null,activeEngine=null;
 const ENGINE={
- auto:{label:"Auto q8",options:{dtype:"q8"}},
- webgpu:{label:"WebGPU fp32",options:{device:"webgpu",dtype:"fp32"}}
+ webgpu:{label:"WebGPU fp32",options:{device:"webgpu",dtype:"fp32"}},
+ webgpu_q4f16:{label:"WebGPU q4f16",options:{device:"webgpu",dtype:"q4f16"}},
+ wasm_q4:{label:"WASM q4",options:{device:"wasm",dtype:"q4"}},
+ auto:{label:"Auto q8",options:{dtype:"q8"}}
 };
 const fmt=ms=>ms<1000?Math.round(ms)+"ms":(ms/1000).toFixed(2)+"초";
 const selectedEngine=()=>$("engineMode").value;
@@ -279,6 +298,7 @@ function makeSlot(){
 function startN1Producer(){
  const slots=n1Lines.map(()=>makeSlot());
  let generated=0,cached=0,finished=0;
+ const segmentTimes=[];
  const started=performance.now();
  const producer=(async()=>{
    for(let i=0;i<n1Lines.length;i++){
@@ -287,34 +307,55 @@ function startN1Producer(){
      try{
        const r=await synth(n1Lines[i][0],n1Lines[i][1]);
        if(r.cached)cached++;else generated++;
+       segmentTimes.push(r.ms||0);
        finished++;slots[i].resolve(r);
      }catch(e){slots[i].reject(e);throw e}
    }
-   return {total:performance.now()-started,generated,cached};
+   const total=performance.now()-started;
+   return {total,generated,cached,slowest:segmentTimes.length?Math.max(...segmentTimes):0};
  })();
  producer.catch(()=>{});
- return {slots,producer,started,getStats:()=>({generated,cached,finished})};
+ return {slots,producer,started,getStats:()=>({generated,cached,finished,segmentTimes})};
 }
 async function playN1(){
  stopAudio();stopRequested=false;
+ let stallCount=0,stallTotal=0,stallMax=0;
  try{
    setBusy(true);
+   ["n1FirstMetric","n1TotalMetric","n1StallMetric","n1StallTotalMetric","n1StallMaxMetric","n1SlowMetric"].forEach(id=>$(id).textContent="측정 중");
+   const prebuffer=Math.max(1,Math.min(n1Lines.length,Number($("prebufferCount").value)||2));
    const job=startN1Producer();
    const firstReadyStarted=performance.now();
-   await Promise.all([job.slots[0].promise,job.slots[1].promise]);
+   await Promise.all(job.slots.slice(0,prebuffer).map(x=>x.promise));
    const firstReady=performance.now()-firstReadyStarted;
-   setStatus("첫 2개 준비 "+fmt(firstReady)+" · 재생 시작 · 나머지는 듣는 동안 생성합니다.","ok","n1Status");
+   $("n1FirstMetric").textContent=fmt(firstReady);
+   setStatus("첫 "+prebuffer+"개 준비 "+fmt(firstReady)+" · 재생 시작 · 중간 멈춤을 자동 측정합니다.","ok","n1Status");
    for(let i=0;i<n1Lines.length;i++){
      if(stopRequested)break;
      const waitStart=performance.now(),r=await job.slots[i].promise,waited=performance.now()-waitStart;
-     if(waited>250)setStatus("재생 중 "+(i+1)+" / "+n1Lines.length+" · 다음 음성 버퍼 대기 "+fmt(waited),"","n1Status");
+     if(waited>250){
+       stallCount++;stallTotal+=waited;stallMax=Math.max(stallMax,waited);
+       $("n1StallMetric").textContent=stallCount+"회";
+       $("n1StallTotalMetric").textContent=fmt(stallTotal);
+       $("n1StallMaxMetric").textContent=fmt(stallMax);
+       setStatus("버퍼 대기 "+stallCount+"회 · 이번 "+fmt(waited)+" · 총 "+fmt(stallTotal),"","n1Status");
+     }
      await playUrl(r.url);
      if(i<n1Lines.length-1&&!stopRequested)await new Promise(res=>setTimeout(res,180));
    }
    const final=await job.producer;
-   if(!stopRequested)setStatus("완료 · 첫 재생까지 "+fmt(firstReady)+" · 전체 생성/캐시 확인 "+fmt(final.total)+" · 새 생성 "+final.generated+" / 캐시 "+final.cached,"ok","n1Status");
+   $("n1TotalMetric").textContent=fmt(final.total);
+   $("n1StallMetric").textContent=stallCount+"회";
+   $("n1StallTotalMetric").textContent=fmt(stallTotal);
+   $("n1StallMaxMetric").textContent=fmt(stallMax);
+   $("n1SlowMetric").textContent=fmt(final.slowest);
+   if(!stopRequested)setStatus("완료 · "+ENGINE[activeEngine||selectedEngine()].label+" · 선행 "+prebuffer+"개 · 첫 재생 "+fmt(firstReady)+" · 전체 생성 "+fmt(final.total)+" · 중간 멈춤 "+stallCount+"회 / "+fmt(stallTotal)+" · 최장 "+fmt(stallMax),"ok","n1Status");
  }catch(err){
-   console.error(err);setStatus(err&&err.message?err.message:String(err),"bad","n1Status");
+   console.error(err);
+   $("n1StallMetric").textContent=stallCount+"회";
+   $("n1StallTotalMetric").textContent=fmt(stallTotal);
+   $("n1StallMaxMetric").textContent=fmt(stallMax);
+   setStatus("테스트 중단/실패 · "+(err&&err.message?err.message:String(err)),"bad","n1Status");
  }finally{setBusy(false)}
 }
 async function prepareN1(){
@@ -365,6 +406,15 @@ $("clearAudioCache").addEventListener("click",clearPersistentCache);
 $("stopBtn").addEventListener("click",()=>{stopAudio();setStatus("재생을 정지했습니다.");setStatus("재생을 정지했습니다.","","n1Status")});
 $("showScript").addEventListener("click",()=>{$("scriptBox").classList.toggle("show");$("showScript").textContent=$("scriptBox").classList.contains("show")?"스크립트 숨기기":"스크립트 보기"});
 $("gpuMetric").textContent=navigator.gpu?"지원":"미지원";
+$("deviceMetric").textContent=/iPhone/i.test(navigator.userAgent)?"iPhone":/iPad/i.test(navigator.userAgent)?"iPad":"Desktop";
+async function detectGPU(){
+ if(!navigator.gpu){$("f16Metric").textContent="미지원";return}
+ try{
+   const adapter=await navigator.gpu.requestAdapter();
+   $("f16Metric").textContent=adapter&&adapter.features&&adapter.features.has("shader-f16")?"지원":"미지원";
+ }catch(e){$("f16Metric").textContent="확인 실패"}
+}
+detectGPU();
 $("engineMetric").textContent=ENGINE[selectedEngine()].label;
 $("engineMode").addEventListener("change",()=>{$("engineMetric").textContent=ENGINE[selectedEngine()].label});
 updateCache();
