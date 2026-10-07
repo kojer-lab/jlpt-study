@@ -7861,5 +7861,36 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-64eb41fae7": {
+    "meaning": "어머! / 어라! / 아!",
+    "meaningSource": "manual-review"
+  },
+  "oj-632cd5989c": {
+    "meaning": "다툼 / 싸움 / 분쟁",
+    "meaningSource": "manual-review"
+  },
+  "oj-3044b84bf6": {
+    "meaning": "맞춤 / 조합 / 서로 맞댐",
+    "meaningSource": "manual-review"
+  },
+  "oj-eb3966f9f5": {
+    "meaning": "아프다 / 통증이 나다 / 상하다",
+    "meaningSource": "manual-review"
+  },
+  "oj-4f60e61ae2": {
+    "meaning": "초면 / 처음 보는 손님 / 단골이 아닌 손님",
+    "examples": [
+      {
+        "jp": "一見の客はお断りします。",
+        "ko": "처음 오는 손님은 받지 않습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9a43e5dbf7": {
+    "meaning": "한 면 / 한 측면 / 전면 / 신문 1면",
+    "meaningSource": "manual-review"
   }
 };
