@@ -379,6 +379,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-extra-reading.js"></script>
 <script src="data/n1-daily-news.js"></script>
 <script src="data/n1-extra-listening.js"></script>
+<script src="data/n1-curated-overrides.js"></script>
 <script>
 const F=(b,r)=>`<span class="furi" data-r="${r}">${b}</span>`;
 const DAY=86400000, MIN=60000;
@@ -806,6 +807,16 @@ const extraWords=extraWordRaw.map(x=>({
  meaningSource:x.meaningSource||""
 }));
 words.push(...extraWords);
+const curatedOverrides=window.N1_CURATED_OVERRIDES||{};
+for(const w of words){
+ const o=curatedOverrides[w.id];
+ if(!o)continue;
+ if(o.w)w.w=/[一-龯々]/.test(o.w)?F(o.w,o.r||readingOf(w.w)):o.w;
+ if(o.r&&o.w)w.w=/[一-龯々]/.test(o.w)?F(o.w,o.r):o.w;
+ if(o.meaning)w.meaning=o.meaning;
+ if(Array.isArray(o.examples))w.examples=o.examples;
+ if(o.meaningSource)w.meaningSource=o.meaningSource;
+}
 const wordById=new Map(words.map(w=>[w.id,w]));
 
 function shortMeaning(w){return (w.meaning||"").split(" / ")[0].trim()}
