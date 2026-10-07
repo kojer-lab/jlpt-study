@@ -53,7 +53,33 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .explain{display:none;margin-top:16px;padding:16px;background:var(--accent-soft);border-radius:12px;line-height:1.8}.explain.show{display:block}.translation{margin-top:12px;background:var(--panel);border-left:4px solid var(--accent);padding:12px 14px;border-radius:8px}.detail-list{display:grid;gap:8px;margin-top:12px}.detail{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 12px}.vocab-deep{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px}.vocab-deep-title{font-weight:850;margin-bottom:8px}.vocab-deep-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin-bottom:7px}.vocab-deep-word{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-size:22px;font-weight:850;line-height:1.7;padding-top:7px}.vocab-deep-reading{color:var(--accent);font-size:13px;font-weight:800}.vocab-deep-meaning{font-size:14px;line-height:1.65}.vocab-deep-context{margin-top:9px;padding:9px 10px;background:var(--accent-soft);border-radius:8px;font-size:13px;line-height:1.65}.vocab-deep-examples{display:grid;gap:8px;margin-top:10px}.vocab-deep-example{border-top:1px dashed var(--line);padding-top:8px}.vocab-deep-example-jp{font-size:16px;line-height:2.35;padding-top:10px}.vocab-deep-example-jp .furi::before{font-size:.66em;bottom:calc(100% - 2px)}.vocab-deep-example-ko{font-size:13px;color:var(--muted);line-height:1.65;margin-top:5px}
 .next-row{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
 .furi{position:relative;display:inline-block;white-space:nowrap;cursor:pointer;vertical-align:baseline}.furi::before{content:attr(data-r);position:absolute;left:50%;bottom:calc(100% - 2px);transform:translateX(-50%);font-size:.58em;line-height:1;white-space:nowrap;text-align:center;color:var(--accent);font-weight:800;opacity:0;pointer-events:none;z-index:6}.furi.show::before,body.furi-always .furi::before{opacity:1}body.furi-off .furi::before{opacity:0!important}body.furi-off .furi{cursor:default}
-.word-shell{max-width:560px;margin:0 auto}.word-card{overflow:hidden;padding:0;text-align:center}.word-card-body{padding:20px 22px 22px}.word-visual{width:100%;aspect-ratio:1.55/1;background:#fff;border-bottom:1px solid var(--line);overflow:hidden}.word-visual img{width:100%;height:100%;display:block;object-fit:cover}.word-main{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-size:42px;font-weight:700;line-height:1.35;margin:0;padding-top:12px;text-align:center}.word-reading{color:var(--muted);font-size:14px;margin-top:4px}.word-title-row{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0 12px;text-align:center}.word-title-row>div{width:100%}.word-title-row .star-btn{position:absolute;right:0;top:50%;transform:translateY(-50%)}.word-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;gap:12px}.star-btn{width:44px;height:44px;flex:0 0 auto;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:#a4a8b3;font-size:25px;line-height:1;cursor:pointer}.star-btn.on{color:#f5a700;background:#fff8df;border-color:#f5d77d}.word-mode-tabs{display:flex;gap:7px;flex-wrap:wrap}.word-mode-tabs button{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:8px 11px;border-radius:999px;cursor:pointer}.word-mode-tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:750}.word-tools-card{max-width:560px;margin:0 auto 12px;box-shadow:none}.reveal-btn{border:1px dashed var(--line);background:var(--panel);color:var(--muted);padding:10px 13px;border-radius:10px;cursor:pointer}.reveal-btn:hover{border-color:var(--accent);color:var(--accent)}.reveal-box{margin-top:9px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;line-height:1.7}.hidden{display:none!important}.examples{display:grid;gap:10px;margin-top:15px;text-align:left}.example{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}.example-jp{font-size:18px;line-height:2.45;padding-top:14px;overflow:visible}.example-jp .furi::before{font-size:.66em;bottom:calc(100% - 2px)}.example-ko{margin-top:10px;font-size:14px;line-height:1.7}
+.word-shell{max-width:560px;margin:0 auto}.word-card{overflow:hidden;padding:0;text-align:center}.word-card-body{padding:20px 22px 22px}.word-visual{width:100%;aspect-ratio:1.55/1;background:#fff;border-bottom:1px solid var(--line);overflow:hidden}.word-visual img{width:100%;height:100%;display:block;object-fit:cover}.word-main{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-size:42px;font-weight:700;line-height:1.35;margin:0;padding-top:12px;text-align:center}.word-reading{color:var(--muted);font-size:14px;margin-top:4px}.word-title-row{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0 12px;text-align:center}.word-title-row>div{width:100%}.word-title-row .star-btn{position:absolute;right:0;top:50%;transform:translateY(-50%)}.word-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;gap:12px}.star-btn{width:44px;height:44px;flex:0 0 auto;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:#a4a8b3;font-size:25px;line-height:1;cursor:pointer}.star-btn.on{color:#f5a700;background:#fff8df;border-color:#f5d77d}.word-mode-tabs{display:flex;gap:7px;flex-wrap:wrap}.word-mode-tabs button{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:8px 11px;border-radius:999px;cursor:pointer}.word-mode-tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:750}.word-tools-card{max-width:560px;margin:0 auto 12px;box-shadow:none}.reveal-btn{border:1px dashed var(--line);background:var(--panel);color:var(--muted);padding:10px 13px;border-radius:10px;cursor:pointer}.reveal-btn:hover{border-color:var(--accent);color:var(--accent)}.reveal-box{margin-top:9px;padding:12px 14px;background:var(--accent-soft);border-radius:10px;line-height:1.7}
+.word-breakdown{margin-top:15px;text-align:left}
+.word-breakdown-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid color-mix(in srgb,var(--accent) 22%,var(--line));background:linear-gradient(180deg,var(--panel),var(--accent-soft));color:var(--accent);border-radius:13px;padding:13px 14px;font-weight:850;cursor:pointer}
+.word-breakdown-toggle .word-breakdown-arrow{font-size:18px;line-height:1}
+.word-breakdown-body{margin-top:9px;border:1px solid var(--line);background:var(--panel);border-radius:14px;overflow:hidden}
+.word-breakdown-quick{padding:14px}
+.word-breakdown-type{font-size:11px;color:var(--accent);font-weight:850;letter-spacing:.04em;margin-bottom:8px}
+.word-breakdown-formula{display:flex;align-items:stretch;gap:7px;flex-wrap:wrap;margin:7px 0 11px}
+.word-breakdown-part{flex:1 1 105px;min-width:0;border:1px solid var(--line);background:var(--bg);border-radius:11px;padding:10px 11px}
+.word-breakdown-part strong{display:block;font-size:19px;line-height:1.35;margin-bottom:3px}
+.word-breakdown-part span{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+.word-breakdown-op{align-self:center;color:var(--muted);font-weight:900}
+.word-breakdown-result{border-color:color-mix(in srgb,var(--accent) 28%,var(--line));background:var(--accent-soft)}
+.word-breakdown-core{background:var(--accent-soft);border-radius:11px;padding:11px 12px;font-size:14px;line-height:1.65}
+.word-breakdown-memory{display:flex;gap:8px;align-items:flex-start;margin-top:10px;font-size:14px;line-height:1.6}
+.word-breakdown-memory b{white-space:nowrap}
+.word-breakdown-detail-toggle{width:100%;margin-top:11px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:9px 11px;font-weight:800;cursor:pointer}
+.word-breakdown-details{padding:0 14px 14px}
+.word-breakdown-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.word-breakdown-item{border:1px solid var(--line);background:var(--bg);border-radius:11px;padding:11px}
+.word-breakdown-item h4{margin:0 0 5px;color:var(--muted);font-size:11px}
+.word-breakdown-item p{margin:0;font-size:13px;line-height:1.6}
+.word-breakdown-related{display:flex;gap:6px;flex-wrap:wrap}
+.word-breakdown-chip{display:inline-flex;background:rgba(34,197,94,.09);color:#168252;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800;line-height:1.35}
+.word-library-breakdown{padding:0 12px 13px}
+@media(max-width:560px){.word-breakdown-grid{grid-template-columns:1fr}.word-breakdown-part{flex-basis:90px}}
+.hidden{display:none!important}.examples{display:grid;gap:10px;margin-top:15px;text-align:left}.example{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}.example-jp{font-size:18px;line-height:2.45;padding-top:14px;overflow:visible}.example-jp .furi::before{font-size:.66em;bottom:calc(100% - 2px)}.example-ko{margin-top:10px;font-size:14px;line-height:1.7}
 .rating{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:17px}.rate-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:11px 6px;border-radius:10px;cursor:pointer}.rate-btn strong{display:block}.rate-btn small{display:block;color:var(--muted);margin-top:3px;font-size:11px}.rate-btn:hover{border-color:var(--accent)}.rate-btn[data-rate="again"]{border-color:rgba(239,68,68,.5);background:rgba(239,68,68,.09);color:#dc2626}.rate-btn[data-rate="hard"]{border-color:rgba(245,158,11,.55);background:rgba(245,158,11,.09);color:#b45309}.rate-btn[data-rate="good"]{border-color:rgba(79,70,229,.38);background:rgba(79,70,229,.07);color:var(--accent)}.rate-btn[data-rate="easy"]{border-color:rgba(34,197,94,.5);background:rgba(34,197,94,.09);color:#16a34a}
 .review-empty{text-align:center;padding:42px 20px;color:var(--muted)}
 .word-dashboard{max-width:560px;margin:0 auto 14px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--accent-soft),var(--panel))}
@@ -181,6 +207,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
             <button type="button" class="primary word-start" id="showMeaningBtn">뜻 · 예문 보기</button>
             <div class="reveal-box hidden" id="wordMeaning"></div>
             <div class="examples hidden" id="wordExamples"></div>
+            <div class="word-breakdown hidden" id="wordBreakdown"></div>
             <div class="rating hidden" id="wordRating"></div>
             <div class="next-row hidden"><button class="secondary" type="button" id="prevWordBtn">이전</button><button class="primary" type="button" id="nextWordBtn">다음</button></div>
           </div>
@@ -412,6 +439,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-second-examples-28.js?v=20261007-b28"></script>
 <script src="data/n1-second-examples-29.js?v=20261007-b29"></script>
 <script src="data/n1-second-examples-30.js?v=20261007-b30"></script>
+<script src="data/n1-word-breakdowns-1.js?v=20261007-wb01"></script>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -904,6 +932,33 @@ for(const w of words){
  }
 }
 const wordById=new Map(words.map(w=>[w.id,w]));
+const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{}];
+const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
+function wordBreakdownFor(w){return w?wordBreakdowns[w.id]||null:null}
+function breakdownEsc(s){return escapeExampleText(String(s??""))}
+function breakdownInnerHTML(d,detailOpen=false){
+ if(!d)return "";
+ const parts=(d.parts||[]).map((p,i)=>`<div class="word-breakdown-part"><strong>${breakdownEsc(p[0])}</strong><span>${breakdownEsc(p[1])}</span></div>${i<(d.parts||[]).length-1?'<div class="word-breakdown-op">＋</div>':""}`).join("");
+ const related=(d.related||[]).map(x=>`<span class="word-breakdown-chip">${breakdownEsc(x)}</span>`).join("");
+ return `<div class="word-breakdown-quick">
+   <div class="word-breakdown-type">${breakdownEsc(d.type||"단어 이해")}</div>
+   <div class="word-breakdown-formula">${parts}<div class="word-breakdown-op">→</div><div class="word-breakdown-part word-breakdown-result"><strong>핵심</strong><span>${breakdownEsc(d.core||"")}</span></div></div>
+   <div class="word-breakdown-core"><strong>핵심 이미지</strong><br>${breakdownEsc(d.core||"")}</div>
+   <div class="word-breakdown-memory"><b>💡 기억</b><span>${breakdownEsc(d.memory||"")}</span></div>
+   <button type="button" class="word-breakdown-detail-toggle">${detailOpen?"간단히 보기":"자세히 보기"}</button>
+ </div>
+ <div class="word-breakdown-details${detailOpen?"":" hidden"}">
+   <div class="word-breakdown-grid">
+     <div class="word-breakdown-item"><h4>구성 · 형성</h4><p>${breakdownEsc(d.formation||"")}</p></div>
+     <div class="word-breakdown-item"><h4>사용감 · 뉘앙스</h4><p>${breakdownEsc(d.nuance||"")}</p></div>
+     <div class="word-breakdown-item"><h4>연관어</h4><div class="word-breakdown-related">${related}</div></div>
+     <div class="word-breakdown-item"><h4>한국인이 기억할 포인트</h4><p>${breakdownEsc(d.tip||"")}</p></div>
+   </div>
+ </div>`;
+}
+function studyBreakdownHTML(d){
+ return `<button type="button" class="word-breakdown-toggle"><span>🔍 단어 해부</span><span class="word-breakdown-arrow">＋</span></button><div class="word-breakdown-body hidden">${breakdownInnerHTML(d,false)}</div>`;
+}
 function furiganaParts(surface,reading){
  surface=String(surface||"");reading=String(reading||"");
  const kana=/[ぁ-ゖァ-ヺー]/;
@@ -1055,7 +1110,7 @@ function dailyNewsReadingIndex(){
  const i=readingSets.news.indexOf(set);return i>=0?i:0;
 }
 
-let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
+let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
 function getSrs(id){return Object.assign({due:0,interval:0,ease:2.5,reviews:0,lapses:0,last:0,streak:0,updatedAt:0},state.srs[id]||{});}
 function setSrs(id,s){state.srs[id]=s;saveState(state)}
@@ -1185,7 +1240,7 @@ function renderWordLibrary(){
  const shown=list.slice(0,wordLibraryVisible);
  $("wordLibrarySummary").textContent=`${words.length}개 중 검색 결과 ${list.length}개 · 현재 ${shown.length}개 표시 · ① 단어 → ② 뜻·읽기 → ③ 예문 순서로 확인하세요.`;
  $("wordLibraryList").innerHTML=shown.length?shown.map(w=>{
-   const meaningOpen=wordLibraryOpen.has(w.id),examplesOpen=wordLibraryExamplesOpen.has(w.id),r=getSrs(w.id);
+   const meaningOpen=wordLibraryOpen.has(w.id),examplesOpen=wordLibraryExamplesOpen.has(w.id),breakdown=wordBreakdownFor(w),breakdownOpen=wordLibraryBreakdownOpen.has(w.id),breakdownDetailOpen=wordLibraryBreakdownDetailOpen.has(w.id),r=getSrs(w.id);
    return `<div class="word-library-item${meaningOpen?" meaning-open":""}${examplesOpen?" examples-open":""}" data-id="${w.id}">
      <div class="word-library-row">
        <button type="button" class="word-library-speak" data-lib-speak="${w.id}" aria-label="단어 음성">🔊</button>
@@ -1207,6 +1262,12 @@ function renderWordLibrary(){
        </button>
        ${examplesOpen?`<div class="word-library-detail">${w.examples.length?w.examples.slice(0,2).map((ex,i)=>`<div class="word-library-example"><button type="button" data-lib-example="${w.id}" data-example-index="${i}" aria-label="예문 음성">🔊</button><div><div class="word-library-example-jp">${renderExampleJP(ex.jp,w)}</div><div class="word-library-example-ko">${ex.ko}</div></div></div>`).join(""):`<div class="word-library-empty" style="padding:16px 8px">자연스러운 한국어 예문을 보강 중입니다.</div>`}</div>`:""}
      </div>
+     ${breakdown?`<div class="word-library-section">
+       <button type="button" class="word-library-section-toggle" data-lib-breakdown="${w.id}">
+         <span>④ 🔍 단어 해부</span><span class="hint">${breakdownOpen?"숨기기":"눌러서 이해"} <span class="chev">${breakdownOpen?"▲":"▼"}</span></span>
+       </button>
+       ${breakdownOpen?`<div class="word-library-breakdown">${breakdownInnerHTML(breakdown,breakdownDetailOpen)}</div>`:""}
+     </div>`:""}
    </div>`;
  }).join(""):`<div class="word-library-empty">조건에 맞는 단어가 없습니다.</div>`;
  const more=$("wordLibraryMore");
@@ -1226,7 +1287,7 @@ function finishWordStudy(){
  $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
  $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").disabled=true;$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";$("wordTtsStatus").textContent="";
  $("showMeaningBtn").textContent="학습 목표로 돌아가기";$("showMeaningBtn").classList.remove("hidden");$("showMeaningBtn").dataset.finished="1";
- $("wordMeaning").classList.add("hidden");$("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
+ $("wordMeaning").classList.add("hidden");$("wordExamples").classList.add("hidden");$("wordBreakdown").classList.add("hidden");$("wordRating").classList.add("hidden");
 }
 function renderWord(){
  wordAudioPrefetchRun++;
@@ -1246,7 +1307,11 @@ function renderWord(){
  $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");
  $("showMeaningBtn").textContent="뜻 · 예문 보기";
  $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><div class="example-jp">${renderExampleJP(x.jp,w)}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
- $("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
+ $("wordExamples").classList.add("hidden");
+ const breakdown=wordBreakdownFor(w);
+ $("wordBreakdown").innerHTML=breakdown?studyBreakdownHTML(breakdown):"";
+ $("wordBreakdown").classList.add("hidden");
+ $("wordRating").classList.add("hidden");
  renderRating($("wordRating"),w.id,sr,false);
  restoreInteractiveFuriState($("wordStudyPanel"));
  setTimeout(()=>prefetchWordAudio(w),120);
@@ -1331,19 +1396,45 @@ $("wordLibraryList").addEventListener("click",e=>{
  const meaning=e.target.closest("[data-lib-meaning]");
  if(meaning){const id=meaning.dataset.libMeaning;if(wordLibraryOpen.has(id))wordLibraryOpen.delete(id);else wordLibraryOpen.add(id);renderWordLibrary();return}
  const examples=e.target.closest("[data-lib-examples]");
- if(examples){const id=examples.dataset.libExamples;if(wordLibraryExamplesOpen.has(id))wordLibraryExamplesOpen.delete(id);else wordLibraryExamplesOpen.add(id);renderWordLibrary()}
+ if(examples){const id=examples.dataset.libExamples;if(wordLibraryExamplesOpen.has(id))wordLibraryExamplesOpen.delete(id);else wordLibraryExamplesOpen.add(id);renderWordLibrary();return}
+ const breakdownDetail=e.target.closest(".word-breakdown-detail-toggle");
+ if(breakdownDetail){
+   const item=e.target.closest(".word-library-item[data-id]");if(!item)return;
+   const id=item.dataset.id;
+   if(wordLibraryBreakdownDetailOpen.has(id))wordLibraryBreakdownDetailOpen.delete(id);else wordLibraryBreakdownDetailOpen.add(id);
+   renderWordLibrary();return;
+ }
+ const breakdown=e.target.closest("[data-lib-breakdown]");
+ if(breakdown){const id=breakdown.dataset.libBreakdown;if(wordLibraryBreakdownOpen.has(id))wordLibraryBreakdownOpen.delete(id);else wordLibraryBreakdownOpen.add(id);renderWordLibrary();return}
 });
 $("wordSpeakBtn").addEventListener("click",()=>{
  const w=words.find(x=>x.id===$("wordSpeakBtn").dataset.word);playWordAudio(w,null,$("wordSpeakBtn"));
 });
 $("showMeaningBtn").addEventListener("click",()=>{
  if($("showMeaningBtn").dataset.finished==="1"){showWordDashboard();return}
- $("wordMeaning").classList.remove("hidden");$("wordExamples").classList.remove("hidden");$("wordRating").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");$("wordFocusHint").textContent="확인했다면 기억 정도를 선택하세요.";
+ $("wordMeaning").classList.remove("hidden");$("wordExamples").classList.remove("hidden");if($("wordBreakdown").innerHTML)$("wordBreakdown").classList.remove("hidden");$("wordRating").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");$("wordFocusHint").textContent="확인했다면 기억 정도를 선택하세요.";
 });
 $("wordExamples").addEventListener("click",e=>{
  const speak=e.target.closest(".ex-speak");
  if(speak){const w=words.find(x=>x.id===$("wordSpeakBtn").dataset.word);playWordAudio(w,Number(speak.dataset.example),speak);return}
  const b=e.target.closest(".ex-reveal");if(!b)return;const box=b.nextElementSibling;const h=box.classList.toggle("hidden");b.textContent=h?"예문 뜻 보기":"예문 뜻 숨기기";
+});
+$("wordBreakdown").addEventListener("click",e=>{
+ const detail=e.target.closest(".word-breakdown-detail-toggle");
+ if(detail){
+  const details=$("wordBreakdown").querySelector(".word-breakdown-details");
+  if(!details)return;
+  const hidden=details.classList.toggle("hidden");
+  detail.textContent=hidden?"자세히 보기":"간단히 보기";
+  return;
+ }
+ const toggle=e.target.closest(".word-breakdown-toggle");
+ if(!toggle)return;
+ const body=$("wordBreakdown").querySelector(".word-breakdown-body");
+ if(!body)return;
+ const hidden=body.classList.toggle("hidden");
+ const arrow=toggle.querySelector(".word-breakdown-arrow");
+ if(arrow)arrow.textContent=hidden?"＋":"−";
 });
 $("wordRating").addEventListener("click",e=>{
  const b=e.target.closest("[data-rate]");if(!b)return;
