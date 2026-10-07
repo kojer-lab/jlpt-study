@@ -43,7 +43,19 @@ const phraseMap=new Map(Object.entries({
   "to look back on":"돌이켜보다","to look into":"조사하다 / 살펴보다","to put off":"미루다 / 연기하다",
   "to turn down":"거절하다 / 낮추다","to set aside":"따로 두다 / 제쳐두다","to come up with":"생각해내다 / 제시하다",
   "to be based on":"~에 근거하다","to be due to":"~때문이다","to be likely to":"~할 가능성이 높다",
-  "to be supposed to":"~하기로 되어 있다","to be capable of":"~할 수 있다"
+  "to be supposed to":"~하기로 되어 있다","to be capable of":"~할 수 있다",
+  "to look up (to)":"우러러보다 / 존경하다","love and hate":"애증","likes and dislikes":"호불호",
+  "civility":"예의 / 공손함","courtesy":"예의 / 정중함","relation(ship)":"관계 / 사이",
+  "mental arithmetic":"암산","running away from home":"가출","to get angry":"화를 내다",
+  "to be in a hurry":"초조해하다 / 서두르다","to be impatient":"초조해하다",
+  "to make a mistake":"실수하다 / 잘못하다","oil painting":"유화","rain gear":"우비 / 우구",
+  "addressed to":"~앞 / ~에게","putting off":"뒤로 미룸 / 후순위","postponing":"연기 / 미룸",
+  "phonetic-equivalent character":"아테지 / 소리에 맞춘 한자 표기",
+  "to be enthusiastic about":"의욕을 내다 / 열의를 보이다","unlucky day":"흉일 / 운이 나쁜 날",
+  "to place an order":"주문하다","to give an order":"주문하다 / 지시하다",
+  "to behave like a spoiled child":"응석부리다","to fawn on":"응석부리다 / 어리광부리다",
+  "to be renewed":"새로워지다 / 격식을 차리다","to redden":"붉어지다 / 붉히다",
+  "to reveal":"밝히다 / 드러내다","to divulge":"누설하다 / 밝히다"
 }));
 
 function firstKorean(v){
@@ -80,14 +92,19 @@ function dictLookup(dict,raw){
 }
 function translateMeanings(meanings,dict){
   const found=[];
-  for(const original of (meanings||[]).slice(0,4)){
-    const chunks=String(original).split(/\s*[;,/]\s*|\s+\bor\b\s+/i).filter(Boolean).slice(0,6);
+  // Precision first: N1 cards are more useful with one or two solid senses
+  // than with a long list containing unrelated English homonyms.
+  for(const original of (meanings||[]).slice(0,2)){
+    const whole=dictLookup(dict,original);
+    if(whole&&!found.includes(whole))found.push(whole);
+    if(found.length>=2)break;
+    const chunks=String(original).split(/\s*[;,/]\s*|\s+\bor\b\s+/i).filter(Boolean).slice(0,3);
     for(const c of chunks){
       const k=dictLookup(dict,c);
       if(k&&!found.includes(k))found.push(k);
-      if(found.length>=4)break;
+      if(found.length>=2)break;
     }
-    if(found.length>=4)break;
+    if(found.length>=2)break;
   }
   return found.length?found.join(" / "):"영어 뜻 · "+(meanings||[]).slice(0,2).join(" / ");
 }
