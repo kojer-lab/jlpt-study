@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: build-vocab-audio
+  group: vocab-audio-global
   cancel-in-progress: false
 
 jobs:
@@ -47,6 +47,9 @@ jobs:
 
       - name: Export vocabulary texts
         run: node tools/export-vocab-audio.mjs
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
 
       - name: Install native Kokoro Japanese TTS
         run: |
