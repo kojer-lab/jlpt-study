@@ -374,6 +374,21 @@ const KOKORO_CDN="https://cdn.jsdelivr.net/npm/kokoro-js-jp@0.2.0/dist/kokoro-jp
 const KOKORO_DB="jlpt-kokoro-audio-v1",KOKORO_STORE="audio";
 let kokoroModulePromise=null,kokoroTTS=null,kokoroEngine=null,kokoroDbPromise=null,kokoroQueue=Promise.resolve(),kokoroCurrentAudio=null,kokoroWakeLock=null;
 const kokoroUrls=new Map(),kokoroInflight=new Map();
+let staticVocabAudio=null,staticVocabAudioPromise=null;
+function loadStaticVocabAudioManifest(){
+ if(staticVocabAudioPromise)return staticVocabAudioPromise;
+ staticVocabAudioPromise=fetch("audio/vocab/manifest.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).then(m=>{staticVocabAudio=m&&m.files?m.files:null;return staticVocabAudio}).catch(()=>null);
+ return staticVocabAudioPromise;
+}
+async function staticVocabAudioUrl(w,exampleIndex=null){
+ const files=await loadStaticVocabAudioManifest(),entry=files&&w?files[w.id]:null;
+ if(!entry)return null;
+ return exampleIndex===null?(entry.word||null):((entry.examples||[])[exampleIndex]||null);
+}
+function hasCompleteStaticVocabAudio(w){
+ const e=staticVocabAudio&&w?staticVocabAudio[w.id]:null;
+ return !!(e&&e.word&&Array.isArray(e.examples)&&e.examples.length>=w.examples.length&&w.examples.every((_,i)=>!!e.examples[i]));
+}
 function isAppleMobile(){return /iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)}
 function kokoroConfig(){
  if(isAppleMobile())return {key:"wasm_q8",label:"iPhone/iPad · WASM q8",options:{device:"wasm",dtype:"q8"}};
@@ -823,6 +838,9 @@ async function prefetchWordAudio(w){
  const stillCurrent=()=>run===wordAudioPrefetchRun&&$("wordSpeakBtn").dataset.word===w.id;
  const status=msg=>{if(stillCurrent())$("wordTtsStatus").textContent=msg};
  try{
+   await loadStaticVocabAudioManifest();
+   if(hasCompleteStaticVocabAudio(w)){status("사전 생성 Kokoro 음성 · 즉시 재생");return}
+   // 정적 음성이 아직 배포되지 않은 항목만 기존 실시간 합성을 사용한다.
    // 1) 현재 단어를 최우선으로 준비한다.
    await kokoroGenerate(readingOf(w.w),"jf_alpha",status);
    if(stillCurrent())status("현재 단어 준비 완료 · 다음 단어를 미리 만드는 중…");
@@ -856,6 +874,11 @@ async function playWordAudio(w,exampleIndex=null,button=null){
  const status=msg=>$("wordTtsStatus").textContent=msg;
  try{
    if(button){button.disabled=true;button.classList.add("loading")}
+   const staticUrl=await staticVocabAudioUrl(w,exampleIndex);
+   if(staticUrl){
+     status("🔊 재생 중 · 사전 생성 Kokoro");
+     await playKokoroUrl(staticUrl);status("사전 생성 음성 · 즉시 재생");return;
+   }
    const key=kokoroKey(text,"jf_alpha"),alreadyReady=kokoroUrls.has(key);
    if(!alreadyReady)status("음성을 준비하고 있습니다…");
    const r=await kokoroGenerate(text,"jf_alpha");status("🔊 재생 중 · "+(kokoroEngine||kokoroConfig()).label);
@@ -1172,7 +1195,11 @@ function setupListening(){
 function applyTheme(){const d=localStorage.getItem("jlptN1ThemeV3")==="dark";document.body.classList.toggle("dark",d);$("themeBtn").textContent=d?"☀️ 라이트모드":"🌙 다크모드"}function toggleTheme(){localStorage.setItem("jlptN1ThemeV3",document.body.classList.contains("dark")?"light":"dark");applyTheme()}$("themeBtn").addEventListener("click",toggleTheme);$("mobileTheme").addEventListener("click",toggleTheme);
 function applyFuri(){const m=localStorage.getItem("jlptN1FuriV3")||"interactive";$("furiMode").value=m;document.body.classList.toggle("furi-always",m==="always");document.body.classList.toggle("furi-off",m==="off");if(m!=="interactive")document.querySelectorAll(".furi.show").forEach(x=>x.classList.remove("show"))}$("furiMode").addEventListener("change",()=>{localStorage.setItem("jlptN1FuriV3",$("furiMode").value);applyFuri()});$("mobileFuri").addEventListener("click",()=>{const cur=localStorage.getItem("jlptN1FuriV3")||"interactive",next=cur==="interactive"?"always":cur==="always"?"off":"interactive";localStorage.setItem("jlptN1FuriV3",next);applyFuri();$("mobileFuri").textContent=next==="interactive"?"あ":next==="always"?"振":"×"});
 
-applyTheme();applyFuri();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
+window.__jlptAudioManifest=()=>words.flatMap(w=>[
+ {id:w.id,kind:"word",index:null,text:readingOf(w.w),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-word.wav"},
+ ...w.examples.map((ex,i)=>({id:w.id,kind:"example",index:i,text:plain(ex.jp),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-ex"+(i+1)+".wav"}))
+]);
+applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
 </script>
 </body>
 </html>
