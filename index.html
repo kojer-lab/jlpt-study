@@ -1101,7 +1101,6 @@ async function playAiListening(){
  finally{aiListenPlaying=false;$("aiListenPlay").disabled=false;await releaseKokoroWakeLock()}
 }
 function setupAiListening(){
- renderAiListening();
  $("aiListenPlay").addEventListener("click",playAiListening);
  $("aiListenScriptBtn").addEventListener("click",()=>{const show=$("aiListenScript").classList.toggle("show");$("aiListenScriptBtn").textContent=show?"스크립트 숨기기":"스크립트 보기"});
  $("aiListenChoices").addEventListener("click",e=>{
