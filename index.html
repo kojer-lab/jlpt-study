@@ -1265,7 +1265,7 @@ function dailyNewsReadingIndex(){
  const i=readingSets.news.indexOf(set);return i>=0?i:0;
 }
 
-let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
+let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordLearningQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewLearningQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
 const FSRS_W=[.212,1.2931,2.3065,8.2956,6.4133,.8334,3.0194,.001,1.8722,.1666,.796,1.4835,.0614,.2629,1.6483,.6014,1.8729,.5425,.0912,.0658,.1542];
 const FSRS_DECAY=-FSRS_W[20],FSRS_FACTOR=Math.pow(.9,1/FSRS_DECAY)-1,FSRS_MAX_INTERVAL=36500;
@@ -1444,7 +1444,31 @@ function buildWordStudyQueue(){
  const due=dueWords(),fresh=todayNewPending(),seen=new Set();
  return [...due,...fresh].filter(w=>w&&!seen.has(w.id)&&seen.add(w.id));
 }
-function currentWordQueue(){return wordMode==="starred"?wordSessionQueue:wordSessionQueue}
+const LEARN_AHEAD_LIMIT=20*MIN;
+function queueLearningCard(list,w){
+ if(!w)return;
+ const s=getSrs(w.id);
+ if(s.state!=="learning"&&s.state!=="relearning")return;
+ const old=list.find(x=>x.id===w.id);
+ if(old){old.due=s.due;return}
+ list.push({id:w.id,due:s.due});
+}
+function promoteLearningCards(immediate,delayed,allowAhead=true){
+ const t=now();
+ delayed.forEach(x=>{x.due=getSrs(x.id).due});
+ delayed.sort((a,b)=>a.due-b.due);
+ const dueNow=delayed.filter(x=>x.due<=t);
+ if(dueNow.length){
+   for(const x of dueNow){const w=wordById.get(x.id);if(w&&!immediate.some(y=>y.id===x.id))immediate.unshift(w)}
+   const ids=new Set(dueNow.map(x=>x.id));
+   for(let i=delayed.length-1;i>=0;i--)if(ids.has(delayed[i].id))delayed.splice(i,1);
+   return;
+ }
+ if(allowAhead&&!immediate.length&&delayed.length&&delayed[0].due<=t+LEARN_AHEAD_LIMIT){
+   const x=delayed.shift(),w=wordById.get(x.id);if(w)immediate.push(w);
+ }
+}
+function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,true);return wordSessionQueue}
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
 function renderWordDashboard(){
  const daily=ensureDailyNew(false),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
