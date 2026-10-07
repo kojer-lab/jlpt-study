@@ -504,8 +504,9 @@ function F(b,r){
   }
   let end=r.length;
   if(anchor){
-   end=r.indexOf(anchor,pos);
-   if(end<pos){ok=false;break}
+   const anchorRunIndex=runs.findIndex((x,idx)=>idx>i&&x.type==="plain"&&x.text===anchor);
+   end=anchorRunIndex===runs.length-1?r.lastIndexOf(anchor):r.indexOf(anchor,pos+1);
+   if(end<=pos){ok=false;break}
   }
   const reading=r.slice(pos,end);
   if(!reading){ok=false;break}
@@ -1170,11 +1171,11 @@ function buildExpansionVocabQuiz(src,count=60){
    const a=i%4,slots=new Array(4);
    pool.forEach((x,j)=>slots[(a+j)%4]=x);
    return {
-     q:`「${w.w}」の意味として最も近いものは？`,
+     q:`「${w.w}」の${F("意味","いみ")}として${F("最","もっと")}も${F("近","ちか")}いものは？`,
      c:slots.map(shortMeaning),
      a,
      translation:`「${w.w}」의 의미로 가장 가까운 것은?`,
-     e:`「${w.w}」は「${w.meaning}」という意味です。例文の中で使い方も確認しましょう。`
+     e:`「${w.w}」は「${w.meaning}」という${F("意味","いみ")}です。${F("例文","れいぶん")}の${F("中","なか")}で${F("使","つか")}い${F("方","かた")}も${F("確認","かくにん")}しましょう。`
    };
  });
 }
