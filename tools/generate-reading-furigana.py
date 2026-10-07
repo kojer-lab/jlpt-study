@@ -54,8 +54,17 @@ def wrap_surface(surface,reading):
 
 def annotate_plain(text):
     out=[]
-    for tok in tokenizer.tokenize(text,SPLIT_MODE):
-        out.append(wrap_surface(tok.surface(),reading_of(tok)))
+    # Sudachi drops whitespace tokens. Split first and append whitespace verbatim so
+    # Korean explanations keep their original spacing while Japanese spans still
+    # receive dictionary-based furigana.
+    for part in re.split(r"(\\s+)",text):
+        if not part:
+            continue
+        if part.isspace():
+            out.append(part)
+            continue
+        for tok in tokenizer.tokenize(part,SPLIT_MODE):
+            out.append(wrap_surface(tok.surface(),reading_of(tok)))
     return "".join(out)
 
 def annotate(raw):
