@@ -1,6 +1,7 @@
 {
-  "version": 2,
-  "count": 300,
+  "version": 3,
+  "wordCount": 300,
+  "count": 800,
   "items": [
     {
       "id": "unagasu",
@@ -2401,6 +2402,4006 @@
       "text": "環境に配慮した製品を選ぶ。",
       "voice": "jf_alpha",
       "path": "audio/vocab/hairyo-ex2.wav"
+    },
+    {
+      "id": "n1x101",
+      "kind": "word",
+      "index": null,
+      "text": "がいねん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x101-word.wav"
+    },
+    {
+      "id": "n1x101",
+      "kind": "example",
+      "index": 0,
+      "text": "この概念を理解するには背景知識が必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x101-ex1.wav"
+    },
+    {
+      "id": "n1x101",
+      "kind": "example",
+      "index": 1,
+      "text": "新しい概念が社会に定着しつつある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x101-ex2.wav"
+    },
+    {
+      "id": "n1x102",
+      "kind": "word",
+      "index": null,
+      "text": "しゅし",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x102-word.wav"
+    },
+    {
+      "id": "n1x102",
+      "kind": "example",
+      "index": 0,
+      "text": "制度の趣旨を十分に理解する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x102-ex1.wav"
+    },
+    {
+      "id": "n1x102",
+      "kind": "example",
+      "index": 1,
+      "text": "発言の趣旨が正しく伝わらなかった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x102-ex2.wav"
+    },
+    {
+      "id": "n1x103",
+      "kind": "word",
+      "index": null,
+      "text": "けいい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x103-word.wav"
+    },
+    {
+      "id": "n1x103",
+      "kind": "example",
+      "index": 0,
+      "text": "事故に至った経緯を詳しく調べる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x103-ex1.wav"
+    },
+    {
+      "id": "n1x103",
+      "kind": "example",
+      "index": 1,
+      "text": "これまでの経緯を簡潔に説明してください。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x103-ex2.wav"
+    },
+    {
+      "id": "n1x104",
+      "kind": "word",
+      "index": null,
+      "text": "けんかい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x104-word.wav"
+    },
+    {
+      "id": "n1x104",
+      "kind": "example",
+      "index": 0,
+      "text": "専門家の見解は大きく分かれている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x104-ex1.wav"
+    },
+    {
+      "id": "n1x104",
+      "kind": "example",
+      "index": 1,
+      "text": "政府は公式な見解を示した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x104-ex2.wav"
+    },
+    {
+      "id": "n1x105",
+      "kind": "word",
+      "index": null,
+      "text": "こんきょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x105-word.wav"
+    },
+    {
+      "id": "n1x105",
+      "kind": "example",
+      "index": 0,
+      "text": "その主張には十分な根拠がない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x105-ex1.wav"
+    },
+    {
+      "id": "n1x105",
+      "kind": "example",
+      "index": 1,
+      "text": "客観的な根拠に基づいて判断する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x105-ex2.wav"
+    },
+    {
+      "id": "n1x106",
+      "kind": "word",
+      "index": null,
+      "text": "じったい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x106-word.wav"
+    },
+    {
+      "id": "n1x106",
+      "kind": "example",
+      "index": 0,
+      "text": "調査によって労働環境の実態が明らかになった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x106-ex1.wav"
+    },
+    {
+      "id": "n1x106",
+      "kind": "example",
+      "index": 1,
+      "text": "数字だけでは実態を把握できない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x106-ex2.wav"
+    },
+    {
+      "id": "n1x107",
+      "kind": "word",
+      "index": null,
+      "text": "どうこう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x107-word.wav"
+    },
+    {
+      "id": "n1x107",
+      "kind": "example",
+      "index": 0,
+      "text": "市場の動向を注意深く見守る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x107-ex1.wav"
+    },
+    {
+      "id": "n1x107",
+      "kind": "example",
+      "index": 1,
+      "text": "若者の消費動向に変化が見られる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x107-ex2.wav"
+    },
+    {
+      "id": "n1x108",
+      "kind": "word",
+      "index": null,
+      "text": "よち",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x108-word.wav"
+    },
+    {
+      "id": "n1x108",
+      "kind": "example",
+      "index": 0,
+      "text": "この案にはまだ改善の余地がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x108-ex1.wav"
+    },
+    {
+      "id": "n1x108",
+      "kind": "example",
+      "index": 1,
+      "text": "再検討する余地は十分に残されている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x108-ex2.wav"
+    },
+    {
+      "id": "n1x109",
+      "kind": "word",
+      "index": null,
+      "text": "けんあん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x109-word.wav"
+    },
+    {
+      "id": "n1x109",
+      "kind": "example",
+      "index": 0,
+      "text": "長年の懸案だった問題がようやく解決した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x109-ex1.wav"
+    },
+    {
+      "id": "n1x109",
+      "kind": "example",
+      "index": 1,
+      "text": "両国は懸案事項について協議した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x109-ex2.wav"
+    },
+    {
+      "id": "n1x110",
+      "kind": "word",
+      "index": null,
+      "text": "ろんきょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x110-word.wav"
+    },
+    {
+      "id": "n1x110",
+      "kind": "example",
+      "index": 0,
+      "text": "結論を支える論拠が弱い。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x110-ex1.wav"
+    },
+    {
+      "id": "n1x110",
+      "kind": "example",
+      "index": 1,
+      "text": "複数の資料を論拠として提示した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x110-ex2.wav"
+    },
+    {
+      "id": "n1x111",
+      "kind": "word",
+      "index": null,
+      "text": "ちょうこう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x111-word.wav"
+    },
+    {
+      "id": "n1x111",
+      "kind": "example",
+      "index": 0,
+      "text": "景気回復の兆候が見え始めた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x111-ex1.wav"
+    },
+    {
+      "id": "n1x111",
+      "kind": "example",
+      "index": 1,
+      "text": "体調悪化の兆候を見逃してはいけない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x111-ex2.wav"
+    },
+    {
+      "id": "n1x112",
+      "kind": "word",
+      "index": null,
+      "text": "しんそう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x112-word.wav"
+    },
+    {
+      "id": "n1x112",
+      "kind": "example",
+      "index": 0,
+      "text": "事件の真相はいまだ明らかになっていない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x112-ex1.wav"
+    },
+    {
+      "id": "n1x112",
+      "kind": "example",
+      "index": 1,
+      "text": "関係者の証言から真相に迫る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x112-ex2.wav"
+    },
+    {
+      "id": "n1x113",
+      "kind": "word",
+      "index": null,
+      "text": "きはん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x113-word.wav"
+    },
+    {
+      "id": "n1x113",
+      "kind": "example",
+      "index": 0,
+      "text": "社会の規範は時代とともに変化する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x113-ex1.wav"
+    },
+    {
+      "id": "n1x113",
+      "kind": "example",
+      "index": 1,
+      "text": "倫理的な規範に従って行動する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x113-ex2.wav"
+    },
+    {
+      "id": "n1x114",
+      "kind": "word",
+      "index": null,
+      "text": "かんこう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x114-word.wav"
+    },
+    {
+      "id": "n1x114",
+      "kind": "example",
+      "index": 0,
+      "text": "業界の古い慣行を見直す必要がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x114-ex1.wav"
+    },
+    {
+      "id": "n1x114",
+      "kind": "example",
+      "index": 1,
+      "text": "長年の慣行として続けられてきた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x114-ex2.wav"
+    },
+    {
+      "id": "n1x115",
+      "kind": "word",
+      "index": null,
+      "text": "ほうさく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x115-word.wav"
+    },
+    {
+      "id": "n1x115",
+      "kind": "example",
+      "index": 0,
+      "text": "問題を解決するための方策を検討する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x115-ex1.wav"
+    },
+    {
+      "id": "n1x115",
+      "kind": "example",
+      "index": 1,
+      "text": "有効な方策がなかなか見つからない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x115-ex2.wav"
+    },
+    {
+      "id": "n1x116",
+      "kind": "word",
+      "index": null,
+      "text": "そち",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x116-word.wav"
+    },
+    {
+      "id": "n1x116",
+      "kind": "example",
+      "index": 0,
+      "text": "政府は緊急措置を講じた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x116-ex1.wav"
+    },
+    {
+      "id": "n1x116",
+      "kind": "example",
+      "index": 1,
+      "text": "必要な措置を速やかに取るべきだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x116-ex2.wav"
+    },
+    {
+      "id": "n1x117",
+      "kind": "word",
+      "index": null,
+      "text": "しさく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x117-word.wav"
+    },
+    {
+      "id": "n1x117",
+      "kind": "example",
+      "index": 0,
+      "text": "子育て支援の施策を拡充する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x117-ex1.wav"
+    },
+    {
+      "id": "n1x117",
+      "kind": "example",
+      "index": 1,
+      "text": "新たな施策の効果を検証する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x117-ex2.wav"
+    },
+    {
+      "id": "n1x118",
+      "kind": "word",
+      "index": null,
+      "text": "わくぐみ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x118-word.wav"
+    },
+    {
+      "id": "n1x118",
+      "kind": "example",
+      "index": 0,
+      "text": "国際協力の新しい枠組みを構築する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x118-ex1.wav"
+    },
+    {
+      "id": "n1x118",
+      "kind": "example",
+      "index": 1,
+      "text": "従来の枠組みでは対応が難しい。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x118-ex2.wav"
+    },
+    {
+      "id": "n1x119",
+      "kind": "word",
+      "index": null,
+      "text": "ことがら",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x119-word.wav"
+    },
+    {
+      "id": "n1x119",
+      "kind": "example",
+      "index": 0,
+      "text": "重要な事柄から順に話し合う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x119-ex1.wav"
+    },
+    {
+      "id": "n1x119",
+      "kind": "example",
+      "index": 1,
+      "text": "私的な事柄には立ち入らない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x119-ex2.wav"
+    },
+    {
+      "id": "n1x120",
+      "kind": "word",
+      "index": null,
+      "text": "じこう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x120-word.wav"
+    },
+    {
+      "id": "n1x120",
+      "kind": "example",
+      "index": 0,
+      "text": "注意事項を事前に確認してください。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x120-ex1.wav"
+    },
+    {
+      "id": "n1x120",
+      "kind": "example",
+      "index": 1,
+      "text": "契約書に必要事項を記入する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x120-ex2.wav"
+    },
+    {
+      "id": "n1x121",
+      "kind": "word",
+      "index": null,
+      "text": "へいがい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x121-word.wav"
+    },
+    {
+      "id": "n1x121",
+      "kind": "example",
+      "index": 0,
+      "text": "過度な競争がさまざまな弊害を生む。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x121-ex1.wav"
+    },
+    {
+      "id": "n1x121",
+      "kind": "example",
+      "index": 1,
+      "text": "便利さの裏にある弊害にも目を向ける。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x121-ex2.wav"
+    },
+    {
+      "id": "n1x122",
+      "kind": "word",
+      "index": null,
+      "text": "かくさ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x122-word.wav"
+    },
+    {
+      "id": "n1x122",
+      "kind": "example",
+      "index": 0,
+      "text": "地域間の格差が広がっている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x122-ex1.wav"
+    },
+    {
+      "id": "n1x122",
+      "kind": "example",
+      "index": 1,
+      "text": "教育格差を縮める取り組みが必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x122-ex2.wav"
+    },
+    {
+      "id": "n1x123",
+      "kind": "word",
+      "index": null,
+      "text": "へんけん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x123-word.wav"
+    },
+    {
+      "id": "n1x123",
+      "kind": "example",
+      "index": 0,
+      "text": "偏見を持たずに相手を見る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x123-ex1.wav"
+    },
+    {
+      "id": "n1x123",
+      "kind": "example",
+      "index": 1,
+      "text": "根強い偏見をなくすのは容易ではない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x123-ex2.wav"
+    },
+    {
+      "id": "n1x124",
+      "kind": "word",
+      "index": null,
+      "text": "せんにゅうかん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x124-word.wav"
+    },
+    {
+      "id": "n1x124",
+      "kind": "example",
+      "index": 0,
+      "text": "先入観にとらわれず判断する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x124-ex1.wav"
+    },
+    {
+      "id": "n1x124",
+      "kind": "example",
+      "index": 1,
+      "text": "名前だけで先入観を持ってはいけない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x124-ex2.wav"
+    },
+    {
+      "id": "n1x125",
+      "kind": "word",
+      "index": null,
+      "text": "にんしき",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x125-word.wav"
+    },
+    {
+      "id": "n1x125",
+      "kind": "example",
+      "index": 0,
+      "text": "問題に対する認識を共有する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x125-ex1.wav"
+    },
+    {
+      "id": "n1x125",
+      "kind": "example",
+      "index": 1,
+      "text": "両者の認識には大きなずれがある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x125-ex2.wav"
+    },
+    {
+      "id": "n1x126",
+      "kind": "word",
+      "index": null,
+      "text": "がいきょう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x126-word.wav"
+    },
+    {
+      "id": "n1x126",
+      "kind": "example",
+      "index": 0,
+      "text": "担当者が市場の概況を説明した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x126-ex1.wav"
+    },
+    {
+      "id": "n1x126",
+      "kind": "example",
+      "index": 1,
+      "text": "まず業界全体の概況を把握する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x126-ex2.wav"
+    },
+    {
+      "id": "n1x127",
+      "kind": "word",
+      "index": null,
+      "text": "うちわけ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x127-word.wav"
+    },
+    {
+      "id": "n1x127",
+      "kind": "example",
+      "index": 0,
+      "text": "費用の内訳を確認してください。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x127-ex1.wav"
+    },
+    {
+      "id": "n1x127",
+      "kind": "example",
+      "index": 1,
+      "text": "売上の内訳を項目別に示した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x127-ex2.wav"
+    },
+    {
+      "id": "n1x128",
+      "kind": "word",
+      "index": null,
+      "text": "めど",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x128-word.wav"
+    },
+    {
+      "id": "n1x128",
+      "kind": "example",
+      "index": 0,
+      "text": "復旧の目処はまだ立っていない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x128-ex1.wav"
+    },
+    {
+      "id": "n1x128",
+      "kind": "example",
+      "index": 1,
+      "text": "来月までに完成の目処をつけたい。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x128-ex2.wav"
+    },
+    {
+      "id": "n1x129",
+      "kind": "word",
+      "index": null,
+      "text": "てがかり",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x129-word.wav"
+    },
+    {
+      "id": "n1x129",
+      "kind": "example",
+      "index": 0,
+      "text": "現場に重要な手掛かりが残されていた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x129-ex1.wav"
+    },
+    {
+      "id": "n1x129",
+      "kind": "example",
+      "index": 1,
+      "text": "解決の手掛かりをつかむ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x129-ex2.wav"
+    },
+    {
+      "id": "n1x130",
+      "kind": "word",
+      "index": null,
+      "text": "てだて",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x130-word.wav"
+    },
+    {
+      "id": "n1x130",
+      "kind": "example",
+      "index": 0,
+      "text": "被害を防ぐ手立てを考える。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x130-ex1.wav"
+    },
+    {
+      "id": "n1x130",
+      "kind": "example",
+      "index": 1,
+      "text": "今のところ有効な手立てがない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x130-ex2.wav"
+    },
+    {
+      "id": "n1x131",
+      "kind": "word",
+      "index": null,
+      "text": "かかげる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x131-word.wav"
+    },
+    {
+      "id": "n1x131",
+      "kind": "example",
+      "index": 0,
+      "text": "会社は高い目標を掲げている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x131-ex1.wav"
+    },
+    {
+      "id": "n1x131",
+      "kind": "example",
+      "index": 1,
+      "text": "改革を掲げて選挙に臨んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x131-ex2.wav"
+    },
+    {
+      "id": "n1x132",
+      "kind": "word",
+      "index": null,
+      "text": "さっする",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x132-word.wav"
+    },
+    {
+      "id": "n1x132",
+      "kind": "example",
+      "index": 0,
+      "text": "彼の表情から事情を察した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x132-ex1.wav"
+    },
+    {
+      "id": "n1x132",
+      "kind": "example",
+      "index": 1,
+      "text": "相手の心情を察して言葉を選ぶ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x132-ex2.wav"
+    },
+    {
+      "id": "n1x133",
+      "kind": "word",
+      "index": null,
+      "text": "こころざす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x133-word.wav"
+    },
+    {
+      "id": "n1x133",
+      "kind": "example",
+      "index": 0,
+      "text": "若い頃から医師を志していた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x133-ex1.wav"
+    },
+    {
+      "id": "n1x133",
+      "kind": "example",
+      "index": 1,
+      "text": "研究者を志す学生を支援する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x133-ex2.wav"
+    },
+    {
+      "id": "n1x134",
+      "kind": "word",
+      "index": null,
+      "text": "くわだてる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x134-word.wav"
+    },
+    {
+      "id": "n1x134",
+      "kind": "example",
+      "index": 0,
+      "text": "不正な取引を企てた疑いがある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x134-ex1.wav"
+    },
+    {
+      "id": "n1x134",
+      "kind": "example",
+      "index": 1,
+      "text": "新しい事業を企てる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x134-ex2.wav"
+    },
+    {
+      "id": "n1x135",
+      "kind": "word",
+      "index": null,
+      "text": "そこねる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x135-word.wav"
+    },
+    {
+      "id": "n1x135",
+      "kind": "example",
+      "index": 0,
+      "text": "不用意な発言が信頼を損ねた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x135-ex1.wav"
+    },
+    {
+      "id": "n1x135",
+      "kind": "example",
+      "index": 1,
+      "text": "無理をすると健康を損ねる恐れがある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x135-ex2.wav"
+    },
+    {
+      "id": "n1x136",
+      "kind": "word",
+      "index": null,
+      "text": "こばむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x136-word.wav"
+    },
+    {
+      "id": "n1x136",
+      "kind": "example",
+      "index": 0,
+      "text": "会社は取材を拒んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x136-ex1.wav"
+    },
+    {
+      "id": "n1x136",
+      "kind": "example",
+      "index": 1,
+      "text": "変化を拒むだけでは前に進めない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x136-ex2.wav"
+    },
+    {
+      "id": "n1x137",
+      "kind": "word",
+      "index": null,
+      "text": "からむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x137-word.wav"
+    },
+    {
+      "id": "n1x137",
+      "kind": "example",
+      "index": 0,
+      "text": "複数の要因が複雑に絡んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x137-ex1.wav"
+    },
+    {
+      "id": "n1x137",
+      "kind": "example",
+      "index": 1,
+      "text": "金銭が絡む問題は慎重に扱うべきだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x137-ex2.wav"
+    },
+    {
+      "id": "n1x138",
+      "kind": "word",
+      "index": null,
+      "text": "もらす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x138-word.wav"
+    },
+    {
+      "id": "n1x138",
+      "kind": "example",
+      "index": 0,
+      "text": "機密情報を外部に漏らしてはいけない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x138-ex1.wav"
+    },
+    {
+      "id": "n1x138",
+      "kind": "example",
+      "index": 1,
+      "text": "彼は思わずため息を漏らした。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x138-ex2.wav"
+    },
+    {
+      "id": "n1x139",
+      "kind": "word",
+      "index": null,
+      "text": "くつがえる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x139-word.wav"
+    },
+    {
+      "id": "n1x139",
+      "kind": "example",
+      "index": 0,
+      "text": "新しい証拠によって判決が覆った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x139-ex1.wav"
+    },
+    {
+      "id": "n1x139",
+      "kind": "example",
+      "index": 1,
+      "text": "これまでの予想が大きく覆る可能性がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x139-ex2.wav"
+    },
+    {
+      "id": "n1x140",
+      "kind": "word",
+      "index": null,
+      "text": "たえる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x140-word.wav"
+    },
+    {
+      "id": "n1x140",
+      "kind": "example",
+      "index": 0,
+      "text": "この地域では観光客が絶えることがない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x140-ex1.wav"
+    },
+    {
+      "id": "n1x140",
+      "kind": "example",
+      "index": 1,
+      "text": "連絡が絶えてから三年になる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x140-ex2.wav"
+    },
+    {
+      "id": "n1x141",
+      "kind": "word",
+      "index": null,
+      "text": "つのる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x141-word.wav"
+    },
+    {
+      "id": "n1x141",
+      "kind": "example",
+      "index": 0,
+      "text": "時間がたつほど不安が募った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x141-ex1.wav"
+    },
+    {
+      "id": "n1x141",
+      "kind": "example",
+      "index": 1,
+      "text": "会社は新しいアイデアを広く募っている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x141-ex2.wav"
+    },
+    {
+      "id": "n1x142",
+      "kind": "word",
+      "index": null,
+      "text": "にじむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x142-word.wav"
+    },
+    {
+      "id": "n1x142",
+      "kind": "example",
+      "index": 0,
+      "text": "彼の声には悔しさが滲んでいた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x142-ex1.wav"
+    },
+    {
+      "id": "n1x142",
+      "kind": "example",
+      "index": 1,
+      "text": "汗がシャツに滲んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x142-ex2.wav"
+    },
+    {
+      "id": "n1x143",
+      "kind": "word",
+      "index": null,
+      "text": "やわらぐ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x143-word.wav"
+    },
+    {
+      "id": "n1x143",
+      "kind": "example",
+      "index": 0,
+      "text": "薬を飲んで痛みが和らいだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x143-ex1.wav"
+    },
+    {
+      "id": "n1x143",
+      "kind": "example",
+      "index": 1,
+      "text": "緊張した雰囲気が少し和らいだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x143-ex2.wav"
+    },
+    {
+      "id": "n1x144",
+      "kind": "word",
+      "index": null,
+      "text": "やわらげる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x144-word.wav"
+    },
+    {
+      "id": "n1x144",
+      "kind": "example",
+      "index": 0,
+      "text": "照明を暗くして刺激を和らげる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x144-ex1.wav"
+    },
+    {
+      "id": "n1x144",
+      "kind": "example",
+      "index": 1,
+      "text": "冗談が場の緊張を和らげた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x144-ex2.wav"
+    },
+    {
+      "id": "n1x145",
+      "kind": "word",
+      "index": null,
+      "text": "おおいかくす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x145-word.wav"
+    },
+    {
+      "id": "n1x145",
+      "kind": "example",
+      "index": 0,
+      "text": "雲が山頂を覆い隠している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x145-ex1.wav"
+    },
+    {
+      "id": "n1x145",
+      "kind": "example",
+      "index": 1,
+      "text": "事実を覆い隠そうとしても無駄だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x145-ex2.wav"
+    },
+    {
+      "id": "n1x146",
+      "kind": "word",
+      "index": null,
+      "text": "くいちがう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x146-word.wav"
+    },
+    {
+      "id": "n1x146",
+      "kind": "example",
+      "index": 0,
+      "text": "二人の証言が食い違っている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x146-ex1.wav"
+    },
+    {
+      "id": "n1x146",
+      "kind": "example",
+      "index": 1,
+      "text": "認識が食い違ったまま議論が進んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x146-ex2.wav"
+    },
+    {
+      "id": "n1x147",
+      "kind": "word",
+      "index": null,
+      "text": "さしひかえる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x147-word.wav"
+    },
+    {
+      "id": "n1x147",
+      "kind": "example",
+      "index": 0,
+      "text": "詳細についての発言は差し控えます。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x147-ex1.wav"
+    },
+    {
+      "id": "n1x147",
+      "kind": "example",
+      "index": 1,
+      "text": "体調を考えて外出を差し控えた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x147-ex2.wav"
+    },
+    {
+      "id": "n1x148",
+      "kind": "word",
+      "index": null,
+      "text": "さしせまる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x148-word.wav"
+    },
+    {
+      "id": "n1x148",
+      "kind": "example",
+      "index": 0,
+      "text": "締め切りが差し迫っている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x148-ex1.wav"
+    },
+    {
+      "id": "n1x148",
+      "kind": "example",
+      "index": 1,
+      "text": "危険が差し迫った状況だった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x148-ex2.wav"
+    },
+    {
+      "id": "n1x149",
+      "kind": "word",
+      "index": null,
+      "text": "とりしまる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x149-word.wav"
+    },
+    {
+      "id": "n1x149",
+      "kind": "example",
+      "index": 0,
+      "text": "警察が違法駐車を取り締まる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x149-ex1.wav"
+    },
+    {
+      "id": "n1x149",
+      "kind": "example",
+      "index": 1,
+      "text": "不正行為を厳しく取り締まる必要がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x149-ex2.wav"
+    },
+    {
+      "id": "n1x150",
+      "kind": "word",
+      "index": null,
+      "text": "とりあつかう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x150-word.wav"
+    },
+    {
+      "id": "n1x150",
+      "kind": "example",
+      "index": 0,
+      "text": "この店では中古品も取り扱っている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x150-ex1.wav"
+    },
+    {
+      "id": "n1x150",
+      "kind": "example",
+      "index": 1,
+      "text": "個人情報は慎重に取り扱うべきだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x150-ex2.wav"
+    },
+    {
+      "id": "n1x151",
+      "kind": "word",
+      "index": null,
+      "text": "とりもどす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x151-word.wav"
+    },
+    {
+      "id": "n1x151",
+      "kind": "example",
+      "index": 0,
+      "text": "失った信頼を取り戻すには時間がかかる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x151-ex1.wav"
+    },
+    {
+      "id": "n1x151",
+      "kind": "example",
+      "index": 1,
+      "text": "ようやく落ち着きを取り戻した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x151-ex2.wav"
+    },
+    {
+      "id": "n1x152",
+      "kind": "word",
+      "index": null,
+      "text": "ひきおこす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x152-word.wav"
+    },
+    {
+      "id": "n1x152",
+      "kind": "example",
+      "index": 0,
+      "text": "小さな誤解が大きな対立を引き起こした。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x152-ex1.wav"
+    },
+    {
+      "id": "n1x152",
+      "kind": "example",
+      "index": 1,
+      "text": "過度な負担は健康問題を引き起こす。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x152-ex2.wav"
+    },
+    {
+      "id": "n1x153",
+      "kind": "word",
+      "index": null,
+      "text": "ひきずる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x153-word.wav"
+    },
+    {
+      "id": "n1x153",
+      "kind": "example",
+      "index": 0,
+      "text": "前回の失敗をいつまでも引きずらない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x153-ex1.wav"
+    },
+    {
+      "id": "n1x153",
+      "kind": "example",
+      "index": 1,
+      "text": "景気低迷の影響を引きずっている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x153-ex2.wav"
+    },
+    {
+      "id": "n1x154",
+      "kind": "word",
+      "index": null,
+      "text": "きりぬける",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x154-word.wav"
+    },
+    {
+      "id": "n1x154",
+      "kind": "example",
+      "index": 0,
+      "text": "厳しい状況を何とか切り抜けた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x154-ex1.wav"
+    },
+    {
+      "id": "n1x154",
+      "kind": "example",
+      "index": 1,
+      "text": "知恵を出し合って危機を切り抜ける。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x154-ex2.wav"
+    },
+    {
+      "id": "n1x155",
+      "kind": "word",
+      "index": null,
+      "text": "きりひらく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x155-word.wav"
+    },
+    {
+      "id": "n1x155",
+      "kind": "example",
+      "index": 0,
+      "text": "自らの力で未来を切り開く。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x155-ex1.wav"
+    },
+    {
+      "id": "n1x155",
+      "kind": "example",
+      "index": 1,
+      "text": "新しい市場を切り開いた企業だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x155-ex2.wav"
+    },
+    {
+      "id": "n1x156",
+      "kind": "word",
+      "index": null,
+      "text": "のりこえる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x156-word.wav"
+    },
+    {
+      "id": "n1x156",
+      "kind": "example",
+      "index": 0,
+      "text": "多くの困難を乗り越えて成功した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x156-ex1.wav"
+    },
+    {
+      "id": "n1x156",
+      "kind": "example",
+      "index": 1,
+      "text": "世代の違いを乗り越えて協力する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x156-ex2.wav"
+    },
+    {
+      "id": "n1x157",
+      "kind": "word",
+      "index": null,
+      "text": "たちむかう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x157-word.wav"
+    },
+    {
+      "id": "n1x157",
+      "kind": "example",
+      "index": 0,
+      "text": "困難な課題に正面から立ち向かう。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x157-ex1.wav"
+    },
+    {
+      "id": "n1x157",
+      "kind": "example",
+      "index": 1,
+      "text": "恐怖に立ち向かう勇気が必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x157-ex2.wav"
+    },
+    {
+      "id": "n1x158",
+      "kind": "word",
+      "index": null,
+      "text": "たてなおす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x158-word.wav"
+    },
+    {
+      "id": "n1x158",
+      "kind": "example",
+      "index": 0,
+      "text": "悪化した経営を立て直す。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x158-ex1.wav"
+    },
+    {
+      "id": "n1x158",
+      "kind": "example",
+      "index": 1,
+      "text": "生活のリズムを立て直したい。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x158-ex2.wav"
+    },
+    {
+      "id": "n1x159",
+      "kind": "word",
+      "index": null,
+      "text": "なしとげる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x159-word.wav"
+    },
+    {
+      "id": "n1x159",
+      "kind": "example",
+      "index": 0,
+      "text": "長年の目標をついに成し遂げた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x159-ex1.wav"
+    },
+    {
+      "id": "n1x159",
+      "kind": "example",
+      "index": 1,
+      "text": "一人では成し遂げられない仕事だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x159-ex2.wav"
+    },
+    {
+      "id": "n1x160",
+      "kind": "word",
+      "index": null,
+      "text": "あながち",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x160-word.wav"
+    },
+    {
+      "id": "n1x160",
+      "kind": "example",
+      "index": 0,
+      "text": "その意見もあながち間違いとは言えない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x160-ex1.wav"
+    },
+    {
+      "id": "n1x160",
+      "kind": "example",
+      "index": 1,
+      "text": "彼の予想はあながち外れていなかった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x160-ex2.wav"
+    },
+    {
+      "id": "n1x161",
+      "kind": "word",
+      "index": null,
+      "text": "もっぱら",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x161-word.wav"
+    },
+    {
+      "id": "n1x161",
+      "kind": "example",
+      "index": 0,
+      "text": "休日はもっぱら家で本を読んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x161-ex1.wav"
+    },
+    {
+      "id": "n1x161",
+      "kind": "example",
+      "index": 1,
+      "text": "この制度はもっぱら若者を対象としている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x161-ex2.wav"
+    },
+    {
+      "id": "n1x162",
+      "kind": "word",
+      "index": null,
+      "text": "ひいては",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x162-word.wav"
+    },
+    {
+      "id": "n1x162",
+      "kind": "example",
+      "index": 0,
+      "text": "個人の努力が組織、ひいては社会を変える。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x162-ex1.wav"
+    },
+    {
+      "id": "n1x162",
+      "kind": "example",
+      "index": 1,
+      "text": "環境を守ることは、ひいては生活を守ることにつながる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x162-ex2.wav"
+    },
+    {
+      "id": "n1x163",
+      "kind": "word",
+      "index": null,
+      "text": "かろうじて",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x163-word.wav"
+    },
+    {
+      "id": "n1x163",
+      "kind": "example",
+      "index": 0,
+      "text": "電車にかろうじて間に合った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x163-ex1.wav"
+    },
+    {
+      "id": "n1x163",
+      "kind": "example",
+      "index": 1,
+      "text": "会社はかろうじて赤字を免れた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x163-ex2.wav"
+    },
+    {
+      "id": "n1x164",
+      "kind": "word",
+      "index": null,
+      "text": "おのずと",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x164-word.wav"
+    },
+    {
+      "id": "n1x164",
+      "kind": "example",
+      "index": 0,
+      "text": "経験を積めば答えはおのずと見えてくる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x164-ex1.wav"
+    },
+    {
+      "id": "n1x164",
+      "kind": "example",
+      "index": 1,
+      "text": "条件が変われば結果もおのずと変わる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x164-ex2.wav"
+    },
+    {
+      "id": "n1x165",
+      "kind": "word",
+      "index": null,
+      "text": "つくづく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x165-word.wav"
+    },
+    {
+      "id": "n1x165",
+      "kind": "example",
+      "index": 0,
+      "text": "健康の大切さをつくづく感じた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x165-ex1.wav"
+    },
+    {
+      "id": "n1x165",
+      "kind": "example",
+      "index": 1,
+      "text": "自分の未熟さをつくづく思い知らされた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x165-ex2.wav"
+    },
+    {
+      "id": "n1x166",
+      "kind": "word",
+      "index": null,
+      "text": "ひたすら",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x166-word.wav"
+    },
+    {
+      "id": "n1x166",
+      "kind": "example",
+      "index": 0,
+      "text": "合格を目指してひたすら勉強した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x166-ex1.wav"
+    },
+    {
+      "id": "n1x166",
+      "kind": "example",
+      "index": 1,
+      "text": "彼はひたすら謝り続けた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x166-ex2.wav"
+    },
+    {
+      "id": "n1x167",
+      "kind": "word",
+      "index": null,
+      "text": "ことごとく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x167-word.wav"
+    },
+    {
+      "id": "n1x167",
+      "kind": "example",
+      "index": 0,
+      "text": "予想がことごとく外れた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x167-ex1.wav"
+    },
+    {
+      "id": "n1x167",
+      "kind": "example",
+      "index": 1,
+      "text": "提出した案はことごとく却下された。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x167-ex2.wav"
+    },
+    {
+      "id": "n1x168",
+      "kind": "word",
+      "index": null,
+      "text": "むやみに",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x168-word.wav"
+    },
+    {
+      "id": "n1x168",
+      "kind": "example",
+      "index": 0,
+      "text": "むやみに個人情報を公開してはいけない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x168-ex1.wav"
+    },
+    {
+      "id": "n1x168",
+      "kind": "example",
+      "index": 1,
+      "text": "薬をむやみに飲むのは危険だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x168-ex2.wav"
+    },
+    {
+      "id": "n1x169",
+      "kind": "word",
+      "index": null,
+      "text": "やたらに",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x169-word.wav"
+    },
+    {
+      "id": "n1x169",
+      "kind": "example",
+      "index": 0,
+      "text": "今日はやたらに電話が多い。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x169-ex1.wav"
+    },
+    {
+      "id": "n1x169",
+      "kind": "example",
+      "index": 1,
+      "text": "彼はやたらに人の話へ口を挟む。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x169-ex2.wav"
+    },
+    {
+      "id": "n1x170",
+      "kind": "word",
+      "index": null,
+      "text": "さほど",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x170-word.wav"
+    },
+    {
+      "id": "n1x170",
+      "kind": "example",
+      "index": 0,
+      "text": "この作業はさほど難しくない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x170-ex1.wav"
+    },
+    {
+      "id": "n1x170",
+      "kind": "example",
+      "index": 1,
+      "text": "結果は予想とさほど変わらなかった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x170-ex2.wav"
+    },
+    {
+      "id": "n1x171",
+      "kind": "word",
+      "index": null,
+      "text": "いたって",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x171-word.wav"
+    },
+    {
+      "id": "n1x171",
+      "kind": "example",
+      "index": 0,
+      "text": "本人はいたって冷静だった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x171-ex1.wav"
+    },
+    {
+      "id": "n1x171",
+      "kind": "example",
+      "index": 1,
+      "text": "手続きはいたって簡単だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x171-ex2.wav"
+    },
+    {
+      "id": "n1x172",
+      "kind": "word",
+      "index": null,
+      "text": "ひときわ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x172-word.wav"
+    },
+    {
+      "id": "n1x172",
+      "kind": "example",
+      "index": 0,
+      "text": "彼女の作品は会場でもひときわ目立っていた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x172-ex1.wav"
+    },
+    {
+      "id": "n1x172",
+      "kind": "example",
+      "index": 1,
+      "text": "今年はひときわ寒さが厳しい。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x172-ex2.wav"
+    },
+    {
+      "id": "n1x173",
+      "kind": "word",
+      "index": null,
+      "text": "あらかじめ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x173-word.wav"
+    },
+    {
+      "id": "n1x173",
+      "kind": "example",
+      "index": 0,
+      "text": "必要な資料をあらかじめ準備する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x173-ex1.wav"
+    },
+    {
+      "id": "n1x173",
+      "kind": "example",
+      "index": 1,
+      "text": "変更がある場合はあらかじめ知らせてください。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x173-ex2.wav"
+    },
+    {
+      "id": "n1x174",
+      "kind": "word",
+      "index": null,
+      "text": "しいて",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x174-word.wav"
+    },
+    {
+      "id": "n1x174",
+      "kind": "example",
+      "index": 0,
+      "text": "しいて言えば、価格が唯一の欠点だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x174-ex1.wav"
+    },
+    {
+      "id": "n1x174",
+      "kind": "example",
+      "index": 1,
+      "text": "しいて一つ選ぶならこの案だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x174-ex2.wav"
+    },
+    {
+      "id": "n1x175",
+      "kind": "word",
+      "index": null,
+      "text": "あえて",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x175-word.wav"
+    },
+    {
+      "id": "n1x175",
+      "kind": "example",
+      "index": 0,
+      "text": "反対を承知であえて提案した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x175-ex1.wav"
+    },
+    {
+      "id": "n1x175",
+      "kind": "example",
+      "index": 1,
+      "text": "難しい道をあえて選ぶ理由がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x175-ex2.wav"
+    },
+    {
+      "id": "n1x176",
+      "kind": "word",
+      "index": null,
+      "text": "いっそう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x176-word.wav"
+    },
+    {
+      "id": "n1x176",
+      "kind": "example",
+      "index": 0,
+      "text": "雨が降って寒さがいっそう厳しくなった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x176-ex1.wav"
+    },
+    {
+      "id": "n1x176",
+      "kind": "example",
+      "index": 1,
+      "text": "説明を聞いて理解がいっそう深まった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x176-ex2.wav"
+    },
+    {
+      "id": "n1x177",
+      "kind": "word",
+      "index": null,
+      "text": "もはや",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x177-word.wav"
+    },
+    {
+      "id": "n1x177",
+      "kind": "example",
+      "index": 0,
+      "text": "この方法はもはや通用しない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x177-ex1.wav"
+    },
+    {
+      "id": "n1x177",
+      "kind": "example",
+      "index": 1,
+      "text": "問題はもはや一企業だけのものではない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x177-ex2.wav"
+    },
+    {
+      "id": "n1x178",
+      "kind": "word",
+      "index": null,
+      "text": "とりわけ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x178-word.wav"
+    },
+    {
+      "id": "n1x178",
+      "kind": "example",
+      "index": 0,
+      "text": "この地域は冬、とりわけ一月が寒い。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x178-ex1.wav"
+    },
+    {
+      "id": "n1x178",
+      "kind": "example",
+      "index": 1,
+      "text": "若者の減少がとりわけ深刻だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x178-ex2.wav"
+    },
+    {
+      "id": "n1x179",
+      "kind": "word",
+      "index": null,
+      "text": "おおよそ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x179-word.wav"
+    },
+    {
+      "id": "n1x179",
+      "kind": "example",
+      "index": 0,
+      "text": "工事はおおよそ予定通り進んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x179-ex1.wav"
+    },
+    {
+      "id": "n1x179",
+      "kind": "example",
+      "index": 1,
+      "text": "費用はおおよそ百万円になる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x179-ex2.wav"
+    },
+    {
+      "id": "n1x180",
+      "kind": "word",
+      "index": null,
+      "text": "いちがいに",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x180-word.wav"
+    },
+    {
+      "id": "n1x180",
+      "kind": "example",
+      "index": 0,
+      "text": "価格だけで良し悪しを一概に判断できない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x180-ex1.wav"
+    },
+    {
+      "id": "n1x180",
+      "kind": "example",
+      "index": 1,
+      "text": "都会の方が便利だとは一概に言えない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x180-ex2.wav"
+    },
+    {
+      "id": "n1x181",
+      "kind": "word",
+      "index": null,
+      "text": "いっこうに",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x181-word.wav"
+    },
+    {
+      "id": "n1x181",
+      "kind": "example",
+      "index": 0,
+      "text": "何度説明しても一向に理解してくれない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x181-ex1.wav"
+    },
+    {
+      "id": "n1x181",
+      "kind": "example",
+      "index": 1,
+      "text": "雨は一向にやむ気配がない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x181-ex2.wav"
+    },
+    {
+      "id": "n1x182",
+      "kind": "word",
+      "index": null,
+      "text": "ひとまず",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x182-word.wav"
+    },
+    {
+      "id": "n1x182",
+      "kind": "example",
+      "index": 0,
+      "text": "問題はひとまず解決した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x182-ex1.wav"
+    },
+    {
+      "id": "n1x182",
+      "kind": "example",
+      "index": 1,
+      "text": "詳しい話はひとまず後にしよう。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x182-ex2.wav"
+    },
+    {
+      "id": "n1x183",
+      "kind": "word",
+      "index": null,
+      "text": "とりいそぎ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x183-word.wav"
+    },
+    {
+      "id": "n1x183",
+      "kind": "example",
+      "index": 0,
+      "text": "取り急ぎメールにてご連絡いたします。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x183-ex1.wav"
+    },
+    {
+      "id": "n1x183",
+      "kind": "example",
+      "index": 1,
+      "text": "取り急ぎ結果だけお知らせします。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x183-ex2.wav"
+    },
+    {
+      "id": "n1x184",
+      "kind": "word",
+      "index": null,
+      "text": "なにとぞ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x184-word.wav"
+    },
+    {
+      "id": "n1x184",
+      "kind": "example",
+      "index": 0,
+      "text": "何卒ご理解くださいますようお願いいたします。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x184-ex1.wav"
+    },
+    {
+      "id": "n1x184",
+      "kind": "example",
+      "index": 1,
+      "text": "今後とも何卒よろしくお願いいたします。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x184-ex2.wav"
+    },
+    {
+      "id": "n1x185",
+      "kind": "word",
+      "index": null,
+      "text": "ことに",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x185-word.wav"
+    },
+    {
+      "id": "n1x185",
+      "kind": "example",
+      "index": 0,
+      "text": "今年の夏は殊に暑い。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x185-ex1.wav"
+    },
+    {
+      "id": "n1x185",
+      "kind": "example",
+      "index": 1,
+      "text": "高齢者には殊に注意が必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x185-ex2.wav"
+    },
+    {
+      "id": "n1x186",
+      "kind": "word",
+      "index": null,
+      "text": "まして",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x186-word.wav"
+    },
+    {
+      "id": "n1x186",
+      "kind": "example",
+      "index": 0,
+      "text": "大人でも難しい。まして子供には無理だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x186-ex1.wav"
+    },
+    {
+      "id": "n1x186",
+      "kind": "example",
+      "index": 1,
+      "text": "一人では大変だ。まして初心者ならなおさらだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x186-ex2.wav"
+    },
+    {
+      "id": "n1x187",
+      "kind": "word",
+      "index": null,
+      "text": "とうてい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x187-word.wav"
+    },
+    {
+      "id": "n1x187",
+      "kind": "example",
+      "index": 0,
+      "text": "この量を一日で終えるのは到底無理だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x187-ex1.wav"
+    },
+    {
+      "id": "n1x187",
+      "kind": "example",
+      "index": 1,
+      "text": "彼の説明には到底納得できない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x187-ex2.wav"
+    },
+    {
+      "id": "n1x188",
+      "kind": "word",
+      "index": null,
+      "text": "だとう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x188-word.wav"
+    },
+    {
+      "id": "n1x188",
+      "kind": "example",
+      "index": 0,
+      "text": "その判断は妥当だと思う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x188-ex1.wav"
+    },
+    {
+      "id": "n1x188",
+      "kind": "example",
+      "index": 1,
+      "text": "妥当な価格かどうか検討する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x188-ex2.wav"
+    },
+    {
+      "id": "n1x189",
+      "kind": "word",
+      "index": null,
+      "text": "てきぎ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x189-word.wav"
+    },
+    {
+      "id": "n1x189",
+      "kind": "example",
+      "index": 0,
+      "text": "状況に応じて適宜休憩を取ってください。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x189-ex1.wav"
+    },
+    {
+      "id": "n1x189",
+      "kind": "example",
+      "index": 1,
+      "text": "資料は適宜更新される。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x189-ex2.wav"
+    },
+    {
+      "id": "n1x190",
+      "kind": "word",
+      "index": null,
+      "text": "かんけつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x190-word.wav"
+    },
+    {
+      "id": "n1x190",
+      "kind": "example",
+      "index": 0,
+      "text": "要点を簡潔に説明してください。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x190-ex1.wav"
+    },
+    {
+      "id": "n1x190",
+      "kind": "example",
+      "index": 1,
+      "text": "簡潔で分かりやすい文章を心掛ける。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x190-ex2.wav"
+    },
+    {
+      "id": "n1x191",
+      "kind": "word",
+      "index": null,
+      "text": "ちみつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x191-word.wav"
+    },
+    {
+      "id": "n1x191",
+      "kind": "example",
+      "index": 0,
+      "text": "緻密な計画を立てて実行する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x191-ex1.wav"
+    },
+    {
+      "id": "n1x191",
+      "kind": "example",
+      "index": 1,
+      "text": "彼の分析は非常に緻密だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x191-ex2.wav"
+    },
+    {
+      "id": "n1x192",
+      "kind": "word",
+      "index": null,
+      "text": "けんざい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x192-word.wav"
+    },
+    {
+      "id": "n1x192",
+      "kind": "example",
+      "index": 0,
+      "text": "潜在していた問題が顕在化した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x192-ex1.wav"
+    },
+    {
+      "id": "n1x192",
+      "kind": "example",
+      "index": 1,
+      "text": "需要はまだ顕在化していない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x192-ex2.wav"
+    },
+    {
+      "id": "n1x193",
+      "kind": "word",
+      "index": null,
+      "text": "せんざい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x193-word.wav"
+    },
+    {
+      "id": "n1x193",
+      "kind": "example",
+      "index": 0,
+      "text": "市場には大きな潜在需要がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x193-ex1.wav"
+    },
+    {
+      "id": "n1x193",
+      "kind": "example",
+      "index": 1,
+      "text": "潜在的な危険を事前に洗い出す。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x193-ex2.wav"
+    },
+    {
+      "id": "n1x194",
+      "kind": "word",
+      "index": null,
+      "text": "ふび",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x194-word.wav"
+    },
+    {
+      "id": "n1x194",
+      "kind": "example",
+      "index": 0,
+      "text": "書類に不備があり、申請が戻された。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x194-ex1.wav"
+    },
+    {
+      "id": "n1x194",
+      "kind": "example",
+      "index": 1,
+      "text": "制度上の不備を改善する必要がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x194-ex2.wav"
+    },
+    {
+      "id": "n1x195",
+      "kind": "word",
+      "index": null,
+      "text": "ふしょうじ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x195-word.wav"
+    },
+    {
+      "id": "n1x195",
+      "kind": "example",
+      "index": 0,
+      "text": "企業の不祥事が相次いで発覚した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x195-ex1.wav"
+    },
+    {
+      "id": "n1x195",
+      "kind": "example",
+      "index": 1,
+      "text": "不祥事を受けて社長が謝罪した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x195-ex2.wav"
+    },
+    {
+      "id": "n1x196",
+      "kind": "word",
+      "index": null,
+      "text": "そご",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x196-word.wav"
+    },
+    {
+      "id": "n1x196",
+      "kind": "example",
+      "index": 0,
+      "text": "説明と実態の間に齟齬がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x196-ex1.wav"
+    },
+    {
+      "id": "n1x196",
+      "kind": "example",
+      "index": 1,
+      "text": "双方の認識に齟齬が生じた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x196-ex2.wav"
+    },
+    {
+      "id": "n1x197",
+      "kind": "word",
+      "index": null,
+      "text": "あつれき",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x197-word.wav"
+    },
+    {
+      "id": "n1x197",
+      "kind": "example",
+      "index": 0,
+      "text": "部署間の軋轢が業務に影響している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x197-ex1.wav"
+    },
+    {
+      "id": "n1x197",
+      "kind": "example",
+      "index": 1,
+      "text": "急な改革が現場との軋轢を生んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x197-ex2.wav"
+    },
+    {
+      "id": "n1x198",
+      "kind": "word",
+      "index": null,
+      "text": "はもん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x198-word.wav"
+    },
+    {
+      "id": "n1x198",
+      "kind": "example",
+      "index": 0,
+      "text": "その発言は社会に大きな波紋を広げた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x198-ex1.wav"
+    },
+    {
+      "id": "n1x198",
+      "kind": "example",
+      "index": 1,
+      "text": "突然の辞任が業界に波紋を呼んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x198-ex2.wav"
+    },
+    {
+      "id": "n1x199",
+      "kind": "word",
+      "index": null,
+      "text": "よは",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x199-word.wav"
+    },
+    {
+      "id": "n1x199",
+      "kind": "example",
+      "index": 0,
+      "text": "台風の余波で交通が乱れた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x199-ex1.wav"
+    },
+    {
+      "id": "n1x199",
+      "kind": "example",
+      "index": 1,
+      "text": "値上げの余波が他の商品にも及んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x199-ex2.wav"
+    },
+    {
+      "id": "n1x200",
+      "kind": "word",
+      "index": null,
+      "text": "いったん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x200-word.wav"
+    },
+    {
+      "id": "n1x200",
+      "kind": "example",
+      "index": 0,
+      "text": "調査で問題の一端が明らかになった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x200-ex1.wav"
+    },
+    {
+      "id": "n1x200",
+      "kind": "example",
+      "index": 1,
+      "text": "これは複雑な事情の一端にすぎない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x200-ex2.wav"
+    },
+    {
+      "id": "n1x201",
+      "kind": "word",
+      "index": null,
+      "text": "すいこう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x201-word.wav"
+    },
+    {
+      "id": "n1x201",
+      "kind": "example",
+      "index": 0,
+      "text": "任された業務を責任を持って遂行する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x201-ex1.wav"
+    },
+    {
+      "id": "n1x202",
+      "kind": "word",
+      "index": null,
+      "text": "とうしゅう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x202-word.wav"
+    },
+    {
+      "id": "n1x202",
+      "kind": "example",
+      "index": 0,
+      "text": "従来の方針をそのまま踏襲する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x202-ex1.wav"
+    },
+    {
+      "id": "n1x203",
+      "kind": "word",
+      "index": null,
+      "text": "だかい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x203-word.wav"
+    },
+    {
+      "id": "n1x203",
+      "kind": "example",
+      "index": 0,
+      "text": "交渉によって行き詰まった状況を打開した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x203-ex1.wav"
+    },
+    {
+      "id": "n1x204",
+      "kind": "word",
+      "index": null,
+      "text": "はいじょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x204-word.wav"
+    },
+    {
+      "id": "n1x204",
+      "kind": "example",
+      "index": 0,
+      "text": "不公平な条件を制度から排除する必要がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x204-ex1.wav"
+    },
+    {
+      "id": "n1x205",
+      "kind": "word",
+      "index": null,
+      "text": "そくしん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x205-word.wav"
+    },
+    {
+      "id": "n1x205",
+      "kind": "example",
+      "index": 0,
+      "text": "政府は設備投資を促進する政策を発表した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x205-ex1.wav"
+    },
+    {
+      "id": "n1x206",
+      "kind": "word",
+      "index": null,
+      "text": "よくせい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x206-word.wav"
+    },
+    {
+      "id": "n1x206",
+      "kind": "example",
+      "index": 0,
+      "text": "過度な値上がりを抑制する対策が求められる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x206-ex1.wav"
+    },
+    {
+      "id": "n1x207",
+      "kind": "word",
+      "index": null,
+      "text": "ぜせい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x207-word.wav"
+    },
+    {
+      "id": "n1x207",
+      "kind": "example",
+      "index": 0,
+      "text": "地域間の格差を是正する取り組みが進んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x207-ex1.wav"
+    },
+    {
+      "id": "n1x208",
+      "kind": "word",
+      "index": null,
+      "text": "かんわ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x208-word.wav"
+    },
+    {
+      "id": "n1x208",
+      "kind": "example",
+      "index": 0,
+      "text": "規制を緩和して新規参入を促す。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x208-ex1.wav"
+    },
+    {
+      "id": "n1x209",
+      "kind": "word",
+      "index": null,
+      "text": "てんかん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x209-word.wav"
+    },
+    {
+      "id": "n1x209",
+      "kind": "example",
+      "index": 0,
+      "text": "企業は事業モデルの転換を迫られている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x209-ex1.wav"
+    },
+    {
+      "id": "n1x210",
+      "kind": "word",
+      "index": null,
+      "text": "もさく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x210-word.wav"
+    },
+    {
+      "id": "n1x210",
+      "kind": "example",
+      "index": 0,
+      "text": "各社が新たな収益源を模索している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x210-ex1.wav"
+    },
+    {
+      "id": "n1x211",
+      "kind": "word",
+      "index": null,
+      "text": "けんしょう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x211-word.wav"
+    },
+    {
+      "id": "n1x211",
+      "kind": "example",
+      "index": 0,
+      "text": "政策の効果をデータで検証する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x211-ex1.wav"
+    },
+    {
+      "id": "n1x212",
+      "kind": "word",
+      "index": null,
+      "text": "はあく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x212-word.wav"
+    },
+    {
+      "id": "n1x212",
+      "kind": "example",
+      "index": 0,
+      "text": "現場の実態を正確に把握することが重要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x212-ex1.wav"
+    },
+    {
+      "id": "n1x213",
+      "kind": "word",
+      "index": null,
+      "text": "ちくせき",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x213-word.wav"
+    },
+    {
+      "id": "n1x213",
+      "kind": "example",
+      "index": 0,
+      "text": "長年にわたって蓄積されたデータを活用する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x213-ex1.wav"
+    },
+    {
+      "id": "n1x214",
+      "kind": "word",
+      "index": null,
+      "text": "かんげん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x214-word.wav"
+    },
+    {
+      "id": "n1x214",
+      "kind": "example",
+      "index": 0,
+      "text": "利益の一部を利用者に還元する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x214-ex1.wav"
+    },
+    {
+      "id": "n1x215",
+      "kind": "word",
+      "index": null,
+      "text": "かいにゅう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x215-word.wav"
+    },
+    {
+      "id": "n1x215",
+      "kind": "example",
+      "index": 0,
+      "text": "政府が市場に過度に介入すべきではないとの意見もある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x215-ex1.wav"
+    },
+    {
+      "id": "n1x216",
+      "kind": "word",
+      "index": null,
+      "text": "かいざい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x216-word.wav"
+    },
+    {
+      "id": "n1x216",
+      "kind": "example",
+      "index": 0,
+      "text": "複数の業者が介在するため手続きが複雑だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x216-ex1.wav"
+    },
+    {
+      "id": "n1x217",
+      "kind": "word",
+      "index": null,
+      "text": "れんけい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x217-word.wav"
+    },
+    {
+      "id": "n1x217",
+      "kind": "example",
+      "index": 0,
+      "text": "自治体と企業が連携して防災対策を進める。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x217-ex1.wav"
+    },
+    {
+      "id": "n1x218",
+      "kind": "word",
+      "index": null,
+      "text": "ていけい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x218-word.wav"
+    },
+    {
+      "id": "n1x218",
+      "kind": "example",
+      "index": 0,
+      "text": "両社は技術開発で提携することを決めた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x218-ex1.wav"
+    },
+    {
+      "id": "n1x219",
+      "kind": "word",
+      "index": null,
+      "text": "とうごう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x219-word.wav"
+    },
+    {
+      "id": "n1x219",
+      "kind": "example",
+      "index": 0,
+      "text": "複数のサービスを一つのアプリに統合する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x219-ex1.wav"
+    },
+    {
+      "id": "n1x220",
+      "kind": "word",
+      "index": null,
+      "text": "ぶんさん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x220-word.wav"
+    },
+    {
+      "id": "n1x220",
+      "kind": "example",
+      "index": 0,
+      "text": "災害に備えて拠点を各地に分散させる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x220-ex1.wav"
+    },
+    {
+      "id": "n1x221",
+      "kind": "word",
+      "index": null,
+      "text": "いつだつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x221-word.wav"
+    },
+    {
+      "id": "n1x221",
+      "kind": "example",
+      "index": 0,
+      "text": "計画から大きく逸脱した支出が問題になった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x221-ex1.wav"
+    },
+    {
+      "id": "n1x222",
+      "kind": "word",
+      "index": null,
+      "text": "けつじょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x222-word.wav"
+    },
+    {
+      "id": "n1x222",
+      "kind": "example",
+      "index": 0,
+      "text": "説明責任の欠如が批判されている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x222-ex1.wav"
+    },
+    {
+      "id": "n1x223",
+      "kind": "word",
+      "index": null,
+      "text": "かいり",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x223-word.wav"
+    },
+    {
+      "id": "n1x223",
+      "kind": "example",
+      "index": 0,
+      "text": "市場価格と実態の乖離が広がっている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x223-ex1.wav"
+    },
+    {
+      "id": "n1x224",
+      "kind": "word",
+      "index": null,
+      "text": "ぜいじゃく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x224-word.wav"
+    },
+    {
+      "id": "n1x224",
+      "kind": "example",
+      "index": 0,
+      "text": "供給網の脆弱さが改めて明らかになった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x224-ex1.wav"
+    },
+    {
+      "id": "n1x225",
+      "kind": "word",
+      "index": null,
+      "text": "けんちょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x225-word.wav"
+    },
+    {
+      "id": "n1x225",
+      "kind": "example",
+      "index": 0,
+      "text": "若い世代ほどその傾向が顕著だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x225-ex1.wav"
+    },
+    {
+      "id": "n1x226",
+      "kind": "word",
+      "index": null,
+      "text": "いちじるしい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x226-word.wav"
+    },
+    {
+      "id": "n1x226",
+      "kind": "example",
+      "index": 0,
+      "text": "この地域では人口減少が著しい。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x226-ex1.wav"
+    },
+    {
+      "id": "n1x227",
+      "kind": "word",
+      "index": null,
+      "text": "ゆるやか",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x227-word.wav"
+    },
+    {
+      "id": "n1x227",
+      "kind": "example",
+      "index": 0,
+      "text": "景気は緩やかな回復を続けている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x227-ex1.wav"
+    },
+    {
+      "id": "n1x228",
+      "kind": "word",
+      "index": null,
+      "text": "えんかつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x228-word.wav"
+    },
+    {
+      "id": "n1x228",
+      "kind": "example",
+      "index": 0,
+      "text": "業務を円滑に進めるため担当を明確にした。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x228-ex1.wav"
+    },
+    {
+      "id": "n1x229",
+      "kind": "word",
+      "index": null,
+      "text": "じゅうなん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x229-word.wav"
+    },
+    {
+      "id": "n1x229",
+      "kind": "example",
+      "index": 0,
+      "text": "状況に応じて柔軟に対応する必要がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x229-ex1.wav"
+    },
+    {
+      "id": "n1x230",
+      "kind": "word",
+      "index": null,
+      "text": "しんちょう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x230-word.wav"
+    },
+    {
+      "id": "n1x230",
+      "kind": "example",
+      "index": 0,
+      "text": "影響が大きいため慎重な判断が求められる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x230-ex1.wav"
+    },
+    {
+      "id": "n1x231",
+      "kind": "word",
+      "index": null,
+      "text": "げんかく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x231-word.wav"
+    },
+    {
+      "id": "n1x231",
+      "kind": "example",
+      "index": 0,
+      "text": "個人情報は厳格に管理されなければならない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x231-ex1.wav"
+    },
+    {
+      "id": "n1x232",
+      "kind": "word",
+      "index": null,
+      "text": "だきょう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x232-word.wav"
+    },
+    {
+      "id": "n1x232",
+      "kind": "example",
+      "index": 0,
+      "text": "双方が妥協点を探っている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x232-ex1.wav"
+    },
+    {
+      "id": "n1x233",
+      "kind": "word",
+      "index": null,
+      "text": "はいりょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x233-word.wav"
+    },
+    {
+      "id": "n1x233",
+      "kind": "example",
+      "index": 0,
+      "text": "高齢者にも使いやすいよう配慮した設計だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x233-ex1.wav"
+    },
+    {
+      "id": "n1x234",
+      "kind": "word",
+      "index": null,
+      "text": "こうりょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x234-word.wav"
+    },
+    {
+      "id": "n1x234",
+      "kind": "example",
+      "index": 0,
+      "text": "費用だけでなく安全性も考慮すべきだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x234-ex1.wav"
+    },
+    {
+      "id": "n1x235",
+      "kind": "word",
+      "index": null,
+      "text": "はいぶん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x235-word.wav"
+    },
+    {
+      "id": "n1x235",
+      "kind": "example",
+      "index": 0,
+      "text": "限られた予算を適切に配分する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x235-ex1.wav"
+    },
+    {
+      "id": "n1x236",
+      "kind": "word",
+      "index": null,
+      "text": "よゆう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x236-word.wav"
+    },
+    {
+      "id": "n1x236",
+      "kind": "example",
+      "index": 0,
+      "text": "納期にはまだ少し余裕がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x236-ex1.wav"
+    },
+    {
+      "id": "n1x237",
+      "kind": "word",
+      "index": null,
+      "text": "ふたん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x237-word.wav"
+    },
+    {
+      "id": "n1x237",
+      "kind": "example",
+      "index": 0,
+      "text": "家計の負担を軽減する対策が必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x237-ex1.wav"
+    },
+    {
+      "id": "n1x238",
+      "kind": "word",
+      "index": null,
+      "text": "じゅよう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x238-word.wav"
+    },
+    {
+      "id": "n1x238",
+      "kind": "example",
+      "index": 0,
+      "text": "AI関連製品への需要が急速に伸びている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x238-ex1.wav"
+    },
+    {
+      "id": "n1x239",
+      "kind": "word",
+      "index": null,
+      "text": "きょうきゅう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x239-word.wav"
+    },
+    {
+      "id": "n1x239",
+      "kind": "example",
+      "index": 0,
+      "text": "部品の供給が追いついていない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x239-ex1.wav"
+    },
+    {
+      "id": "n1x240",
+      "kind": "word",
+      "index": null,
+      "text": "しゅうえき",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x240-word.wav"
+    },
+    {
+      "id": "n1x240",
+      "kind": "example",
+      "index": 0,
+      "text": "新事業が安定した収益を生み始めた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x240-ex1.wav"
+    },
+    {
+      "id": "n1x241",
+      "kind": "word",
+      "index": null,
+      "text": "そんしつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x241-word.wav"
+    },
+    {
+      "id": "n1x241",
+      "kind": "example",
+      "index": 0,
+      "text": "為替変動による損失が拡大した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x241-ex1.wav"
+    },
+    {
+      "id": "n1x242",
+      "kind": "word",
+      "index": null,
+      "text": "さいさん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x242-word.wav"
+    },
+    {
+      "id": "n1x242",
+      "kind": "example",
+      "index": 0,
+      "text": "原材料費が上がり採算が悪化した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x242-ex1.wav"
+    },
+    {
+      "id": "n1x243",
+      "kind": "word",
+      "index": null,
+      "text": "ざいげん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x243-word.wav"
+    },
+    {
+      "id": "n1x243",
+      "kind": "example",
+      "index": 0,
+      "text": "新制度の財源をどう確保するかが課題だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x243-ex1.wav"
+    },
+    {
+      "id": "n1x244",
+      "kind": "word",
+      "index": null,
+      "text": "さいしゅつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x244-word.wav"
+    },
+    {
+      "id": "n1x244",
+      "kind": "example",
+      "index": 0,
+      "text": "社会保障費の増加で歳出が膨らんでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x244-ex1.wav"
+    },
+    {
+      "id": "n1x245",
+      "kind": "word",
+      "index": null,
+      "text": "さいにゅう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x245-word.wav"
+    },
+    {
+      "id": "n1x245",
+      "kind": "example",
+      "index": 0,
+      "text": "税収の増加で歳入が上振れした。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x245-ex1.wav"
+    },
+    {
+      "id": "n1x246",
+      "kind": "word",
+      "index": null,
+      "text": "かわせ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x246-word.wav"
+    },
+    {
+      "id": "n1x246",
+      "kind": "example",
+      "index": 0,
+      "text": "為替の変動が輸入価格に影響する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x246-ex1.wav"
+    },
+    {
+      "id": "n1x247",
+      "kind": "word",
+      "index": null,
+      "text": "きんり",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x247-word.wav"
+    },
+    {
+      "id": "n1x247",
+      "kind": "example",
+      "index": 0,
+      "text": "金利の上昇で住宅ローンの負担が増えた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x247-ex1.wav"
+    },
+    {
+      "id": "n1x248",
+      "kind": "word",
+      "index": null,
+      "text": "さいむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x248-word.wav"
+    },
+    {
+      "id": "n1x248",
+      "kind": "example",
+      "index": 0,
+      "text": "企業は債務の削減を急いでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x248-ex1.wav"
+    },
+    {
+      "id": "n1x249",
+      "kind": "word",
+      "index": null,
+      "text": "しさん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x249-word.wav"
+    },
+    {
+      "id": "n1x249",
+      "kind": "example",
+      "index": 0,
+      "text": "長期的な視点で資産を運用する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x249-ex1.wav"
+    },
+    {
+      "id": "n1x250",
+      "kind": "word",
+      "index": null,
+      "text": "とうし",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x250-word.wav"
+    },
+    {
+      "id": "n1x250",
+      "kind": "example",
+      "index": 0,
+      "text": "研究開発への投資を増やす方針だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x250-ex1.wav"
+    },
+    {
+      "id": "n1x251",
+      "kind": "word",
+      "index": null,
+      "text": "こよう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x251-word.wav"
+    },
+    {
+      "id": "n1x251",
+      "kind": "example",
+      "index": 0,
+      "text": "景気の悪化が雇用に影響し始めた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x251-ex1.wav"
+    },
+    {
+      "id": "n1x252",
+      "kind": "word",
+      "index": null,
+      "text": "ひとでぶそく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x252-word.wav"
+    },
+    {
+      "id": "n1x252",
+      "kind": "example",
+      "index": 0,
+      "text": "物流業界では深刻な人手不足が続いている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x252-ex1.wav"
+    },
+    {
+      "id": "n1x253",
+      "kind": "word",
+      "index": null,
+      "text": "ろうどうりょく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x253-word.wav"
+    },
+    {
+      "id": "n1x253",
+      "kind": "example",
+      "index": 0,
+      "text": "人口減少で労働力の確保が難しくなっている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x253-ex1.wav"
+    },
+    {
+      "id": "n1x254",
+      "kind": "word",
+      "index": null,
+      "text": "せいさんせい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x254-word.wav"
+    },
+    {
+      "id": "n1x254",
+      "kind": "example",
+      "index": 0,
+      "text": "デジタル化によって生産性を高める。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x254-ex1.wav"
+    },
+    {
+      "id": "n1x255",
+      "kind": "word",
+      "index": null,
+      "text": "ちんぎん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x255-word.wav"
+    },
+    {
+      "id": "n1x255",
+      "kind": "example",
+      "index": 0,
+      "text": "物価上昇に賃金の伸びが追いついていない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x255-ex1.wav"
+    },
+    {
+      "id": "n1x256",
+      "kind": "word",
+      "index": null,
+      "text": "しょうひ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x256-word.wav"
+    },
+    {
+      "id": "n1x256",
+      "kind": "example",
+      "index": 0,
+      "text": "物価高で個人消費が弱まっている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x256-ex1.wav"
+    },
+    {
+      "id": "n1x257",
+      "kind": "word",
+      "index": null,
+      "text": "ぶっか",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x257-word.wav"
+    },
+    {
+      "id": "n1x257",
+      "kind": "example",
+      "index": 0,
+      "text": "エネルギー価格の上昇が物価を押し上げた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x257-ex1.wav"
+    },
+    {
+      "id": "n1x258",
+      "kind": "word",
+      "index": null,
+      "text": "けいき",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x258-word.wav"
+    },
+    {
+      "id": "n1x258",
+      "kind": "example",
+      "index": 0,
+      "text": "景気の先行きには不透明感が残る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x258-ex1.wav"
+    },
+    {
+      "id": "n1x259",
+      "kind": "word",
+      "index": null,
+      "text": "かいふく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x259-word.wav"
+    },
+    {
+      "id": "n1x259",
+      "kind": "example",
+      "index": 0,
+      "text": "観光需要は徐々に回復している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x259-ex1.wav"
+    },
+    {
+      "id": "n1x260",
+      "kind": "word",
+      "index": null,
+      "text": "ていめい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x260-word.wav"
+    },
+    {
+      "id": "n1x260",
+      "kind": "example",
+      "index": 0,
+      "text": "国内需要の低迷が企業収益を圧迫している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x260-ex1.wav"
+    },
+    {
+      "id": "n1x261",
+      "kind": "word",
+      "index": null,
+      "text": "ていたい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x261-word.wav"
+    },
+    {
+      "id": "n1x261",
+      "kind": "example",
+      "index": 0,
+      "text": "交渉が停滞し、合意の時期が見えない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x261-ex1.wav"
+    },
+    {
+      "id": "n1x262",
+      "kind": "word",
+      "index": null,
+      "text": "きゅうとう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x262-word.wav"
+    },
+    {
+      "id": "n1x262",
+      "kind": "example",
+      "index": 0,
+      "text": "原油価格が短期間で急騰した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x262-ex1.wav"
+    },
+    {
+      "id": "n1x263",
+      "kind": "word",
+      "index": null,
+      "text": "げらく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x263-word.wav"
+    },
+    {
+      "id": "n1x263",
+      "kind": "example",
+      "index": 0,
+      "text": "需要減少を受けて価格が下落した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x263-ex1.wav"
+    },
+    {
+      "id": "n1x264",
+      "kind": "word",
+      "index": null,
+      "text": "すいい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x264-word.wav"
+    },
+    {
+      "id": "n1x264",
+      "kind": "example",
+      "index": 0,
+      "text": "売上の推移を月ごとに確認する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x264-ex1.wav"
+    },
+    {
+      "id": "n1x265",
+      "kind": "word",
+      "index": null,
+      "text": "へんどう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x265-word.wav"
+    },
+    {
+      "id": "n1x265",
+      "kind": "example",
+      "index": 0,
+      "text": "市場は大きな変動を繰り返している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x265-ex1.wav"
+    },
+    {
+      "id": "n1x266",
+      "kind": "word",
+      "index": null,
+      "text": "みとおし",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x266-word.wav"
+    },
+    {
+      "id": "n1x266",
+      "kind": "example",
+      "index": 0,
+      "text": "来年度の成長率見通しが引き下げられた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x266-ex1.wav"
+    },
+    {
+      "id": "n1x267",
+      "kind": "word",
+      "index": null,
+      "text": "みきわめる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x267-word.wav"
+    },
+    {
+      "id": "n1x267",
+      "kind": "example",
+      "index": 0,
+      "text": "効果を見極めたうえで次の措置を決める。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x267-ex1.wav"
+    },
+    {
+      "id": "n1x268",
+      "kind": "word",
+      "index": null,
+      "text": "みすえる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x268-word.wav"
+    },
+    {
+      "id": "n1x268",
+      "kind": "example",
+      "index": 0,
+      "text": "十年先を見据えた投資が必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x268-ex1.wav"
+    },
+    {
+      "id": "n1x269",
+      "kind": "word",
+      "index": null,
+      "text": "みおとす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x269-word.wav"
+    },
+    {
+      "id": "n1x269",
+      "kind": "example",
+      "index": 0,
+      "text": "数字だけを見ると重要な変化を見落とすことがある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x269-ex1.wav"
+    },
+    {
+      "id": "n1x270",
+      "kind": "word",
+      "index": null,
+      "text": "みなおす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x270-word.wav"
+    },
+    {
+      "id": "n1x270",
+      "kind": "example",
+      "index": 0,
+      "text": "制度の運用方法を根本から見直す。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x270-ex1.wav"
+    },
+    {
+      "id": "n1x271",
+      "kind": "word",
+      "index": null,
+      "text": "うちだす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x271-word.wav"
+    },
+    {
+      "id": "n1x271",
+      "kind": "example",
+      "index": 0,
+      "text": "政府は新たな支援策を打ち出した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x271-ex1.wav"
+    },
+    {
+      "id": "n1x272",
+      "kind": "word",
+      "index": null,
+      "text": "のりだす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x272-word.wav"
+    },
+    {
+      "id": "n1x272",
+      "kind": "example",
+      "index": 0,
+      "text": "企業が海外市場の開拓に乗り出した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x272-ex1.wav"
+    },
+    {
+      "id": "n1x273",
+      "kind": "word",
+      "index": null,
+      "text": "とりくむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x273-word.wav"
+    },
+    {
+      "id": "n1x273",
+      "kind": "example",
+      "index": 0,
+      "text": "業界全体で人手不足の解消に取り組む。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x273-ex1.wav"
+    },
+    {
+      "id": "n1x274",
+      "kind": "word",
+      "index": null,
+      "text": "こうじる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x274-word.wav"
+    },
+    {
+      "id": "n1x274",
+      "kind": "example",
+      "index": 0,
+      "text": "政府は追加の安全対策を講じた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x274-ex1.wav"
+    },
+    {
+      "id": "n1x275",
+      "kind": "word",
+      "index": null,
+      "text": "ともなう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x275-word.wav"
+    },
+    {
+      "id": "n1x275",
+      "kind": "example",
+      "index": 0,
+      "text": "制度変更には一定の負担が伴う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x275-ex1.wav"
+    },
+    {
+      "id": "n1x276",
+      "kind": "word",
+      "index": null,
+      "text": "およぼす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x276-word.wav"
+    },
+    {
+      "id": "n1x276",
+      "kind": "example",
+      "index": 0,
+      "text": "金利上昇が企業活動に影響を及ぼす。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x276-ex1.wav"
+    },
+    {
+      "id": "n1x277",
+      "kind": "word",
+      "index": null,
+      "text": "およぶ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x277-word.wav"
+    },
+    {
+      "id": "n1x277",
+      "kind": "example",
+      "index": 0,
+      "text": "被害は周辺の地域にも及んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x277-ex1.wav"
+    },
+    {
+      "id": "n1x278",
+      "kind": "word",
+      "index": null,
+      "text": "になう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x278-word.wav"
+    },
+    {
+      "id": "n1x278",
+      "kind": "example",
+      "index": 0,
+      "text": "地域経済を支える重要な役割を担う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x278-ex1.wav"
+    },
+    {
+      "id": "n1x279",
+      "kind": "word",
+      "index": null,
+      "text": "おぎなう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x279-word.wav"
+    },
+    {
+      "id": "n1x279",
+      "kind": "example",
+      "index": 0,
+      "text": "不足する人員を技術で補う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x279-ex1.wav"
+    },
+    {
+      "id": "n1x280",
+      "kind": "word",
+      "index": null,
+      "text": "まかなう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x280-word.wav"
+    },
+    {
+      "id": "n1x280",
+      "kind": "example",
+      "index": 0,
+      "text": "運営費の大半を利用料金で賄っている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x280-ex1.wav"
+    },
+    {
+      "id": "n1x281",
+      "kind": "word",
+      "index": null,
+      "text": "すえる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x281-word.wav"
+    },
+    {
+      "id": "n1x281",
+      "kind": "example",
+      "index": 0,
+      "text": "環境対策を経営戦略の柱に据える。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x281-ex1.wav"
+    },
+    {
+      "id": "n1x282",
+      "kind": "word",
+      "index": null,
+      "text": "すえおく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x282-word.wav"
+    },
+    {
+      "id": "n1x282",
+      "kind": "example",
+      "index": 0,
+      "text": "中央銀行は政策金利を据え置いた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x282-ex1.wav"
+    },
+    {
+      "id": "n1x283",
+      "kind": "word",
+      "index": null,
+      "text": "ひきあげる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x283-word.wav"
+    },
+    {
+      "id": "n1x283",
+      "kind": "example",
+      "index": 0,
+      "text": "最低賃金を段階的に引き上げる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x283-ex1.wav"
+    },
+    {
+      "id": "n1x284",
+      "kind": "word",
+      "index": null,
+      "text": "ひきさげる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x284-word.wav"
+    },
+    {
+      "id": "n1x284",
+      "kind": "example",
+      "index": 0,
+      "text": "需要減少を受けて価格を引き下げた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x284-ex1.wav"
+    },
+    {
+      "id": "n1x285",
+      "kind": "word",
+      "index": null,
+      "text": "ふみきる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x285-word.wav"
+    },
+    {
+      "id": "n1x285",
+      "kind": "example",
+      "index": 0,
+      "text": "政府は追加支援に踏み切った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x285-ex1.wav"
+    },
+    {
+      "id": "n1x286",
+      "kind": "word",
+      "index": null,
+      "text": "みおくる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x286-word.wav"
+    },
+    {
+      "id": "n1x286",
+      "kind": "example",
+      "index": 0,
+      "text": "市場の混乱を考慮し、利上げを見送った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x286-ex1.wav"
+    },
+    {
+      "id": "n1x287",
+      "kind": "word",
+      "index": null,
+      "text": "せまる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x287-word.wav"
+    },
+    {
+      "id": "n1x287",
+      "kind": "example",
+      "index": 0,
+      "text": "期限が迫り、早急な判断が必要になった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x287-ex1.wav"
+    },
+    {
+      "id": "n1x288",
+      "kind": "word",
+      "index": null,
+      "text": "よぎなくされる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x288-word.wav"
+    },
+    {
+      "id": "n1x288",
+      "kind": "example",
+      "index": 0,
+      "text": "原料不足で生産停止を余儀なくされた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x288-ex1.wav"
+    },
+    {
+      "id": "n1x289",
+      "kind": "word",
+      "index": null,
+      "text": "はばむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x289-word.wav"
+    },
+    {
+      "id": "n1x289",
+      "kind": "example",
+      "index": 0,
+      "text": "高いコストが事業拡大を阻んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x289-ex1.wav"
+    },
+    {
+      "id": "n1x290",
+      "kind": "word",
+      "index": null,
+      "text": "おびやかす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x290-word.wav"
+    },
+    {
+      "id": "n1x290",
+      "kind": "example",
+      "index": 0,
+      "text": "気候変動が地域の生活を脅かしている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x290-ex1.wav"
+    },
+    {
+      "id": "n1x291",
+      "kind": "word",
+      "index": null,
+      "text": "おとろえる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x291-word.wav"
+    },
+    {
+      "id": "n1x291",
+      "kind": "example",
+      "index": 0,
+      "text": "年齢とともに筋力が衰える。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x291-ex1.wav"
+    },
+    {
+      "id": "n1x292",
+      "kind": "word",
+      "index": null,
+      "text": "うるおう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x292-word.wav"
+    },
+    {
+      "id": "n1x292",
+      "kind": "example",
+      "index": 0,
+      "text": "観光客の増加で地域経済が潤った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x292-ex1.wav"
+    },
+    {
+      "id": "n1x293",
+      "kind": "word",
+      "index": null,
+      "text": "めんじょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x293-word.wav"
+    },
+    {
+      "id": "n1x293",
+      "kind": "example",
+      "index": 0,
+      "text": "一定の条件を満たせば手数料が免除される。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x293-ex1.wav"
+    },
+    {
+      "id": "n1x294",
+      "kind": "word",
+      "index": null,
+      "text": "ゆうよ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x294-word.wav"
+    },
+    {
+      "id": "n1x294",
+      "kind": "example",
+      "index": 0,
+      "text": "企業には対応まで一年の猶予が与えられた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x294-ex1.wav"
+    },
+    {
+      "id": "n1x295",
+      "kind": "word",
+      "index": null,
+      "text": "よじょう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x295-word.wav"
+    },
+    {
+      "id": "n1x295",
+      "kind": "example",
+      "index": 0,
+      "text": "余剰電力を地域内で有効活用する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x295-ex1.wav"
+    },
+    {
+      "id": "n1x296",
+      "kind": "word",
+      "index": null,
+      "text": "かじょう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x296-word.wav"
+    },
+    {
+      "id": "n1x296",
+      "kind": "example",
+      "index": 0,
+      "text": "過剰な在庫が経営を圧迫している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x296-ex1.wav"
+    },
+    {
+      "id": "n1x297",
+      "kind": "word",
+      "index": null,
+      "text": "ふそく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x297-word.wav"
+    },
+    {
+      "id": "n1x297",
+      "kind": "example",
+      "index": 0,
+      "text": "専門人材の不足が深刻な課題だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x297-ex1.wav"
+    },
+    {
+      "id": "n1x298",
+      "kind": "word",
+      "index": null,
+      "text": "いぞん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x298-word.wav"
+    },
+    {
+      "id": "n1x298",
+      "kind": "example",
+      "index": 0,
+      "text": "特定の国への輸入依存を減らす。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x298-ex1.wav"
+    },
+    {
+      "id": "n1x299",
+      "kind": "word",
+      "index": null,
+      "text": "じりつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x299-word.wav"
+    },
+    {
+      "id": "n1x299",
+      "kind": "example",
+      "index": 0,
+      "text": "地域が経済的に自立できる仕組みを作る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x299-ex1.wav"
+    },
+    {
+      "id": "n1x300",
+      "kind": "word",
+      "index": null,
+      "text": "じぞく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x300-word.wav"
+    },
+    {
+      "id": "n1x300",
+      "kind": "example",
+      "index": 0,
+      "text": "成長を持続させるには継続的な投資が必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/n1x300-ex1.wav"
     }
   ]
 }
