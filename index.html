@@ -394,9 +394,11 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="card stat"><div class="label">오늘 복습 예정</div><div class="num" id="dueWordsStat">0</div></div>
         <div class="card stat"><div class="label">최장 복습 간격</div><div class="num" id="maxIntervalStat">0일</div></div>
         <div class="card stat"><div class="label">누적 실수</div><div class="num" id="lapseStat">0</div></div>
+        <div class="card stat"><div class="label">FSRS 개인화 표본</div><div class="num" id="fsrsReviewStat">0</div></div>
+        <div class="card stat"><div class="label">기억력 보정</div><div class="num" id="fsrsProfileStat">1.00×</div></div>
       </div>
       <div class="section-title">저장 방식</div>
-      <div class="card" style="line-height:1.8">각 단어마다 <strong>다음 복습 시각(due), 복습 간격(interval), FSRS 안정성(stability), 난이도(difficulty), 복습 횟수(reviews), 다시 누른 횟수(lapses)</strong>를 저장합니다. 목표 기억률에 맞춰 다음 복습일을 계산하며, 늦게 복습했는데도 기억한 경우 실제 경과 시간도 반영합니다. 클라우드 미연결 시에는 이 브라우저에만 저장되고, Supabase 로그인 후에는 PC와 모바일 사이에 자동 동기화됩니다.</div>
+      <div class="card" style="line-height:1.8">각 단어마다 <strong>다음 복습 시각(due), 복습 간격(interval), FSRS 안정성(stability), 난이도(difficulty), 복습 횟수(reviews), 다시 누른 횟수(lapses)</strong>를 저장합니다. 목표 기억률에 맞춰 다음 복습일을 계산하며, 늦게 복습했는데도 기억한 경우 실제 경과 시간도 반영합니다. 장기복습 기록이 쌓이면 예측 기억확률과 실제 성공률의 차이를 최소화하도록 개인 기억력 보정값도 자동 최적화합니다. 클라우드 미연결 시에는 이 브라우저에만 저장되고, Supabase 로그인 후에는 PC와 모바일 사이에 자동 동기화됩니다.</div>
       <div class="section-title">백업</div>
       <div class="card"><div class="data-actions"><button class="secondary" id="exportBtn" type="button">학습 데이터 내보내기</button><label class="secondary file-label">학습 데이터 가져오기<input type="file" id="importInput" accept="application/json"></label><button class="secondary" id="resetBtn" type="button">전체 초기화</button></div></div>
     </section>
@@ -579,9 +581,9 @@ function restoreInteractiveFuriState(root=document){
 const DAY=86400000, MIN=60000;
 const STORE_KEY="jlptN1StudyV3";
 const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
-const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},_updatedAt:0};
+const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},_updatedAt:0};
 function freshState(){return JSON.parse(JSON.stringify(defaultState));}
-function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
 function loadState(){try{return normalizeState(JSON.parse(localStorage.getItem(STORE_KEY)||"{}"));}catch(e){return freshState();}}
 function persistState(s){localStorage.setItem(STORE_KEY,JSON.stringify(s));}
 function saveState(s,opts={}){if(opts.touch!==false)s._updatedAt=Date.now();persistState(s);if(!opts.skipCloud)scheduleCloudPush();updateSyncUI();}
@@ -1270,6 +1272,11 @@ const FSRS_DECAY=-FSRS_W[20],FSRS_FACTOR=Math.pow(.9,1/FSRS_DECAY)-1,FSRS_MAX_IN
 const SRS_GRADE={again:1,hard:2,good:3,easy:4};
 function clampNum(v,min,max){return Math.max(min,Math.min(max,v))}
 function desiredRetention(){return clampNum(Number(state.settings?.desiredRetention)||.90,.80,.97)}
+function fsrsStabilityScale(){return clampNum(Number(state.fsrsProfile?.stabilityScale)||1,.55,1.8)}
+function fsrsRawRetrievability(stability,elapsedDays,scale=1){
+ const s=Math.max(.1,(Number(stability)||.1)*clampNum(Number(scale)||1,.35,2.5)),t=Math.max(0,Number(elapsedDays)||0);
+ return clampNum(Math.pow(1+FSRS_FACTOR*t/s,FSRS_DECAY),0,1);
+}
 function fsrsInitialStability(g){return Math.max(.1,FSRS_W[g-1])}
 function fsrsInitialDifficulty(g,doClamp=true){
  const d=FSRS_W[4]-Math.exp(FSRS_W[5]*(g-1))+1;
@@ -1280,13 +1287,45 @@ function fsrsNextDifficulty(d,g){
  const target=fsrsInitialDifficulty(4,false);
  return clampNum(FSRS_W[7]*target+(1-FSRS_W[7])*(d+damped),1,10);
 }
-function fsrsRetrievability(stability,elapsedDays){
- const s=Math.max(.1,Number(stability)||.1),t=Math.max(0,Number(elapsedDays)||0);
- return clampNum(Math.pow(1+FSRS_FACTOR*t/s,FSRS_DECAY),0,1);
-}
+function fsrsRetrievability(stability,elapsedDays){return fsrsRawRetrievability(stability,elapsedDays,fsrsStabilityScale())}
 function fsrsInterval(stability){
- const raw=(Math.max(.1,stability)/FSRS_FACTOR)*(Math.pow(desiredRetention(),1/FSRS_DECAY)-1);
+ const effective=Math.max(.1,stability)*fsrsStabilityScale();
+ const raw=(effective/FSRS_FACTOR)*(Math.pow(desiredRetention(),1/FSRS_DECAY)-1);
  return clampNum(Math.round(raw),1,FSRS_MAX_INTERVAL);
+}
+function fsrsEligibleReviews(){return (state.reviewLog||[]).filter(x=>Number(x.elapsedDays)>=.5&&Number(x.stability)>0&&(x.outcome===0||x.outcome===1))}
+function fsrsProfileLoss(rows,scale){
+ let loss=0;
+ for(const x of rows){
+   const p=clampNum(fsrsRawRetrievability(x.stability,x.elapsedDays,scale),.01,.99),y=x.outcome;
+   loss+=-(y*Math.log(p)+(1-y)*Math.log(1-p));
+ }
+ return loss/Math.max(1,rows.length)+.025*Math.pow(Math.log(scale),2);
+}
+function optimizeFsrsProfile(force=false){
+ const rows=fsrsEligibleReviews(),count=rows.length,profile=state.fsrsProfile||{};
+ if(count<50)return false;
+ if(!force&&count-(Number(profile.sampleCount)||0)<20)return false;
+ let bestScale=1,bestLoss=Infinity;
+ for(let scale=.55;scale<=1.8001;scale+=.025){
+   const loss=fsrsProfileLoss(rows,scale);
+   if(loss<bestLoss){bestLoss=loss;bestScale=scale}
+ }
+ for(let scale=Math.max(.55,bestScale-.03);scale<=Math.min(1.8,bestScale+.03)+.0001;scale+=.005){
+   const loss=fsrsProfileLoss(rows,scale);
+   if(loss<bestLoss){bestLoss=loss;bestScale=scale}
+ }
+ const priorWeight=Math.min(40,count),shrunk=(bestScale*count+1*priorWeight)/(count+priorWeight);
+ state.fsrsProfile={stabilityScale:Math.round(clampNum(shrunk,.55,1.8)*1000)/1000,sampleCount:count,loss:Math.round(bestLoss*10000)/10000,updatedAt:Date.now()};
+ return true;
+}
+function logFsrsReview(id,before,rating,t){
+ if(!before||before.reviews<=0||!before.last)return;
+ const elapsedDays=Math.max(0,(t-before.last)/DAY);
+ if(elapsedDays<.5)return;
+ const entry={eventId:id+":"+t+":"+rating,id,t,rating,outcome:rating==="again"?0:1,elapsedDays:Math.round(elapsedDays*10000)/10000,stability:Math.round((Number(before.stability)||Math.max(.1,Number(before.interval)||1))*1000)/1000,difficulty:Math.round((Number(before.difficulty)||5)*1000)/1000};
+ state.reviewLog=(state.reviewLog||[]).concat(entry).slice(-5000);
+ optimizeFsrsProfile(false);
 }
 function fsrsShortTermStability(stability,g){
  let inc=Math.exp(FSRS_W[17]*(g-3+FSRS_W[18]))*Math.pow(Math.max(.1,stability),-FSRS_W[19]);
@@ -1358,7 +1397,8 @@ function nextPreview(s,rating){
  return previewLabel(Math.max(0,n.due-t),n.interval);
 }
 function rateWord(id,rating){
- const s=scheduleFsrs(getSrs(id),rating,now());
+ const t=now(),before=getSrs(id),s=scheduleFsrs(before,rating,t);
+ logFsrsReview(id,before,rating,t);
  setSrs(id,s);refreshAll();
 }
 function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
@@ -1758,7 +1798,7 @@ function renderReview(){const root=$("reviewArea");$("reviewCountPill").textCont
 function renderMistakes(){const root=$("mistakeList");if(!state.mistakes.length){root.innerHTML='<div class="card review-empty">아직 저장된 오답이 없습니다.</div>';return}root.innerHTML=state.mistakes.map(m=>`<div class="card mistake"><div><div class="tag">${m.type}</div><div class="q" style="margin-top:8px">${m.q}</div>${m.translation?`<div class="translation"><strong>문제 뜻</strong><br>${m.translation}</div>`:""}<div style="margin-top:12px;line-height:1.8"><strong>정답</strong> ${m.correct}<br><br><strong>해설</strong><br>${m.explanation}</div>${m.details&&m.details.length?`<div class="detail-list">${m.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:""}<div class="meta">틀린 횟수 ${m.count}회</div></div><button type="button" class="secondary" data-delete="${m.id}">삭제</button></div>`).join("")}
 $("mistakeList").addEventListener("click",e=>{const b=e.target.closest("[data-delete]");if(!b)return;state.mistakes=state.mistakes.filter(x=>x.id!==b.dataset.delete);saveState(state);renderMistakes();refreshAll()});$("clearMistakesBtn").addEventListener("click",()=>{if(confirm("오답노트를 모두 삭제할까요?")){state.mistakes=[];saveState(state);renderMistakes();refreshAll()}});
 
-function renderStats(){const ss=Object.keys(state.srs||{}).map(getSrs),learned=ss.filter(x=>x.reviews>0).length,due=dueWords().length,maxInt=ss.reduce((m,x)=>Math.max(m,x.interval||0),0),lapses=ss.reduce((n,x)=>n+(x.lapses||0),0);$("learnedWordsStat").textContent=learned;$("dueWordsStat").textContent=due;$("maxIntervalStat").textContent=maxInt+"일";$("lapseStat").textContent=lapses}
+function renderStats(){const ss=Object.keys(state.srs||{}).map(getSrs),learned=ss.filter(x=>x.reviews>0).length,due=dueWords().length,maxInt=ss.reduce((m,x)=>Math.max(m,x.interval||0),0),lapses=ss.reduce((n,x)=>n+(x.lapses||0),0),samples=fsrsEligibleReviews().length,scale=fsrsStabilityScale();$("learnedWordsStat").textContent=learned;$("dueWordsStat").textContent=due;$("maxIntervalStat").textContent=maxInt+"일";$("lapseStat").textContent=lapses;if($("fsrsReviewStat"))$("fsrsReviewStat").textContent=samples<50?samples+" / 50":samples;if($("fsrsProfileStat"))$("fsrsProfileStat").textContent=scale.toFixed(2)+"×"}
 $("exportBtn").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="jlpt-n1-study-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 $("importInput").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const obj=JSON.parse(r.result);state=Object.assign({},defaultState,obj);saveState(state);refreshAll();alert("학습 데이터를 가져왔습니다.")}catch(err){alert("올바른 백업 파일이 아닙니다.")}};r.readAsText(f)});
 $("resetBtn").addEventListener("click",()=>{if(confirm("모든 학습 기록을 초기화할까요? 클라우드가 연결되어 있으면 빈 기록도 동기화됩니다.")){state=freshState();saveState(state);refreshAll();alert("초기화했습니다.")}});
@@ -1804,6 +1844,8 @@ function mergeStudyStates(a,b){
  out.stars={};const starIds=new Set([...Object.keys(a.stars||{}),...Object.keys(b.stars||{})]);starIds.forEach(id=>{const x=a.stars?.[id],y=b.stars?.[id];if(!x)out.stars[id]=y;else if(!y)out.stars[id]=x;else out.stars[id]=Number(x.updatedAt||0)>=Number(y.updatedAt||0)?x:y});
  const ids=new Set([...Object.keys(a.srs||{}),...Object.keys(b.srs||{})]);
  ids.forEach(id=>{const x=a.srs[id],y=b.srs[id];if(!x)out.srs[id]=y;else if(!y)out.srs[id]=x;else{const tx=Number(x.updatedAt||x.last||0),ty=Number(y.updatedAt||y.last||0);out.srs[id]=tx>=ty?x:y}});
+ const reviewMap=new Map();[...(a.reviewLog||[]),...(b.reviewLog||[])].forEach(x=>{if(x?.eventId)reviewMap.set(x.eventId,x)});out.reviewLog=[...reviewMap.values()].sort((x,y)=>(Number(x.t)||0)-(Number(y.t)||0)).slice(-5000);
+ const pa=a.fsrsProfile||{updatedAt:0},pb=b.fsrsProfile||{updatedAt:0};out.fsrsProfile=Number(pa.updatedAt||0)>=Number(pb.updatedAt||0)?pa:pb;
  const mm=new Map();[...(a.mistakes||[]),...(b.mistakes||[])].forEach(m=>{const old=mm.get(m.id);if(!old)mm.set(m.id,Object.assign({},m));else{const newer=Number(m.updatedAt||0)>=Number(old.updatedAt||0)?m:old;mm.set(m.id,Object.assign({},newer,{count:Math.max(Number(old.count)||0,Number(m.count)||0),updatedAt:Math.max(Number(old.updatedAt)||0,Number(m.updatedAt)||0)}))}});
  out.mistakes=[...mm.values()].sort((x,y)=>(Number(y.updatedAt)||0)-(Number(x.updatedAt)||0));
  out._updatedAt=Math.max(Number(a._updatedAt)||0,Number(b._updatedAt)||0,Date.now());return out;
