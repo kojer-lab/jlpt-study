@@ -3,158 +3,245 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>JLPT 일본어 AI 보이스 테스트</title>
+<title>JLPT 일본어 AI 보이스 · 성능/실전 테스트</title>
 <style>
-:root{--bg:#f4f6fb;--panel:#fff;--text:#111827;--muted:#667085;--line:#dde3ee;--accent:#5146e5;--soft:#eeecff;--good:#14804a;--bad:#c0392b}
+:root{--bg:#f4f6fb;--panel:#fff;--text:#111827;--muted:#667085;--line:#dde3ee;--accent:#5146e5;--soft:#eeecff;--good:#14804a;--bad:#c0392b;--warn:#9a6700}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Hiragino Sans","Noto Sans JP",sans-serif}
 main{max-width:820px;margin:0 auto;padding:24px 16px 60px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 4px 18px rgba(20,30,50,.04)}
-h1{font-size:27px;margin:0 0 8px}.sub{color:var(--muted);line-height:1.65;font-size:14px}.status{padding:13px 14px;border-radius:12px;background:#f7f8fc;border:1px solid var(--line);font-size:13px;line-height:1.55;margin-top:14px}.status.ok{color:var(--good);background:#f0faf5}.status.bad{color:var(--bad);background:#fff4f3}
+h1{font-size:27px;margin:0 0 8px}h2{font-size:19px;margin:0 0 7px}.sub{color:var(--muted);line-height:1.65;font-size:14px}.status{padding:13px 14px;border-radius:12px;background:#f7f8fc;border:1px solid var(--line);font-size:13px;line-height:1.55;margin-top:14px}.status.ok{color:var(--good);background:#f0faf5}.status.bad{color:var(--bad);background:#fff4f3}
 button{appearance:none;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:11px;padding:11px 14px;font-weight:750;font-size:14px;cursor:pointer}button.primary{background:var(--accent);border-color:var(--accent);color:#fff}button:disabled{opacity:.45;cursor:not-allowed}
-.voice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.voice{border:1px solid var(--line);border-radius:14px;padding:14px}.voice strong{display:block;font-size:15px}.voice small{display:block;color:var(--muted);margin:5px 0 11px}
-textarea{width:100%;min-height:110px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:13px;font:inherit;font-size:15px;line-height:1.7;color:var(--text)}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.note{font-size:12px;color:var(--muted);line-height:1.65;margin-top:12px}.progress{height:7px;border-radius:99px;background:#eceff5;overflow:hidden;margin-top:12px}.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-.dialogue{display:grid;gap:8px;margin:12px 0}.line{padding:10px 12px;border-radius:11px;background:#f7f8fc;line-height:1.6}.speaker{font-weight:850;color:var(--accent);margin-right:6px}
-@media(max-width:620px){main{padding:16px 12px 48px}.voice-grid{grid-template-columns:1fr}.card{padding:16px}h1{font-size:23px}}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.metric{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fafbfe}.metric b{display:block;font-size:19px;margin-top:4px}.metric span{font-size:11px;color:var(--muted)}
+.voice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.voice{border:1px solid var(--line);border-radius:14px;padding:14px}.voice strong{display:block;font-size:15px}.voice small{display:block;color:var(--muted);margin:5px 0 11px}
+.test-row{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px}.jp{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.8;font-size:17px}.word{font-size:31px;font-weight:700}.reading{color:var(--muted);font-size:13px;margin-top:2px}
+textarea{width:100%;min-height:105px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:13px;font:inherit;font-size:15px;line-height:1.7;color:var(--text)}
+select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-weight:700;background:#fff}
+.qbox{border:1px solid var(--line);border-radius:14px;padding:15px;margin-top:12px}.qtitle{font-weight:850;margin-bottom:10px}.choices{display:grid;gap:8px}.choice{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#fff;text-align:left;width:100%}.choice.correct{border-color:#72c69a;background:#f0faf5}.choice.wrong{border-color:#ef9a93;background:#fff4f3}.num{font-weight:850;color:var(--accent)}
+.answer{display:none;margin-top:12px;padding:13px;border-radius:12px;background:#f7f8fc;line-height:1.65;font-size:13px}.answer.show{display:block}.script{display:none;margin-top:12px;border-top:1px solid var(--line);padding-top:12px}.script.show{display:block}.script-line{padding:8px 0;line-height:1.75;border-bottom:1px dashed #e7eaf0}.speaker{font-weight:850;color:var(--accent);margin-right:7px}
+.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:var(--soft);color:var(--accent);font-size:11px;font-weight:800;margin-bottom:8px}
+@media(max-width:620px){main{padding:16px 12px 48px}.voice-grid,.metrics{grid-template-columns:1fr}.card{padding:16px}h1{font-size:23px}.jp{font-size:16px}.word{font-size:29px}}
 </style>
 </head>
 <body>
 <main>
   <div class="card">
-    <h1>일본어 AI 보이스 테스트</h1>
-    <div class="sub">JLPT 본체에는 아직 연결하지 않은 독립 테스트 페이지입니다. Kokoro-82M + Open JTalk을 브라우저 안에서 직접 실행합니다.</div>
-    <div class="actions"><button class="primary" id="loadBtn">모델 불러오기</button></div>
+    <div class="badge">본체 미적용 · 독립 테스트</div>
+    <h1>Kokoro 일본어 TTS 성능 테스트</h1>
+    <div class="sub">단어·예문과 실제 N1 청해 길이에서 로딩/생성 속도를 직접 재봅니다. 같은 문장을 두 번째 재생할 때는 메모리 캐시를 사용합니다.</div>
+    <div class="actions"><button class="primary" id="loadBtn">모델 불러오기</button><button id="stopBtn">재생 정지</button></div>
     <div class="progress"><i id="bar"></i></div>
-    <div class="status" id="status">아직 모델을 불러오지 않았습니다. 처음 한 번은 모델과 일본어 사전 다운로드 때문에 시간이 걸릴 수 있습니다.</div>
-    <div class="note">입력한 일본어 문장은 TTS 서버로 보내지지 않고 이 기기의 브라우저에서 합성됩니다. 모델/사전 파일은 CDN·Hugging Face에서 처음 내려받습니다.</div>
+    <div class="status" id="status">아직 모델을 불러오지 않았습니다. 먼저 모델을 불러오거나 아래 음성 버튼을 누르세요.</div>
+    <div class="metrics">
+      <div class="metric"><span>모델 준비</span><b id="loadMetric">—</b></div>
+      <div class="metric"><span>마지막 음성 생성</span><b id="genMetric">—</b></div>
+      <div class="metric"><span>현재 메모리 캐시</span><b id="cacheMetric">0개</b></div>
+    </div>
+    <div class="note">표시 시간은 이 기기에서 실제 측정한 값입니다. 첫 방문과 재방문, Mac과 iPhone에서 각각 비교해보면 됩니다.</div>
   </div>
 
   <div class="card">
-    <strong>일본어 기본 보이스 5종</strong>
-    <div class="sub">같은 문장을 각 목소리로 들어보고 JLPT 청해에 쓸 만한지 비교하세요.</div>
+    <h2>단어 · 예문 테스트</h2>
+    <div class="sub">전에 기본 TTS에서 아쉬웠던 단어와 조사 「は」가 들어간 문장을 Kokoro로 다시 확인합니다.</div>
+    <div class="test-row">
+      <div class="jp word">見込む</div><div class="reading">みこむ · 예상하다 / 기대하다</div>
+      <div class="actions"><button data-say="みこむ" data-voice="jf_alpha">🔊 단어 듣기</button></div>
+    </div>
+    <div class="test-row">
+      <div class="jp">来年はさらに多くの利用者が見込まれている。</div>
+      <div class="actions"><button data-say="来年はさらに多くの利用者が見込まれている。" data-voice="jf_alpha">🔊 예문 듣기</button></div>
+    </div>
+    <div class="test-row">
+      <div class="jp">来年は何があるのか、今から確認しておきましょう。</div>
+      <div class="actions"><button data-say="来年は何があるのか、今から確認しておきましょう。" data-voice="jf_alpha">🔊 「は」 발음 확인</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>N1 問題1 · 완성형 샘플</h2>
+    <div class="sub">나레이션 → 여성 → 남성 → 여성 → 남성 → 여성 → 남성 → 질문 순서로 실제 시험처럼 연속 재생합니다. 첫 실행은 전체 대화를 먼저 생성하므로 시간이 표시됩니다.</div>
+    <div class="qbox">
+      <div class="qtitle">問1　男の人はこのあと、まず何をしなければなりませんか。</div>
+      <div class="choices" id="choices">
+        <button class="choice" data-answer="1"><span class="num">1</span><span>会議室を予約する</span></button>
+        <button class="choice" data-answer="2"><span class="num">2</span><span>資料を印刷する</span></button>
+        <button class="choice" data-answer="3"><span class="num">3</span><span>参加者に変更を知らせる</span></button>
+        <button class="choice" data-answer="4"><span class="num">4</span><span>部長に日程を確認する</span></button>
+      </div>
+      <div class="actions">
+        <button class="primary" id="n1Play">▶ 문제 생성 · 재생</button>
+        <button id="showScript">스크립트 보기</button>
+      </div>
+      <div class="status" id="n1Status">아직 생성하지 않았습니다.</div>
+      <div class="answer" id="answerBox"><b>정답 3.</b> 회의실 예약과 부장 확인은 이미 끝났고, 자료 인쇄는 내일 해도 됩니다. 따라서 남자가 가장 먼저 해야 할 일은 참가자들에게 시간 변경을 알리는 것입니다.</div>
+      <div class="script" id="scriptBox">
+        <div class="script-line"><span class="speaker">ナレーション</span>会社で、女の人と男の人が話しています。男の人はこのあと、まず何をしなければなりませんか。</div>
+        <div class="script-line"><span class="speaker">女</span>来週の企画会議なんですが、予定していた会議室が使えなくなったそうです。</div>
+        <div class="script-line"><span class="speaker">男</span>そうなんですか。別の部屋を探しましょうか。</div>
+        <div class="script-line"><span class="speaker">女</span>三〇二号室が空いていたので、もう予約しておきました。ただ、開始時間が二時から三時に変わったんです。まず参加者に連絡してもらえますか。</div>
+        <div class="script-line"><span class="speaker">男</span>分かりました。資料の印刷も今日中にやっておきましょうか。</div>
+        <div class="script-line"><span class="speaker">女</span>それは明日で大丈夫です。</div>
+        <div class="script-line"><span class="speaker">男</span>部長には時間の変更を確認しなくてもいいですか。</div>
+        <div class="script-line"><span class="speaker">女</span>部長には私から確認済みです。では、連絡を先にお願いします。</div>
+        <div class="script-line"><span class="speaker">ナレーション</span>男の人はこのあと、まず何をしなければなりませんか。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>보이스 비교 · 직접 입력</h2>
     <div class="voice-grid" id="voiceGrid"></div>
+    <textarea id="customText">駅に着いたら、改札を出て右に曲がってください。そこに係の者が待っています。</textarea>
+    <div class="actions"><select id="voiceSelect"></select><button id="customPlay">생성해서 듣기</button></div>
   </div>
 
-  <div class="card">
-    <strong>직접 문장 테스트</strong>
-    <textarea id="customText">来週の会議なんですが、予定していた会議室が使えなくなったそうです。別の部屋を予約しておいてもらえますか。</textarea>
-    <div class="actions">
-      <select id="voiceSelect" style="border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-weight:700"></select>
-      <button id="customPlay">생성해서 듣기</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <strong>JLPT식 남녀 대화 샘플</strong>
-    <div class="dialogue">
-      <div class="line"><span class="speaker">女</span>来週の会議なんですが、予定していた会議室が使えなくなったそうです。</div>
-      <div class="line"><span class="speaker">男</span>そうなんですか。じゃあ、別の部屋を探しておきましょうか。</div>
-      <div class="line"><span class="speaker">女</span>お願いします。それから、参加者にも変更を知らせておいてください。</div>
-    </div>
-    <div class="actions"><button id="dialoguePlay">남녀 대화 연속 재생</button><button id="stopBtn">정지</button></div>
-    <div class="note">여성은 jf_alpha, 남성은 jm_kumo를 사용합니다. 각 문장을 기기에서 생성한 뒤 순서대로 재생합니다.</div>
-  </div>
-
-  <div class="card">
-    <a href="./" style="color:var(--accent);font-weight:800;text-decoration:none">← JLPT N1 Study로 돌아가기</a>
-  </div>
+  <div class="card"><a href="./" style="color:var(--accent);font-weight:800;text-decoration:none">← JLPT N1 Study로 돌아가기</a></div>
 </main>
 
 <script type="module">
 import { KokoroJP } from "https://cdn.jsdelivr.net/npm/kokoro-js-jp@0.2.0/dist/kokoro-jp.web.js";
 
 const voices=[
-  {id:"jf_alpha",label:"Alpha",meta:"여성 · 기본"},
-  {id:"jf_gongitsune",label:"Gongitsune",meta:"여성"},
-  {id:"jf_nezumi",label:"Nezumi",meta:"여성"},
-  {id:"jf_tebukuro",label:"Tebukuro",meta:"여성"},
-  {id:"jm_kumo",label:"Kumo",meta:"남성"}
+ {id:"jf_alpha",label:"Alpha",meta:"여성 · 기본"},
+ {id:"jf_gongitsune",label:"Gongitsune",meta:"여성"},
+ {id:"jf_nezumi",label:"Nezumi",meta:"여성"},
+ {id:"jf_tebukuro",label:"Tebukuro",meta:"여성 · 나레이션 후보"},
+ {id:"jm_kumo",label:"Kumo",meta:"남성"}
 ];
 const sample="駅に着いたら、改札を出て右に曲がってください。そこに係の者が待っています。";
-const $=id=>document.getElementById(id);
-let tts=null,currentAudio=null,busy=false;
+const n1Lines=[
+ ["会社で、女の人と男の人が話しています。男の人はこのあと、まず何をしなければなりませんか。","jf_tebukuro"],
+ ["来週の企画会議なんですが、予定していた会議室が使えなくなったそうです。","jf_alpha"],
+ ["そうなんですか。別の部屋を探しましょうか。","jm_kumo"],
+ ["三〇二号室が空いていたので、もう予約しておきました。ただ、開始時間が二時から三時に変わったんです。まず参加者に連絡してもらえますか。","jf_alpha"],
+ ["分かりました。資料の印刷も今日中にやっておきましょうか。","jm_kumo"],
+ ["それは明日で大丈夫です。","jf_alpha"],
+ ["部長には時間の変更を確認しなくてもいいですか。","jm_kumo"],
+ ["部長には私から確認済みです。では、連絡を先にお願いします。","jf_alpha"],
+ ["男の人はこのあと、まず何をしなければなりませんか。","jf_tebukuro"]
+];
 
-function setStatus(msg,type){
-  $("status").textContent=msg;
-  $("status").className="status"+(type?" "+type:"");
+const $=id=>document.getElementById(id);
+let tts=null,currentAudio=null,busy=false,stopRequested=false;
+const audioCache=new Map();
+const fmt=ms=>ms<1000?Math.round(ms)+"ms":(ms/1000).toFixed(2)+"초";
+
+function setStatus(msg,type,target="status"){
+ const el=$(target);el.textContent=msg;el.className="status"+(type?" "+type:"");
 }
 function setBusy(v){
-  busy=v;
-  document.querySelectorAll("button").forEach(b=>{if(b.id!=="stopBtn")b.disabled=v});
-  $("stopBtn").disabled=false;
+ busy=v;
+ document.querySelectorAll("button").forEach(b=>{
+   if(["stopBtn","showScript"].includes(b.id)||b.classList.contains("choice"))return;
+   b.disabled=v;
+ });
 }
 function stopAudio(){
-  if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;currentAudio=null}
+ stopRequested=true;
+ if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;currentAudio=null}
 }
+function updateCache(){ $("cacheMetric").textContent=audioCache.size+"개" }
+
 async function ensureTTS(){
-  if(tts)return tts;
-  setBusy(true);$("bar").style.width="35%";
-  setStatus("모델을 불러오는 중입니다. 첫 실행은 수십 MB 이상의 다운로드와 초기화가 필요합니다.");
-  try{
-    tts=await KokoroJP.load();
-    $("bar").style.width="100%";
-    setStatus("모델 준비 완료. 이제 일본어 음성을 생성할 수 있습니다.","ok");
-    return tts;
-  }catch(err){
-    console.error(err);$("bar").style.width="0";
-    setStatus("모델 로드 실패: "+(err&&err.message?err.message:String(err)),"bad");
-    throw err;
-  }finally{setBusy(false)}
+ if(tts)return tts;
+ const started=performance.now();
+ setBusy(true);$("bar").style.width="30%";
+ setStatus("모델을 불러오는 중입니다. 첫 실행은 모델과 일본어 사전 다운로드 때문에 오래 걸릴 수 있습니다.");
+ try{
+   tts=await KokoroJP.load();
+   const ms=performance.now()-started;
+   $("loadMetric").textContent=fmt(ms);$("bar").style.width="100%";
+   setStatus("모델 준비 완료 · 실제 로딩 "+fmt(ms),"ok");
+   return tts;
+ }catch(err){
+   console.error(err);$("bar").style.width="0";
+   setStatus("모델 로드 실패: "+(err&&err.message?err.message:String(err)),"bad");
+   throw err;
+ }finally{setBusy(false)}
 }
-async function makeAudio(text,voice){
-  await ensureTTS();
-  setBusy(true);setStatus(voice+" 음성을 생성 중입니다…");
-  try{
-    const out=await tts.speak(text,voice);
-    const blob=out.toBlob();
-    return new Audio(URL.createObjectURL(blob));
-  }finally{setBusy(false)}
+
+async function synth(text,voice){
+ const key=voice+"|"+text;
+ if(audioCache.has(key))return {url:audioCache.get(key),ms:0,cached:true};
+ await ensureTTS();
+ const started=performance.now();
+ const out=await tts.speak(text,voice);
+ const ms=performance.now()-started;
+ const url=URL.createObjectURL(out.toBlob());
+ audioCache.set(key,url);updateCache();
+ $("genMetric").textContent=fmt(ms);
+ return {url,ms,cached:false};
+}
+function playUrl(url){
+ return new Promise((resolve,reject)=>{
+   const a=new Audio(url);currentAudio=a;
+   a.onended=()=>{if(currentAudio===a)currentAudio=null;resolve()};
+   a.onerror=reject;
+   a.play().catch(reject);
+ });
 }
 async function playOne(text,voice){
-  stopAudio();
-  try{
-    const a=await makeAudio(text,voice);currentAudio=a;
-    setStatus(voice+" 생성 완료 · 재생 중","ok");
-    a.onended=()=>{if(currentAudio===a)currentAudio=null;setStatus("재생 완료.","ok")};
-    await a.play();
-  }catch(err){console.error(err);setStatus("음성 생성 실패: "+(err&&err.message?err.message:String(err)),"bad")}
+ stopAudio();stopRequested=false;
+ try{
+   setBusy(true);setStatus("음성을 준비 중입니다…");
+   const r=await synth(text,voice);
+   setStatus((r.cached?"캐시에서 즉시 재생":"음성 생성 "+fmt(r.ms))+" · "+voice,"ok");
+   await playUrl(r.url);
+   if(!stopRequested)setStatus("재생 완료. 같은 버튼을 다시 누르면 캐시된 음성을 사용합니다.","ok");
+ }catch(err){console.error(err);setStatus("음성 생성 실패: "+(err&&err.message?err.message:String(err)),"bad")}
+ finally{setBusy(false)}
 }
-async function playDialogue(){
-  stopAudio();
-  const lines=[
-    ["来週の会議なんですが、予定していた会議室が使えなくなったそうです。","jf_alpha"],
-    ["そうなんですか。じゃあ、別の部屋を探しておきましょうか。","jm_kumo"],
-    ["お願いします。それから、参加者にも変更を知らせておいてください。","jf_alpha"]
-  ];
-  try{
-    await ensureTTS();
-    const audios=[];
-    for(let i=0;i<lines.length;i++){
-      setStatus("대화 음성 생성 중 "+(i+1)+" / "+lines.length+"…");
-      const out=await tts.speak(lines[i][0],lines[i][1]);
-      audios.push(new Audio(URL.createObjectURL(out.toBlob())));
-    }
-    setStatus("대화 생성 완료 · 연속 재생 중","ok");
-    for(const a of audios){
-      currentAudio=a;
-      await new Promise((resolve,reject)=>{a.onended=resolve;a.onerror=reject;a.play().catch(reject)});
-      await new Promise(r=>setTimeout(r,180));
-    }
-    currentAudio=null;setStatus("대화 재생 완료.","ok");
-  }catch(err){console.error(err);setStatus("대화 생성 실패: "+(err&&err.message?err.message:String(err)),"bad")}
+
+async function playN1(){
+ stopAudio();stopRequested=false;
+ try{
+   setBusy(true);
+   const started=performance.now(),items=[];let generated=0,cached=0;
+   for(let i=0;i<n1Lines.length;i++){
+     setStatus("문제 음성 준비 중 "+(i+1)+" / "+n1Lines.length+"…","","n1Status");
+     const r=await synth(n1Lines[i][0],n1Lines[i][1]);
+     items.push(r.url);
+     if(r.cached)cached++;else generated++;
+     if(stopRequested)throw new Error("재생이 취소되었습니다.");
+   }
+   const total=performance.now()-started;
+   setStatus("준비 완료 · "+fmt(total)+" · 새 생성 "+generated+" / 캐시 "+cached+" · 재생 중","ok","n1Status");
+   for(let i=0;i<items.length;i++){
+     if(stopRequested)break;
+     await playUrl(items[i]);
+     if(i<items.length-1&&!stopRequested)await new Promise(r=>setTimeout(r,180));
+   }
+   if(!stopRequested)setStatus("문제 재생 완료 · 준비 시간 "+fmt(total)+" · 다시 누르면 캐시로 빠르게 시작합니다.","ok","n1Status");
+ }catch(err){
+   console.error(err);
+   setStatus(err&&err.message?err.message:String(err),"bad","n1Status");
+ }finally{setBusy(false)}
 }
 
 voices.forEach(v=>{
-  const box=document.createElement("div");box.className="voice";
-  const strong=document.createElement("strong");strong.textContent=v.label;
-  const small=document.createElement("small");small.textContent=v.id+" · "+v.meta;
-  const btn=document.createElement("button");btn.textContent="샘플 듣기";btn.addEventListener("click",()=>playOne(sample,v.id));
-  box.append(strong,small,btn);$("voiceGrid").appendChild(box);
-  const op=document.createElement("option");op.value=v.id;op.textContent=v.label+" · "+v.meta;$("voiceSelect").appendChild(op);
+ const box=document.createElement("div");box.className="voice";
+ const strong=document.createElement("strong");strong.textContent=v.label;
+ const small=document.createElement("small");small.textContent=v.id+" · "+v.meta;
+ const btn=document.createElement("button");btn.textContent="샘플 듣기";btn.addEventListener("click",()=>playOne(sample,v.id));
+ box.append(strong,small,btn);$("voiceGrid").appendChild(box);
+ const op=document.createElement("option");op.value=v.id;op.textContent=v.label+" · "+v.meta;$("voiceSelect").appendChild(op);
 });
+
 $("loadBtn").addEventListener("click",()=>ensureTTS());
 $("customPlay").addEventListener("click",()=>playOne($("customText").value.trim(),$("voiceSelect").value));
-$("dialoguePlay").addEventListener("click",playDialogue);
-$("stopBtn").addEventListener("click",()=>{stopAudio();setStatus("재생을 정지했습니다.")});
+$("n1Play").addEventListener("click",playN1);
+$("stopBtn").addEventListener("click",()=>{stopAudio();setStatus("재생을 정지했습니다.");setStatus("재생을 정지했습니다.","","n1Status")});
+$("showScript").addEventListener("click",()=>{$("scriptBox").classList.toggle("show");$("showScript").textContent=$("scriptBox").classList.contains("show")?"스크립트 숨기기":"스크립트 보기"});
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-say]");
+ if(b)playOne(b.dataset.say,b.dataset.voice);
+ const c=e.target.closest(".choice");
+ if(c){
+   document.querySelectorAll(".choice").forEach(x=>x.classList.remove("correct","wrong"));
+   const n=c.dataset.answer;
+   if(n==="3")c.classList.add("correct");else{c.classList.add("wrong");document.querySelector('.choice[data-answer="3"]').classList.add("correct")}
+   $("answerBox").classList.add("show");
+ }
+});
 </script>
 </body>
 </html>
