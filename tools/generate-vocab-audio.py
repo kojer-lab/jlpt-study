@@ -53,7 +53,7 @@ for item in items:
 
 manifest = {
     "version": 2,
-    "engine": "Kokoro-82M native CPU / jf_alpha / Misaki pyopenjtalk",
+    "engine": "Kokoro-82M / jf_alpha",
     "count": len(items),
     "files": files,
 }
