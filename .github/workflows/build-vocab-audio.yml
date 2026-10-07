@@ -4,8 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - "index.html"
-      - "data/n1-extra-words-*.js"
+      - "data/n1-extra-words-1.js"
+      - "data/n1-extra-words-2.js"
+      - "data/n1-extra-words-3.js"
       - "tools/export-vocab-audio.mjs"
       - "tools/generate-vocab-audio.py"
       - ".github/workflows/build-vocab-audio.yml"
@@ -15,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: vocab-audio-global
+  group: vocab-audio-build
   cancel-in-progress: true
 
 jobs:
