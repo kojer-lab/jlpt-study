@@ -32,6 +32,7 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
       <select id="engineMode" aria-label="TTS 엔진 모드">
         <option value="webgpu">Mac 합격 · WebGPU fp32</option>
         <option value="webgpu_q4f16">iPhone 실험 · WebGPU q4f16</option>
+        <option value="webgpu_q8">iPhone 음질 테스트 · WebGPU q8</option>
         <option value="wasm_q4">iPhone 저메모리 · WASM q4</option>
         <option value="auto">기존 비교 · Auto q8</option>
       </select>
@@ -50,7 +51,7 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
       <div class="metric"><span>현재 엔진</span><b id="engineMetric">WebGPU fp32</b></div>
     </div>
     <div class="actions"><button id="precacheWords">⚡ 단어 3개 미리 준비</button><button id="clearAudioCache">음성 캐시 비우기</button></div>
-    <div class="note">iPhone 진단용입니다. 엔진별 캐시는 분리됩니다. 정확한 비교는 ‘음성 캐시 비우기’ → 엔진 선택 → 테스트 순서로 하고, 엔진을 바꿀 때는 페이지를 새로고침하세요. q4f16은 실험 모드라 기기에서 실패하면 WASM q4를 시험하면 됩니다.</div>
+    <div class="note">iPhone 진단용입니다. 엔진별 캐시는 분리됩니다. 정확한 비교는 ‘음성 캐시 비우기’ → 엔진 선택 → 테스트 순서로 하고, 엔진을 바꿀 때는 페이지를 새로고침하세요. q4f16에서 음성이 깨지면 WebGPU q8을 우선 비교하세요. q8은 fp32보다 가볍고 q4f16보다 정밀도를 높인 iPhone 후보입니다. 그래도 문제가 있으면 WASM q4를 시험합니다.</div>
   </div>
 
   <div class="card">
@@ -157,6 +158,7 @@ let dbPromise=null,activeEngine=null;
 const ENGINE={
  webgpu:{label:"WebGPU fp32",options:{device:"webgpu",dtype:"fp32"}},
  webgpu_q4f16:{label:"WebGPU q4f16",options:{device:"webgpu",dtype:"q4f16"}},
+ webgpu_q8:{label:"WebGPU q8",options:{device:"webgpu",dtype:"q8"}},
  wasm_q4:{label:"WASM q4",options:{device:"wasm",dtype:"q4"}},
  auto:{label:"Auto q8",options:{dtype:"q8"}}
 };
@@ -237,7 +239,10 @@ async function updateCache(){
 async function ensureTTS(){
  if(tts)return tts;
  const mode=selectedEngine(),cfg=ENGINE[mode];
- if(mode==="webgpu"&&!navigator.gpu)throw new Error("이 브라우저에서는 navigator.gpu를 사용할 수 없습니다. 최신 Chrome/Edge 또는 WebGPU 지원 Safari에서 다시 테스트해 주세요.");
+ if(cfg.options.device==="webgpu"&&!navigator.gpu)throw new Error("이 브라우저에서는 navigator.gpu를 사용할 수 없습니다. WebGPU 지원 브라우저에서 다시 테스트해 주세요.");
+ if(cfg.options.dtype==="q4f16"&&navigator.gpu){
+   try{const adapter=await navigator.gpu.requestAdapter();if(adapter&&!adapter.features.has("shader-f16"))throw new Error("이 기기는 shader-f16을 지원하지 않아 q4f16을 안전하게 사용할 수 없습니다.")}catch(e){if(e&&String(e.message||e).includes("shader-f16"))throw e}
+ }
  const started=performance.now();
  activeEngine=mode;$("engineMode").disabled=true;$("engineMetric").textContent=cfg.label;
  setBusy(true);$("bar").style.width="30%";
