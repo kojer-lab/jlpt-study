@@ -411,6 +411,10 @@ function hasCompleteStaticVocabAudio(w){
  const e=staticVocabAudio&&w?staticVocabAudio[w.id]:null;
  return !!(e&&e.word&&Array.isArray(e.examples)&&e.examples.length>=w.examples.length&&w.examples.every((_,i)=>!!e.examples[i]));
 }
+function hasStaticVocabWordAudio(w){
+ const e=staticVocabAudio&&w?staticVocabAudio[w.id]:null;
+ return !!(e&&e.word);
+}
 function isAppleMobile(){return /iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)}
 function kokoroConfig(){
  if(isAppleMobile())return {key:"wasm_q8",label:"iPhone/iPad · WASM q8",options:{device:"wasm",dtype:"q8"}};
@@ -789,7 +793,9 @@ const extraWords=extraWordRaw.map(x=>({
  id:x.id,
  w:/[一-龯々]/.test(x.w)?F(x.w,x.r):x.w,
  meaning:x.meaning,
- examples:(x.examples||[]).map(ex=>({jp:ex.jp,ko:ex.ko}))
+ examples:(x.examples||[]).map(ex=>({jp:ex.jp,ko:ex.ko})),
+ source:x.source||"curated",
+ meaningEn:x.meaningEn||""
 }));
 words.push(...extraWords);
 
@@ -1067,7 +1073,7 @@ async function prefetchWordAudio(w){
  const status=msg=>{if(stillCurrent())$("wordTtsStatus").textContent=msg};
  try{
    await loadStaticVocabAudioManifest();
-   if(hasCompleteStaticVocabAudio(w)){status("사전 생성 Kokoro 음성 · 즉시 재생");return}
+   if(hasStaticVocabWordAudio(w)){status("사전 생성 Kokoro 단어 음성 · 즉시 재생");return}
    // 정적 음성이 아직 배포되지 않은 항목만 기존 실시간 합성을 사용한다.
    // 1) 현재 단어를 최우선으로 준비한다.
    await kokoroGenerate(readingOf(w.w),"jf_alpha",status);
