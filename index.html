@@ -116,7 +116,17 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .tts-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:var(--accent);display:grid;place-items:center;cursor:pointer;font-size:18px;line-height:1;transition:background .16s ease,border-color .16s ease,box-shadow .16s ease,transform .16s ease}
 .tts-btn:hover,.tts-btn.loading{border-color:var(--accent);background:var(--accent-soft)}.tts-btn.loading{box-shadow:0 0 0 3px var(--accent-soft)}.tts-btn.playing{border-color:var(--accent);background:var(--accent);color:#fff;box-shadow:0 0 0 4px var(--accent-soft)}.tts-btn.audio-error{border-color:var(--bad);background:rgba(239,68,68,.10);box-shadow:0 0 0 3px rgba(239,68,68,.08)}.tts-btn:disabled{opacity:1;cursor:wait}
 .word-title-row .word-speak-btn{position:absolute;left:0;top:50%;transform:translateY(-50%)}
-#wordsView .word-title-row .star-btn{left:0;right:auto}\n#wordsView .word-title-row .word-speak-btn{right:0;left:auto}
+#wordsView .word-title-row .star-btn{left:0;right:auto}
+#wordsView .word-title-row .word-speak-btn{right:0;left:auto}
+/* Compact Anki-only example cards: keep furigana clearance without wasting vertical space. */
+#wordsView #wordStudyPanel .examples{gap:8px;margin-top:10px}
+#wordsView #wordStudyPanel .example{padding:10px 12px;border-radius:10px}
+#wordsView #wordStudyPanel .example-head{min-height:28px;line-height:1.2}
+#wordsView #wordStudyPanel .example-head .label{line-height:1.2}
+#wordsView #wordStudyPanel .example-speak{height:28px;padding:0 9px}
+#wordsView #wordStudyPanel .example-jp{font-size:17px;line-height:2.05;padding-top:8px}
+#wordsView #wordStudyPanel .example .ex-reveal{margin-top:4px!important}
+#wordsView #wordStudyPanel .example-ko{margin-top:5px}
 .tts-mini-status{display:none}
 .example-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.example-speak{width:auto;height:32px;border-radius:999px;padding:0 10px;font-size:12px;font-weight:750}
 .listen-tabs{display:flex;gap:8px;margin-bottom:14px}.listen-tab{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:9px 14px;font-weight:750;cursor:pointer}.listen-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -1600,7 +1610,7 @@ function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wo
 function finishWordStudy(){
  updateWordUndo();$("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
  $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
- $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").disabled=true;$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";$("wordTtsStatus").textContent="";
+ $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").classList.add("hidden");$("wordSpeakBtn").disabled=true;$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";$("wordTtsStatus").textContent="";
  $("showMeaningBtn").textContent="학습 목표로 돌아가기";$("showMeaningBtn").classList.remove("hidden");$("showMeaningBtn").dataset.finished="1";
  $("wordMeaning").classList.add("hidden");$("wordExamples").classList.add("hidden");$("wordBreakdown").classList.add("hidden");$("wordRating").classList.add("hidden");
 }
@@ -1610,7 +1620,7 @@ function renderWord(){
  updateWordUndo();
  if(!queue.length){finishWordStudy();return}
  $("showMeaningBtn").dataset.finished="";
- $("wordStarBtn").classList.remove("hidden");$("showMeaningBtn").classList.remove("hidden");
+ $("wordStarBtn").classList.remove("hidden");$("wordSpeakBtn").classList.remove("hidden");$("showMeaningBtn").classList.remove("hidden");
  if(wordIndex>=queue.length)wordIndex=0;
  const w=queue[wordIndex],sr=getSrs(w.id);
  $("wordStudyProgress").textContent=`${Math.min(wordSessionDone+1,wordSessionTotal)} / ${wordSessionTotal}`;
