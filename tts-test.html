@@ -320,11 +320,19 @@ function startN1Producer(){
      try{
        const r=await synth(n1Lines[i][0],n1Lines[i][1],{
          persist:$("persistDuringTest").checked,
-         onStage:stage=>setStatus("백그라운드 "+(i+1)+" / "+n1Lines.length+" · "+stage,"","n1Status")
+         onStage:stage=>setStatus("백그라운드 "+(i+1)+" / "+n1Lines.length+" · "+(stage==="완료"?"조각 완료 · 집계 중":stage),"","n1Status")
        });
        if(r.cached)cached++;else generated++;
        segmentTimes.push(r.ms||0);
-       finished++;slots[i].resolve(r);
+       finished++;
+       if(i===n1Lines.length-1){
+         const elapsed=performance.now()-started;
+         const slowest=segmentTimes.length?Math.max(...segmentTimes):0;
+         $("n1TotalMetric").textContent=fmt(elapsed);
+         $("n1SlowMetric").textContent=fmt(slowest);
+         setStatus("9 / 9 생성 완료 "+fmt(elapsed)+" · 재생은 계속 진행 중입니다.","ok","n1Status");
+       }
+       slots[i].resolve(r);
      }catch(e){slots[i].reject(e);throw e}
    }
    const total=performance.now()-started;
