@@ -28,3 +28,14 @@ When no Korean dictionary gloss is available, English glosses and English exampl
 - The generated Korean text is treated as machine-assisted study material and can be manually refined over time.
 
 Curated Korean entries written specifically for this site take precedence over imported entries.
+
+## Tatoeba Korean translations
+
+Where available, Japanese example sentences are paired with Korean translations directly from Tatoeba rather than machine translation.
+
+- Source: https://tatoeba.org/
+- API: https://api.tatoeba.org/
+- Text license: CC BY 2.0 FR by default; some original sentences may be CC0 1.0
+- Sentence IDs are retained in the generated vocabulary data when a Tatoeba Korean translation is used.
+
+See Tatoeba's download and reuse documentation for attribution requirements.
