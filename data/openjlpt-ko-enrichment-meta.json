@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "source": "OpenJLPT N1 + Korean Wiktionary + open EN-KO dictionary + Argos Translate",
+  "total": 2933,
+  "kowiktionary_meanings": 1044,
+  "dictionary_meanings": 1496,
+  "mt_meanings": 914,
+  "korean_meaning_rows": 2931,
+  "examples_added": 2539,
+  "examples_missing": 394,
+  "missing_source": 0,
+  "files": 6,
+  "mt_unique_strings": 3735
+}
