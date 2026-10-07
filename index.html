@@ -379,6 +379,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-extra-reading.js"></script>
 <script src="data/n1-daily-news.js"></script>
 <script src="data/n1-reading-translations.js?v=20261007-r1"></script>
+<script src="data/n1-reading-furigana.js?v=20261007-f1"></script>
 <script src="data/n1-extra-listening.js"></script>
 <script src="data/n1-curated-overrides.js?v=20261007-1518"></script>
 <script src="data/n1-second-examples-1.js?v=20261007-b01"></script>
@@ -1035,9 +1036,11 @@ if(window.N1_EXTRA_READING){
 const dailyNewsBank=Array.isArray(window.N1_DAILY_NEWS)?window.N1_DAILY_NEWS:[];
 if(dailyNewsBank.length)readingSets.news.push(...dailyNewsBank);
 const readingTranslations=window.N1_READING_TRANSLATIONS||{};
+const readingFuriganaBank=window.N1_READING_FURIGANA||{};
 for(const mode of ["short","medium","long","news"]){
  for(const set of readingSets[mode]){
   if(!set.passageKo&&readingTranslations[set.title])set.passageKo=readingTranslations[set.title];
+  set.furigana=readingFuriganaBank[set.title]||null;
  }
 }
 function dailyNewsSet(){
@@ -1395,13 +1398,13 @@ function readingTranslationHTML(set,q){
  return `<div class="translation"><strong>지문 번역</strong><br>${passage||"아직 등록된 지문 번역이 없습니다."}${question?`<div style="margin-top:12px"><strong>문제 뜻</strong><br>${question}</div>`:""}</div>`;
 }
 function renderReading(){
- const bank=readingSets[readingMode],set=bank[readingSetIndex],q=set.questions[readingQ];
+ const bank=readingSets[readingMode],set=bank[readingSetIndex],q=set.questions[readingQ],fq=set.furigana?.questions?.[readingQ];
  readingAnswered=false;
  document.querySelectorAll("#readingModes button").forEach(b=>b.classList.toggle("active",b.dataset.mode===readingMode));
  $("readingTag").textContent=set.title+` · 세트 ${readingSetIndex+1}/${bank.length} · 문제 ${readingQ+1}/${set.questions.length}`;
- $("readingPassage").innerHTML=readingJP(set.passage);
- $("readingQuestion").innerHTML=readingJP(q.q);
- $("readingChoices").innerHTML=q.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${readingJP(choice)}</button>`).join("");
+ $("readingPassage").innerHTML=set.furigana?.passage||readingJP(set.passage);
+ $("readingQuestion").innerHTML=fq?.q||readingJP(q.q);
+ $("readingChoices").innerHTML=q.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${fq?.c?.[i]||readingJP(choice)}</button>`).join("");
  $("readingExplanation").className="explain";$("readingExplanation").innerHTML="";
  $("readingSource").innerHTML=set.source?`${set.source} <a target="_blank" rel="noopener" href="${set.sourceUrl}">원문 출처</a>`:"";
  $("nextReadingBtn").classList.add("hidden");
@@ -1418,7 +1421,8 @@ $("readingChoices").addEventListener("click",e=>{
  const set=readingSets[readingMode][readingSetIndex],q=set.questions[readingQ],idx=+b.dataset.i;
  [...$("readingChoices").children].forEach((x,i)=>{x.disabled=true;if(i===q.a)x.classList.add("correct");if(i===idx&&idx!==q.a)x.classList.add("wrong")});
  recordAnswer("reading",q,idx);
- $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${readingJP(q.e)}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" style="margin-top:14px">🇰🇷 번역 보기</button><div id="readingTranslationBox" class="hidden">${readingTranslationHTML(set,q)}</div>`;
+ const fq=set.furigana?.questions?.[readingQ];
+ $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${fq?.e||readingJP(q.e)}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" style="margin-top:14px">🇰🇷 번역 보기</button><div id="readingTranslationBox" class="hidden">${readingTranslationHTML(set,q)}</div>`;
  $("readingExplanation").classList.add("show");$("nextReadingBtn").classList.remove("hidden");restoreInteractiveFuriState($("readingExplanation"));refreshAll();
 });
 $("readingExplanation").addEventListener("click",e=>{
