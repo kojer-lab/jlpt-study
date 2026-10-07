@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#4f46e5">
-<title>JLPT N1 Study v4.9 Stable Listening Viewer</title>
+<title>JLPT N1 Study v5.0 Kokoro Audio</title>
 <style>
 :root{
   --bg:#f5f7fb;--panel:#fff;--text:#172033;--muted:#697386;--line:#e5e9f0;
@@ -69,6 +69,17 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .reading-modes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.reading-modes button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:8px 12px;cursor:pointer}.reading-modes button.active{background:var(--accent);color:white;border-color:var(--accent)}
 .long-passage{font-size:17px;line-height:2.15}.reading-source{margin-top:13px;font-size:12px;color:var(--muted)}
 .listen-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:14px}.track-list{display:grid;gap:8px}.track{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:12px;border-radius:11px;text-align:left;cursor:pointer}.track.active{border-color:var(--accent);background:var(--accent-soft)}.official-sheet{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}.official-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border-bottom:1px solid var(--line);background:var(--panel)}.official-sheet-head strong{font-size:13px}.official-sheet-head span{font-size:11px;color:var(--muted)}.official-sheet-frame{display:block;width:100%;height:720px;border:0;background:#fff}.sheet-fallback{padding:10px 12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.5}.track small{display:block;color:var(--muted);margin-top:3px}.audio-status{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.5}.warning{background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.35);padding:12px;border-radius:10px;color:var(--text);line-height:1.6}
+
+.tts-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:var(--panel);color:var(--accent);display:grid;place-items:center;cursor:pointer;font-size:18px;line-height:1}
+.tts-btn:hover,.tts-btn.loading{border-color:var(--accent);background:var(--accent-soft)}.tts-btn:disabled{opacity:.55;cursor:wait}
+.word-title-row .word-speak-btn{position:absolute;left:0;top:50%;transform:translateY(-50%)}
+.tts-mini-status{min-height:18px;margin:2px 0 8px;text-align:center;color:var(--muted);font-size:11px;line-height:1.45}
+.example-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.example-speak{width:auto;height:32px;border-radius:999px;padding:0 10px;font-size:12px;font-weight:750}
+.listen-tabs{display:flex;gap:8px;margin-bottom:14px}.listen-tab{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:9px 14px;font-weight:750;cursor:pointer}.listen-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.ai-listen-shell{max-width:820px;margin:0 auto}.ai-listen-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px}.ai-engine{font-size:12px;color:var(--muted)}
+.ai-question{font-size:21px;font-weight:800;line-height:1.65;margin:10px 0 16px}.ai-choices{display:grid;gap:9px}.ai-choice{width:100%;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;padding:12px 14px;text-align:left;cursor:pointer}.ai-choice.correct{border-color:var(--good);background:rgba(34,197,94,.09)}.ai-choice.wrong{border-color:var(--bad);background:rgba(239,68,68,.08)}
+.ai-audio-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.ai-status{padding:11px 12px;border-radius:11px;background:var(--bg);border:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.55}.ai-status.ok{color:var(--good);background:rgba(34,197,94,.07)}.ai-status.bad{color:var(--bad);background:rgba(239,68,68,.07)}
+.ai-explain{display:none;margin-top:13px;padding:13px;border-radius:11px;background:var(--accent-soft);line-height:1.65}.ai-explain.show{display:block}.ai-script{display:none;margin-top:12px;padding:13px;border:1px solid var(--line);border-radius:11px;background:var(--bg);line-height:1.8}.ai-script.show{display:block}.ai-script-line{margin:5px 0}.ai-speaker{display:inline-block;min-width:72px;color:var(--accent);font-weight:800}
 .mistakes{display:grid;gap:12px}.mistake{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.mistake .q{font-weight:750;line-height:1.6}.mistake .meta{font-size:12px;color:var(--muted);margin-top:7px}
 .data-actions{display:flex;flex-wrap:wrap;gap:8px}.file-label{display:inline-flex;align-items:center;cursor:pointer}.file-label input{display:none}
 .news-badge{display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:800;font-size:13px}.dot{width:8px;height:8px;background:var(--accent);border-radius:50%}
@@ -76,7 +87,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 @media(max-width:960px){.grid4{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}.listen-grid{grid-template-columns:1fr}.sync-grid{grid-template-columns:1fr}}
 @media(max-width:760px){
   body{padding-bottom:78px}.app{display:block}.sidebar{display:none}.mobile-header{display:flex;position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px 14px;align-items:center;justify-content:space-between}.dark .mobile-header{background:rgba(24,29,39,.95)}.mobile-brand{display:flex;align-items:center;gap:8px;font-weight:850}.mobile-brand .brand-badge{width:31px;height:31px;border-radius:9px}.mobile-tools{display:flex;gap:7px}.mobile-tools button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text)}
-  .main{padding:12px 12px 28px;max-width:none}.topbar{align-items:flex-start;margin-bottom:14px}h1{font-size:25px}.topbar>.pill{display:none}.grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:16px;border-radius:14px}.stat .num{font-size:26px}.section-title{margin-top:23px}.question{font-size:20px;line-height:1.7}.passage,.long-passage{font-size:16px;line-height:1.95}.choice{min-height:52px;padding:13px}.word-shell{max-width:430px}.word-dashboard{max-width:430px;padding:14px}.word-study-head{max-width:430px;gap:6px}.word-study-left{gap:5px}.word-study-head .secondary{padding:9px 10px;font-size:12px}.word-tools-card{max-width:430px;padding:10px 12px}.word-card{padding:0;border-radius:18px}.word-card-body{padding:11px 14px 15px}.word-visual{height:min(170px,21vh);aspect-ratio:auto}.word-visual img{object-fit:cover;object-position:center 46%}.word-meta{font-size:12px}.word-main{font-size:34px;line-height:1.22;padding-top:11px}.word-reading{display:none!important}.word-title-row{margin:10px 0 9px;align-items:center;justify-content:center;text-align:center}.star-btn{width:38px;height:38px;font-size:23px}.reveal-btn{padding:7px 10px;border-radius:9px;font-size:14px}.reveal-box{margin-top:6px;padding:8px 10px;line-height:1.55;font-size:14px}.examples{gap:7px;margin-top:9px}.example{padding:8px 10px;border-radius:9px}.example .label{font-size:11px}.example-jp{font-size:15px;line-height:2.2;padding-top:11px}.example .reveal-btn{margin-top:6px!important}.example-ko{margin-top:6px;line-height:1.5}.rating{grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}.rate-btn{padding:8px 2px;border-radius:9px;font-size:12px}.rate-btn small{font-size:9px;margin-top:2px}.next-row{position:static;bottom:auto;background:none;padding-top:0;margin-top:8px}.next-row .primary,.next-row .secondary{min-height:40px;padding:8px 14px}#wordsView{padding-bottom:8px}#wordsView>.topbar{display:none}.listen-grid{display:block}.official-sheet-frame{height:560px}.track-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:8px;margin-bottom:10px}.track{min-width:200px}.toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.toolbar>*{flex:0 0 auto}.reading-modes{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.reading-modes button{flex:0 0 auto}
+  .main{padding:12px 12px 28px;max-width:none}.topbar{align-items:flex-start;margin-bottom:14px}h1{font-size:25px}.topbar>.pill{display:none}.grid4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:16px;border-radius:14px}.stat .num{font-size:26px}.section-title{margin-top:23px}.question{font-size:20px;line-height:1.7}.passage,.long-passage{font-size:16px;line-height:1.95}.choice{min-height:52px;padding:13px}.word-shell{max-width:430px}.word-dashboard{max-width:430px;padding:14px}.word-study-head{max-width:430px;gap:6px}.word-study-left{gap:5px}.word-study-head .secondary{padding:9px 10px;font-size:12px}.word-tools-card{max-width:430px;padding:10px 12px}.word-card{padding:0;border-radius:18px}.word-card-body{padding:11px 14px 15px}.word-visual{height:min(170px,21vh);aspect-ratio:auto}.word-visual img{object-fit:cover;object-position:center 46%}.word-meta{font-size:12px}.word-main{font-size:34px;line-height:1.22;padding-top:11px}.word-reading{display:none!important}.word-title-row{margin:10px 0 9px;align-items:center;justify-content:center;text-align:center}.star-btn{width:38px;height:38px;font-size:23px}.reveal-btn{padding:7px 10px;border-radius:9px;font-size:14px}.reveal-box{margin-top:6px;padding:8px 10px;line-height:1.55;font-size:14px}.examples{gap:7px;margin-top:9px}.example{padding:8px 10px;border-radius:9px}.example .label{font-size:11px}.example-jp{font-size:15px;line-height:2.2;padding-top:11px}.example .reveal-btn{margin-top:6px!important}.example-ko{margin-top:6px;line-height:1.5}.rating{grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}.rate-btn{padding:8px 2px;border-radius:9px;font-size:12px}.rate-btn small{font-size:9px;margin-top:2px}.next-row{position:static;bottom:auto;background:none;padding-top:0;margin-top:8px}.next-row .primary,.next-row .secondary{min-height:40px;padding:8px 14px}#wordsView{padding-bottom:8px}#wordsView>.topbar{display:none}.tts-btn{width:38px;height:38px;font-size:16px}.example-speak{width:auto;height:30px;font-size:11px}.listen-tabs{overflow-x:auto;white-space:nowrap}.listen-tab{flex:0 0 auto}.ai-question{font-size:18px}.ai-audio-actions>*{flex:1 1 auto}.listen-grid{display:block}.official-sheet-frame{height:560px}.track-list{display:flex;overflow-x:auto;gap:8px;padding-bottom:8px;margin-bottom:10px}.track{min-width:200px}.toolbar{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.toolbar>*{flex:0 0 auto}.reading-modes{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.reading-modes button{flex:0 0 auto}
   .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--panel);border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -7px 20px rgba(0,0,0,.06)}.bottom-nav button{border:0;background:transparent;color:var(--muted);display:grid;gap:2px;place-items:center;padding:5px 2px;font-size:11px;border-radius:9px}.bottom-nav button span{font-size:19px;line-height:1}.bottom-nav button.active{color:var(--accent);background:var(--accent-soft);font-weight:750}.mistake{display:block}.mistake>button{margin-top:10px}.data-actions{display:grid}.data-actions>*{width:100%;justify-content:center}.mobile-only{display:block!important}
 }
 @media(min-width:761px){.mobile-only{display:none!important}}
@@ -159,8 +170,9 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="word-shell"><div class="card word-card">
           <div class="word-card-body">
             <div class="word-meta"><span id="wordIndexText"></span><span id="wordDueText"></span></div>
-            <div class="word-title-row"><div><div class="word-main" id="wordMain"></div><div class="word-reading" id="wordReading"></div></div><button type="button" class="star-btn" id="wordStarBtn" aria-label="별표">☆</button></div>
+            <div class="word-title-row"><button type="button" class="tts-btn word-speak-btn" id="wordSpeakBtn" aria-label="단어 발음 듣기" title="Kokoro로 단어 듣기">🔊</button><div><div class="word-main" id="wordMain"></div><div class="word-reading" id="wordReading"></div></div><button type="button" class="star-btn" id="wordStarBtn" aria-label="별표">☆</button></div>
             <div class="word-focus-hint" id="wordFocusHint">뜻을 먼저 떠올린 뒤 확인하세요.</div>
+            <div class="tts-mini-status" id="wordTtsStatus">Kokoro 음성은 학습 중 미리 준비됩니다.</div>
             <button type="button" class="primary word-start" id="showMeaningBtn">뜻 · 예문 보기</button>
             <div class="reveal-box hidden" id="wordMeaning"></div>
             <div class="examples hidden" id="wordExamples"></div>
@@ -210,7 +222,9 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
     </section>
 
     <section class="view" id="listeningView">
-      <div class="topbar"><div><h1>청해</h1><div class="sub">합성음은 사용하지 않고 JLPT 공식 N1 실제 음원을 연결합니다.</div></div></div>
+      <div class="topbar"><div><h1>청해</h1><div class="sub">공식 JLPT 음원과 Kokoro 기반 N1 AI 모의문제를 함께 연습합니다.</div></div></div>
+      <div class="listen-tabs" id="listeningTabs"><button type="button" class="listen-tab active" data-listen-tab="official">공식 문제</button><button type="button" class="listen-tab" data-listen-tab="ai">AI 모의문제</button></div>
+      <div id="officialListeningPanel">
       <div class="listen-grid">
         <div class="card"><div class="label">2018 Official Practice Workbook</div><div class="track-list" id="trackList">
           <button type="button" class="track active" data-audio="https://www.jlpt.jp/samples/sample2018/mp3/N1Q1.mp3" data-pages="3,4,5,6" data-name="問題 1 · 課題理解"><strong>問題 1 · 課題理解</strong><small>Task-based comprehension</small></button>
@@ -236,6 +250,20 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
             <a class="secondary" id="directAudioLink" target="_blank" rel="noopener" href="https://www.jlpt.jp/samples/sample2018/mp3/N1Q1.mp3" style="text-decoration:none">음원 새 창</a>
           </div>
           <div class="audio-status">※ 문제지는 청해 화면 안의 PDF 뷰어에서 표시됩니다. 원본 PDF 버튼은 예비용입니다.</div>
+        </div>
+      </div>
+      </div>
+      <div id="aiListeningPanel" class="hidden">
+        <div class="ai-listen-shell">
+          <div class="card">
+            <div class="ai-listen-head"><div><span class="tag" id="aiListenType">問題1 · 課題理解</span><div class="ai-engine" id="aiEngineText">Kokoro 준비 전</div></div><div class="counter" id="aiListenCounter">1 / 3</div></div>
+            <div class="ai-question" id="aiListenQuestion"></div>
+            <div class="ai-choices" id="aiListenChoices"></div>
+            <div class="ai-audio-actions"><button type="button" class="primary" id="aiListenPlay">🔊 문제 듣기</button><button type="button" class="secondary" id="aiListenScriptBtn">스크립트 보기</button><button type="button" class="secondary hidden" id="aiListenNext">다음 문제</button></div>
+            <div class="ai-status" id="aiListenStatus">AI 탭에 들어오면 현재 문제부터 음성을 미리 준비합니다.</div>
+            <div class="ai-explain" id="aiListenExplain"></div>
+            <div class="ai-script" id="aiListenScript"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -340,6 +368,90 @@ function plain(s){const d=document.createElement("div");d.innerHTML=s;return d.t
 function readingOf(html){const d=document.createElement("div");d.innerHTML=html;let out="";const walk=n=>{if(n.nodeType===3)out+=n.nodeValue;else if(n.nodeType===1){if(n.classList.contains("furi"))out+=n.dataset.r||n.textContent;else [...n.childNodes].forEach(walk)}};[...d.childNodes].forEach(walk);return out;}
 const WORD_IMAGES={kutsugaesu:"assets/words/kutsugaesu.webp"};
 function todayKey(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
+
+
+const KOKORO_CDN="https://cdn.jsdelivr.net/npm/kokoro-js-jp@0.2.0/dist/kokoro-jp.web.js";
+const KOKORO_DB="jlpt-kokoro-audio-v1",KOKORO_STORE="audio";
+let kokoroModulePromise=null,kokoroTTS=null,kokoroEngine=null,kokoroDbPromise=null,kokoroQueue=Promise.resolve(),kokoroCurrentAudio=null,kokoroWakeLock=null;
+const kokoroUrls=new Map(),kokoroInflight=new Map();
+function isAppleMobile(){return /iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)}
+function kokoroConfig(){
+ if(isAppleMobile()&&navigator.gpu)return {key:"webgpu_q4f16",label:"iPhone/iPad · WebGPU q4f16",options:{device:"webgpu",dtype:"q4f16"}};
+ if(navigator.gpu)return {key:"webgpu_fp32",label:"PC/Mac · WebGPU fp32",options:{device:"webgpu",dtype:"fp32"}};
+ return {key:"wasm_q4",label:"호환 모드 · WASM q4",options:{device:"wasm",dtype:"q4"}};
+}
+function kokoroOpenDb(){
+ if(kokoroDbPromise)return kokoroDbPromise;
+ kokoroDbPromise=new Promise((resolve,reject)=>{
+   const req=indexedDB.open(KOKORO_DB,1);
+   req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(KOKORO_STORE))db.createObjectStore(KOKORO_STORE)};
+   req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);
+ });
+ return kokoroDbPromise;
+}
+async function kokoroDbGet(key){
+ try{const db=await kokoroOpenDb();return await new Promise((resolve,reject)=>{const req=db.transaction(KOKORO_STORE,"readonly").objectStore(KOKORO_STORE).get(key);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error)})}catch(e){return null}
+}
+async function kokoroDbPut(key,blob){
+ try{const db=await kokoroOpenDb();await new Promise((resolve,reject)=>{const req=db.transaction(KOKORO_STORE,"readwrite").objectStore(KOKORO_STORE).put(blob,key);req.onsuccess=()=>resolve();req.onerror=()=>reject(req.error)})}catch(e){console.warn("Kokoro cache write failed",e)}
+}
+async function ensureKokoro(onStatus){
+ if(kokoroTTS)return kokoroTTS;
+ const cfg=kokoroConfig();kokoroEngine=cfg;
+ if(onStatus)onStatus(cfg.label+" 모델 준비 중…");
+ try{
+   kokoroModulePromise=kokoroModulePromise||import(KOKORO_CDN);
+   const mod=await kokoroModulePromise;
+   kokoroTTS=await mod.KokoroJP.load(cfg.options);
+   if(onStatus)onStatus(cfg.label+" 준비 완료");
+   return kokoroTTS;
+ }catch(err){
+   console.error("Kokoro primary load failed",err);
+   if(cfg.key!=="wasm_q4"){
+     const fallback={key:"wasm_q4",label:"호환 모드 · WASM q4",options:{device:"wasm",dtype:"q4"}};
+     kokoroEngine=fallback;if(onStatus)onStatus("WebGPU 실패 · WASM q4로 다시 준비 중…");
+     const mod=await kokoroModulePromise;kokoroTTS=await mod.KokoroJP.load(fallback.options);
+     if(onStatus)onStatus(fallback.label+" 준비 완료");return kokoroTTS;
+   }
+   throw err;
+ }
+}
+function kokoroKey(text,voice){const cfg=kokoroEngine||kokoroConfig();return cfg.key+"|"+voice+"|"+text}
+async function kokoroGenerate(text,voice="jf_alpha",onStatus){
+ const cfg=kokoroEngine||kokoroConfig(),key=cfg.key+"|"+voice+"|"+text;
+ if(kokoroUrls.has(key))return {url:kokoroUrls.get(key),cached:true};
+ if(kokoroInflight.has(key))return kokoroInflight.get(key);
+ const task=(async()=>{
+   const saved=await kokoroDbGet(key);
+   if(saved instanceof Blob){const url=URL.createObjectURL(saved);kokoroUrls.set(key,url);return {url,cached:true}}
+   await ensureKokoro(onStatus);
+   const realKey=kokoroKey(text,voice);
+   if(realKey!==key){
+     const alt=await kokoroDbGet(realKey);
+     if(alt instanceof Blob){const url=URL.createObjectURL(alt);kokoroUrls.set(realKey,url);return {url,cached:true}}
+   }
+   const run=kokoroQueue.catch(()=>{}).then(async()=>{
+     if(onStatus)onStatus("음성 생성 중…");
+     const out=await kokoroTTS.speak(text,voice),blob=out.toBlob(),url=URL.createObjectURL(blob);
+     kokoroUrls.set(realKey,url);await kokoroDbPut(realKey,blob);return {url,cached:false};
+   });
+   kokoroQueue=run.catch(()=>{});return run;
+ })().finally(()=>kokoroInflight.delete(key));
+ kokoroInflight.set(key,task);return task;
+}
+function stopKokoroAudio(){if(kokoroCurrentAudio){kokoroCurrentAudio.pause();kokoroCurrentAudio.currentTime=0;kokoroCurrentAudio=null}}
+function playKokoroUrl(url){
+ return new Promise((resolve,reject)=>{
+   stopKokoroAudio();const a=new Audio(url);kokoroCurrentAudio=a;
+   a.onended=()=>{if(kokoroCurrentAudio===a)kokoroCurrentAudio=null;resolve()};
+   a.onerror=reject;a.play().catch(reject);
+ });
+}
+async function requestKokoroWakeLock(){
+ try{if("wakeLock" in navigator){kokoroWakeLock=await navigator.wakeLock.request("screen")}}catch(e){}
+}
+async function releaseKokoroWakeLock(){try{if(kokoroWakeLock)await kokoroWakeLock.release()}catch(e){}kokoroWakeLock=null}
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&kokoroCurrentAudio)requestKokoroWakeLock()});
 
 const words=[
 {id:"unagasu",w:F("促","うなが")+"す",meaning:"촉구하다 / 재촉하다 / 행동을 하도록 유도하다",examples:[
@@ -676,7 +788,7 @@ function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wo
 function finishWordStudy(){
  updateWordUndo();$("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
  $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
- $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";
+ $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").disabled=true;$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";$("wordTtsStatus").textContent="";
  $("showMeaningBtn").textContent="학습 목표로 돌아가기";$("showMeaningBtn").classList.remove("hidden");$("showMeaningBtn").dataset.finished="1";
  $("wordMeaning").classList.add("hidden");$("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
 }
@@ -691,21 +803,53 @@ function renderWord(){
  $("wordStudyProgress").textContent=`${Math.min(wordSessionDone+1,wordSessionTotal)} / ${wordSessionTotal}`;
  $("wordIndexText").textContent=wordMode==="starred"?`★ ${wordSessionDone+1} / ${wordSessionTotal}`:`${wordSessionDone+1} / ${wordSessionTotal}`;
  $("wordDueText").textContent=sr.reviews?(sr.due<=now()?"복습":"학습 중"):"새 단어";
- $("wordMain").innerHTML=w.w;$("wordReading").textContent="";
+ $("wordMain").innerHTML=w.w;$("wordReading").textContent="";$("wordSpeakBtn").dataset.word=w.id;$("wordSpeakBtn").disabled=false;$("wordSpeakBtn").classList.remove("loading");$("wordTtsStatus").textContent=(kokoroEngine||kokoroConfig()).label+" · 단어와 예문을 미리 준비합니다.";
  $("wordStarBtn").textContent=isStarred(w.id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(w.id));$("wordStarBtn").dataset.word=w.id;
  $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
  $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");
  $("showMeaningBtn").textContent="뜻 · 예문 보기";
- $("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+ $("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
  $("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
  renderRating($("wordRating"),w.id,sr,false);
+ setTimeout(()=>prefetchWordAudio(w),120);
 }
 function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
+
+async function prefetchWordAudio(w){
+ if(!w||$("wordSpeakBtn").dataset.word!==w.id)return;
+ const status=msg=>{if($("wordSpeakBtn").dataset.word===w.id)$("wordTtsStatus").textContent=msg};
+ try{
+   await kokoroGenerate(readingOf(w.w),"jf_alpha",status);
+   for(const ex of w.examples){
+     if($("wordSpeakBtn").dataset.word!==w.id)return;
+     await kokoroGenerate(plain(ex.jp),"jf_alpha",status);
+   }
+   if($("wordSpeakBtn").dataset.word===w.id)status((kokoroEngine||kokoroConfig()).label+" · 음성 준비 완료");
+ }catch(e){if($("wordSpeakBtn").dataset.word===w.id)status("음성 준비 실패 · 다시 누르면 재시도합니다.")}
+}
+async function playWordAudio(w,exampleIndex=null,button=null){
+ if(!w)return;
+ const text=exampleIndex===null?readingOf(w.w):plain(w.examples[exampleIndex].jp);
+ const status=msg=>$("wordTtsStatus").textContent=msg;
+ try{
+   if(button){button.disabled=true;button.classList.add("loading")}
+   const r=await kokoroGenerate(text,"jf_alpha",status);status("🔊 재생 중 · "+(kokoroEngine||kokoroConfig()).label);
+   await requestKokoroWakeLock();await playKokoroUrl(r.url);status("음성 준비 완료");
+ }catch(e){console.error(e);status("음성 재생 실패 · 다시 시도해 주세요.")}
+ finally{if(button){button.disabled=false;button.classList.remove("loading")}await releaseKokoroWakeLock()}
+}
+$("wordSpeakBtn").addEventListener("click",()=>{
+ const w=words.find(x=>x.id===$("wordSpeakBtn").dataset.word);playWordAudio(w,null,$("wordSpeakBtn"));
+});
 $("showMeaningBtn").addEventListener("click",()=>{
  if($("showMeaningBtn").dataset.finished==="1"){showWordDashboard();return}
  $("wordMeaning").classList.remove("hidden");$("wordExamples").classList.remove("hidden");$("wordRating").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");$("wordFocusHint").textContent="확인했다면 기억 정도를 선택하세요.";
 });
-$("wordExamples").addEventListener("click",e=>{const b=e.target.closest(".ex-reveal");if(!b)return;const box=b.nextElementSibling;const h=box.classList.toggle("hidden");b.textContent=h?"예문 뜻 보기":"예문 뜻 숨기기"});
+$("wordExamples").addEventListener("click",e=>{
+ const speak=e.target.closest(".ex-speak");
+ if(speak){const w=words.find(x=>x.id===$("wordSpeakBtn").dataset.word);playWordAudio(w,Number(speak.dataset.example),speak);return}
+ const b=e.target.closest(".ex-reveal");if(!b)return;const box=b.nextElementSibling;const h=box.classList.toggle("hidden");b.textContent=h?"예문 뜻 보기":"예문 뜻 숨기기";
+});
 $("wordRating").addEventListener("click",e=>{
  const b=e.target.closest("[data-rate]");if(!b)return;
  const currentId=b.dataset.word,currentWord=words.find(w=>w.id===currentId);
@@ -884,10 +1028,101 @@ function bindCloudControls(){
  $("mobileCloud").addEventListener("click",()=>showView("cloud"));
 }
 
+
+const aiListeningProblems=[
+ {type:"問題1 · 課題理解",question:"男の人はこのあと、まず何をしなければなりませんか。",choices:["会議室を予約する","資料を印刷する","参加者に変更を知らせる","部長に日程を確認する"],answer:2,explain:"회의실 예약과 부장 확인은 이미 끝났고 자료 인쇄는 내일 해도 됩니다. 따라서 가장 먼저 해야 하는 일은 참가자들에게 시간 변경을 알리는 것입니다.",lines:[
+  ["会社で、女の人と男の人が話しています。男の人はこのあと、まず何をしなければなりませんか。","jf_tebukuro","ナレーション"],
+  ["来週の企画会議なんですが、予定していた会議室が使えなくなったそうです。","jf_alpha","女"],
+  ["そうなんですか。別の部屋を探しましょうか。","jm_kumo","男"],
+  ["三〇二号室が空いていたので、もう予約しておきました。ただ、開始時間が二時から三時に変わったんです。まず参加者に連絡してもらえますか。","jf_alpha","女"],
+  ["分かりました。資料の印刷も今日中にやっておきましょうか。","jm_kumo","男"],
+  ["それは明日で大丈夫です。","jf_alpha","女"],
+  ["部長には時間の変更を確認しなくてもいいですか。","jm_kumo","男"],
+  ["部長には私から確認済みです。では、連絡を先にお願いします。","jf_alpha","女"],
+  ["男の人はこのあと、まず何をしなければなりませんか。","jf_tebukuro","ナレーション"]]},
+ {type:"問題2 · ポイント理解",question:"女の人が新しい店を選んだ一番の理由は何ですか。",choices:["駅から近いから","料金が安いから","個室を利用できるから","料理の種類が多いから"],answer:2,explain:"역에서는 조금 멀고 가격도 이전 가게와 비슷합니다. 여자는 중요한 이야기를 편하게 할 수 있도록 개인실을 예약할 수 있다는 점이 결정적이었다고 말합니다.",lines:[
+  ["会社で、男の人と女の人が食事会の店について話しています。女の人が新しい店を選んだ一番の理由は何ですか。","jf_tebukuro","ナレーション"],
+  ["来月の食事会、いつもの店じゃなくて新しいところにしたんですね。","jm_kumo","男"],
+  ["ええ。駅からは前の店より五分ほど遠いんですけど、料金はほとんど変わりません。","jf_alpha","女"],
+  ["料理が特にいいんですか。","jm_kumo","男"],
+  ["料理の種類も十分あります。でも今回は仕事の大事な話もするでしょう。周りを気にせず話せる個室を予約できるのが決め手でした。","jf_alpha","女"],
+  ["なるほど。それなら落ち着いて話せそうですね。","jm_kumo","男"],
+  ["女の人が新しい店を選んだ一番の理由は何ですか。","jf_tebukuro","ナレーション"]]},
+ {type:"問題3 · 概要理解",question:"男の人が最も言いたいことは何ですか。",choices:["新制度はすぐに中止すべきだ","効率だけで制度を評価してはいけない","利用者への説明を減らすべきだ","すべての手続きをオンライン化すべきだ"],answer:1,explain:"남자는 온라인화로 효율이 좋아진 점은 인정하지만, 이용자 지원과 이해하기 쉬운 설명까지 포함해서 제도를 평가해야 한다고 주장합니다. 즉 효율만으로 판단해서는 안 된다는 뜻입니다.",lines:[
+  ["男の人が新しい手続き制度について話しています。男の人が最も言いたいことは何ですか。","jf_tebukuro","ナレーション"],
+  ["今回の制度変更で、手続きの多くがオンラインでできるようになり、職員の作業時間は確かに短くなりました。これは大きな利点です。しかし、利用者の中には操作に慣れていない人もいます。効率が上がったという数字だけを見て成功だと判断するのではなく、必要な人が十分な支援を受けられているか、説明が分かりやすいかという点も同時に確認する必要があります。","jm_kumo","男"],
+  ["男の人が最も言いたいことは何ですか。","jf_tebukuro","ナレーション"]]}
+];
+let aiListenIndex=0,aiListenPlaying=false;
+const aiListenJobs=new Map();
+function aiMakeSlot(){let resolve,reject;const promise=new Promise((res,rej)=>{resolve=res;reject=rej});return {promise,resolve,reject}}
+function setAiStatus(msg,type=""){const el=$("aiListenStatus");el.textContent=msg;el.className="ai-status"+(type?" "+type:"")}
+function startAiListenJob(index){
+ if(index<0||index>=aiListeningProblems.length)return null;
+ if(aiListenJobs.has(index))return aiListenJobs.get(index);
+ const p=aiListeningProblems[index],slots=p.lines.map(()=>aiMakeSlot());
+ const producer=(async()=>{
+   for(let i=0;i<p.lines.length;i++){
+     const [text,voice]=p.lines[i];
+     try{
+       const r=await kokoroGenerate(text,voice,msg=>{if(index===aiListenIndex)setAiStatus("음성 준비 "+(i+1)+" / "+p.lines.length+" · "+msg)});
+       slots[i].resolve(r);
+     }catch(e){slots[i].reject(e);throw e}
+   }
+   if(index===aiListenIndex&&!aiListenPlaying)setAiStatus("현재 문제 음성 준비 완료 · 바로 재생할 수 있습니다.","ok");
+   if(index+1<aiListeningProblems.length)setTimeout(()=>startAiListenJob(index+1),100);
+   return true;
+ })();
+ producer.catch(e=>{if(index===aiListenIndex)setAiStatus("음성 준비 실패 · "+(e&&e.message?e.message:String(e)),"bad")});
+ const job={slots,producer};aiListenJobs.set(index,job);return job;
+}
+function renderAiListening(){
+ const p=aiListeningProblems[aiListenIndex];
+ $("aiListenType").textContent=p.type;$("aiListenCounter").textContent=(aiListenIndex+1)+" / "+aiListeningProblems.length;$("aiListenQuestion").textContent=p.question;
+ $("aiEngineText").textContent=(kokoroEngine||kokoroConfig()).label+" · 다음 문제도 듣는 동안 미리 생성";
+ $("aiListenChoices").innerHTML=p.choices.map((c,i)=>'<button type="button" class="ai-choice" data-ai-choice="'+i+'">'+(i+1)+'. '+c+"</button>").join("");
+ $("aiListenExplain").className="ai-explain";$("aiListenExplain").innerHTML="<strong>해설</strong><br>"+p.explain;
+ $("aiListenScript").className="ai-script";$("aiListenScript").innerHTML=p.lines.map(x=>'<div class="ai-script-line"><span class="ai-speaker">'+x[2]+"</span>"+x[0]+"</div>").join("");
+ $("aiListenScriptBtn").textContent="스크립트 보기";$("aiListenNext").classList.add("hidden");$("aiListenPlay").disabled=false;
+ setAiStatus("현재 문제 음성을 백그라운드에서 준비합니다.");
+ setTimeout(()=>startAiListenJob(aiListenIndex),80);
+}
+async function playAiListening(){
+ if(aiListenPlaying)return;aiListenPlaying=true;$("aiListenPlay").disabled=true;
+ const p=aiListeningProblems[aiListenIndex],job=startAiListenJob(aiListenIndex),prebuffer=isAppleMobile()?3:2;
+ try{
+   await requestKokoroWakeLock();setAiStatus("선행 버퍼 "+Math.min(prebuffer,p.lines.length)+"개 준비 중…");
+   await Promise.all(job.slots.slice(0,Math.min(prebuffer,p.lines.length)).map(x=>x.promise));
+   setAiStatus("재생 중 · 뒤 음성 및 다음 문제를 계속 준비합니다.","ok");
+   job.producer.then(()=>{if(aiListenIndex+1<aiListeningProblems.length)startAiListenJob(aiListenIndex+1)});
+   for(let i=0;i<p.lines.length;i++){const r=await job.slots[i].promise;await playKokoroUrl(r.url);if(i<p.lines.length-1)await new Promise(res=>setTimeout(res,180))}
+   setAiStatus("재생 완료 · 정답을 선택해 보세요.","ok");
+ }catch(e){console.error(e);setAiStatus("재생 실패 · "+(e&&e.message?e.message:String(e)),"bad")}
+ finally{aiListenPlaying=false;$("aiListenPlay").disabled=false;await releaseKokoroWakeLock()}
+}
+function setupAiListening(){
+ renderAiListening();
+ $("aiListenPlay").addEventListener("click",playAiListening);
+ $("aiListenScriptBtn").addEventListener("click",()=>{const show=$("aiListenScript").classList.toggle("show");$("aiListenScriptBtn").textContent=show?"스크립트 숨기기":"스크립트 보기"});
+ $("aiListenChoices").addEventListener("click",e=>{
+   const b=e.target.closest("[data-ai-choice]");if(!b)return;const p=aiListeningProblems[aiListenIndex],picked=Number(b.dataset.aiChoice);
+   [...$("aiListenChoices").children].forEach((x,i)=>{x.disabled=true;if(i===p.answer)x.classList.add("correct");if(i===picked&&i!==p.answer)x.classList.add("wrong")});
+   $("aiListenExplain").classList.add("show");$("aiListenNext").classList.remove("hidden");
+ });
+ $("aiListenNext").addEventListener("click",()=>{stopKokoroAudio();aiListenIndex=(aiListenIndex+1)%aiListeningProblems.length;renderAiListening()});
+}
+
 let listeningReady=false;
 function setupListening(){
  if(listeningReady)return;listeningReady=true;
  const player=$("audioPlayer");
+ setupAiListening();
+ $("listeningTabs").addEventListener("click",e=>{
+   const b=e.target.closest("[data-listen-tab]");if(!b)return;const tab=b.dataset.listenTab;
+   document.querySelectorAll(".listen-tab").forEach(x=>x.classList.toggle("active",x===b));
+   $("officialListeningPanel").classList.toggle("hidden",tab!=="official");$("aiListeningPanel").classList.toggle("hidden",tab!=="ai");
+   if(tab==="ai"){player.pause();renderAiListening()}else stopKokoroAudio();
+ });
  const pdf="https://ns.jlpt.jp/samples/sample2018/pdf/N1L.pdf";
  const viewer="https://docs.google.com/gview?embedded=true&url="+encodeURIComponent(pdf);
  const showSheet=(b)=>{
