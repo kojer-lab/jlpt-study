@@ -9055,5 +9055,716 @@ window.N1_CURATED_OVERRIDES={
   "oj-a7495d2ed6": {
     "meaning": "의리 / 도리 / 사회적 의무",
     "meaningSource": "manual-review"
+  },
+  "oj-bc1f0acc20": {
+    "meaning": "기류 / 공기의 흐름",
+    "examples": [
+      {
+        "jp": "ただ今気流の関係で揺れております。",
+        "ko": "현재 기류의 영향으로 기체가 흔들리고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ba660e4e5a": {
+    "examples": [
+      {
+        "jp": "金の切れ目が縁の切れ目。",
+        "ko": "돈이 끊기면 인연도 끊긴다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-effe5c2acb": {
+    "meaning": "의혹 / 의심 / 불신",
+    "examples": [
+      {
+        "jp": "この種の事件はよく疑惑を生む。",
+        "ko": "이런 종류의 사건은 흔히 의혹을 낳는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-746e5a2a80": {
+    "examples": [
+      {
+        "jp": "彼女は行儀が極めて上品である。",
+        "ko": "그녀는 행동거지가 매우 품위 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c5acfdc8ca": {
+    "meaning": "근시 / 근시안",
+    "examples": [
+      {
+        "jp": "十人に一人は近眼である。",
+        "ko": "열 명 중 한 명은 근시다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-451a92254d": {
+    "examples": [
+      {
+        "jp": "緊急の場合は警察を呼びなさい。",
+        "ko": "긴급한 경우에는 경찰을 부르세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e25e5b82f0": {
+    "examples": [
+      {
+        "jp": "予算は均衡がとれていなければならない。",
+        "ko": "예산은 균형이 맞아야 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2ca2f2c406": {
+    "examples": [
+      {
+        "jp": "彼は東京近郊に住んでいる。",
+        "ko": "그는 도쿄 근교에 살고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-314af27802": {
+    "meaning": "근시",
+    "examples": [
+      {
+        "jp": "彼はあんな小さい字が読めるのだから近視どころではない。",
+        "ko": "그는 저렇게 작은 글씨도 읽을 수 있으니 근시라고 할 수 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d81ca0a2b5": {
+    "examples": [
+      {
+        "jp": "彼女は喫煙を禁じられた。",
+        "ko": "그녀는 흡연을 금지당했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-775cb6278a": {
+    "examples": [
+      {
+        "jp": "犬の連れ込みを禁ず。",
+        "ko": "개를 데리고 들어오는 것을 금함.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c7c6864d64": {
+    "examples": [
+      {
+        "jp": "彼は勤勉でもないし利口でもない。",
+        "ko": "그는 부지런하지도 영리하지도 않다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f43ce78911": {
+    "meaning": "검토 / 음미 / 면밀한 조사",
+    "examples": [
+      {
+        "jp": "社の弁護士に暫定合意の内容を吟味してもらおう。",
+        "ko": "회사 변호사에게 잠정 합의 내용을 면밀히 검토해 달라고 하자.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-890a56cd6a": {
+    "meaning": "금물 / 해서는 안 되는 것",
+    "examples": [
+      {
+        "jp": "甘えは禁物だよ。",
+        "ko": "응석은 금물이야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b7e93ba2fc": {
+    "examples": [
+      {
+        "jp": "勤労によって日本は今日の日本になった。",
+        "ko": "근로를 통해 일본은 오늘날의 일본이 되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1a857b8ff7": {
+    "examples": [
+      {
+        "jp": "このクイズは全然分からない。",
+        "ko": "이 퀴즈는 전혀 모르겠다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-58b6a6ca0a": {
+    "examples": [
+      {
+        "jp": "その食事で彼は空腹を満たした。",
+        "ko": "그 식사로 그는 허기를 달랬다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-22562443d0": {
+    "examples": [
+      {
+        "jp": "彼女はここから数区画離れた所に住んでいる。",
+        "ko": "그녀는 여기서 몇 블록 떨어진 곳에 살고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-da3d3e127b": {
+    "examples": [
+      {
+        "jp": "不通区間の開通の見込みはまだない。",
+        "ko": "불통 구간이 언제 개통될지는 아직 전망이 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-13cadbf1d1": {
+    "examples": [
+      {
+        "jp": "バラは茎に刺がある。",
+        "ko": "장미는 줄기에 가시가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cfdb0d4137": {
+    "examples": [
+      {
+        "jp": "彼は種々の方法を試みた。",
+        "ko": "그는 여러 가지 방법을 시도했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-90bc8fc506": {
+    "meaning": "제비뽑기 / 추첨",
+    "examples": [
+      {
+        "jp": "彼はくじ引きで一等賞を当てたよ。",
+        "ko": "그는 제비뽑기에서 1등에 당첨됐어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-237ff96ee6": {
+    "meaning": "푸념 / 불평 / 넋두리",
+    "meaningSource": "manual-review"
+  },
+  "oj-11ad69064c": {
+    "meaning": "흥얼거리다 / 혼자 노래를 부르다",
+    "examples": [
+      {
+        "jp": "母は台所でせっせと料理しながら歌を口ずさんでいた。",
+        "ko": "어머니는 부엌에서 부지런히 요리하면서 노래를 흥얼거리고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-388eca3ffa": {
+    "examples": [
+      {
+        "jp": "きつつきは、長く尖ったくちばしで、木の幹をつついて、中にいる虫を食べます。",
+        "ko": "딱따구리는 길고 뾰족한 부리로 나무줄기를 쪼아 안에 있는 벌레를 먹습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-700b8c4ea1": {
+    "examples": [
+      {
+        "jp": "朽ちない物は何もない。",
+        "ko": "썩지 않는 것은 아무것도 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7588b0ad98": {
+    "examples": [
+      {
+        "jp": "青空を背景にその塔がくっきり見えた。",
+        "ko": "푸른 하늘을 배경으로 그 탑이 선명하게 보였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-67ac5aceff": {
+    "examples": [
+      {
+        "jp": "明け方近くは、ぐっと冷え込む。",
+        "ko": "새벽 무렵에는 기온이 확 내려간다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4d5c43bf88": {
+    "examples": [
+      {
+        "jp": "彼女は高価な首飾りをしています。",
+        "ko": "그녀는 값비싼 목걸이를 하고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6c1dc988ce": {
+    "examples": [
+      {
+        "jp": "犬は首輪をすり抜けた。",
+        "ko": "개가 목줄에서 빠져나왔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0e833fb33f": {
+    "meaning": "조합하다 / 함께 맞추다 / 결합하다",
+    "examples": [
+      {
+        "jp": "この上着を何か少し派手な物と組み合わせられませんか。",
+        "ko": "이 재킷을 조금 화려한 것과 조합할 수 없을까요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5e70b323ad": {
+    "examples": [
+      {
+        "jp": "モデムはコンピューターの中に組み込まれた。",
+        "ko": "모뎀은 컴퓨터 안에 내장되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a0ad5884f8": {
+    "examples": [
+      {
+        "jp": "炭素排出量の変動が、以下のグラフに描かれている。",
+        "ko": "탄소 배출량의 변화가 아래 그래프에 나타나 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0e4bfbe5d4": {
+    "examples": [
+      {
+        "jp": "その問題は主任をひどく苦しめた。",
+        "ko": "그 문제는 주임을 몹시 괴롭혔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8290ed6e7a": {
+    "examples": [
+      {
+        "jp": "クレーンを操縦するのには、勿論、免許が必要です。",
+        "ko": "크레인을 조종하려면 물론 면허가 필요합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-784a9e0069": {
+    "examples": [
+      {
+        "jp": "彼は玄人にちかい。",
+        "ko": "그는 거의 전문가 수준이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-24de60011c": {
+    "examples": [
+      {
+        "jp": "今月は黒字である。",
+        "ko": "이번 달은 흑자다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7ea034ef1f": {
+    "examples": [
+      {
+        "jp": "どの羊の群にも黒い羊がいる。",
+        "ko": "어느 양 떼에나 검은 양은 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fc67aa10fe": {
+    "examples": [
+      {
+        "jp": "それは大きくて黒いアメリカの軍艦だった。",
+        "ko": "그것은 크고 검은 미국 군함이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-81dfeba28b": {
+    "examples": [
+      {
+        "jp": "彼らは軍事予算を増大させようとした。",
+        "ko": "그들은 군사 예산을 늘리려 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d3f48aa17a": {
+    "examples": [
+      {
+        "jp": "ビクトリア女王は英国の君主だった。",
+        "ko": "빅토리아 여왕은 영국의 군주였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-26de298aa1": {
+    "examples": [
+      {
+        "jp": "群集は人種差別に対して抗議した。",
+        "ko": "군중은 인종차별에 항의했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-069b9a3fc0": {
+    "examples": [
+      {
+        "jp": "根本的な軍縮条約とは一切の軍備と軍隊を禁ずるものである。",
+        "ko": "근본적인 군축 조약이란 모든 군비와 군대를 금지하는 것이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8703a8fa42": {
+    "examples": [
+      {
+        "jp": "それ以来３年が経過した。",
+        "ko": "그 이후로 3년이 지났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e934b6a0ba": {
+    "examples": [
+      {
+        "jp": "彼は我々を警戒しているようだ。",
+        "ko": "그는 우리를 경계하고 있는 것 같다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5eb3025a5c": {
+    "examples": [
+      {
+        "jp": "リズムは軽快でテンポは速く、その曲は若者に好まれている。",
+        "ko": "리듬은 경쾌하고 템포는 빨라서 그 곡은 젊은이들에게 인기가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d07bdd00a7": {
+    "examples": [
+      {
+        "jp": "退職を契機に茶道を始めた。",
+        "ko": "퇴직을 계기로 다도를 시작했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-13ce9c407b": {
+    "examples": [
+      {
+        "jp": "例えば、温度計や気圧計などの計器は器具です。",
+        "ko": "예를 들어 온도계나 기압계 같은 계기는 기구입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c93dff6c1a": {
+    "meaning": "경감 / 줄어듦 / 완화",
+    "examples": [
+      {
+        "jp": "ヨガはストレス軽減に役立つ。",
+        "ko": "요가는 스트레스 완화에 도움이 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d447b34a14": {
+    "examples": [
+      {
+        "jp": "それは昨日の産経新聞に掲載された。",
+        "ko": "그것은 어제 산케이신문에 게재되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-191be01339": {
+    "examples": [
+      {
+        "jp": "形勢は逆転した。",
+        "ko": "형세가 역전되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-65a9516d95": {
+    "examples": [
+      {
+        "jp": "彼は軽率だという評判だった。",
+        "ko": "그는 경솔하다는 평판을 듣고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-04517cb668": {
+    "examples": [
+      {
+        "jp": "言語を知識の形態と考える人もいる。",
+        "ko": "언어를 지식의 한 형태로 보는 사람도 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-beaeaf4c59": {
+    "examples": [
+      {
+        "jp": "それは罪人に対する最も人道的な刑罰ではないか。",
+        "ko": "그것이 죄인에게 가장 인도적인 형벌이 아닐까.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3296476a71": {
+    "examples": [
+      {
+        "jp": "警部、もっと警官を投入できるようになるまでは、事態を表に出さないようにしたまえ。",
+        "ko": "경부, 경찰을 더 투입할 수 있을 때까지는 이 일을 밖으로 드러내지 말게.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-afccc3e42c": {
+    "examples": [
+      {
+        "jp": "私は彼をひどく軽蔑している。",
+        "ko": "나는 그를 몹시 경멸한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-578664e5a2": {
+    "examples": [
+      {
+        "jp": "彼は１人で飛ぶことに慣れていた。そして彼は想像の中で何度もこの経路を飛んでいたのだ。",
+        "ko": "그는 혼자 비행하는 데 익숙했다. 그리고 상상 속에서 이 경로를 여러 번 날아 보았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fc259785af": {
+    "examples": [
+      {
+        "jp": "工場の廃棄物が私達の川を汚すことがある。",
+        "ko": "공장 폐기물이 우리 강을 오염시키기도 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d3c748f3ba": {
+    "examples": [
+      {
+        "jp": "そんな汚らわしい話をするのはやめて。",
+        "ko": "그런 더러운 이야기는 그만해.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8e53bced4f": {
+    "meaning": "극단 / 연극단",
+    "examples": [
+      {
+        "jp": "その劇団は３幕ものの劇を上演した。",
+        "ko": "그 극단은 3막짜리 연극을 공연했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7197c6d07a": {
+    "examples": [
+      {
+        "jp": "あなたの激励の言葉に励まされました。",
+        "ko": "당신의 격려의 말에 힘을 얻었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-914c5e15b1": {
+    "examples": [
+      {
+        "jp": "その部屋のゲストは２０人いた。",
+        "ko": "그 방에는 손님이 20명 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a0f10b94be": {
+    "examples": [
+      {
+        "jp": "何年か前には、結核にかかっていると知らされることは死の宣告を聞くのに等しかった。",
+        "ko": "몇 년 전만 해도 결핵에 걸렸다는 말을 듣는 것은 사형선고를 듣는 것과 같았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-635298ff5d": {
+    "examples": [
+      {
+        "jp": "私は委員会の決議を支持した。",
+        "ko": "나는 위원회의 결의를 지지했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d6fa203e33": {
+    "meaning": "결행 / 계획을 단행함",
+    "examples": [
+      {
+        "jp": "その会社の労働者はストを決行した。",
+        "ko": "그 회사 노동자들은 파업을 결행했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2c50c4ff4a": {
+    "examples": [
+      {
+        "jp": "水素と酸素が結合して水になるのです。",
+        "ko": "수소와 산소가 결합해 물이 됩니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-174eaed3df": {
+    "examples": [
+      {
+        "jp": "その会社は毎年３月に決算をする。",
+        "ko": "그 회사는 매년 3월에 결산을 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c914c38ecd": {
+    "meaning": "월사 / 월 수강료",
+    "examples": [
+      {
+        "jp": "ピアノの月謝ちょうだい。",
+        "ko": "피아노 학원 월 수강료 줘.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8f082e1c23": {
+    "meaning": "결승 / 결승전",
+    "meaningSource": "manual-review"
+  },
+  "oj-02f10efa6a": {
+    "examples": [
+      {
+        "jp": "彼は海水から塩を結晶させて取り出した。",
+        "ko": "그는 바닷물에서 소금을 결정으로 만들어 추출했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-29904e38b1": {
+    "examples": [
+      {
+        "jp": "ボート競技に参加する為に新チームが結成された。",
+        "ko": "보트 경기에 참가하기 위해 새 팀이 결성되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
