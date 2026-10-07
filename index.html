@@ -793,6 +793,7 @@ function finishWordStudy(){
  $("wordMeaning").classList.add("hidden");$("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
 }
 function renderWord(){
+ wordAudioPrefetchRun++;
  const queue=currentWordQueue();
  updateWordUndo();
  if(!queue.length){finishWordStudy();return}
@@ -815,17 +816,36 @@ function renderWord(){
 }
 function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
 
+let wordAudioPrefetchRun=0;
 async function prefetchWordAudio(w){
  if(!w||$("wordSpeakBtn").dataset.word!==w.id)return;
- const status=msg=>{if($("wordSpeakBtn").dataset.word===w.id)$("wordTtsStatus").textContent=msg};
+ const run=++wordAudioPrefetchRun;
+ const stillCurrent=()=>run===wordAudioPrefetchRun&&$("wordSpeakBtn").dataset.word===w.id;
+ const status=msg=>{if(stillCurrent())$("wordTtsStatus").textContent=msg};
  try{
+   // 1) 현재 단어를 최우선으로 준비한다.
    await kokoroGenerate(readingOf(w.w),"jf_alpha",status);
-   for(const ex of w.examples){
-     if($("wordSpeakBtn").dataset.word!==w.id)return;
-     await kokoroGenerate(plain(ex.jp),"jf_alpha",status);
+   if(stillCurrent())status("현재 단어 준비 완료 · 다음 단어를 미리 만드는 중…");
+
+   // 2) 다음 카드들의 '단어 발음'을 먼저 선생성한다.
+   //    예문보다 다음 단어를 우선해 카드가 바뀔 때 생성 대기가 보이지 않게 한다.
+   const upcoming=wordSessionQueue.filter(x=>x&&x.id!==w.id).slice(0,isAppleMobile()?5:8);
+   for(const next of upcoming){
+     await kokoroGenerate(readingOf(next.w),"jf_alpha");
    }
-   if($("wordSpeakBtn").dataset.word===w.id)status((kokoroEngine||kokoroConfig()).label+" · 음성 준비 완료");
- }catch(e){if($("wordSpeakBtn").dataset.word===w.id)status("음성 준비 실패 · 다시 누르면 재시도합니다.")}
+
+   // 3) 사용자가 현재 카드를 읽는 동안 현재 예문도 조용히 준비한다.
+   for(const ex of w.examples){
+     await kokoroGenerate(plain(ex.jp),"jf_alpha");
+   }
+
+   // 4) 남은 오늘 세션의 단어 발음도 계속 백그라운드 캐시한다.
+   const rest=wordSessionQueue.filter(x=>x&&x.id!==w.id&&!upcoming.some(n=>n.id===x.id));
+   for(const next of rest){
+     await kokoroGenerate(readingOf(next.w),"jf_alpha");
+   }
+   if(stillCurrent())status((kokoroEngine||kokoroConfig()).label+" · 오늘 단어 발음 준비 완료");
+ }catch(e){if(stillCurrent())status("음성 준비 실패 · 듣기 버튼으로 다시 시도할 수 있습니다.")}
 }
 async function playWordAudio(w,exampleIndex=null,button=null){
  if(!w)return;
@@ -833,7 +853,9 @@ async function playWordAudio(w,exampleIndex=null,button=null){
  const status=msg=>$("wordTtsStatus").textContent=msg;
  try{
    if(button){button.disabled=true;button.classList.add("loading")}
-   const r=await kokoroGenerate(text,"jf_alpha",status);status("🔊 재생 중 · "+(kokoroEngine||kokoroConfig()).label);
+   const key=kokoroKey(text,"jf_alpha"),alreadyReady=kokoroUrls.has(key);
+   if(!alreadyReady)status("음성을 준비하고 있습니다…");
+   const r=await kokoroGenerate(text,"jf_alpha");status("🔊 재생 중 · "+(kokoroEngine||kokoroConfig()).label);
    await requestKokoroWakeLock();await playKokoroUrl(r.url);status("음성 준비 완료");
  }catch(e){console.error(e);status("음성 재생 실패 · 다시 시도해 주세요.")}
  finally{if(button){button.disabled=false;button.classList.remove("loading")}await releaseKokoroWakeLock()}
