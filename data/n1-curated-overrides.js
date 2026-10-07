@@ -3196,23 +3196,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-d545dfb4f1": {
-    "meaning": "포즈 / 자세 / 잠깐 멈춤",
-    "examples": [
-      {
-        "jp": "写真を撮るためにポーズを取った。",
-        "ko": "사진을 찍기 위해 포즈를 취했다."
-      }
-    ],
+    "meaning": "포즈 / 자세 / 잠시 멈춤",
     "meaningSource": "manual-review"
   },
   "oj-2352843605": {
-    "meaning": "홀 / 큰 방·회관",
-    "examples": [
-      {
-        "jp": "コンサートは市民ホールで開かれる。",
-        "ko": "콘서트는 시민회관에서 열린다."
-      }
-    ],
+    "meaning": "홀 / 회관 / 큰 방",
     "meaningSource": "manual-review"
   },
   "oj-0556bb5bbe": {
@@ -3226,53 +3214,23 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-a81b409958": {
-    "meaning": "말린 빨래 / 널어 둔 세탁물",
-    "examples": [
-      {
-        "jp": "雨が降る前に干し物を取り込んだ。",
-        "ko": "비가 오기 전에 널어 둔 빨래를 걷었다."
-      }
-    ],
+    "meaning": "말리기 위해 널어놓은 빨래 / 말린 물건",
     "meaningSource": "manual-review"
   },
   "oj-f196c171b6": {
-    "meaning": "슬슬 / 조금씩 / 여기저기",
-    "examples": [
-      {
-        "jp": "ぼつぼつ帰る時間になった。",
-        "ko": "슬슬 돌아갈 시간이 됐다."
-      }
-    ],
+    "meaning": "슬슬 / 점차 / 여기저기 조금씩",
     "meaningSource": "manual-review"
   },
   "oj-e80181aca1": {
-    "meaning": "투덜거리다 / 불평하다",
-    "examples": [
-      {
-        "jp": "彼は仕事が多いといつもぼやいている。",
-        "ko": "그는 일이 많다고 늘 투덜거린다."
-      }
-    ],
+    "meaning": "투덜거리다 / 푸념하다 / 불평하다",
     "meaningSource": "manual-review"
   },
   "oj-2d4100b55d": {
-    "meaning": "보양 / 휴양 / 건강 회복",
-    "examples": [
-      {
-        "jp": "温泉地で数日間保養した。",
-        "ko": "온천지에서 며칠간 휴양했다."
-      }
-    ],
+    "meaning": "보양 / 요양 / 휴양",
     "meaningSource": "manual-review"
   },
   "oj-d31295f643": {
-    "meaning": "포리 / 순경·경찰관(옛말)",
-    "examples": [
-      {
-        "jp": "昔の小説には捕吏という語が出てくる。",
-        "ko": "옛 소설에는 ‘포리’라는 말이 나온다."
-      }
-    ],
+    "meaning": "포리 / 옛날의 경찰 관리",
     "meaningSource": "manual-review"
   },
   "oj-f6ece0aafc": {
@@ -3286,43 +3244,26 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-e482d02cda": {
-    "meaning": "본격 / 본래의 형식·정통적인 모습",
-    "examples": [
-      {
-        "jp": "来月から本格的な工事が始まる。",
-        "ko": "다음 달부터 본격적인 공사가 시작된다."
-      }
-    ],
+    "meaning": "본격 / 정식 / 제대로 된 상태",
     "meaningSource": "manual-review"
   },
   "oj-25821d4f0c": {
-    "meaning": "마크 / 표시 / 표식",
+    "meaning": "마크 / 표식 / 기호",
     "examples": [
       {
         "jp": "重要な箇所にマークを付けた。",
-        "ko": "중요한 부분에 표시를 해 두었다."
+        "ko": "중요한 부분에 표시를 해 두었다.",
+        "exampleSource": "manual-review"
       }
     ],
     "meaningSource": "manual-review"
   },
   "oj-c20ba5147f": {
-    "meaning": "권 / 책의 권수",
-    "examples": [
-      {
-        "jp": "この全集は全十巻から成る。",
-        "ko": "이 전집은 총 10권으로 이루어져 있다."
-      }
-    ],
+    "meaning": "권 / 책의 권수를 세는 단위",
     "meaningSource": "manual-review"
   },
   "oj-74601e860d": {
-    "meaning": "당황하다 / 어쩔 줄 모르다",
-    "examples": [
-      {
-        "jp": "突然質問されて少しまごついた。",
-        "ko": "갑자기 질문을 받아 조금 당황했다."
-      }
-    ],
+    "meaning": "당황하다 / 갈피를 못 잡다",
     "meaningSource": "manual-review"
   },
   "oj-32afdf9540": {
@@ -21312,6 +21253,787 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-2ec5748d47": {
     "meaning": "부 / 부문 / 부분 / 책·신문 등의 부수 단위",
+    "meaningSource": "manual-review"
+  },
+  "oj-0214a293b8": {
+    "meaning": "보도 / 보도 내용 / 보도하다",
+    "examples": [
+      {
+        "jp": "新聞はその政治家の死を報道した。",
+        "ko": "신문은 그 정치인의 사망을 보도했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2967145e45": {
+    "meaning": "서두 / 처음 / 시작 부분",
+    "examples": [
+      {
+        "jp": "彼はほんの冒頭部分を書き終えた。",
+        "ko": "그는 겨우 서두 부분만 다 썼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4e4240a247": {
+    "meaning": "폭동 / 소요 / 반란",
+    "examples": [
+      {
+        "jp": "暴動の噂が広まっていた。",
+        "ko": "폭동이 일어났다는 소문이 퍼지고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-966b77c0d5": {
+    "meaning": "포상 / 상 / 보상",
+    "examples": [
+      {
+        "jp": "自然界には褒美もなければ罰もない。",
+        "ko": "자연계에는 상도 벌도 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8f2f3b69ad": {
+    "meaning": "폭풍 / 강풍",
+    "examples": [
+      {
+        "jp": "暴風で私たちの家が倒された。",
+        "ko": "폭풍으로 우리 집이 무너졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c103994f0c": {
+    "meaning": "매장하다 / 묻다 / 세상에서 잊히게 하다",
+    "examples": [
+      {
+        "jp": "これがブレークの葬られている教会です。",
+        "ko": "여기가 블레이크가 묻혀 있는 교회입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-29f6f83ec8": {
+    "meaning": "집어던지다 / 마구 집어넣다",
+    "examples": [
+      {
+        "jp": "彼女はなんでもかんでも引き出しにほうりこんだ。",
+        "ko": "그녀는 이것저것 가리지 않고 서랍에 마구 집어넣었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c3fd7b34c2": {
+    "meaning": "내던지다 / 내쫓다 / 해고하다 / 포기하다",
+    "examples": [
+      {
+        "jp": "彼は家から放り出された。",
+        "ko": "그는 집에서 쫓겨났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-add5c108a6": {
+    "examples": [
+      {
+        "jp": "彼はすべての暴力に強く反対した。",
+        "ko": "그는 모든 폭력에 강하게 반대했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d65feae548": {
+    "meaning": "보온 / 따뜻함 유지",
+    "examples": [
+      {
+        "jp": "USBバスパワーで暖かい飲み物の入ったカップを保温しておくという製品が発売された。",
+        "ko": "USB 전원으로 따뜻한 음료가 든 컵의 온도를 유지하는 제품이 출시되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c161ba7230": {
+    "meaning": "포획 / 생포",
+    "examples": [
+      {
+        "jp": "私たちは、昨日、森に行き、２頭の鹿を捕獲した。",
+        "ko": "우리는 어제 숲에 가서 사슴 두 마리를 포획했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-40373b9997": {
+    "examples": [
+      {
+        "jp": "貴重品は銀行に保管してある。",
+        "ko": "귀중품은 은행에 보관해 두었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6d956e7507": {
+    "meaning": "보급 / 보충 / 공급",
+    "examples": [
+      {
+        "jp": "この薬は活力を補給してくれます。",
+        "ko": "이 약은 활력을 보충해 줍니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-faa9c24081": {
+    "meaning": "보강 / 강화",
+    "examples": [
+      {
+        "jp": "彼らは村を洪水から守るために堤防を補強した。",
+        "ko": "그들은 마을을 홍수로부터 지키기 위해 제방을 보강했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8724bbab50": {
+    "meaning": "모금 / 기금 모으기",
+    "examples": [
+      {
+        "jp": "彼らは慈善募金を始めた。",
+        "ko": "그들은 자선 모금을 시작했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a07de51f3c": {
+    "meaning": "목사 / 성직자",
+    "examples": [
+      {
+        "jp": "彼は牧師になる勉強をしている。",
+        "ko": "그는 목사가 되기 위해 공부하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8f3a807dad": {
+    "meaning": "포경 / 고래잡이",
+    "examples": [
+      {
+        "jp": "国際的批判に直面して捕鯨をやめた国がいくつかある。",
+        "ko": "국제적인 비판에 직면해 포경을 중단한 나라가 몇 곳 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2ad8eb39d1": {
+    "examples": [
+      {
+        "jp": "この保険は何もかもカバーする。",
+        "ko": "이 보험은 모든 것을 보장한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d414f6e1f3": {
+    "examples": [
+      {
+        "jp": "私たちは母校を訪れた。",
+        "ko": "우리는 모교를 방문했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-41f92a40f2": {
+    "meaning": "자랑하다 / 자랑스럽게 여기다",
+    "examples": [
+      {
+        "jp": "私には誇るべきものが何もない。",
+        "ko": "나에게는 자랑할 만한 것이 아무것도 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b775abdd11": {
+    "meaning": "솔기가 터지다 / 꽃봉오리가 벌어지다 / 얼굴이 환해지다",
+    "examples": [
+      {
+        "jp": "彼女のドレスのへりはほころびていた。",
+        "ko": "그녀의 드레스 가장자리 실밥이 터져 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8932970695": {
+    "examples": [
+      {
+        "jp": "その飛行機は補助ロケットを使って離陸した。",
+        "ko": "그 비행기는 보조 로켓을 사용해 이륙했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-65fc20eed5": {
+    "meaning": "보장 / 보증 / 안전 보장",
+    "meaningSource": "manual-review"
+  },
+  "oj-800e05bcf1": {
+    "meaning": "보상 / 손실 보전",
+    "examples": [
+      {
+        "jp": "彼はお金でその事故の補償をした。",
+        "ko": "그는 돈으로 그 사고에 대한 보상을 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-73edd67700": {
+    "examples": [
+      {
+        "jp": "その通りはアスファルトで舗装されている。",
+        "ko": "그 도로는 아스팔트로 포장되어 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d5de1db218": {
+    "meaning": "보충 / 추가 설명",
+    "examples": [
+      {
+        "jp": "彼の説明に何か補足することがありますか。",
+        "ko": "그의 설명에 덧붙일 것이 있습니까?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d5c389a11d": {
+    "examples": [
+      {
+        "jp": "彼はこの墓地に埋葬されている。",
+        "ko": "그는 이 묘지에 묻혀 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-10d587dd95": {
+    "meaning": "발작 / 갑작스러운 병의 증상",
+    "meaningSource": "manual-review"
+  },
+  "oj-f907fc3a9b": {
+    "meaning": "몰수 / 압수",
+    "meaningSource": "manual-review"
+  },
+  "oj-633a98a624": {
+    "meaning": "안도하는 모양 / 한숨 돌리고",
+    "examples": [
+      {
+        "jp": "とにかく、試験が終わってほっとしたよ。",
+        "ko": "아무튼 시험이 끝나서 안심했어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-536520ea92": {
+    "meaning": "포트 / 주전자 / 용기",
+    "examples": [
+      {
+        "jp": "コーヒーがポットの中で泡立った。",
+        "ko": "포트 안의 커피에서 거품이 일었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a94e911306": {
+    "examples": [
+      {
+        "jp": "赤ん坊のほっぺたはビロードのような手触りがする。",
+        "ko": "아기의 뺨은 벨벳처럼 부드럽다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cf530cd84a": {
+    "examples": [
+      {
+        "jp": "欲の深さが彼を没落させた。",
+        "ko": "그의 지나친 욕심이 그를 몰락시켰다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ce141a5e31": {
+    "meaning": "보모 / 보육 종사자(옛 표현)",
+    "examples": [
+      {
+        "jp": "息子の保育園の保母さんにクレームをつけたいと思っています。",
+        "ko": "아들이 다니는 보육원의 보모에게 항의하고 싶습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ea5ad26c76": {
+    "meaning": "희미해지다 / 흐릿해지다",
+    "examples": [
+      {
+        "jp": "テレビの画像はぼやけて見えた。",
+        "ko": "TV 화면이 흐릿하게 보였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f7b704e228": {
+    "meaning": "포로 / 전쟁 포로",
+    "meaningSource": "manual-review"
+  },
+  "oj-8abbf74882": {
+    "meaning": "멸망하다 / 사라지다 / 망하다",
+    "examples": [
+      {
+        "jp": "肉体は滅びるが霊魂は不滅である。",
+        "ko": "육체는 사라지지만 영혼은 불멸이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-eaf04b47de": {
+    "meaning": "멸망시키다 / 파괴하다 / 망치다",
+    "examples": [
+      {
+        "jp": "核兵器はわが地球を滅ぼすと思う。",
+        "ko": "핵무기는 지구를 파멸시킬 수 있다고 생각한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2dc4fc382a": {
+    "meaning": "본관 / 주요 건물",
+    "examples": [
+      {
+        "jp": "別館は本館の北側にある。",
+        "ko": "별관은 본관 북쪽에 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-97b08ab1d6": {
+    "meaning": "진심 / 진지함 / 본심",
+    "meaningSource": "manual-review"
+  },
+  "oj-558167f601": {
+    "examples": [
+      {
+        "jp": "親切心は礼儀の本質である。",
+        "ko": "친절한 마음은 예의의 본질이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a191aa054e": {
+    "meaning": "본체 / 실체 / 주된 몸체",
+    "examples": [
+      {
+        "jp": "なんであれ物事の本体を捕らえる事が肝心だ。",
+        "ko": "무엇이든 사물의 본체를 파악하는 것이 중요하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b2252b99e0": {
+    "meaning": "본심 / 진짜 속마음",
+    "examples": [
+      {
+        "jp": "彼は本音を出した。",
+        "ko": "그는 본심을 드러냈다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dc58a8f7d2": {
+    "examples": [
+      {
+        "jp": "動物は本能のままに振る舞う。",
+        "ko": "동물은 본능대로 행동한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-832d20702f": {
+    "meaning": "본고장 / 산지 / 중심지",
+    "examples": [
+      {
+        "jp": "本場のカフワ・アラビーヤを飲んでみたい。",
+        "ko": "본고장의 아랍 커피를 마셔 보고 싶다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2f8982fd28": {
+    "meaning": "본문 / 본문 내용",
+    "examples": [
+      {
+        "jp": "この本は本文の部分はそんなに多くない。",
+        "ko": "이 책은 본문 분량이 그렇게 많지 않다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8da39971fe": {
+    "examples": [
+      {
+        "jp": "ガリレオ・ガリレイって本名？",
+        "ko": "갈릴레오 갈릴레이가 본명이야?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e7ecb4b0a9": {
+    "meaning": "장 / 매 / 얇고 납작한 물건을 세는 단위",
+    "meaningSource": "manual-review"
+  },
+  "oj-5e72c71c76": {
+    "meaning": "매장 / 땅속에 묻혀 있음",
+    "examples": [
+      {
+        "jp": "彼らは埋蔵された宝物を求めて砂漠を探検した。",
+        "ko": "그들은 매장된 보물을 찾아 사막을 탐험했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e8815c7d25": {
+    "meaning": "춤추다 / 흩날리다 / 빙빙 돌다",
+    "examples": [
+      {
+        "jp": "木の葉が庭でくるくる舞っていた。",
+        "ko": "나뭇잎이 정원에서 빙글빙글 흩날리고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c4991b3b08": {
+    "meaning": "바로 위 / 정수리 위",
+    "examples": [
+      {
+        "jp": "私の寝室はちょうどこの真上にある。",
+        "ko": "내 침실은 바로 이 위에 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7b855940b0": {
+    "meaning": "예매 / 선판매",
+    "examples": [
+      {
+        "jp": "予約は全て前売りである。",
+        "ko": "예약은 모두 예매 방식이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-48da2af325": {
+    "meaning": "서두 / 전제 설명 / 본론 전의 말",
+    "examples": [
+      {
+        "jp": "彼は前置きとして、すこし話した。",
+        "ko": "그는 본론에 앞서 몇 마디 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-363e220d56": {
+    "meaning": "미리 / 사전에",
+    "examples": [
+      {
+        "jp": "私は前もってあなたに知らせる。",
+        "ko": "나는 미리 당신에게 알리겠다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4153c37df5": {
+    "meaning": "맡기다 / 위임하다",
+    "examples": [
+      {
+        "jp": "彼は重大な使命を任された。",
+        "ko": "그는 중대한 임무를 맡았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4477736693": {
+    "meaning": "이기다 / 패배시키다",
+    "examples": [
+      {
+        "jp": "ヤンキースがドジャースを負かした。",
+        "ko": "양키스가 다저스를 이겼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4e9975ebd2": {
+    "meaning": "뒤섞이다 / 정신이 팔려 잊다 / 틈에 섞여들다",
+    "examples": [
+      {
+        "jp": "忙しさに紛れて、ごぶさたしておりました。",
+        "ko": "바쁜 탓에 그동안 연락드리지 못했습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f73eba62cf": {
+    "examples": [
+      {
+        "jp": "冷たい牛乳は好きだけど、温めた牛乳はあまり好きじゃない。あの白い膜と匂いが苦手なんだ。",
+        "ko": "차가운 우유는 좋아하지만 데운 우유는 별로 좋아하지 않는다. 그 하얀 막과 냄새가 싫다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f1d383593c": {
+    "meaning": "계속 ~해대다 / 마구 ~하다",
+    "examples": [
+      {
+        "jp": "株主たちはもうけまくっています。",
+        "ko": "주주들은 계속 큰돈을 벌고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9d2c461a37": {
+    "meaning": "진심 / 성심 / 진정성",
+    "examples": [
+      {
+        "jp": "彼女は彼に真心こめて感謝しました。",
+        "ko": "그녀는 진심을 담아 그에게 감사했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ef7ac8431d": {
+    "meaning": "진심 / 성실 / 진실",
+    "examples": [
+      {
+        "jp": "誠を尽くして対応する。",
+        "ko": "성의를 다해 대응한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3e5a78ba5b": {
+    "meaning": "진심으로 / 참으로 / 정말로",
+    "examples": [
+      {
+        "jp": "ご親切誠にありがとうございます。",
+        "ko": "친절을 베풀어 주셔서 진심으로 감사합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3a292b13b7": {
+    "meaning": "틀림없이 / 바로 / 확실히",
+    "examples": [
+      {
+        "jp": "彼はまさしく時代の子であった。",
+        "ko": "그는 틀림없이 그 시대의 산물이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2864340a00": {
+    "meaning": "더 나음 / 그나마 나음 / 증가분",
+    "examples": [
+      {
+        "jp": "どちらかと言えば、こちらの方がましだ。",
+        "ko": "굳이 고르자면 이쪽이 그나마 낫다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fcb506d21f": {
+    "meaning": "섞다 / 끼워 넣다 / 교차시키다",
+    "examples": [
+      {
+        "jp": "その詩は韻文に散文をまじえている。",
+        "ko": "그 시는 운문에 산문을 섞어 놓았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2964d84ae8": {
+    "meaning": "바로 아래 / 직하",
+    "examples": [
+      {
+        "jp": "私の部屋はこの真下です。",
+        "ko": "내 방은 바로 이 아래입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9e08dfb738": {
+    "meaning": "교차하다 / 서로 섞이다 / 교제하다",
+    "examples": [
+      {
+        "jp": "これらの線は直角に交わる。",
+        "ko": "이 선들은 직각으로 교차한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5f0a12f21a": {
+    "examples": [
+      {
+        "jp": "彼は麻酔をかけられた。",
+        "ko": "그는 마취를 받았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b00b3d1d04": {
+    "meaning": "매스컴 / 대중매체",
+    "examples": [
+      {
+        "jp": "マスコミが報道しなかったのはなぜ？",
+        "ko": "대중매체가 보도하지 않은 이유는 무엇인가?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-994b68956c": {
+    "meaning": "가랑이 / 사타구니 / 허벅지",
+    "meaningSource": "manual-review"
+  },
+  "oj-b29a4ed96a": {
+    "meaning": "걸치다 / 두 지역·기간에 걸쳐 이어지다 / 올라타다",
+    "examples": [
+      {
+        "jp": "工事は二か月にまたがる予定だ。",
+        "ko": "공사는 두 달에 걸쳐 진행될 예정이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-11c19333fc": {
+    "meaning": "눈 깜빡임 / 반짝임",
+    "examples": [
+      {
+        "jp": "瞬きする間に消えた。",
+        "ko": "눈 깜짝할 사이에 사라졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-60f77da4d6": {
+    "meaning": "약속해 만나기 / 만남 약속",
+    "meaningSource": "manual-review"
+  },
+  "oj-4984694e6d": {
+    "meaning": "틀리다 / 잘못하다 / 착각하다",
+    "examples": [
+      {
+        "jp": "番号を間違っていると思います。",
+        "ko": "번호를 잘못 아신 것 같습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-12610e01b7": {
+    "meaning": "몹시 기다려지는 / 손꼽아 기다리는",
+    "examples": [
+      {
+        "jp": "パーティーが待ち遠しくて仕方ない。",
+        "ko": "파티가 너무 기다려져서 견딜 수가 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a9c1579160": {
+    "meaning": "손꼽아 기다리다 / 학수고대하다",
+    "examples": [
+      {
+        "jp": "これを待ち望んでいました。",
+        "ko": "이걸 손꼽아 기다리고 있었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-24cf50fa20": {
+    "meaning": "제각각 / 각기 다름 / 서로 엇갈림",
+    "examples": [
+      {
+        "jp": "その件について彼らの意見はまちまちだ。",
+        "ko": "그 일에 대한 그들의 의견은 제각각이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a6b638592c": {
+    "meaning": "말기 / 마지막 단계",
     "meaningSource": "manual-review"
   }
 };
