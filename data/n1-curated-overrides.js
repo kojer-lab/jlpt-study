@@ -1765,8 +1765,12 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "시들다 / 쭈글쭈글해지다",
     "examples": [
       {
-        "jp": "野菜を冷蔵庫に入れ忘れて萎びてしまった。",
+        "jp": "<span class=\"furi\" data-r=\"やさい\">野菜</span>を<span class=\"furi\" data-r=\"れいぞうこ\">冷蔵庫</span>に<span class=\"furi\" data-r=\"い\">入</span>れ<span class=\"furi\" data-r=\"わす\">忘</span>れて<span class=\"furi\" data-r=\"しな\">萎</span>びてしまった。",
         "ko": "채소를 냉장고에 넣는 것을 잊어 시들어 버렸다."
+      },
+      {
+        "jp": "<span class=\"furi\" data-r=\"みず\">水</span>をやらなかったので、<span class=\"furi\" data-r=\"はな\">花</span>がすっかり<span class=\"furi\" data-r=\"しな\">萎</span>びてしまった。",
+        "ko": "물을 주지 않아서 꽃이 완전히 시들어 버렸다."
       }
     ],
     "meaningSource": "manual-review"
@@ -3941,7 +3945,7 @@ window.N1_CURATED_OVERRIDES={
     ],
     "meaningSource": "manual-review"
   },
-"oj-f9d361f995": {
+  "oj-f9d361f995": {
     "meaning": "상(相) / 서로·함께라는 뜻을 더하는 말",
     "examples": [
       {
@@ -4331,7 +4335,7 @@ window.N1_CURATED_OVERRIDES={
     ],
     "meaningSource": "manual-review"
   },
-"oj-74fba72b6f": {
+  "oj-74fba72b6f": {
     "meaning": "허무하다 / 어이없이 싱겁다 / 너무 빨리 끝나다",
     "examples": [
       {
@@ -4827,6 +4831,48 @@ window.N1_CURATED_OVERRIDES={
       {
         "jp": "ほのかな<span class=\"furi\" data-r=\"ひかり\">光</span>が<span class=\"furi\" data-r=\"おれ\">俺</span>のねじれた<span class=\"furi\" data-r=\"しかい\">視界</span>を<span class=\"furi\" data-r=\"げんえい\">幻影</span>に<span class=\"furi\" data-r=\"か\">変</span>えてゆく。",
         "ko": "희미한 빛이 뒤틀린 내 시야를 환영으로 바꿔 간다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-79e98bddbd": {
+    "meaning": "변명 / 핑계",
+    "examples": [
+      {
+        "jp": "もう<span class=\"furi\" data-r=\"い\">言</span>い<span class=\"furi\" data-r=\"わけ\">訳</span>なんか<span class=\"furi\" data-r=\"き\">聞</span>きたくないね。",
+        "ko": "더는 변명 같은 건 듣고 싶지 않아."
+      },
+      {
+        "jp": "<span class=\"furi\" data-r=\"ちこく\">遅刻</span>した<span class=\"furi\" data-r=\"りゆう\">理由</span>を<span class=\"furi\" data-r=\"き\">聞</span>かれて、<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"い\">言</span>い<span class=\"furi\" data-r=\"わけ\">訳</span>ばかりしていた。",
+        "ko": "지각한 이유를 묻자 그는 변명만 늘어놓고 있었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8d4eb1d5d4": {
+    "meaning": "동시에 / 또한 / 게다가",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"しじん\">詩人</span>であり、かつ<span class=\"furi\" data-r=\"しょうせつか\">小説家</span>だ。",
+        "ko": "그는 시인이자 동시에 소설가다."
+      },
+      {
+        "jp": "この<span class=\"furi\" data-r=\"ほうほう\">方法</span>は<span class=\"furi\" data-r=\"かんたん\">簡単</span>で、かつ<span class=\"furi\" data-r=\"こうか\">効果</span>も<span class=\"furi\" data-r=\"たか\">高</span>い。",
+        "ko": "이 방법은 간단하면서도 효과도 높다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-adb0af83d2": {
+    "meaning": "산부인과",
+    "examples": [
+      {
+        "jp": "<span class=\"furi\" data-r=\"さいきん\">最近</span>、<span class=\"furi\" data-r=\"さんふじんか\">産婦人科</span>の<span class=\"furi\" data-r=\"いし\">医師</span><span class=\"furi\" data-r=\"ぶそく\">不足</span>が<span class=\"furi\" data-r=\"もんだい\">問題</span>になっている。",
+        "ko": "최근 산부인과 의사 부족이 문제가 되고 있다."
+      },
+      {
+        "jp": "<span class=\"furi\" data-r=\"にんしん\">妊娠</span>が<span class=\"furi\" data-r=\"わ\">分</span>かって、<span class=\"furi\" data-r=\"ちか\">近</span>くの<span class=\"furi\" data-r=\"さんふじんか\">産婦人科</span>を<span class=\"furi\" data-r=\"じゅしん\">受診</span>した。",
+        "ko": "임신 사실을 알고 가까운 산부인과에서 진료를 받았다."
       }
     ],
     "meaningSource": "manual-review"
