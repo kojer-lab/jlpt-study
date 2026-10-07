@@ -380,6 +380,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-daily-news.js"></script>
 <script src="data/n1-extra-listening.js"></script>
 <script src="data/n1-curated-overrides.js?v=20261007-1518"></script>
+<script src="data/n1-second-examples-1.js?v=20261007-b01"></script>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -852,6 +853,19 @@ for(const w of words){
  if(o.meaning)w.meaning=o.meaning;
  if(Array.isArray(o.examples))w.examples=o.examples;
  if(o.meaningSource)w.meaningSource=o.meaningSource;
+}
+const secondExampleBanks=[window.N1_SECOND_EXAMPLES_1||{}];
+for(const w of words){
+ if(!Array.isArray(w.examples))w.examples=[];
+ if(w.examples.length>=2)continue;
+ for(const bank of secondExampleBanks){
+  const ex=bank[w.id];
+  if(!ex)continue;
+  const jp=plain(ex.jp||"");
+  const duplicate=w.examples.some(x=>plain(x.jp||"")===jp);
+  if(!duplicate)w.examples.push({jp:ex.jp,ko:ex.ko,exampleSource:"manual-second"});
+  if(w.examples.length>=2)break;
+ }
 }
 const wordById=new Map(words.map(w=>[w.id,w]));
 function furiganaParts(surface,reading){
