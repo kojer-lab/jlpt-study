@@ -14932,5 +14932,709 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-a702137b8a": {
+    "meaning": "퇴화 / 기능·형태가 쇠퇴함",
+    "examples": [
+      {
+        "jp": "人類は生態系の退化を防ぐことができるだろうか？",
+        "ko": "인류는 생태계의 퇴화를 막을 수 있을까?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-de963dc33f": {
+    "examples": [
+      {
+        "jp": "彼は体格が良い。",
+        "ko": "그는 체격이 좋다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-608306d673": {
+    "meaning": "퇴학 / 학교를 그만둠",
+    "examples": [
+      {
+        "jp": "彼は十七歳で高校を退学した。",
+        "ko": "그는 17살에 고등학교를 그만뒀다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2e11e80e5f": {
+    "meaning": "큰돈 / 거액",
+    "meaningSource": "manual-review"
+  },
+  "oj-175e7d10fb": {
+    "examples": [
+      {
+        "jp": "彼は従業員によい待遇をしている。",
+        "ko": "그는 종업원들을 좋은 조건으로 대우하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1b2f621b2a": {
+    "examples": [
+      {
+        "jp": "経営側と労働者側との対決があるでしょう。",
+        "ko": "경영진과 노동자 측의 대결이 있을 것입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-755114f611": {
+    "examples": [
+      {
+        "jp": "私は彼に対抗して入札した。",
+        "ko": "나는 그와 경쟁해 입찰했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d1273294f7": {
+    "meaning": "퇴치 / 없애 버림",
+    "examples": [
+      {
+        "jp": "彼はありを退治しようと思った。",
+        "ko": "그는 개미를 퇴치하려고 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1be293861f": {
+    "meaning": "대중 / 일반 사람들",
+    "examples": [
+      {
+        "jp": "その問題は大衆を当惑させた。",
+        "ko": "그 문제는 대중을 당혹스럽게 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-822df1580e": {
+    "examples": [
+      {
+        "jp": "彼女はストレスに対処できない。",
+        "ko": "그녀는 스트레스에 대처하지 못한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ee0ad82b09": {
+    "examples": [
+      {
+        "jp": "彼はしつこく退職を迫られました。",
+        "ko": "그는 끈질기게 퇴직을 강요받았습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-714f782649": {
+    "meaning": "태세 / 준비된 상태",
+    "examples": [
+      {
+        "jp": "ヤンキースは優勝へ独走態勢を整えている。",
+        "ko": "양키스는 우승을 향해 독주할 태세를 갖추고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2ed30bb458": {
+    "examples": [
+      {
+        "jp": "私たちは老人と楽しく対談した。",
+        "ko": "우리는 노인과 즐겁게 이야기를 나눴다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6fab55f8fd": {
+    "examples": [
+      {
+        "jp": "すべての人は対等の権利を有する。",
+        "ko": "모든 사람은 동등한 권리를 가진다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ec37aba7e2": {
+    "examples": [
+      {
+        "jp": "その本のタイトルは何ですか。",
+        "ko": "그 책의 제목은 무엇인가요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5fe58f6863": {
+    "meaning": "엉망 / 망침 / 쓸모없게 됨",
+    "examples": [
+      {
+        "jp": "この赤色で柄全体がだいなしだ。",
+        "ko": "이 빨간색 때문에 무늬 전체가 망가졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b8d950d3f0": {
+    "meaning": "체납 / 납부가 밀림",
+    "examples": [
+      {
+        "jp": "料金滞納で電話を止められた。",
+        "ko": "요금을 체납해서 전화가 끊겼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f2db543159": {
+    "examples": [
+      {
+        "jp": "空と山の対比が鮮烈だ。",
+        "ko": "하늘과 산의 대비가 선명하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3a9abb8ed5": {
+    "examples": [
+      {
+        "jp": "彼女はタイピストの職を得た。",
+        "ko": "그녀는 타이피스트 일자리를 얻었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1fc733c113": {
+    "meaning": "상당히 / 꽤 / 대부분",
+    "examples": [
+      {
+        "jp": "私は仕事をたいぶためてしまった。",
+        "ko": "나는 일을 꽤 많이 밀려 버렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-699d51dfa0": {
+    "meaning": "대변 / 기하학에서 마주 보는 변",
+    "examples": [
+      {
+        "jp": "長方形の対辺は平行である。",
+        "ko": "직사각형의 마주 보는 변은 평행하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0271585729": {
+    "meaning": "대변 / 남을 대신해 말함",
+    "examples": [
+      {
+        "jp": "彼女は家のない人々の代弁をした。",
+        "ko": "그녀는 집 없는 사람들을 대신해 목소리를 냈다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a707d72877": {
+    "examples": [
+      {
+        "jp": "病院で大便の検査をした。",
+        "ko": "병원에서 대변 검사를 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8edd0be676": {
+    "meaning": "대망 / 오래 기다리며 바람",
+    "examples": [
+      {
+        "jp": "残念ながら待望の試合は中止せざるを得なかった。",
+        "ko": "유감스럽게도 기대하던 경기는 취소할 수밖에 없었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0d5bf3cdac": {
+    "examples": [
+      {
+        "jp": "台本に目を通しておいてください。",
+        "ko": "대본을 미리 읽어 두세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-adad28a5c4": {
+    "examples": [
+      {
+        "jp": "PC内部のタイマー用ボタン電池が切れた。",
+        "ko": "PC 내부 타이머용 버튼 전지가 다 됐다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f332f3e366": {
+    "meaning": "적절한 시기의 / 시의적절한 / 야구의 적시타",
+    "examples": [
+      {
+        "jp": "もし彼のタイムリーヒットがなかったら、私たちのチームは試合に負けていただろう。",
+        "ko": "그의 적시타가 없었다면 우리 팀은 경기에 졌을 것이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8d0e3e599c": {
+    "examples": [
+      {
+        "jp": "私はタイヤの跡を見つけた。",
+        "ko": "나는 타이어 자국을 발견했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fad025add1": {
+    "examples": [
+      {
+        "jp": "この箱はテーブルの代用となる。",
+        "ko": "이 상자는 테이블 대신 쓸 수 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7c8c318865": {
+    "examples": [
+      {
+        "jp": "彼は体力をすべて使い果たした。",
+        "ko": "그는 체력을 모두 소진했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-66feace6f2": {
+    "examples": [
+      {
+        "jp": "屋根から落ちてきたタイルは粉々に砕けた。",
+        "ko": "지붕에서 떨어진 타일은 산산조각 났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c119cc0486": {
+    "meaning": "대화 / 서로 의견을 주고받음",
+    "examples": [
+      {
+        "jp": "外交対話のおかげでその紛争に終止符を打つ事が出来た。",
+        "ko": "외교적 대화 덕분에 그 분쟁을 끝낼 수 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8c66ef9335": {
+    "examples": [
+      {
+        "jp": "税制改革への圧力が高まっている。",
+        "ko": "세제 개혁을 요구하는 압력이 높아지고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-63f8921eaf": {
+    "meaning": "모닥불 / 야외에서 피운 불",
+    "examples": [
+      {
+        "jp": "彼らはたき火の側に座りました。",
+        "ko": "그들은 모닥불 옆에 앉았습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-60c76df858": {
+    "examples": [
+      {
+        "jp": "その知らせは彼にとって打撃だった。",
+        "ko": "그 소식은 그에게 큰 타격이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6ab801e3b9": {
+    "meaning": "졸작 / 형편없는 작품",
+    "examples": [
+      {
+        "jp": "『トムとメアリー』は本当に救いようのない駄作だった。",
+        "ko": "『톰과 메리』는 정말 구제할 수 없을 정도의 졸작이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cc5f0dfb05": {
+    "examples": [
+      {
+        "jp": "足し算は好きだけど引き算は嫌いだ。",
+        "ko": "덧셈은 좋아하지만 뺄셈은 싫다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4c40ca8dfd": {
+    "meaning": "다수결 / 다수의 의견으로 결정함",
+    "examples": [
+      {
+        "jp": "多数決原理が民主主義の根本原則だ。",
+        "ko": "다수결 원리는 민주주의의 기본 원칙이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2b95723a89": {
+    "meaning": "떠다니다 / 감돌다",
+    "examples": [
+      {
+        "jp": "そのボートは大海を漂っていた。",
+        "ko": "그 보트는 대양을 떠다니고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e39921582a": {
+    "examples": [
+      {
+        "jp": "昨日彼がぶらっと立ち寄った。",
+        "ko": "어제 그가 불쑥 들렀다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f056b82abe": {
+    "meaning": "끊다 / 단절하다 / 끊어 버리다",
+    "examples": [
+      {
+        "jp": "あの国は近隣諸国との外交関係を絶った。",
+        "ko": "그 나라는 주변국과의 외교 관계를 끊었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1fd73d0ab0": {
+    "meaning": "능숙함 / 건강함",
+    "examples": [
+      {
+        "jp": "彼女はフランス語が達者だ。",
+        "ko": "그녀는 프랑스어에 능숙하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cf719aaae7": {
+    "examples": [
+      {
+        "jp": "何とかそこから脱出した。",
+        "ko": "어떻게든 그곳에서 탈출했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dc401342c8": {
+    "meaning": "벗어나다 / 탈출하다",
+    "examples": [
+      {
+        "jp": "あの会社は赤字を脱した。",
+        "ko": "그 회사는 적자에서 벗어났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-686d8759b3": {
+    "meaning": "단지 / 겨우 / 고작",
+    "examples": [
+      {
+        "jp": "この人形はたった６０セントです。",
+        "ko": "이 인형은 고작 60센트입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bbb456d788": {
+    "examples": [
+      {
+        "jp": "君は直ちにクラブを脱退したほうがよい。",
+        "ko": "너는 즉시 클럽을 탈퇴하는 편이 좋다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-effb9aa394": {
+    "meaning": "귀하다 / 소중하다 / 존귀하다",
+    "examples": [
+      {
+        "jp": "愛より尊い物はない。",
+        "ko": "사랑보다 소중한 것은 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ee58f26720": {
+    "meaning": "존중하다 / 귀하게 여기다",
+    "examples": [
+      {
+        "jp": "我々は時間を守ることを尊ぶ。",
+        "ko": "우리는 시간을 지키는 것을 중요하게 여긴다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a6c7a41684": {
+    "meaning": "방패 / 방패막이 / 구실",
+    "examples": [
+      {
+        "jp": "盾の両面を見よ。",
+        "ko": "방패의 양면을 보라.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2fb15f5d80": {
+    "meaning": "겉으로 내세우는 원칙 / 공식적 입장",
+    "examples": [
+      {
+        "jp": "アメリカも本音と建前を使い分ける国だ。",
+        "ko": "미국도 속마음과 겉으로 내세우는 입장을 구분해 쓰는 나라다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-18597d193c": {
+    "meaning": "타동사",
+    "examples": [
+      {
+        "jp": "動詞には目的語をとらない自動詞と、目的語をとる他動詞があります。",
+        "ko": "동사에는 목적어를 취하지 않는 자동사와 목적어를 취하는 타동사가 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cb1e6d49fa": {
+    "meaning": "설령 / 비록 ~하더라도",
+    "examples": [
+      {
+        "jp": "たとえ両親が反対しても私は留学したい。",
+        "ko": "설령 부모님이 반대해도 나는 유학하고 싶다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1ad79e658f": {
+    "meaning": "겨우 도착하다 / 헤매다 끝에 도착하다",
+    "examples": [
+      {
+        "jp": "私達はついに頂上へたどり着いた。",
+        "ko": "우리는 마침내 정상에 도착했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-46d9eb73dd": {
+    "examples": [
+      {
+        "jp": "彼女はだぶだぶの上着を着ている。",
+        "ko": "그녀는 헐렁한 상의를 입고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-13cfbf92f0": {
+    "meaning": "겹치다 / 중복되다 / 유급하다",
+    "examples": [
+      {
+        "jp": "祭日が日曜にダブると月曜が休みになる。",
+        "ko": "공휴일이 일요일과 겹치면 월요일이 휴일이 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-19edf83342": {
+    "meaning": "매우 바쁨 / 다망함",
+    "examples": [
+      {
+        "jp": "たとえ多忙でも彼は来るだろう。",
+        "ko": "아무리 바빠도 그는 올 것이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8ddba4675b": {
+    "meaning": "주시다 / 하사하다(고어·높임말)",
+    "examples": [
+      {
+        "jp": "神、初めに天と地を創り給えり。",
+        "ko": "신은 태초에 하늘과 땅을 창조하셨다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-692bfa601e": {
+    "meaning": "고임 / 모임 / 고인 것",
+    "examples": [
+      {
+        "jp": "雨のあと、道路に水溜まりができた。",
+        "ko": "비가 온 뒤 도로에 물웅덩이가 생겼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-da6e6e95fb": {
+    "meaning": "베풀어 주시다 / 하사하시다(겸양 표현)",
+    "examples": [
+      {
+        "jp": "浅学非才の私ではありますが、何とぞ皆様のお力を賜りたく、ここにお願い申し上げる次第です。",
+        "ko": "학식도 재능도 부족한 저이지만 부디 여러분의 힘을 빌리고자 이렇게 부탁드립니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-caded48b64": {
+    "examples": [
+      {
+        "jp": "体面を保つために行った。",
+        "ko": "체면을 유지하기 위해 갔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b70211c5e0": {
+    "examples": [
+      {
+        "jp": "話題は多様多種だった。",
+        "ko": "화제는 매우 다양했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0edcf936db": {
+    "meaning": "~투성이 / ~가 가득함(부정적 뉘앙스)",
+    "meaningSource": "manual-review"
+  },
+  "oj-d3809a260e": {
+    "examples": [
+      {
+        "jp": "彼の服からしずくが垂れていた。",
+        "ko": "그의 옷에서 물방울이 떨어지고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9ce64c5023": {
+    "meaning": "연예인 / 방송인 / 탤런트",
+    "examples": [
+      {
+        "jp": "あのタレントはひっぱりだこである。",
+        "ko": "저 연예인은 여기저기서 찾는 인기인이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-789cb27c85": {
+    "meaning": "한탄 / 슬픔",
+    "examples": [
+      {
+        "jp": "彼は親友の死を嘆き悲しんだ。",
+        "ko": "그는 친한 친구의 죽음을 슬퍼하며 한탄했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-606b4ac32d": {
+    "examples": [
+      {
+        "jp": "ねじ、てこ、くさび、滑車などは単一機械と呼ばれる。",
+        "ko": "나사, 지레, 쐐기, 도르래 등은 단순 기계라고 불린다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-873a4f5e09": {
+    "examples": [
+      {
+        "jp": "詩歌とは、詩や短歌のことです。",
+        "ko": "시가란 시와 단가를 말합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fe3835d1e1": {
+    "meaning": "성미가 급함 / 다혈질",
+    "examples": [
+      {
+        "jp": "彼の短気は手に負えない。",
+        "ko": "그의 급한 성미는 감당하기 어렵다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
