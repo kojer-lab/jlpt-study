@@ -936,7 +936,12 @@ for(const w of words){
 const wordById=new Map(words.map(w=>[w.id,w]));
 const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{}];
 const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
-function wordBreakdownFor(w){return w?wordBreakdowns[w.id]||null:null}
+const wordBreakdownBySurface=new Map();
+for(const w of words){
+ const d=wordBreakdowns[w.id],surface=plain(w.w);
+ if(d&&surface&&!wordBreakdownBySurface.has(surface))wordBreakdownBySurface.set(surface,d);
+}
+function wordBreakdownFor(w){return w?(wordBreakdowns[w.id]||wordBreakdownBySurface.get(plain(w.w))||null):null}
 function breakdownEsc(s){return escapeExampleText(String(s??""))}
 function breakdownInnerHTML(d,detailOpen=false){
  if(!d)return "";
