@@ -13,6 +13,7 @@ const baseWords=vm.runInContext(`(()=>{const F=(b,r)=>'<span class="furi" data-r
 // Any future data/n1-extra-words-*.js file is included without editing this script.
 const dataFiles=(await readdir("data"))
   .filter(name=>/^n1-extra-words-.*\.js$/.test(name))
+  .filter(name=>name!=="n1-extra-words-openjlpt.js")
   .sort();
 
 const extraWords=[];
