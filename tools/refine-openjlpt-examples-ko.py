@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import html
 import re
 import sys
 import time
@@ -61,6 +62,14 @@ def dump_js_array(path, var_name, rows):
 
 def normalize(s):
     return re.sub(r"\s+", " ", str(s or "")).strip()
+
+def mark_headword(ja, word, reading):
+    safe = html.escape(normalize(ja))
+    safe_word = html.escape(normalize(word))
+    if not safe_word or not reading or word == reading or not re.search(r"[一-龯々]", word):
+        return safe
+    tag = f'<span class="furi" data-r="{html.escape(normalize(reading))}">{safe_word}</span>'
+    return safe.replace(safe_word, tag, 1)
 
 def furi_html(s):
     if not s:
@@ -188,9 +197,10 @@ def main():
         word = normalize((src or {}).get("word") or row.get("w"))
         result = search_results.get(word)
         if result:
+            reading = normalize((src or {}).get("reading") or row.get("r"))
             row["examples"] = [{
-                "jp": result["ja"],
-                "ko": result["ko"],
+                "jp": mark_headword(result["ja"], word, reading),
+                "ko": html.escape(normalize(result["ko"])),
                 "tatoebaId": result.get("tatoeba_id"),
                 "exampleSource": "Tatoeba-ko-search",
             }]
