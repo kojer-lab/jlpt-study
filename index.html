@@ -1799,7 +1799,7 @@ function updateSyncUI(){
 function mergeStudyStates(a,b){
  a=normalizeState(a);b=normalizeState(b);const out=freshState();
  out.solved=Math.max(a.solved,b.solved);out.correct=Math.max(a.correct,b.correct);
- const sa=a.settings||{dailyNewLimit:10,showWordImages:true,updatedAt:0},sb=b.settings||{dailyNewLimit:10,showWordImages:true,updatedAt:0};out.settings=Number(sa.updatedAt||0)>=Number(sb.updatedAt||0)?sa:sb;
+ const sa=a.settings||{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},sb=b.settings||{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0};out.settings=Number(sa.updatedAt||0)>=Number(sb.updatedAt||0)?sa:sb;
  const da=a.dailyNew||{date:"",ids:[],updatedAt:0},db=b.dailyNew||{date:"",ids:[],updatedAt:0};out.dailyNew=Number(da.updatedAt||0)>=Number(db.updatedAt||0)?da:db;
  out.stars={};const starIds=new Set([...Object.keys(a.stars||{}),...Object.keys(b.stars||{})]);starIds.forEach(id=>{const x=a.stars?.[id],y=b.stars?.[id];if(!x)out.stars[id]=y;else if(!y)out.stars[id]=x;else out.stars[id]=Number(x.updatedAt||0)>=Number(y.updatedAt||0)?x:y});
  const ids=new Set([...Object.keys(a.srs||{}),...Object.keys(b.srs||{})]);
