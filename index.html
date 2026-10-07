@@ -376,9 +376,9 @@ let kokoroModulePromise=null,kokoroTTS=null,kokoroEngine=null,kokoroDbPromise=nu
 const kokoroUrls=new Map(),kokoroInflight=new Map();
 function isAppleMobile(){return /iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)}
 function kokoroConfig(){
- if(isAppleMobile()&&navigator.gpu)return {key:"webgpu_q4f16",label:"iPhone/iPad · WebGPU q4f16",options:{device:"webgpu",dtype:"q4f16"}};
+ if(isAppleMobile())return {key:"wasm_q8",label:"iPhone/iPad · WASM q8",options:{device:"wasm",dtype:"q8"}};
  if(navigator.gpu)return {key:"webgpu_fp32",label:"PC/Mac · WebGPU fp32",options:{device:"webgpu",dtype:"fp32"}};
- return {key:"wasm_q4",label:"호환 모드 · WASM q4",options:{device:"wasm",dtype:"q4"}};
+ return {key:"wasm_q8",label:"호환 모드 · WASM q8",options:{device:"wasm",dtype:"q8"}};
 }
 function kokoroOpenDb(){
  if(kokoroDbPromise)return kokoroDbPromise;
@@ -407,9 +407,9 @@ async function ensureKokoro(onStatus){
    return kokoroTTS;
  }catch(err){
    console.error("Kokoro primary load failed",err);
-   if(cfg.key!=="wasm_q4"){
-     const fallback={key:"wasm_q4",label:"호환 모드 · WASM q4",options:{device:"wasm",dtype:"q4"}};
-     kokoroEngine=fallback;if(onStatus)onStatus("WebGPU 실패 · WASM q4로 다시 준비 중…");
+   if(cfg.key!=="wasm_q8"){
+     const fallback={key:"wasm_q8",label:"호환 모드 · WASM q8",options:{device:"wasm",dtype:"q8"}};
+     kokoroEngine=fallback;if(onStatus)onStatus("WebGPU 실패 · WASM q8로 다시 준비 중…");
      const mod=await kokoroModulePromise;kokoroTTS=await mod.KokoroJP.load(fallback.options);
      if(onStatus)onStatus(fallback.label+" 준비 완료");return kokoroTTS;
    }
