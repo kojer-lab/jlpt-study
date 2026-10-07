@@ -13030,5 +13030,597 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-db0552b6b9": {
+    "examples": [
+      {
+        "jp": "私たちは学生の成績の照合をした。",
+        "ko": "우리는 학생들의 성적을 대조했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6ef434075e": {
+    "examples": [
+      {
+        "jp": "私たちはその件を詳細に検討した。",
+        "ko": "우리는 그 건을 자세히 검토했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6aeb3b9da0": {
+    "meaning": "상사 / 윗사람",
+    "meaningSource": "manual-review"
+  },
+  "oj-07a920d7d5": {
+    "meaning": "정서 / 감정의 분위기",
+    "examples": [
+      {
+        "jp": "そのような情緒と行動の分離に比べれば、破局的結果の方がまだましである。",
+        "ko": "그런 정서와 행동의 분리에 비하면 파국적인 결과가 차라리 낫다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a829fec9ff": {
+    "examples": [
+      {
+        "jp": "彼は課長に昇進した。",
+        "ko": "그는 과장으로 승진했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bbfc6d3fb9": {
+    "meaning": "칭하다 / 자칭하다 / ~라고 일컫다",
+    "meaningSource": "manual-review"
+  },
+  "oj-4845859c7b": {
+    "meaning": "정세 / 상황",
+    "examples": [
+      {
+        "jp": "情勢は日増しに悪化している。",
+        "ko": "정세는 날이 갈수록 악화되고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0117a16846": {
+    "meaning": "소식 / 행방",
+    "examples": [
+      {
+        "jp": "それ以来、彼の消息を聞いていない。",
+        "ko": "그 이후로 그의 소식을 듣지 못했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2b61cc5220": {
+    "examples": [
+      {
+        "jp": "沈黙は承諾を意味する事が多い。",
+        "ko": "침묵은 종종 승낙을 의미한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-92deae32a1": {
+    "examples": [
+      {
+        "jp": "トムは小児科の先生じゃないよ。",
+        "ko": "톰은 소아과 의사가 아니야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cd4335ebae": {
+    "meaning": "고용인 / 사용인",
+    "examples": [
+      {
+        "jp": "私は使用人の一人をくびにした。",
+        "ko": "나는 고용인 중 한 명을 해고했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-629999f7f5": {
+    "examples": [
+      {
+        "jp": "彼の私に対する情熱はさめない。",
+        "ko": "그가 나에게 품은 열정은 식지 않는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-927964f23b": {
+    "examples": [
+      {
+        "jp": "人のいない部屋の照明をこまめに消す。",
+        "ko": "사람이 없는 방의 조명을 수시로 끈다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b124ea636d": {
+    "examples": [
+      {
+        "jp": "条約は原水爆の使用を禁止している。",
+        "ko": "조약은 원자폭탄과 수소폭탄의 사용을 금지하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4b3ac6f805": {
+    "examples": [
+      {
+        "jp": "コールタールを蒸留して得られる成分名は下表の通りである。",
+        "ko": "콜타르를 증류해 얻는 성분명은 아래 표와 같다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-002ee4fb5a": {
+    "examples": [
+      {
+        "jp": "政府は国産品の愛用を奨励している。",
+        "ko": "정부는 국산품 사용을 장려하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0913333b01": {
+    "examples": [
+      {
+        "jp": "彼はそのチームから除外された。",
+        "ko": "그는 그 팀에서 제외되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2777c0a5f5": {
+    "examples": [
+      {
+        "jp": "職員以外入室禁止。",
+        "ko": "직원 외 출입 금지.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7ef6608e74": {
+    "examples": [
+      {
+        "jp": "コーチが助言をしてくれた。",
+        "ko": "코치가 조언해 주었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e29166535b": {
+    "examples": [
+      {
+        "jp": "日本語の助詞の「は」と「が」は一生使いこなせそうにないわ。",
+        "ko": "일본어 조사 ‘は’와 ‘が’는 평생 제대로 익히지 못할 것 같아.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bd66318647": {
+    "meaning": "여사 / 여성에 대한 존칭",
+    "examples": [
+      {
+        "jp": "コブ女史が帰ってくる日が待ち遠しいよ。ほんとに。",
+        "ko": "코브 여사가 돌아오는 날이 정말 기다려져.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c261df67ce": {
+    "meaning": "서서히 / 점차",
+    "examples": [
+      {
+        "jp": "彼女は徐々に快方に向かっている。",
+        "ko": "그녀는 점차 회복되고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ae2ec395bc": {
+    "examples": [
+      {
+        "jp": "戦時中、彼は陸軍に所属していた。",
+        "ko": "전쟁 중 그는 육군에 소속되어 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ffd126cecb": {
+    "meaning": "소정 / 정해진 것",
+    "examples": [
+      {
+        "jp": "私たちは所定の場所で会った。",
+        "ko": "우리는 정해진 장소에서 만났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a5c6236db2": {
+    "examples": [
+      {
+        "jp": "canは助動詞ですので、疑問文では文頭に持ってきます。",
+        "ko": "can은 조동사이므로 의문문에서는 문장 맨 앞에 둡니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d4066d7551": {
+    "examples": [
+      {
+        "jp": "所得税は控除額を上回るいかなる所得にもかかる。",
+        "ko": "소득세는 공제액을 초과하는 모든 소득에 부과된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-785dee3750": {
+    "examples": [
+      {
+        "jp": "彼女は微笑みを浮かべてその処罰を受け入れた。",
+        "ko": "그녀는 미소를 띠며 그 처벌을 받아들였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-94cb3c6d1f": {
+    "meaning": "초판 / 첫 번째 판",
+    "examples": [
+      {
+        "jp": "初版は１０年前に出版された。",
+        "ko": "초판은 10년 전에 출판되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f3c3fd308e": {
+    "meaning": "서평 / 책에 대한 평론",
+    "examples": [
+      {
+        "jp": "その書評者はその小説に鋭く批判的である。",
+        "ko": "그 서평가는 그 소설에 매우 비판적이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-144acb1b10": {
+    "examples": [
+      {
+        "jp": "これらの古雑誌を処分して下さい。",
+        "ko": "이 오래된 잡지들을 처분해 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b64d9c43fd": {
+    "meaning": "서민 / 일반 대중",
+    "examples": [
+      {
+        "jp": "庶民のなりわいは、米をつくることだった。",
+        "ko": "서민들의 생업은 쌀농사였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dd86bf4e80": {
+    "examples": [
+      {
+        "jp": "彼は大統領の職から強制的に退くべきか。",
+        "ko": "그는 대통령직에서 강제로 물러나야 하는가.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-880956c9cb": {
+    "examples": [
+      {
+        "jp": "後学のために、この出来事を記しておきます。",
+        "ko": "후학을 위해 이 일을 기록해 두겠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-91c5c933ef": {
+    "examples": [
+      {
+        "jp": "戦勝国は敗戦国に講和条件を指令した。",
+        "ko": "전승국은 패전국에 강화 조건을 지시했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-159906d23f": {
+    "examples": [
+      {
+        "jp": "彼女は額に皺を寄せた。",
+        "ko": "그녀는 이마에 주름을 잡았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ab248f91f9": {
+    "examples": [
+      {
+        "jp": "その問題は審議中です。",
+        "ko": "그 문제는 심의 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6be2084ec0": {
+    "examples": [
+      {
+        "jp": "政府は工業の振興計画を開始した。",
+        "ko": "정부는 공업 진흥 계획을 시작했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5b0f6d5ab1": {
+    "examples": [
+      {
+        "jp": "その仕事は現在進行しています。",
+        "ko": "그 일은 현재 진행 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-98df9e7c93": {
+    "meaning": "신혼 / 갓 결혼함",
+    "examples": [
+      {
+        "jp": "その新婚夫婦は手をつないで歩いた。",
+        "ko": "그 신혼부부는 손을 잡고 걸었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0ec6a3494d": {
+    "examples": [
+      {
+        "jp": "「じゃあ、チェックしちゃいますね」「審査宜しく。頑張ったつもりだぜ」",
+        "ko": "“그럼 확인해 볼게요.” “심사 잘 부탁해. 나름 열심히 했어.”",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d36392ec5a": {
+    "examples": [
+      {
+        "jp": "彼が紳士だなんてとんでもない。",
+        "ko": "그가 신사라니 말도 안 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-754bddf3a2": {
+    "meaning": "신자 / 특정 종교를 믿는 사람",
+    "examples": [
+      {
+        "jp": "キリスト教の信者だったことはない。",
+        "ko": "기독교 신자였던 적은 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5ba5398076": {
+    "examples": [
+      {
+        "jp": "彼が真珠を盗んだのは本当です。",
+        "ko": "그가 진주를 훔친 것은 사실입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-19a6178bec": {
+    "meaning": "진출 / 새로운 분야·지역으로 나아감",
+    "meaningSource": "manual-review"
+  },
+  "oj-8598ddba78": {
+    "meaning": "심정 / 마음속 감정",
+    "examples": [
+      {
+        "jp": "嫉妬心くらい強く人間の心情に巣食う情熱はない。",
+        "ko": "질투심만큼 강하게 인간의 마음에 자리 잡는 감정도 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-40b0b4b5ff": {
+    "meaning": "신인 / 새로 들어온 사람",
+    "meaningSource": "manual-review"
+  },
+  "oj-32eca0c29e": {
+    "examples": [
+      {
+        "jp": "インドでは牛は神聖な動物です。",
+        "ko": "인도에서는 소가 신성한 동물입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-509ad4a7b1": {
+    "examples": [
+      {
+        "jp": "これからも両国の親善を深めましょう。",
+        "ko": "앞으로도 양국의 친선을 더욱 돈독히 합시다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-48406103d6": {
+    "meaning": "신축 / 새로 건물을 지음",
+    "examples": [
+      {
+        "jp": "家を新築中です。",
+        "ko": "집을 신축 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4909f5ce00": {
+    "examples": [
+      {
+        "jp": "交渉はほとんど進展しなかった。",
+        "ko": "협상은 거의 진전되지 않았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-76e18f07d6": {
+    "meaning": "신전 / 신을 모시는 건물",
+    "examples": [
+      {
+        "jp": "この神殿を壊してみなさい。",
+        "ko": "이 신전을 부숴 보아라.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ca35157394": {
+    "examples": [
+      {
+        "jp": "このハイテク枕ね、いびきをかくと振動するのよ。",
+        "ko": "이 첨단 베개는 코를 골면 진동해.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-de323abf88": {
+    "examples": [
+      {
+        "jp": "新入生が教室へ入ってきた。",
+        "ko": "신입생이 교실로 들어왔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1ee31a24cb": {
+    "examples": [
+      {
+        "jp": "専制君主は人民を弾圧した。",
+        "ko": "전제 군주는 국민을 탄압했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-14a20b03ef": {
+    "examples": [
+      {
+        "jp": "ついに彼は真理を知った。",
+        "ko": "마침내 그는 진리를 알게 되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9e1b9872a7": {
+    "examples": [
+      {
+        "jp": "診療予約を取ってもらえますか。",
+        "ko": "진료 예약을 잡아 주실 수 있나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7b0e6a6d8d": {
+    "examples": [
+      {
+        "jp": "進路のことで先生に助言を求めた。",
+        "ko": "진로에 대해 선생님에게 조언을 구했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-76883dba8d": {
+    "examples": [
+      {
+        "jp": "川の始まるところが、水源である。",
+        "ko": "강이 시작되는 곳이 수원이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-de03c669b2": {
+    "examples": [
+      {
+        "jp": "法案通過を推進しているロビイストは、運動資金に賄賂の金をまぎれこませました。",
+        "ko": "법안 통과를 추진하는 로비스트는 정치자금에 뇌물을 섞어 넣었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6cfd951394": {
+    "meaning": "수세식 / 물로 씻어 내리는 방식",
+    "examples": [
+      {
+        "jp": "今はほとんどのトイレが水洗ですよ。",
+        "ko": "지금은 대부분의 화장실이 수세식이에요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
