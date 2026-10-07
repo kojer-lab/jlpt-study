@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 from pathlib import Path
 
 import numpy as np
@@ -42,7 +43,19 @@ if missing:
             chunks.append(np.asarray(audio, dtype=np.float32).reshape(-1))
         if not chunks:
             raise RuntimeError(f"No audio generated for {item['path']}: {item['text']}")
-        sf.write(target, np.concatenate(chunks), 24000, subtype="PCM_16")
+        audio = np.concatenate(chunks)
+        if target.suffix.lower() == ".mp3":
+            tmp = target.with_suffix(".tmp.wav")
+            sf.write(tmp, audio, 24000, subtype="PCM_16")
+            try:
+                subprocess.run([
+                    "ffmpeg", "-y", "-loglevel", "error", "-i", str(tmp),
+                    "-codec:a", "libmp3lame", "-b:a", "48k", str(target)
+                ], check=True)
+            finally:
+                tmp.unlink(missing_ok=True)
+        else:
+            sf.write(target, audio, 24000, subtype="PCM_16")
         print(f"[{n:03d}/{len(missing)}] {item['path']}")
 
 files = {}
