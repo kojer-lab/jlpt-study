@@ -116,7 +116,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <button type="button" data-view="stats">📊 통계 · 데이터</button>
     </nav>
     <div class="sidebar-bottom">
-      <select id="furiMode" class="ghost"><option value="interactive">후리가나: 터치/마우스</option><option value="always">후리가나: 항상</option><option value="off">후리가나: 숨김</option></select>
+      <select id="furiMode" class="ghost"><option value="interactive">후리가나: 클릭/터치</option><option value="always">후리가나: 항상</option><option value="off">후리가나: 숨김</option></select>
       <button class="ghost" id="themeBtn" type="button">🌙 다크모드</button>
     </div>
   </aside>
@@ -919,7 +919,7 @@ function refreshAll(){renderHome();renderStats();}
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
  if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=0;readingQ=0;showView("reading");renderReading()}else showView(target)}
-document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}const fu=e.target.closest(".furi");if(fu&&!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){e.preventDefault();e.stopPropagation();fu.classList.toggle("show")}});
+document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const wordHost=e.target.closest(".word-main,.word-library-word,.vocab-deep-word");if(wordHost){const fs=[...wordHost.querySelectorAll(".furi")];if(fs.length){e.preventDefault();e.stopPropagation();const next=!fs.every(x=>x.classList.contains("show"));fs.forEach(x=>x.classList.toggle("show",next));return}}const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();fu.classList.toggle("show")}}});
 
 function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"})}
 
