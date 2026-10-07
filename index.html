@@ -1486,12 +1486,12 @@ function renderWordDashboard(){
  $("startWordStudy").textContent=total?`오늘 학습 시작 · ${total}장`:"오늘 학습 완료 ✓";
 }
 function showWordDashboard(){
- wordSessionQueue=[];wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;wordMode="daily";
+ wordSessionQueue=[];wordLearningQueue=[];wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;wordMode="daily";
  $("wordStudyPanel").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordDashboard").classList.remove("hidden");
  renderWordDashboard();wordTop();
 }
 function startWordStudy(mode="daily"){
- wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];
+ wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];
  wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
  wordSessionTotal=wordSessionQueue.length;
  if(!wordSessionTotal){renderWordDashboard();return}
@@ -1555,7 +1555,7 @@ function renderWordLibrary(){
  restoreInteractiveFuriState($("wordLibraryList"));
 }
 function showWordLibrary(){
- wordSessionQueue=[];wordSessionHistory=[];wordLibraryVisible=80;
+ wordSessionQueue=[];wordLearningQueue=[];wordSessionHistory=[];wordLibraryVisible=80;
  wordLibraryOrder=words.map(w=>w.id);
  for(let i=wordLibraryOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[wordLibraryOrder[i],wordLibraryOrder[j]]=[wordLibraryOrder[j],wordLibraryOrder[i]]}
  $("wordDashboard").classList.add("hidden");$("wordStudyPanel").classList.add("hidden");$("wordLibraryPanel").classList.remove("hidden");
