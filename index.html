@@ -709,7 +709,7 @@ function renderWord(){
  $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
  $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");
  $("showMeaningBtn").textContent="뜻 · 예문 보기";
- $("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="example-audio-btn" data-tts="${readingOf(x.jp).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}" aria-label="예문 ${i+1} 발음 듣기">🔊</button></div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+ $("wordExamples").innerHTML=w.examples.map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="example-audio-btn" data-tts="${plain(x.jp).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}" aria-label="예문 ${i+1} 발음 듣기">🔊</button></div><div class="example-jp">${x.jp}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
  $("wordExamples").classList.add("hidden");$("wordRating").classList.add("hidden");
  renderRating($("wordRating"),w.id,sr,false);
 }
