@@ -848,7 +848,7 @@ if(window.N1_EXTRA_READING){
  }
 }
 
-let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set();let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
+let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryOrder=[];let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
 function getSrs(id){return Object.assign({due:0,interval:0,ease:2.5,reviews:0,lapses:0,last:0,streak:0,updatedAt:0},state.srs[id]||{});}
 function setSrs(id,s){state.srs[id]=s;saveState(state)}
@@ -966,7 +966,8 @@ function wordLibraryStateLabel(w){
 function renderWordLibrary(){
  const q=($("wordLibrarySearch")?.value||"").trim().toLowerCase();
  const filter=$("wordLibraryFilter")?.value||"all";
- const list=words.filter(w=>{
+ const orderedWords=wordLibraryOrder.length===words.length?wordLibraryOrder.map(id=>words.find(w=>w.id===id)).filter(Boolean):words;
+ const list=orderedWords.filter(w=>{
    const r=getSrs(w.id);
    if(filter==="new"&&r.reviews>0)return false;
    if(filter==="learned"&&r.reviews===0)return false;
@@ -1003,6 +1004,8 @@ function renderWordLibrary(){
 }
 function showWordLibrary(){
  wordSessionQueue=[];wordSessionHistory=[];
+ wordLibraryOrder=words.map(w=>w.id);
+ for(let i=wordLibraryOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[wordLibraryOrder[i],wordLibraryOrder[j]]=[wordLibraryOrder[j],wordLibraryOrder[i]]}
  $("wordDashboard").classList.add("hidden");$("wordStudyPanel").classList.add("hidden");$("wordLibraryPanel").classList.remove("hidden");
  renderWordLibrary();wordTop();
 }
