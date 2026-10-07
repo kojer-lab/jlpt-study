@@ -515,6 +515,19 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-word-breakdowns-51.js?v=20261008-wb51"></script>
 <script src="data/n1-word-breakdowns-52.js?v=20261008-wb52"></script>
 <script src="data/n1-word-breakdowns-53.js?v=20261008-wb53"></script>
+<script src="data/n1-word-breakdowns-54.js?v=20261008-wb54"></script>
+<script src="data/n1-word-breakdowns-55.js?v=20261008-wb55"></script>
+<script src="data/n1-word-breakdowns-56.js?v=20261008-wb56"></script>
+<script src="data/n1-word-breakdowns-57.js?v=20261008-wb57"></script>
+<script src="data/n1-word-breakdowns-58.js?v=20261008-wb58"></script>
+<script src="data/n1-word-breakdowns-59.js?v=20261008-wb59"></script>
+<script src="data/n1-word-breakdowns-60.js?v=20261008-wb60"></script>
+<script src="data/n1-word-breakdowns-61.js?v=20261008-wb61"></script>
+<script src="data/n1-word-breakdowns-62.js?v=20261008-wb62"></script>
+<script src="data/n1-word-breakdowns-63.js?v=20261008-wb63"></script>
+<script src="data/n1-word-breakdowns-64.js?v=20261008-wb64"></script>
+<script src="data/n1-word-breakdowns-65.js?v=20261008-wb65"></script>
+<script src="data/n1-word-breakdowns-66.js?v=20261008-wb66"></script>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -1098,7 +1111,7 @@ for(const w of words){
 }
 const wordById=new Map(words.map(w=>[w.id,w]));
 const wordFuriganaBank=window.N1_WORD_FURIGANA||{};
-const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{},window.N1_WORD_BREAKDOWNS_4||{},window.N1_WORD_BREAKDOWNS_5||{},window.N1_WORD_BREAKDOWNS_6||{},window.N1_WORD_BREAKDOWNS_7||{},window.N1_WORD_BREAKDOWNS_8||{},window.N1_WORD_BREAKDOWNS_9||{},window.N1_WORD_BREAKDOWNS_10||{},window.N1_WORD_BREAKDOWNS_11||{},window.N1_WORD_BREAKDOWNS_12||{},window.N1_WORD_BREAKDOWNS_13||{},window.N1_WORD_BREAKDOWNS_14||{},window.N1_WORD_BREAKDOWNS_15||{},window.N1_WORD_BREAKDOWNS_16||{},window.N1_WORD_BREAKDOWNS_17||{},window.N1_WORD_BREAKDOWNS_18||{},window.N1_WORD_BREAKDOWNS_19||{},window.N1_WORD_BREAKDOWNS_20||{},window.N1_WORD_BREAKDOWNS_21||{},window.N1_WORD_BREAKDOWNS_22||{},window.N1_WORD_BREAKDOWNS_23||{},window.N1_WORD_BREAKDOWNS_24||{},window.N1_WORD_BREAKDOWNS_25||{},window.N1_WORD_BREAKDOWNS_26||{},window.N1_WORD_BREAKDOWNS_27||{},window.N1_WORD_BREAKDOWNS_28||{},window.N1_WORD_BREAKDOWNS_29||{},window.N1_WORD_BREAKDOWNS_30||{},window.N1_WORD_BREAKDOWNS_31||{},window.N1_WORD_BREAKDOWNS_32||{},window.N1_WORD_BREAKDOWNS_33||{},window.N1_WORD_BREAKDOWNS_34||{},window.N1_WORD_BREAKDOWNS_35||{},window.N1_WORD_BREAKDOWNS_36||{},window.N1_WORD_BREAKDOWNS_37||{},window.N1_WORD_BREAKDOWNS_38||{},window.N1_WORD_BREAKDOWNS_39||{},window.N1_WORD_BREAKDOWNS_40||{},window.N1_WORD_BREAKDOWNS_41||{},window.N1_WORD_BREAKDOWNS_42||{},window.N1_WORD_BREAKDOWNS_43||{},window.N1_WORD_BREAKDOWNS_44||{},window.N1_WORD_BREAKDOWNS_45||{},window.N1_WORD_BREAKDOWNS_46||{},window.N1_WORD_BREAKDOWNS_47||{},window.N1_WORD_BREAKDOWNS_48||{},window.N1_WORD_BREAKDOWNS_49||{},window.N1_WORD_BREAKDOWNS_50||{},window.N1_WORD_BREAKDOWNS_51||{},window.N1_WORD_BREAKDOWNS_52||{},window.N1_WORD_BREAKDOWNS_53||{}];
+const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{},window.N1_WORD_BREAKDOWNS_4||{},window.N1_WORD_BREAKDOWNS_5||{},window.N1_WORD_BREAKDOWNS_6||{},window.N1_WORD_BREAKDOWNS_7||{},window.N1_WORD_BREAKDOWNS_8||{},window.N1_WORD_BREAKDOWNS_9||{},window.N1_WORD_BREAKDOWNS_10||{},window.N1_WORD_BREAKDOWNS_11||{},window.N1_WORD_BREAKDOWNS_12||{},window.N1_WORD_BREAKDOWNS_13||{},window.N1_WORD_BREAKDOWNS_14||{},window.N1_WORD_BREAKDOWNS_15||{},window.N1_WORD_BREAKDOWNS_16||{},window.N1_WORD_BREAKDOWNS_17||{},window.N1_WORD_BREAKDOWNS_18||{},window.N1_WORD_BREAKDOWNS_19||{},window.N1_WORD_BREAKDOWNS_20||{},window.N1_WORD_BREAKDOWNS_21||{},window.N1_WORD_BREAKDOWNS_22||{},window.N1_WORD_BREAKDOWNS_23||{},window.N1_WORD_BREAKDOWNS_24||{},window.N1_WORD_BREAKDOWNS_25||{},window.N1_WORD_BREAKDOWNS_26||{},window.N1_WORD_BREAKDOWNS_27||{},window.N1_WORD_BREAKDOWNS_28||{},window.N1_WORD_BREAKDOWNS_29||{},window.N1_WORD_BREAKDOWNS_30||{},window.N1_WORD_BREAKDOWNS_31||{},window.N1_WORD_BREAKDOWNS_32||{},window.N1_WORD_BREAKDOWNS_33||{},window.N1_WORD_BREAKDOWNS_34||{},window.N1_WORD_BREAKDOWNS_35||{},window.N1_WORD_BREAKDOWNS_36||{},window.N1_WORD_BREAKDOWNS_37||{},window.N1_WORD_BREAKDOWNS_38||{},window.N1_WORD_BREAKDOWNS_39||{},window.N1_WORD_BREAKDOWNS_40||{},window.N1_WORD_BREAKDOWNS_41||{},window.N1_WORD_BREAKDOWNS_42||{},window.N1_WORD_BREAKDOWNS_43||{},window.N1_WORD_BREAKDOWNS_44||{},window.N1_WORD_BREAKDOWNS_45||{},window.N1_WORD_BREAKDOWNS_46||{},window.N1_WORD_BREAKDOWNS_47||{},window.N1_WORD_BREAKDOWNS_48||{},window.N1_WORD_BREAKDOWNS_49||{},window.N1_WORD_BREAKDOWNS_50||{},window.N1_WORD_BREAKDOWNS_51||{},window.N1_WORD_BREAKDOWNS_52||{},window.N1_WORD_BREAKDOWNS_53||{},window.N1_WORD_BREAKDOWNS_54||{},window.N1_WORD_BREAKDOWNS_55||{},window.N1_WORD_BREAKDOWNS_56||{},window.N1_WORD_BREAKDOWNS_57||{},window.N1_WORD_BREAKDOWNS_58||{},window.N1_WORD_BREAKDOWNS_59||{},window.N1_WORD_BREAKDOWNS_60||{},window.N1_WORD_BREAKDOWNS_61||{},window.N1_WORD_BREAKDOWNS_62||{},window.N1_WORD_BREAKDOWNS_63||{},window.N1_WORD_BREAKDOWNS_64||{},window.N1_WORD_BREAKDOWNS_65||{},window.N1_WORD_BREAKDOWNS_66||{}];
 const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
 const wordBreakdownBySurface=new Map();
 function wordBreakdownSurfaceKey(w){return w?`${plain(w.w)}\t${readingOf(w.w)}`:""}
