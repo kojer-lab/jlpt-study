@@ -201,7 +201,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="grid3">
         <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p>100문제 · 읽기, 의미, 뉘앙스와 용법을 확인합니다.</p></div>
         <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p>100문제 · 문장 뜻과 1~4번 선택지의 오답 이유까지 설명합니다.</p></div>
-        <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>10세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div>
+        <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>20세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div>
       </div>
     </section>
 
@@ -367,6 +367,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
 <script src="data/n1-extra-grammar.js"></script>
+<script src="data/n1-extra-reading.js"></script>
 <script>
 const F=(b,r)=>`<span class="furi" data-r="${r}">${b}</span>`;
 const DAY=86400000, MIN=60000;
@@ -840,6 +841,12 @@ const readingSets={
   {title:"時事 3 · AIブームと金融市場",passage:`${F("世界的","せかいてき")}なAIブームは、${F("企業","きぎょう")}の${F("投資","とうし")}や${F("株価","かぶか")}を${F("押","お")}し${F("上","あ")}げ、${F("経済","けいざい")}を${F("刺激","しげき")}する${F("要因","よういん")}になっている。${F("日本銀行","にほんぎんこう")}の${F("副総裁","ふくそうさい")}は、こうしたAI${F("需要","じゅよう")}が${F("生産性","せいさんせい")}や${F("資本投資","しほんとうし")}を${F("高","たか")}める${F("可能性","かのうせい")}がある${F("一方","いっぽう")}、${F("期待","きたい")}された${F("利益","りえき")}が${F("実現","じつげん")}しなければ、${F("市場","しじょう")}が${F("急","きゅう")}に${F("調整","ちょうせい")}する${F("危険","きけん")}もあると${F("指摘","してき")}した。<br><br>AIへの${F("期待","きたい")}が${F("高","たか")}いほど、${F("企業","きぎょう")}は${F("資金","しきん")}を${F("集","あつ")}めやすくなり、${F("投資家","とうしか")}も${F("将来","しょうらい")}の${F("成長","せいちょう")}を${F("見込","みこ")}んで${F("資産","しさん")}を${F("買","か")}う。しかし、その${F("期待","きたい")}が${F("実態","じったい")}とかけ${F("離","はな")}れれば、${F("価格","かかく")}が${F("大","おお")}きく${F("変動","へんどう")}することもある。${F("新技術","しんぎじゅつ")}が${F("経済","けいざい")}に${F("与","あた")}える${F("影響","えいきょう")}を${F("考","かんが")}えるときは、${F("可能性","かのうせい")}だけでなく、${F("期待","きたい")}が${F("過度","かど")}に${F("膨","ふく")}らむ${F("危険","きけん")}も${F("見据","みす")}える${F("必要","ひつよう")}がある。`,source:"2026-10-05 Reuters의 일본은행 부총재 AI·금융시장 발언 보도를 바탕으로 N1 학습용으로 재작성.",sourceUrl:"https://www.reuters.com/technology/boj-says-ai-boom-may-have-eased-financial-conditions-warns-market-risks-2026-10-05/",questions:[{q:"本文によると、AIブームのプラス面は何か。",c:["投資や生産性を高める可能性がある","市場価格が必ず下がる","企業が資金を集められなくなる","物価への影響がなくなる"],a:0,translation:"본문에 따르면 AI 붐의 긍정적 측면은?",e:"투자와 생산성을 높이고 경제를 자극할 가능성이 있다고 설명합니다."},{q:"筆者が注意すべきだとしていることは何か。",c:["AIの研究をやめること","期待が実態を超えて膨らみ、市場が大きく調整する可能性","企業が利益を出すこと","投資家が将来を見ること"],a:1,translation:"필자가 주의해야 한다고 말하는 것은?",e:"기대가 실제 성과보다 과도해질 경우 가격 변동과 시장 조정 위험이 있다는 점입니다."}]}
  ]
 };
+
+if(window.N1_EXTRA_READING){
+ for(const mode of ["short","medium","long","news"]){
+  if(Array.isArray(window.N1_EXTRA_READING[mode]))readingSets[mode].push(...window.N1_EXTRA_READING[mode]);
+ }
+}
 
 let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set();let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
