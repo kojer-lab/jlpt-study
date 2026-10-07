@@ -1,0 +1,86 @@
+name: Sync full N1 vocabulary
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/import-openjlpt-n1.mjs"
+      - ".github/workflows/sync-openjlpt-vocab.yml"
+  schedule:
+    - cron: "23 18 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vocab-audio-global
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Build N1 vocabulary bank
+        run: node tools/import-openjlpt-n1.mjs
+
+      - name: Export vocabulary audio plan
+        run: node tools/export-vocab-audio.mjs
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install native Kokoro Japanese TTS
+        run: |
+          python -m pip install --upgrade pip
+          pip install "kokoro>=0.9.4" "misaki[ja]>=0.9.4" soundfile
+
+      - name: Generate missing vocabulary audio
+        run: python tools/generate-vocab-audio.py
+
+      - name: Commit generated vocabulary and audio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/n1-extra-words-openjlpt.js audio/vocab
+          if git diff --cached --quiet; then
+            echo "No vocabulary or audio changes."
+            exit 0
+          fi
+          git commit -m "Sync full OpenJLPT N1 vocabulary and audio"
+          for attempt in 1 2 3 4 5; do
+            echo "Push attempt $attempt/5"
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "::error::Main contains overlapping vocabulary/audio changes."
+              git rebase --abort
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Vocabulary bank and audio committed."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Main changed during every push retry."
+          exit 1
