@@ -19241,6 +19241,13 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-3122744f68": {
     "meaning": "순찰차 / 경찰차",
+    "examples": [
+      {
+        "jp": "パトカーを見て彼は逃げた。",
+        "ko": "순찰차를 보고 그는 달아났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-6e3cda5641": {
@@ -19574,6 +19581,13 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-d4c885f1dc": {
     "meaning": "대기실 / 준비실",
+    "examples": [
+      {
+        "jp": "ここはお客様用の控え室です。",
+        "ko": "여기는 손님용 대기실입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-fd5a222e6e": {
@@ -20212,6 +20226,13 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-37209bb11e": {
     "meaning": "헐렁헐렁한 / 지나치게 큰",
+    "examples": [
+      {
+        "jp": "このズボン、ぶかぶかだよ。",
+        "ko": "이 바지는 너무 헐렁해.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-40770ec448": {
