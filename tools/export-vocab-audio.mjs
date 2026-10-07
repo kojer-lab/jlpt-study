@@ -41,7 +41,8 @@ const normalizedExtras=extraWords.map(w=>({
   id:w.id,
   w:w.w,
   reading:w.r||"",
-  examples:Array.isArray(w.examples)?w.examples:[]
+  examples:Array.isArray(w.examples)?w.examples:[],
+  source:w.source||"curated"
 }));
 
 const seen=new Set();
@@ -54,13 +55,15 @@ for(const w of baseWords){
 for(const w of normalizedExtras){
   if(!w||!w.id||seen.has(w.id))continue;
   seen.add(w.id);
-  words.push(w);
+  words.push(Object.assign({source:"curated"},w));
 }
 
 const items=[];
 for(const w of words){
   const wordText=(w.reading||readingText(w.w)||baseText(w.w)).trim();
-  if(wordText)items.push({id:w.id,kind:"word",index:null,text:wordText,voice:"jf_alpha",path:`audio/vocab/${w.id}-word.wav`});
+  const imported=w.source==="openjlpt";
+  if(wordText)items.push({id:w.id,kind:"word",index:null,text:wordText,voice:"jf_alpha",path:imported?`audio/vocab/openjlpt/${w.id}-word.mp3`:`audio/vocab/${w.id}-word.wav`});
+  if(imported)continue;
   for(const [i,ex] of (w.examples||[]).entries()){
     const text=baseText(ex.jp||"").trim();
     if(text)items.push({id:w.id,kind:"example",index:i,text,voice:"jf_alpha",path:`audio/vocab/${w.id}-ex${i+1}.wav`});
