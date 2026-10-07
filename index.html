@@ -141,9 +141,9 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       </div>
       <div class="section-title">오늘의 시사독해</div>
       <div class="card action" data-go="newsreading">
-        <div class="news-badge"><span class="dot"></span>2026.10.06 · 時事読解</div>
-        <h2 style="margin:10px 0 6px">오늘의 일본 시사독해 3세트</h2>
-        <div class="sub">일본은행·에너지 안보·AI 금융시장 이슈를 N1 독해로 재구성했습니다.</div>
+        <div class="news-badge"><span class="dot"></span><span id="homeNewsDate">오늘 · 時事読解</span></div>
+        <h2 style="margin:10px 0 6px" id="homeNewsTitle">오늘의 일본 시사독해</h2>
+        <div class="sub" id="homeNewsSub">최근 일본 시사를 N1 독해로 재구성했습니다.</div>
       </div>
     </section>
 
@@ -273,7 +273,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
             <div class="ai-listen-head"><div><span class="tag" id="aiListenType">問題1 · 課題理解</span><div class="ai-engine" id="aiEngineText">Kokoro 준비 전</div></div><div class="counter" id="aiListenCounter">1 / 3</div></div>
             <div class="ai-question" id="aiListenQuestion"></div>
             <div class="ai-choices" id="aiListenChoices"></div>
-            <div class="ai-audio-actions"><button type="button" class="primary" id="aiListenPlay">🔊 문제 듣기</button><button type="button" class="secondary" id="aiListenScriptBtn">스크립트 보기</button><button type="button" class="secondary hidden" id="aiListenNext">다음 문제</button></div>
+            <div class="ai-audio-actions"><button type="button" class="primary" id="aiListenPlay">🔊 문제 듣기</button><button type="button" class="secondary" id="aiListenScriptBtn">스크립트 보기</button><button type="button" class="secondary" id="aiListenShuffle">↻ 문제 섞기</button><button type="button" class="secondary hidden" id="aiListenNext">다음 문제</button></div>
             <div class="ai-status" id="aiListenStatus">AI 탭에 들어오면 현재 문제부터 음성을 미리 준비합니다.</div>
             <div class="ai-explain" id="aiListenExplain"></div>
             <div class="ai-script" id="aiListenScript"></div>
@@ -367,8 +367,11 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
+<script src="data/n1-extra-words-3.js"></script>
 <script src="data/n1-extra-grammar.js"></script>
 <script src="data/n1-extra-reading.js"></script>
+<script src="data/n1-daily-news.js"></script>
+<script src="data/n1-extra-listening.js"></script>
 <script>
 const F=(b,r)=>`<span class="furi" data-r="${r}">${b}</span>`;
 const DAY=86400000, MIN=60000;
@@ -780,7 +783,7 @@ const quizData={
 
 };
 
-const extraWordRaw=[...(window.N1_EXTRA_WORDS_1||[]),...(window.N1_EXTRA_WORDS_2||[])];
+const extraWordRaw=[...(window.N1_EXTRA_WORDS_1||[]),...(window.N1_EXTRA_WORDS_2||[]),...(window.N1_EXTRA_WORDS_3||[])];
 const extraWords=extraWordRaw.map(x=>({
  id:x.id,
  w:/[一-龯々]/.test(x.w)?F(x.w,x.r):x.w,
@@ -847,6 +850,19 @@ if(window.N1_EXTRA_READING){
  for(const mode of ["short","medium","long","news"]){
   if(Array.isArray(window.N1_EXTRA_READING[mode]))readingSets[mode].push(...window.N1_EXTRA_READING[mode]);
  }
+}
+const dailyNewsBank=Array.isArray(window.N1_DAILY_NEWS)?window.N1_DAILY_NEWS:[];
+if(dailyNewsBank.length)readingSets.news.push(...dailyNewsBank);
+function dailyNewsSet(){
+ if(!dailyNewsBank.length)return null;
+ const key=todayKey(),exact=dailyNewsBank.find(x=>x.date===key);
+ if(exact)return exact;
+ const [y,m,d]=key.split("-").map(Number),dayNo=Math.floor(new Date(y,m-1,d).getTime()/DAY);
+ return dailyNewsBank[((dayNo%dailyNewsBank.length)+dailyNewsBank.length)%dailyNewsBank.length];
+}
+function dailyNewsReadingIndex(){
+ const set=dailyNewsSet();if(!set)return 0;
+ const i=readingSets.news.indexOf(set);return i>=0?i:0;
 }
 
 let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryOrder=[];let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
@@ -918,10 +934,10 @@ function refreshAll(){renderHome();renderStats();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
  if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
-function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=0;readingQ=0;showView("reading");renderReading()}else showView(target)}
+function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const wordHost=e.target.closest(".word-main,.word-library-word,.vocab-deep-word");if(wordHost){const fs=[...wordHost.querySelectorAll(".furi")];if(fs.length){e.preventDefault();e.stopPropagation();const next=!fs.every(x=>x.classList.contains("show"));fs.forEach(x=>x.classList.toggle("show",next));return}}const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();fu.classList.toggle("show")}}});
 
-function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"})}
+function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"});const dn=dailyNewsSet();if(dn){$("homeNewsDate").textContent=todayKey().replaceAll("-",".")+" · 時事読解";$("homeNewsTitle").textContent=dn.headline||dn.title;$("homeNewsSub").textContent=(dn.sourceDate?dn.sourceDate+" 기사 기반 · ":"")+"매일 자동으로 다른 시사독해가 선택됩니다."}}
 
 function buildWordStudyQueue(){
  const due=dueWords(),fresh=todayNewPending(),seen=new Set();
@@ -1192,7 +1208,7 @@ function renderReading(){
 }
 $("readingModes").addEventListener("click",e=>{
  const b=e.target.closest("button[data-mode]");if(!b)return;
- readingMode=b.dataset.mode;readingSetIndex=0;readingQ=0;renderReading();
+ readingMode=b.dataset.mode;readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;renderReading();
 });
 $("readingChoices").addEventListener("click",e=>{
  const b=e.target.closest(".choice");if(!b||readingAnswered)return;
@@ -1349,6 +1365,8 @@ const aiListeningProblems=[
   ["今回の制度変更で、手続きの多くがオンラインでできるようになり、職員の作業時間は確かに短くなりました。これは大きな利点です。しかし、利用者の中には操作に慣れていない人もいます。効率が上がったという数字だけを見て成功だと判断するのではなく、必要な人が十分な支援を受けられているか、説明が分かりやすいかという点も同時に確認する必要があります。","jm_kumo","男"],
   ["男の人が最も言いたいことは何ですか。","jf_tebukuro","ナレーション"]]}
 ];
+aiListeningProblems.push(...(window.N1_EXTRA_LISTENING||[]));
+for(let i=aiListeningProblems.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[aiListeningProblems[i],aiListeningProblems[j]]=[aiListeningProblems[j],aiListeningProblems[i]]}
 let aiListenIndex=0,aiListenPlaying=false;
 const aiListenJobs=new Map();
 function aiMakeSlot(){let resolve,reject;const promise=new Promise((res,rej)=>{resolve=res;reject=rej});return {promise,resolve,reject}}
@@ -1399,6 +1417,7 @@ async function playAiListening(){
 function setupAiListening(){
  $("aiListenPlay").addEventListener("click",playAiListening);
  $("aiListenScriptBtn").addEventListener("click",()=>{const show=$("aiListenScript").classList.toggle("show");$("aiListenScriptBtn").textContent=show?"스크립트 숨기기":"스크립트 보기"});
+ $("aiListenShuffle").addEventListener("click",()=>{stopKokoroAudio();aiListenJobs.clear();for(let i=aiListeningProblems.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[aiListeningProblems[i],aiListeningProblems[j]]=[aiListeningProblems[j],aiListeningProblems[i]]}aiListenIndex=0;renderAiListening()});
  $("aiListenChoices").addEventListener("click",e=>{
    const b=e.target.closest("[data-ai-choice]");if(!b)return;const p=aiListeningProblems[aiListenIndex],picked=Number(b.dataset.aiChoice);
    [...$("aiListenChoices").children].forEach((x,i)=>{x.disabled=true;if(i===p.answer)x.classList.add("correct");if(i===picked&&i!==p.answer)x.classList.add("wrong")});
