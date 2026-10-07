@@ -1,0 +1,1 @@
+window.N1_READING_FURIGANA={};
