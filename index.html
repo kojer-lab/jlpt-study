@@ -799,6 +799,7 @@ const extraWords=extraWordRaw.map(x=>({
  meaningEn:x.meaningEn||""
 }));
 words.push(...extraWords);
+const wordById=new Map(words.map(w=>[w.id,w]));
 
 function shortMeaning(w){return (w.meaning||"").split(" / ")[0].trim()}
 function buildExpansionVocabQuiz(src,count=60){
@@ -991,7 +992,7 @@ function wordLibraryStateLabel(w){
 function renderWordLibrary(){
  const q=($("wordLibrarySearch")?.value||"").trim().toLowerCase();
  const filter=$("wordLibraryFilter")?.value||"all";
- const orderedWords=wordLibraryOrder.length===words.length?wordLibraryOrder.map(id=>words.find(w=>w.id===id)).filter(Boolean):words;
+ const orderedWords=wordLibraryOrder.length===words.length?wordLibraryOrder.map(id=>wordById.get(id)).filter(Boolean):words;
  const list=orderedWords.filter(w=>{
    const r=getSrs(w.id);
    if(filter==="new"&&r.reviews>0)return false;
