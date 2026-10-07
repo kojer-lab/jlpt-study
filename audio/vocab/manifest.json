@@ -1,7 +1,6 @@
 {
-  "version": 1,
-  "engine": "KokoroJP 0.2.0 / WASM q8 / jf_alpha",
-  "generatedAt": "2026-10-07T02:58:48.169Z",
+  "version": 2,
+  "engine": "Kokoro-82M / jf_alpha",
   "count": 153,
   "files": {
     "unagasu": {
