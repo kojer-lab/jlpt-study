@@ -9766,5 +9766,662 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-caf7c2157f": {
+    "examples": [
+      {
+        "jp": "決断の日は近い。",
+        "ko": "결단을 내려야 할 날이 가까워졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c9307c08c4": {
+    "meaning": "월부 / 매달 나누어 내는 할부",
+    "examples": [
+      {
+        "jp": "このテレビを月賦で買った。",
+        "ko": "이 텔레비전을 월부로 샀다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0bdbaf26a4": {
+    "examples": [
+      {
+        "jp": "戦争は不足と欠乏の時代を招いた。",
+        "ko": "전쟁은 부족과 결핍의 시대를 초래했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8271f16ab7": {
+    "meaning": "걷어차다 / 발로 차 버리다 / 거절하다",
+    "examples": [
+      {
+        "jp": "ごめん！蹴飛ばすつもりじゃなかったんだ。",
+        "ko": "미안! 걷어찰 생각은 아니었어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0c0bb5782e": {
+    "meaning": "헐뜯다 / 깎아내리다 / 흠잡다",
+    "examples": [
+      {
+        "jp": "君は、いつも私の服をけなすのだから。",
+        "ko": "너는 늘 내 옷을 깎아내리잖아.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-35911d87d2": {
+    "meaning": "연기가 자욱하다 / 대하기 불편하다",
+    "examples": [
+      {
+        "jp": "あの人は煙たい。",
+        "ko": "그 사람은 왠지 대하기 불편하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-105af9d2f8": {
+    "examples": [
+      {
+        "jp": "タバコで煙った空気を部屋から出して、新鮮な空気を入れてちょうだい。",
+        "ko": "담배 연기로 자욱한 공기를 빼고 신선한 공기를 넣어 줘.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a6365397b9": {
+    "examples": [
+      {
+        "jp": "下痢止めです。",
+        "ko": "설사약입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b6b1badd76": {
+    "meaning": "원형 / 본래의 형태 / 기본형",
+    "examples": [
+      {
+        "jp": "ギリシャ人たちは幾何学の理論的原形を作った。",
+        "ko": "그리스인들은 기하학의 이론적 원형을 만들었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1f41af8458": {
+    "examples": [
+      {
+        "jp": "彼らを解雇する権限をくれた。",
+        "ko": "그들을 해고할 권한을 주었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0778415a9f": {
+    "examples": [
+      {
+        "jp": "現行の法律は人種の多様性を考慮していない。",
+        "ko": "현행 법률은 인종의 다양성을 고려하지 않고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c97409ccce": {
+    "meaning": "건재함 / 여전히 건강함",
+    "examples": [
+      {
+        "jp": "両親ともに健在とは限らない。",
+        "ko": "부모님 두 분 모두 건재하다고는 할 수 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6cc418074b": {
+    "meaning": "원작 / 원본 작품",
+    "examples": [
+      {
+        "jp": "そのドラマは原作と違っている。",
+        "ko": "그 드라마는 원작과 다르다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2dd6313fb5": {
+    "meaning": "검사 / 공소를 담당하는 법조인",
+    "examples": [
+      {
+        "jp": "検事は誘導尋問をした。",
+        "ko": "검사는 유도신문을 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b71e616e00": {
+    "examples": [
+      {
+        "jp": "鉄の原子番号は26です。",
+        "ko": "철의 원자번호는 26입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f7b907fc12": {
+    "meaning": "원서 / 원문으로 된 책·문서",
+    "examples": [
+      {
+        "jp": "この本は原書の要約版です。",
+        "ko": "이 책은 원서의 요약판입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ce5ab31b34": {
+    "examples": [
+      {
+        "jp": "母子ともに健全です。",
+        "ko": "산모와 아이 모두 건강합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2daaf50b4d": {
+    "examples": [
+      {
+        "jp": "このフィルムは現像が早い。",
+        "ko": "이 필름은 현상이 빠르다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5cfe4d867d": {
+    "meaning": "원칙 / 일반적인 규칙",
+    "meaningSource": "manual-review"
+  },
+  "oj-ba678d6fe9": {
+    "meaning": "견지 / 관점 / 입장",
+    "meaningSource": "manual-review"
+  },
+  "oj-d2cc010c42": {
+    "examples": [
+      {
+        "jp": "現地時間で１０時だ。",
+        "ko": "현지 시간으로 10시다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-436aca7af1": {
+    "examples": [
+      {
+        "jp": "その翻訳は原典に忠実だ。",
+        "ko": "그 번역은 원전에 충실하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-33b7f9ddbc": {
+    "meaning": "원점 / 출발점",
+    "examples": [
+      {
+        "jp": "原点を中心とする半径2の円と，直線 y = x − 1 の交点を求めよ。",
+        "ko": "원점을 중심으로 하는 반지름 2의 원과 직선 y = x − 1의 교점을 구하시오.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-92e2dcd393": {
+    "meaning": "원자폭탄 / 원폭",
+    "examples": [
+      {
+        "jp": "原爆は人類にとって重大な脅威だ。",
+        "ko": "원자폭탄은 인류에게 중대한 위협이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d7c788ac00": {
+    "examples": [
+      {
+        "jp": "あの翻訳は原文に忠実だそうだ。",
+        "ko": "그 번역은 원문에 충실하다고 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c1a3737777": {
+    "examples": [
+      {
+        "jp": "この数字は原油輸入減を反映している。",
+        "ko": "이 수치는 원유 수입 감소를 반영하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-204ce2024f": {
+    "meaning": "겸용 / 두 가지 용도로 함께 사용함",
+    "examples": [
+      {
+        "jp": "この書斎は客間兼用だ。",
+        "ko": "이 서재는 객실을 겸하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-34b30a1719": {
+    "examples": [
+      {
+        "jp": "王は権力を奪われた。",
+        "ko": "왕은 권력을 빼앗겼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-955633d172": {
+    "examples": [
+      {
+        "jp": "私はあらゆる人の言論に賛成だ。",
+        "ko": "나는 모든 사람의 언론 자유에 찬성한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1e176e82e5": {
+    "meaning": "호 / 집·가구를 세는 단위",
+    "meaningSource": "manual-review"
+  },
+  "oj-013f46c118": {
+    "meaning": "아이 / 어린이 / 동물의 새끼를 나타내는 말",
+    "meaningSource": "manual-review"
+  },
+  "oj-a017bb3c0c": {
+    "meaning": "‘고/어’에 해당하는 공손한 접두어",
+    "meaningSource": "manual-review"
+  },
+  "oj-4c2243e0e1": {
+    "examples": [
+      {
+        "jp": "読書は語彙を増やすのに役に立つ。",
+        "ko": "독서는 어휘를 늘리는 데 도움이 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-79b0e74e36": {
+    "meaning": "사랑하다 / 사랑에 빠지다",
+    "examples": [
+      {
+        "jp": "恋する相手を捜しています。",
+        "ko": "사랑할 상대를 찾고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e91f69ef1a": {
+    "meaning": "학교를 세는 단위 / 교정·교정을 뜻하는 한자어 요소",
+    "meaningSource": "manual-review"
+  },
+  "oj-be5a647260": {
+    "meaning": "호의 / 친절한 마음 / 선의",
+    "meaningSource": "manual-review"
+  },
+  "oj-713bb09199": {
+    "examples": [
+      {
+        "jp": "彼らは休戦条件で合意した。",
+        "ko": "그들은 휴전 조건에 합의했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2d66a8b7d0": {
+    "meaning": "은행원",
+    "examples": [
+      {
+        "jp": "行員は私に過ちを認めた。",
+        "ko": "은행원은 나에게 실수를 인정했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3bc4ab80ef": {
+    "examples": [
+      {
+        "jp": "戦争中米国は英国との交易を中断しようとした。",
+        "ko": "전쟁 중 미국은 영국과의 무역을 중단하려 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-27878d4524": {
+    "examples": [
+      {
+        "jp": "その公演は万雷の拍手を受けた。",
+        "ko": "그 공연은 우레 같은 박수를 받았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f5aa5ef963": {
+    "examples": [
+      {
+        "jp": "そのヨットは順調に航海中だ。",
+        "ko": "그 요트는 순조롭게 항해 중이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-13c74583e7": {
+    "examples": [
+      {
+        "jp": "私はこれを抗議と解釈した。",
+        "ko": "나는 이것을 항의로 받아들였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-aec480ac67": {
+    "meaning": "황거 / 일본 천황의 궁전",
+    "examples": [
+      {
+        "jp": "最高裁判所は皇居の近くにある。",
+        "ko": "최고재판소는 황거 근처에 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1137fc3ef3": {
+    "meaning": "호황 / 경기가 좋은 상태",
+    "examples": [
+      {
+        "jp": "好況と不況は交互に来る。",
+        "ko": "호황과 불황은 번갈아 온다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5630137157": {
+    "examples": [
+      {
+        "jp": "鉱業はチリの主要な収入源の一つである。",
+        "ko": "광업은 칠레의 주요 수입원 중 하나다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1d68ad437b": {
+    "examples": [
+      {
+        "jp": "高原を散歩するのは楽しい。",
+        "ko": "고원을 산책하는 것은 즐겁다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b755e6195d": {
+    "examples": [
+      {
+        "jp": "好況と不況は交互に来る。",
+        "ko": "호황과 불황은 번갈아 온다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-22c467a634": {
+    "examples": [
+      {
+        "jp": "私は考古学者です。",
+        "ko": "저는 고고학자입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0fafecee52": {
+    "examples": [
+      {
+        "jp": "彼は工作がうまい。",
+        "ko": "그는 공작을 잘한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-06a25be1a7": {
+    "examples": [
+      {
+        "jp": "３００年間、彼らは周囲の土地を耕作してきた。",
+        "ko": "300년 동안 그들은 주변의 땅을 경작해 왔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-64b65e1fa8": {
+    "examples": [
+      {
+        "jp": "その鉱山は閉鎖している。",
+        "ko": "그 광산은 폐쇄되어 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-30f8be8da2": {
+    "meaning": "강습 / 단기 교육·연수",
+    "examples": [
+      {
+        "jp": "彼女は週に一度料理の講習を受ける。",
+        "ko": "그녀는 일주일에 한 번 요리 강습을 받는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-52798b0447": {
+    "examples": [
+      {
+        "jp": "秘書はボスが口述するのを受けた。",
+        "ko": "비서는 상사의 구술을 받아 적었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c2da32810a": {
+    "examples": [
+      {
+        "jp": "税務署は控除を認めた。",
+        "ko": "세무서는 공제를 인정했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e6156e0e0d": {
+    "examples": [
+      {
+        "jp": "彼は趣味が高尚です。",
+        "ko": "그는 취미가 고상합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6a99d0c518": {
+    "examples": [
+      {
+        "jp": "彼の英語力は著しく向上した。",
+        "ko": "그의 영어 실력은 눈에 띄게 향상되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8eaf15f84c": {
+    "examples": [
+      {
+        "jp": "道は行進にさしつかえない。",
+        "ko": "그 길은 행진하는 데 지장이 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8aa704aca6": {
+    "examples": [
+      {
+        "jp": "韓国料理は、香辛料のきいた味でよく知られている。",
+        "ko": "한국 음식은 향신료가 강한 맛으로 잘 알려져 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6c44a3132f": {
+    "examples": [
+      {
+        "jp": "大雨は洪水となって被害を与えた。",
+        "ko": "폭우가 홍수로 이어져 피해를 입혔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-aa577197fc": {
+    "examples": [
+      {
+        "jp": "公然と悪態をつかないでよ。",
+        "ko": "대놓고 욕하지 마.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-01d0e9895f": {
+    "examples": [
+      {
+        "jp": "新聞は２党間の抗争を報じた。",
+        "ko": "신문은 두 정당 사이의 항쟁을 보도했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e6a8a40d3e": {
+    "examples": [
+      {
+        "jp": "彼女が建設的な構想を持つ。",
+        "ko": "그녀는 건설적인 구상을 가지고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7113165c32": {
+    "examples": [
+      {
+        "jp": "この決定は諸君全部を拘束するものではない。",
+        "ko": "이 결정이 여러분 모두를 구속하는 것은 아니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-802b0bd9ca": {
+    "examples": [
+      {
+        "jp": "彼は前進も後退もすまいと決めた。",
+        "ko": "그는 전진도 후퇴도 하지 않기로 결심했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c1adc6f591": {
+    "examples": [
+      {
+        "jp": "この指輪は光沢をうしなった。",
+        "ko": "이 반지는 광택을 잃었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5d6639a067": {
+    "meaning": "공단 / 공공사업을 수행하는 공공법인",
+    "examples": [
+      {
+        "jp": "公団は建設計画の入札を募集した。",
+        "ko": "공단은 건설 계획의 입찰을 모집했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c11852e9f0": {
+    "meaning": "호조 / 상태가 좋음 / 순조로움",
+    "examples": [
+      {
+        "jp": "彼女好調ですね。",
+        "ko": "그녀는 요즘 상태가 좋네요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-af42c84532": {
+    "examples": [
+      {
+        "jp": "彼女は上司に口頭で報告をした。",
+        "ko": "그녀는 상사에게 구두로 보고했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
