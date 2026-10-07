@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>JLPT N1 · 단어 해부 UI 테스트</title>
+<style>
+:root{
+  --bg:#f5f7fc;--panel:#fff;--text:#141a2a;--muted:#737b90;--line:#e1e6f1;
+  --accent:#5146ee;--accent-soft:#eeedff;--good:#16794f;--good-soft:#eaf8f1;
+  --shadow:0 18px 50px rgba(37,44,74,.08)
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Noto Sans KR","Noto Sans JP",sans-serif}
+button{font:inherit}
+.wrap{max-width:760px;margin:0 auto;padding:22px 16px 60px}
+.test-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.test-head h1{font-size:24px;margin:0 0 5px}.sub{font-size:13px;color:var(--muted);line-height:1.55}
+.badge{display:inline-flex;align-items:center;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:12px;padding:7px 10px;white-space:nowrap}
+.word-picker{display:flex;gap:7px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}.word-picker::-webkit-scrollbar{display:none}
+.pick{border:1px solid var(--line);background:#fff;color:var(--text);padding:8px 12px;border-radius:999px;white-space:nowrap;font-weight:700;cursor:pointer}
+.pick.active{border-color:var(--accent);background:var(--accent);color:#fff}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.word-top{padding:26px 22px 22px;text-align:center;border-bottom:1px solid var(--line)}
+.kana{font-size:19px;font-weight:850;color:var(--accent);letter-spacing:.05em;min-height:28px}
+.title-row{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:2px}
+.speak{width:48px;height:48px;border-radius:15px;border:1px solid var(--line);background:#f7f9fd;font-size:21px;cursor:pointer}
+.word{font-size:46px;font-weight:900;letter-spacing:-.04em}
+.status{display:inline-flex;margin-top:13px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:800}
+.section{padding:20px 22px;border-bottom:1px solid var(--line)}.section:last-child{border-bottom:0}
+.sec-title{display:flex;align-items:center;gap:8px;font-size:19px;font-weight:900;margin-bottom:12px}
+.meaning{font-size:20px;font-weight:850;margin-bottom:6px}.reading{font-size:13px;color:var(--muted)}
+.example{margin-top:14px;padding:13px 14px;background:#f8f9fc;border-radius:14px;line-height:1.75}
+.example-jp{font-size:16px;font-weight:700}.example-ko{font-size:14px;color:var(--muted);margin-top:4px}
+.breakdown-btn{width:100%;border:1px solid #d8d5ff;background:linear-gradient(180deg,#f7f6ff,#efefff);color:#3930cb;border-radius:15px;padding:14px 16px;font-weight:900;font-size:16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.breakdown{display:none;margin-top:12px;border:1px solid #dedcfb;border-radius:17px;overflow:hidden;background:#fcfcff}.breakdown.open{display:block}
+.quick{padding:16px}.type{font-size:11px;color:var(--accent);font-weight:900;letter-spacing:.05em;margin-bottom:8px}
+.formula{display:flex;align-items:stretch;gap:7px;flex-wrap:wrap;margin:8px 0 13px}
+.part{flex:1 1 120px;min-width:0;background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px 12px}
+.part strong{display:block;font-size:21px;margin-bottom:4px}.part span{font-size:12px;color:var(--muted)}
+.plus{align-self:center;color:var(--muted);font-weight:900}
+.arrow{align-self:center;color:var(--accent);font-weight:900}
+.core{background:var(--accent-soft);border-radius:13px;padding:12px 13px;line-height:1.6;font-size:14px}.core strong{color:var(--accent)}
+.memory{margin-top:10px;display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.55}.memory b{white-space:nowrap}
+.detail-toggle{margin-top:12px;width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:800;color:#4f566a;cursor:pointer}
+.details{display:none;padding:0 16px 16px}.details.open{display:block}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.detail-item{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px}.detail-item h3{font-size:12px;color:var(--muted);margin:0 0 6px}.detail-item p{font-size:14px;line-height:1.6;margin:0}
+.related{display:flex;gap:7px;flex-wrap:wrap}.chip{background:var(--good-soft);color:var(--good);font-size:12px;font-weight:800;border-radius:999px;padding:6px 9px}
+.note{margin-top:14px;padding:12px 13px;border-radius:13px;background:#fff8e7;font-size:13px;line-height:1.6;color:#674c0c}
+.guide{margin-top:16px;background:#fff;border:1px dashed #cfd5e4;border-radius:16px;padding:14px 15px;font-size:13px;color:var(--muted);line-height:1.65}
+.mode-note{margin-top:8px;color:var(--accent);font-weight:800;font-size:12px}
+@media(max-width:560px){
+ .wrap{padding:12px 10px 45px}.test-head h1{font-size:20px}.badge{display:none}
+ .word-top{padding:22px 14px 18px}.word{font-size:41px}.section{padding:17px 14px}.detail-grid{grid-template-columns:1fr}
+ .part{flex-basis:100px}.sec-title{font-size:18px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="test-head">
+    <div><h1>🔍 단어 해부 UI 테스트</h1><div class="sub">본 사이트 반영 전, 설명 밀도와 펼침 구조를 확인하는 페이지입니다.</div></div>
+    <div class="badge">PROTOTYPE</div>
+  </div>
+  <div class="word-picker" id="picker"></div>
+
+  <div class="card">
+    <div class="word-top">
+      <div class="kana" id="kana"></div>
+      <div class="title-row"><button class="speak" id="speak" type="button" title="발음">🔊</button><div class="word" id="word"></div></div>
+      <div class="status">미학습 · 0회</div>
+    </div>
+
+    <div class="section">
+      <div class="sec-title">② 뜻 · 읽기</div>
+      <div class="meaning" id="meaning"></div>
+      <div class="reading" id="reading"></div>
+      <div class="example"><div class="example-jp" id="exjp"></div><div class="example-ko" id="exko"></div></div>
+    </div>
+
+    <div class="section">
+      <button class="breakdown-btn" id="breakdownBtn" type="button"><span>🔍 단어 해부</span><span id="breakdownArrow">＋</span></button>
+      <div class="breakdown" id="breakdown">
+        <div class="quick">
+          <div class="type" id="analysisType"></div>
+          <div class="formula" id="formula"></div>
+          <div class="core" id="core"></div>
+          <div class="memory"><b>💡 기억</b><span id="memory"></span></div>
+          <button class="detail-toggle" id="detailToggle" type="button">자세히 보기</button>
+        </div>
+        <div class="details" id="details">
+          <div class="detail-grid">
+            <div class="detail-item"><h3>구성 · 형성</h3><p id="formation"></p></div>
+            <div class="detail-item"><h3>사용감 · 뉘앙스</h3><p id="nuance"></p></div>
+            <div class="detail-item"><h3>연관어</h3><div class="related" id="related"></div></div>
+            <div class="detail-item"><h3>한국인이 기억할 포인트</h3><p id="koreanTip"></p></div>
+          </div>
+          <div class="note" id="note"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide">
+    <b>테스트 의도:</b> 기본 카드에는 뜻·예문까지만 보이고, 필요할 때만 「단어 해부」를 펼칩니다.
+    한자어는 <b>구성 → 뜻 연결</b>, 히라가나·외래어는 억지 한자 분석 대신 <b>어원·쓰임·뉘앙스</b> 중심으로 바뀝니다.
+    <div class="mode-note">위 단어 버튼을 눌러 유형별 차이를 비교해보세요.</div>
+  </div>
+</div>
+<script>
+const DATA=[
+ {word:"自撮り",kana:"じどり",meaning:"셀카 · 셀카 찍기",type:"한자 + 동사 어간 · 일본식 조어",
+  parts:[["自","자기 자신"],["撮り","찍기"]],core:"<strong>自分で自分を撮る</strong> → 자기 자신을 직접 찍는다 → <strong>自撮り</strong>",
+  memory:"스스로(自) + 찍기(撮り) = 셀카",formation:"「自」+「撮る」의 연용형 「撮り」가 결합. 복합어 안에서 とり가 どり로 소리 나는 연탁(連濁)이 일어난다.",
+  nuance:"사진이라는 물건만이 아니라 ‘자기 자신을 찍는 행위’ 자체에도 자연스럽게 쓴다.",
+  related:["自撮り棒 셀카봉","撮影 촬영","写真を撮る 사진을 찍다"],tip:"‘셀카’라는 외래어 대신 행동을 그대로 압축한 일본어라고 생각하면 잘 외워진다.",
+  note:"재미 포인트: 自撮り棒은 직역하면 ‘자기 찍기 막대기’. 신조어·일상어 분석에 특히 잘 맞는 유형.",
+  exjp:"旅行に行くと自撮りをたくさんする。",exko:"여행을 가면 셀카를 많이 찍는다."},
+ {word:"補給",kana:"ほきゅう",meaning:"보급 · 보충 공급",type:"한자 복합어 · 의미 합성",
+  parts:[["補","부족한 것을 보충하다"],["給","주다 · 공급하다"]],core:"부족한 것을 <strong>보충해서(補) 공급한다(給)</strong> → <strong>補給</strong>",
+  memory:"모자란 것을 채워서 계속 쓸 수 있게 공급",formation:"두 한자의 의미가 거의 그대로 합쳐지는 전형적인 한자 복합어. 군수품·연료·수분·영양 등 ‘소모되는 것’을 다시 채울 때 많이 쓴다.",
+  nuance:"단순히 더하는 補充보다 ‘필요한 곳에 공급한다’는 느낌이 강하다.",
+  related:["補充 보충","供給 공급","給油 주유","栄養補給 영양 보충"],tip:"補充=빈 곳을 채움, 補給=필요한 것을 다시 공급함으로 구분하면 좋다.",
+  note:"현재 음성 이상 신고가 있었던 단어. 학습 데이터와 별개로 정적 TTS 파일을 재생성하도록 처리한 대상.",
+  exjp:"長い運動の後は水分を補給したほうがいい。",exko:"오래 운동한 뒤에는 수분을 보충하는 것이 좋다."},
+ {word:"両立",kana:"りょうりつ",meaning:"양립 · 두 가지를 함께 성립시킴",type:"한자 복합어 · 추상 개념",
+  parts:[["両","양쪽 · 둘"],["立","서다 · 성립하다"]],core:"두 가지가 <strong>양쪽 모두 서 있다</strong> → 서로 깨뜨리지 않고 함께 성립 → <strong>両立</strong>",
+  memory:"둘 다 세워 놓는다 = 두 가지를 동시에 해낸다",formation:"「両」은 둘, 「立」은 서다·성립하다. 두 조건이나 가치가 동시에 유지되는 상태를 나타낸다.",
+  nuance:"仕事と育児, 勉強とアルバイト처럼 동시에 만족시키기 어려운 두 항목과 자주 결합한다.",
+  related:["両立する 양립하다","成立 성립","自立 자립"],tip:"한국어 ‘양립’과 거의 같지만 일본어에서는 생활·업무 문맥에서 훨씬 자주 체감하게 된다.",
+  note:"N1에서는 ‘AとBを両立する’ 패턴을 통째로 익혀 두면 독해와 작문 모두에 유용하다.",
+  exjp:"仕事と育児を無理なく両立したい。",exko:"일과 육아를 무리 없이 병행하고 싶다."},
+ {word:"余暇",kana:"よか",meaning:"여가 · 남는 시간",type:"한자 복합어 · 이미지형",
+  parts:[["余","남다 · 여분"],["暇","한가한 시간"]],core:"남아 있는(余) 한가한 시간(暇) → <strong>余暇</strong>",
+  memory:"일을 하고도 ‘남은 한가한 시간’",formation:"두 글자의 의미가 매우 직관적으로 합쳐진 말. 일상 회화보다 설명문·설문·기사에서 조금 더 자주 보인다.",
+  nuance:"日常会話에서는 暇な時間, 空いた時間이 더 편할 수 있고 余暇는 다소 문어적이다.",
+  related:["余裕 여유","暇 한가함","余暇活動 여가 활동"],tip:"‘여가’라는 한국 한자어와 구조가 같아서 뜻은 쉽고, 실제 사용 레지스터만 기억하면 된다.",
+  note:"단어 해부가 ‘암기’보다 ‘어디서 쓰는 말인가’를 알려주는 데 가치가 있는 유형.",
+  exjp:"余暇を利用して資格の勉強を始めた。",exko:"여가 시간을 활용해 자격증 공부를 시작했다."},
+ {word:"煩わしい",kana:"わずらわしい",meaning:"번거롭다 · 성가시다",type:"형용사 · 핵심 한자 + 어감",
+  parts:[["煩","번거롭다 · 괴롭히다"],["わしい","형용사 어형"]],core:"마음이나 일을 <strong>복잡하고 귀찮게 만드는 느낌</strong> → <strong>煩わしい</strong>",
+  memory:"절차나 관계가 복잡해서 ‘아, 귀찮다’ 싶은 느낌",formation:"「煩う／煩わす」 계열과 연결되는 형용사. 단순한 面倒보다 심리적·절차적 성가심이 느껴질 수 있다.",
+  nuance:"手続きが煩わしい, 人間関係が煩わしい처럼 ‘복잡하고 신경 쓰인다’는 상황에 잘 맞는다.",
+  related:["煩う 앓다·고민하다","煩雑 번잡","面倒 귀찮음"],tip:"面倒くさい보다 문어적이고 점잖은 표현으로 기억하면 문맥 판단이 쉬워진다.",
+  note:"이런 단어는 부수 하나하나보다 ‘같은 煩 계열 단어’와 묶는 방식이 더 학습 효율이 좋다.",
+  exjp:"細かい手続きが多くて少し煩わしい。",exko:"세세한 절차가 많아서 조금 번거롭다."},
+ {word:"よっぽど",kana:"よっぽど",meaning:"상당히 · 어지간히 · 훨씬",type:"히라가나 어휘 · 뉘앙스 중심",
+  parts:[["よっぽど","정도가 매우 큼"]],core:"‘보통 수준을 훨씬 넘는다’는 감각 → 문맥에 따라 <strong>상당히 / 어지간히 / 훨씬</strong>",
+  memory:"‘그 정도라면 뭔가 꽤 심했겠네’라는 체감",formation:"한자를 억지로 쪼개지 않고 실제 회화에서 느껴지는 강도와 패턴을 중심으로 익히는 편이 낫다.",
+  nuance:"よっぽど疲れていた, よっぽどのことがない限り처럼 화자의 추측·강조와 자주 결합한다.",
+  related:["かなり 상당히","相当 상당히","よほど 매우"],tip:"문장 전체에서 ‘정도가 예상보다 훨씬 크다’는 신호로 잡으면 번역이 자연스럽다.",
+  note:"모든 단어를 한자 해부하면 오히려 억지스러워진다는 것을 보여주는 테스트용 유형.",
+  exjp:"彼がそこまで怒るとは、よっぽど嫌なことがあったのだろう。",exko:"그가 그렇게까지 화를 내다니, 어지간히 싫은 일이 있었던 모양이다."},
+ {word:"レンタカー",kana:"レンタカー",meaning:"렌터카",type:"외래어 · 어원 중심",
+  parts:[["レンタ","rent-a"],["カー","car"]],core:"영어식 표현이 일본어 음운에 맞게 굳어진 <strong>レンタカー</strong>",
+  memory:"rent-a-car → レンタカー",formation:"일본어에서 오래 굳어진 외래어. 실제 영어권에서는 보통 rental car를 쓰지만 일본어에서는 レンタカー가 일반적이다.",
+  nuance:"レンタカーを借りる가 자연스러운 결합. 예약·여행 문맥에서 자주 등장한다.",
+  related:["レンタル 대여","カーシェア 카셰어","借りる 빌리다"],tip:"카타카나를 한국식 외래어 감각으로만 넘기지 말고 ‘일본에서 실제로 굳어진 형태’를 함께 기억한다.",
+  note:"외래어는 ‘한자 구성’ 대신 원어와 일본식 사용법을 보여주는 방식이 더 적합하다.",
+  exjp:"旅行先では駅前でレンタカーを借りる予定だ。",exko:"여행지에서는 역 앞에서 렌터카를 빌릴 예정이다."}
+];
+
+let current=0;
+const $=id=>document.getElementById(id);
+function render(){
+ const d=DATA[current];
+ $("kana").textContent=d.kana;$("word").textContent=d.word;$("meaning").textContent=d.meaning;$("reading").textContent="읽기 · "+d.kana;
+ $("exjp").textContent=d.exjp;$("exko").textContent=d.exko;$("analysisType").textContent=d.type.toUpperCase();
+ $("formula").innerHTML=d.parts.map((p,i)=>`<div class="part"><strong>${p[0]}</strong><span>${p[1]}</span></div>${i<d.parts.length-1?'<div class="plus">＋</div>':''}`).join("")+'<div class="arrow">→</div><div class="part"><strong>'+d.word+'</strong><span>'+d.meaning+'</span></div>';
+ $("core").innerHTML=d.core;$("memory").textContent=d.memory;$("formation").textContent=d.formation;$("nuance").textContent=d.nuance;$("koreanTip").textContent=d.tip;$("note").textContent=d.note;
+ $("related").innerHTML=d.related.map(x=>'<span class="chip">'+x+'</span>').join("");
+ document.querySelectorAll(".pick").forEach((b,i)=>b.classList.toggle("active",i===current));
+ $("breakdown").classList.remove("open");$("details").classList.remove("open");$("breakdownArrow").textContent="＋";$("detailToggle").textContent="자세히 보기";
+}
+$("picker").innerHTML=DATA.map((d,i)=>'<button class="pick'+(i===0?' active':'')+'" data-i="'+i+'" type="button">'+d.word+'</button>').join("");
+$("picker").addEventListener("click",e=>{const b=e.target.closest(".pick");if(!b)return;current=Number(b.dataset.i);render()});
+$("breakdownBtn").addEventListener("click",()=>{const open=$("breakdown").classList.toggle("open");$("breakdownArrow").textContent=open?"−":"＋"});
+$("detailToggle").addEventListener("click",()=>{const open=$("details").classList.toggle("open");$("detailToggle").textContent=open?"간단히 보기":"자세히 보기"});
+$("speak").addEventListener("click",()=>{
+ if(!("speechSynthesis" in window))return;
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(DATA[current].word);u.lang="ja-JP";u.rate=.9;speechSynthesis.speak(u);
+});
+render();
+</script>
+</body>
+</html>
