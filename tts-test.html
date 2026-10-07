@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>JLPT 일본어 AI 보이스 · 성능/실전 테스트</title>
+<title>JLPT 일본어 AI 보이스 · 캐시/파이프라인 최적화 테스트</title>
 <style>
 :root{--bg:#f4f6fb;--panel:#fff;--text:#111827;--muted:#667085;--line:#dde3ee;--accent:#5146e5;--soft:#eeecff;--good:#14804a;--bad:#c0392b;--warn:#9a6700}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Hiragino Sans","Noto Sans JP",sans-serif}
@@ -11,7 +11,7 @@ main{max-width:820px;margin:0 auto;padding:24px 16px 60px}.card{background:var(-
 h1{font-size:27px;margin:0 0 8px}h2{font-size:19px;margin:0 0 7px}.sub{color:var(--muted);line-height:1.65;font-size:14px}.status{padding:13px 14px;border-radius:12px;background:#f7f8fc;border:1px solid var(--line);font-size:13px;line-height:1.55;margin-top:14px}.status.ok{color:var(--good);background:#f0faf5}.status.bad{color:var(--bad);background:#fff4f3}
 button{appearance:none;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:11px;padding:11px 14px;font-weight:750;font-size:14px;cursor:pointer}button.primary{background:var(--accent);border-color:var(--accent);color:#fff}button:disabled{opacity:.45;cursor:not-allowed}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.note{font-size:12px;color:var(--muted);line-height:1.65;margin-top:12px}.progress{height:7px;border-radius:99px;background:#eceff5;overflow:hidden;margin-top:12px}.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}.metric{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fafbfe}.metric b{display:block;font-size:19px;margin-top:4px}.metric span{font-size:11px;color:var(--muted)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}.metric{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fafbfe}.metric b{display:block;font-size:19px;margin-top:4px}.metric span{font-size:11px;color:var(--muted)}
 .voice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.voice{border:1px solid var(--line);border-radius:14px;padding:14px}.voice strong{display:block;font-size:15px}.voice small{display:block;color:var(--muted);margin:5px 0 11px}
 .test-row{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px}.jp{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.8;font-size:17px}.word{font-size:31px;font-weight:700}.reading{color:var(--muted);font-size:13px;margin-top:2px}
 textarea{width:100%;min-height:105px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:13px;font:inherit;font-size:15px;line-height:1.7;color:var(--text)}
@@ -35,8 +35,10 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
       <div class="metric"><span>모델 준비</span><b id="loadMetric">—</b></div>
       <div class="metric"><span>마지막 음성 생성</span><b id="genMetric">—</b></div>
       <div class="metric"><span>현재 메모리 캐시</span><b id="cacheMetric">0개</b></div>
+      <div class="metric"><span>기기 영구 캐시</span><b id="diskCacheMetric">확인 중</b></div>
     </div>
-    <div class="note">표시 시간은 이 기기에서 실제 측정한 값입니다. 첫 방문과 재방문, Mac과 iPhone에서 각각 비교해보면 됩니다.</div>
+    <div class="actions"><button id="precacheWords">⚡ 단어 3개 미리 준비</button><button id="clearAudioCache">음성 캐시 비우기</button></div>
+    <div class="note">표시 시간은 이 기기에서 실제 측정한 값입니다. 생성한 음성은 IndexedDB에 저장되어 새로고침하거나 다음날 다시 열어도 재사용합니다.</div>
   </div>
 
   <div class="card">
@@ -58,7 +60,7 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
 
   <div class="card">
     <h2>N1 問題1 · 완성형 샘플</h2>
-    <div class="sub">나레이션 → 여성 → 남성 → 여성 → 남성 → 여성 → 남성 → 질문 순서로 실제 시험처럼 연속 재생합니다. 첫 실행은 전체 대화를 먼저 생성하므로 시간이 표시됩니다.</div>
+    <div class="sub">이제 9개 음성을 전부 기다리지 않습니다. 앞의 2개만 먼저 만든 뒤 재생을 시작하고, 듣는 동안 뒤 음성을 순서대로 계속 생성합니다. 생성된 조각은 기기에 영구 저장됩니다.</div>
     <div class="qbox">
       <div class="qtitle">問1　男の人はこのあと、まず何をしなければなりませんか。</div>
       <div class="choices" id="choices">
@@ -68,10 +70,11 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
         <button class="choice" data-answer="4"><span class="num">4</span><span>部長に日程を確認する</span></button>
       </div>
       <div class="actions">
-        <button class="primary" id="n1Play">▶ 문제 생성 · 재생</button>
+        <button class="primary" id="n1Play">⚡ 최적화 생성 · 재생</button>
+        <button id="n1Prepare">전체 미리 준비</button>
         <button id="showScript">스크립트 보기</button>
       </div>
-      <div class="status" id="n1Status">아직 생성하지 않았습니다.</div>
+      <div class="status" id="n1Status">아직 생성하지 않았습니다. 첫 소리까지 걸리는 시간과 전체 준비 시간을 따로 측정합니다.</div>
       <div class="answer" id="answerBox"><b>정답 3.</b> 회의실 예약과 부장 확인은 이미 끝났고, 자료 인쇄는 내일 해도 됩니다. 따라서 남자가 가장 먼저 해야 할 일은 참가자들에게 시간 변경을 알리는 것입니다.</div>
       <div class="script" id="scriptBox">
         <div class="script-line"><span class="speaker">ナレーション</span>会社で、女の人と男の人が話しています。男の人はこのあと、まず何をしなければなりませんか。</div>
@@ -123,7 +126,10 @@ const n1Lines=[
 const $=id=>document.getElementById(id);
 let tts=null,currentAudio=null,busy=false,stopRequested=false;
 const audioCache=new Map();
+const DB_NAME="jlpt-kokoro-audio-v1",STORE="audio";
+let dbPromise=null;
 const fmt=ms=>ms<1000?Math.round(ms)+"ms":(ms/1000).toFixed(2)+"초";
+const cacheKey=(text,voice)=>voice+"|"+text;
 
 function setStatus(msg,type,target="status"){
  const el=$(target);el.textContent=msg;el.className="status"+(type?" "+type:"");
@@ -131,7 +137,7 @@ function setStatus(msg,type,target="status"){
 function setBusy(v){
  busy=v;
  document.querySelectorAll("button").forEach(b=>{
-   if(["stopBtn","showScript"].includes(b.id)||b.classList.contains("choice"))return;
+   if(["stopBtn","showScript","clearAudioCache"].includes(b.id)||b.classList.contains("choice"))return;
    b.disabled=v;
  });
 }
@@ -139,8 +145,62 @@ function stopAudio(){
  stopRequested=true;
  if(currentAudio){currentAudio.pause();currentAudio.currentTime=0;currentAudio=null}
 }
-function updateCache(){ $("cacheMetric").textContent=audioCache.size+"개" }
-
+function openDB(){
+ if(dbPromise)return dbPromise;
+ dbPromise=new Promise((resolve,reject)=>{
+   const req=indexedDB.open(DB_NAME,1);
+   req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(STORE))db.createObjectStore(STORE)};
+   req.onsuccess=()=>resolve(req.result);
+   req.onerror=()=>reject(req.error);
+ });
+ return dbPromise;
+}
+async function idbGet(key){
+ try{
+   const db=await openDB();
+   return await new Promise((resolve,reject)=>{
+     const req=db.transaction(STORE,"readonly").objectStore(STORE).get(key);
+     req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error);
+   });
+ }catch(e){console.warn("IndexedDB read failed",e);return null}
+}
+async function idbPut(key,blob){
+ try{
+   const db=await openDB();
+   await new Promise((resolve,reject)=>{
+     const req=db.transaction(STORE,"readwrite").objectStore(STORE).put(blob,key);
+     req.onsuccess=()=>resolve();req.onerror=()=>reject(req.error);
+   });
+ }catch(e){console.warn("IndexedDB write failed",e)}
+}
+async function idbCount(){
+ try{
+   const db=await openDB();
+   return await new Promise((resolve,reject)=>{
+     const req=db.transaction(STORE,"readonly").objectStore(STORE).count();
+     req.onsuccess=()=>resolve(req.result||0);req.onerror=()=>reject(req.error);
+   });
+ }catch(e){return 0}
+}
+async function clearPersistentCache(){
+ stopAudio();
+ for(const url of audioCache.values())URL.revokeObjectURL(url);
+ audioCache.clear();
+ try{
+   const db=await openDB();
+   await new Promise((resolve,reject)=>{
+     const req=db.transaction(STORE,"readwrite").objectStore(STORE).clear();
+     req.onsuccess=()=>resolve();req.onerror=()=>reject(req.error);
+   });
+ }catch(e){console.warn(e)}
+ await updateCache();
+ setStatus("기기 음성 캐시를 비웠습니다. 다음 재생은 다시 생성합니다.");
+ setStatus("캐시를 비웠습니다. 최적화 속도를 처음부터 다시 측정할 수 있습니다.","","n1Status");
+}
+async function updateCache(){
+ $("cacheMetric").textContent=audioCache.size+"개";
+ $("diskCacheMetric").textContent=(await idbCount())+"개";
+}
 async function ensureTTS(){
  if(tts)return tts;
  const started=performance.now();
@@ -160,16 +220,20 @@ async function ensureTTS(){
 }
 
 async function synth(text,voice){
- const key=voice+"|"+text;
- if(audioCache.has(key))return {url:audioCache.get(key),ms:0,cached:true};
+ const key=cacheKey(text,voice);
+ if(audioCache.has(key))return {url:audioCache.get(key),ms:0,cached:true,source:"memory"};
+ const saved=await idbGet(key);
+ if(saved instanceof Blob){
+   const url=URL.createObjectURL(saved);audioCache.set(key,url);await updateCache();
+   return {url,ms:0,cached:true,source:"device"};
+ }
  await ensureTTS();
  const started=performance.now();
  const out=await tts.speak(text,voice);
- const ms=performance.now()-started;
- const url=URL.createObjectURL(out.toBlob());
- audioCache.set(key,url);updateCache();
+ const ms=performance.now()-started,blob=out.toBlob(),url=URL.createObjectURL(blob);
+ audioCache.set(key,url);await idbPut(key,blob);await updateCache();
  $("genMetric").textContent=fmt(ms);
- return {url,ms,cached:false};
+ return {url,ms,cached:false,source:"generated"};
 }
 function playUrl(url){
  return new Promise((resolve,reject)=>{
@@ -191,30 +255,80 @@ async function playOne(text,voice){
  finally{setBusy(false)}
 }
 
+function makeSlot(){
+ let resolve,reject;
+ const promise=new Promise((res,rej)=>{resolve=res;reject=rej});
+ return {promise,resolve,reject};
+}
+function startN1Producer(){
+ const slots=n1Lines.map(()=>makeSlot());
+ let generated=0,cached=0,finished=0;
+ const started=performance.now();
+ const producer=(async()=>{
+   for(let i=0;i<n1Lines.length;i++){
+     if(stopRequested)throw new Error("재생이 취소되었습니다.");
+     setStatus("백그라운드 준비 "+(i+1)+" / "+n1Lines.length+"…","","n1Status");
+     try{
+       const r=await synth(n1Lines[i][0],n1Lines[i][1]);
+       if(r.cached)cached++;else generated++;
+       finished++;slots[i].resolve(r);
+     }catch(e){slots[i].reject(e);throw e}
+   }
+   return {total:performance.now()-started,generated,cached};
+ })();
+ producer.catch(()=>{});
+ return {slots,producer,started,getStats:()=>({generated,cached,finished})};
+}
 async function playN1(){
  stopAudio();stopRequested=false;
  try{
    setBusy(true);
-   const started=performance.now(),items=[];let generated=0,cached=0;
+   const job=startN1Producer();
+   const firstReadyStarted=performance.now();
+   await Promise.all([job.slots[0].promise,job.slots[1].promise]);
+   const firstReady=performance.now()-firstReadyStarted;
+   setStatus("첫 2개 준비 "+fmt(firstReady)+" · 재생 시작 · 나머지는 듣는 동안 생성합니다.","ok","n1Status");
    for(let i=0;i<n1Lines.length;i++){
-     setStatus("문제 음성 준비 중 "+(i+1)+" / "+n1Lines.length+"…","","n1Status");
-     const r=await synth(n1Lines[i][0],n1Lines[i][1]);
-     items.push(r.url);
-     if(r.cached)cached++;else generated++;
-     if(stopRequested)throw new Error("재생이 취소되었습니다.");
-   }
-   const total=performance.now()-started;
-   setStatus("준비 완료 · "+fmt(total)+" · 새 생성 "+generated+" / 캐시 "+cached+" · 재생 중","ok","n1Status");
-   for(let i=0;i<items.length;i++){
      if(stopRequested)break;
-     await playUrl(items[i]);
-     if(i<items.length-1&&!stopRequested)await new Promise(r=>setTimeout(r,180));
+     const waitStart=performance.now(),r=await job.slots[i].promise,waited=performance.now()-waitStart;
+     if(waited>250)setStatus("재생 중 "+(i+1)+" / "+n1Lines.length+" · 다음 음성 버퍼 대기 "+fmt(waited),"","n1Status");
+     await playUrl(r.url);
+     if(i<n1Lines.length-1&&!stopRequested)await new Promise(res=>setTimeout(res,180));
    }
-   if(!stopRequested)setStatus("문제 재생 완료 · 준비 시간 "+fmt(total)+" · 다시 누르면 캐시로 빠르게 시작합니다.","ok","n1Status");
+   const final=await job.producer;
+   if(!stopRequested)setStatus("완료 · 첫 재생까지 "+fmt(firstReady)+" · 전체 생성/캐시 확인 "+fmt(final.total)+" · 새 생성 "+final.generated+" / 캐시 "+final.cached,"ok","n1Status");
  }catch(err){
-   console.error(err);
-   setStatus(err&&err.message?err.message:String(err),"bad","n1Status");
+   console.error(err);setStatus(err&&err.message?err.message:String(err),"bad","n1Status");
  }finally{setBusy(false)}
+}
+async function prepareN1(){
+ stopAudio();stopRequested=false;
+ try{
+   setBusy(true);const started=performance.now();let generated=0,cached=0;
+   for(let i=0;i<n1Lines.length;i++){
+     setStatus("전체 미리 준비 "+(i+1)+" / "+n1Lines.length+"…","","n1Status");
+     const r=await synth(n1Lines[i][0],n1Lines[i][1]);
+     if(r.cached)cached++;else generated++;
+   }
+   setStatus("전체 준비 완료 "+fmt(performance.now()-started)+" · 새 생성 "+generated+" / 캐시 "+cached+". 이제 최적화 재생은 바로 시작됩니다.","ok","n1Status");
+ }catch(err){console.error(err);setStatus("미리 준비 실패: "+(err&&err.message?err.message:String(err)),"bad","n1Status")}
+ finally{setBusy(false)}
+}
+async function precacheWords(){
+ const items=[
+   ["みこむ","jf_alpha"],
+   ["来年はさらに多くの利用者が見込まれている。","jf_alpha"],
+   ["来年は何があるのか、今から確認しておきましょう。","jf_alpha"]
+ ];
+ try{
+   setBusy(true);const started=performance.now();let generated=0,cached=0;
+   for(let i=0;i<items.length;i++){
+     setStatus("단어장 선생성 "+(i+1)+" / "+items.length+"…");
+     const r=await synth(items[i][0],items[i][1]);if(r.cached)cached++;else generated++;
+   }
+   setStatus("단어 3개 준비 완료 "+fmt(performance.now()-started)+" · 새 생성 "+generated+" / 캐시 "+cached+". 이제 🔊는 즉시 재생됩니다.","ok");
+ }catch(err){console.error(err);setStatus("단어 선생성 실패: "+(err&&err.message?err.message:String(err)),"bad")}
+ finally{setBusy(false)}
 }
 
 voices.forEach(v=>{
@@ -229,8 +343,12 @@ voices.forEach(v=>{
 $("loadBtn").addEventListener("click",()=>ensureTTS());
 $("customPlay").addEventListener("click",()=>playOne($("customText").value.trim(),$("voiceSelect").value));
 $("n1Play").addEventListener("click",playN1);
+$("n1Prepare").addEventListener("click",prepareN1);
+$("precacheWords").addEventListener("click",precacheWords);
+$("clearAudioCache").addEventListener("click",clearPersistentCache);
 $("stopBtn").addEventListener("click",()=>{stopAudio();setStatus("재생을 정지했습니다.");setStatus("재생을 정지했습니다.","","n1Status")});
 $("showScript").addEventListener("click",()=>{$("scriptBox").classList.toggle("show");$("showScript").textContent=$("scriptBox").classList.contains("show")?"스크립트 숨기기":"스크립트 보기"});
+updateCache();
 document.addEventListener("click",e=>{
  const b=e.target.closest("[data-say]");
  if(b)playOne(b.dataset.say,b.dataset.voice);
