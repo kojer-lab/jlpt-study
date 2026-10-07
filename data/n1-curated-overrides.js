@@ -3267,113 +3267,47 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-32afdf9540": {
-    "meaning": "때때로 / 종종",
-    "examples": [
-      {
-        "jp": "忙しい時期には間々こうしたミスが起こる。",
-        "ko": "바쁜 시기에는 때때로 이런 실수가 생긴다."
-      }
-    ],
+    "meaning": "간혹 / 때때로",
     "meaningSource": "manual-review"
   },
   "oj-7444466df7": {
     "meaning": "공 / 둥근 공",
-    "examples": [
-      {
-        "jp": "子どもたちが鞠で遊んでいる。",
-        "ko": "아이들이 공을 가지고 놀고 있다."
-      }
-    ],
     "meaningSource": "manual-review"
   },
   "oj-61b39f2848": {
-    "meaning": "아주 둥글다 / 완전히 원형이다",
-    "examples": [
-      {
-        "jp": "月が真ん丸く見える。",
-        "ko": "달이 아주 둥글게 보인다."
-      }
-    ],
+    "meaning": "완전히 둥근 / 동그란",
     "meaningSource": "manual-review"
   },
   "oj-4b7e4383b0": {
-    "meaning": "미세스 / 기혼 여성의 호칭",
-    "examples": [
-      {
-        "jp": "英語では既婚女性に『ミセス』を使うことがある。",
-        "ko": "영어에서는 기혼 여성에게 ‘미세스’를 쓰기도 한다."
-      }
-    ],
+    "meaning": "미세스 / 기혼 여성의 호칭 Mrs.",
     "meaningSource": "manual-review"
   },
   "oj-8cfbd85b71": {
     "meaning": "구경거리 / 볼거리 / 전시물",
-    "examples": [
-      {
-        "jp": "人を見せ物のように扱ってはいけない。",
-        "ko": "사람을 구경거리처럼 다뤄서는 안 된다."
-      }
-    ],
     "meaningSource": "manual-review"
   },
   "oj-14c9478686": {
-    "meaning": "밀도",
-    "examples": [
-      {
-        "jp": "人口密度の高い地域だ。",
-        "ko": "인구 밀도가 높은 지역이다."
-      }
-    ],
+    "meaning": "밀도 / 빽빽한 정도",
     "meaningSource": "manual-review"
   },
   "oj-f3f52aaa64": {
-    "meaning": "민주 / 민주주의적",
-    "examples": [
-      {
-        "jp": "民主的な手続きで代表を選ぶ。",
-        "ko": "민주적인 절차로 대표를 뽑는다."
-      }
-    ],
+    "meaning": "민주 / 민주주의의",
     "meaningSource": "manual-review"
   },
   "oj-78fbae6020": {
-    "meaning": "민속 / 민간의 풍습·생활문화",
-    "examples": [
-      {
-        "jp": "地域の民俗を調査する。",
-        "ko": "지역의 민속을 조사한다."
-      }
-    ],
+    "meaning": "민속 / 민간의 풍속과 문화",
     "meaningSource": "manual-review"
   },
   "oj-f6bb133d94": {
     "meaning": "사위",
-    "examples": [
-      {
-        "jp": "娘の婿と初めて食事をした。",
-        "ko": "딸의 사위와 처음으로 식사했다."
-      }
-    ],
     "meaningSource": "manual-review"
   },
   "oj-305f477ff6": {
-    "meaning": "무념 / 분함 / 유감",
-    "examples": [
-      {
-        "jp": "あと一歩で負けて無念だった。",
-        "ko": "한 발짝 차이로 져서 무척 분했다."
-      }
-    ],
+    "meaning": "분함 / 유감 / 한스러움",
     "meaningSource": "manual-review"
   },
   "oj-76a17f8fb8": {
-    "meaning": "명산 / 그 지역의 유명한 특산품",
-    "examples": [
-      {
-        "jp": "この町の名産はみかんだ。",
-        "ko": "이 마을의 명산품은 귤이다."
-      }
-    ],
+    "meaning": "명산품 / 특산물",
     "meaningSource": "manual-review"
   },
   "oj-37a8128b31": {
@@ -22034,6 +21968,828 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-a6b638592c": {
     "meaning": "말기 / 마지막 단계",
+    "meaningSource": "manual-review"
+  },
+  "oj-8724f25af8": {
+    "meaning": "마사지 / 안마",
+    "examples": [
+      {
+        "jp": "彼は背中のマッサージを頼んだ。",
+        "ko": "그는 등 마사지를 부탁했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0c84e3be76": {
+    "meaning": "두 동강 / 정확히 둘로",
+    "examples": [
+      {
+        "jp": "トムはリンゴを真っ二つに切った。",
+        "ko": "톰은 사과를 정확히 반으로 잘랐다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0234ae0bc2": {
+    "meaning": "통일감 / 정리됨 / 결론",
+    "examples": [
+      {
+        "jp": "この組織はまとまりに欠けている。",
+        "ko": "이 조직은 통일감이 부족하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fa2a840942": {
+    "meaning": "정리 / 요약 / 묶음",
+    "examples": [
+      {
+        "jp": "本はひとまとめに束ねてあった。",
+        "ko": "책들은 한데 묶여 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-110edd2c50": {
+    "meaning": "초대 / 초청",
+    "examples": [
+      {
+        "jp": "お招きにあずかりありがとうございます。",
+        "ko": "초대해 주셔서 감사합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3904257f59": {
+    "examples": [
+      {
+        "jp": "ゼネストで国中の機能が麻痺した。",
+        "ko": "총파업으로 전국의 기능이 마비되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3bc1b71a60": {
+    "meaning": "통째로 / 전부 / 온전히",
+    "examples": [
+      {
+        "jp": "彼女は１課を丸ごと暗記することで満点を取った。",
+        "ko": "그녀는 한 과를 통째로 외워 만점을 받았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7d2fc5b5b0": {
+    "examples": [
+      {
+        "jp": "おもってたのとまるっきり違いますねえ。",
+        "ko": "생각했던 것과 완전히 다르네요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-65cd5f0ee7": {
+    "meaning": "통통하게 / 몽땅 / 완전히",
+    "examples": [
+      {
+        "jp": "家畜はみんなまるまるしている。",
+        "ko": "가축들이 모두 통통하게 살이 쪄 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ada31963c3": {
+    "meaning": "둥글게 만들다 / 말아 올리다 / 뭉치다",
+    "examples": [
+      {
+        "jp": "彼はその紙を握りつぶして丸めた。",
+        "ko": "그는 그 종이를 구겨서 둥글게 뭉쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f7ffaf9ec1": {
+    "meaning": "장내 전체 / 참석자 전원",
+    "examples": [
+      {
+        "jp": "非常にうまい洒落だったので、満場爆笑した。",
+        "ko": "아주 재치 있는 농담이어서 장내가 폭소했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c87b23e06b": {
+    "meaning": "바로 앞 / 정면",
+    "examples": [
+      {
+        "jp": "郵便局は銀行のちょうど真ん前だよ。",
+        "ko": "우체국은 은행 바로 앞이야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-68e9c896bf": {
+    "meaning": "셋 / 3(고유어 수사에서 쓰이는 형태)",
+    "examples": [
+      {
+        "jp": "三つください。",
+        "ko": "세 개 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b93e0a31d0": {
+    "meaning": "미개 / 개척되지 않음 / 문명화되지 않음",
+    "examples": [
+      {
+        "jp": "その島にはまだ未開の種族がいる。",
+        "ko": "그 섬에는 아직 미개척 상태의 부족이 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fad263d0b1": {
+    "meaning": "미각 / 맛을 느끼는 감각",
+    "examples": [
+      {
+        "jp": "風邪で彼の味覚は鈍くなっていた。",
+        "ko": "감기 때문에 그의 미각이 둔해져 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-62dfbdbf3f": {
+    "examples": [
+      {
+        "jp": "私は安室奈美恵を見かけた。",
+        "ko": "나는 아무로 나미에를 우연히 보았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-63607fd708": {
+    "meaning": "견해 / 관점 / 보는 법",
+    "examples": [
+      {
+        "jp": "私の見方ではもう少し待つほうがよさそうだ。",
+        "ko": "내가 보기에는 조금 더 기다리는 편이 좋을 것 같다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-64a9f67d24": {
+    "meaning": "줄기 / 나무의 몸통",
+    "examples": [
+      {
+        "jp": "きつつきは、長く尖ったくちばしで、木の幹をつついて、中にいる虫を食べます。",
+        "ko": "딱따구리는 길고 뾰족한 부리로 나무줄기를 쪼아 안에 있는 벌레를 먹습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-88bc3515f2": {
+    "meaning": "보기 흉한 / 꼴사나운 / 추한",
+    "examples": [
+      {
+        "jp": "ここだけの話だけれど、あの太った見苦しい魔女は減量中なのだ。",
+        "ko": "우리끼리 하는 말이지만, 저 뚱뚱하고 보기 흉한 마녀는 다이어트 중이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bd247508be": {
+    "examples": [
+      {
+        "jp": "彼は未婚だけど子供がいた。",
+        "ko": "그는 미혼이지만 아이가 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1534662816": {
+    "meaning": "미숙 / 서투름 / 덜 익음",
+    "examples": [
+      {
+        "jp": "彼は商売はまだ未熟だ。",
+        "ko": "그는 장사에는 아직 미숙하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2bbc3577e1": {
+    "meaning": "미진 / 아주 작은 티끌 / 조금도",
+    "examples": [
+      {
+        "jp": "彼には親切心などみじんもない。",
+        "ko": "그에게는 친절한 마음이 조금도 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-434fc61861": {
+    "meaning": "물기 / 수분 / 습기",
+    "examples": [
+      {
+        "jp": "お風呂から上がって脱衣所に入る時は、タオルでしっかり水気を拭き取りましょう。",
+        "ko": "목욕을 마치고 탈의실에 들어갈 때는 수건으로 물기를 잘 닦읍시다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2606862998": {
+    "meaning": "오식 / 인쇄 오류",
+    "examples": [
+      {
+        "jp": "ミスプリントのないような本はほとんどない。",
+        "ko": "오식이 전혀 없는 책은 거의 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e4c887588d": {
+    "meaning": "초라한 / 볼품없는 / 남루한",
+    "examples": [
+      {
+        "jp": "彼らはみすぼらしい小さな家に住んでいる。",
+        "ko": "그들은 초라한 작은 집에 살고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0ac82e3b35": {
+    "meaning": "과시하다 / 자랑해 보이다",
+    "examples": [
+      {
+        "jp": "彼は新しい時計を見せびらかした。",
+        "ko": "그는 새 시계를 자랑하듯 보여 줬다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-084bab949b": {
+    "examples": [
+      {
+        "jp": "このコップをミルクで満たした。",
+        "ko": "이 컵을 우유로 가득 채웠다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-492bf6e2fc": {
+    "meaning": "흐트러뜨리다 / 어지럽히다 / 교란하다",
+    "examples": [
+      {
+        "jp": "彼はその知らせに心を乱した。",
+        "ko": "그는 그 소식에 마음이 흔들렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-affcd995c2": {
+    "meaning": "흐트러지다 / 어지러워지다 / 혼란해지다",
+    "examples": [
+      {
+        "jp": "ダイヤが乱れていた。",
+        "ko": "열차 운행표가 흐트러져 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-72f6bc6de3": {
+    "meaning": "가까운 / 친숙한 / 일상에서 가까이 접하는",
+    "examples": [
+      {
+        "jp": "身近にいないと忘れ去られる。",
+        "ko": "곁에 없으면 점점 잊히기 마련이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-05164a42ee": {
+    "meaning": "꿀 / 꽃의 꿀",
+    "examples": [
+      {
+        "jp": "口の中には蜜、心の中には毒。",
+        "ko": "입에는 꿀, 마음에는 독.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-64374f31d6": {
+    "meaning": "밀집 / 빽빽하게 모임",
+    "examples": [
+      {
+        "jp": "そこは新しい家が密集する地域だ。",
+        "ko": "그곳은 새집들이 밀집한 지역이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-aac21ad21e": {
+    "meaning": "밀접 / 매우 가까운 관계",
+    "examples": [
+      {
+        "jp": "両国はお互いに密接な関係がある。",
+        "ko": "두 나라는 서로 밀접한 관계가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-567666993e": {
+    "meaning": "견적 / 견적액",
+    "examples": [
+      {
+        "jp": "特別価格の見積りです。",
+        "ko": "특별 가격으로 낸 견적입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7c7723d97e": {
+    "meaning": "미정 / 아직 결정되지 않음",
+    "examples": [
+      {
+        "jp": "計画はまだ未定である。",
+        "ko": "계획은 아직 미정이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-12c93760ce": {
+    "meaning": "근원 / 원천 / 출처",
+    "meaningSource": "manual-review"
+  },
+  "oj-676ccd8a3b": {
+    "meaning": "옷차림 / 외모 / 행색",
+    "meaningSource": "manual-review"
+  },
+  "oj-1bdd837b48": {
+    "meaning": "봉우리 / 산봉우리 / 능선",
+    "examples": [
+      {
+        "jp": "その峰は雲の上にそびえている。",
+        "ko": "그 봉우리는 구름 위로 우뚝 솟아 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-553c385823": {
+    "meaning": "놓치다 / 못 보고 지나치다 / 눈감아 주다",
+    "examples": [
+      {
+        "jp": "これは絶対見逃せないよ。",
+        "ko": "이건 절대로 놓칠 수 없어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5f2d1f7cc1": {
+    "meaning": "전망 / 조망",
+    "examples": [
+      {
+        "jp": "そのホテルは見晴らしがよい。",
+        "ko": "그 호텔은 전망이 좋다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5fbb3143b5": {
+    "meaning": "몸짓 / 제스처",
+    "examples": [
+      {
+        "jp": "彼らはお互いに身振りで知らせた。",
+        "ko": "그들은 서로 몸짓으로 뜻을 전했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b94f734eb4": {
+    "meaning": "맥박 / 맥 / 흐름",
+    "examples": [
+      {
+        "jp": "脈を測る。",
+        "ko": "맥박을 재다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e3fc8893fa": {
+    "examples": [
+      {
+        "jp": "こちらはワンダーミュージックショップです。",
+        "ko": "여기는 원더 뮤직 숍입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bd88a27e3e": {
+    "meaning": "미련 / 아쉬움 / 집착",
+    "examples": [
+      {
+        "jp": "彼女にはまだ未練がある。",
+        "ko": "나는 아직 그녀에게 미련이 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5911280a02": {
+    "meaning": "한눈에 바라보다 / 널리 내다보다",
+    "examples": [
+      {
+        "jp": "この城から町を見渡すことができる。",
+        "ko": "이 성에서는 마을 전체를 내려다볼 수 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-83127f9e88": {
+    "meaning": "민숙 / 민박",
+    "examples": [
+      {
+        "jp": "あの民宿なら、素泊まり５千円だよ。",
+        "ko": "그 민박이라면 식사 없이 숙박만 하면 5천 엔이야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c4641cd0b3": {
+    "meaning": "무의미 / 의미 없음",
+    "meaningSource": "manual-review"
+  },
+  "oj-f15bb22d8e": {
+    "meaning": "분위기 / 무드",
+    "examples": [
+      {
+        "jp": "街はクリスマスムード一色・・・もうじきイブだ。",
+        "ko": "거리는 온통 크리스마스 분위기다. 이제 곧 크리스마스이브다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-abe619fbd8": {
+    "meaning": "방향 / ~용 / ~에게 적합함",
+    "meaningSource": "manual-review"
+  },
+  "oj-edaccd91e0": {
+    "meaning": "과묵함 / 말수가 적음",
+    "examples": [
+      {
+        "jp": "大きくて、のろくて、無口でした。",
+        "ko": "그는 몸집이 크고 느리며 과묵했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8c2103a006": {
+    "meaning": "무효 / 효력이 없음",
+    "examples": [
+      {
+        "jp": "その遺言は法廷で無効と宣告された。",
+        "ko": "그 유언은 법정에서 무효라고 선언되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e167b2659b": {
+    "meaning": "무언 / 침묵",
+    "examples": [
+      {
+        "jp": "無言は承諾。",
+        "ko": "침묵은 승낙이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-10d56dc624": {
+    "meaning": "천진난만 / 순진무구",
+    "examples": [
+      {
+        "jp": "彼女は無邪気を装った。",
+        "ko": "그녀는 순진한 척했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4d0b322af9": {
+    "meaning": "쥐어뜯다 / 뽑다 / 뜯어내다",
+    "examples": [
+      {
+        "jp": "ぐはっ！？俺の貴重な頭髪を、むしるな！",
+        "ko": "악!? 내 소중한 머리카락을 쥐어뜯지 마!",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0c228be627": {
+    "meaning": "연결 / 결합 / 연관",
+    "examples": [
+      {
+        "jp": "結婚は男女の結びつきである。",
+        "ko": "결혼은 남녀의 결합이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4856036a33": {
+    "meaning": "연결되다 / 결부되다 / 관계가 생기다",
+    "examples": [
+      {
+        "jp": "努力が成功に結び付く。",
+        "ko": "노력이 성공으로 이어진다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d89704e126": {
+    "meaning": "연결하다 / 결부시키다 / 묶어 붙이다",
+    "examples": [
+      {
+        "jp": "ロープを木に結び付けなさい。",
+        "ko": "밧줄을 나무에 묶어라.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-037267ccd8": {
+    "meaning": "무선 / 라디오 통신",
+    "examples": [
+      {
+        "jp": "マルコーニは無線を発明した。",
+        "ko": "마르코니는 무선 통신을 발명했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-88c5764dde": {
+    "meaning": "낭비 / 헛돈 씀",
+    "examples": [
+      {
+        "jp": "なんてひどいむだ使いでしょう。",
+        "ko": "정말 심한 낭비네요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c90e42cede": {
+    "meaning": "무단 / 허가 없이 / 사전 통보 없이",
+    "examples": [
+      {
+        "jp": "彼女はよく無断欠席をする。",
+        "ko": "그녀는 자주 무단결석을 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a256653cab": {
+    "examples": [
+      {
+        "jp": "彼はすぐに無知をさらけ出した。",
+        "ko": "그는 곧 자신의 무지를 드러냈다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5a1c5f8bb5": {
+    "meaning": "무리 / 터무니없음 / 난폭함",
+    "examples": [
+      {
+        "jp": "無茶しなければよかった。",
+        "ko": "무리하지 말았어야 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-55bc6ede70": {
+    "meaning": "엉망진창 / 터무니없음 / 뒤죽박죽",
+    "examples": [
+      {
+        "jp": "彼女は泣きながら、彼からの手紙をむちゃくちゃに引き裂いて捨てた。",
+        "ko": "그녀는 울면서 그가 보낸 편지를 마구 찢어 버렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8c40174a35": {
+    "meaning": "허무한 / 공허한 / 헛된",
+    "examples": [
+      {
+        "jp": "彼の死は彼らの生活に空しさをもたらした。",
+        "ko": "그의 죽음은 그들의 삶에 공허함을 남겼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-28d427532a": {
+    "examples": [
+      {
+        "jp": "彼は弁護士としては無能だ。",
+        "ko": "그는 변호사로서는 무능하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7a146a885e": {
+    "meaning": "함부로 / 무턱대고 / 마구",
+    "examples": [
+      {
+        "jp": "私はむやみに人と約束はしない。",
+        "ko": "나는 함부로 남과 약속하지 않는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b43cf88b29": {
+    "meaning": "불필요 / 쓸데없음",
+    "meaningSource": "manual-review"
+  },
+  "oj-a1a3c1e34b": {
+    "meaning": "떼 지어 몰리다 / 군집하다",
+    "examples": [
+      {
+        "jp": "群衆が現場に群がった。",
+        "ko": "군중이 현장에 몰려들었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7f13f5edd2": {
+    "meaning": "물론 / 말할 것도 없이",
+    "examples": [
+      {
+        "jp": "彼は英語は無論のこと、フランス語も話します。",
+        "ko": "그는 영어는 물론 프랑스어도 합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7d367ef36a": {
+    "examples": [
+      {
+        "jp": "この会の名称はＥ．Ｓ．Ｓ．とする。",
+        "ko": "이 모임의 명칭은 E.S.S.로 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c8935df87f": {
+    "meaning": "명중 / 맞힘",
+    "examples": [
+      {
+        "jp": "弾は標的に命中した。",
+        "ko": "총알이 표적에 명중했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-41432923e5": {
+    "meaning": "명백 / 분명함",
+    "examples": [
+      {
+        "jp": "彼の責任は明白だ。",
+        "ko": "그의 책임은 명백하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1c86d23476": {
+    "meaning": "명부 / 이름 목록",
+    "examples": [
+      {
+        "jp": "彼女は名簿に載っていますよ。",
+        "ko": "그녀는 명부에 올라 있어요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b2d9553d2b": {
+    "examples": [
+      {
+        "jp": "大学は彼に名誉学位を与えた。",
+        "ko": "대학은 그에게 명예 학위를 수여했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7f1212c5b6": {
+    "meaning": "명료함 / 분명함",
+    "examples": [
+      {
+        "jp": "その説明は明瞭だった。",
+        "ko": "그 설명은 명료했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-97072c51a7": {
+    "meaning": "명랑 / 밝고 쾌활함",
+    "examples": [
+      {
+        "jp": "彼は明朗快活な青年だ。",
+        "ko": "그는 밝고 쾌활한 청년이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-98f763f2b9": {
+    "meaning": "제조업체 / 메이커",
+    "examples": [
+      {
+        "jp": "そのテレビのメーカーは日本の企業である。",
+        "ko": "그 TV의 제조업체는 일본 기업이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1ffaa51309": {
+    "examples": [
+      {
+        "jp": "塩は目方で売られる。",
+        "ko": "소금은 무게로 판다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-46e1610514": {
+    "examples": [
+      {
+        "jp": "その男は私に金を恵んでくれと頼んだ。",
+        "ko": "그 남자는 나에게 돈을 좀 베풀어 달라고 부탁했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   }
 };
