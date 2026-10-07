@@ -1419,7 +1419,7 @@ $("readingChoices").addEventListener("click",e=>{
  const b=e.target.closest(".choice");if(!b||readingAnswered)return;
  readingAnswered=true;
  const set=readingSets[readingMode][readingSetIndex],q=set.questions[readingQ],idx=+b.dataset.i;
- [...$("readingChoices").children].forEach((x,i)=>{x.disabled=true;if(i===q.a)x.classList.add("correct");if(i===idx&&idx!==q.a)x.classList.add("wrong")});
+ [...$("readingChoices").children].forEach((x,i)=>{x.setAttribute("aria-disabled","true");x.classList.add("answered");if(i===q.a)x.classList.add("correct");if(i===idx&&idx!==q.a)x.classList.add("wrong")});
  recordAnswer("reading",q,idx);
  const fq=set.furigana?.questions?.[readingQ];
  $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${fq?.e||readingJP(q.e)}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" style="margin-top:14px">🇰🇷 번역 보기</button><div id="readingTranslationBox" class="hidden">${readingTranslationHTML(set,q)}</div>`;
