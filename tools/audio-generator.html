@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>JLPT Kokoro static audio generator</title>
+<body>Generator</body>
+<script type="module">
+import { KokoroJP } from "https://cdn.jsdelivr.net/npm/kokoro-js-jp@0.2.0/dist/kokoro-jp.web.js";
+let ttsPromise=null;
+async function getTTS(){
+  if(!ttsPromise)ttsPromise=KokoroJP.load({device:"wasm",dtype:"q8"});
+  return ttsPromise;
+}
+function bytesToBase64(bytes){
+  let binary="",step=0x8000;
+  for(let i=0;i<bytes.length;i+=step)binary+=String.fromCharCode(...bytes.subarray(i,i+step));
+  return btoa(binary);
+}
+window.generateStaticKokoro=async item=>{
+  const tts=await getTTS();
+  const audio=await tts.speak(item.text,item.voice||"jf_alpha");
+  const blob=audio.toBlob();
+  const bytes=new Uint8Array(await blob.arrayBuffer());
+  return {base64:bytesToBase64(bytes),mime:blob.type||"audio/wav",bytes:bytes.length};
+};
+window.__generatorReady=true;
+</script>
+</html>
