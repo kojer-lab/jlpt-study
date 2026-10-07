@@ -59,9 +59,18 @@ for(const w of normalizedExtras){
   words.push(Object.assign({source:"curated"},w));
 }
 
+// Rare TTS failures can produce a non-speech or badly synthesized clip even when
+// the stored reading is correct. Keep those exceptions explicit so a reported
+// word can be regenerated from its lexical surface form without changing the
+// study data or furigana.
+const wordAudioTextOverrides=new Map([
+  ["oj-6d956e7507","補給"],
+]);
+
 const items=[];
 for(const w of words){
-  const wordText=(w.reading||readingText(w.w)||baseText(w.w)).trim();
+  const defaultWordText=(w.reading||readingText(w.w)||baseText(w.w)).trim();
+  const wordText=(wordAudioTextOverrides.get(w.id)||defaultWordText).trim();
   const imported=String(w.source||"").toLowerCase()==="openjlpt";
   if(wordText)items.push({id:w.id,kind:"word",index:null,text:wordText,voice:"jf_alpha",path:imported?`audio/vocab/openjlpt/${w.id}-word.mp3`:`audio/vocab/${w.id}-word.wav`});
   // Imported N1 bank: pre-generate the word pronunciation only.
