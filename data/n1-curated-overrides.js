@@ -3000,5 +3000,945 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-6d57e2cc71": {
+    "meaning": "납입 / 납품 / 돈이나 물품을 정해진 곳에 냄",
+    "examples": [
+      {
+        "jp": "代金は月末までに納入してください。",
+        "ko": "대금은 월말까지 납입해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7c05439ccd": {
+    "meaning": "집집마다 / 모두 한결같이",
+    "examples": [
+      {
+        "jp": "この地域では軒並み家賃が上がっている。",
+        "ko": "이 지역에서는 집집마다 임대료가 오르고 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f4567b25f5": {
+    "meaning": "탈취하다 / 장악하다 / 빼앗아 차지하다",
+    "examples": [
+      {
+        "jp": "犯人がバスを乗っ取った。",
+        "ko": "범인이 버스를 탈취했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cb2008f46b": {
+    "meaning": "배계 / 편지 첫머리의 ‘삼가 아룁니다’에 해당하는 표현",
+    "examples": [
+      {
+        "jp": "正式な手紙は『拝啓』で書き始めた。",
+        "ko": "격식 있는 편지는 ‘拝啓’로 시작했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1819ab5ac3": {
+    "meaning": "배열 / 순서대로 늘어놓음 / 프로그래밍의 배열",
+    "examples": [
+      {
+        "jp": "数字を一定の規則で配列する。",
+        "ko": "숫자를 일정한 규칙으로 배열한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8996248374": {
+    "meaning": "박약 / 약하고 불충분함",
+    "examples": [
+      {
+        "jp": "その主張は根拠が薄弱だ。",
+        "ko": "그 주장은 근거가 박약하다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e6a2f28faa": {
+    "meaning": "가교 / 중개 / 둘 사이를 이어 주는 역할",
+    "examples": [
+      {
+        "jp": "両国の橋渡し役を務める。",
+        "ko": "양국의 가교 역할을 맡는다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5fa4cbe539": {
+    "meaning": "벌 / 천벌·응보",
+    "examples": [
+      {
+        "jp": "そんなことをすると罰が当たるよ。",
+        "ko": "그런 짓을 하면 벌을 받을 거야."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7444ba3ed5": {
+    "meaning": "발아 / 싹이 틈",
+    "examples": [
+      {
+        "jp": "気温が上がると種が発芽し始める。",
+        "ko": "기온이 오르면 씨앗이 발아하기 시작한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3089867b81": {
+    "meaning": "배트 / 방망이",
+    "examples": [
+      {
+        "jp": "選手がバットを大きく振った。",
+        "ko": "선수가 배트를 크게 휘둘렀다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-52a27aec4f": {
+    "meaning": "발병 / 병이 생겨 증상이 나타남",
+    "examples": [
+      {
+        "jp": "過労が原因で病気を発病した。",
+        "ko": "과로가 원인이 되어 병이 발병했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8616dbfe4e": {
+    "meaning": "화려하다 / 눈부시다 / 대단하다",
+    "examples": [
+      {
+        "jp": "彼は華々しいデビューを飾った。",
+        "ko": "그는 화려하게 데뷔했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-66748989bb": {
+    "meaning": "빈터 / 들판 / 공터",
+    "examples": [
+      {
+        "jp": "子どもたちは原っぱで遊んでいる。",
+        "ko": "아이들은 공터에서 놀고 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-31652ca46f": {
+    "meaning": "판화",
+    "examples": [
+      {
+        "jp": "美術館で木版画の作品を見た。",
+        "ko": "미술관에서 목판화 작품을 봤다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-02e6ac02bf": {
+    "meaning": "행거 / 옷걸이",
+    "examples": [
+      {
+        "jp": "コートをハンガーに掛けた。",
+        "ko": "코트를 옷걸이에 걸었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-24aad19c86": {
+    "meaning": "펑크 / 타이어가 터짐·구멍 남",
+    "examples": [
+      {
+        "jp": "自転車のタイヤがパンクした。",
+        "ko": "자전거 타이어가 펑크 났다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2879a950d7": {
+    "meaning": "바이러스(옛 표기)",
+    "examples": [
+      {
+        "jp": "当時の資料ではウイルスを『ビールス』と表記することがある。",
+        "ko": "당시 자료에서는 바이러스를 ‘ビールス’라고 표기하기도 한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1340293e34": {
+    "meaning": "비중 / 물질의 상대적 무게 / 중요도가 차지하는 비율",
+    "examples": [
+      {
+        "jp": "この分野が売上全体に占める比重は大きい。",
+        "ko": "이 분야가 전체 매출에서 차지하는 비중은 크다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-096c8b698e": {
+    "meaning": "미(未) / 십이지의 여덟 번째인 양",
+    "examples": [
+      {
+        "jp": "未は十二支の八番目に当たる。",
+        "ko": "미는 십이지에서 여덟 번째에 해당한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-508ca723f8": {
+    "meaning": "미량 / 아주 적은 양",
+    "examples": [
+      {
+        "jp": "水中から微量の成分が検出された。",
+        "ko": "물속에서 미량의 성분이 검출됐다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6898b85866": {
+    "meaning": "보 / 장기·체스의 졸에 해당하는 말",
+    "examples": [
+      {
+        "jp": "将棋では歩が最も基本的な駒だ。",
+        "ko": "장기에서는 보가 가장 기본적인 말이다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3fa2ddfa8c": {
+    "meaning": "필터 / 여과기 / 카메라 필터",
+    "examples": [
+      {
+        "jp": "カメラに特殊なフィルターを付けた。",
+        "ko": "카메라에 특수 필터를 달았다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6c9f684168": {
+    "meaning": "복합 / 여러 요소가 결합됨",
+    "examples": [
+      {
+        "jp": "複数の要因が絡む複合的な問題だ。",
+        "ko": "여러 요인이 얽힌 복합적인 문제다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f73bb800e0": {
+    "meaning": "얼룩 / 반점 / 얼룩무늬",
+    "examples": [
+      {
+        "jp": "白と黒の斑模様の犬だ。",
+        "ko": "흰색과 검은색 얼룩무늬의 개다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7911dfc293": {
+    "meaning": "프랑스 / 불(佛)이라는 약칭",
+    "examples": [
+      {
+        "jp": "仏政府が新しい政策を発表した。",
+        "ko": "프랑스 정부가 새로운 정책을 발표했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-281d9aa72f": {
+    "meaning": "부임 / 새 근무지로 가서 직무를 맡음",
+    "examples": [
+      {
+        "jp": "来月から地方支店に赴任する。",
+        "ko": "다음 달부터 지방 지점에 부임한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2e2b2bb861": {
+    "meaning": "불쌍함 / 가엾음 / 연민",
+    "examples": [
+      {
+        "jp": "事情を聞くと不憫でならない。",
+        "ko": "사정을 들으니 너무 가엾다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f6810ec488": {
+    "meaning": "보편 / 널리 두루 적용됨",
+    "examples": [
+      {
+        "jp": "自由は普遍的な価値だと考えられている。",
+        "ko": "자유는 보편적인 가치로 여겨진다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cf01dd19c5": {
+    "meaning": "분업 / 일을 나누어 맡음",
+    "examples": [
+      {
+        "jp": "作業を分業して効率を上げた。",
+        "ko": "작업을 분업해 효율을 높였다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a988a95058": {
+    "meaning": "문어 / 문장에 쓰이는 문어체 언어",
+    "examples": [
+      {
+        "jp": "この表現は話し言葉より文語でよく使われる。",
+        "ko": "이 표현은 구어보다 문어에서 자주 쓰인다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b09d417ce5": {
+    "meaning": "풍부하게 / 넉넉하게 / 아낌없이",
+    "examples": [
+      {
+        "jp": "新鮮な野菜をふんだんに使った料理だ。",
+        "ko": "신선한 채소를 풍부하게 사용한 요리다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8d3323ee2e": {
+    "meaning": "분모",
+    "examples": [
+      {
+        "jp": "分数では下の数を分母という。",
+        "ko": "분수에서는 아래 수를 분모라고 한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-47e4de1f65": {
+    "meaning": "페어 / 한 쌍",
+    "examples": [
+      {
+        "jp": "二人はペアを組んで試合に出た。",
+        "ko": "두 사람은 한 조를 이루어 경기에 나갔다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b680cdac8a": {
+    "meaning": "평상 / 평소 / 정상적인 상태",
+    "examples": [
+      {
+        "jp": "平常どおり営業しています。",
+        "ko": "평소와 같이 영업하고 있습니다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b5f04f79ca": {
+    "meaning": "병렬 / 나란히 배치함",
+    "examples": [
+      {
+        "jp": "二つの処理を並列で実行する。",
+        "ko": "두 처리를 병렬로 실행한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ef321ac2d3": {
+    "meaning": "베이스 / 기반 / 저음",
+    "examples": [
+      {
+        "jp": "信頼をベースに協力関係を築く。",
+        "ko": "신뢰를 기반으로 협력 관계를 구축한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4f4b90bb7c": {
+    "meaning": "베스트 / 최선 / 조끼",
+    "examples": [
+      {
+        "jp": "今できるベストを尽くそう。",
+        "ko": "지금 할 수 있는 최선을 다하자."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b144d145c3": {
+    "meaning": "겸손하게 낮추다 / 자신을 낮춰 상대를 높이다",
+    "examples": [
+      {
+        "jp": "必要以上にへりくだる必要はない。",
+        "ko": "필요 이상으로 자신을 낮출 필요는 없다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-08d086f265": {
+    "meaning": "거치다 / 시간이 흐르다 / 경험하다",
+    "examples": [
+      {
+        "jp": "長い年月を経て建物が完成した。",
+        "ko": "오랜 세월을 거쳐 건물이 완성됐다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8a4aed3134": {
+    "meaning": "반환 / 되돌려 줌",
+    "examples": [
+      {
+        "jp": "借りた資料は期限までに返還してください。",
+        "ko": "빌린 자료는 기한까지 반환해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-042950a048": {
+    "meaning": "보기 / 귀중한 그릇·물건 / 뛰어난 인물",
+    "examples": [
+      {
+        "jp": "この人物は国の宝器とも言える存在だ。",
+        "ko": "이 인물은 나라의 보배라 할 만한 존재다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ba25c582aa": {
+    "meaning": "알리다 / 보도하다 / 보고하다",
+    "examples": [
+      {
+        "jp": "新聞が事件の詳細を報じた。",
+        "ko": "신문이 사건의 상세 내용을 보도했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3356356fb8": {
+    "meaning": "방적 / 섬유를 실로 만드는 공정",
+    "examples": [
+      {
+        "jp": "この工場では綿の紡績を行っている。",
+        "ko": "이 공장에서는 면 방적을 하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-91965451e5": {
+    "meaning": "포화 / 더 이상 받아들일 여지가 없는 상태",
+    "examples": [
+      {
+        "jp": "市場はすでに飽和状態に近い。",
+        "ko": "시장은 이미 포화 상태에 가깝다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d1ca85869d": {
+    "meaning": "호스",
+    "examples": [
+      {
+        "jp": "ホースで庭に水をまいた。",
+        "ko": "호스로 정원에 물을 뿌렸다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d545dfb4f1": {
+    "meaning": "포즈 / 자세 / 잠깐 멈춤",
+    "examples": [
+      {
+        "jp": "写真を撮るためにポーズを取った。",
+        "ko": "사진을 찍기 위해 포즈를 취했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2352843605": {
+    "meaning": "홀 / 큰 방·회관",
+    "examples": [
+      {
+        "jp": "コンサートは市民ホールで開かれる。",
+        "ko": "콘서트는 시민회관에서 열린다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0556bb5bbe": {
+    "meaning": "포지션 / 위치 / 역할",
+    "examples": [
+      {
+        "jp": "チーム内で自分のポジションを理解する。",
+        "ko": "팀 안에서 자신의 역할을 이해한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a81b409958": {
+    "meaning": "말린 빨래 / 널어 둔 세탁물",
+    "examples": [
+      {
+        "jp": "雨が降る前に干し物を取り込んだ。",
+        "ko": "비가 오기 전에 널어 둔 빨래를 걷었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f196c171b6": {
+    "meaning": "슬슬 / 조금씩 / 여기저기",
+    "examples": [
+      {
+        "jp": "ぼつぼつ帰る時間になった。",
+        "ko": "슬슬 돌아갈 시간이 됐다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e80181aca1": {
+    "meaning": "투덜거리다 / 불평하다",
+    "examples": [
+      {
+        "jp": "彼は仕事が多いといつもぼやいている。",
+        "ko": "그는 일이 많다고 늘 투덜거린다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2d4100b55d": {
+    "meaning": "보양 / 휴양 / 건강 회복",
+    "examples": [
+      {
+        "jp": "温泉地で数日間保養した。",
+        "ko": "온천지에서 며칠간 휴양했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d31295f643": {
+    "meaning": "포리 / 순경·경찰관(옛말)",
+    "examples": [
+      {
+        "jp": "昔の小説には捕吏という語が出てくる。",
+        "ko": "옛 소설에는 ‘포리’라는 말이 나온다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f6ece0aafc": {
+    "meaning": "볼트 / 전압 단위·나사못",
+    "examples": [
+      {
+        "jp": "この電池は九ボルトだ。",
+        "ko": "이 전지는 9볼트다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e482d02cda": {
+    "meaning": "본격 / 본래의 형식·정통적인 모습",
+    "examples": [
+      {
+        "jp": "来月から本格的な工事が始まる。",
+        "ko": "다음 달부터 본격적인 공사가 시작된다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-25821d4f0c": {
+    "meaning": "마크 / 표시 / 표식",
+    "examples": [
+      {
+        "jp": "重要な箇所にマークを付けた。",
+        "ko": "중요한 부분에 표시를 해 두었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c20ba5147f": {
+    "meaning": "권 / 책의 권수",
+    "examples": [
+      {
+        "jp": "この全集は全十巻から成る。",
+        "ko": "이 전집은 총 10권으로 이루어져 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-74601e860d": {
+    "meaning": "당황하다 / 어쩔 줄 모르다",
+    "examples": [
+      {
+        "jp": "突然質問されて少しまごついた。",
+        "ko": "갑자기 질문을 받아 조금 당황했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-32afdf9540": {
+    "meaning": "때때로 / 종종",
+    "examples": [
+      {
+        "jp": "忙しい時期には間々こうしたミスが起こる。",
+        "ko": "바쁜 시기에는 때때로 이런 실수가 생긴다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7444466df7": {
+    "meaning": "공 / 둥근 공",
+    "examples": [
+      {
+        "jp": "子どもたちが鞠で遊んでいる。",
+        "ko": "아이들이 공을 가지고 놀고 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-61b39f2848": {
+    "meaning": "아주 둥글다 / 완전히 원형이다",
+    "examples": [
+      {
+        "jp": "月が真ん丸く見える。",
+        "ko": "달이 아주 둥글게 보인다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4b7e4383b0": {
+    "meaning": "미세스 / 기혼 여성의 호칭",
+    "examples": [
+      {
+        "jp": "英語では既婚女性に『ミセス』を使うことがある。",
+        "ko": "영어에서는 기혼 여성에게 ‘미세스’를 쓰기도 한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8cfbd85b71": {
+    "meaning": "구경거리 / 볼거리 / 전시물",
+    "examples": [
+      {
+        "jp": "人を見せ物のように扱ってはいけない。",
+        "ko": "사람을 구경거리처럼 다뤄서는 안 된다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-14c9478686": {
+    "meaning": "밀도",
+    "examples": [
+      {
+        "jp": "人口密度の高い地域だ。",
+        "ko": "인구 밀도가 높은 지역이다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f3f52aaa64": {
+    "meaning": "민주 / 민주주의적",
+    "examples": [
+      {
+        "jp": "民主的な手続きで代表を選ぶ。",
+        "ko": "민주적인 절차로 대표를 뽑는다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-78fbae6020": {
+    "meaning": "민속 / 민간의 풍습·생활문화",
+    "examples": [
+      {
+        "jp": "地域の民俗を調査する。",
+        "ko": "지역의 민속을 조사한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f6bb133d94": {
+    "meaning": "사위",
+    "examples": [
+      {
+        "jp": "娘の婿と初めて食事をした。",
+        "ko": "딸의 사위와 처음으로 식사했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-305f477ff6": {
+    "meaning": "무념 / 분함 / 유감",
+    "examples": [
+      {
+        "jp": "あと一歩で負けて無念だった。",
+        "ko": "한 발짝 차이로 져서 무척 분했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-76a17f8fb8": {
+    "meaning": "명산 / 그 지역의 유명한 특산품",
+    "examples": [
+      {
+        "jp": "この町の名産はみかんだ。",
+        "ko": "이 마을의 명산품은 귤이다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-37a8128b31": {
+    "meaning": "맹점 / 미처 보지 못한 부분",
+    "examples": [
+      {
+        "jp": "その計画には大きな盲点があった。",
+        "ko": "그 계획에는 큰 맹점이 있었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c2b9455981": {
+    "meaning": "근본 / 기초 / 바탕",
+    "examples": [
+      {
+        "jp": "信頼を基に協力関係を築く。",
+        "ko": "신뢰를 바탕으로 협력 관계를 구축한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bd3e76856f": {
+    "meaning": "무턱대고 / 함부로 / 지나치게",
+    "examples": [
+      {
+        "jp": "矢鱈に薬を飲むのは危険だ。",
+        "ko": "약을 무턱대고 먹는 것은 위험하다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f3203359ee": {
+    "meaning": "녀석 / 하인(옛말)",
+    "examples": [
+      {
+        "jp": "あの奴はなかなか面白い。",
+        "ko": "저 녀석은 꽤 재미있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-599056196d": {
+    "meaning": "유목 / 가축과 함께 이동하며 사는 생활 방식",
+    "examples": [
+      {
+        "jp": "乾燥地帯では遊牧が行われてきた。",
+        "ko": "건조 지역에서는 유목 생활이 이루어져 왔다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c0a35530c1": {
+    "meaning": "흔들리다 / 동요하다",
+    "examples": [
+      {
+        "jp": "強い風で木の枝が揺らいでいる。",
+        "ko": "강한 바람에 나뭇가지가 흔들리고 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e298035599": {
+    "meaning": "용액",
+    "examples": [
+      {
+        "jp": "塩を水に溶かして溶液を作る。",
+        "ko": "소금을 물에 녹여 용액을 만든다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-76255d35db": {
+    "meaning": "양호 / 보호하고 돌봄",
+    "examples": [
+      {
+        "jp": "子どもの健康を養護する体制が必要だ。",
+        "ko": "아이의 건강을 보호하고 돌보는 체계가 필요하다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a22c4bd92f": {
+    "meaning": "요코즈나 / 스모 최고 등급의 장사",
+    "examples": [
+      {
+        "jp": "彼はついに横綱に昇進した。",
+        "ko": "그는 마침내 요코즈나로 승진했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c83e444029": {
+    "meaning": "내장 / 행사장에 옴",
+    "examples": [
+      {
+        "jp": "多くの人が展示会に来場した。",
+        "ko": "많은 사람이 전시회에 방문했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-aff35fe459": {
+    "meaning": "낙농 / 젖소를 길러 우유·유제품을 생산하는 산업",
+    "examples": [
+      {
+        "jp": "北海道では酪農が盛んだ。",
+        "ko": "홋카이도에서는 낙농업이 활발하다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d0cc8bf9a9": {
+    "meaning": "램프 / 등 / 차량의 등화",
+    "examples": [
+      {
+        "jp": "暗くなったのでランプをつけた。",
+        "ko": "어두워져서 램프를 켰다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f045f3fdfe": {
+    "meaning": "영리함 / 총명함",
+    "examples": [
+      {
+        "jp": "彼は利根な子どもとして知られていた。",
+        "ko": "그는 영리한 아이로 알려져 있었다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-16f60442c8": {
+    "meaning": "입체 / 삼차원 형태",
+    "examples": [
+      {
+        "jp": "図面から立体の形を想像する。",
+        "ko": "도면에서 입체 형태를 상상한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a46a045f8b": {
+    "meaning": "입법 / 법률을 제정함",
+    "examples": [
+      {
+        "jp": "議会は立法を担う機関だ。",
+        "ko": "의회는 입법을 담당하는 기관이다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6325479166": {
+    "meaning": "료 / 끝남·완료·이해를 나타내는 한자",
+    "examples": [
+      {
+        "jp": "『了解』の『了』には理解の意味がある。",
+        "ko": "‘了解’의 ‘了’에는 이해의 뜻이 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b03689d9fa": {
+    "meaning": "영해",
+    "examples": [
+      {
+        "jp": "領海をめぐる問題が議論された。",
+        "ko": "영해를 둘러싼 문제가 논의됐다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-864c7afe67": {
+    "meaning": "양극 / 두 극단 / 북극과 남극",
+    "examples": [
+      {
+        "jp": "意見が両極に分かれている。",
+        "ko": "의견이 양극으로 나뉘어 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fa1720345c": {
+    "meaning": "영지 / 지배하는 토지",
+    "examples": [
+      {
+        "jp": "かつてこの一帯は大名の領地だった。",
+        "ko": "과거 이 일대는 다이묘의 영지였다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c0b0e43f57": {
+    "meaning": "륜 / 바퀴·꽃을 세는 단위",
+    "examples": [
+      {
+        "jp": "大きな花が一輪咲いている。",
+        "ko": "큰 꽃 한 송이가 피어 있다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-63601d234c": {
+    "meaning": "임업",
+    "examples": [
+      {
+        "jp": "山間部では林業が重要な産業だ。",
+        "ko": "산간 지역에서는 임업이 중요한 산업이다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-996bce1e41": {
+    "meaning": "유추 / 비슷한 사례에서 추론함",
+    "examples": [
+      {
+        "jp": "過去の事例から結果を類推する。",
+        "ko": "과거 사례에서 결과를 유추한다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e6e8d718b9": {
+    "meaning": "냉장 / 차갑게 보관함",
+    "examples": [
+      {
+        "jp": "この食品は冷蔵して保存してください。",
+        "ko": "이 식품은 냉장 보관해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-77aabada2a": {
+    "meaning": "레이스 / 경주 / 장식용 레이스 천",
+    "examples": [
+      {
+        "jp": "自転車のレースに参加した。",
+        "ko": "자전거 경주에 참가했다."
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c7e4c9b610": {
+    "meaning": "레이디 / 숙녀",
+    "examples": [
+      {
+        "jp": "彼女は落ち着いた雰囲気のレディーだ。",
+        "ko": "그녀는 차분한 분위기의 숙녀다."
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
