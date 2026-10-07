@@ -6609,5 +6609,669 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-ade60dd5fd": {
+    "meaning": "납부되다 / 제자리에 들어가다 / 잘 정리되다",
+    "examples": [
+      {
+        "jp": "税金は期限内に納まった。",
+        "ko": "세금은 기한 안에 납부되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-20d2bde23d": {
+    "examples": [
+      {
+        "jp": "ケイちゃんはとても運がいいのよ。お産の時から、そうだったわ。",
+        "ko": "케이짱은 정말 운이 좋아. 출산 때부터 그랬어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9cc36de6c5": {
+    "meaning": "밀어 넣다 / 억지로 집어넣다",
+    "examples": [
+      {
+        "jp": "彼は私を部屋の中に押し込んだ。",
+        "ko": "그는 나를 방 안으로 밀어 넣었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-90fe50c793": {
+    "meaning": "아까워하다 / 애석해하다 / 소중히 여기다",
+    "examples": [
+      {
+        "jp": "彼の死は惜しんでも余りあるものだ。",
+        "ko": "그의 죽음은 너무나 애석하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d88fa19ab3": {
+    "examples": [
+      {
+        "jp": "多くの観光客がその島に押し寄せた。",
+        "ko": "많은 관광객이 그 섬으로 몰려들었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-871359b199": {
+    "meaning": "수컷 / 남성",
+    "examples": [
+      {
+        "jp": "この鳥は雄です。",
+        "ko": "이 새는 수컷입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-eb0a6d9289": {
+    "examples": [
+      {
+        "jp": "彼女はすぐにお世辞に乗りやすい。",
+        "ko": "그녀는 아첨에 쉽게 넘어간다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-744be0e917": {
+    "examples": [
+      {
+        "jp": "奇妙な病気が町を襲った。",
+        "ko": "기묘한 병이 마을을 덮쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-000e220ab0": {
+    "meaning": "늦어도",
+    "examples": [
+      {
+        "jp": "遅くとも明日の朝までに提出してください。",
+        "ko": "늦어도 내일 아침까지 제출해 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c550db6672": {
+    "examples": [
+      {
+        "jp": "彼の才能にはおそれいったよ。",
+        "ko": "그의 재능에는 정말 감탄했어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-35038194bb": {
+    "meaning": "떨어지다 / 침체하다 / 낙담하다",
+    "examples": [
+      {
+        "jp": "１年前に比べれば価格は大きく落ち込んでいる。",
+        "ko": "1년 전과 비교하면 가격이 크게 떨어져 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-62a36048d0": {
+    "examples": [
+      {
+        "jp": "彼は心の落ち着きを失った。",
+        "ko": "그는 마음의 평정을 잃었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-db320989e5": {
+    "meaning": "낙엽 / 떨어진 잎",
+    "examples": [
+      {
+        "jp": "落葉を取り除いて下さい。",
+        "ko": "낙엽을 치워 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-027523e5bf": {
+    "meaning": "을(乙) / 두 번째 / 색다르고 멋스러운",
+    "examples": [
+      {
+        "jp": "甲の損は乙の得。",
+        "ko": "갑의 손해는 을의 이익이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e6ac4a700b": {
+    "examples": [
+      {
+        "jp": "それを飲むのはおっかないな。",
+        "ko": "그걸 마시는 건 무섭네.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f235910220": {
+    "examples": [
+      {
+        "jp": "彼はそれを公表すると脅した。",
+        "ko": "그는 그것을 공개하겠다고 협박했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cff7b322bd": {
+    "examples": [
+      {
+        "jp": "私は喜んであなたのお供をします。",
+        "ko": "기꺼이 당신과 동행하겠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f0375aa40d": {
+    "meaning": "동갑 / 같은 나이",
+    "meaningSource": "manual-review"
+  },
+  "oj-ca6828b5da": {
+    "meaning": "저절로 / 자연히 / 당연히",
+    "examples": [
+      {
+        "jp": "おのずから明らかである。",
+        "ko": "저절로 분명해진다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a7833aaa2c": {
+    "meaning": "겁먹다 / 무서워하다",
+    "examples": [
+      {
+        "jp": "その音に赤ん坊はおびえた。",
+        "ko": "그 소리에 아기가 겁을 먹었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-30262fec40": {
+    "examples": [
+      {
+        "jp": "彼は極秘の使命を帯びていた。",
+        "ko": "그는 극비 임무를 띠고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8b18560ec9": {
+    "meaning": "덤 / 보너스 / 경품 / 할인",
+    "examples": [
+      {
+        "jp": "なんとガムのおまけだったんだよ。",
+        "ko": "놀랍게도 껌에 딸린 덤이었어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2e70898eaa": {
+    "meaning": "신사 / 작은 신사",
+    "examples": [
+      {
+        "jp": "以前この辺りに小さなお宮があった。",
+        "ko": "예전에는 이 근처에 작은 신사가 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4019600b45": {
+    "examples": [
+      {
+        "jp": "ピーターは新しいオムツを必要としているのかもしれない。",
+        "ko": "피터는 새 기저귀가 필요할지도 모른다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e562d42eba": {
+    "examples": [
+      {
+        "jp": "何てよい思いつきなのでしょう。",
+        "ko": "정말 좋은 생각이네요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-59b6e4bc77": {
+    "examples": [
+      {
+        "jp": "しばしば、彼女は自ら赴かねばならなかった。",
+        "ko": "종종 그녀는 직접 가야 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d87794e93f": {
+    "meaning": "및 / 그리고 / ~과 함께",
+    "examples": [
+      {
+        "jp": "このような犯罪は罰金および投獄又はそのいずれかで罰せられる。",
+        "ko": "이러한 범죄는 벌금 및 징역 또는 그중 하나로 처벌된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2b57f165a6": {
+    "meaning": "직조 / 짜임 / 직물",
+    "examples": [
+      {
+        "jp": "目の細かい織りのカーペットが一般的には価値が高い。",
+        "ko": "촘촘하게 짠 카펫이 일반적으로 가치가 높다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2d13e31758": {
+    "meaning": "우리 / 철창 / 감방",
+    "examples": [
+      {
+        "jp": "その動物は檻から出ようともがいた。",
+        "ko": "그 동물은 우리에서 나오려고 몸부림쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-280c350aaf": {
+    "examples": [
+      {
+        "jp": "新入生向けのオリエンテーションを行う。",
+        "ko": "신입생 대상 오리엔테이션을 실시한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e7af77b5ad": {
+    "examples": [
+      {
+        "jp": "この織物を染めて欲しいのです。",
+        "ko": "이 직물을 염색해 주셨으면 합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dd75448626": {
+    "examples": [
+      {
+        "jp": "私の祖母ははたを織るのが好きだ。",
+        "ko": "우리 할머니는 베를 짜는 것을 좋아한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-679dc60eb0": {
+    "examples": [
+      {
+        "jp": "学業をおろそかにするなんて、君はばかだ。",
+        "ko": "학업을 소홀히 하다니, 너 바보구나.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-612aa8aa8b": {
+    "meaning": "온라인",
+    "examples": [
+      {
+        "jp": "オンラインでお話しした方がよろしければそうします。",
+        "ko": "온라인으로 이야기하는 편이 좋으시면 그렇게 하겠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b9efa4c556": {
+    "examples": [
+      {
+        "jp": "机のしたにカーペットを敷いた。",
+        "ko": "책상 아래에 카펫을 깔았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a77c8b1d1f": {
+    "meaning": "하위 / 낮은 순위 / 하위 단계",
+    "meaningSource": "manual-review"
+  },
+  "oj-230db12bf5": {
+    "meaning": "해운 / 해상 운송",
+    "examples": [
+      {
+        "jp": "海運会社に勤めています。",
+        "ko": "해운 회사에 근무하고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ac684e96b8": {
+    "meaning": "외화 / 외국 통화",
+    "examples": [
+      {
+        "jp": "外貨の為替レートは毎日変わる。",
+        "ko": "외화 환율은 매일 변한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b20fd69e1c": {
+    "examples": [
+      {
+        "jp": "彼は党を内部から改革しようとした。",
+        "ko": "그는 당을 내부에서 개혁하려 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ade644e17c": {
+    "examples": [
+      {
+        "jp": "外観はあてにならない。",
+        "ko": "겉모습은 믿을 수 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-40f53466d6": {
+    "examples": [
+      {
+        "jp": "彼は中流階級の出だ。",
+        "ko": "그는 중산계급 출신이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0abb370e7c": {
+    "examples": [
+      {
+        "jp": "その海峡に長い橋を建設中です。",
+        "ko": "그 해협에 긴 다리를 건설 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3576b5bfed": {
+    "examples": [
+      {
+        "jp": "大臣は記者団との会見を拒んだ。",
+        "ko": "장관은 기자단과의 회견을 거부했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-aa2c1d27ef": {
+    "examples": [
+      {
+        "jp": "来年から日本では介護保険制度が始まるね。",
+        "ko": "내년부터 일본에서는 개호보험제도가 시작되네.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0e51793639": {
+    "examples": [
+      {
+        "jp": "このバグを改修してます。",
+        "ko": "이 버그를 수정 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6fc1606473": {
+    "examples": [
+      {
+        "jp": "次の瞬間ヘラクレスは怪獣を捕まえた。",
+        "ko": "다음 순간 헤라클레스는 괴수를 붙잡았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a236f969f0": {
+    "examples": [
+      {
+        "jp": "政府は物価の統制を解除した。",
+        "ko": "정부는 물가 통제를 해제했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-be24bd3e1e": {
+    "meaning": "외무상 / 외무장관",
+    "examples": [
+      {
+        "jp": "外相は、戦争は避けられないと言った。",
+        "ko": "외무상은 전쟁을 피할 수 없다고 말했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6cbf79a71a": {
+    "examples": [
+      {
+        "jp": "その気候で健康を害した。",
+        "ko": "그 기후 때문에 건강을 해쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-754e93952d": {
+    "meaning": "개설 / 개요 설명",
+    "examples": [
+      {
+        "jp": "まず新しいサイトの概説をしようと思う。",
+        "ko": "먼저 새 사이트의 개요를 설명하려고 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-06f4ced5f8": {
+    "examples": [
+      {
+        "jp": "階層問題に対する、消費社会論の著である。",
+        "ko": "계층 문제에 대한 소비사회론의 저서이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-347ac832b6": {
+    "examples": [
+      {
+        "jp": "新たな入植者達がその広大な荒野を開拓した。",
+        "ko": "새로운 이주민들이 그 광대한 황야를 개척했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e1ffadc5ac": {
+    "examples": [
+      {
+        "jp": "時刻表が改訂された。",
+        "ko": "시간표가 개정되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-71bcfaf693": {
+    "meaning": "가이드 / 안내원",
+    "examples": [
+      {
+        "jp": "日本語のガイドが雇えますか。",
+        "ko": "일본어 가이드를 고용할 수 있나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-46b12b1acf": {
+    "examples": [
+      {
+        "jp": "休日で車は街道をのろのろと動いた。",
+        "ko": "휴일이라 차량들이 큰길을 천천히 달렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-438bbd01da": {
+    "meaning": "거리 / 길거리",
+    "examples": [
+      {
+        "jp": "彼は街頭で買った絵を額縁に入れた。",
+        "ko": "그는 길거리에서 산 그림을 액자에 넣었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-32e318a947": {
+    "examples": [
+      {
+        "jp": "ガイドブックを過信しちゃいけない。",
+        "ko": "가이드북을 너무 맹신하면 안 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3192ac8ca0": {
+    "meaning": "해발 / 해수면을 기준으로 한 높이",
+    "examples": [
+      {
+        "jp": "その山は海抜約３０００メートルだ。",
+        "ko": "그 산은 해발 약 3,000미터다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1fa591f378": {
+    "meaning": "간호하다 / 돌보다 / 보살피다",
+    "examples": [
+      {
+        "jp": "他人任せはダメ。ライフセーバーではないが、俺自身が介抱してあげないと。",
+        "ko": "남에게 맡기면 안 돼. 인명구조원은 아니지만 내가 직접 돌봐 줘야 해.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3673e85a58": {
+    "examples": [
+      {
+        "jp": "死体解剖の結果、絞殺と判明しました。",
+        "ko": "시신을 해부한 결과, 교살된 것으로 밝혀졌습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-46e584a03b": {
+    "meaning": "외래 / 외국에서 들어온 것 / 외래 진료",
+    "examples": [
+      {
+        "jp": "君は外来思想に偏見を抱いているようだ。",
+        "ko": "너는 외래 사상에 편견을 가지고 있는 것 같아.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a5f7798d72": {
+    "examples": [
+      {
+        "jp": "彼はその手紙を全員に回覧した。",
+        "ko": "그는 그 편지를 모두에게 돌려 보게 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7527fce287": {
+    "meaning": "해류",
+    "examples": [
+      {
+        "jp": "海流に変化が起きたのだろうか。",
+        "ko": "해류에 변화가 생긴 걸까.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-534de6d5d3": {
+    "examples": [
+      {
+        "jp": "この制度には改良の余地がない。",
+        "ko": "이 제도는 개선할 여지가 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ecd9ff4900": {
+    "examples": [
+      {
+        "jp": "保護回路を飛ばしてしまおう。",
+        "ko": "보호 회로를 우회해 버리자.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
