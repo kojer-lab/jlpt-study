@@ -17613,7 +17613,14 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-c239ea3b65": {
-    "meaning": "드릴 / 반복 훈련 / 연습",
+    "meaning": "드릴 / 반복 훈련 / 연습 문제",
+    "examples": [
+      {
+        "jp": "これはドリルではない。",
+        "ko": "이것은 훈련이 아니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-4fa38f27ac": {
@@ -18386,6 +18393,13 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-1ac6d9ceaf": {
     "meaning": "쥐 / 진회색(합성어에서 ‘ねず’로 쓰임)",
+    "examples": [
+      {
+        "jp": "彼は立ち上がり、ネズミを見た。",
+        "ko": "그는 일어서서 쥐를 보았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-ab01ab7345": {
@@ -19226,13 +19240,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-3122744f68": {
-    "examples": [
-      {
-        "jp": "パトカーを見て彼は逃げた。",
-        "ko": "순찰차를 보고 그는 달아났다.",
-        "exampleSource": "manual-review"
-      }
-    ],
+    "meaning": "순찰차 / 경찰차",
     "meaningSource": "manual-review"
   },
   "oj-6e3cda5641": {
@@ -19565,13 +19573,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-d4c885f1dc": {
-    "examples": [
-      {
-        "jp": "ここはお客様用の控え室です。",
-        "ko": "여기는 손님용 대기실입니다.",
-        "exampleSource": "manual-review"
-      }
-    ],
+    "meaning": "대기실 / 준비실",
     "meaningSource": "manual-review"
   },
   "oj-fd5a222e6e": {
@@ -20209,13 +20211,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-37209bb11e": {
-    "examples": [
-      {
-        "jp": "このズボン、ぶかぶかだよ。",
-        "ko": "이 바지는 너무 헐렁해.",
-        "exampleSource": "manual-review"
-      }
-    ],
+    "meaning": "헐렁헐렁한 / 지나치게 큰",
     "meaningSource": "manual-review"
   },
   "oj-40770ec448": {
@@ -20735,6 +20731,13 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-fdb85e4f99": {
     "meaning": "문화재 / 문화유산",
+    "examples": [
+      {
+        "jp": "この建物は国の文化財です。",
+        "ko": "이 건물은 국가 문화재입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-84ad27c633": {
@@ -21272,6 +21275,22 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ad3cb7a4b7": {
+    "meaning": "도보 / 걸어서 감",
+    "meaningSource": "manual-review"
+  },
+  "oj-b9ec7cb6d7": {
+    "meaning": "날짜 / 예정일 / 정해진 날",
+    "meaningSource": "manual-review"
+  },
+  "oj-3b112744fa": {
+    "meaning": "꼴찌 / 맨 끝",
+    "meaningSource": "manual-review"
+  },
+  "oj-2ec5748d47": {
+    "meaning": "부 / 부문 / 부분 / 책·신문 등의 부수 단위",
     "meaningSource": "manual-review"
   }
 };
