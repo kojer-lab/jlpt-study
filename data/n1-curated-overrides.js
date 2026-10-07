@@ -23658,6 +23658,13 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-7f3a84fff7": {
     "meaning": "서양식 / 서양풍",
+    "examples": [
+      {
+        "jp": "私は洋風の家に住んでいます。",
+        "ko": "나는 서양식 집에 살고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
     "meaningSource": "manual-review"
   },
   "oj-47f993e9c4": {
