@@ -11743,5 +11743,670 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-863a775a01": {
+    "meaning": "굳이 / 억지로 / 무리해서",
+    "examples": [
+      {
+        "jp": "これと言って趣味はないんですが、強いて言えば、音楽鑑賞ですかね。",
+        "ko": "딱히 취미는 없지만 굳이 말하자면 음악 감상 정도일까요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3d353fdf0a": {
+    "examples": [
+      {
+        "jp": "兄は私にジーパンをくれた。",
+        "ko": "형은 나에게 청바지를 주었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-69d6bca427": {
+    "examples": [
+      {
+        "jp": "彼らは喜びのあまりすっかり自我をわすれた。",
+        "ko": "그들은 너무 기쁜 나머지 완전히 자신을 잊었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-82f87e36f1": {
+    "meaning": "시가지 / 도시의 거리",
+    "examples": [
+      {
+        "jp": "地下鉄は、市街電車よりはやい。",
+        "ko": "지하철은 시가전차보다 빠르다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-56d9848db1": {
+    "meaning": "시각 / 보는 감각",
+    "meaningSource": "manual-review"
+  },
+  "oj-8b7f4fc480": {
+    "examples": [
+      {
+        "jp": "彼には弁護士の資格がある。",
+        "ko": "그에게는 변호사 자격이 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-46d28a7430": {
+    "meaning": "자각 / 스스로 깨달음",
+    "examples": [
+      {
+        "jp": "彼は社会人としての自覚に欠ける。",
+        "ko": "그는 사회인으로서의 자각이 부족하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-af09a2fb2b": {
+    "examples": [
+      {
+        "jp": "この仕掛けはスイッチで動く。",
+        "ko": "이 장치는 스위치로 작동한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0c73fbec8d": {
+    "meaning": "장치하다 / 덫을 놓다 / 일을 걸다·시작하다",
+    "examples": [
+      {
+        "jp": "彼はその動物をとらえるためにわなをしかけた。",
+        "ko": "그는 그 동물을 잡기 위해 덫을 놓았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-64778c95f5": {
+    "meaning": "그러나 / 그렇지만",
+    "examples": [
+      {
+        "jp": "しかしながら、高すぎる。",
+        "ko": "하지만 너무 비싸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-26c17d8895": {
+    "examples": [
+      {
+        "jp": "彼はこの夏、東北地方を旅行した。",
+        "ko": "그는 이번 여름 도호쿠 지방을 여행했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-db8eb581ea": {
+    "examples": [
+      {
+        "jp": "彼女は計画の立案を指揮した。",
+        "ko": "그녀는 계획 수립을 지휘했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ba9a20ea9f": {
+    "examples": [
+      {
+        "jp": "その機械は磁気の力で動く。",
+        "ko": "그 기계는 자기력으로 움직인다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-12b0fc3312": {
+    "examples": [
+      {
+        "jp": "雄のくじゃくは尾の羽毛が色彩豊かである。",
+        "ko": "수컷 공작은 꼬리 깃털의 색채가 화려하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-299764879b": {
+    "examples": [
+      {
+        "jp": "彼はそのしきたりをよく知っている。",
+        "ko": "그는 그 관습을 잘 알고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-af52de6f58": {
+    "meaning": "구분하다 / 칸막이하다 / 일을 주도하다",
+    "examples": [
+      {
+        "jp": "庭は柵で小道と仕切られている。",
+        "ko": "정원은 울타리로 오솔길과 구분되어 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-230b57c6b3": {
+    "examples": [
+      {
+        "jp": "その計画には資金が不足していた。",
+        "ko": "그 계획에는 자금이 부족했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7e7a810b78": {
+    "examples": [
+      {
+        "jp": "その小説は南北戦争を軸にしている。",
+        "ko": "그 소설은 남북전쟁을 중심축으로 삼고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-eb4849bf00": {
+    "meaning": "실수하다 / 실패하다",
+    "examples": [
+      {
+        "jp": "今回はしくじれないぞ。",
+        "ko": "이번에는 실수할 수 없어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d5263c628f": {
+    "examples": [
+      {
+        "jp": "経済学は経済の仕組みを研究する学問である。",
+        "ko": "경제학은 경제의 구조를 연구하는 학문이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b5bf192e57": {
+    "meaning": "사형 / 사형제",
+    "meaningSource": "manual-review"
+  },
+  "oj-9cbce49fda": {
+    "meaning": "눅눅해지다 / 습기를 먹다",
+    "examples": [
+      {
+        "jp": "あらやだ、このお煎餅もう湿気ってる。",
+        "ko": "어머, 이 센베이 벌써 눅눅해졌네.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-73cb8b25c2": {
+    "examples": [
+      {
+        "jp": "その会社の強さは未来志向の戦略によって生みだされている。",
+        "ko": "그 회사의 강점은 미래지향적 전략에서 나온다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-61fc1c79e5": {
+    "examples": [
+      {
+        "jp": "西欧の思考はすべて等質です。",
+        "ko": "서구의 사고방식은 모두 동질적입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9f66f67f0f": {
+    "examples": [
+      {
+        "jp": "コーヒーは酸味のないものの方が父の嗜好に合うようだ。",
+        "ko": "커피는 신맛이 없는 쪽이 아버지 취향에 맞는 것 같다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f4553f0b0b": {
+    "examples": [
+      {
+        "jp": "会社は時差通勤を導入しようとしています。",
+        "ko": "회사는 시차 출근제를 도입하려 하고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8b4027dbec": {
+    "meaning": "자유자재 / 마음대로",
+    "examples": [
+      {
+        "jp": "彼はフランス語が自在にこなせる。",
+        "ko": "그는 프랑스어를 자유자재로 구사할 수 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fb769f71e3": {
+    "examples": [
+      {
+        "jp": "私はその視察旅行に加わった。",
+        "ko": "나는 그 시찰 여행에 참가했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3d995a5e6a": {
+    "examples": [
+      {
+        "jp": "矢印が進むべき方向を指示する。",
+        "ko": "화살표가 나아가야 할 방향을 가리킨다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-99dd4adc73": {
+    "meaning": "자수 / 스스로 수사기관에 출두함",
+    "examples": [
+      {
+        "jp": "その犯人は警察に自首した。",
+        "ko": "그 범인은 경찰에 자수했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8b1e86984f": {
+    "examples": [
+      {
+        "jp": "アイルランドは刺繍で有名である。",
+        "ko": "아일랜드는 자수로 유명하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8b25299c99": {
+    "examples": [
+      {
+        "jp": "彼の服からしずくが垂れていた。",
+        "ko": "그의 옷에서 물방울이 떨어지고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-35d3365a8f": {
+    "examples": [
+      {
+        "jp": "システムが作動しない場合がある。",
+        "ko": "시스템이 작동하지 않는 경우가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-377fdae689": {
+    "examples": [
+      {
+        "jp": "彼らは敵の船を１０せき沈めた。",
+        "ko": "그들은 적의 배 10척을 침몰시켰다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-11acdf0a51": {
+    "examples": [
+      {
+        "jp": "事前に予約を取っておくべきだ。",
+        "ko": "사전에 예약해 두는 편이 좋다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-708465fbe8": {
+    "meaning": "아들(격식 있는 표현)",
+    "examples": [
+      {
+        "jp": "ご子息のご結婚を心よりお祝い申し上げます。",
+        "ko": "아드님의 결혼을 진심으로 축하드립니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-11d97cded8": {
+    "examples": [
+      {
+        "jp": "私はその仕事を辞退したい。",
+        "ko": "나는 그 일을 사양하고 싶다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d24c5432b6": {
+    "meaning": "그리워하다 / 사모하다 / 따르다",
+    "examples": [
+      {
+        "jp": "彼は祖父を慕い尊敬している。",
+        "ko": "그는 할아버지를 따르고 존경한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3236115f86": {
+    "meaning": "친숙해지다 / 가까이하다",
+    "examples": [
+      {
+        "jp": "アメリカ人は大変親しみやすい。",
+        "ko": "미국인은 매우 친근하게 다가가기 쉽다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8ab29ecca2": {
+    "meaning": "사전 조사 / 예비 조사",
+    "examples": [
+      {
+        "jp": "下調べはしたかい。会議は２日後だよ。",
+        "ko": "사전 조사는 했어? 회의는 이틀 뒤야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d8a877df8f": {
+    "meaning": "쓰다 / 적다(문어적 표현)",
+    "examples": [
+      {
+        "jp": "彼は遺書をしたためた。",
+        "ko": "그는 유서를 썼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8ad49e06c3": {
+    "meaning": "맞추다 / 만들어 주다 / 준비하다",
+    "examples": [
+      {
+        "jp": "新しい服をどこで仕立てましたか。",
+        "ko": "새 옷은 어디에서 맞췄나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5cbdba75ac": {
+    "meaning": "보상 판매 / 중고품을 넘기고 새것을 사는 거래",
+    "examples": [
+      {
+        "jp": "車を下取りに出して新車を買った。",
+        "ko": "차를 보상 판매로 넘기고 새 차를 샀다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-66193a6b91": {
+    "meaning": "기세가 약해짐 / 한풀 꺾임",
+    "examples": [
+      {
+        "jp": "化学業界はすべてが下火になるまで再投資を控えています。",
+        "ko": "화학 업계는 전반적인 열기가 가라앉을 때까지 재투자를 자제하고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4f9508a37a": {
+    "examples": [
+      {
+        "jp": "彼女は２度のフライングで失格した。",
+        "ko": "그녀는 두 번의 부정 출발로 실격했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3a3ca43df5": {
+    "examples": [
+      {
+        "jp": "聴衆のほとんどは実業家だった。",
+        "ko": "청중 대부분은 실업가였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f017c2a6b0": {
+    "meaning": "훈육 / 예절 교육",
+    "examples": [
+      {
+        "jp": "男の子へのしつけは可能である。",
+        "ko": "남자아이를 훈육하는 것은 가능하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ff02641ef7": {
+    "meaning": "훈련하다 / 가르쳐 익히게 하다 / 시침질하다",
+    "examples": [
+      {
+        "jp": "犬をしつけるのは、容易ではない。",
+        "ko": "개를 훈련시키는 것은 쉽지 않다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e2cd3d1a33": {
+    "examples": [
+      {
+        "jp": "私たちの提案は実質にほとんど同じだった。",
+        "ko": "우리의 제안은 실질적으로 거의 같았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0b885a1c38": {
+    "meaning": "실정 / 실제 사정",
+    "examples": [
+      {
+        "jp": "実情がどうなっているかはっきり言いましょう。",
+        "ko": "실정이 어떤지 분명히 말씀드리겠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-031659079f": {
+    "meaning": "실천 / 실제로 행함",
+    "meaningSource": "manual-review"
+  },
+  "oj-4cd81e6ad4": {
+    "examples": [
+      {
+        "jp": "すこし嫉妬深く感じたように思う。",
+        "ko": "조금 질투심이 생긴 것 같았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3418fde87d": {
+    "examples": [
+      {
+        "jp": "彼女は私が犯した誤りを指摘した。",
+        "ko": "그녀는 내가 저지른 실수를 지적했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b16728beb7": {
+    "meaning": "시점 / 관점",
+    "meaningSource": "manual-review"
+  },
+  "oj-84fca05588": {
+    "meaning": "자동사",
+    "examples": [
+      {
+        "jp": "動詞には目的語をとらない自動詞と、目的語をとる他動詞があります。",
+        "ko": "동사에는 목적어를 취하지 않는 자동사와 목적어를 취하는 타동사가 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bb70fb905e": {
+    "examples": [
+      {
+        "jp": "映画のシナリオみたいですね。",
+        "ko": "영화 시나리오 같네요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e318eece72": {
+    "examples": [
+      {
+        "jp": "その地主は以前かなり裕福な暮らしをしていた。",
+        "ko": "그 지주는 예전에 상당히 부유하게 살았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-423b8cfc9b": {
+    "meaning": "첫차 / 첫 출발편",
+    "examples": [
+      {
+        "jp": "私は始発電車に乗らねばならない。",
+        "ko": "나는 첫차를 타야 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ad34685b00": {
+    "meaning": "이비인후과",
+    "examples": [
+      {
+        "jp": "今、耳鼻科にかかっています。",
+        "ko": "지금 이비인후과에 다니고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dec3fc2f2a": {
+    "meaning": "떫다 / 수수하고 세련되다 / 차분하고 멋스럽다",
+    "examples": [
+      {
+        "jp": "僕的にはもっと地味ってか渋い服が欲しいんですけどね。",
+        "ko": "내 취향으로는 좀 더 수수하면서 멋스러운 옷을 갖고 싶어요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0512a67641": {
+    "meaning": "사유물 / 개인 소지품",
+    "examples": [
+      {
+        "jp": "誰かに私物を盗まれた。",
+        "ko": "누군가에게 개인 소지품을 도둑맞았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d582e63792": {
+    "meaning": "끈질기다 / 완강하다 / 쉽게 굴하지 않다",
+    "examples": [
+      {
+        "jp": "彼は結構しぶといね。転んでもただでは起きぬ、いい根性しているよ。",
+        "ko": "그는 꽤 끈질기네. 넘어져도 그냥 일어나지 않는, 대단한 근성이 있어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f5c71c5eae": {
+    "examples": [
+      {
+        "jp": "あの大学は私の第１志望だった。",
+        "ko": "그 대학은 내 제1지망이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c4c39fdeb4": {
+    "examples": [
+      {
+        "jp": "どの辺に脂肪がついているの？",
+        "ko": "어느 부위에 지방이 붙어 있어?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b240d751be": {
+    "meaning": "끝 / 마무리 / 종료",
+    "examples": [
+      {
+        "jp": "話はこれでお仕舞いです。",
+        "ko": "이야기는 이것으로 끝입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6363493220": {
+    "meaning": "처리 / 수습 / 정리",
+    "examples": [
+      {
+        "jp": "これは始末の難い問題だ。",
+        "ko": "이것은 처리하기 어려운 문제다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
