@@ -75,8 +75,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .word-breakdown-item{border:1px solid var(--line);background:var(--bg);border-radius:11px;padding:11px}
 .word-breakdown-item h4{margin:0 0 5px;color:var(--muted);font-size:11px}
 .word-breakdown-item p{margin:0;font-size:13px;line-height:1.6}
-.word-breakdown-related{display:flex;gap:6px;flex-wrap:wrap}
-.word-breakdown-chip{display:inline-flex;background:rgba(34,197,94,.09);color:#168252;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800;line-height:1.35}
+.word-breakdown-related{display:flex;gap:6px;flex-wrap:wrap;padding-top:10px;overflow:visible}
+.word-breakdown-chip{display:inline-flex;background:rgba(34,197,94,.09);color:#168252;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:800;line-height:1.35;overflow:visible}.word-breakdown-chip .furi::before{font-size:.72em;bottom:calc(100% - 1px)}
 .word-library-breakdown{padding:10px 0 0}.word-library-meaning-panel .word-breakdown-toggle{margin-top:11px}.word-library-meaning-panel .word-breakdown-body{margin-top:8px}
 @media(max-width:560px){.word-breakdown-grid{grid-template-columns:1fr}.word-breakdown-part{flex-basis:90px}}
 .hidden{display:none!important}.examples{display:grid;gap:10px;margin-top:15px;text-align:left}.example{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}.example-jp{font-size:18px;line-height:2.45;padding-top:14px;overflow:visible}.example-jp .furi::before{font-size:.66em;bottom:calc(100% - 2px)}.example-ko{margin-top:10px;font-size:14px;line-height:1.7}
@@ -407,6 +407,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-daily-news.js"></script>
 <script src="data/n1-reading-translations.js?v=20261007-r1"></script>
 <script src="data/n1-reading-furigana.js?v=20261007-f1"></script>
+<script src="data/n1-word-furigana.js?v=20261007-wf1"></script>
 <script src="data/n1-extra-listening.js"></script>
 <script src="data/n1-curated-overrides.js?v=20261007-1518"></script>
 <script src="data/n1-second-examples-1.js?v=20261007-b01"></script>
@@ -954,6 +955,7 @@ for(const w of words){
  }
 }
 const wordById=new Map(words.map(w=>[w.id,w]));
+const wordFuriganaBank=window.N1_WORD_FURIGANA||{};
 const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{},window.N1_WORD_BREAKDOWNS_4||{},window.N1_WORD_BREAKDOWNS_5||{},window.N1_WORD_BREAKDOWNS_6||{},window.N1_WORD_BREAKDOWNS_7||{},window.N1_WORD_BREAKDOWNS_8||{},window.N1_WORD_BREAKDOWNS_9||{},window.N1_WORD_BREAKDOWNS_10||{},window.N1_WORD_BREAKDOWNS_11||{},window.N1_WORD_BREAKDOWNS_12||{},window.N1_WORD_BREAKDOWNS_13||{},window.N1_WORD_BREAKDOWNS_14||{},window.N1_WORD_BREAKDOWNS_15||{},window.N1_WORD_BREAKDOWNS_16||{},window.N1_WORD_BREAKDOWNS_17||{},window.N1_WORD_BREAKDOWNS_18||{},window.N1_WORD_BREAKDOWNS_19||{},window.N1_WORD_BREAKDOWNS_20||{},window.N1_WORD_BREAKDOWNS_21||{},window.N1_WORD_BREAKDOWNS_22||{},window.N1_WORD_BREAKDOWNS_23||{}];
 const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
 const wordBreakdownBySurface=new Map();
@@ -964,10 +966,11 @@ for(const w of words){
 }
 function wordBreakdownFor(w){return w?(wordBreakdowns[w.id]||wordBreakdownBySurface.get(wordBreakdownSurfaceKey(w))||null):null}
 function breakdownEsc(s){return escapeExampleText(String(s??""))}
-function breakdownInnerHTML(d,detailOpen=false){
+function breakdownInnerHTML(d,detailOpen=false,wordId=""){
  if(!d)return "";
  const parts=(d.parts||[]).map((p,i)=>`<div class="word-breakdown-part"><strong>${breakdownEsc(p[0])}</strong><span>${breakdownEsc(p[1])}</span></div>${i<(d.parts||[]).length-1?'<div class="word-breakdown-op">＋</div>':""}`).join("");
- const related=(d.related||[]).map(x=>`<span class="word-breakdown-chip">${breakdownEsc(x)}</span>`).join("");
+ const generatedRelated=wordFuriganaBank[wordId]?.related||[];
+ const related=(d.related||[]).map((x,i)=>`<span class="word-breakdown-chip">${generatedRelated[i]||autoFuriText(x,null)}</span>`).join("");
  return `<div class="word-breakdown-quick">
    <div class="word-breakdown-type">${breakdownEsc(d.type||"단어 이해")}</div>
    <div class="word-breakdown-formula">${parts}<div class="word-breakdown-op">→</div><div class="word-breakdown-part word-breakdown-result"><strong>핵심</strong><span>${breakdownEsc(d.core||"")}</span></div></div>
@@ -984,8 +987,8 @@ function breakdownInnerHTML(d,detailOpen=false){
    </div>
  </div>`;
 }
-function studyBreakdownHTML(d){
- return `<button type="button" class="word-breakdown-toggle"><span>🔍 단어 해부</span><span class="word-breakdown-arrow">＋</span></button><div class="word-breakdown-body hidden">${breakdownInnerHTML(d,false)}</div>`;
+function studyBreakdownHTML(d,wordId=""){
+ return `<button type="button" class="word-breakdown-toggle"><span>🔍 단어 해부</span><span class="word-breakdown-arrow">＋</span></button><div class="word-breakdown-body hidden">${breakdownInnerHTML(d,false,wordId)}</div>`;
 }
 function furiganaParts(surface,reading){
  surface=String(surface||"");reading=String(reading||"");
@@ -1040,7 +1043,9 @@ function autoFuriText(text,currentWord){
  }
  return out;
 }
-function renderExampleJP(html,currentWord){
+function renderExampleJP(html,currentWord,exampleIndex=null){
+ const generated=(currentWord&&Number.isInteger(exampleIndex))?wordFuriganaBank[currentWord.id]?.examples?.[exampleIndex]:null;
+ if(generated)return generated;
  const box=document.createElement("div");box.innerHTML=html||"";
  const walker=document.createTreeWalker(box,NodeFilter.SHOW_TEXT);
  const nodes=[];let n;
@@ -1282,13 +1287,13 @@ function renderWordLibrary(){
        <button type="button" class="word-library-section-toggle" data-lib-meaning="${w.id}">
          <span>② 뜻 · 읽기</span><span class="hint">${meaningOpen?"숨기기":"눌러서 확인"} <span class="chev">${meaningOpen?"▲":"▼"}</span></span>
        </button>
-       ${meaningOpen?`<div class="word-library-meaning-panel"><div class="word-library-reading">${readingOf(w.w)}</div><div class="word-library-meaning">${w.meaning}</div>${breakdown?`<div class="word-library-breakdown"><button type="button" class="word-breakdown-toggle" data-lib-breakdown="${w.id}"><span>🔍 단어 해부</span><span class="word-breakdown-arrow">${breakdownOpen?"−":"＋"}</span></button>${breakdownOpen?`<div class="word-breakdown-body">${breakdownInnerHTML(breakdown,breakdownDetailOpen)}</div>`:""}</div>`:""}</div>`:""}
+       ${meaningOpen?`<div class="word-library-meaning-panel"><div class="word-library-reading">${readingOf(w.w)}</div><div class="word-library-meaning">${w.meaning}</div>${breakdown?`<div class="word-library-breakdown"><button type="button" class="word-breakdown-toggle" data-lib-breakdown="${w.id}"><span>🔍 단어 해부</span><span class="word-breakdown-arrow">${breakdownOpen?"−":"＋"}</span></button>${breakdownOpen?`<div class="word-breakdown-body">${breakdownInnerHTML(breakdown,breakdownDetailOpen,w.id)}</div>`:""}</div>`:""}</div>`:""}
      </div>
      <div class="word-library-section">
        <button type="button" class="word-library-section-toggle" data-lib-examples="${w.id}">
          <span>③ 예문</span><span class="hint">${examplesOpen?"숨기기":"눌러서 확인"} <span class="chev">${examplesOpen?"▲":"▼"}</span></span>
        </button>
-       ${examplesOpen?`<div class="word-library-detail">${w.examples.length?w.examples.slice(0,2).map((ex,i)=>`<div class="word-library-example"><button type="button" data-lib-example="${w.id}" data-example-index="${i}" aria-label="예문 음성">🔊</button><div><div class="word-library-example-jp">${renderExampleJP(ex.jp,w)}</div><div class="word-library-example-ko">${ex.ko}</div></div></div>`).join(""):`<div class="word-library-empty" style="padding:16px 8px">자연스러운 한국어 예문을 보강 중입니다.</div>`}</div>`:""}
+       ${examplesOpen?`<div class="word-library-detail">${w.examples.length?w.examples.slice(0,2).map((ex,i)=>`<div class="word-library-example"><button type="button" data-lib-example="${w.id}" data-example-index="${i}" aria-label="예문 음성">🔊</button><div><div class="word-library-example-jp">${renderExampleJP(ex.jp,w,i)}</div><div class="word-library-example-ko">${ex.ko}</div></div></div>`).join(""):`<div class="word-library-empty" style="padding:16px 8px">자연스러운 한국어 예문을 보강 중입니다.</div>`}</div>`:""}
      </div>
    </div>`;
  }).join(""):`<div class="word-library-empty">조건에 맞는 단어가 없습니다.</div>`;
@@ -1328,10 +1333,10 @@ function renderWord(){
  $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
  $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");
  $("showMeaningBtn").textContent="뜻 · 예문 보기";
- $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><div class="example-jp">${renderExampleJP(x.jp,w)}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+ $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
  $("wordExamples").classList.add("hidden");
  const breakdown=wordBreakdownFor(w);
- $("wordBreakdown").innerHTML=breakdown?studyBreakdownHTML(breakdown):"";
+ $("wordBreakdown").innerHTML=breakdown?studyBreakdownHTML(breakdown,w.id):"";
  $("wordBreakdown").classList.add("hidden");
  $("wordRating").classList.add("hidden");
  renderRating($("wordRating"),w.id,sr,false);
@@ -1495,7 +1500,7 @@ function quizTargetWord(item){
 function renderVocabDeepDive(item){
  const w=quizTargetWord(item);if(!w)return "";
  const note=vocabUsageNotes[w.id]||"같은 단어라도 함께 쓰이는 명사와 문형에 따라 자연스러운 한국어 번역이 달라질 수 있으므로, 대표 예문과 함께 익혀 두는 것이 좋습니다.";
- return `<div class="vocab-deep"><div class="vocab-deep-title">뜻 자세히</div><div class="vocab-deep-head"><span class="vocab-deep-word">${w.w}</span><span class="vocab-deep-reading">${readingOf(w.w)}</span></div><div class="vocab-deep-meaning"><strong>핵심 의미</strong> · ${w.meaning}</div><div class="vocab-deep-context"><strong>용법 포인트</strong><br>${note}</div><div class="vocab-deep-examples">${w.examples.slice(0,2).map(ex=>`<div class="vocab-deep-example"><div class="vocab-deep-example-jp">${renderExampleJP(ex.jp,w)}</div><div class="vocab-deep-example-ko">${ex.ko}</div></div>`).join("")}</div></div>`;
+ return `<div class="vocab-deep"><div class="vocab-deep-title">뜻 자세히</div><div class="vocab-deep-head"><span class="vocab-deep-word">${w.w}</span><span class="vocab-deep-reading">${readingOf(w.w)}</span></div><div class="vocab-deep-meaning"><strong>핵심 의미</strong> · ${w.meaning}</div><div class="vocab-deep-context"><strong>용법 포인트</strong><br>${note}</div><div class="vocab-deep-examples">${w.examples.slice(0,2).map((ex,i)=>`<div class="vocab-deep-example"><div class="vocab-deep-example-jp">${renderExampleJP(ex.jp,w,i)}</div><div class="vocab-deep-example-ko">${ex.ko}</div></div>`).join("")}</div></div>`;
 }
 function startQuiz(mode){quizMode=mode;quizOrder=[...Array(quizData[mode].length).keys()].sort(()=>Math.random()-.5);quizIndex=0;renderQuiz()}
 function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘":"文法 · 문법";$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.q;$("quizChoices").innerHTML=item.c.map((c,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${c}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden")}
@@ -1553,7 +1558,7 @@ $("nextReadingBtn").addEventListener("click",()=>{
 });
 
 function startReview(){reviewQueue=dueWords();reviewIndex=0;renderReview()}
-function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords().length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-card-body"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>연속 ${s.streak||0} · 다시 ${s.lapses}회</span></div><div class="word-title-row"><div><div class="word-main">${w.w}</div></div><button type="button" class="star-btn ${isStarred(w.id)?"on":""}" id="reviewStarBtn" data-word="${w.id}">${isStarred(w.id)?"★":"☆"}</button></div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${renderExampleJP(x.jp,w)}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);restoreInteractiveFuriState(root);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewStarBtn").addEventListener("click",()=>{toggleStar(w.id);renderReview()});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
+function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords().length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-card-body"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>연속 ${s.streak||0} · 다시 ${s.lapses}회</span></div><div class="word-title-row"><div><div class="word-main">${w.w}</div></div><button type="button" class="star-btn ${isStarred(w.id)?"on":""}" id="reviewStarBtn" data-word="${w.id}">${isStarred(w.id)?"★":"☆"}</button></div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);restoreInteractiveFuriState(root);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewStarBtn").addEventListener("click",()=>{toggleStar(w.id);renderReview()});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
 
 function renderMistakes(){const root=$("mistakeList");if(!state.mistakes.length){root.innerHTML='<div class="card review-empty">아직 저장된 오답이 없습니다.</div>';return}root.innerHTML=state.mistakes.map(m=>`<div class="card mistake"><div><div class="tag">${m.type}</div><div class="q" style="margin-top:8px">${m.q}</div>${m.translation?`<div class="translation"><strong>문제 뜻</strong><br>${m.translation}</div>`:""}<div style="margin-top:12px;line-height:1.8"><strong>정답</strong> ${m.correct}<br><br><strong>해설</strong><br>${m.explanation}</div>${m.details&&m.details.length?`<div class="detail-list">${m.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:""}<div class="meta">틀린 횟수 ${m.count}회</div></div><button type="button" class="secondary" data-delete="${m.id}">삭제</button></div>`).join("")}
 $("mistakeList").addEventListener("click",e=>{const b=e.target.closest("[data-delete]");if(!b)return;state.mistakes=state.mistakes.filter(x=>x.id!==b.dataset.delete);saveState(state);renderMistakes();refreshAll()});$("clearMistakesBtn").addEventListener("click",()=>{if(confirm("오답노트를 모두 삭제할까요?")){state.mistakes=[];saveState(state);renderMistakes();refreshAll()}});
