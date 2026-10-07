@@ -164,56 +164,16 @@ def main():
             src = by_id.get(src_id)
             all_rows.append((i, row, src))
 
-    # Phase 1: exact Tatoeba translations for the OpenJLPT example already selected.
-    row_info = {}
-    exact_ids = set()
-    for i, row, src in all_rows:
-        if not src:
-            continue
-        ex = choose_openjlpt_example(src)
-        if ex and ex.get("tatoeba_id"):
-            sid = int(ex["tatoeba_id"])
-            row_info[row["id"]] = (ex, sid)
-            exact_ids.add(sid)
-
-    print(f"Checking {len(exact_ids)} Tatoeba sentence IDs for native Korean translations...")
-    exact_ko = {}
-    with ThreadPoolExecutor(max_workers=4) as pool:
-        futs = [pool.submit(fetch_korean_for_id, sid) for sid in sorted(exact_ids)]
-        for n, fut in enumerate(as_completed(futs), 1):
-            sid, ko = fut.result()
-            exact_ko[sid] = ko
-            if n % 200 == 0:
-                print(f"  exact {n}/{len(futs)}")
-
-    native_exact = 0
-    needs_search = []
-    for i, row, src in all_rows:
-        info = row_info.get(row.get("id"))
-        if info:
-            ex, sid = info
-            ko = exact_ko.get(sid, "")
-            if ko:
-                row["examples"] = [{
-                    "jp": furi_html(ex.get("furigana") or ex.get("ja") or ""),
-                    "ko": ko,
-                    "tatoebaId": sid,
-                    "exampleSource": "Tatoeba-ko",
-                }]
-                native_exact += 1
-                continue
-        needs_search.append((row, src))
-
-    # Phase 2: for rows without a direct Korean translation, search a short Japanese
-    # example containing the headword that *does* have a Korean Tatoeba translation.
+    # One request per headword: directly ask Tatoeba for a Japanese sentence
+    # containing the word and having a Korean translation.
     search_words = sorted({
         normalize((src or {}).get("word") or row.get("w"))
-        for row, src in needs_search
+        for _, row, src in all_rows
         if normalize((src or {}).get("word") or row.get("w"))
     })
     print(f"Searching Tatoeba for Korean-linked examples for {len(search_words)} headwords...")
     search_results = {}
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ThreadPoolExecutor(max_workers=8) as pool:
         futs = [pool.submit(search_korean_example, word) for word in search_words]
         for n, fut in enumerate(as_completed(futs), 1):
             word, result = fut.result()
@@ -224,7 +184,7 @@ def main():
     native_search = 0
     kept_fallback = 0
     still_missing = 0
-    for row, src in needs_search:
+    for _, row, src in all_rows:
         word = normalize((src or {}).get("word") or row.get("w"))
         result = search_results.get(word)
         if result:
@@ -247,14 +207,11 @@ def main():
 
     meta_path = DATA / "openjlpt-example-refinement-meta.json"
     meta = {
-        "version": 1,
+        "version": 2,
         "total": len(all_rows),
-        "native_korean_exact": native_exact,
-        "native_korean_search": native_search,
-        "tatoeba_korean_total": native_exact + native_search,
+        "tatoeba_korean_total": native_search,
         "machine_translation_fallback": kept_fallback,
         "examples_missing": still_missing,
-        "checked_sentence_ids": len(exact_ids),
         "searched_headwords": len(search_words),
     }
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
