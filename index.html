@@ -1238,7 +1238,7 @@ function renderWordLibrary(){
    return [plain(w.w),readingOf(w.w),w.meaning,...w.examples.flatMap(ex=>[plain(ex.jp),ex.ko])].join(" ").toLowerCase().includes(q);
  });
  const shown=list.slice(0,wordLibraryVisible);
- $("wordLibrarySummary").textContent=`${words.length}개 중 검색 결과 ${list.length}개 · 현재 ${shown.length}개 표시 · ① 단어 → ② 뜻·읽기 → ③ 예문 순서로 확인하세요.`;
+ $("wordLibrarySummary").textContent=`${words.length}개 중 검색 결과 ${list.length}개 · 현재 ${shown.length}개 표시 · ① 단어 → ② 뜻·읽기 → ③ 예문${Object.keys(wordBreakdowns).length?" → ④ 단어 해부":""} 순서로 확인하세요.`;
  $("wordLibraryList").innerHTML=shown.length?shown.map(w=>{
    const meaningOpen=wordLibraryOpen.has(w.id),examplesOpen=wordLibraryExamplesOpen.has(w.id),breakdown=wordBreakdownFor(w),breakdownOpen=wordLibraryBreakdownOpen.has(w.id),breakdownDetailOpen=wordLibraryBreakdownDetailOpen.has(w.id),r=getSrs(w.id);
    return `<div class="word-library-item${meaningOpen?" meaning-open":""}${examplesOpen?" examples-open":""}" data-id="${w.id}">
