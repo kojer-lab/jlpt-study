@@ -8,6 +8,16 @@ async function assignedJson(path){
   return JSON.parse(src.slice(eq+1).trim().replace(/;\s*$/,""));
 }
 
+function plainJapanese(value){
+  let text=String(value||"");
+  const entities={"&lt;":"<","&gt;":">","&quot;":'"',"&#39;":"'","&amp;":"&"};
+  for(let pass=0;pass<3;pass++){
+    text=text.replace(/<[^>]*>/g,"");
+    text=text.replace(/&(lt|gt|quot|#39|amp);/g,m=>entities[m]||m);
+  }
+  return text.replace(/<[^>]*>/g,"");
+}
+
 const html=await readFile("index.html","utf8");
 const marker="const words=";
 const start=html.indexOf(marker);
@@ -71,8 +81,8 @@ for(const name of breakdownNames)Object.assign(breakdowns,await assignedJson("da
 
 const out=words.map(w=>({
   id:w.id,
-  examples:w.examples.slice(0,2).map(ex=>String(ex.jp||"")),
-  related:Array.isArray(breakdowns[w.id]?.related)?breakdowns[w.id].related.map(String):[]
+  examples:w.examples.slice(0,2).map(ex=>plainJapanese(ex.jp)),
+  related:Array.isArray(breakdowns[w.id]?.related)?breakdowns[w.id].related.map(plainJapanese):[]
 }));
 
 await mkdir("data",{recursive:true});
