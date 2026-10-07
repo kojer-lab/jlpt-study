@@ -11095,5 +11095,653 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-c78ec3cd4b": {
+    "examples": [
+      {
+        "jp": "彼等は細かい差異に気がつかなかった。",
+        "ko": "그들은 미세한 차이를 알아차리지 못했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dbe3b4e73e": {
+    "meaning": "재- / 다시 / 반복해서",
+    "meaningSource": "manual-review"
+  },
+  "oj-d41ecf3cab": {
+    "examples": [
+      {
+        "jp": "私は君との再会を待ち望んでいる。",
+        "ko": "나는 너와 다시 만나기를 손꼽아 기다리고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a5a31448e1": {
+    "examples": [
+      {
+        "jp": "細菌が病気を引き起こすことがある。",
+        "ko": "세균이 질병을 일으키는 경우가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e5e4f44fbe": {
+    "meaning": "세공 / 공예 / 잔손질",
+    "examples": [
+      {
+        "jp": "彼らの最高の技術は木工細工に見られた。",
+        "ko": "그들의 뛰어난 기술은 목공 세공에서 볼 수 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fb51ca7096": {
+    "examples": [
+      {
+        "jp": "彼らは石油の採掘を行うつもりだった。",
+        "ko": "그들은 석유를 채굴할 생각이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d67fdd7582": {
+    "examples": [
+      {
+        "jp": "図表２を見ると、これらの貿易サイクルのいくつかは非常に短期のものであることが判明する。",
+        "ko": "도표 2를 보면 이 무역 사이클 중 일부는 매우 단기적이라는 것을 알 수 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9f4d23f1c8": {
+    "meaning": "표결 / 채결",
+    "examples": [
+      {
+        "jp": "彼らはその動議について採決をした。",
+        "ko": "그들은 그 동의안에 대해 표결했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-25a859b79f": {
+    "examples": [
+      {
+        "jp": "その城は、１４８５年に全焼して、再建されなかった。",
+        "ko": "그 성은 1485년에 전소된 뒤 재건되지 않았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-17a6158213": {
+    "examples": [
+      {
+        "jp": "僕は実験方法を学んでいたのではなかったし、実験を再現する方法を学んでいるのでさえなかった。",
+        "ko": "나는 실험 방법을 배우고 있던 것도 아니고, 실험을 재현하는 방법을 배우고 있던 것도 아니었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ee78c61579": {
+    "examples": [
+      {
+        "jp": "石油の在庫がきれかかっている。",
+        "ko": "석유 재고가 바닥나 가고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ee81c93b87": {
+    "examples": [
+      {
+        "jp": "砂から金を分離採集する方法をお見せしましょう。",
+        "ko": "모래에서 금을 분리해 채취하는 방법을 보여 드리겠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d0b0e94e2a": {
+    "examples": [
+      {
+        "jp": "このサイズは私には大きすぎます。",
+        "ko": "이 사이즈는 저에게 너무 큽니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6d41c419f1": {
+    "examples": [
+      {
+        "jp": "音楽を頭の中で再生してみなさい。",
+        "ko": "머릿속에서 그 음악을 다시 떠올려 보세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dcfa49f3a3": {
+    "examples": [
+      {
+        "jp": "現在のその市の財政は芳しくない。",
+        "ko": "현재 그 도시의 재정 상태는 좋지 않다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-92f3050d57": {
+    "meaning": "최선 / 가장 좋은 방법·상태",
+    "meaningSource": "manual-review"
+  },
+  "oj-55e72078ed": {
+    "examples": [
+      {
+        "jp": "その委員会はその提案を採択した。",
+        "ko": "그 위원회는 그 제안을 채택했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-702d98a819": {
+    "examples": [
+      {
+        "jp": "彼女は庭でトマトを栽培している。",
+        "ko": "그녀는 정원에서 토마토를 재배하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b5a3ad85f1": {
+    "examples": [
+      {
+        "jp": "彼はその仕事に志願し採用された。",
+        "ko": "그는 그 일에 지원해 채용되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-acd16e281c": {
+    "meaning": "맑고 선명하다 / 정신이 또렷하다 / 솜씨가 뛰어나다",
+    "examples": [
+      {
+        "jp": "満月が空にさえている。",
+        "ko": "보름달이 하늘에 선명하게 떠 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7afe63bc18": {
+    "examples": [
+      {
+        "jp": "竿にシーツを全部干しました。",
+        "ko": "장대에 시트를 전부 널었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c9a5908139": {
+    "examples": [
+      {
+        "jp": "善人必ずしも栄える者でない。",
+        "ko": "선한 사람이 반드시 번영하는 것은 아니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-86ff79ee1d": {
+    "examples": [
+      {
+        "jp": "差額はありますか。",
+        "ko": "차액이 있나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-83d4b6e60d": {
+    "meaning": "물구나무서기",
+    "examples": [
+      {
+        "jp": "彼女は塀の上を逆立ちして歩いた。",
+        "ko": "그녀는 담 위에서 물구나무를 선 채 걸었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4ae5663b6a": {
+    "meaning": "담다 / 수북이 쌓다 / 성하다",
+    "examples": [
+      {
+        "jp": "お刺身を盛るお皿は、どれにする？",
+        "ko": "회를 담을 접시는 어느 것으로 할까?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-eff14d6855": {
+    "meaning": "먼저 / 앞서 / 이전에",
+    "meaningSource": "manual-review"
+  },
+  "oj-ec75c990a9": {
+    "examples": [
+      {
+        "jp": "彼女は支出を徐々に削減した。",
+        "ko": "그녀는 지출을 서서히 줄였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ad558472a4": {
+    "examples": [
+      {
+        "jp": "タイムをとって作戦を練ろう。",
+        "ko": "타임을 요청해서 작전을 짜자.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-938c9d8608": {
+    "examples": [
+      {
+        "jp": "この布は裂けやすい。",
+        "ko": "이 천은 잘 찢어진다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9f492a7054": {
+    "meaning": "바치다 / 헌신하다 / 들어 올리다",
+    "examples": [
+      {
+        "jp": "彼は平和のために一生を捧げた。",
+        "ko": "그는 평화를 위해 일생을 바쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-efd3b15360": {
+    "meaning": "다가가다 / 접어들다",
+    "examples": [
+      {
+        "jp": "私達が峠にさしかかる頃に雨になった。",
+        "ko": "우리가 고갯길에 접어들 무렵 비가 내리기 시작했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-896f36ec1e": {
+    "examples": [
+      {
+        "jp": "時計が人間の行動を指図する。",
+        "ko": "시계가 인간의 행동을 지시한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-97067b8785": {
+    "examples": [
+      {
+        "jp": "赤ん坊は小さな手を差し出した。",
+        "ko": "아기는 작은 손을 내밀었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1452a1a7e3": {
+    "examples": [
+      {
+        "jp": "監督は彼にトロフィーを授けた。",
+        "ko": "감독은 그에게 트로피를 수여했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fab38f85af": {
+    "meaning": "틀림없이 / 필시 / 분명",
+    "examples": [
+      {
+        "jp": "さぞショックだったでしょう。",
+        "ko": "틀림없이 충격이 컸겠네요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-398673bdbc": {
+    "examples": [
+      {
+        "jp": "彼の運命は定まった。",
+        "ko": "그의 운명이 정해졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3da0f86cec": {
+    "examples": [
+      {
+        "jp": "神は人間はみな死ぬものと定めた。",
+        "ko": "신은 인간은 모두 죽는 존재라고 정했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6e4c1d41d8": {
+    "meaning": "잡화 / 여러 생활용품",
+    "examples": [
+      {
+        "jp": "彼の知人が田舎で雑貨屋を経営している。",
+        "ko": "그의 지인이 시골에서 잡화점을 운영하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bf631bff68": {
+    "meaning": "착각 / 잘못된 인식",
+    "examples": [
+      {
+        "jp": "目の錯覚かと思った。",
+        "ko": "눈의 착각인가 싶었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-750318c4c4": {
+    "meaning": "잡담 / 수다",
+    "examples": [
+      {
+        "jp": "ぜひ雑談でもしにいらしてください。",
+        "ko": "꼭 편하게 잡담이라도 하러 오세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-76c9379fe5": {
+    "examples": [
+      {
+        "jp": "頭上の雲がさっと流れていった。",
+        "ko": "머리 위의 구름이 순식간에 흘러갔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2f8bc57219": {
+    "meaning": "깨닫다 / 알아차리다 / 득도하다",
+    "examples": [
+      {
+        "jp": "彼はついに自分の誤りを悟った。",
+        "ko": "그는 마침내 자신의 잘못을 깨달았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d241556a2f": {
+    "examples": [
+      {
+        "jp": "御子を信じるものは裁かれない。",
+        "ko": "그 아들을 믿는 자는 심판받지 않는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6707c34b07": {
+    "meaning": "땡땡이치다 / 일을 게을리하다",
+    "examples": [
+      {
+        "jp": "仕事をサボったからクビになった。",
+        "ko": "일을 땡땡이쳐서 해고됐다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1aaa4f2c34": {
+    "examples": [
+      {
+        "jp": "太郎には侍の血が流れている。",
+        "ko": "다로에게는 사무라이의 피가 흐르고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fc4763325c": {
+    "meaning": "그럴듯하게 / 마치 정말 그런 듯이",
+    "examples": [
+      {
+        "jp": "笑いで誤魔化すと、亜美さんはさも不機嫌そうに眉を寄せた。",
+        "ko": "웃음으로 얼버무리자 아미 씨는 아주 불쾌하다는 듯 눈살을 찌푸렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-73affc28d7": {
+    "examples": [
+      {
+        "jp": "日光は皮膚に作用する。",
+        "ko": "햇빛은 피부에 작용한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6eaf31b290": {
+    "meaning": "휩쓸어 가다 / 납치하다 / 독차지하다",
+    "examples": [
+      {
+        "jp": "彼女は全部の賞をさらって行った。",
+        "ko": "그녀는 모든 상을 휩쓸었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-50ffe65f74": {
+    "meaning": "~씨 / 사람 이름·직함 뒤에 붙이는 존칭",
+    "examples": [
+      {
+        "jp": "おつりはいらないよ、運転士さん。",
+        "ko": "거스름돈은 됐어요, 기사님.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-427fb01f65": {
+    "examples": [
+      {
+        "jp": "山岳救助隊は２４時間待機している。",
+        "ko": "산악구조대는 24시간 대기하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-01c8c71035": {
+    "meaning": "참의원 / 일본 국회의 상원",
+    "examples": [
+      {
+        "jp": "参議院はどんな改正案も通さなくても構わないようです。",
+        "ko": "참의원은 어떤 개정안도 통과시키지 않아도 되는 듯합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8dc7f3c5af": {
+    "meaning": "출산휴가 / 산휴",
+    "examples": [
+      {
+        "jp": "彼女は来週から産休に入る。",
+        "ko": "그녀는 다음 주부터 출산휴가에 들어간다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5a574aee6b": {
+    "meaning": "잔금 / 남은 돈",
+    "examples": [
+      {
+        "jp": "残金は６月３０日までに御支払いします。",
+        "ko": "잔금은 6월 30일까지 지불하겠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e44c56587f": {
+    "meaning": "산후 / 출산 후",
+    "examples": [
+      {
+        "jp": "女性は産後すぐに亡くなった。",
+        "ko": "그 여성은 출산 직후 사망했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f5d9fdc3f4": {
+    "meaning": "잔혹함 / 잔인함",
+    "examples": [
+      {
+        "jp": "彼女は私には残酷そうに見える。",
+        "ko": "그녀는 내게 잔혹해 보인다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0730229418": {
+    "examples": [
+      {
+        "jp": "この畑は良質の作物を産出する。",
+        "ko": "이 밭은 질 좋은 작물을 생산한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-392eca258a": {
+    "examples": [
+      {
+        "jp": "残高を教えてくれますか。",
+        "ko": "잔액을 알려 주시겠어요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ee63103aa9": {
+    "meaning": "산타클로스",
+    "meaningSource": "manual-review"
+  },
+  "oj-6114f36b6b": {
+    "examples": [
+      {
+        "jp": "昔ここには桟橋があったんだ。",
+        "ko": "예전에는 여기에 부두가 있었어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dddbd253bb": {
+    "examples": [
+      {
+        "jp": "僕らの大学の校舎は、今福岡市の北部の山腹に建築中です。",
+        "ko": "우리 대학 교사는 현재 후쿠오카시 북부의 산비탈에 건설 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c3e8729b86": {
+    "examples": [
+      {
+        "jp": "その展覧会は彼の想像力の産物だった。",
+        "ko": "그 전시회는 그의 상상력이 낳은 산물이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-92c0bddf4b": {
+    "examples": [
+      {
+        "jp": "私は山脈を見た。",
+        "ko": "나는 산맥을 보았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bc5b286310": {
+    "examples": [
+      {
+        "jp": "素敵な仕上がりだわ。",
+        "ko": "멋지게 완성됐네.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4f03a7c46d": {
+    "meaning": "마무리하다 / 완성하다",
+    "examples": [
+      {
+        "jp": "彼らは協力してその絵を仕上げた。",
+        "ko": "그들은 협력해 그 그림을 완성했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-da8dd04cb6": {
+    "examples": [
+      {
+        "jp": "彼は牛と馬を飼育している。",
+        "ko": "그는 소와 말을 사육하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
