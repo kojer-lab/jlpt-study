@@ -3369,7 +3369,7 @@
     {
       "id": "oj-1cf257772e",
       "examples": [
-        "ああ<span class=\"furi\" data-r=\"ひこうき\">飛行機</span>が<span class=\"furi\" data-r=\"りりく\">離陸</span>する。",
+        "ああ飛行機が離陸する。",
         "嗚呼、もう少し早く気づいていればよかった。"
       ],
       "related": [
@@ -3429,7 +3429,7 @@
     {
       "id": "oj-3a407bbc0b",
       "examples": [
-        "<span class=\"furi\" data-r=\"きみ\">君</span>と<span class=\"furi\" data-r=\"かれ\">彼</span>とはどういう<span class=\"furi\" data-r=\"あいだがら\">間柄</span>なのだ。",
+        "君と彼とはどういう間柄なのだ。",
         "二人は何でも相談できる間柄だ。"
       ],
       "related": [
@@ -3441,7 +3441,7 @@
     {
       "id": "oj-f7da525529",
       "examples": [
-        "<span class=\"furi\" data-r=\"べんきょう\">勉強</span>の<span class=\"furi\" data-r=\"あいま\">合間</span>に<span class=\"furi\" data-r=\"わたし\">私</span>はテレビをみた。",
+        "勉強の合間に私はテレビをみた。",
         "仕事の合間に少し外の空気を吸った。"
       ],
       "related": [
@@ -3485,7 +3485,7 @@
     {
       "id": "oj-3b72fad905",
       "examples": [
-        "あの<span class=\"furi\" data-r=\"こ\">子</span>はあかだらけだ。",
+        "あの子はあかだらけだ。",
         "長く掃除していなかったので、棚に垢がたまっていた。"
       ],
       "related": [
@@ -3725,7 +3725,7 @@
     {
       "id": "oj-9f51d0da76",
       "examples": [
-        "われわれは<span class=\"furi\" data-r=\"まず\">貧</span>しい<span class=\"furi\" data-r=\"ひと\">人</span>あざ<span class=\"furi\" data-r=\"わら\">笑</span>ってはいけない。",
+        "われわれは貧しい人あざ笑ってはいけない。",
         "失敗した人をあざ笑うような態度はよくない。"
       ],
       "related": [
@@ -3761,7 +3761,7 @@
     {
       "id": "oj-4905fc6f13",
       "examples": [
-        "<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"おく\">遅</span>れを<span class=\"furi\" data-r=\"と\">取</span>り<span class=\"furi\" data-r=\"もど\">戻</span>そうと<span class=\"furi\" data-r=\"あせ\">焦</span>っている。",
+        "彼は遅れを取り戻そうと焦っている。",
         "焦って答えを出すより、もう一度考えたほうがいい。"
       ],
       "related": [
@@ -3785,7 +3785,7 @@
     {
       "id": "oj-92da7d5ed8",
       "examples": [
-        "あの<span class=\"furi\" data-r=\"はくぶつかん\">博物館</span>はくるに<span class=\"furi\" data-r=\"あたい\">値</span>する。",
+        "あの博物館はくるに値する。",
         "彼の努力は十分に評価に値する。"
       ],
       "related": [
@@ -3821,7 +3821,7 @@
     {
       "id": "oj-91564706d0",
       "examples": [
-        "<span class=\"furi\" data-r=\"しぜんかんきょう\">自然環境</span>の<span class=\"furi\" data-r=\"あっか\">悪化</span>を<span class=\"furi\" data-r=\"そし\">阻止</span>しましょう。",
+        "自然環境の悪化を阻止しましょう。",
         "天候の悪化で試合は中止になった。"
       ],
       "related": [
@@ -3869,7 +3869,7 @@
     {
       "id": "oj-bd0b0380dc",
       "examples": [
-        "<span class=\"furi\" data-r=\"かれ\">彼</span>はあっさり<span class=\"furi\" data-r=\"つみ\">罪</span>を<span class=\"furi\" data-r=\"はくじょう\">白状</span>した。",
+        "彼はあっさり罪を白状した。",
         "彼は難しい条件をあっさり受け入れた。"
       ],
       "related": [
@@ -3881,7 +3881,7 @@
     {
       "id": "oj-eab33fad07",
       "examples": [
-        "その<span class=\"furi\" data-r=\"せいふ\">政府</span>は<span class=\"furi\" data-r=\"こくみん\">国民</span>を<span class=\"furi\" data-r=\"あっぱく\">圧迫</span>した。",
+        "その政府は国民を圧迫した。",
         "狭い部屋に大勢入ると、かなり圧迫感がある。"
       ],
       "related": [
@@ -3905,7 +3905,7 @@
     {
       "id": "oj-11fdbf024e",
       "examples": [
-        "<span class=\"furi\" data-r=\"わたし\">私</span>はデパートでオーバーをあつらえた。",
+        "私はデパートでオーバーをあつらえた。",
         "結婚式のために自分の体に合うスーツを誂えた。"
       ],
       "related": [
@@ -3941,7 +3941,7 @@
     {
       "id": "oj-23f01f9d4e",
       "examples": [
-        "この<span class=\"furi\" data-r=\"きかい\">機械</span>は<span class=\"furi\" data-r=\"あ\">当</span>てにできません。",
+        "この機械は当てにできません。",
         "助けを求めようにも、頼れる当てがなかった。"
       ],
       "related": [
@@ -3989,7 +3989,7 @@
     {
       "id": "oj-20b715b301",
       "examples": [
-        "その<span class=\"furi\" data-r=\"けつろん\">結論</span>は<span class=\"furi\" data-r=\"あとまわ\">後回</span>しにした。",
+        "その結論は後回しにした。",
         "面倒な仕事を後回しにすると、あとで余計に大変になる。"
       ],
       "related": [
@@ -4001,7 +4001,7 @@
     {
       "id": "oj-06f6d3304a",
       "examples": [
-        "<span class=\"furi\" data-r=\"かのじょ\">彼女</span>は<span class=\"furi\" data-r=\"あぶらえ\">油絵</span>を<span class=\"furi\" data-r=\"はじ\">始</span>めた。",
+        "彼女は油絵を始めた。",
         "美術館で十九世紀の油絵をじっくり鑑賞した。"
       ],
       "related": [
@@ -4025,7 +4025,7 @@
     {
       "id": "oj-3d62f0758a",
       "examples": [
-        "あなたはシャツをあべこべに<span class=\"furi\" data-r=\"き\">着</span>ている。",
+        "あなたはシャツをあべこべに着ている。",
         "説明を勘違いして、左右をあべこべに取り付けてしまった。"
       ],
       "related": [
@@ -4037,7 +4037,7 @@
     {
       "id": "oj-5869bef4e6",
       "examples": [
-        "<span class=\"furi\" data-r=\"しょうじょ\">少女</span>は<span class=\"furi\" data-r=\"ははおや\">母親</span>に<span class=\"furi\" data-r=\"あま\">甘</span>えた。",
+        "少女は母親に甘えた。",
         "いつまでも親に甘えてばかりはいられない。"
       ],
       "related": [
@@ -4061,7 +4061,7 @@
     {
       "id": "oj-b4f987e2d7",
       "examples": [
-        "そんな<span class=\"furi\" data-r=\"あまくち\">甘口</span>には<span class=\"furi\" data-r=\"の\">乗</span>らないよ。",
+        "そんな甘口には乗らないよ。",
         "私は辛口より甘口のカレーが好きだ。"
       ],
       "related": [
@@ -4097,7 +4097,7 @@
     {
       "id": "oj-925a73e9ad",
       "examples": [
-        "<span class=\"furi\" data-r=\"あみ\">網</span>にかかったものは<span class=\"furi\" data-r=\"なん\">何</span>でも<span class=\"furi\" data-r=\"さかな\">魚</span>だ。",
+        "網にかかったものは何でも魚だ。",
         "漁師たちは朝早く海に網を投げた。"
       ],
       "related": [
@@ -4109,7 +4109,7 @@
     {
       "id": "oj-5d74f8516a",
       "examples": [
-        "あやふやな<span class=\"furi\" data-r=\"て\">手</span>つきで<span class=\"furi\" data-r=\"いちまい\">一枚</span>の<span class=\"furi\" data-r=\"かみ\">紙</span>を<span class=\"furi\" data-r=\"うご\">動</span>かした。",
+        "あやふやな手つきで一枚の紙を動かした。",
         "記憶があやふやなので、日時をもう一度確認した。"
       ],
       "related": [
@@ -4133,7 +4133,7 @@
     {
       "id": "oj-28a4658761",
       "examples": [
-        "<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"はんだん\">判断</span>を<span class=\"furi\" data-r=\"あやま\">誤</span>った。",
+        "彼は判断を誤った。",
         "判断を誤ると、大きな損失につながる。"
       ],
       "related": [
@@ -4145,7 +4145,7 @@
     {
       "id": "oj-e4007809a1",
       "examples": [
-        "<span class=\"furi\" data-r=\"なん\">何</span>て<span class=\"furi\" data-r=\"あゆ\">歩</span>みののろいやつだろう。",
+        "何て歩みののろいやつだろう。",
         "会社の十年の歩みを写真で振り返った。"
       ],
       "related": [
@@ -4157,7 +4157,7 @@
     {
       "id": "oj-9de629082f",
       "examples": [
-        "<span class=\"furi\" data-r=\"きんだい\">近代</span><span class=\"furi\" data-r=\"いがく\">医学</span>の<span class=\"furi\" data-r=\"しんぽ\">進歩</span>は<span class=\"furi\" data-r=\"なが\">長</span>い<span class=\"furi\" data-r=\"みちのり\">道程</span>を<span class=\"furi\" data-r=\"あゆ\">歩</span>んだ。",
+        "近代医学の進歩は長い道程を歩んだ。",
         "私たちは同じ目標に向かって一歩ずつ歩んでいる。"
       ],
       "related": [
@@ -4181,7 +4181,7 @@
     {
       "id": "oj-d91254a19e",
       "examples": [
-        "<span class=\"furi\" data-r=\"きゅうか\">休暇</span>の<span class=\"furi\" data-r=\"けいかく\">計画</span>を<span class=\"furi\" data-r=\"あらかじ\">予</span>め<span class=\"furi\" data-r=\"た\">立</span>てている。",
+        "休暇の計画を予め立てている。",
         "必要な書類は予めメールで送っておいてください。"
       ],
       "related": []
@@ -4225,7 +4225,7 @@
     {
       "id": "oj-a3363e4ffe",
       "examples": [
-        "ボクシングは<span class=\"furi\" data-r=\"かなら\">必</span>ずしも<span class=\"furi\" data-r=\"あら\">荒</span>っぽいスポーツではない。",
+        "ボクシングは必ずしも荒っぽいスポーツではない。",
         "彼は言葉遣いが少し荒っぽいが、悪い人ではない。"
       ],
       "related": [
@@ -4261,7 +4261,7 @@
     {
       "id": "oj-92893bbd77",
       "examples": [
-        "<span class=\"furi\" data-r=\"かのじょ\">彼女</span>は<span class=\"furi\" data-r=\"あわ\">哀</span>れを<span class=\"furi\" data-r=\"さそ\">誘</span>う<span class=\"furi\" data-r=\"ありさま\">有様</span>だった。",
+        "彼女は哀れを誘う有様だった。",
         "部屋は足の踏み場もない有様だった。"
       ],
       "related": [
@@ -4273,7 +4273,7 @@
     {
       "id": "oj-085d431d0a",
       "examples": [
-        "<span class=\"furi\" data-r=\"かれ\">彼</span>は<span class=\"furi\" data-r=\"じじつ\">事実</span>をありのままに<span class=\"furi\" data-r=\"の\">述</span>べた。",
+        "彼は事実をありのままに述べた。",
         "失敗した理由をありのまま話してください。"
       ],
       "related": [
@@ -4309,7 +4309,7 @@
     {
       "id": "oj-c7318ae6de",
       "examples": [
-        "ラッシュアワーの<span class=\"furi\" data-r=\"こうつうじゅうたい\">交通渋滞</span>にあった。",
+        "ラッシュアワーの交通渋滞にあった。",
         "番組では一時間の特別アワーが放送された。"
       ],
       "related": [
@@ -4321,7 +4321,7 @@
     {
       "id": "oj-dbffd52c9b",
       "examples": [
-        "<span class=\"furi\" data-r=\"かれ\">彼</span>はその<span class=\"furi\" data-r=\"はへん\">破片</span>をくっつけ<span class=\"furi\" data-r=\"あ\">合</span>わした。",
+        "彼はその破片をくっつけ合わした。",
         "二人で力を合わすことができれば、きっと成功する。"
       ],
       "related": [
@@ -4369,7 +4369,7 @@
     {
       "id": "oj-eda4f150bd",
       "examples": [
-        "<span class=\"furi\" data-r=\"かれ\">彼</span>らは<span class=\"furi\" data-r=\"だいとうりょう\">大統領</span>の<span class=\"furi\" data-r=\"あんさつ\">暗殺</span>を<span class=\"furi\" data-r=\"くわだ\">企</span>てた。",
+        "彼らは大統領の暗殺を企てた。",
         "その政治家は暗殺未遂事件に巻き込まれた。"
       ],
       "related": [
@@ -4417,7 +4417,7 @@
     {
       "id": "oj-cf51a81d5e",
       "examples": [
-        "<span class=\"furi\" data-r=\"あんせい\">安静</span>にして<span class=\"furi\" data-r=\"ね\">寝</span>ていてください。",
+        "安静にして寝ていてください。",
         "医者から三日ほど安静にするよう言われた。"
       ],
       "related": [
@@ -4477,7 +4477,7 @@
     {
       "id": "oj-4f85c70c6c",
       "examples": [
-        "<span class=\"furi\" data-r=\"かのじょ\">彼女</span>は<span class=\"furi\" data-r=\"も\">持</span>ち<span class=\"furi\" data-r=\"もの\">物</span><span class=\"furi\" data-r=\"ぜんぶ\">全部</span>を<span class=\"furi\" data-r=\"も\">持</span>って<span class=\"furi\" data-r=\"いえで\">家出</span>した。",
+        "彼女は持ち物全部を持って家出した。",
         "彼は家族とけんかして一時家出したことがある。"
       ],
       "related": [
@@ -4489,7 +4489,7 @@
     {
       "id": "oj-5d8eead4ba",
       "examples": [
-        "<span class=\"furi\" data-r=\"じぶん\">自分</span>も<span class=\"furi\" data-r=\"い\">生</span>き、<span class=\"furi\" data-r=\"たにん\">他人</span>も<span class=\"furi\" data-r=\"い\">生</span>かせ。",
+        "自分も生き、他人も生かせ。",
         "これまでの経験を新しい仕事に生かしたい。"
       ],
       "related": [
@@ -4513,7 +4513,7 @@
     {
       "id": "oj-b2f39149f2",
       "examples": [
-        "<span class=\"furi\" data-r=\"わたし\">私</span>は<span class=\"furi\" data-r=\"きょういく\">教育</span>がいかに<span class=\"furi\" data-r=\"じゅうよう\">重要</span>であるかを<span class=\"furi\" data-r=\"つうかん\">痛感</span>しました。",
+        "私は教育がいかに重要であるかを痛感しました。",
         "限られた時間を如何に有効に使うかが課題だ。"
       ],
       "related": [
