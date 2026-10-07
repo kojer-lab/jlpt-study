@@ -441,6 +441,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-second-examples-30.js?v=20261007-b30"></script>
 <script src="data/n1-word-breakdowns-1.js?v=20261007-wb01"></script>
 <script src="data/n1-word-breakdowns-2.js?v=20261007-wb02"></script>
+<script src="data/n1-word-breakdowns-3.js?v=20261007-wb03"></script>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -933,7 +934,7 @@ for(const w of words){
  }
 }
 const wordById=new Map(words.map(w=>[w.id,w]));
-const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{}];
+const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{}];
 const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
 function wordBreakdownFor(w){return w?wordBreakdowns[w.id]||null:null}
 function breakdownEsc(s){return escapeExampleText(String(s??""))}
