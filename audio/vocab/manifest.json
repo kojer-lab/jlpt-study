@@ -1,0 +1,365 @@
+{
+  "version": 1,
+  "engine": "KokoroJP 0.2.0 / WASM q8 / jf_alpha",
+  "generatedAt": "2026-10-07T02:58:48.169Z",
+  "count": 153,
+  "files": {
+    "unagasu": {
+      "word": "audio/vocab/unagasu-word.wav",
+      "examples": [
+        "audio/vocab/unagasu-ex1.wav",
+        "audio/vocab/unagasu-ex2.wav"
+      ]
+    },
+    "fumaeru": {
+      "word": "audio/vocab/fumaeru-word.wav",
+      "examples": [
+        "audio/vocab/fumaeru-ex1.wav",
+        "audio/vocab/fumaeru-ex2.wav"
+      ]
+    },
+    "kutsugaesu": {
+      "word": "audio/vocab/kutsugaesu-word.wav",
+      "examples": [
+        "audio/vocab/kutsugaesu-ex1.wav",
+        "audio/vocab/kutsugaesu-ex2.wav"
+      ]
+    },
+    "todokooru": {
+      "word": "audio/vocab/todokooru-word.wav",
+      "examples": [
+        "audio/vocab/todokooru-ex1.wav",
+        "audio/vocab/todokooru-ex2.wav"
+      ]
+    },
+    "manugareru": {
+      "word": "audio/vocab/manugareru-word.wav",
+      "examples": [
+        "audio/vocab/manugareru-ex1.wav",
+        "audio/vocab/manugareru-ex2.wav"
+      ]
+    },
+    "tazusawaru": {
+      "word": "audio/vocab/tazusawaru-word.wav",
+      "examples": [
+        "audio/vocab/tazusawaru-ex1.wav",
+        "audio/vocab/tazusawaru-ex2.wav"
+      ]
+    },
+    "hodokosu": {
+      "word": "audio/vocab/hodokosu-word.wav",
+      "examples": [
+        "audio/vocab/hodokosu-ex1.wav",
+        "audio/vocab/hodokosu-ex2.wav"
+      ]
+    },
+    "kaerimiru": {
+      "word": "audio/vocab/kaerimiru-word.wav",
+      "examples": [
+        "audio/vocab/kaerimiru-ex1.wav",
+        "audio/vocab/kaerimiru-ex2.wav"
+      ]
+    },
+    "toboshii": {
+      "word": "audio/vocab/toboshii-word.wav",
+      "examples": [
+        "audio/vocab/toboshii-ex1.wav",
+        "audio/vocab/toboshii-ex2.wav"
+      ]
+    },
+    "shiiru": {
+      "word": "audio/vocab/shiiru-word.wav",
+      "examples": [
+        "audio/vocab/shiiru-ex1.wav",
+        "audio/vocab/shiiru-ex2.wav"
+      ]
+    },
+    "konen": {
+      "word": "audio/vocab/konen-word.wav",
+      "examples": [
+        "audio/vocab/konen-ex1.wav",
+        "audio/vocab/konen-ex2.wav"
+      ]
+    },
+    "minaosu": {
+      "word": "audio/vocab/minaosu-word.wav",
+      "examples": [
+        "audio/vocab/minaosu-ex1.wav",
+        "audio/vocab/minaosu-ex2.wav"
+      ]
+    },
+    "ichijirushii": {
+      "word": "audio/vocab/ichijirushii-word.wav",
+      "examples": [
+        "audio/vocab/ichijirushii-ex1.wav",
+        "audio/vocab/ichijirushii-ex2.wav"
+      ]
+    },
+    "hanahadashii": {
+      "word": "audio/vocab/hanahadashii-word.wav",
+      "examples": [
+        "audio/vocab/hanahadashii-ex1.wav",
+        "audio/vocab/hanahadashii-ex2.wav"
+      ]
+    },
+    "magirawashii": {
+      "word": "audio/vocab/magirawashii-word.wav",
+      "examples": [
+        "audio/vocab/magirawashii-ex1.wav",
+        "audio/vocab/magirawashii-ex2.wav"
+      ]
+    },
+    "sashitsukaeru": {
+      "word": "audio/vocab/sashitsukaeru-word.wav",
+      "examples": [
+        "audio/vocab/sashitsukaeru-ex1.wav",
+        "audio/vocab/sashitsukaeru-ex2.wav"
+      ]
+    },
+    "mikomu": {
+      "word": "audio/vocab/mikomu-word.wav",
+      "examples": [
+        "audio/vocab/mikomu-ex1.wav",
+        "audio/vocab/mikomu-ex2.wav"
+      ]
+    },
+    "miotosu": {
+      "word": "audio/vocab/miotosu-word.wav",
+      "examples": [
+        "audio/vocab/miotosu-ex1.wav",
+        "audio/vocab/miotosu-ex2.wav"
+      ]
+    },
+    "arifureta": {
+      "word": "audio/vocab/arifureta-word.wav",
+      "examples": [
+        "audio/vocab/arifureta-ex1.wav",
+        "audio/vocab/arifureta-ex2.wav"
+      ]
+    },
+    "bodai": {
+      "word": "audio/vocab/bodai-word.wav",
+      "examples": [
+        "audio/vocab/bodai-ex1.wav",
+        "audio/vocab/bodai-ex2.wav"
+      ]
+    },
+    "kizashi": {
+      "word": "audio/vocab/kizashi-word.wav",
+      "examples": [
+        "audio/vocab/kizashi-ex1.wav",
+        "audio/vocab/kizashi-ex2.wav"
+      ]
+    },
+    "oomune": {
+      "word": "audio/vocab/oomune-word.wav",
+      "examples": [
+        "audio/vocab/oomune-ex1.wav",
+        "audio/vocab/oomune-ex2.wav"
+      ]
+    },
+    "togeru": {
+      "word": "audio/vocab/togeru-word.wav",
+      "examples": [
+        "audio/vocab/togeru-ex1.wav",
+        "audio/vocab/togeru-ex2.wav"
+      ]
+    },
+    "sokonau": {
+      "word": "audio/vocab/sokonau-word.wav",
+      "examples": [
+        "audio/vocab/sokonau-ex1.wav",
+        "audio/vocab/sokonau-ex2.wav"
+      ]
+    },
+    "sorasu": {
+      "word": "audio/vocab/sorasu-word.wav",
+      "examples": [
+        "audio/vocab/sorasu-ex1.wav",
+        "audio/vocab/sorasu-ex2.wav"
+      ]
+    },
+    "sueru": {
+      "word": "audio/vocab/sueru-word.wav",
+      "examples": [
+        "audio/vocab/sueru-ex1.wav",
+        "audio/vocab/sueru-ex2.wav"
+      ]
+    },
+    "tadoru": {
+      "word": "audio/vocab/tadoru-word.wav",
+      "examples": [
+        "audio/vocab/tadoru-ex1.wav",
+        "audio/vocab/tadoru-ex2.wav"
+      ]
+    },
+    "ninau": {
+      "word": "audio/vocab/ninau-word.wav",
+      "examples": [
+        "audio/vocab/ninau-ex1.wav",
+        "audio/vocab/ninau-ex2.wav"
+      ]
+    },
+    "samatageru": {
+      "word": "audio/vocab/samatageru-word.wav",
+      "examples": [
+        "audio/vocab/samatageru-ex1.wav",
+        "audio/vocab/samatageru-ex2.wav"
+      ]
+    },
+    "ayabumu": {
+      "word": "audio/vocab/ayabumu-word.wav",
+      "examples": [
+        "audio/vocab/ayabumu-ex1.wav",
+        "audio/vocab/ayabumu-ex2.wav"
+      ]
+    },
+    "misueru": {
+      "word": "audio/vocab/misueru-word.wav",
+      "examples": [
+        "audio/vocab/misueru-ex1.wav",
+        "audio/vocab/misueru-ex2.wav"
+      ]
+    },
+    "miawaseru": {
+      "word": "audio/vocab/miawaseru-word.wav",
+      "examples": [
+        "audio/vocab/miawaseru-ex1.wav",
+        "audio/vocab/miawaseru-ex2.wav"
+      ]
+    },
+    "mikiwameru": {
+      "word": "audio/vocab/mikiwameru-word.wav",
+      "examples": [
+        "audio/vocab/mikiwameru-ex1.wav",
+        "audio/vocab/mikiwameru-ex2.wav"
+      ]
+    },
+    "mihakarau": {
+      "word": "audio/vocab/mihakarau-word.wav",
+      "examples": [
+        "audio/vocab/mihakarau-ex1.wav",
+        "audio/vocab/mihakarau-ex2.wav"
+      ]
+    },
+    "torimaku": {
+      "word": "audio/vocab/torimaku-word.wav",
+      "examples": [
+        "audio/vocab/torimaku-ex1.wav",
+        "audio/vocab/torimaku-ex2.wav"
+      ]
+    },
+    "torikumu": {
+      "word": "audio/vocab/torikumu-word.wav",
+      "examples": [
+        "audio/vocab/torikumu-ex1.wav",
+        "audio/vocab/torikumu-ex2.wav"
+      ]
+    },
+    "makanau": {
+      "word": "audio/vocab/makanau-word.wav",
+      "examples": [
+        "audio/vocab/makanau-ex1.wav",
+        "audio/vocab/makanau-ex2.wav"
+      ]
+    },
+    "oginau": {
+      "word": "audio/vocab/oginau-word.wav",
+      "examples": [
+        "audio/vocab/oginau-ex1.wav",
+        "audio/vocab/oginau-ex2.wav"
+      ]
+    },
+    "hikaeru": {
+      "word": "audio/vocab/hikaeru-word.wav",
+      "examples": [
+        "audio/vocab/hikaeru-ex1.wav",
+        "audio/vocab/hikaeru-ex2.wav"
+      ]
+    },
+    "hedataru": {
+      "word": "audio/vocab/hedataru-word.wav",
+      "examples": [
+        "audio/vocab/hedataru-ex1.wav",
+        "audio/vocab/hedataru-ex2.wav"
+      ]
+    },
+    "shirizokeru": {
+      "word": "audio/vocab/shirizokeru-word.wav",
+      "examples": [
+        "audio/vocab/shirizokeru-ex1.wav",
+        "audio/vocab/shirizokeru-ex2.wav"
+      ]
+    },
+    "uketamawaru": {
+      "word": "audio/vocab/uketamawaru-word.wav",
+      "examples": [
+        "audio/vocab/uketamawaru-ex1.wav",
+        "audio/vocab/uketamawaru-ex2.wav"
+      ]
+    },
+    "moyoosu": {
+      "word": "audio/vocab/moyoosu-word.wav",
+      "examples": [
+        "audio/vocab/moyoosu-ex1.wav",
+        "audio/vocab/moyoosu-ex2.wav"
+      ]
+    },
+    "isagiyoi": {
+      "word": "audio/vocab/isagiyoi-word.wav",
+      "examples": [
+        "audio/vocab/isagiyoi-ex1.wav",
+        "audio/vocab/isagiyoi-ex2.wav"
+      ]
+    },
+    "yuruyaka": {
+      "word": "audio/vocab/yuruyaka-word.wav",
+      "examples": [
+        "audio/vocab/yuruyaka-ex1.wav",
+        "audio/vocab/yuruyaka-ex2.wav"
+      ]
+    },
+    "takumi": {
+      "word": "audio/vocab/takumi-word.wav",
+      "examples": [
+        "audio/vocab/takumi-ex1.wav",
+        "audio/vocab/takumi-ex2.wav"
+      ]
+    },
+    "kencho": {
+      "word": "audio/vocab/kencho-word.wav",
+      "examples": [
+        "audio/vocab/kencho-ex1.wav",
+        "audio/vocab/kencho-ex2.wav"
+      ]
+    },
+    "katayoru": {
+      "word": "audio/vocab/katayoru-word.wav",
+      "examples": [
+        "audio/vocab/katayoru-ex1.wav",
+        "audio/vocab/katayoru-ex2.wav"
+      ]
+    },
+    "okotaru": {
+      "word": "audio/vocab/okotaru-word.wav",
+      "examples": [
+        "audio/vocab/okotaru-ex1.wav",
+        "audio/vocab/okotaru-ex2.wav"
+      ]
+    },
+    "tomonau": {
+      "word": "audio/vocab/tomonau-word.wav",
+      "examples": [
+        "audio/vocab/tomonau-ex1.wav",
+        "audio/vocab/tomonau-ex2.wav"
+      ]
+    },
+    "oyobosu": {
+      "word": "audio/vocab/oyobosu-word.wav",
+      "examples": [
+        "audio/vocab/oyobosu-ex1.wav",
+        "audio/vocab/oyobosu-ex2.wav"
+      ]
+    }
+  }
+}
