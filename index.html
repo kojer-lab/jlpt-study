@@ -206,6 +206,10 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
           <label for="dailyNewLimit">하루 새 단어</label>
           <select id="dailyNewLimit"><option value="5">5개</option><option value="10">10개</option><option value="15">15개</option><option value="20">20개</option><option value="30">30개</option><option value="50">50개</option></select>
         </div>
+        <div class="word-dash-setting">
+          <label for="desiredRetention">FSRS 목표 기억률</label>
+          <select id="desiredRetention"><option value="0.85">85% · 여유</option><option value="0.90">90% · 추천</option><option value="0.93">93% · 촘촘</option><option value="0.95">95% · 집중</option></select>
+        </div>
         <button class="primary word-start" type="button" id="startWordStudy">오늘 학습 시작</button>
         <div class="word-dash-actions"><button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button><button class="secondary" type="button" data-go="review">복습만 보기</button></div>
         <button class="secondary word-start" type="button" id="openWordLibrary" style="margin-top:8px">📚 N1 전체 단어장 · <span id="wordLibraryCount">0</span>개</button>
@@ -392,7 +396,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="card stat"><div class="label">누적 실수</div><div class="num" id="lapseStat">0</div></div>
       </div>
       <div class="section-title">저장 방식</div>
-      <div class="card" style="line-height:1.8">각 단어마다 <strong>다음 복습 시각(due), 복습 간격(interval), 난이도 계수(ease), 연속 정답(streak), 복습 횟수(reviews), 다시 누른 횟수(lapses)</strong>를 저장합니다. 클라우드 미연결 시에는 이 브라우저에만 저장되고, Supabase 로그인 후에는 PC와 모바일 사이에 자동 동기화됩니다.</div>
+      <div class="card" style="line-height:1.8">각 단어마다 <strong>다음 복습 시각(due), 복습 간격(interval), FSRS 안정성(stability), 난이도(difficulty), 복습 횟수(reviews), 다시 누른 횟수(lapses)</strong>를 저장합니다. 목표 기억률에 맞춰 다음 복습일을 계산하며, 늦게 복습했는데도 기억한 경우 실제 경과 시간도 반영합니다. 클라우드 미연결 시에는 이 브라우저에만 저장되고, Supabase 로그인 후에는 PC와 모바일 사이에 자동 동기화됩니다.</div>
       <div class="section-title">백업</div>
       <div class="card"><div class="data-actions"><button class="secondary" id="exportBtn" type="button">학습 데이터 내보내기</button><label class="secondary file-label">학습 데이터 가져오기<input type="file" id="importInput" accept="application/json"></label><button class="secondary" id="resetBtn" type="button">전체 초기화</button></div></div>
     </section>
@@ -575,9 +579,9 @@ function restoreInteractiveFuriState(root=document){
 const DAY=86400000, MIN=60000;
 const STORE_KEY="jlptN1StudyV3";
 const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
-const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},settings:{dailyNewLimit:10,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},_updatedAt:0};
+const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},_updatedAt:0};
 function freshState(){return JSON.parse(JSON.stringify(defaultState));}
-function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.settings=Object.assign({dailyNewLimit:10,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
 function loadState(){try{return normalizeState(JSON.parse(localStorage.getItem(STORE_KEY)||"{}"));}catch(e){return freshState();}}
 function persistState(s){localStorage.setItem(STORE_KEY,JSON.stringify(s));}
 function saveState(s,opts={}){if(opts.touch!==false)s._updatedAt=Date.now();persistState(s);if(!opts.skipCloud)scheduleCloudPush();updateSyncUI();}
@@ -1261,38 +1265,101 @@ function dailyNewsReadingIndex(){
 
 let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewIndex=0;
 const $=id=>document.getElementById(id);
-function getSrs(id){return Object.assign({due:0,interval:0,ease:2.5,reviews:0,lapses:0,last:0,streak:0,updatedAt:0},state.srs[id]||{});}
-function setSrs(id,s){state.srs[id]=s;saveState(state)}
-function nextPreview(s,rating){
- if(rating==="again")return"10분";
- if(!s.reviews){
-   if(rating==="hard")return"1일";
-   if(rating==="good")return"3일";
-   return"7일";
- }
- if(rating==="hard")return Math.max(1,Math.round((s.interval||1)*1.25))+"일";
- if(rating==="good")return Math.max(2,Math.round((s.interval||1)*Math.max(1.8,s.ease)))+"일";
- return Math.max(4,Math.round((s.interval||1)*(Math.max(1.8,s.ease)+.75)))+"일";
+const FSRS_W=[.212,1.2931,2.3065,8.2956,6.4133,.8334,3.0194,.001,1.8722,.1666,.796,1.4835,.0614,.2629,1.6483,.6014,1.8729,.5425,.0912,.0658,.1542];
+const FSRS_DECAY=-FSRS_W[20],FSRS_FACTOR=Math.pow(.9,1/FSRS_DECAY)-1,FSRS_MAX_INTERVAL=36500;
+const SRS_GRADE={again:1,hard:2,good:3,easy:4};
+function clampNum(v,min,max){return Math.max(min,Math.min(max,v))}
+function desiredRetention(){return clampNum(Number(state.settings?.desiredRetention)||.90,.80,.97)}
+function fsrsInitialStability(g){return Math.max(.1,FSRS_W[g-1])}
+function fsrsInitialDifficulty(g,doClamp=true){
+ const d=FSRS_W[4]-Math.exp(FSRS_W[5]*(g-1))+1;
+ return doClamp?clampNum(d,1,10):d;
 }
-function rateWord(id,rating){let s=getSrs(id),t=now();
+function fsrsNextDifficulty(d,g){
+ const delta=-FSRS_W[6]*(g-3),damped=(10-d)*delta/9;
+ const target=fsrsInitialDifficulty(4,false);
+ return clampNum(FSRS_W[7]*target+(1-FSRS_W[7])*(d+damped),1,10);
+}
+function fsrsRetrievability(stability,elapsedDays){
+ const s=Math.max(.1,Number(stability)||.1),t=Math.max(0,Number(elapsedDays)||0);
+ return clampNum(Math.pow(1+FSRS_FACTOR*t/s,FSRS_DECAY),0,1);
+}
+function fsrsInterval(stability){
+ const raw=(Math.max(.1,stability)/FSRS_FACTOR)*(Math.pow(desiredRetention(),1/FSRS_DECAY)-1);
+ return clampNum(Math.round(raw),1,FSRS_MAX_INTERVAL);
+}
+function fsrsShortTermStability(stability,g){
+ let inc=Math.exp(FSRS_W[17]*(g-3+FSRS_W[18]))*Math.pow(Math.max(.1,stability),-FSRS_W[19]);
+ if(g>=2)inc=Math.max(inc,1);
+ return Math.max(.1,stability*inc);
+}
+function fsrsRecallStability(d,s,r,g){
+ const hard=g===2?FSRS_W[15]:1,easy=g===4?FSRS_W[16]:1;
+ const gain=Math.exp(FSRS_W[8])*(11-d)*Math.pow(s,-FSRS_W[9])*(Math.exp((1-r)*FSRS_W[10])-1)*hard*easy;
+ return Math.max(.1,s*(1+gain));
+}
+function fsrsForgetStability(d,s,r){
+ const longTerm=FSRS_W[11]*Math.pow(d,-FSRS_W[12])*(Math.pow(s+1,FSRS_W[13])-1)*Math.exp((1-r)*FSRS_W[14]);
+ const shortTerm=s/Math.exp(FSRS_W[17]*FSRS_W[18]);
+ return Math.max(.1,Math.min(longTerm,shortTerm));
+}
+function migrateLegacySrs(raw){
+ const s=Object.assign({due:0,interval:0,reviews:0,lapses:0,last:0,streak:0,updatedAt:0,state:"new",stability:0,difficulty:0,scheduler:"fsrs6"},raw||{});
+ if(!s.state||s.state==="new"){
+   if(s.reviews>0)s.state=(Number(s.interval)||0)<=0?(Number(s.lapses)||0)>0?"relearning":"learning":"review";
+   else s.state="new";
+ }
+ if(s.reviews>0&&!(Number(s.stability)>0))s.stability=Math.max(.1,Number(s.interval)||1);
+ if(s.reviews>0&&!(Number(s.difficulty)>0)){
+   const ease=Number(s.ease)||2.5;
+   s.difficulty=clampNum(5.5-(ease-2.5)*3,1,10);
+ }
+ s.interval=Math.max(0,Number(s.interval)||0);s.reviews=Math.max(0,Number(s.reviews)||0);s.lapses=Math.max(0,Number(s.lapses)||0);
+ return s;
+}
+function getSrs(id){return migrateLegacySrs(state.srs[id]);}
+function setSrs(id,s){state.srs[id]=s;saveState(state)}
+function scheduleFsrs(s,rating,t=now()){
+ const x=migrateLegacySrs(JSON.parse(JSON.stringify(s||{}))),g=SRS_GRADE[rating]||3;
+ const wasNew=x.reviews===0||x.state==="new",wasLearning=x.state==="learning",wasRelearning=x.state==="relearning";
+ const wasGraduated=x.state==="review"||wasRelearning;
+ const elapsed=x.last?Math.max(0,(t-x.last)/DAY):0;
+ const oldS=Math.max(.1,Number(x.stability)||fsrsInitialStability(g));
+ const oldD=clampNum(Number(x.difficulty)||fsrsInitialDifficulty(g),1,10);
+ const r=x.last?fsrsRetrievability(oldS,elapsed):0;
+ let newS,newD;
+ if(wasNew){
+   newS=fsrsInitialStability(g);newD=fsrsInitialDifficulty(g);
+ }else if(elapsed<1){
+   newS=fsrsShortTermStability(oldS,g);newD=fsrsNextDifficulty(oldD,g);
+ }else{
+   newS=g===1?fsrsForgetStability(oldD,oldS,r):fsrsRecallStability(oldD,oldS,r,g);
+   newD=fsrsNextDifficulty(oldD,g);
+ }
+ x.stability=Math.round(newS*1000)/1000;x.difficulty=Math.round(newD*1000)/1000;
+ x.retrievabilityAtReview=Math.round(r*1000)/1000;x.scheduler="fsrs6";
  if(rating==="again"){
-   s.interval=0;s.due=t+10*MIN;s.ease=Math.max(1.3,s.ease-.2);s.lapses++;s.streak=0;
+   if(wasGraduated)x.lapses++;
+   x.interval=0;x.due=t+10*MIN;x.state=wasGraduated?"relearning":"learning";x.streak=0;
+ }else if((wasNew||wasLearning||wasRelearning)&&rating==="hard"){
+   x.interval=0;x.due=t+15*MIN;x.state=wasRelearning?"relearning":"learning";x.streak=(x.streak||0)+1;
+ }else{
+   x.interval=fsrsInterval(x.stability);x.due=t+x.interval*DAY;x.state="review";x.streak=(x.streak||0)+1;
  }
- if(rating==="hard"){
-   s.interval=s.reviews?Math.max(1,Math.round((s.interval||1)*1.25)):1;
-   s.due=t+s.interval*DAY;s.ease=Math.max(1.3,s.ease-.12);s.streak=(s.streak||0)+1;
- }
- if(rating==="good"){
-   const bonus=1+Math.min(.25,(s.streak||0)*.03);
-   s.interval=s.reviews?Math.max(2,Math.round((s.interval||1)*Math.max(1.8,s.ease)*bonus)):3;
-   s.due=t+s.interval*DAY;s.ease=Math.min(3.0,s.ease+.04);s.streak=(s.streak||0)+1;
- }
- if(rating==="easy"){
-   const bonus=1+Math.min(.35,(s.streak||0)*.04);
-   s.interval=s.reviews?Math.max(4,Math.round((s.interval||1)*(Math.max(1.8,s.ease)+.75)*bonus)):7;
-   s.due=t+s.interval*DAY;s.ease=Math.min(3.2,s.ease+.12);s.streak=(s.streak||0)+1;
- }
- s.reviews++;s.last=t;s.updatedAt=t;setSrs(id,s);refreshAll();
+ x.reviews++;x.last=t;x.updatedAt=t;
+ return x;
+}
+function previewLabel(ms,interval){
+ if(ms<DAY)return Math.max(1,Math.round(ms/MIN))+"분";
+ return interval+"일";
+}
+function nextPreview(s,rating){
+ const t=now(),n=scheduleFsrs(s,rating,t);
+ return previewLabel(Math.max(0,n.due-t),n.interval);
+}
+function rateWord(id,rating){
+ const s=scheduleFsrs(getSrs(id),rating,now());
+ setSrs(id,s);refreshAll();
 }
 function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
 function unseenWords(){return words.filter(w=>getSrs(w.id).reviews===0)}
@@ -1342,8 +1409,9 @@ function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"sm
 function renderWordDashboard(){
  const daily=ensureDailyNew(false),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
  const learned=words.filter(w=>getSrs(w.id).reviews>0).length;
- const mastered=words.filter(w=>getSrs(w.id).reviews>0&&getSrs(w.id).interval>=30).length;
+ const mastered=words.filter(w=>getSrs(w.id).reviews>0&&getSrs(w.id).stability>=30).length;
  $("dailyNewLimit").value=String(state.settings.dailyNewLimit||10);
+ if($("desiredRetention"))$("desiredRetention").value=Number(state.settings.desiredRetention||.90).toFixed(2);
  $("wordGoalText").textContent=`${learned} / ${words.length}개`;
  $("wordGoalFill").style.width=(words.length?Math.min(100,learned/words.length*100):0)+"%";
  $("wordDashDue").textContent=due.length;$("wordDashNew").textContent=fresh.length;
@@ -1370,7 +1438,7 @@ function startWordStudy(mode="daily"){
 function wordLibraryStateLabel(w){
  const r=getSrs(w.id);
  if(r.reviews===0)return "미학습";
- if(r.interval>=30)return "정착";
+ if(r.stability>=30)return "정착";
  if(r.due<=now())return "복습 예정";
  return "학습 중";
 }
@@ -1607,6 +1675,7 @@ $("undoWordRating").addEventListener("click",()=>{
 });
 $("wordStarBtn").addEventListener("click",()=>{const id=$("wordStarBtn").dataset.word;if(!id)return;toggleStar(id);$("wordStarBtn").textContent=isStarred(id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(id))});
 $("dailyNewLimit").addEventListener("change",()=>{const n=Math.max(1,Math.min(50,Number($("dailyNewLimit").value)||10));state.settings=Object.assign({},state.settings,{dailyNewLimit:n,updatedAt:Date.now()});ensureDailyNew(false);saveState(state);renderWordDashboard();refreshAll()});
+$("desiredRetention").addEventListener("change",()=>{const r=clampNum(Number($("desiredRetention").value)||.90,.80,.97);state.settings=Object.assign({},state.settings,{desiredRetention:r,updatedAt:Date.now()});saveState(state);renderWordDashboard();refreshAll()});
 $("startWordStudy").addEventListener("click",()=>startWordStudy("daily"));
 $("startStarredStudy").addEventListener("click",()=>startWordStudy("starred"));
 $("exitWordStudy").addEventListener("click",showWordDashboard);
@@ -1689,7 +1758,7 @@ function renderReview(){const root=$("reviewArea");$("reviewCountPill").textCont
 function renderMistakes(){const root=$("mistakeList");if(!state.mistakes.length){root.innerHTML='<div class="card review-empty">아직 저장된 오답이 없습니다.</div>';return}root.innerHTML=state.mistakes.map(m=>`<div class="card mistake"><div><div class="tag">${m.type}</div><div class="q" style="margin-top:8px">${m.q}</div>${m.translation?`<div class="translation"><strong>문제 뜻</strong><br>${m.translation}</div>`:""}<div style="margin-top:12px;line-height:1.8"><strong>정답</strong> ${m.correct}<br><br><strong>해설</strong><br>${m.explanation}</div>${m.details&&m.details.length?`<div class="detail-list">${m.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:""}<div class="meta">틀린 횟수 ${m.count}회</div></div><button type="button" class="secondary" data-delete="${m.id}">삭제</button></div>`).join("")}
 $("mistakeList").addEventListener("click",e=>{const b=e.target.closest("[data-delete]");if(!b)return;state.mistakes=state.mistakes.filter(x=>x.id!==b.dataset.delete);saveState(state);renderMistakes();refreshAll()});$("clearMistakesBtn").addEventListener("click",()=>{if(confirm("오답노트를 모두 삭제할까요?")){state.mistakes=[];saveState(state);renderMistakes();refreshAll()}});
 
-function renderStats(){const ss=Object.values(state.srs),learned=ss.filter(x=>x.reviews>0).length,due=dueWords().length,maxInt=ss.reduce((m,x)=>Math.max(m,x.interval||0),0),lapses=ss.reduce((n,x)=>n+(x.lapses||0),0);$("learnedWordsStat").textContent=learned;$("dueWordsStat").textContent=due;$("maxIntervalStat").textContent=maxInt+"일";$("lapseStat").textContent=lapses}
+function renderStats(){const ss=Object.keys(state.srs||{}).map(getSrs),learned=ss.filter(x=>x.reviews>0).length,due=dueWords().length,maxInt=ss.reduce((m,x)=>Math.max(m,x.interval||0),0),lapses=ss.reduce((n,x)=>n+(x.lapses||0),0);$("learnedWordsStat").textContent=learned;$("dueWordsStat").textContent=due;$("maxIntervalStat").textContent=maxInt+"일";$("lapseStat").textContent=lapses}
 $("exportBtn").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="jlpt-n1-study-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 $("importInput").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const obj=JSON.parse(r.result);state=Object.assign({},defaultState,obj);saveState(state);refreshAll();alert("학습 데이터를 가져왔습니다.")}catch(err){alert("올바른 백업 파일이 아닙니다.")}};r.readAsText(f)});
 $("resetBtn").addEventListener("click",()=>{if(confirm("모든 학습 기록을 초기화할까요? 클라우드가 연결되어 있으면 빈 기록도 동기화됩니다.")){state=freshState();saveState(state);refreshAll();alert("초기화했습니다.")}});
