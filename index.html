@@ -369,7 +369,12 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
 <script src="data/n1-extra-words-3.js"></script>
-<script src="data/n1-extra-words-openjlpt.js"></script>
+<script src="data/n1-extra-words-openjlpt-1.js"></script>
+<script src="data/n1-extra-words-openjlpt-2.js"></script>
+<script src="data/n1-extra-words-openjlpt-3.js"></script>
+<script src="data/n1-extra-words-openjlpt-4.js"></script>
+<script src="data/n1-extra-words-openjlpt-5.js"></script>
+<script src="data/n1-extra-words-openjlpt-6.js"></script>
 <script src="data/n1-extra-grammar.js"></script>
 <script src="data/n1-extra-reading.js"></script>
 <script src="data/n1-daily-news.js"></script>
@@ -789,14 +794,15 @@ const quizData={
 
 };
 
-const extraWordRaw=[...(window.N1_EXTRA_WORDS_1||[]),...(window.N1_EXTRA_WORDS_2||[]),...(window.N1_EXTRA_WORDS_3||[]),...(window.N1_OPENJLPT_WORDS||[])];
+const extraWordRaw=[...(window.N1_EXTRA_WORDS_1||[]),...(window.N1_EXTRA_WORDS_2||[]),...(window.N1_EXTRA_WORDS_3||[]),...(window.N1_EXTRA_WORDS_OJ_1||[]),...(window.N1_EXTRA_WORDS_OJ_2||[]),...(window.N1_EXTRA_WORDS_OJ_3||[]),...(window.N1_EXTRA_WORDS_OJ_4||[]),...(window.N1_EXTRA_WORDS_OJ_5||[]),...(window.N1_EXTRA_WORDS_OJ_6||[])];
 const extraWords=extraWordRaw.map(x=>({
  id:x.id,
  w:/[一-龯々]/.test(x.w)?F(x.w,x.r):x.w,
  meaning:x.meaning,
  examples:(x.examples||[]).map(ex=>({jp:ex.jp,ko:ex.ko})),
  source:x.source||"curated",
- meaningEn:x.meaningEn||""
+ meaningEn:x.meaningEn||"",
+ meaningLang:x.meaningLang||"ko"
 }));
 words.push(...extraWords);
 const wordById=new Map(words.map(w=>[w.id,w]));
