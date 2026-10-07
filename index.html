@@ -478,7 +478,41 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
- if(!r||!/[一-龯々〆ヵヶ]/.test(b))return b;
+ const isKanji=ch=>/[一-龯々〆ヵヶ]/.test(ch);
+ const isKana=ch=>/[ぁ-ゖァ-ヺー]/.test(ch);
+ if(!r||![...b].some(isKanji))return b;
+ const chars=[...b],runs=[];
+ for(const ch of chars){
+  const type=isKanji(ch)?"kanji":"plain";
+  if(runs.length&&runs[runs.length-1].type===type)runs[runs.length-1].text+=ch;
+  else runs.push({type,text:ch});
+ }
+ let pos=0,out="",ok=true;
+ for(let i=0;i<runs.length;i++){
+  const run=runs[i];
+  if(run.type==="plain"){
+   if([...run.text].every(isKana)){
+    if(!r.startsWith(run.text,pos)){ok=false;break}
+    pos+=run.text.length;
+   }
+   out+=run.text;
+   continue;
+  }
+  let anchor="";
+  for(let j=i+1;j<runs.length;j++){
+   if(runs[j].type==="plain"&&runs[j].text&&[...runs[j].text].every(isKana)){anchor=runs[j].text;break}
+  }
+  let end=r.length;
+  if(anchor){
+   end=r.indexOf(anchor,pos);
+   if(end<pos){ok=false;break}
+  }
+  const reading=r.slice(pos,end);
+  if(!reading){ok=false;break}
+  out+=`<span class="furi" data-r="${reading}">${run.text}</span>`;
+  pos=end;
+ }
+ if(ok&&pos===r.length)return out;
  const kana=/[ぁ-ゖァ-ヺー]/;
  let start=0,endB=b.length,endR=r.length;
  while(start<endB&&start<endR&&b[start]===r[start]&&kana.test(b[start]))start++;
@@ -505,6 +539,11 @@ function furiStateKey(el){
  if(deep){
   const list=[...deep.querySelectorAll(".furi")];
   return `deep:${list.indexOf(el)}:${base}:${reading}`;
+ }
+ const quizView=el.closest("#quizView");
+ if(quizView){
+  const list=[...quizView.querySelectorAll(".furi")];
+  return `quiz:${quizMode}:${quizIndex}:${list.indexOf(el)}:${base}:${reading}`;
  }
  const readingView=el.closest("#readingView");
  if(readingView){
@@ -1135,7 +1174,7 @@ function buildExpansionVocabQuiz(src,count=60){
      c:slots.map(shortMeaning),
      a,
      translation:`「${w.w}」의 의미로 가장 가까운 것은?`,
-     e:`「${w.w}（${w.r}）」は「${w.meaning}」という意味です。例文の中で使い方も確認しましょう。`
+     e:`「${w.w}」は「${w.meaning}」という意味です。例文の中で使い方も確認しましょう。`
    };
  });
 }
@@ -1568,11 +1607,15 @@ function quizTargetWord(item){
 function renderVocabDeepDive(item){
  const w=quizTargetWord(item);if(!w)return "";
  const note=vocabUsageNotes[w.id]||"같은 단어라도 함께 쓰이는 명사와 문형에 따라 자연스러운 한국어 번역이 달라질 수 있으므로, 대표 예문과 함께 익혀 두는 것이 좋습니다.";
- return `<div class="vocab-deep"><div class="vocab-deep-title">뜻 자세히</div><div class="vocab-deep-head"><span class="vocab-deep-word">${w.w}</span><span class="vocab-deep-reading">${readingOf(w.w)}</span></div><div class="vocab-deep-meaning"><strong>핵심 의미</strong> · ${w.meaning}</div><div class="vocab-deep-context"><strong>용법 포인트</strong><br>${note}</div><div class="vocab-deep-examples">${w.examples.slice(0,2).map((ex,i)=>`<div class="vocab-deep-example"><div class="vocab-deep-example-jp">${renderExampleJP(ex.jp,w,i)}</div><div class="vocab-deep-example-ko">${ex.ko}</div></div>`).join("")}</div></div>`;
+ return `<div class="vocab-deep"><div class="vocab-deep-title">뜻 자세히</div><div class="vocab-deep-head"><span class="vocab-deep-word">${w.w}</span></div><div class="vocab-deep-meaning"><strong>핵심 의미</strong> · ${w.meaning}</div><div class="vocab-deep-context"><strong>용법 포인트</strong><br>${note}</div><div class="vocab-deep-examples">${w.examples.slice(0,2).map((ex,i)=>`<div class="vocab-deep-example"><div class="vocab-deep-example-jp">${renderExampleJP(ex.jp,w,i)}</div><div class="vocab-deep-example-ko">${ex.ko}</div></div>`).join("")}</div></div>`;
 }
 function startQuiz(mode){quizMode=mode;quizOrder=[...Array(quizData[mode].length).keys()].sort(()=>Math.random()-.5);quizIndex=0;renderQuiz()}
-function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘":"文法 · 문법";$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.q;$("quizChoices").innerHTML=item.c.map((c,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${c}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden")}
-$("quizChoices").addEventListener("click",e=>{const b=e.target.closest(".choice");if(!b||quizAnswered)return;quizAnswered=true;const item=quizData[quizMode][quizOrder[quizIndex]],idx=+b.dataset.i;[...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});recordAnswer(quizMode,item,idx);const details=item.details?`<div class="detail-list">${item.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:"";$("quizExplanation").innerHTML=`<strong>${idx===item.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${item.a+1}. ${item.c[item.a]}<div class="translation"><strong>문제 뜻</strong><br>${item.translation||""}</div><div style="margin-top:12px"><strong>해설</strong><br>${item.e}</div>${quizMode==="vocab"?renderVocabDeepDive(item):""}${details}`;$("quizExplanation").classList.add("show");$("nextQuizBtn").classList.remove("hidden");refreshAll()});
+function quizJP(html,item){
+ const w=quizMode==="vocab"?quizTargetWord(item):null;
+ return renderExampleJP(html||"",w);
+}
+function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘":"文法 · 문법";$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=quizJP(item.q,item);$("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(choice,item)}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");restoreInteractiveFuriState($("quizView"))}
+$("quizChoices").addEventListener("click",e=>{if(e.target.closest(".furi"))return;const b=e.target.closest(".choice");if(!b||quizAnswered)return;quizAnswered=true;const item=quizData[quizMode][quizOrder[quizIndex]],idx=+b.dataset.i;[...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});recordAnswer(quizMode,item,idx);const details=item.details?`<div class="detail-list">${item.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${quizJP(d,item)}</div>`).join("")}</div>`:"";$("quizExplanation").innerHTML=`<strong>${idx===item.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${item.a+1}. ${quizJP(item.c[item.a],item)}<div class="translation"><strong>문제 뜻</strong><br>${quizJP(item.translation||"",item)}</div><div style="margin-top:12px"><strong>해설</strong><br>${quizJP(item.e,item)}</div>${quizMode==="vocab"?renderVocabDeepDive(item):""}${details}`;$("quizExplanation").classList.add("show");$("nextQuizBtn").classList.remove("hidden");restoreInteractiveFuriState($("quizExplanation"));refreshAll()});
 $("nextQuizBtn").addEventListener("click",()=>{if(quizIndex<quizOrder.length-1){quizIndex++;renderQuiz()}else showView("quizhub")});
 function recordAnswer(type,item,idx){state.solved++;if(idx===item.a)state.correct++;else{const id=type+"-"+plain(item.q),t=Date.now();let m=state.mistakes.find(x=>x.id===id);if(m){m.count++;m.updatedAt=t}else state.mistakes.unshift({id,type,q:item.q,correct:item.c[item.a],translation:item.translation||"",explanation:item.e,details:item.details||[],count:1,updatedAt:t})}saveState(state)}
 
