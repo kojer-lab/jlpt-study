@@ -1,0 +1,68 @@
+name: Enrich OpenJLPT Korean
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/enrich-openjlpt-ko.py"
+      - ".github/workflows/enrich-openjlpt-ko.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: enrich-openjlpt-ko
+  cancel-in-progress: true
+
+jobs:
+  enrich:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install enrichment dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install argostranslate requests
+
+      - name: Fill Korean meanings and examples
+        run: python tools/enrich-openjlpt-ko.py
+
+      - name: Commit enriched vocabulary
+        run: |
+          if git diff --quiet -- data/n1-extra-words-openjlpt-*.js data/openjlpt-ko-enrichment-meta.json; then
+            echo "No enrichment changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/n1-extra-words-openjlpt-*.js data/openjlpt-ko-enrichment-meta.json
+          git commit -m "Fill Korean meanings and examples for N1 vocabulary"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
