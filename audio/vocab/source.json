@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "count": 153,
+  "count": 300,
   "items": [
     {
       "id": "unagasu",
@@ -1225,6 +1225,1182 @@
       "text": "判断に重大な影響を及ぼした。",
       "voice": "jf_alpha",
       "path": "audio/vocab/oyobosu-ex2.wav"
+    },
+    {
+      "id": "obiyakasu",
+      "kind": "word",
+      "index": null,
+      "text": "おびやかす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/obiyakasu-word.wav"
+    },
+    {
+      "id": "obiyakasu",
+      "kind": "example",
+      "index": 0,
+      "text": "気候変動が食料安全保障を脅かしている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/obiyakasu-ex1.wav"
+    },
+    {
+      "id": "obiyakasu",
+      "kind": "example",
+      "index": 1,
+      "text": "自由を脅かす行為は許されない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/obiyakasu-ex2.wav"
+    },
+    {
+      "id": "saegiru",
+      "kind": "word",
+      "index": null,
+      "text": "さえぎる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/saegiru-word.wav"
+    },
+    {
+      "id": "saegiru",
+      "kind": "example",
+      "index": 0,
+      "text": "高い建物が日光を遮っている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/saegiru-ex1.wav"
+    },
+    {
+      "id": "saegiru",
+      "kind": "example",
+      "index": 1,
+      "text": "相手の発言を遮らずに最後まで聞く。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/saegiru-ex2.wav"
+    },
+    {
+      "id": "shinogu",
+      "kind": "word",
+      "index": null,
+      "text": "しのぐ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/shinogu-word.wav"
+    },
+    {
+      "id": "shinogu",
+      "kind": "example",
+      "index": 0,
+      "text": "厳しい暑さを凌ぐために日陰で休んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/shinogu-ex1.wav"
+    },
+    {
+      "id": "shinogu",
+      "kind": "example",
+      "index": 1,
+      "text": "前作を凌ぐ売上を記録した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/shinogu-ex2.wav"
+    },
+    {
+      "id": "sutareru",
+      "kind": "word",
+      "index": null,
+      "text": "すたれる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sutareru-word.wav"
+    },
+    {
+      "id": "sutareru",
+      "kind": "example",
+      "index": 0,
+      "text": "昔の習慣が次第に廃れていく。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sutareru-ex1.wav"
+    },
+    {
+      "id": "sutareru",
+      "kind": "example",
+      "index": 1,
+      "text": "流行はいつか廃れるものだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sutareru-ex2.wav"
+    },
+    {
+      "id": "somuku",
+      "kind": "word",
+      "index": null,
+      "text": "そむく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/somuku-word.wav"
+    },
+    {
+      "id": "somuku",
+      "kind": "example",
+      "index": 0,
+      "text": "規則に背く行為は処分の対象となる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/somuku-ex1.wav"
+    },
+    {
+      "id": "somuku",
+      "kind": "example",
+      "index": 1,
+      "text": "期待に背かないよう努力する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/somuku-ex2.wav"
+    },
+    {
+      "id": "tsugunau",
+      "kind": "word",
+      "index": null,
+      "text": "つぐなう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/tsugunau-word.wav"
+    },
+    {
+      "id": "tsugunau",
+      "kind": "example",
+      "index": 0,
+      "text": "損害を金銭で償う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/tsugunau-ex1.wav"
+    },
+    {
+      "id": "tsugunau",
+      "kind": "example",
+      "index": 1,
+      "text": "過ちを償うには時間がかかる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/tsugunau-ex2.wav"
+    },
+    {
+      "id": "togameru",
+      "kind": "word",
+      "index": null,
+      "text": "とがめる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/togameru-word.wav"
+    },
+    {
+      "id": "togameru",
+      "kind": "example",
+      "index": 0,
+      "text": "遅刻したことを上司に咎められた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/togameru-ex1.wav"
+    },
+    {
+      "id": "togameru",
+      "kind": "example",
+      "index": 1,
+      "text": "誰も彼の判断を咎めることはできない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/togameru-ex2.wav"
+    },
+    {
+      "id": "hagukumu",
+      "kind": "word",
+      "index": null,
+      "text": "はぐくむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hagukumu-word.wav"
+    },
+    {
+      "id": "hagukumu",
+      "kind": "example",
+      "index": 0,
+      "text": "地域で子供の好奇心を育む。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hagukumu-ex1.wav"
+    },
+    {
+      "id": "hagukumu",
+      "kind": "example",
+      "index": 1,
+      "text": "長い交流を通じて信頼を育んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hagukumu-ex2.wav"
+    },
+    {
+      "id": "habamu",
+      "kind": "word",
+      "index": null,
+      "text": "はばむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/habamu-word.wav"
+    },
+    {
+      "id": "habamu",
+      "kind": "example",
+      "index": 0,
+      "text": "資金不足が研究の進展を阻んでいる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/habamu-ex1.wav"
+    },
+    {
+      "id": "habamu",
+      "kind": "example",
+      "index": 1,
+      "text": "高い壁が行く手を阻んだ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/habamu-ex2.wav"
+    },
+    {
+      "id": "hirumu",
+      "kind": "word",
+      "index": null,
+      "text": "ひるむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hirumu-word.wav"
+    },
+    {
+      "id": "hirumu",
+      "kind": "example",
+      "index": 0,
+      "text": "批判に怯まず意見を述べた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hirumu-ex1.wav"
+    },
+    {
+      "id": "hirumu",
+      "kind": "example",
+      "index": 1,
+      "text": "困難を前にしても怯まなかった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hirumu-ex2.wav"
+    },
+    {
+      "id": "yudaneru",
+      "kind": "word",
+      "index": null,
+      "text": "ゆだねる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yudaneru-word.wav"
+    },
+    {
+      "id": "yudaneru",
+      "kind": "example",
+      "index": 0,
+      "text": "最終判断を専門家に委ねた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yudaneru-ex1.wav"
+    },
+    {
+      "id": "yudaneru",
+      "kind": "example",
+      "index": 1,
+      "text": "流れに身を委ねる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yudaneru-ex2.wav"
+    },
+    {
+      "id": "motarasu",
+      "kind": "word",
+      "index": null,
+      "text": "もたらす",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/motarasu-word.wav"
+    },
+    {
+      "id": "motarasu",
+      "kind": "example",
+      "index": 0,
+      "text": "技術革新が社会に大きな変化をもたらした。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/motarasu-ex1.wav"
+    },
+    {
+      "id": "motarasu",
+      "kind": "example",
+      "index": 1,
+      "text": "政策の変更が混乱をもたらす恐れがある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/motarasu-ex2.wav"
+    },
+    {
+      "id": "kasamu",
+      "kind": "word",
+      "index": null,
+      "text": "かさむ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kasamu-word.wav"
+    },
+    {
+      "id": "kasamu",
+      "kind": "example",
+      "index": 0,
+      "text": "原材料費が嵩み、利益が減った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kasamu-ex1.wav"
+    },
+    {
+      "id": "kasamu",
+      "kind": "example",
+      "index": 1,
+      "text": "出張が続くと交通費が嵩む。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kasamu-ex2.wav"
+    },
+    {
+      "id": "azamuku",
+      "kind": "word",
+      "index": null,
+      "text": "あざむく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/azamuku-word.wav"
+    },
+    {
+      "id": "azamuku",
+      "kind": "example",
+      "index": 0,
+      "text": "消費者を欺く表示が問題になった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/azamuku-ex1.wav"
+    },
+    {
+      "id": "azamuku",
+      "kind": "example",
+      "index": 1,
+      "text": "人を欺いて利益を得てはいけない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/azamuku-ex2.wav"
+    },
+    {
+      "id": "ayatsuru",
+      "kind": "word",
+      "index": null,
+      "text": "あやつる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/ayatsuru-word.wav"
+    },
+    {
+      "id": "ayatsuru",
+      "kind": "example",
+      "index": 0,
+      "text": "複数の言語を自在に操る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/ayatsuru-ex1.wav"
+    },
+    {
+      "id": "ayatsuru",
+      "kind": "example",
+      "index": 1,
+      "text": "機械を遠隔で操る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/ayatsuru-ex2.wav"
+    },
+    {
+      "id": "itawaru",
+      "kind": "word",
+      "index": null,
+      "text": "いたわる",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/itawaru-word.wav"
+    },
+    {
+      "id": "itawaru",
+      "kind": "example",
+      "index": 0,
+      "text": "疲れた体を労る。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/itawaru-ex1.wav"
+    },
+    {
+      "id": "itawaru",
+      "kind": "example",
+      "index": 1,
+      "text": "互いを労る気持ちが大切だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/itawaru-ex2.wav"
+    },
+    {
+      "id": "kabau",
+      "kind": "word",
+      "index": null,
+      "text": "かばう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kabau-word.wav"
+    },
+    {
+      "id": "kabau",
+      "kind": "example",
+      "index": 0,
+      "text": "部下の失敗を必要以上に庇う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kabau-ex1.wav"
+    },
+    {
+      "id": "kabau",
+      "kind": "example",
+      "index": 1,
+      "text": "子供を庇って前に出た。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kabau-ex2.wav"
+    },
+    {
+      "id": "obitadashii",
+      "kind": "word",
+      "index": null,
+      "text": "おびただしい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/obitadashii-word.wav"
+    },
+    {
+      "id": "obitadashii",
+      "kind": "example",
+      "index": 0,
+      "text": "会場には夥しい数の資料が積まれていた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/obitadashii-ex1.wav"
+    },
+    {
+      "id": "obitadashii",
+      "kind": "example",
+      "index": 1,
+      "text": "災害で夥しい被害が出た。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/obitadashii-ex2.wav"
+    },
+    {
+      "id": "sumiyaka",
+      "kind": "word",
+      "index": null,
+      "text": "すみやか",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sumiyaka-word.wav"
+    },
+    {
+      "id": "sumiyaka",
+      "kind": "example",
+      "index": 0,
+      "text": "問題が判明したら速やかに報告してください。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sumiyaka-ex1.wav"
+    },
+    {
+      "id": "sumiyaka",
+      "kind": "example",
+      "index": 1,
+      "text": "速やかな対応が求められる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sumiyaka-ex2.wav"
+    },
+    {
+      "id": "takumashii",
+      "kind": "word",
+      "index": null,
+      "text": "たくましい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/takumashii-word.wav"
+    },
+    {
+      "id": "takumashii",
+      "kind": "example",
+      "index": 0,
+      "text": "逆境の中でも逞しく生きる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/takumashii-ex1.wav"
+    },
+    {
+      "id": "takumashii",
+      "kind": "example",
+      "index": 1,
+      "text": "子供たちは想像以上に逞しい。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/takumashii-ex2.wav"
+    },
+    {
+      "id": "rokotsu",
+      "kind": "word",
+      "index": null,
+      "text": "ろこつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/rokotsu-word.wav"
+    },
+    {
+      "id": "rokotsu",
+      "kind": "example",
+      "index": 0,
+      "text": "露骨な利益誘導だと批判された。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/rokotsu-ex1.wav"
+    },
+    {
+      "id": "rokotsu",
+      "kind": "example",
+      "index": 1,
+      "text": "彼は不満を露骨に表した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/rokotsu-ex2.wav"
+    },
+    {
+      "id": "enkatsu",
+      "kind": "word",
+      "index": null,
+      "text": "えんかつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/enkatsu-word.wav"
+    },
+    {
+      "id": "enkatsu",
+      "kind": "example",
+      "index": 0,
+      "text": "交渉を円滑に進める。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/enkatsu-ex1.wav"
+    },
+    {
+      "id": "enkatsu",
+      "kind": "example",
+      "index": 1,
+      "text": "円滑な意思疎通には信頼が欠かせない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/enkatsu-ex2.wav"
+    },
+    {
+      "id": "genmitsu",
+      "kind": "word",
+      "index": null,
+      "text": "げんみつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/genmitsu-word.wav"
+    },
+    {
+      "id": "genmitsu",
+      "kind": "example",
+      "index": 0,
+      "text": "厳密に言えば、その二つは別の概念だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/genmitsu-ex1.wav"
+    },
+    {
+      "id": "genmitsu",
+      "kind": "example",
+      "index": 1,
+      "text": "条件を厳密に定義する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/genmitsu-ex2.wav"
+    },
+    {
+      "id": "menmitsu",
+      "kind": "word",
+      "index": null,
+      "text": "めんみつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/menmitsu-word.wav"
+    },
+    {
+      "id": "menmitsu",
+      "kind": "example",
+      "index": 0,
+      "text": "綿密な調査を行う。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/menmitsu-ex1.wav"
+    },
+    {
+      "id": "menmitsu",
+      "kind": "example",
+      "index": 1,
+      "text": "計画を綿密に練り直した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/menmitsu-ex2.wav"
+    },
+    {
+      "id": "bakuzen",
+      "kind": "word",
+      "index": null,
+      "text": "ばくぜん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/bakuzen-word.wav"
+    },
+    {
+      "id": "bakuzen",
+      "kind": "example",
+      "index": 0,
+      "text": "将来に漠然とした不安を感じる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/bakuzen-ex1.wav"
+    },
+    {
+      "id": "bakuzen",
+      "kind": "example",
+      "index": 1,
+      "text": "漠然と考えるだけでは解決しない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/bakuzen-ex2.wav"
+    },
+    {
+      "id": "bakudai",
+      "kind": "word",
+      "index": null,
+      "text": "ばくだい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/bakudai-word.wav"
+    },
+    {
+      "id": "bakudai",
+      "kind": "example",
+      "index": 0,
+      "text": "開発には莫大な費用がかかる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/bakudai-ex1.wav"
+    },
+    {
+      "id": "bakudai",
+      "kind": "example",
+      "index": 1,
+      "text": "莫大な情報を処理する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/bakudai-ex2.wav"
+    },
+    {
+      "id": "zeijaku",
+      "kind": "word",
+      "index": null,
+      "text": "ぜいじゃく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/zeijaku-word.wav"
+    },
+    {
+      "id": "zeijaku",
+      "kind": "example",
+      "index": 0,
+      "text": "災害に脆弱な地域を調査する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/zeijaku-ex1.wav"
+    },
+    {
+      "id": "zeijaku",
+      "kind": "example",
+      "index": 1,
+      "text": "情報管理の脆弱さが指摘された。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/zeijaku-ex2.wav"
+    },
+    {
+      "id": "ketsujo",
+      "kind": "word",
+      "index": null,
+      "text": "けつじょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/ketsujo-word.wav"
+    },
+    {
+      "id": "ketsujo",
+      "kind": "example",
+      "index": 0,
+      "text": "説明の欠如が不信を招いた。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/ketsujo-ex1.wav"
+    },
+    {
+      "id": "ketsujo",
+      "kind": "example",
+      "index": 1,
+      "text": "責任感の欠如を批判された。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/ketsujo-ex2.wav"
+    },
+    {
+      "id": "itsudatsu",
+      "kind": "word",
+      "index": null,
+      "text": "いつだつ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/itsudatsu-word.wav"
+    },
+    {
+      "id": "itsudatsu",
+      "kind": "example",
+      "index": 0,
+      "text": "議論が本来の目的から逸脱している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/itsudatsu-ex1.wav"
+    },
+    {
+      "id": "itsudatsu",
+      "kind": "example",
+      "index": 1,
+      "text": "規範を逸脱した行動だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/itsudatsu-ex2.wav"
+    },
+    {
+      "id": "mujun",
+      "kind": "word",
+      "index": null,
+      "text": "むじゅん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/mujun-word.wav"
+    },
+    {
+      "id": "mujun",
+      "kind": "example",
+      "index": 0,
+      "text": "説明には明らかな矛盾がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/mujun-ex1.wav"
+    },
+    {
+      "id": "mujun",
+      "kind": "example",
+      "index": 1,
+      "text": "二つの主張は互いに矛盾している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/mujun-ex2.wav"
+    },
+    {
+      "id": "mosaku",
+      "kind": "word",
+      "index": null,
+      "text": "もさく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/mosaku-word.wav"
+    },
+    {
+      "id": "mosaku",
+      "kind": "example",
+      "index": 0,
+      "text": "新しい収益源を模索する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/mosaku-ex1.wav"
+    },
+    {
+      "id": "mosaku",
+      "kind": "example",
+      "index": 1,
+      "text": "双方が妥協点を模索している。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/mosaku-ex2.wav"
+    },
+    {
+      "id": "dakai",
+      "kind": "word",
+      "index": null,
+      "text": "だかい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/dakai-word.wav"
+    },
+    {
+      "id": "dakai",
+      "kind": "example",
+      "index": 0,
+      "text": "状況を打開する策を探す。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/dakai-ex1.wav"
+    },
+    {
+      "id": "dakai",
+      "kind": "example",
+      "index": 1,
+      "text": "交渉の行き詰まりを打開した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/dakai-ex2.wav"
+    },
+    {
+      "id": "zesei",
+      "kind": "word",
+      "index": null,
+      "text": "ぜせい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/zesei-word.wav"
+    },
+    {
+      "id": "zesei",
+      "kind": "example",
+      "index": 0,
+      "text": "格差を是正する政策が必要だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/zesei-ex1.wav"
+    },
+    {
+      "id": "zesei",
+      "kind": "example",
+      "index": 1,
+      "text": "不適切な運用を是正する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/zesei-ex2.wav"
+    },
+    {
+      "id": "toushuu",
+      "kind": "word",
+      "index": null,
+      "text": "とうしゅう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/toushuu-word.wav"
+    },
+    {
+      "id": "toushuu",
+      "kind": "example",
+      "index": 0,
+      "text": "従来の方針を踏襲する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/toushuu-ex1.wav"
+    },
+    {
+      "id": "toushuu",
+      "kind": "example",
+      "index": 1,
+      "text": "前例を踏襲するだけでは不十分だ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/toushuu-ex2.wav"
+    },
+    {
+      "id": "suikou",
+      "kind": "word",
+      "index": null,
+      "text": "すいこう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/suikou-word.wav"
+    },
+    {
+      "id": "suikou",
+      "kind": "example",
+      "index": 0,
+      "text": "任務を遂行するために協力する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/suikou-ex1.wav"
+    },
+    {
+      "id": "suikou",
+      "kind": "example",
+      "index": 1,
+      "text": "計画を着実に遂行した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/suikou-ex2.wav"
+    },
+    {
+      "id": "tekkai",
+      "kind": "word",
+      "index": null,
+      "text": "てっかい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/tekkai-word.wav"
+    },
+    {
+      "id": "tekkai",
+      "kind": "example",
+      "index": 0,
+      "text": "発言の撤回を求める。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/tekkai-ex1.wav"
+    },
+    {
+      "id": "tekkai",
+      "kind": "example",
+      "index": 1,
+      "text": "会社は値上げ方針を撤回した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/tekkai-ex2.wav"
+    },
+    {
+      "id": "hossoku",
+      "kind": "word",
+      "index": null,
+      "text": "ほっそく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hossoku-word.wav"
+    },
+    {
+      "id": "hossoku",
+      "kind": "example",
+      "index": 0,
+      "text": "新しい委員会が来月発足する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hossoku-ex1.wav"
+    },
+    {
+      "id": "hossoku",
+      "kind": "example",
+      "index": 1,
+      "text": "制度の発足から十年が経った。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hossoku-ex2.wav"
+    },
+    {
+      "id": "yougo",
+      "kind": "word",
+      "index": null,
+      "text": "ようご",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yougo-word.wav"
+    },
+    {
+      "id": "yougo",
+      "kind": "example",
+      "index": 0,
+      "text": "表現の自由を擁護する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yougo-ex1.wav"
+    },
+    {
+      "id": "yougo",
+      "kind": "example",
+      "index": 1,
+      "text": "専門家はその判断を擁護した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yougo-ex2.wav"
+    },
+    {
+      "id": "jouho",
+      "kind": "word",
+      "index": null,
+      "text": "じょうほ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/jouho-word.wav"
+    },
+    {
+      "id": "jouho",
+      "kind": "example",
+      "index": 0,
+      "text": "双方が譲歩しなければ合意は難しい。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/jouho-ex1.wav"
+    },
+    {
+      "id": "jouho",
+      "kind": "example",
+      "index": 1,
+      "text": "交渉で一定の譲歩を示した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/jouho-ex2.wav"
+    },
+    {
+      "id": "dakyou",
+      "kind": "word",
+      "index": null,
+      "text": "だきょう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/dakyou-word.wav"
+    },
+    {
+      "id": "dakyou",
+      "kind": "example",
+      "index": 0,
+      "text": "品質には妥協しない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/dakyou-ex1.wav"
+    },
+    {
+      "id": "dakyou",
+      "kind": "example",
+      "index": 1,
+      "text": "現実的な妥協案を探す。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/dakyou-ex2.wav"
+    },
+    {
+      "id": "kainyuu",
+      "kind": "word",
+      "index": null,
+      "text": "かいにゅう",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kainyuu-word.wav"
+    },
+    {
+      "id": "kainyuu",
+      "kind": "example",
+      "index": 0,
+      "text": "政府が市場に介入した。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kainyuu-ex1.wav"
+    },
+    {
+      "id": "kainyuu",
+      "kind": "example",
+      "index": 1,
+      "text": "第三者の介入で争いが収まった。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kainyuu-ex2.wav"
+    },
+    {
+      "id": "haijo",
+      "kind": "word",
+      "index": null,
+      "text": "はいじょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/haijo-word.wav"
+    },
+    {
+      "id": "haijo",
+      "kind": "example",
+      "index": 0,
+      "text": "危険な要因を排除する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/haijo-ex1.wav"
+    },
+    {
+      "id": "haijo",
+      "kind": "example",
+      "index": 1,
+      "text": "特定の人を排除する仕組みは望ましくない。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/haijo-ex2.wav"
+    },
+    {
+      "id": "sokushin",
+      "kind": "word",
+      "index": null,
+      "text": "そくしん",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sokushin-word.wav"
+    },
+    {
+      "id": "sokushin",
+      "kind": "example",
+      "index": 0,
+      "text": "地域の交流を促進する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sokushin-ex1.wav"
+    },
+    {
+      "id": "sokushin",
+      "kind": "example",
+      "index": 1,
+      "text": "投資を促進する制度が導入された。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/sokushin-ex2.wav"
+    },
+    {
+      "id": "yokusei",
+      "kind": "word",
+      "index": null,
+      "text": "よくせい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yokusei-word.wav"
+    },
+    {
+      "id": "yokusei",
+      "kind": "example",
+      "index": 0,
+      "text": "支出の増加を抑制する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yokusei-ex1.wav"
+    },
+    {
+      "id": "yokusei",
+      "kind": "example",
+      "index": 1,
+      "text": "感染の拡大を抑制する効果がある。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/yokusei-ex2.wav"
+    },
+    {
+      "id": "kisei",
+      "kind": "word",
+      "index": null,
+      "text": "きせい",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kisei-word.wav"
+    },
+    {
+      "id": "kisei",
+      "kind": "example",
+      "index": 0,
+      "text": "安全のために規制を強化する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kisei-ex1.wav"
+    },
+    {
+      "id": "kisei",
+      "kind": "example",
+      "index": 1,
+      "text": "過度な規制は競争を妨げる。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kisei-ex2.wav"
+    },
+    {
+      "id": "kanwa",
+      "kind": "word",
+      "index": null,
+      "text": "かんわ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kanwa-word.wav"
+    },
+    {
+      "id": "kanwa",
+      "kind": "example",
+      "index": 0,
+      "text": "規制を段階的に緩和する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kanwa-ex1.wav"
+    },
+    {
+      "id": "kanwa",
+      "kind": "example",
+      "index": 1,
+      "text": "混雑を緩和するため便を増やした。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/kanwa-ex2.wav"
+    },
+    {
+      "id": "chikuseki",
+      "kind": "word",
+      "index": null,
+      "text": "ちくせき",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/chikuseki-word.wav"
+    },
+    {
+      "id": "chikuseki",
+      "kind": "example",
+      "index": 0,
+      "text": "長年の経験が蓄積されている。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/chikuseki-ex1.wav"
+    },
+    {
+      "id": "chikuseki",
+      "kind": "example",
+      "index": 1,
+      "text": "疲労の蓄積に注意する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/chikuseki-ex2.wav"
+    },
+    {
+      "id": "haaku",
+      "kind": "word",
+      "index": null,
+      "text": "はあく",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/haaku-word.wav"
+    },
+    {
+      "id": "haaku",
+      "kind": "example",
+      "index": 0,
+      "text": "現状を正確に把握する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/haaku-ex1.wav"
+    },
+    {
+      "id": "haaku",
+      "kind": "example",
+      "index": 1,
+      "text": "全体像を把握してから判断する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/haaku-ex2.wav"
+    },
+    {
+      "id": "hairyo",
+      "kind": "word",
+      "index": null,
+      "text": "はいりょ",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hairyo-word.wav"
+    },
+    {
+      "id": "hairyo",
+      "kind": "example",
+      "index": 0,
+      "text": "利用者の安全に配慮する。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hairyo-ex1.wav"
+    },
+    {
+      "id": "hairyo",
+      "kind": "example",
+      "index": 1,
+      "text": "環境に配慮した製品を選ぶ。",
+      "voice": "jf_alpha",
+      "path": "audio/vocab/hairyo-ex2.wav"
     }
   ]
 }
