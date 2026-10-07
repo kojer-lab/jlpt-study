@@ -16267,5 +16267,692 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-7831f2b02c": {
+    "meaning": "평범함 / 진부함 / 흔해 빠짐",
+    "examples": [
+      {
+        "jp": "彼らの判断は月並みだ。",
+        "ko": "그들의 판단은 평범하고 진부하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-353975152e": {
+    "meaning": "다하다 / 고갈되다 / 끝나다",
+    "examples": [
+      {
+        "jp": "奴の悪運が尽きるのも時間の問題だ。",
+        "ko": "그의 악운이 다하는 것도 시간문제다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b0dfaaf7ed": {
+    "examples": [
+      {
+        "jp": "誰が王位を継ぐのですか。",
+        "ko": "누가 왕위를 계승합니까?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2e6b817c6f": {
+    "meaning": "잇다 / 접합하다 / 뼈를 맞추다 / 접붙이다",
+    "examples": [
+      {
+        "jp": "医者は彼の折れた足をついだ。",
+        "ko": "의사는 그의 부러진 다리를 맞춰 붙였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-617364b915": {
+    "meaning": "만듦새 / 구성 / 회·사시미",
+    "meaningSource": "manual-review"
+  },
+  "oj-5b0c727913": {
+    "meaning": "구조 / 만듦새 / 체격",
+    "meaningSource": "manual-review"
+  },
+  "oj-6686f635d7": {
+    "meaning": "만들다 / 제조하다 / 건조하다",
+    "examples": [
+      {
+        "jp": "例外は作るべきではないと思います。",
+        "ko": "예외를 만들어서는 안 된다고 생각합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-88bf13c181": {
+    "meaning": "수선하다 / 고치다 / 겉모습을 꾸미다",
+    "examples": [
+      {
+        "jp": "猿たちは互いに毛繕いし合っている。",
+        "ko": "원숭이들은 서로 털을 골라 주고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6a852ae347": {
+    "meaning": "덧붙이다 / 추가하다",
+    "examples": [
+      {
+        "jp": "リストに彼の名前をつけ加えた。",
+        "ko": "목록에 그의 이름을 추가했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-134e796195": {
+    "meaning": "앞뒤가 맞음 / 조리 / 일관성",
+    "examples": [
+      {
+        "jp": "彼の話は多くの点でつじつまが合わない。",
+        "ko": "그의 이야기는 여러 점에서 앞뒤가 맞지 않는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2564dfcfcb": {
+    "meaning": "찌르다 / 쿡 찌르다 / 공격하다",
+    "examples": [
+      {
+        "jp": "やぶを突いて蛇をだすな。",
+        "ko": "덤불을 건드려 뱀을 나오게 하지 마라.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0738098ee1": {
+    "meaning": "삼가다 / 조심하다 / 자제하다",
+    "examples": [
+      {
+        "jp": "でしゃばるのは慎んでください。",
+        "ko": "나서서 참견하는 것은 삼가 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-847b810d08": {
+    "meaning": "직장 / 근무처",
+    "examples": [
+      {
+        "jp": "彼の勤め先はどこですか。",
+        "ko": "그의 직장은 어디입니까?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f7acf9c5b4": {
+    "meaning": "애써 / 되도록 노력해서",
+    "examples": [
+      {
+        "jp": "彼は努めて雇い主を満足させようとした。",
+        "ko": "그는 고용주를 만족시키려고 애썼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-637c1223d2": {
+    "examples": [
+      {
+        "jp": "彼女は私の腕をきつくつねった。",
+        "ko": "그녀는 내 팔을 세게 꼬집었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1d6e69684f": {
+    "examples": [
+      {
+        "jp": "彼はのろいの言葉をつぶやいた。",
+        "ko": "그는 저주의 말을 중얼거렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a5bd04e61d": {
+    "meaning": "눈을 감다",
+    "examples": [
+      {
+        "jp": "あまりに光が強いので彼女は目をつぶった。",
+        "ko": "빛이 너무 강해서 그녀는 눈을 감았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ff6c18c3ce": {
+    "meaning": "항아리 / 단지",
+    "examples": [
+      {
+        "jp": "砂糖は壷にほとんど残っていません。",
+        "ko": "설탕은 항아리에 거의 남아 있지 않습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a72d0a162f": {
+    "meaning": "꽃봉오리 / 싹",
+    "examples": [
+      {
+        "jp": "バラのつぼみは摘めるうちに摘め。",
+        "ko": "장미 꽃봉오리는 딸 수 있을 때 따 두어라.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-691f993a5a": {
+    "meaning": "집다 / 꼬집다 / 집어 들다",
+    "meaningSource": "manual-review"
+  },
+  "oj-1cad4b9af1": {
+    "examples": [
+      {
+        "jp": "芝生に露が降りている。",
+        "ko": "잔디에 이슬이 맺혀 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f507f7f8a6": {
+    "examples": [
+      {
+        "jp": "活動家たちは反対運動を強めています。",
+        "ko": "활동가들은 반대 운동을 강화하고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4786dd1bfd": {
+    "meaning": "관통하다 / 일관되게 지키다",
+    "examples": [
+      {
+        "jp": "弾丸は仕切り壁を貫いた。",
+        "ko": "총알이 칸막이 벽을 관통했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-763f0e37f3": {
+    "examples": [
+      {
+        "jp": "私は仕方なく、つり革につかまった。",
+        "ko": "나는 어쩔 수 없이 손잡이를 잡았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-21fc5b6373": {
+    "meaning": "우연히 만나다 / 마주치다",
+    "examples": [
+      {
+        "jp": "きのう旧友の一人に出会った。",
+        "ko": "어제 옛 친구 한 명을 우연히 만났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-232bbc0cc6": {
+    "meaning": "수당 / 치료 / 조치",
+    "examples": [
+      {
+        "jp": "その男はこの種の傷の手当に慣れていた。",
+        "ko": "그 남자는 이런 종류의 상처를 치료하는 데 익숙했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bb77560bcb": {
+    "examples": [
+      {
+        "jp": "私たちは彼によい仕事を提供した。",
+        "ko": "우리는 그에게 좋은 일자리를 제공했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-66ade36f4f": {
+    "meaning": "겉모양 / 체면 / 형식",
+    "examples": [
+      {
+        "jp": "彼女は彼の紳士らしい体裁にだまされてしまった。",
+        "ko": "그녀는 그의 신사다운 겉모습에 속고 말았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-82e39c46a6": {
+    "meaning": "사다리",
+    "examples": [
+      {
+        "jp": "ヒラリさんは塀にはしごをかけた。",
+        "ko": "히라리 씨는 담에 사다리를 걸쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b12f437f19": {
+    "examples": [
+      {
+        "jp": "下記に対して価格を提示してください。",
+        "ko": "아래 항목에 대한 가격을 제시해 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d525e3a83a": {
+    "examples": [
+      {
+        "jp": "日替わり定食にしませんか。",
+        "ko": "오늘의 정식으로 하지 않을래요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-89c0c2a328": {
+    "examples": [
+      {
+        "jp": "彼女はちょっとした邸宅に住んでいる。",
+        "ko": "그녀는 제법 큰 저택에 살고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0d7b0235f9": {
+    "meaning": "정년 / 퇴직 연령",
+    "examples": [
+      {
+        "jp": "彼は定年まで大過なく勤めあげた。",
+        "ko": "그는 정년까지 큰 문제 없이 근무를 마쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4634e54c9a": {
+    "examples": [
+      {
+        "jp": "子供たちは堤防をすべりおりた。",
+        "ko": "아이들은 제방을 미끄러져 내려왔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b54b2396f3": {
+    "meaning": "때가 늦음 / 손쓸 수 없는 상태",
+    "meaningSource": "manual-review"
+  },
+  "oj-bcaa9a7e21": {
+    "meaning": "엄청 크다 / 아주 크다",
+    "examples": [
+      {
+        "jp": "こんなデカイのがチャリの荷台に乗るわけないだろ。",
+        "ko": "이렇게 큰 게 자전거 짐받이에 올라갈 리가 없잖아.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-608257c42c": {
+    "meaning": "직접 맡아 하다 / 다루다 / 관여하다",
+    "examples": [
+      {
+        "jp": "私は別の仕事を手掛けている。",
+        "ko": "나는 다른 일을 맡아 하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3551552ed7": {
+    "meaning": "간편함 / 손쉬움 / 부담 없음",
+    "examples": [
+      {
+        "jp": "年来の経済病には手軽にきく万能薬などありません。",
+        "ko": "오랜 경제 문제에 간단히 듣는 만능약 같은 것은 없습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a188a8c649": {
+    "examples": [
+      {
+        "jp": "彼女はいつも新しい環境に適応した。",
+        "ko": "그녀는 늘 새로운 환경에 잘 적응했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e0b835d42a": {
+    "meaning": "적성 / 소질",
+    "examples": [
+      {
+        "jp": "天才とは忍耐に堪え得る偉大な適性に外ならぬ。",
+        "ko": "천재란 인내를 견딜 수 있는 위대한 소질에 다름 아니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6a2c9761cf": {
+    "meaning": "솜씨 / 일 처리 능력 / 처리 방식",
+    "examples": [
+      {
+        "jp": "恵子が手際よく食器を重ねて、シンクへ運んでゆく。",
+        "ko": "게이코가 능숙하게 식기를 포개어 싱크대로 옮긴다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b3e5a1f6cc": {
+    "meaning": "우연히 마주치다 / 맞닥뜨리다",
+    "examples": [
+      {
+        "jp": "私は彼女に町で偶然出くわした。",
+        "ko": "나는 거리에서 우연히 그녀와 마주쳤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e6a3f2b972": {
+    "examples": [
+      {
+        "jp": "弁護士は行動の手順を決定した。",
+        "ko": "변호사는 행동 절차를 결정했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-69b1fa0cc4": {
+    "examples": [
+      {
+        "jp": "私は彼に手錠をかけた。",
+        "ko": "나는 그에게 수갑을 채웠다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-37cffd52d1": {
+    "meaning": "수고 / 번거로운 일 / 손이 가는 정도",
+    "meaningSource": "manual-review"
+  },
+  "oj-74d5bfd2bf": {
+    "meaning": "가까이 있음 / 손쉽게 닿는 곳",
+    "examples": [
+      {
+        "jp": "いつも手近に辞書を持っていなさい。",
+        "ko": "항상 손 닿는 곳에 사전을 두세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0b8c036a0e": {
+    "meaning": "틀림없이 ~라고 / 완전히 그렇게 믿고",
+    "examples": [
+      {
+        "jp": "てっきりあなたが我々といっしょに来られるものと思っていました。",
+        "ko": "당연히 당신이 우리와 함께 올 수 있을 줄 알았습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b1491faa86": {
+    "meaning": "철강",
+    "examples": [
+      {
+        "jp": "鉄鋼は基幹産業である。",
+        "ko": "철강은 기간산업이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-20886c9138": {
+    "examples": [
+      {
+        "jp": "私たちはその少年のデッサンのすばらしさに驚嘆した。",
+        "ko": "우리는 그 소년의 데생 실력에 감탄했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5975722676": {
+    "meaning": "철저히 ~하다 / 관철하다 / 밤을 새우다",
+    "examples": [
+      {
+        "jp": "夜を徹するか否か。",
+        "ko": "밤을 새울 것인가 말 것인가.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c710a69f99": {
+    "meaning": "철편 / 쇳조각",
+    "examples": [
+      {
+        "jp": "線路の上に鉄片があったために列車は脱線した。",
+        "ko": "선로 위에 쇳조각이 있어서 열차가 탈선했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c3e581afc7": {
+    "meaning": "철봉 / 쇠막대",
+    "examples": [
+      {
+        "jp": "体操競技の中では、鉄棒の大車輪が好きです。",
+        "ko": "체조 경기 중에서는 철봉의 대차륜 동작을 좋아합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8d4d7b12ab": {
+    "examples": [
+      {
+        "jp": "彼の手のひらに硬貨を置く。",
+        "ko": "그의 손바닥에 동전을 올려놓는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a4eceaa662": {
+    "meaning": "수배 / 준비 / 마련",
+    "examples": [
+      {
+        "jp": "ご手配ありがとうございます。",
+        "ko": "준비해 주셔서 감사합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a98d722351": {
+    "meaning": "준비 / 순서와 계획 / 수배",
+    "examples": [
+      {
+        "jp": "夏の旅行の手はずはついていると父はほのめかした。",
+        "ko": "아버지는 여름 여행 준비가 다 되어 있다고 넌지시 말했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1149c0fbcc": {
+    "examples": [
+      {
+        "jp": "彼の行儀をお手本にしなさい。",
+        "ko": "그의 행동을 본보기로 삼으세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4ac77d3574": {
+    "meaning": "손에 닿는 곳 / 수중 / 가까운 곳",
+    "examples": [
+      {
+        "jp": "よい辞書を手元に置いておきなさい。",
+        "ko": "좋은 사전을 가까이 두세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-74326edf30": {
+    "examples": [
+      {
+        "jp": "７地区で新製品のデモンストレーションを行い、成功しました。",
+        "ko": "7개 지역에서 신제품 시연을 진행해 성공했습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-91bce7894c": {
+    "meaning": "빛을 반사하다 / 되비추다",
+    "examples": [
+      {
+        "jp": "太陽の照り返しが強い。",
+        "ko": "햇빛의 반사가 강하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fca7216c97": {
+    "meaning": "텔렉스 / 전신 인쇄 통신",
+    "examples": [
+      {
+        "jp": "テレックスでご返事ください。",
+        "ko": "텔렉스로 답변해 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3efeebae61": {
+    "meaning": "분담 / 일을 나누어 맡음",
+    "examples": [
+      {
+        "jp": "医学生が手分けして勉強することはまれである。",
+        "ko": "의대생들이 일을 나누듯 분담해 공부하는 경우는 드물다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6ff25789fe": {
+    "meaning": "전원 / 농촌 지역",
+    "examples": [
+      {
+        "jp": "田園を歩くのは楽しいと思った。",
+        "ko": "전원을 걷는 것은 즐겁다고 생각했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dea89b7d91": {
+    "examples": [
+      {
+        "jp": "2021年、大坂なおみ選手は東京2020オリンピックの聖火台に点火しました。",
+        "ko": "2021년 오사카 나오미 선수는 도쿄 2020 올림픽 성화대에 점화했습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f3edf4d6f4": {
+    "examples": [
+      {
+        "jp": "ご両親は転居されたんですか？",
+        "ko": "부모님은 이사하셨나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f9c618271f": {
+    "examples": [
+      {
+        "jp": "会社は彼の転勤願いを却下した。",
+        "ko": "회사는 그의 전근 신청을 기각했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3893318870": {
+    "examples": [
+      {
+        "jp": "彼は課長に書類を点検させられた。",
+        "ko": "그는 과장에게 서류를 점검받았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-89781dc3a2": {
+    "examples": [
+      {
+        "jp": "回路を調べる前に、電源のスイッチを切りなさい。",
+        "ko": "회로를 점검하기 전에 전원 스위치를 끄세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-06898872e1": {
+    "meaning": "전학 / 학교를 옮김",
+    "meaningSource": "manual-review"
+  },
+  "oj-99b2e77abf": {
+    "meaning": "전언 / 메시지 / 남기는 말",
+    "meaningSource": "manual-review"
   }
 };
