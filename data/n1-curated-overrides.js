@@ -4876,5 +4876,480 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-1cf257772e": {
+    "examples": [
+      {
+        "jp": "ああ飛行機が離陸する。",
+        "ko": "아, 비행기가 이륙한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6f6edac49d": {
+    "meaning": "상대함 / 서로 마주함 / 대립",
+    "examples": [
+      {
+        "jp": "このため、会談の席の配置では米国と相対して座る場所を求めた。",
+        "ko": "이 때문에 회담 좌석 배치에서는 미국과 마주 보고 앉는 자리를 요구했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3a407bbc0b": {
+    "examples": [
+      {
+        "jp": "君と彼とはどういう間柄なのだ。",
+        "ko": "너와 그는 어떤 사이야?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f7da525529": {
+    "examples": [
+      {
+        "jp": "勉強の合間に私はテレビをみた。",
+        "ko": "공부하는 틈틈이 나는 텔레비전을 봤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3b72fad905": {
+    "examples": [
+      {
+        "jp": "あの子はあかだらけだ。",
+        "ko": "그 아이는 때투성이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1977f3c94f": {
+    "examples": [
+      {
+        "jp": "僕は明くる朝パリへ立つことになっていた。",
+        "ko": "나는 다음 날 아침 파리로 떠나기로 되어 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9f51d0da76": {
+    "meaning": "비웃다 / 조소하다",
+    "examples": [
+      {
+        "jp": "われわれは貧しい人あざ笑ってはいけない。",
+        "ko": "우리는 가난한 사람을 비웃어서는 안 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4905fc6f13": {
+    "meaning": "초조해하다 / 조급해하다 / 서두르다",
+    "examples": [
+      {
+        "jp": "彼は遅れを取り戻そうと焦っている。",
+        "ko": "그는 뒤처진 것을 만회하려고 조급해하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-92da7d5ed8": {
+    "examples": [
+      {
+        "jp": "あの博物館はくるに値する。",
+        "ko": "그 박물관은 방문할 가치가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-91564706d0": {
+    "examples": [
+      {
+        "jp": "自然環境の悪化を阻止しましょう。",
+        "ko": "자연환경의 악화를 막읍시다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bd0b0380dc": {
+    "examples": [
+      {
+        "jp": "彼はあっさり罪を白状した。",
+        "ko": "그는 순순히 자신의 죄를 자백했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-eab33fad07": {
+    "examples": [
+      {
+        "jp": "その政府は国民を圧迫した。",
+        "ko": "그 정부는 국민을 억압했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-11fdbf024e": {
+    "examples": [
+      {
+        "jp": "私はデパートでオーバーをあつらえた。",
+        "ko": "나는 백화점에서 외투를 맞췄다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-23f01f9d4e": {
+    "examples": [
+      {
+        "jp": "この機械は当てにできません。",
+        "ko": "이 기계는 믿을 수 없습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6a9a11e020": {
+    "examples": [
+      {
+        "jp": "同一差出人から同一受取人に宛てて郵袋という、文字通り袋に印刷物を入れて郵送します。",
+        "ko": "같은 발신인이 같은 수신인 앞으로 보낼 때는 ‘우편자루’라고 해서, 말 그대로 인쇄물을 자루에 넣어 우송합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-20b715b301": {
+    "meaning": "뒤로 미룸 / 나중으로 돌림",
+    "examples": [
+      {
+        "jp": "その結論は後回しにした。",
+        "ko": "그 결론은 나중으로 미뤘다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-06f6d3304a": {
+    "examples": [
+      {
+        "jp": "彼女は油絵を始めた。",
+        "ko": "그녀는 유화를 시작했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2143d1e370": {
+    "examples": [
+      {
+        "jp": "うまいアプローチだね。",
+        "ko": "좋은 어프로치 샷이네.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3d62f0758a": {
+    "examples": [
+      {
+        "jp": "あなたはシャツをあべこべに着ている。",
+        "ko": "셔츠를 앞뒤 거꾸로 입었어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5869bef4e6": {
+    "meaning": "응석부리다 / 어리광부리다 / 남의 호의에 기대다",
+    "examples": [
+      {
+        "jp": "少女は母親に甘えた。",
+        "ko": "소녀는 어머니에게 응석을 부렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b8e8053584": {
+    "examples": [
+      {
+        "jp": "雨具をお持ちになりましたか。",
+        "ko": "우비를 가져오셨나요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b4f987e2d7": {
+    "meaning": "단맛 / 순한 맛 / 듣기 좋은 말·아첨",
+    "examples": [
+      {
+        "jp": "そんな甘口には乗らないよ。",
+        "ko": "그런 감언이설에는 넘어가지 않아.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-925a73e9ad": {
+    "examples": [
+      {
+        "jp": "網にかかったものは何でも魚だ。",
+        "ko": "그물에 걸린 것은 뭐든 물고기다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5d74f8516a": {
+    "examples": [
+      {
+        "jp": "あやふやな手つきで一枚の紙を動かした。",
+        "ko": "어정쩡한 손놀림으로 종이 한 장을 움직였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-28a4658761": {
+    "examples": [
+      {
+        "jp": "彼は判断を誤った。",
+        "ko": "그는 판단을 잘못했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e4007809a1": {
+    "examples": [
+      {
+        "jp": "何て歩みののろいやつだろう。",
+        "ko": "정말 걸음이 느린 녀석이군.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9de629082f": {
+    "meaning": "걷다 / 걸어가다 / 길·과정을 나아가다",
+    "examples": [
+      {
+        "jp": "近代医学の進歩は長い道程を歩んだ。",
+        "ko": "근대 의학의 발전은 긴 여정을 걸어왔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d91254a19e": {
+    "examples": [
+      {
+        "jp": "休暇の計画を予め立てている。",
+        "ko": "휴가 계획을 미리 세워 두었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8a11bf912f": {
+    "meaning": "황폐하게 하다 / 어지럽히다 / 침입해 훼손하다",
+    "examples": [
+      {
+        "jp": "彼らは私の果実園を荒らした。",
+        "ko": "그들은 내 과수원을 망쳐 놓았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a3363e4ffe": {
+    "examples": [
+      {
+        "jp": "ボクシングは必ずしも荒っぽいスポーツではない。",
+        "ko": "복싱이 반드시 거친 스포츠인 것은 아니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-61a475aebb": {
+    "meaning": "우박 / 아라레(쌀과자)",
+    "examples": [
+      {
+        "jp": "突然敵の爆弾が雨あられと我々に降り注いだ。",
+        "ko": "갑자기 적의 폭탄이 비 오듯 우리에게 쏟아졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-92893bbd77": {
+    "meaning": "형편 / 상태 / 꼴",
+    "examples": [
+      {
+        "jp": "彼女は哀れを誘う有様だった。",
+        "ko": "그녀는 동정을 자아낼 만큼 딱한 모습이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-085d431d0a": {
+    "examples": [
+      {
+        "jp": "彼は事実をありのままに述べた。",
+        "ko": "그는 사실을 있는 그대로 말했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bb6e76c774": {
+    "examples": [
+      {
+        "jp": "アルミは金属です。",
+        "ko": "알루미늄은 금속입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c7318ae6de": {
+    "examples": [
+      {
+        "jp": "ラッシュアワーの交通渋滞にあった。",
+        "ko": "러시아워 교통 체증에 걸렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dbffd52c9b": {
+    "meaning": "맞추다 / 합치다 / 마주하게 하다",
+    "examples": [
+      {
+        "jp": "彼はその破片をくっつけ合わした。",
+        "ko": "그는 깨진 조각들을 서로 붙였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-01babb71fd": {
+    "examples": [
+      {
+        "jp": "歌手に向かって盛んなアンコールが起こった。",
+        "ko": "가수를 향해 열렬한 앙코르 요청이 터져 나왔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-eda4f150bd": {
+    "examples": [
+      {
+        "jp": "彼らは大統領の暗殺を企てた。",
+        "ko": "그들은 대통령 암살을 꾀했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3db9caca40": {
+    "examples": [
+      {
+        "jp": "彼は暗算をするほど頭が良くない。",
+        "ko": "그는 암산을 할 만큼 머리가 좋지는 않다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-71a29a57d6": {
+    "examples": [
+      {
+        "jp": "彼の言葉は何を暗示しているのか。",
+        "ko": "그의 말은 무엇을 암시하고 있는가?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ba3f929e63": {
+    "meaning": "걱정하다 / 염려하다 / 곰곰이 생각하다",
+    "examples": [
+      {
+        "jp": "母は私の将来を案じている。",
+        "ko": "어머니는 내 장래를 걱정하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cf51a81d5e": {
+    "examples": [
+      {
+        "jp": "安静にして寝ていてください。",
+        "ko": "안정을 취하고 누워 계세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4f85c70c6c": {
+    "meaning": "가출 / 집을 나감",
+    "examples": [
+      {
+        "jp": "彼女は持ち物全部を持って家出した。",
+        "ko": "그녀는 소지품을 전부 챙겨 가출했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5d8eead4ba": {
+    "examples": [
+      {
+        "jp": "自分も生き、他人も生かせ。",
+        "ko": "자신도 살고, 남도 살려라.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b2f39149f2": {
+    "meaning": "어떻게 / 얼마나 / 아무리 ~해도",
+    "examples": [
+      {
+        "jp": "私は教育がいかに重要であるかを痛感しました。",
+        "ko": "나는 교육이 얼마나 중요한지 절실히 깨달았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-edb73d5cb3": {
+    "meaning": "정말로 / 과연 / 확실히 / 그렇고말고",
+    "examples": [
+      {
+        "jp": "いかにもビルのやりそうなことだ。",
+        "ko": "과연 빌이라면 할 법한 일이야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
