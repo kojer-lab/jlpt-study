@@ -799,10 +799,11 @@ const extraWords=extraWordRaw.map(x=>({
  id:x.id,
  w:/[一-龯々]/.test(x.w)?F(x.w,x.r):x.w,
  meaning:x.meaning,
- examples:(x.examples||[]).map(ex=>({jp:ex.jp,ko:ex.ko})),
+ examples:(x.examples||[]).map(ex=>({jp:ex.jp,ko:ex.ko,exampleSource:ex.exampleSource||"",tatoebaId:ex.tatoebaId||null})),
  source:x.source||"curated",
  meaningEn:x.meaningEn||"",
- meaningLang:x.meaningLang||"ko"
+ meaningLang:x.meaningLang||"ko",
+ meaningSource:x.meaningSource||""
 }));
 words.push(...extraWords);
 const wordById=new Map(words.map(w=>[w.id,w]));
@@ -1030,7 +1031,7 @@ function renderWordLibrary(){
        <button type="button" class="word-library-section-toggle" data-lib-examples="${w.id}">
          <span>③ 예문</span><span class="hint">${examplesOpen?"숨기기":"눌러서 확인"} <span class="chev">${examplesOpen?"▲":"▼"}</span></span>
        </button>
-       ${examplesOpen?`<div class="word-library-detail">${w.examples.map((ex,i)=>`<div class="word-library-example"><button type="button" data-lib-example="${w.id}" data-example-index="${i}" aria-label="예문 음성">🔊</button><div><div class="word-library-example-jp">${ex.jp}</div><div class="word-library-example-ko">${ex.ko}</div></div></div>`).join("")}</div>`:""}
+       ${examplesOpen?`<div class="word-library-detail">${w.examples.length?w.examples.map((ex,i)=>`<div class="word-library-example"><button type="button" data-lib-example="${w.id}" data-example-index="${i}" aria-label="예문 음성">🔊</button><div><div class="word-library-example-jp">${ex.jp}</div><div class="word-library-example-ko">${ex.ko}</div></div></div>`).join(""):`<div class="word-library-empty" style="padding:16px 8px">자연스러운 한국어 예문을 보강 중입니다.</div>`}</div>`:""}
      </div>
    </div>`;
  }).join(""):`<div class="word-library-empty">조건에 맞는 단어가 없습니다.</div>`;
