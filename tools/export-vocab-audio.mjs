@@ -63,11 +63,13 @@ for(const w of words){
   const wordText=(w.reading||readingText(w.w)||baseText(w.w)).trim();
   const imported=String(w.source||"").toLowerCase()==="openjlpt";
   if(wordText)items.push({id:w.id,kind:"word",index:null,text:wordText,voice:"jf_alpha",path:imported?`audio/vocab/openjlpt/${w.id}-word.mp3`:`audio/vocab/${w.id}-word.wav`});
+  // Imported N1 bank: pre-generate the word pronunciation only.
+  // Its example audio stays on-demand in the browser cache to keep the repo compact.
+  if(imported)continue;
   for(const [i,ex] of (w.examples||[]).entries()){
     const text=baseText(ex.jp||"").trim();
     if(!text)continue;
-    const path=imported?`audio/vocab/openjlpt/${w.id}-ex${i+1}.mp3`:`audio/vocab/${w.id}-ex${i+1}.wav`;
-    items.push({id:w.id,kind:"example",index:i,text,voice:"jf_alpha",path});
+    items.push({id:w.id,kind:"example",index:i,text,voice:"jf_alpha",path:`audio/vocab/${w.id}-ex${i+1}.wav`});
   }
 }
 await mkdir("audio/vocab",{recursive:true});
