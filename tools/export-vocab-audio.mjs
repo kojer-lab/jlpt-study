@@ -13,6 +13,9 @@ const baseWords=vm.runInContext(`(()=>{const F=(b,r)=>'<span class="furi" data-r
 // Any future data/n1-extra-words-*.js file is included without editing this script.
 const dataFiles=(await readdir("data"))
   .filter(name=>/^n1-extra-words-.*\.js$/.test(name))
+  // Legacy 6-part staging files are kept out of the live/audio bank.
+  // The generated n1-extra-words-openjlpt.js is the canonical OpenJLPT source.
+  .filter(name=>!/^n1-extra-words-openjlpt-\d+\.js$/.test(name))
   .sort();
 
 const extraWords=[];
