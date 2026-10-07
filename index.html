@@ -217,7 +217,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="word-library-head"><div><div class="word-library-title">N1 전체 단어장</div><div class="sub">안키 학습과 별개로 자유롭게 찾아보고 들을 수 있습니다. <a href="data/ATTRIBUTION.md" target="_blank" rel="noopener">어휘 데이터 출처</a></div></div><button class="secondary" type="button" id="exitWordLibrary">← 학습 화면</button></div>
         <div class="word-library-tools">
           <input id="wordLibrarySearch" type="search" placeholder="단어 · 읽기 · 뜻 검색" autocomplete="off">
-          <select id="wordLibraryFilter" aria-label="단어 필터"><option value="all">전체 단어</option><option value="new">미학습</option><option value="learned">학습함</option><option value="starred">★ 별표</option></select>
+          <select id="wordLibraryCategory" aria-label="단어 유형"><option value="all">전체 유형</option><option value="vocab">일반 어휘</option><option value="connector">접속 · 부사</option><option value="pattern">표현 · 문형</option></select>
+          <select id="wordLibraryFilter" aria-label="학습 상태"><option value="all">전체 상태</option><option value="new">미학습</option><option value="learned">학습함</option><option value="starred">★ 별표</option></select>
         </div>
         <div class="word-library-summary" id="wordLibrarySummary"></div>
         <div class="word-library-list" id="wordLibraryList"></div>
@@ -402,6 +403,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-extra-words-openjlpt-4.js"></script>
 <script src="data/n1-extra-words-openjlpt-5.js"></script>
 <script src="data/n1-extra-words-openjlpt-6.js"></script>
+<script src="data/n1-functional-connectors.js?v=20261007-func1"></script>
 <script src="data/n1-extra-grammar.js"></script>
 <script src="data/n1-extra-reading.js"></script>
 <script src="data/n1-daily-news.js"></script>
@@ -938,9 +940,49 @@ const extraWords=extraWordRaw.map(x=>({
  source:x.source||"curated",
  meaningEn:x.meaningEn||"",
  meaningLang:x.meaningLang||"ko",
- meaningSource:x.meaningSource||""
+ meaningSource:x.meaningSource||"",
+ category:x.category||"vocab"
 }));
 words.push(...extraWords);
+for(const w of words)if(!w.category)w.category="vocab";
+
+const functionalPatternReading={
+ "敢えて":"あえて","案の定":"あんのじょう","が最後":"がさいご","か否か":"かいなか","かと思いきや":"かとおもいきや",
+ "極まりない":"きわまりない","も同然だ":"もどうぜんだ","ならいざ知らず":"ならいざしらず","何しろ":"なにしろ",
+ "に先駆けて":"にさきがけて","に忍びない":"にしのびない","を限りに":"をかぎりに","を余儀なくさせる":"をよぎなくさせる"
+};
+const functionalLexicalPatterns=new Set(["敢えて","あくまでも","案の定","いかにも","いずれにせよ","何しろ"]);
+const functionalPatternRaw=(window.N1_EXTRA_GRAMMAR||[]).map((x,i)=>({
+ id:`func-g-${String(i+1).padStart(3,"0")}`,
+ w:x.pattern,
+ r:functionalPatternReading[x.pattern]||x.pattern.replace(/～/g,""),
+ meaning:x.meaning,
+ category:functionalLexicalPatterns.has(x.pattern)?"connector":"pattern",
+ source:"manual-functional",
+ meaningSource:"manual-functional",
+ examples:[{jp:String(x.q||"").replace("（　）",String(x.answer||x.pattern)),ko:x.translation||"",exampleSource:"manual-functional"}]
+}));
+const functionalRaw=[...(window.N1_FUNCTIONAL_CONNECTORS||[]),...functionalPatternRaw];
+for(const x of functionalRaw){
+ const surface=String(x.w||"").trim();
+ if(!surface)continue;
+ const existing=words.find(w=>plain(w.w)===surface);
+ const functionalExamples=(x.examples||[]).map(ex=>({jp:ex.jp,ko:ex.ko,exampleSource:ex.exampleSource||"manual-functional"}));
+ if(existing){
+   existing.category=x.category||existing.category||"vocab";
+   if(x.meaning)existing.meaning=x.meaning;
+   existing.meaningSource=x.meaningSource||"manual-functional";
+   const combined=[...functionalExamples,...(existing.examples||[])];
+   const seen=new Set();
+   existing.examples=combined.filter(ex=>{const key=plain(ex.jp||"");if(!key||seen.has(key))return false;seen.add(key);return true}).slice(0,2);
+   continue;
+ }
+ const html=/[一-龯々]/.test(surface)?F(surface,x.r||surface):surface;
+ words.push({
+   id:x.id,w:html,meaning:x.meaning||"",examples:functionalExamples,source:x.source||"manual-functional",
+   meaningEn:"",meaningLang:"ko",meaningSource:x.meaningSource||"manual-functional",category:x.category||"vocab"
+ });
+}
 const curatedOverrides=window.N1_CURATED_OVERRIDES||{};
 for(const w of words){
  const o=curatedOverrides[w.id];
@@ -1268,12 +1310,17 @@ function wordLibraryStateLabel(w){
  if(r.due<=now())return "복습 예정";
  return "학습 중";
 }
+function wordCategoryLabel(w){
+ return w?.category==="connector"?"접속·부사":w?.category==="pattern"?"표현·문형":"일반 어휘";
+}
 function renderWordLibrary(){
  const q=($("wordLibrarySearch")?.value||"").trim().toLowerCase();
  const filter=$("wordLibraryFilter")?.value||"all";
+ const category=$("wordLibraryCategory")?.value||"all";
  const orderedWords=wordLibraryOrder.length===words.length?wordLibraryOrder.map(id=>wordById.get(id)).filter(Boolean):words;
  const list=orderedWords.filter(w=>{
    const r=getSrs(w.id);
+   if(category!=="all"&&(w.category||"vocab")!==category)return false;
    if(filter==="new"&&r.reviews>0)return false;
    if(filter==="learned"&&r.reviews===0)return false;
    if(filter==="starred"&&!isStarred(w.id))return false;
@@ -1289,7 +1336,7 @@ function renderWordLibrary(){
        <button type="button" class="word-library-speak" data-lib-speak="${w.id}" aria-label="단어 음성">🔊</button>
        <div class="word-library-main">
          <div class="word-library-word">${w.w}</div>
-         <span class="word-library-state">${wordLibraryStateLabel(w)} · ${r.reviews||0}회</span>
+         <span class="word-library-state">${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${wordLibraryStateLabel(w)} · ${r.reviews||0}회</span>
        </div>
        <button type="button" class="word-library-star" data-lib-star="${w.id}" aria-label="별표">${isStarred(w.id)?"★":"☆"}</button>
      </div>
@@ -1337,7 +1384,7 @@ function renderWord(){
  const w=queue[wordIndex],sr=getSrs(w.id);
  $("wordStudyProgress").textContent=`${Math.min(wordSessionDone+1,wordSessionTotal)} / ${wordSessionTotal}`;
  $("wordIndexText").textContent=wordMode==="starred"?`★ ${wordSessionDone+1} / ${wordSessionTotal}`:`${wordSessionDone+1} / ${wordSessionTotal}`;
- $("wordDueText").textContent=sr.reviews?(sr.due<=now()?"복습":"학습 중"):"새 단어";
+ $("wordDueText").textContent=`${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${sr.reviews?(sr.due<=now()?"복습":"학습 중"):(w.category==="vocab"?"새 단어":"새 표현")}`;
  $("wordMain").innerHTML=w.w;$("wordReading").textContent="";$("wordSpeakBtn").dataset.word=w.id;$("wordSpeakBtn").disabled=false;$("wordSpeakBtn").classList.remove("loading","playing","audio-error");$("wordTtsStatus").textContent="";
  $("wordStarBtn").textContent=isStarred(w.id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(w.id));$("wordStarBtn").dataset.word=w.id;
  $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
@@ -1422,6 +1469,7 @@ $("desktopWordLibrary").addEventListener("click",()=>{showView("words");showWord
 $("exitWordLibrary").addEventListener("click",showWordDashboard);
 $("wordLibrarySearch").addEventListener("input",()=>{wordLibraryVisible=80;renderWordLibrary()});
 $("wordLibraryFilter").addEventListener("change",()=>{wordLibraryVisible=80;renderWordLibrary()});
+$("wordLibraryCategory").addEventListener("change",()=>{wordLibraryVisible=80;renderWordLibrary()});
 $("wordLibraryMore").addEventListener("click",()=>{wordLibraryVisible+=80;renderWordLibrary()});
 $("wordLibraryList").addEventListener("click",e=>{
  const speak=e.target.closest("[data-lib-speak]");
