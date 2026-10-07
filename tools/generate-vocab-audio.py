@@ -19,10 +19,15 @@ print(f"Vocabulary clips: {len(items)} total, {len(missing)} missing")
 
 if missing:
     torch.set_num_threads(max(1, min(4, os.cpu_count() or 2)))
-    pipeline = KPipeline(lang_code="j", repo_id="hexgrad/Kokoro-82M", device="cpu")
-    # Misaki's newer pyopenjtalk frontend gives better Japanese phrase/pitch handling
-    # and avoids downloading a separate full UniDic archive on every Actions run.
-    pipeline.g2p = ja.JAG2P(version="pyopenjtalk")
+    # KPipeline normally constructs Misaki's default Japanese frontend first.
+    # That frontend expects a downloaded UniDic dictionary, which is unnecessary
+    # here and caused GitHub Actions to fail before we could replace it.
+    original_jag2p = ja.JAG2P
+    try:
+        ja.JAG2P = lambda *args, **kwargs: original_jag2p(version="pyopenjtalk")
+        pipeline = KPipeline(lang_code="j", repo_id="hexgrad/Kokoro-82M", device="cpu")
+    finally:
+        ja.JAG2P = original_jag2p
 
     for n, item in enumerate(missing, 1):
         target = ROOT / item["path"]
