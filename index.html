@@ -199,8 +199,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
     <section class="view" id="quizhubView">
       <div class="topbar"><div><h1>문제 풀이</h1><div class="sub">어휘·문법·독해를 원하는 방식으로 골라서 풀 수 있습니다.</div></div></div>
       <div class="grid3">
-        <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p>40문제 · 읽기, 의미, 뉘앙스와 용법을 확인합니다.</p></div>
-        <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p>41문제 · 문장 뜻과 1~4번 선택지의 오답 이유까지 설명합니다.</p></div>
+        <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p>100문제 · 읽기, 의미, 뉘앙스와 용법을 확인합니다.</p></div>
+        <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p>100문제 · 문장 뜻과 1~4번 선택지의 오답 이유까지 설명합니다.</p></div>
         <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>10세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div>
       </div>
     </section>
@@ -364,6 +364,9 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="data/n1-extra-words-1.js"></script>
+<script src="data/n1-extra-words-2.js"></script>
+<script src="data/n1-extra-grammar.js"></script>
 <script>
 const F=(b,r)=>`<span class="furi" data-r="${r}">${b}</span>`;
 const DAY=86400000, MIN=60000;
@@ -772,7 +775,50 @@ const quizData={
   ,{q:"作業を終えた彼の服は泥（　）だった。",c:["まみれ","ずくめ","めき","あって"],a:0,translation:"작업을 마친 그의 옷은 진흙투성이였다.",e:"「～まみれ」는 진흙·피·땀·빚처럼 바람직하지 않은 것이 온통 묻은 상태입니다.",details:["① まみれ: 정답.","② ずくめ: 같은 종류로 가득함.","③ めき: ~같은 기색.","④ あって: 있어."]}
   ,{q:"風が少し暖かくなり、町も春（　）きた。",c:["めいて","ずくめて","まみれて","たりともして"],a:0,translation:"바람이 조금 따뜻해져 거리도 봄기운을 띠기 시작했다.",e:"「～めく」는 계절·분위기 등이 ~다운 기색을 띠기 시작한다는 뜻입니다.",details:["① めいて: 정답.","②~④는 이 문맥과 형태에 맞지 않습니다."]}
  ]
+
 };
+
+const extraWordRaw=[...(window.N1_EXTRA_WORDS_1||[]),...(window.N1_EXTRA_WORDS_2||[])];
+const extraWords=extraWordRaw.map(x=>({
+ id:x.id,
+ w:/[一-龯々]/.test(x.w)?F(x.w,x.r):x.w,
+ meaning:x.meaning,
+ examples:(x.examples||[]).map(ex=>({jp:ex.jp,ko:ex.ko}))
+}));
+words.push(...extraWords);
+
+function shortMeaning(w){return (w.meaning||"").split(" / ")[0].trim()}
+function buildExpansionVocabQuiz(src,count=60){
+ return src.slice(0,count).map((w,i)=>{
+   const pool=[w,src[(i+17)%src.length],src[(i+37)%src.length],src[(i+71)%src.length]];
+   const a=i%4,slots=new Array(4);
+   pool.forEach((x,j)=>slots[(a+j)%4]=x);
+   return {
+     q:`「${w.w}」の意味として最も近いものは？`,
+     c:slots.map(shortMeaning),
+     a,
+     translation:`「${w.w}」의 의미로 가장 가까운 것은?`,
+     e:`「${w.w}（${w.r}）」は「${w.meaning}」という意味です。例文の中で使い方も確認しましょう。`
+   };
+ });
+}
+function buildExpansionGrammarQuiz(src){
+ return src.map((g,i)=>{
+   const pool=[g,src[(i+11)%src.length],src[(i+27)%src.length],src[(i+43)%src.length]];
+   const a=i%4,slots=new Array(4);
+   pool.forEach((x,j)=>slots[(a+j)%4]=x);
+   return {
+     q:g.q,
+     c:slots.map(x=>x.answer),
+     a,
+     translation:g.translation,
+     e:`「${g.pattern}」는 ${g.meaning}의 뜻으로 쓰입니다. 문장 전체의 의미와 앞뒤 접속을 함께 확인하는 것이 중요합니다.`,
+     details:slots.map((x,j)=>`${j+1}번 · ${x.pattern}: ${x.meaning}${j===a?" · 정답입니다.":" · 이 문맥에는 맞지 않습니다."}`)
+   };
+ });
+}
+quizData.vocab.push(...buildExpansionVocabQuiz(extraWordRaw,60));
+quizData.grammar.push(...buildExpansionGrammarQuiz(window.N1_EXTRA_GRAMMAR||[]));
 
 const readingSets={
  short:[
