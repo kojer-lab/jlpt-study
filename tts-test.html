@@ -87,11 +87,12 @@ select{border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-we
           <option value="3">선행 버퍼 3개 · iPhone 권장</option>
           <option value="4">선행 버퍼 4개 · 안정 우선</option>
         </select>
+        <label style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:750"><input type="checkbox" id="persistDuringTest"> 테스트 중 영구 캐시 저장</label>
         <button class="primary" id="n1Play">⚡ 최적화 생성 · 재생</button>
         <button id="n1Prepare">전체 미리 준비</button>
         <button id="showScript">스크립트 보기</button>
       </div>
-      <div class="status" id="n1Status">아직 생성하지 않았습니다. 이번 버전은 재생 중 버퍼 대기 횟수와 시간을 자동으로 기록합니다.</div>
+      <div class="status" id="n1Status">아직 생성하지 않았습니다. iPhone 진단에서는 ‘테스트 중 영구 캐시 저장’을 끈 상태가 기본입니다. 이제 9/9에서 멈춰도 ‘음성 생성 중 / 오디오 변환 중 / 기기 캐시 저장 중’ 중 어디인지 표시됩니다.</div>
       <div class="metrics">
         <div class="metric"><span>첫 재생까지</span><b id="n1FirstMetric">—</b></div>
         <div class="metric"><span>전체 생성</span><b id="n1TotalMetric">—</b></div>
@@ -254,20 +255,32 @@ async function ensureTTS(){
  }finally{setBusy(false)}
 }
 
-async function synth(text,voice){
- const key=cacheKey(text,voice);
+async function synth(text,voice,options={}){
+ const key=cacheKey(text,voice),onStage=typeof options.onStage==="function"?options.onStage:()=>{};
+ onStage("메모리 캐시 확인");
  if(audioCache.has(key))return {url:audioCache.get(key),ms:0,cached:true,source:"memory"};
+ onStage("기기 캐시 확인");
  const saved=await idbGet(key);
  if(saved instanceof Blob){
-   const url=URL.createObjectURL(saved);audioCache.set(key,url);await updateCache();
+   const url=URL.createObjectURL(saved);audioCache.set(key,url);
+   $("cacheMetric").textContent=audioCache.size+"개";
    return {url,ms:0,cached:true,source:"device"};
  }
+ onStage("모델 확인");
  await ensureTTS();
+ onStage("음성 생성 중");
  const started=performance.now();
  const out=await tts.speak(text,voice);
- const ms=performance.now()-started,blob=out.toBlob(),url=URL.createObjectURL(blob);
- audioCache.set(key,url);await idbPut(key,blob);await updateCache();
+ const ms=performance.now()-started;
+ onStage("오디오 변환 중");
+ const blob=out.toBlob(),url=URL.createObjectURL(blob);
+ audioCache.set(key,url);$("cacheMetric").textContent=audioCache.size+"개";
+ if(options.persist!==false){
+   onStage("기기 캐시 저장 중");
+   await idbPut(key,blob);await updateCache();
+ }
  $("genMetric").textContent=fmt(ms);
+ onStage("완료");
  return {url,ms,cached:false,source:"generated"};
 }
 function playUrl(url){
@@ -305,7 +318,10 @@ function startN1Producer(){
      if(stopRequested)throw new Error("재생이 취소되었습니다.");
      setStatus("백그라운드 준비 "+(i+1)+" / "+n1Lines.length+"…","","n1Status");
      try{
-       const r=await synth(n1Lines[i][0],n1Lines[i][1]);
+       const r=await synth(n1Lines[i][0],n1Lines[i][1],{
+         persist:$("persistDuringTest").checked,
+         onStage:stage=>setStatus("백그라운드 "+(i+1)+" / "+n1Lines.length+" · "+stage,"","n1Status")
+       });
        if(r.cached)cached++;else generated++;
        segmentTimes.push(r.ms||0);
        finished++;slots[i].resolve(r);
@@ -344,6 +360,7 @@ async function playN1(){
      if(i<n1Lines.length-1&&!stopRequested)await new Promise(res=>setTimeout(res,180));
    }
    const final=await job.producer;
+   if(!$("persistDuringTest").checked)updateCache();
    $("n1TotalMetric").textContent=fmt(final.total);
    $("n1StallMetric").textContent=stallCount+"회";
    $("n1StallTotalMetric").textContent=fmt(stallTotal);
