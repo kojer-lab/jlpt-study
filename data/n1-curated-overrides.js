@@ -24221,5 +24221,283 @@ window.N1_CURATED_OVERRIDES={
   "oj-1338a3f47d": {
     "meaning": "연휴 / 이어지는 휴일",
     "meaningSource": "manual-review"
+  },
+  "oj-ca31bf8db3": {
+    "meaning": "레인지 / 범위 / 전자레인지·가스레인지",
+    "examples": [
+      {
+        "jp": "電子レンジで温めてください。",
+        "ko": "전자레인지로 데워 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7d28bc070c": {
+    "meaning": "연일 / 날마다 계속",
+    "examples": [
+      {
+        "jp": "連日交通事故が起きる。",
+        "ko": "연일 교통사고가 일어난다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dfe344f4e2": {
+    "meaning": "연대 / 공동 책임 / 결속",
+    "examples": [
+      {
+        "jp": "彼らはこの計画に連帯してあたった。",
+        "ko": "그들은 이 계획에 연대해 함께 임했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cefdf0c77c": {
+    "examples": [
+      {
+        "jp": "レンタカーの予約もお願いします。",
+        "ko": "렌터카 예약도 부탁합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-04743e6a41": {
+    "meaning": "무리 / 녀석들 / 사람들",
+    "examples": [
+      {
+        "jp": "彼らはそんなに悪い連中ではない。",
+        "ko": "그들은 그렇게 나쁜 녀석들은 아니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-543a56fe74": {
+    "meaning": "엑스레이 / 방사선 촬영",
+    "examples": [
+      {
+        "jp": "歯のレントゲンを撮りますね。",
+        "ko": "치아 엑스레이를 찍겠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1487ab7edb": {
+    "examples": [
+      {
+        "jp": "某連盟元会長が背任の容疑で逮捕されました。",
+        "ko": "모 연맹의 전 회장이 배임 혐의로 체포되었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-205f841138": {
+    "meaning": "노쇠 / 노화로 인한 쇠약",
+    "examples": [
+      {
+        "jp": "彼は老衰で二年前に亡くなった。",
+        "ko": "그는 노쇠로 2년 전에 세상을 떠났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3b514433e9": {
+    "meaning": "낭독 / 소리 내어 읽기",
+    "examples": [
+      {
+        "jp": "彼はその詩を一本調子で朗読した。",
+        "ko": "그는 그 시를 단조로운 어조로 낭독했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-59cc1aa388": {
+    "meaning": "노력 / 노동력 / 수고",
+    "examples": [
+      {
+        "jp": "この機械は多くの労力を省いてくれる。",
+        "ko": "이 기계는 많은 수고를 덜어 준다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6098e9e230": {
+    "meaning": "변변한 / 제대로 된",
+    "examples": [
+      {
+        "jp": "麻薬に手を出すとろくなことはない。",
+        "ko": "마약에 손대면 좋은 일은 하나도 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7533eeec58": {
+    "meaning": "제대로 / 충분히",
+    "examples": [
+      {
+        "jp": "昨夜はろくに眠れなかった。",
+        "ko": "어젯밤에는 제대로 잠을 못 잤다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0168723c14": {
+    "examples": [
+      {
+        "jp": "その計画は詳細に論議された。",
+        "ko": "그 계획은 상세하게 논의되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0a58b5edbf": {
+    "examples": [
+      {
+        "jp": "それは論理が要求することに従っている。",
+        "ko": "그것은 논리가 요구하는 바를 따르고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b4527d4c3b": {
+    "meaning": "화합 / 평화 / 합계",
+    "examples": [
+      {
+        "jp": "人との和を大切にする。",
+        "ko": "사람들과의 화합을 소중히 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e91d9f8a96": {
+    "examples": [
+      {
+        "jp": "彼はドア枠の下に立った。",
+        "ko": "그는 문틀 아래에 서 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5989bb1293": {
+    "meaning": "기술 / 재주 / 솜씨",
+    "examples": [
+      {
+        "jp": "職人の技を学ぶ。",
+        "ko": "장인의 기술을 배운다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bc47957953": {
+    "examples": [
+      {
+        "jp": "わざわざおいでにならなくて結構です。",
+        "ko": "일부러 오실 필요는 없습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-99dd5e0ee7": {
+    "examples": [
+      {
+        "jp": "ワープロがあれば、こんな煩わしさはなくなるだろう。",
+        "ko": "워드프로세서가 있다면 이런 번거로움은 없어질 것이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-421caf025d": {
+    "meaning": "철새 / 이동하는 새",
+    "examples": [
+      {
+        "jp": "この池には、毎年冬になるとたくさんの渡り鳥がやってきます。",
+        "ko": "이 연못에는 매년 겨울이 되면 많은 철새가 찾아옵니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-dfecf73c10": {
+    "meaning": "와트 / 전력의 단위",
+    "examples": [
+      {
+        "jp": "この電球は60ワットです。",
+        "ko": "이 전구는 60와트입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-95c85f85f2": {
+    "examples": [
+      {
+        "jp": "梅酒はね、梅で作る和風リキュールのことだよ。",
+        "ko": "매실주는 매실로 만드는 일본식 리큐어야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0e1d3f747e": {
+    "meaning": "일본어 문장 / 일본어 글",
+    "examples": [
+      {
+        "jp": "この和文をフランス語に訳してください。",
+        "ko": "이 일본어 문장을 프랑스어로 번역해 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-87ec2157d1": {
+    "meaning": "짚 / 볏짚",
+    "examples": [
+      {
+        "jp": "北海道では藁の馬をつくる。",
+        "ko": "홋카이도에서는 짚으로 말을 만든다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fd65caed2e": {
+    "meaning": "끼어들다 / 새치기하다 / 말을 가로막다",
+    "examples": [
+      {
+        "jp": "人の話に割り込むのは失礼だぞ。",
+        "ko": "남의 말에 끼어드는 것은 실례야.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0bc587dbfe": {
+    "meaning": "악당 / 나쁜 사람 / 악역",
+    "examples": [
+      {
+        "jp": "いない者がいつも悪者になる。",
+        "ko": "자리에 없는 사람이 늘 나쁜 사람 취급을 받는다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
