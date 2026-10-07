@@ -12408,5 +12408,627 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review"
+  },
+  "oj-fc5aaf963e": {
+    "examples": [
+      {
+        "jp": "石けんが目にしみました。",
+        "ko": "비누가 눈에 들어가 따가웠습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f368d35b69": {
+    "examples": [
+      {
+        "jp": "その婦人の葬式は地元の教会で行われた。",
+        "ko": "그 여성의 장례식은 현지 교회에서 치러졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1f7fbc010f": {
+    "examples": [
+      {
+        "jp": "彼らはついに視野から消えた。",
+        "ko": "그들은 마침내 시야에서 사라졌다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1f05b6ec3e": {
+    "meaning": "약간 모자람 / ~미만에 가까움",
+    "examples": [
+      {
+        "jp": "６月末に参加者を募ったら１週間弱で約５００席が予約でいっぱいになった。",
+        "ko": "6월 말에 참가자를 모집했더니 일주일도 채 안 되어 약 500석이 예약으로 찼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b7c3bf9989": {
+    "meaning": "사교 / 사람들과 교류함",
+    "examples": [
+      {
+        "jp": "六月はロンドンでは社交の季節だ。",
+        "ko": "6월은 런던에서 사교의 계절이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5884d0807c": {
+    "meaning": "사택 / 회사가 제공하는 주택",
+    "examples": [
+      {
+        "jp": "鳩山さんは社宅に住んでいるらしい。",
+        "ko": "하토야마 씨는 사택에 살고 있는 것 같다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d234d8de71": {
+    "examples": [
+      {
+        "jp": "公園のつつじの世話をする庭師が若干名いる。",
+        "ko": "공원의 철쭉을 관리하는 정원사가 몇 명 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e02b1d0bdc": {
+    "examples": [
+      {
+        "jp": "彼女は三味線による新しいジャズの演奏法を始めた。",
+        "ko": "그녀는 샤미센을 활용한 새로운 재즈 연주법을 시작했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9cff4e2d79": {
+    "examples": [
+      {
+        "jp": "砂利をセメントで固める必要がある。",
+        "ko": "자갈을 시멘트로 굳힐 필요가 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0d2aa6414a": {
+    "meaning": "멋을 부리다 / 세련되게 차려입다 / 농담하다",
+    "examples": [
+      {
+        "jp": "彼女しゃれた格好してるね。",
+        "ko": "그녀 멋스럽게 차려입었네.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-857ae72c6a": {
+    "examples": [
+      {
+        "jp": "ジャンボ尾崎ほど人気のあるプロゴルファーは日本にいない。",
+        "ko": "점보 오자키만큼 인기 있는 프로 골퍼는 일본에 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0fe3697d0a": {
+    "examples": [
+      {
+        "jp": "このジャンルの曲が好きです。",
+        "ko": "이 장르의 곡을 좋아합니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5dab2cd493": {
+    "meaning": "중의원 / 일본 국회의 하원",
+    "examples": [
+      {
+        "jp": "衆議院の少数派の議席は、急速にむしばまれてきています。",
+        "ko": "중의원에서 소수파의 의석이 빠르게 줄어들고 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e1fdef8d38": {
+    "meaning": "취업 / 업무에 종사함",
+    "examples": [
+      {
+        "jp": "僕も学生の時はよく就業をサボったよ。",
+        "ko": "나도 학생 때는 일을 자주 빼먹곤 했어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0f1bb19bcf": {
+    "meaning": "수행 / 수련 / 기술이나 학문을 닦음",
+    "examples": [
+      {
+        "jp": "只今、僕は旅立ちの日に向けて修業中です。",
+        "ko": "지금 나는 출발하는 날을 향해 수련 중입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5109d1778b": {
+    "examples": [
+      {
+        "jp": "彼は従業員によい待遇をしている。",
+        "ko": "그는 종업원들을 좋은 조건으로 대우하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-07cab7ee92": {
+    "examples": [
+      {
+        "jp": "彼はそこで反徒の襲撃を受けた。",
+        "ko": "그는 그곳에서 반란군의 습격을 받았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ddff5ba694": {
+    "meaning": "석사 / 석사 학위",
+    "examples": [
+      {
+        "jp": "彼は法学修士の学位を得た。",
+        "ko": "그는 법학 석사 학위를 받았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a7b0152ffc": {
+    "meaning": "시종 / 처음부터 끝까지",
+    "examples": [
+      {
+        "jp": "私服警官が終始大統領の身辺を固めていた。",
+        "ko": "사복 경찰이 처음부터 끝까지 대통령의 신변을 지키고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ed87166555": {
+    "examples": [
+      {
+        "jp": "彼は生物学の研究に従事していた。",
+        "ko": "그는 생물학 연구에 종사하고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-53a8f43b51": {
+    "examples": [
+      {
+        "jp": "終日雨が降ったりやんだりしていた。",
+        "ko": "하루 종일 비가 내렸다 그쳤다 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c4b4033801": {
+    "examples": [
+      {
+        "jp": "大いに充実した学生生活を送りたい。",
+        "ko": "매우 알찬 학생 생활을 보내고 싶다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9510e4a8e0": {
+    "meaning": "수집 / 모음",
+    "meaningSource": "manual-review"
+  },
+  "oj-887c7b645a": {
+    "examples": [
+      {
+        "jp": "名詞を修飾するものは、形容詞または形容詞相当語句です。",
+        "ko": "명사를 수식하는 것은 형용사 또는 형용사에 해당하는 어구입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9d761dba21": {
+    "examples": [
+      {
+        "jp": "その事故はある十字路で起こった。",
+        "ko": "그 사고는 어느 교차로에서 일어났다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-27fa290805": {
+    "examples": [
+      {
+        "jp": "彼は弁護士になれるという希望に執着していた。",
+        "ko": "그는 변호사가 될 수 있다는 희망에 집착하고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c81e1499d4": {
+    "examples": [
+      {
+        "jp": "この文は重複したため削除されました。",
+        "ko": "이 문장은 중복되어 삭제되었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4ad1f0d660": {
+    "examples": [
+      {
+        "jp": "あの教会施設は避難民を収容している。",
+        "ko": "그 교회 시설은 피난민을 수용하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1a8f36d596": {
+    "examples": [
+      {
+        "jp": "私は高校の全課程を修了した。",
+        "ko": "나는 고등학교 전 과정을 수료했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a75e6df041": {
+    "examples": [
+      {
+        "jp": "守衛にとがめられた。",
+        "ko": "경비원에게 제지당했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d6c727091a": {
+    "meaning": "주연 / 주연을 맡음",
+    "examples": [
+      {
+        "jp": "主演は誰ですか。",
+        "ko": "주연은 누구인가요?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cd7c2b10e4": {
+    "meaning": "학원 / 사설 학습소",
+    "examples": [
+      {
+        "jp": "彼は塾で勉強している。",
+        "ko": "그는 학원에서 공부하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f5d1e73974": {
+    "meaning": "숙명 / 피할 수 없는 운명",
+    "examples": [
+      {
+        "jp": "仲間外れになるのが私の宿命みたいだ。",
+        "ko": "따돌림을 당하는 게 내 숙명인 것 같다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-48519b5fef": {
+    "examples": [
+      {
+        "jp": "去年手芸コースを取っていたのです。",
+        "ko": "작년에 수예 강좌를 들었습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1873a19180": {
+    "examples": [
+      {
+        "jp": "今日のパーティーは誰が主催なの？",
+        "ko": "오늘 파티는 누가 주최하는 거야?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-735b7a1731": {
+    "meaning": "취재 / 취재를 위해 자료를 모음",
+    "examples": [
+      {
+        "jp": "彼女は金融市場の取材を担当している。",
+        "ko": "그녀는 금융시장 취재를 담당하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f8675e729b": {
+    "meaning": "주식 / 주된 식량",
+    "examples": [
+      {
+        "jp": "日本では米が主食です。",
+        "ko": "일본에서는 쌀이 주식입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-818ef1c8d8": {
+    "meaning": "주인공 / 이야기의 중심인물",
+    "meaningSource": "manual-review"
+  },
+  "oj-5339e0154c": {
+    "examples": [
+      {
+        "jp": "主体・客体さえ訳せればあとはそこまで難しくないです。",
+        "ko": "주체와 객체만 번역할 수 있으면 나머지는 그렇게 어렵지 않습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7cc70dbcb0": {
+    "examples": [
+      {
+        "jp": "主題を見失ってはいけない。",
+        "ko": "주제를 놓쳐서는 안 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e65e4a2244": {
+    "examples": [
+      {
+        "jp": "彼は昨夜のテレビに出演した。",
+        "ko": "그는 어젯밤 텔레비전에 출연했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-62919df179": {
+    "examples": [
+      {
+        "jp": "土曜日には出社する必要がありません。",
+        "ko": "토요일에는 출근할 필요가 없습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-08f2c740b5": {
+    "examples": [
+      {
+        "jp": "彼はいわゆる自力で出生した人だ。",
+        "ko": "그는 이른바 자수성가한 사람이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-39cc6f9b57": {
+    "meaning": "출세 / 사회적으로 성공함",
+    "meaningSource": "manual-review"
+  },
+  "oj-260de2f79a": {
+    "meaning": "출제 / 문제를 냄",
+    "examples": [
+      {
+        "jp": "どういった時事が公務員試験で出題されるのか。",
+        "ko": "어떤 시사 문제가 공무원 시험에 출제되는가.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fe60adf28d": {
+    "examples": [
+      {
+        "jp": "その反乱を鎮圧するために軍隊の出動が要請された。",
+        "ko": "그 반란을 진압하기 위해 군대 출동이 요청되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-294542503f": {
+    "examples": [
+      {
+        "jp": "金をためるには出費を切りつめないと。",
+        "ko": "돈을 모으려면 지출을 줄여야 해.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-50282fcaac": {
+    "examples": [
+      {
+        "jp": "トムが出品した絵は皆入賞した。",
+        "ko": "톰이 출품한 그림은 모두 입상했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4f38fa0c68": {
+    "examples": [
+      {
+        "jp": "その問題は主任をひどく苦しめた。",
+        "ko": "그 문제는 주임을 몹시 괴롭혔다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6f3e64ab9f": {
+    "examples": [
+      {
+        "jp": "７カ国の首脳がその会議に出席した。",
+        "ko": "7개국 정상들이 그 회의에 참석했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4259132ca8": {
+    "examples": [
+      {
+        "jp": "私達のチームは守備が良い。",
+        "ko": "우리 팀은 수비가 좋다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9041da3ded": {
+    "examples": [
+      {
+        "jp": "彼の手法は全く驚くべきものだった。",
+        "ko": "그의 수법은 정말 놀라운 것이었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-cea6de0386": {
+    "examples": [
+      {
+        "jp": "公園は樹木がよく茂っている。",
+        "ko": "공원에는 나무가 무성하게 자라고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bb5c203cbf": {
+    "examples": [
+      {
+        "jp": "彼女は走り高跳びの世界記録を樹立した。",
+        "ko": "그녀는 높이뛰기 세계기록을 세웠다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-96cf2aa192": {
+    "meaning": "준급 / 보통급행보다 빠르고 급행보다 느린 열차",
+    "examples": [
+      {
+        "jp": "新宿駅まで準急で行ったのよ。",
+        "ko": "신주쿠역까지 준급행으로 갔어.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ed2023474e": {
+    "meaning": "사양 / 규격 / 방식",
+    "examples": [
+      {
+        "jp": "仕様、価格は変更することがあります。",
+        "ko": "사양과 가격은 변경될 수 있습니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e80e0fe969": {
+    "meaning": "사적인 용무",
+    "examples": [
+      {
+        "jp": "上司は会社の電話で私用の電話をかけたといって私をひどく叱った。",
+        "ko": "상사는 회사 전화로 사적인 전화를 했다고 나를 심하게 꾸짖었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ed26af448e": {
+    "meaning": "아가씨 / 젊은 여성에 대한 호칭",
+    "examples": [
+      {
+        "jp": "彼はブラウン嬢との婚約を発表した。",
+        "ko": "그는 브라운 양과의 약혼을 발표했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-23a5d41915": {
+    "meaning": "상위 / 높은 순위",
+    "examples": [
+      {
+        "jp": "上位２社で市場の５０％を上回るシェアを占めている。",
+        "ko": "상위 두 회사가 시장 점유율 50% 이상을 차지하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-4ad1e5c9ab": {
+    "examples": [
+      {
+        "jp": "その劇団は３幕ものの劇を上演した。",
+        "ko": "그 극단은 3막짜리 연극을 상연했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e35d2b57f7": {
+    "examples": [
+      {
+        "jp": "大気の上空でさえ汚染されている。",
+        "ko": "대기 상공조차 오염되어 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ccf2d2747e": {
+    "examples": [
+      {
+        "jp": "またヨハネは証言して言った。",
+        "ko": "또 요한은 증언하며 말했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
   }
 };
