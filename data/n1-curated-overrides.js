@@ -3092,63 +3092,27 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-281d9aa72f": {
-    "meaning": "부임 / 새 근무지로 가서 직무를 맡음",
-    "examples": [
-      {
-        "jp": "来月から地方支店に赴任する。",
-        "ko": "다음 달부터 지방 지점에 부임한다."
-      }
-    ],
+    "meaning": "부임 / 임지로 감",
     "meaningSource": "manual-review"
   },
   "oj-2e2b2bb861": {
-    "meaning": "불쌍함 / 가엾음 / 연민",
-    "examples": [
-      {
-        "jp": "事情を聞くと不憫でならない。",
-        "ko": "사정을 들으니 너무 가엾다."
-      }
-    ],
+    "meaning": "가엾음 / 불쌍함 / 연민",
     "meaningSource": "manual-review"
   },
   "oj-f6810ec488": {
-    "meaning": "보편 / 널리 두루 적용됨",
-    "examples": [
-      {
-        "jp": "自由は普遍的な価値だと考えられている。",
-        "ko": "자유는 보편적인 가치로 여겨진다."
-      }
-    ],
+    "meaning": "보편 / 보편성",
     "meaningSource": "manual-review"
   },
   "oj-cf01dd19c5": {
-    "meaning": "분업 / 일을 나누어 맡음",
-    "examples": [
-      {
-        "jp": "作業を分業して効率を上げた。",
-        "ko": "작업을 분업해 효율을 높였다."
-      }
-    ],
+    "meaning": "분업 / 업무 분담 / 전문화",
     "meaningSource": "manual-review"
   },
   "oj-a988a95058": {
-    "meaning": "문어 / 문장에 쓰이는 문어체 언어",
-    "examples": [
-      {
-        "jp": "この表現は話し言葉より文語でよく使われる。",
-        "ko": "이 표현은 구어보다 문어에서 자주 쓰인다."
-      }
-    ],
+    "meaning": "문어 / 문어체 / 문장어",
     "meaningSource": "manual-review"
   },
   "oj-b09d417ce5": {
-    "meaning": "풍부하게 / 넉넉하게 / 아낌없이",
-    "examples": [
-      {
-        "jp": "新鮮な野菜をふんだんに使った料理だ。",
-        "ko": "신선한 채소를 풍부하게 사용한 요리다."
-      }
-    ],
+    "meaning": "풍부하게 / 듬뿍 / 아낌없이",
     "meaningSource": "manual-review"
   },
   "oj-8d3323ee2e": {
@@ -3162,103 +3126,43 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-47e4de1f65": {
-    "meaning": "페어 / 한 쌍",
-    "examples": [
-      {
-        "jp": "二人はペアを組んで試合に出た。",
-        "ko": "두 사람은 한 조를 이루어 경기에 나갔다."
-      }
-    ],
+    "meaning": "한 쌍 / 페어 / 짝",
     "meaningSource": "manual-review"
   },
   "oj-b680cdac8a": {
-    "meaning": "평상 / 평소 / 정상적인 상태",
-    "examples": [
-      {
-        "jp": "平常どおり営業しています。",
-        "ko": "평소와 같이 영업하고 있습니다."
-      }
-    ],
+    "meaning": "평상시 / 보통 / 정상",
     "meaningSource": "manual-review"
   },
   "oj-b5f04f79ca": {
-    "meaning": "병렬 / 나란히 배치함",
-    "examples": [
-      {
-        "jp": "二つの処理を並列で実行する。",
-        "ko": "두 처리를 병렬로 실행한다."
-      }
-    ],
+    "meaning": "병렬 / 나란히 배열함",
     "meaningSource": "manual-review"
   },
   "oj-ef321ac2d3": {
-    "meaning": "베이스 / 기반 / 저음",
-    "examples": [
-      {
-        "jp": "信頼をベースに協力関係を築く。",
-        "ko": "신뢰를 기반으로 협력 관계를 구축한다."
-      }
-    ],
+    "meaning": "베이스 / 기초 / 기반 / 야구의 베이스 / 베이스 악기",
     "meaningSource": "manual-review"
   },
   "oj-4f4b90bb7c": {
-    "meaning": "베스트 / 최선 / 조끼",
-    "examples": [
-      {
-        "jp": "今できるベストを尽くそう。",
-        "ko": "지금 할 수 있는 최선을 다하자."
-      }
-    ],
+    "meaning": "최고 / 베스트 / 조끼",
     "meaningSource": "manual-review"
   },
   "oj-b144d145c3": {
-    "meaning": "겸손하게 낮추다 / 자신을 낮춰 상대를 높이다",
-    "examples": [
-      {
-        "jp": "必要以上にへりくだる必要はない。",
-        "ko": "필요 이상으로 자신을 낮출 필요는 없다."
-      }
-    ],
+    "meaning": "겸손하게 낮추다 / 자신을 낮추어 말하다",
     "meaningSource": "manual-review"
   },
   "oj-08d086f265": {
-    "meaning": "거치다 / 시간이 흐르다 / 경험하다",
-    "examples": [
-      {
-        "jp": "長い年月を経て建物が完成した。",
-        "ko": "오랜 세월을 거쳐 건물이 완성됐다."
-      }
-    ],
+    "meaning": "지나다 / 거치다 / 경험하다",
     "meaningSource": "manual-review"
   },
   "oj-8a4aed3134": {
-    "meaning": "반환 / 되돌려 줌",
-    "examples": [
-      {
-        "jp": "借りた資料は期限までに返還してください。",
-        "ko": "빌린 자료는 기한까지 반환해 주세요."
-      }
-    ],
+    "meaning": "반환 / 돌려줌",
     "meaningSource": "manual-review"
   },
   "oj-042950a048": {
-    "meaning": "보기 / 귀중한 그릇·물건 / 뛰어난 인물",
-    "examples": [
-      {
-        "jp": "この人物は国の宝器とも言える存在だ。",
-        "ko": "이 인물은 나라의 보배라 할 만한 존재다."
-      }
-    ],
+    "meaning": "보물로 여기는 기물 / 귀중한 기물 / 뛰어난 인물(비유)",
     "meaningSource": "manual-review"
   },
   "oj-ba25c582aa": {
     "meaning": "알리다 / 보도하다 / 보고하다",
-    "examples": [
-      {
-        "jp": "新聞が事件の詳細を報じた。",
-        "ko": "신문이 사건의 상세 내용을 보도했다."
-      }
-    ],
     "meaningSource": "manual-review"
   },
   "oj-3356356fb8": {
@@ -20566,6 +20470,805 @@ window.N1_CURATED_OVERRIDES={
       {
         "jp": "日本の戦後の復興は有名な話である。",
         "ko": "일본의 전후 복구와 재건은 잘 알려진 이야기다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1986f292d9": {
+    "meaning": "물자 / 물품 / 필요한 재료",
+    "examples": [
+      {
+        "jp": "被災地に救援物資を送った。",
+        "ko": "재해 지역에 구호 물자를 보냈다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-66748b6cfa": {
+    "meaning": "불상 / 불교 조각상",
+    "examples": [
+      {
+        "jp": "その彫刻家は木で仏像を刻んだ。",
+        "ko": "그 조각가는 나무로 불상을 조각했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-16434bd461": {
+    "examples": [
+      {
+        "jp": "その物体の表面はかなり粗い。",
+        "ko": "그 물체의 표면은 꽤 거칠다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-81dd8f026d": {
+    "meaning": "비등 / 끓음 / 격앙됨",
+    "examples": [
+      {
+        "jp": "国内は防衛問題で沸騰した。",
+        "ko": "국내 여론은 방위 문제로 들끓었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1523ebeef5": {
+    "meaning": "부당함 / 부당한 / 정당하지 않음",
+    "examples": [
+      {
+        "jp": "その女性は不当に私を責めた。",
+        "ko": "그 여성은 부당하게 나를 비난했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c1bdf75397": {
+    "examples": [
+      {
+        "jp": "不動産が高すぎるという意見に賛成だ。",
+        "ko": "부동산이 너무 비싸다는 의견에 동의한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-55f4daa66e": {
+    "meaning": "무난함 / 탈이 없음 / 무난한",
+    "examples": [
+      {
+        "jp": "男性の一部と女性の一部が計算は速いと言うほうが無難だ。",
+        "ko": "일부 남성과 일부 여성은 계산이 빠르다고 말하는 편이 무난하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-946014cf8a": {
+    "meaning": "부패 / 썩음 / 타락",
+    "examples": [
+      {
+        "jp": "食品包装は腐敗を減らす。",
+        "ko": "식품 포장은 부패를 줄인다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-077604c438": {
+    "meaning": "악평 / 평판이 나쁨 / 인기 없음",
+    "examples": [
+      {
+        "jp": "国会は多分この不評の法律を改正するだろう。",
+        "ko": "국회는 아마 이 평판이 나쁜 법률을 개정할 것이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-393877926f": {
+    "meaning": "불복 / 불만 / 이의",
+    "examples": [
+      {
+        "jp": "被告は判決に不服でためらわずに控訴した。",
+        "ko": "피고는 판결에 불복해 주저하지 않고 항소했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-856da87e15": {
+    "meaning": "편지 / 글",
+    "examples": [
+      {
+        "jp": "久しぶりに友へ文を書いた。",
+        "ko": "오랜만에 친구에게 편지를 썼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-651eb5c20b": {
+    "examples": [
+      {
+        "jp": "各部門の優勝候補が集まった。",
+        "ko": "각 부문의 우승 후보들이 모였다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-61145dbc05": {
+    "meaning": "부양 / 생활을 책임져 돌봄",
+    "examples": [
+      {
+        "jp": "彼には扶養すべき大家族がある。",
+        "ko": "그에게는 부양해야 할 대가족이 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2eff177d9a": {
+    "examples": [
+      {
+        "jp": "彼らは海岸をぶらぶらと歩いた。",
+        "ko": "그들은 해변을 어슬렁어슬렁 걸었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-471e8a709b": {
+    "meaning": "척 / 태도 / 모습",
+    "examples": [
+      {
+        "jp": "彼は知らない振りをした。",
+        "ko": "그는 모르는 척했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5b99825c62": {
+    "meaning": "출발점 / 원점 / 수표·어음 발행",
+    "examples": [
+      {
+        "jp": "振り出しに戻ってしまった。",
+        "ko": "원점으로 돌아가 버렸다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f64c527a25": {
+    "meaning": "불량 / 불량품 / 비행·불량한 사람",
+    "examples": [
+      {
+        "jp": "彼は不良仲間とぐるになっていた。",
+        "ko": "그는 불량배들과 어울려 한패가 되어 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bfcaf39312": {
+    "meaning": "부력",
+    "examples": [
+      {
+        "jp": "塩水の方が淡水よりも浮力が大きい。",
+        "ko": "소금물은 담수보다 부력이 크다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fb44d951d9": {
+    "examples": [
+      {
+        "jp": "彼らはついに武力に訴えた。",
+        "ko": "그들은 결국 무력에 호소했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ad9000928d": {
+    "meaning": "떨다 / 떨게 하다 / 진동시키다",
+    "examples": [
+      {
+        "jp": "彼は激怒して体を震わせていた。",
+        "ko": "그는 격분해서 몸을 떨고 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5ecbf5fb51": {
+    "meaning": "부록 / 별책 부록 / 덤으로 딸린 것",
+    "examples": [
+      {
+        "jp": "今月の付録はアニメのDVDです。",
+        "ko": "이번 달 부록은 애니메이션 DVD입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-8dab8e36d8": {
+    "meaning": "프런트 / 앞부분 / 호텔 안내 데스크",
+    "examples": [
+      {
+        "jp": "フロントの番号は一番です。",
+        "ko": "프런트 연결 번호는 1번입니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9e39f13090": {
+    "meaning": "분(시간 단위)",
+    "examples": [
+      {
+        "jp": "あと五分待ってください。",
+        "ko": "5분만 더 기다려 주세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-488c0046f9": {
+    "examples": [
+      {
+        "jp": "彼は友人の行動に憤慨した。",
+        "ko": "그는 친구의 행동에 분개했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fdb85e4f99": {
+    "meaning": "문화재 / 문화유산",
+    "meaningSource": "manual-review"
+  },
+  "oj-84ad27c633": {
+    "meaning": "분자 / (수학의) 분자",
+    "examples": [
+      {
+        "jp": "水分子は、２個の水素原子と１個の酸素原子からなる。",
+        "ko": "물 분자는 수소 원자 두 개와 산소 원자 한 개로 이루어진다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f832961b4a": {
+    "meaning": "분실 / 잃어버림",
+    "examples": [
+      {
+        "jp": "彼女はハンドバッグを紛失した。",
+        "ko": "그녀는 핸드백을 분실했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a54d1e0237": {
+    "meaning": "분출 / 뿜어져 나옴",
+    "examples": [
+      {
+        "jp": "間欠泉は２時間毎に湯を噴出する。",
+        "ko": "간헐천은 두 시간마다 뜨거운 물을 분출한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e0a5244310": {
+    "examples": [
+      {
+        "jp": "大量の文書を入力しなきゃならない。",
+        "ko": "대량의 문서를 입력해야 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b94b6e4b5c": {
+    "examples": [
+      {
+        "jp": "彼らはその紛争を終わらせた。",
+        "ko": "그들은 그 분쟁을 끝냈다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-911f332826": {
+    "meaning": "분담 / 나누어 맡음",
+    "examples": [
+      {
+        "jp": "協力を望むなら責任を分担しなさい。",
+        "ko": "협력을 원한다면 책임을 분담하세요.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3066b28376": {
+    "examples": [
+      {
+        "jp": "暮らしのために奮闘している。",
+        "ko": "생계를 위해 분투하고 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-58baea5308": {
+    "examples": [
+      {
+        "jp": "彼らは利益を公平に分配した。",
+        "ko": "그들은 이익을 공평하게 분배했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-253ca04e94": {
+    "examples": [
+      {
+        "jp": "アルミニウム、マグネシウム、シリコンなどの粉末が爆発する。",
+        "ko": "알루미늄, 마그네슘, 실리콘 등의 분말은 폭발한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-292ff50e0a": {
+    "meaning": "분리 / 격리",
+    "examples": [
+      {
+        "jp": "最高裁が人種分離教育を攻撃。",
+        "ko": "대법원은 인종 분리 교육을 비판했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0b85c689e9": {
+    "examples": [
+      {
+        "jp": "党派は二つに分裂した。",
+        "ko": "파벌은 둘로 분열했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-054813c4c2": {
+    "examples": [
+      {
+        "jp": "日本は兵器にあまりお金を使うべきではない。",
+        "ko": "일본은 무기에 너무 많은 돈을 써서는 안 된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-13b937a41a": {
+    "examples": [
+      {
+        "jp": "この線はあの線に平行です。",
+        "ko": "이 선은 저 선과 평행하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-be2f217a46": {
+    "meaning": "말문이 막힘 / 곤란함 / 질림",
+    "meaningSource": "manual-review"
+  },
+  "oj-96f4c03038": {
+    "meaning": "폐쇄 / 문을 닫음 / 운영 중단",
+    "examples": [
+      {
+        "jp": "その博物館は今は閉鎖している。",
+        "ko": "그 박물관은 현재 폐쇄되어 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-680cb55781": {
+    "meaning": "제곱 / 평방",
+    "examples": [
+      {
+        "jp": "彼の牧場は、２０平方マイルに及んでいる。",
+        "ko": "그의 목장은 20제곱마일에 이른다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e9b4b3b383": {
+    "meaning": "질림 / 진저리 남 / 기가 꺾임",
+    "examples": [
+      {
+        "jp": "彼は人付き合いに辟易している。",
+        "ko": "그는 사람들과 어울리는 데 진저리가 나 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e596a0fd8b": {
+    "meaning": "몹시 배고픈 모양 / 굽실굽실",
+    "examples": [
+      {
+        "jp": "お腹がぺこぺこです。",
+        "ko": "배가 몹시 고픕니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-507250c924": {
+    "meaning": "베스트셀러",
+    "examples": [
+      {
+        "jp": "彼女はベストセラーの小説を早速読んだ。",
+        "ko": "그녀는 베스트셀러 소설을 곧바로 읽었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-0b6b5995e3": {
+    "meaning": "변 / 한자의 왼쪽 부수",
+    "examples": [
+      {
+        "jp": "「休」の偏は「亻」だ。",
+        "ko": "‘休’의 변은 ‘亻’이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c88c1274da": {
+    "meaning": "편 / 편찬·편집 / ~편(작품 단위)",
+    "examples": [
+      {
+        "jp": "この小説は三編から成る。",
+        "ko": "이 소설은 세 편으로 이루어져 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-f675bf9b01": {
+    "examples": [
+      {
+        "jp": "その失策には弁解の余地がない。",
+        "ko": "그 실책에는 변명의 여지가 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-089d39b41c": {
+    "meaning": "변혁 / 변화 / 개혁",
+    "examples": [
+      {
+        "jp": "社会の変革が急務である。",
+        "ko": "사회 변혁이 시급하다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-03a1f21cc6": {
+    "meaning": "편의 / 편리 / 형편상 조치",
+    "examples": [
+      {
+        "jp": "公衆の便宜は尊重されねばならない。",
+        "ko": "공공의 편의는 존중되어야 한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-217987ecba": {
+    "meaning": "변제 / 상환",
+    "examples": [
+      {
+        "jp": "彼はその金を借金の返済に充てた。",
+        "ko": "그는 그 돈을 빚을 갚는 데 썼다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-28bbcaef7c": {
+    "meaning": "변상 / 배상 / 물어 줌",
+    "examples": [
+      {
+        "jp": "彼女に弁償させたら？",
+        "ko": "그녀에게 변상하게 하면 어때?",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-3354109d5e": {
+    "meaning": "변천 / 변화의 과정 / 변천사",
+    "examples": [
+      {
+        "jp": "表面上、本書の大部分は一連の事例の変遷を記録したものである。",
+        "ko": "겉보기에는 이 책의 대부분이 일련의 사례가 어떻게 변해 왔는지를 기록한 것이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5138ac69ee": {
+    "examples": [
+      {
+        "jp": "彼の返答は拒絶も同然だ。",
+        "ko": "그의 대답은 사실상 거절이나 다름없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-fbb73368e3": {
+    "meaning": "변론 / 논쟁 / 토론",
+    "examples": [
+      {
+        "jp": "弁護士たちはその事件を何時間も弁論した。",
+        "ko": "변호사들은 그 사건을 몇 시간이나 변론했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-d05c2603fa": {
+    "meaning": "이삭 / (식물의) 꽃이삭",
+    "examples": [
+      {
+        "jp": "話の接ぎ穂がなくて困った。",
+        "ko": "말을 이어갈 실마리가 없어 곤란했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-bbe8e8b83e": {
+    "meaning": "보육 / 양육",
+    "examples": [
+      {
+        "jp": "保育ママは１名から３名までのお子さんを保育しています。",
+        "ko": "가정 보육사는 한 명에서 세 명까지의 아이를 돌봅니다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-952a11bf16": {
+    "examples": [
+      {
+        "jp": "彼はバスのボイコット運動を組織したのである。",
+        "ko": "그는 버스 보이콧 운동을 조직했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-2402c719ec": {
+    "meaning": "포인트 / 요점 / 점수",
+    "examples": [
+      {
+        "jp": "彼はポイントを生徒に充分わからせた。",
+        "ko": "그는 그 요점을 학생들이 충분히 이해하게 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-aed7830e50": {
+    "meaning": "법안",
+    "meaningSource": "manual-review"
+  },
+  "oj-5848a1a829": {
+    "meaning": "방위 / 방어 / 자기방어",
+    "examples": [
+      {
+        "jp": "その男は自己防衛を口実にした。",
+        "ko": "그 남자는 자기방어를 구실로 삼았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-77fe998ed5": {
+    "meaning": "방화(防火) / 화재 예방 / 방화 대책",
+    "examples": [
+      {
+        "jp": "私たちは昨日防火訓練をした。",
+        "ko": "우리는 어제 소방 훈련을 했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e10b8d5307": {
+    "meaning": "붕괴 / 무너짐",
+    "meaningSource": "manual-review"
+  },
+  "oj-f916dfd1cc": {
+    "meaning": "방해 / 방해 행위 / 교란",
+    "examples": [
+      {
+        "jp": "彼は他人の私事を妨害する。",
+        "ko": "그는 다른 사람의 사적인 일을 방해한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-6e418239d4": {
+    "meaning": "법학",
+    "examples": [
+      {
+        "jp": "彼は法学修士の学位を得た。",
+        "ko": "그는 법학 석사 학위를 받았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-1799cfb5f8": {
+    "examples": [
+      {
+        "jp": "日本国民は戦争を放棄している。",
+        "ko": "일본 국민은 전쟁을 포기한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-817825c9b9": {
+    "meaning": "봉건 / 봉건적인",
+    "examples": [
+      {
+        "jp": "前世紀の中頃まで日本が封建国家であったことは、よくしられている。",
+        "ko": "지난 세기 중반까지 일본이 봉건국가였다는 것은 잘 알려져 있다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9fb7bc06a9": {
+    "meaning": "풍작 / 수확이 많음",
+    "examples": [
+      {
+        "jp": "米作は今年豊作だ。",
+        "ko": "올해 벼농사는 풍작이다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c1c82b2952": {
+    "meaning": "봉사 / 헌신",
+    "examples": [
+      {
+        "jp": "彼は数週間共同募金運動に奉仕した。",
+        "ko": "그는 몇 주 동안 공동모금 운동에 봉사했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-ebee201fce": {
+    "examples": [
+      {
+        "jp": "彼は新しい方式を編み出した。",
+        "ko": "그는 새로운 방식을 고안해 냈다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-9e3ffc8eb0": {
+    "meaning": "방사 / 복사 / 방출",
+    "examples": [
+      {
+        "jp": "ドップラー効果はまた、一般に光と放射エネルギーにおいても見られる。",
+        "ko": "도플러 효과는 일반적으로 빛과 복사 에너지에서도 관찰된다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-c015ddb7c6": {
+    "examples": [
+      {
+        "jp": "今回の雨には放射能はない。",
+        "ko": "이번 비에는 방사능이 없다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-a227e50797": {
+    "meaning": "보수 / 보상 / 사례금",
+    "examples": [
+      {
+        "jp": "彼は労働の報酬をもらわなかった。",
+        "ko": "그는 노동에 대한 보수를 받지 못했다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7704534786": {
+    "meaning": "방출 / 내보냄 / 배출",
+    "examples": [
+      {
+        "jp": "植物は栄養物を作っているとき、酸素を放出する。",
+        "ko": "식물은 영양분을 만들 때 산소를 방출한다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-e3797104ae": {
+    "meaning": "알리다 / 보도하다 / 보고하다",
+    "examples": [
+      {
+        "jp": "新聞はそのニュースを報じなかった。",
+        "ko": "신문은 그 뉴스를 보도하지 않았다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-b55c78d275": {
+    "meaning": "망연자실 / 아연실색 / 멍함",
+    "examples": [
+      {
+        "jp": "彼は悲嘆に暮れてぼう然としていた。",
+        "ko": "그는 비탄에 잠겨 망연자실해 있었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-5eb4b23381": {
+    "meaning": "방치 / 그대로 내버려 둠",
+    "examples": [
+      {
+        "jp": "少女たちは縛り上げられて地下室に放置された。",
+        "ko": "소녀들은 꽁꽁 묶인 채 지하실에 방치되었다.",
+        "exampleSource": "manual-review"
+      }
+    ],
+    "meaningSource": "manual-review"
+  },
+  "oj-7c8cd24ffc": {
+    "meaning": "팽창 / 부풀어 오름",
+    "examples": [
+      {
+        "jp": "熱はたいていの物を膨張させる。",
+        "ko": "열은 대부분의 물체를 팽창시킨다.",
         "exampleSource": "manual-review"
       }
     ],
