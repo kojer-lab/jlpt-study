@@ -1722,10 +1722,14 @@ $("wordRating").addEventListener("click",e=>{
  const currentId=b.dataset.word,currentWord=words.find(w=>w.id===currentId);
  const hadSrs=Object.prototype.hasOwnProperty.call(state.srs,currentId);
  const before=hadSrs?JSON.parse(JSON.stringify(state.srs[currentId])):null;
- const reviewLogLength=(state.reviewLog||[]).length,profileBefore=JSON.parse(JSON.stringify(state.fsrsProfile||{}));
- wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore});
+ const reviewLogLength=(state.reviewLog||[]).length,profileBefore=JSON.parse(JSON.stringify(state.fsrsProfile||{})),learningQueueBefore=JSON.parse(JSON.stringify(wordLearningQueue));
+ wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,countedDone:false});
  rateWord(currentId,b.dataset.rate);
- wordSessionDone++;wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
+ const after=getSrs(currentId),needsRepeat=after.state==="learning"||after.state==="relearning";
+ wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
+ if(needsRepeat)queueLearningCard(wordLearningQueue,currentWord);
+ else{wordSessionDone++;wordSessionHistory[wordSessionHistory.length-1].countedDone=true}
+ promoteLearningCards(wordSessionQueue,wordLearningQueue,true);
  wordIndex=0;renderWord();wordTop();
 });
 $("undoWordRating").addEventListener("click",()=>{
@@ -1733,8 +1737,9 @@ $("undoWordRating").addEventListener("click",()=>{
  if(h.hadSrs)state.srs[h.id]=h.before;else delete state.srs[h.id];
  if(Number.isInteger(h.reviewLogLength))state.reviewLog=(state.reviewLog||[]).slice(0,h.reviewLogLength);
  if(h.profileBefore)state.fsrsProfile=h.profileBefore;
+ if(Array.isArray(h.learningQueueBefore))wordLearningQueue=h.learningQueueBefore;
  if(h.word&&!wordSessionQueue.some(w=>w.id===h.id))wordSessionQueue.unshift(h.word);
- wordSessionDone=Math.max(0,wordSessionDone-1);wordIndex=0;
+ if(h.countedDone)wordSessionDone=Math.max(0,wordSessionDone-1);wordIndex=0;
  saveState(state);refreshAll();renderWord();wordTop();
  requestAnimationFrame(()=>{
    if(!$("showMeaningBtn").classList.contains("hidden"))$("showMeaningBtn").click();
