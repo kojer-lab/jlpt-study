@@ -1,10 +1,8 @@
 exit_code=0
-commit=2a570b79fee9fa2db8e98b1e5bdc01ee64a87993
+commit=8e6d88c3161b3f9129413a63e3f4910696043935
 
 Items without direct headword metadata: 2
 Examples: arifureta, motarasu
-WARNING: OpenJLPT entries with fewer than two distinct examples: oj-2ed570cfb3, oj-9ed26e130c, oj-ecec76a53b, oj-926d078a4a, oj-edbb308319, oj-4ec7fe1166, oj-a6b3309e5a, oj-432e75bc0b, oj-c88fd01898, oj-17b1b51e96, oj-64e8f7eda0, oj-2bc12ccbaf, oj-c67f56091c, oj-6d57e2cc71, oj-7c05439ccd, oj-f4567b25f5, oj-8996248374, oj-e6a2f28faa, oj-7444ba3ed5, oj-3089867b81, oj-52a27aec4f, oj-8616dbfe4e, oj-66748989bb, oj-31652ca46f, oj-02e6ac02bf, oj-24aad19c86, oj-508ca723f8, oj-f73bb800e0, oj-281d9aa72f, oj-2e2b2bb861
-Furigana output will retain their available example instead of failing the entire build.
 Built 3233 furigana entries -> /home/runner/work/jlpt-study/jlpt-study/data/n1-word-furigana.js
-Furigana spans: 15876
-Output bytes: 1459293
+Furigana spans: 16112
+Output bytes: 1475613
