@@ -283,7 +283,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="word-dash-stats">
           <div class="word-dash-stat"><strong id="wordDashDue">0</strong><span>지금 복습</span></div>
           <div class="word-dash-stat"><strong id="wordDashNew">0</strong><span>오늘 새 단어</span></div>
-          <div class="word-dash-stat"><strong id="wordDashTotal">0</strong><span>오늘 학습</span></div>
+          <div class="word-dash-stat"><strong id="wordDashTotal">0</strong><span>지금 학습할 단어</span></div>
           <div class="word-dash-stat"><strong id="wordDashMastered">0</strong><span>정착</span></div>
         </div>
         <div class="word-dash-setting">
@@ -294,7 +294,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
           <label for="desiredRetention">FSRS 목표 기억률</label>
           <select id="desiredRetention"><option value="0.85">85% · 여유</option><option value="0.90">90% · 추천</option><option value="0.93">93% · 촘촘</option><option value="0.95">95% · 집중</option></select>
         </div>
-        <button class="primary word-start" type="button" id="startWordStudy">오늘 학습 시작</button>
+        <button class="primary word-start" type="button" id="startWordStudy">지금 학습 시작</button>
         <div class="word-dash-actions"><button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button><button class="secondary" type="button" data-go="review">복습만 보기</button></div>
         <button class="secondary word-start" type="button" id="openWordLibrary" style="margin-top:8px">📚 N1 전체 단어장 · <span id="wordLibraryCount">0</span>개</button>
       </div>
@@ -1900,7 +1900,7 @@ function renderWordDashboard(){
  const total=due.length+fresh.length;
  const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0||wordQuickRepeats.length>0)||(!wordSessionTotal&&restoreWordSession());
  $("startWordStudy").disabled=!active&&total===0;
- $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`오늘 학습 시작 · ${total}장`:"오늘 학습 완료 ✓";
+ $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`지금 학습 시작 · ${total}장`:"지금 학습할 단어 없음 ✓";
 }
 const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
 let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null;
