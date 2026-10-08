@@ -2,7 +2,7 @@ name: QA N1 word data
 
 on:
   push:
-    branches: [main]
+    branches: [main, qa-word-data-20261008]
     paths:
       - "data/n1-extra-words-openjlpt-*.js"
       - "data/n1-curated-overrides.js"
@@ -11,6 +11,8 @@ on:
       - "data/n1-word-furigana-source.json"
       - "data/n1-word-furigana.js"
       - "scripts/qa_n1_word_data.py"
+      - "scripts/n1_language_review_queue.py"
+      - "data/n1-language-review-progress.json"
       - ".github/workflows/qa-n1-word-data.yml"
   pull_request:
     paths:
@@ -21,6 +23,8 @@ on:
       - "data/n1-word-furigana-source.json"
       - "data/n1-word-furigana.js"
       - "scripts/qa_n1_word_data.py"
+      - "scripts/n1_language_review_queue.py"
+      - "data/n1-language-review-progress.json"
       - ".github/workflows/qa-n1-word-data.yml"
   workflow_dispatch:
 
@@ -34,3 +38,11 @@ jobs:
           python-version: "3.12"
       - name: Run N1 word QA
         run: python scripts/qa_n1_word_data.py
+      - name: Prepare risk-prioritized next 500-word review packet
+        run: python scripts/n1_language_review_queue.py --batch-size 500 --out qa-results/n1-language-review-next.json
+      - name: Upload review packet as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: n1-next-review-packet
+          path: qa-results/n1-language-review-next.json
+          retention-days: 30

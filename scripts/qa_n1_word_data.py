@@ -91,24 +91,33 @@ def main():
         a, b = normalized_japanese(jp), normalized_japanese(first_examples[oid])
         if a == b:
             duplicate_pairs.append(oid)
+        elif min(len(a), len(b)) >= 8 and (a in b or b in a):
+            duplicate_pairs.append(oid)
         elif min(len(a), len(b)) >= 8 and SequenceMatcher(None, a, b).ratio() >= 0.88:
             candidates.append((oid, "near-duplicate examples"))
-    fail_if(duplicate_pairs, "Identical example 1/2: " + ", ".join(duplicate_pairs[:20]))
+    fail_if(duplicate_pairs, "Identical or contained example 1/2: " + ", ".join(duplicate_pairs[:20]))
 
     breakdowns = {}
+    duplicate_breakdown_ids = set()
     required = ("type", "parts", "core", "memory", "formation", "nuance", "tip")
     for i in range(1, 67):
         bank = parse_js(DATA / f"n1-word-breakdowns-{i}.js")
         for oid, item in bank.items():
-            fail_if(oid in breakdowns, f"Duplicate breakdown ID: {oid}")
+            # Earlier curated breakdowns may also appear in a later complete batch.
+            # Later definitions are authoritative. This is not an OpenJLPT word-ID duplicate.
+            if oid in breakdowns:
+                duplicate_breakdown_ids.add(oid)
             breakdowns[oid] = item
             for key in required:
                 value = item.get(key)
                 fail_if(value in (None, "", []), f"Missing breakdown {key}: {oid}")
             fail_if(not isinstance(item.get("parts"), list), f"Invalid breakdown parts: {oid}")
 
-    fail_if(set(breakdowns) != id_set,
-            f"Breakdown coverage mismatch: breakdowns={len(breakdowns)} source={len(id_set)}")
+    # The same bank also contains legacy/base vocabulary. Count only this 2,933-word cohort.
+    covered_openjlpt = set(breakdowns).intersection(id_set)
+    fail_if(covered_openjlpt != id_set,
+            "Breakdown OpenJLPT coverage mismatch: missing IDs: " +
+            ", ".join(sorted(id_set - covered_openjlpt)[:30]))
 
     furi_source_path = DATA / "n1-word-furigana-source.json"
     if furi_source_path.exists():
@@ -135,8 +144,10 @@ def main():
     print(f"  OpenJLPT words: {len(source_words)}")
     print(f"  Reviewed meanings/examples: {len(overrides)}")
     print(f"  Second examples: {len(seconds)}")
-    print(f"  Breakdown entries: {len(breakdowns)}")
-    print("  Identical example pairs: 0")
+    print(f"  OpenJLPT breakdown entries: {len(covered_openjlpt)}")
+    print(f"  Other/legacy breakdown entries: {len(breakdowns) - len(covered_openjlpt)}")
+    print(f"  Earlier breakdown entries superseded: {len(duplicate_breakdown_ids)}")
+    print("  Identical/contained example pairs: 0")
     print("  Garbled/missing required fields: 0")
 
 if __name__ == "__main__":
