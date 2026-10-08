@@ -29,10 +29,12 @@ jobs:
           git fetch origin main
           git reset --hard origin/main
 
-      - name: Install ffmpeg
+      - name: Install ffmpeg and ffprobe
         run: |
-          command -v ffmpeg
-          command -v ffprobe
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
 
       - name: Convert and validate all legacy WAV clips
         run: python3 tools/migrate-vocab-mp3.py
