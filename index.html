@@ -1200,7 +1200,11 @@ function breakdownInnerHTML(d,detailOpen=false,wordId=""){
  if(!d)return "";
  const parts=(d.parts||[]).map((p,i)=>`<div class="word-breakdown-part"><strong>${breakdownEsc(p[0])}</strong><span>${breakdownEsc(p[1])}</span></div>${i<(d.parts||[]).length-1?'<div class="word-breakdown-op">＋</div>':""}`).join("");
  const generatedRelated=wordFuriganaBank[wordId]?.related||[];
- const related=(d.related||[]).map((x,i)=>`<span class="word-breakdown-chip">${generatedRelated[i]||autoFuriText(x,null)}</span>`).join("");
+ const related=(d.related||[]).map((x,i)=>{
+   const generated=generatedRelated[i];
+   const html=(generated&&plain(generated)===plain(x))?generated:autoFuriText(x,null);
+   return `<span class="word-breakdown-chip">${html}</span>`;
+ }).join("");
  return `<div class="word-breakdown-quick">
    <div class="word-breakdown-type">${breakdownEsc(d.type||"단어 이해")}</div>
    <div class="word-breakdown-formula">${parts}<div class="word-breakdown-op">→</div><div class="word-breakdown-part word-breakdown-result"><strong>핵심</strong><span>${breakdownEsc(d.core||"")}</span></div></div>
@@ -1275,7 +1279,7 @@ function autoFuriText(text,currentWord){
 }
 function renderExampleJP(html,currentWord,exampleIndex=null){
  const generated=(currentWord&&Number.isInteger(exampleIndex))?wordFuriganaBank[currentWord.id]?.examples?.[exampleIndex]:null;
- if(generated&&!/&lt;\/?span\b|&quot;furi&quot;|&amp;lt;\/?span\b/i.test(generated))return generated;
+ if(generated&&plain(generated)===plain(html)&&!/&lt;\/?span\b|&quot;furi&quot;|&amp;lt;\/?span\b/i.test(generated))return generated;
  const box=document.createElement("div");box.innerHTML=html||"";
  const walker=document.createTreeWalker(box,NodeFilter.SHOW_TEXT);
  const nodes=[];let n;
