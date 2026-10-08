@@ -1757,7 +1757,7 @@ function promoteLearningCards(immediate,delayed,allowAhead=true){
    const x=delayed.shift(),w=wordById.get(x.id);if(w)immediate.push(w);
  }
 }
-function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,false);return wordSessionQueue}
+function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,false);promoteQuickWord();return wordSessionQueue}
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
 function renderWordDashboard(){
  const daily=ensureDailyNew(false),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
@@ -1771,15 +1771,25 @@ function renderWordDashboard(){
  $("wordDashTotal").textContent=due.length+fresh.length;$("wordDashMastered").textContent=mastered;
  $("wordCountPill").textContent=`현재 ${words.length} words`;if($("wordLibraryCount"))$("wordLibraryCount").textContent=words.length;
  const total=due.length+fresh.length;
- const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0)||(!wordSessionTotal&&restoreWordSession());
+ const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0||wordQuickRepeats.length>0)||(!wordSessionTotal&&restoreWordSession());
  $("startWordStudy").disabled=!active&&total===0;
  $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`오늘 학습 시작 · ${total}장`:"오늘 학습 완료 ✓";
 }
 const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
+let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null;
+function promoteQuickWord(){
+ if(wordQuickActive||!wordQuickRepeats.length)return;
+ const eligible=wordQuickRepeats.find(x=>x.turn<=wordQuickTurn)||(!wordSessionQueue.length?wordQuickRepeats[0]:null);
+ if(!eligible)return;
+ wordQuickRepeats=wordQuickRepeats.filter(x=>x!==eligible);
+ const w=wordById.get(eligible.id);
+ if(w){wordQuickActive=eligible;wordSessionQueue.unshift(w);}
+}
+
 function persistWordSession(){
- if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length)))return;
+ if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length)))return;
  const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
-  immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),
+  immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),quick:wordQuickRepeats,quickTurn:wordQuickTurn,quickActive:wordQuickActive,
   history:wordSessionHistory.map(h=>({...h,word:undefined})),savedAt:Date.now()};
  try{localStorage.setItem(WORD_SESSION_KEY,JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
 }
@@ -1791,14 +1801,15 @@ function restoreWordSession(){
  wordMode=data.mode==="starred"?"starred":"daily";
  wordSessionQueue=data.immediate.map(id=>wordById.get(id)).filter(Boolean);
  wordLearningQueue=data.learning.filter(id=>wordById.has(id)).map(id=>({id,due:getSrs(id).due}));
+ wordQuickRepeats=(data.quick||[]).filter(x=>wordById.has(x.id));wordQuickTurn=Number(data.quickTurn)||0;wordQuickActive=data.quickActive||null;
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
  wordSessionHistory=(data.history||[]).map(h=>({...h,word:wordById.get(h.id)})).filter(h=>h.word);
- if(!wordSessionQueue.length&&!wordLearningQueue.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
+ if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
  return true;
 }
 function clearWordSession(){
- wordSessionQueue=[];wordLearningQueue=[];wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
+ wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
  localStorage.removeItem(WORD_SESSION_KEY);
 }
 function showWordDashboard(){
@@ -1808,8 +1819,8 @@ function showWordDashboard(){
  renderWordDashboard();wordTop();
 }
 function startWordStudy(mode="daily"){
- if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length))&&!restoreWordSession()){
-  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];
+ if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length))&&!restoreWordSession()){
+  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
   wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
   wordSessionTotal=wordSessionQueue.length;
  }
@@ -1901,7 +1912,7 @@ function renderWord(){
    $("wordStudyProgress").textContent=`복습 대기 · ${wordLearningQueue.length}장`;
    $("wordIndexText").textContent="잠시 후 복습";$("wordDueText").textContent="";
    $("wordMain").textContent=Math.max(1,Math.ceil(wait/MIN))+"분 후";
-   $("wordFocusHint").textContent="복습 시간이 되면 이 화면에 카드가 다시 나타납니다.";
+   $("wordFocusHint").textContent="예약된 복습 시간이 되면 카드가 다시 나타납니다. 다른 학습 메뉴도 이용할 수 있습니다.";
    $("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").classList.add("hidden");
    $("showMeaningBtn").classList.add("hidden");$("wordMeaning").classList.add("hidden");
    $("wordExamples").classList.add("hidden");$("wordBreakdown").classList.add("hidden");$("wordRating").classList.add("hidden");
@@ -2060,14 +2071,22 @@ $("wordRating").addEventListener("click",e=>{
  const hadSrs=Object.prototype.hasOwnProperty.call(state.srs,currentId);
  const before=hadSrs?JSON.parse(JSON.stringify(state.srs[currentId])):null;
  const reviewLogLength=(state.reviewLog||[]).length,profileBefore=JSON.parse(JSON.stringify(state.fsrsProfile||{})),learningQueueBefore=JSON.parse(JSON.stringify(wordLearningQueue));
- wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,countedDone:false});
- rateWord(currentId,b.dataset.rate);
+ const quickBefore=JSON.parse(JSON.stringify(wordQuickRepeats)),quickTurnBefore=wordQuickTurn,quickActiveBefore=wordQuickActive?{...wordQuickActive}:null;
+ const isQuick=!!wordQuickActive&&wordQuickActive.id===currentId;
+ wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,countedDone:false});
+ if(!isQuick)rateWord(currentId,b.dataset.rate);
  // A new card attempt must start with all tap-to-reveal furigana hidden.
  clearStudyFuriganaState();
- const after=getSrs(currentId),needsRepeat=after.state==="learning"||after.state==="relearning";
+ const after=getSrs(currentId),needsRepeat=!isQuick&&(after.state==="learning"||after.state==="relearning");
  wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
- if(needsRepeat)queueLearningCard(wordLearningQueue,currentWord);
- else{wordSessionDone++;wordSessionHistory[wordSessionHistory.length-1].countedDone=true}
+ if(isQuick){wordQuickActive=null;}
+ else if(needsRepeat){
+  queueLearningCard(wordLearningQueue,currentWord);
+  if((b.dataset.rate==="again"||b.dataset.rate==="hard")&&wordQuickRepeats.filter(x=>x.id===currentId).length<1){
+   wordQuickRepeats.push({id:currentId,turn:wordQuickTurn+(b.dataset.rate==="again"?4:10)});
+  }
+ }else{wordSessionDone++;wordSessionHistory[wordSessionHistory.length-1].countedDone=true}
+ wordQuickTurn++;
  promoteLearningCards(wordSessionQueue,wordLearningQueue,false);
  wordIndex=0;persistWordSession();renderWord();wordTop();
 });
@@ -2077,6 +2096,9 @@ $("undoWordRating").addEventListener("click",()=>{
  if(Number.isInteger(h.reviewLogLength))state.reviewLog=(state.reviewLog||[]).slice(0,h.reviewLogLength);
  if(h.profileBefore)state.fsrsProfile=h.profileBefore;
  if(Array.isArray(h.learningQueueBefore))wordLearningQueue=h.learningQueueBefore;
+ if(Array.isArray(h.quickBefore))wordQuickRepeats=h.quickBefore;
+ if(Number.isFinite(h.quickTurnBefore))wordQuickTurn=h.quickTurnBefore;
+ wordQuickActive=h.quickActiveBefore||null;
  if(h.word&&!wordSessionQueue.some(w=>w.id===h.id))wordSessionQueue.unshift(h.word);
  if(h.countedDone)wordSessionDone=Math.max(0,wordSessionDone-1);wordIndex=0;
  saveState(state);persistWordSession();refreshAll();renderWord();wordTop();
