@@ -1,0 +1,82 @@
+name: Convert legacy vocabulary WAV to MP3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/migrate-vocab-mp3.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vocab-audio-build
+  cancel-in-progress: false
+
+jobs:
+  convert:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Sync latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Install ffmpeg
+        run: |
+          command -v ffmpeg
+          command -v ffprobe
+
+      - name: Convert and validate all legacy WAV clips
+        run: python3 tools/migrate-vocab-mp3.py
+
+      - name: Validate the resulting manifest paths
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('.')
+          data=json.loads((root/'audio/vocab/manifest.json').read_text())
+          paths=[]
+          for entry in data['files'].values():
+              paths.extend([entry.get('word'), *entry.get('examples', [])])
+          paths=[p for p in paths if p]
+          assert paths, 'No entries found'
+          assert all(p.endswith('.mp3') for p in paths), 'Legacy WAV path remains'
+          missing=[p for p in paths if not (root/p).is_file()]
+          assert not missing, f'Missing audio: {missing[:10]}'
+          print(f'PASS: {len(paths)} MP3 clips; no WAV entries')
+          PY
+
+      - name: Commit migrated MP3s
+        run: |
+          git add -A audio/vocab
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "audio: replace 800 legacy WAV clips with compact MP3"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "::error::Conflicting audio changes, aborting safely."
+              git rebase --abort
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "MP3 migration committed"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Could not push migrated audio"
+          exit 1
