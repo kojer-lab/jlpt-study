@@ -741,6 +741,8 @@ function loadStaticVocabAudioManifest(){
 }
 async function staticVocabAudioUrl(w,exampleIndex=null){
  const files=await loadStaticVocabAudioManifest(),entry=files&&w?files[w.id]:null;
+ // 吐く is now taught as はく; the older baked word file says つく.
+ if(w?.id==="oj-08cfe03cb3"&&exampleIndex===null)return null;
  if(!entry)return null;
  return exampleIndex===null?(entry.word||null):((entry.examples||[])[exampleIndex]||null);
 }
@@ -1383,7 +1385,7 @@ function autoFuriText(text,currentWord){
 }
 function renderExampleJP(html,currentWord,exampleIndex=null){
  const generated=(currentWord&&Number.isInteger(exampleIndex))?wordFuriganaBank[currentWord.id]?.examples?.[exampleIndex]:null;
- if(generated&&plain(generated)===plain(html)&&!/&lt;\/?span\b|&quot;furi&quot;|&amp;lt;\/?span\b/i.test(generated))return generated;
+ if(generated&&!/class=["\']furi["\']/.test(html)&&plain(generated)===plain(html)&&!/&lt;\/?span\b|&quot;furi&quot;|&amp;lt;\/?span\b/i.test(generated))return generated;
  const box=document.createElement("div");box.innerHTML=html||"";
  const walker=document.createTreeWalker(box,NodeFilter.SHOW_TEXT);
  const nodes=[];let n;
@@ -1966,11 +1968,11 @@ async function prefetchWordAudio(w){
    if(!stillCurrent())return;
    const entry=staticVocabAudio?.[w.id];
    const missingExamples=w.examples.filter((ex,i)=>!entry?.examples?.[i]);
-   if(entry?.word&&!missingExamples.length){
+   if(entry?.word&&w.id!=="oj-08cfe03cb3"&&!missingExamples.length){
      status("사전 생성 Kokoro 단어·예문 음성 · 즉시 재생");return;
    }
    // 단어만 사전 저장된 경우에도 예문은 별도로 미리 생성해야 한다.
-   if(!entry?.word){
+   if(!entry?.word||w.id==="oj-08cfe03cb3"){
      await kokoroGenerate(readingOf(w.w),"jf_alpha",status);
      if(!stillCurrent())return;
    }
