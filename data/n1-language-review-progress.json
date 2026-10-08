@@ -2,7 +2,7 @@
   "cohort": "OpenJLPT N1 2933",
   "reviewedRange": [
     1,
-    100
+    200
   ],
   "reviewType": "targeted linguistic review",
   "description": "Checked first 100 entries for evident Korean gloss errors, mismatched headwords, Japanese syntax errors and semantically repetitive sentences. This does not certify entries 101-2933.",
@@ -106,7 +106,107 @@
     "oj-b2f39149f2",
     "oj-edb73d5cb3",
     "oj-9b84f255df",
-    "oj-fedad22ef0"
+    "oj-fedad22ef0",
+    "oj-d19fa15a3f",
+    "oj-d88fd8db92",
+    "oj-a96bfe80af",
+    "oj-5ffd03b2a2",
+    "oj-75012ef36e",
+    "oj-f555ee7e0d",
+    "oj-cb3d7cda2e",
+    "oj-d5373e6a45",
+    "oj-8dc66af6e2",
+    "oj-ff3f63ebf1",
+    "oj-8af48d87c5",
+    "oj-685e56a1d4",
+    "oj-419813adc3",
+    "oj-2427a8f4e6",
+    "oj-c4a44d28ef",
+    "oj-b92c5e2b63",
+    "oj-ee7bcbddd5",
+    "oj-1325504949",
+    "oj-dcdd5a11a3",
+    "oj-43933ded5e",
+    "oj-2fd54fbe7c",
+    "oj-0e38a2be42",
+    "oj-17b0cd54d6",
+    "oj-65258065e5",
+    "oj-97698d32b7",
+    "oj-a5e340a2e7",
+    "oj-eb3966f9f5",
+    "oj-ce5fc44451",
+    "oj-57c6c0ff93",
+    "oj-4f60e61ae2",
+    "oj-1d578a6738",
+    "oj-0b6a6ef3da",
+    "oj-8e0babd804",
+    "oj-a9862719ca",
+    "oj-5a16851bd6",
+    "oj-9a43e5dbf7",
+    "oj-e183ec9f8c",
+    "oj-312c69ed58",
+    "oj-e190e9818a",
+    "oj-fe6273e5ef",
+    "oj-da18ebb396",
+    "oj-5db17b4a79",
+    "oj-b46bd7a8fa",
+    "oj-0bf76a38ae",
+    "oj-e4d22132c5",
+    "oj-2718829b22",
+    "oj-7ffd6e68aa",
+    "oj-ae82b5d72e",
+    "oj-17cdd2798b",
+    "oj-69063cb582",
+    "oj-deb93f291c",
+    "oj-cdd1146fbf",
+    "oj-334a8aa633",
+    "oj-71377eae9e",
+    "oj-5d1ad6cf31",
+    "oj-dab09239d8",
+    "oj-6c4936ba30",
+    "oj-a85f0694be",
+    "oj-e21dfd4766",
+    "oj-f7f8a306a6",
+    "oj-30935266bc",
+    "oj-94fa2eb100",
+    "oj-2b1903712a",
+    "oj-4c6dd2408d",
+    "oj-cd9ffe0242",
+    "oj-f79e08fc6d",
+    "oj-6a8979ffef",
+    "oj-a672cac6f3",
+    "oj-896058a507",
+    "oj-0d79c7283f",
+    "oj-16c8d1b9b7",
+    "oj-3f5fcba58b",
+    "oj-579a1fd344",
+    "oj-7ac2b47d4c",
+    "oj-7a05683c04",
+    "oj-9033ded88e",
+    "oj-f3190b2a08",
+    "oj-e68cf2059a",
+    "oj-592706bc9c",
+    "oj-cdc5cc7f6c",
+    "oj-07bd9dcf33",
+    "oj-f3830b7aa8",
+    "oj-4cfeb38640",
+    "oj-1e2cd74d5d",
+    "oj-104005ac4b",
+    "oj-1f3b016d79",
+    "oj-3b9ec31cf4",
+    "oj-d46f3d3b77",
+    "oj-bae36d5c14",
+    "oj-4b78567357",
+    "oj-8932a42228",
+    "oj-5b9fc8d12f",
+    "oj-ba309fb9db",
+    "oj-aab4b1a261",
+    "oj-d5bc2a73b1",
+    "oj-3ffc020bb5",
+    "oj-6659596f97",
+    "oj-9c8fe060e5",
+    "oj-88984a7ed8",
+    "oj-d24ffe73c2"
   ],
   "changes": [
     {
@@ -332,10 +432,292 @@
       "fields": [
         "second-example"
       ]
+    },
+    {
+      "n": 101,
+      "id": "oj-d19fa15a3f",
+      "word": "粋",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 103,
+      "id": "oj-a96bfe80af",
+      "word": "域外",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 109,
+      "id": "oj-8dc66af6e2",
+      "word": "育成",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 110,
+      "id": "oj-ff3f63ebf1",
+      "word": "幾多",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 111,
+      "id": "oj-8af48d87c5",
+      "word": "活ける",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 115,
+      "id": "oj-c4a44d28ef",
+      "word": "いざ",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 119,
+      "id": "oj-dcdd5a11a3",
+      "word": "衣装",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 120,
+      "id": "oj-43933ded5e",
+      "word": "弄る",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 125,
+      "id": "oj-97698d32b7",
+      "word": "頂",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 126,
+      "id": "oj-a5e340a2e7",
+      "word": "至って",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 131,
+      "id": "oj-1d578a6738",
+      "word": "一定",
+      "fields": [
+        "meaning",
+        "reading",
+        "breakdown"
+      ]
+    },
+    {
+      "n": 138,
+      "id": "oj-312c69ed58",
+      "word": "一様",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 139,
+      "id": "oj-e190e9818a",
+      "word": "一律",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 143,
+      "id": "oj-b46bd7a8fa",
+      "word": "一挙に",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 149,
+      "id": "oj-17cdd2798b",
+      "word": "一変",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 150,
+      "id": "oj-69063cb582",
+      "word": "意図",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 153,
+      "id": "oj-334a8aa633",
+      "word": "暇",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 155,
+      "id": "oj-5d1ad6cf31",
+      "word": "否",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 160,
+      "id": "oj-f7f8a306a6",
+      "word": "今更",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 164,
+      "id": "oj-4c6dd2408d",
+      "word": "卑しい",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 166,
+      "id": "oj-f79e08fc6d",
+      "word": "嫌らしい",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 167,
+      "id": "oj-6a8979ffef",
+      "word": "意欲",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 168,
+      "id": "oj-a672cac6f3",
+      "word": "衣料",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 171,
+      "id": "oj-16c8d1b9b7",
+      "word": "衣類",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 175,
+      "id": "oj-7a05683c04",
+      "word": "印鑑",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 176,
+      "id": "oj-9033ded88e",
+      "word": "陰気",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 177,
+      "id": "oj-f3190b2a08",
+      "word": "隠居",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 182,
+      "id": "oj-f3830b7aa8",
+      "word": "インフォメーション",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 184,
+      "id": "oj-1e2cd74d5d",
+      "word": "卯",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 185,
+      "id": "oj-104005ac4b",
+      "word": "ウェートレス",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 186,
+      "id": "oj-1f3b016d79",
+      "word": "上下",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 187,
+      "id": "oj-3b9ec31cf4",
+      "word": "含嗽",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 189,
+      "id": "oj-bae36d5c14",
+      "word": "受け入れ",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 196,
+      "id": "oj-3ffc020bb5",
+      "word": "氏",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
     }
   ],
   "notes": [
     "悪日 has the rare reading あくび (also あくにち). The source reading is retained.",
-    "Regenerate word-furigana output after integrating revised examples into main."
+    "Regenerate word-furigana output after integrating revised examples into main.",
+    "一定 (entry 131): corrected headword reading from archaic いちじょう to modern いってい to match both examples and breakdown."
   ]
 }

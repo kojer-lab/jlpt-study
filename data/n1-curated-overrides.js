@@ -232,14 +232,15 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-334a8aa633": {
-    "meaning": "틈 / 여가 / 작별 인사·허가를 구함(고어적 용법)",
+    "meaning": "틈·여유 / 작별·휴가를 청함 (いとま는 문어적 읽기)",
     "examples": [
       {
-        "jp": "忙しくて本を読む暇もない。",
-        "ko": "바빠서 책을 읽을 틈도 없다."
+        "jp": "長年勤めた店を去る前に、主人に暇を告げた。",
+        "ko": "오랫동안 일한 가게를 떠나기 전에 주인에게 작별을 고했다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-6c4936ba30": {
     "meaning": "옛날 / 고대 / 먼 과거",
@@ -5431,7 +5432,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "멋 / 세련됨 / 풍류 있는 품격"
   },
   "oj-d88fd8db92": {
     "examples": [
@@ -5457,12 +5459,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-8dc66af6e2": {
     "examples": [
       {
-        "jp": "ワインにはいろいろなタイプがあり、それによって育成の仕方もさまざまです。",
-        "ko": "와인에는 여러 종류가 있고, 그에 따라 숙성시키는 방법도 다양합니다.",
-        "exampleSource": "manual-review"
+        "jp": "この学校では若手選手の育成に力を注いでいる。",
+        "ko": "이 학교에서는 젊은 선수 육성에 힘쓰고 있다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "육성 / 양성 / 길러 냄"
   },
   "oj-ff3f63ebf1": {
     "examples": [
@@ -5477,12 +5480,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-8af48d87c5": {
     "examples": [
       {
-        "jp": "彼女は花を生けるのが好きです。",
-        "ko": "그녀는 꽃꽂이를 좋아합니다.",
-        "exampleSource": "manual-review"
+        "jp": "彼女は花を活けるのが好きだ。",
+        "ko": "그녀는 꽃꽂이를 좋아한다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "꽃을 꽂다 / 꽃꽂이하다"
   },
   "oj-419813adc3": {
     "examples": [
@@ -5512,7 +5516,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "자, 이제 / 막상 ~하려니 / 어떤 행동을 시작하려는 순간"
   },
   "oj-b92c5e2b63": {
     "meaning": "고집 / 오기 / 심술 / 의지",
@@ -5554,7 +5559,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "만지작거리다 / 함부로 건드리다 / 손대다"
   },
   "oj-2fd54fbe7c": {
     "examples": [
@@ -5637,7 +5643,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "일정함 / 정해져 변하지 않음 / 일정한 정도"
   },
   "oj-0b6a6ef3da": {
     "examples": [
@@ -5749,9 +5756,9 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "완전히 바뀜 / 일변",
     "examples": [
       {
-        "jp": "夫妻は化学を近代科学へと一変させた。",
-        "ko": "그 부부는 화학을 근대 과학으로 완전히 바꾸어 놓았다.",
-        "exampleSource": "manual-review"
+        "jp": "再開発によって駅前の風景が一変した。",
+        "ko": "재개발로 역 앞 풍경이 완전히 달라졌다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -5764,7 +5771,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "의도 / 목적 / 속뜻"
   },
   "oj-cdd1146fbf": {
     "examples": [
@@ -5850,7 +5858,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "비열하다 / 천하다 / 탐욕스럽다 / 게걸스럽다"
   },
   "oj-cd9ffe0242": {
     "examples": [
@@ -5870,7 +5879,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "불쾌하다 / 역겹다 / 음흉하다 / 성적으로 불쾌하다"
   },
   "oj-6a8979ffef": {
     "examples": [
@@ -5880,7 +5890,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "의욕 / 적극적으로 하려는 마음"
   },
   "oj-a672cac6f3": {
     "examples": [
@@ -5890,7 +5901,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "의류 / 옷감 / 의복의 재료"
   },
   "oj-0d79c7283f": {
     "meaning": "들어가다 / 들어오다 / 흘러들다",
@@ -5904,7 +5916,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "의류 / 옷 / 의복"
   },
   "oj-3f5fcba58b": {
     "meaning": "이론 / 다른 의견 / 이의",
@@ -5925,7 +5938,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "도장 / 인감도장"
   },
   "oj-9033ded88e": {
     "examples": [
@@ -5935,7 +5949,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "음침하다 / 침울하다 / 우울하고 어두운 분위기"
   },
   "oj-07bd9dcf33": {
     "examples": [
@@ -5955,7 +5970,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "정보 / 안내 / 안내소"
   },
   "oj-4cfeb38640": {
     "examples": [
@@ -5968,7 +5984,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-3b9ec31cf4": {
-    "meaning": "양치 / 가글",
+    "meaning": "가글 / 물로 입과 목을 헹굼",
     "examples": [
       {
         "jp": "せきには塩水のうがいが効く。",
@@ -5976,14 +5992,14 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-bae36d5c14": {
     "examples": [
       {
-        "jp": "彼は彼らの受け入れ方接待のしかたが気にいらないのだ。",
-        "ko": "그는 그들이 받아들이고 접대하는 방식이 마음에 들지 않는다.",
-        "exampleSource": "manual-review"
+        "jp": "避難者の受け入れに向けて施設を整備した。",
+        "ko": "피난민 수용을 위해 시설을 정비했다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -6053,8 +6069,15 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-3ffc020bb5": {
-    "meaning": "성씨 / ~씨(사람 이름 뒤의 존칭)",
-    "meaningSource": "manual-review"
+    "meaning": "씨족 / 가문·혈족 (うじ는 고대의 씨족을 뜻하는 읽기)",
+    "meaningSource": "manual-language-review-20261008",
+    "examples": [
+      {
+        "jp": "古代では同じ氏の人々が一族と見なされた。",
+        "ko": "고대에는 같은 씨족에 속한 사람들이 한 집안으로 여겨졌다.",
+        "exampleSource": "manual-language-review-20261008"
+      }
+    ]
   },
   "oj-4b812c0625": {
     "meaning": "사전 협의하다 / 의논하다 / 서로 맞춰 보다",
