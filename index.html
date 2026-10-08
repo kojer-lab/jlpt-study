@@ -715,9 +715,43 @@ function restoreInteractiveFuriState(root=document){
 const DAY=86400000, MIN=60000;
 const STORE_KEY="jlptN1StudyV3";
 const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
-const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},_updatedAt:0};
+const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},newsProgress:{},_updatedAt:0};
 function freshState(){return JSON.parse(JSON.stringify(defaultState));}
-function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.newsProgress=normalizeNewsProgress(x.newsProgress);x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
+
+function normalizeNewsProgress(raw){
+ const result={};
+ if(!raw||typeof raw!=="object"||Array.isArray(raw))return result;
+ for(const [date,entry] of Object.entries(raw)){
+  if(date.length!==10||!entry||typeof entry!=="object")continue;
+  const answers={};
+  if(entry.answers&&typeof entry.answers==="object"){
+   for(const [key,value] of Object.entries(entry.answers)){
+    const choice=Number(value?.choice),at=Number(value?.at)||0;
+    if(Number.isInteger(choice)&&choice>=0&&choice<4&&at>0)answers[key]={choice,at};
+   }
+  }
+  result[date]={answers,activeTitle:String(entry.activeTitle||""),activeQuestion:Math.max(0,Math.floor(Number(entry.activeQuestion)||0)),complete:entry.complete===true,resetAt:Number(entry.resetAt)||0,updatedAt:Number(entry.updatedAt)||0};
+ }
+ return result;
+}
+function mergeNewsProgress(a,b){
+ const result={};
+ const left=normalizeNewsProgress(a),right=normalizeNewsProgress(b);
+ for(const date of new Set([...Object.keys(left),...Object.keys(right)])){
+  const x=left[date]||{answers:{},resetAt:0,updatedAt:0};
+  const y=right[date]||{answers:{},resetAt:0,updatedAt:0};
+  const newer=Number(x.updatedAt||0)>=Number(y.updatedAt||0)?x:y;
+  const resetAt=Math.max(Number(x.resetAt)||0,Number(y.resetAt)||0);
+  const answers={};
+  for(const key of new Set([...Object.keys(x.answers||{}),...Object.keys(y.answers||{})])){
+   const entries=[x.answers?.[key],y.answers?.[key]].filter(z=>z&&z.at>resetAt).sort((p,q)=>q.at-p.at);
+   if(entries.length)answers[key]=entries[0];
+  }
+  result[date]={answers,activeTitle:newer.activeTitle||"",activeQuestion:newer.activeQuestion||0,complete:!!newer.complete,resetAt,updatedAt:Math.max(Number(x.updatedAt)||0,Number(y.updatedAt)||0)};
+ }
+ return result;
+}
 function loadState(){try{return normalizeState(JSON.parse(localStorage.getItem(STORE_KEY)||"{}"));}catch(e){return freshState();}}
 function persistState(s){localStorage.setItem(STORE_KEY,JSON.stringify(s));}
 function saveState(s,opts={}){if(opts.touch!==false)s._updatedAt=Date.now();persistState(s);if(!opts.skipCloud)scheduleCloudPush();updateSyncUI();}
@@ -2408,6 +2442,7 @@ function mergeStudyStates(a,b){
  const pa=a.fsrsProfile||{updatedAt:0},pb=b.fsrsProfile||{updatedAt:0};out.fsrsProfile=Number(pa.updatedAt||0)>=Number(pb.updatedAt||0)?pa:pb;
  const mm=new Map();[...(a.mistakes||[]),...(b.mistakes||[])].forEach(m=>{const old=mm.get(m.id);if(!old)mm.set(m.id,Object.assign({},m));else{const newer=Number(m.updatedAt||0)>=Number(old.updatedAt||0)?m:old;mm.set(m.id,Object.assign({},newer,{count:Math.max(Number(old.count)||0,Number(m.count)||0),updatedAt:Math.max(Number(old.updatedAt)||0,Number(m.updatedAt)||0)}))}});
  out.mistakes=[...mm.values()].sort((x,y)=>(Number(y.updatedAt)||0)-(Number(x.updatedAt)||0));
+ out.newsProgress=mergeNewsProgress(a.newsProgress,b.newsProgress);
  out._updatedAt=Math.max(Number(a._updatedAt)||0,Number(b._updatedAt)||0,Date.now());return out;
 }
 function sameState(a,b){try{return JSON.stringify(a)===JSON.stringify(b)}catch(e){return false}}
