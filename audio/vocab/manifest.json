@@ -13735,6 +13735,5 @@
       "word": "audio/vocab/openjlpt/oj-0bc587dbfe-word.mp3",
       "examples": []
     }
-  },
-  "legacyWavMigration": "MP3 mono 24kHz, 64 kbps"
+  }
 }

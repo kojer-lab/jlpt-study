@@ -15,7 +15,7 @@
       "id": "unagasu",
       "kind": "example",
       "index": 0,
-      "text": "政府は企業に早急な対応を促した。",
+      "text": "政府は企業に早急な対応を促した",
       "voice": "jf_alpha",
       "path": "audio/vocab/unagasu-ex1.mp3"
     },
@@ -23,7 +23,7 @@
       "id": "unagasu",
       "kind": "example",
       "index": 1,
-      "text": "議論を促すため、まず問題点を共有した。",
+      "text": "議論を促すため、まず問題点を共有した",
       "voice": "jf_alpha",
       "path": "audio/vocab/unagasu-ex2.mp3"
     },
@@ -39,7 +39,7 @@
       "id": "fumaeru",
       "kind": "example",
       "index": 0,
-      "text": "結果を踏まえて判断する。",
+      "text": "結果を踏まえて判断する",
       "voice": "jf_alpha",
       "path": "audio/vocab/fumaeru-ex1.mp3"
     },
@@ -47,7 +47,7 @@
       "id": "fumaeru",
       "kind": "example",
       "index": 1,
-      "text": "過去の経験を踏まえた計画が必要だ。",
+      "text": "過去の経験を踏まえた計画が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/fumaeru-ex2.mp3"
     },
@@ -63,7 +63,7 @@
       "id": "kutsugaesu",
       "kind": "example",
       "index": 0,
-      "text": "従来の常識を覆す研究結果だ。",
+      "text": "従来の常識を覆す研究結果だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/kutsugaesu-ex1.mp3"
     },
@@ -71,7 +71,7 @@
       "id": "kutsugaesu",
       "kind": "example",
       "index": 1,
-      "text": "裁判で一審の判決が覆された。",
+      "text": "裁判で一審の判決が覆された",
       "voice": "jf_alpha",
       "path": "audio/vocab/kutsugaesu-ex2.mp3"
     },
@@ -87,7 +87,7 @@
       "id": "todokooru",
       "kind": "example",
       "index": 0,
-      "text": "手続きが滞っている。",
+      "text": "手続きが滞っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/todokooru-ex1.mp3"
     },
@@ -95,7 +95,7 @@
       "id": "todokooru",
       "kind": "example",
       "index": 1,
-      "text": "大雨の影響で物流が滞った。",
+      "text": "大雨の影響で物流が滞った",
       "voice": "jf_alpha",
       "path": "audio/vocab/todokooru-ex2.mp3"
     },
@@ -111,7 +111,7 @@
       "id": "manugareru",
       "kind": "example",
       "index": 0,
-      "text": "責任を免れることはできない。",
+      "text": "責任を免れることはできない",
       "voice": "jf_alpha",
       "path": "audio/vocab/manugareru-ex1.mp3"
     },
@@ -119,7 +119,7 @@
       "id": "manugareru",
       "kind": "example",
       "index": 1,
-      "text": "早めに避難したため、被害を免れた。",
+      "text": "早めに避難したため、被害を免れた",
       "voice": "jf_alpha",
       "path": "audio/vocab/manugareru-ex2.mp3"
     },
@@ -135,7 +135,7 @@
       "id": "tazusawaru",
       "kind": "example",
       "index": 0,
-      "text": "長年、教育に携わってきた。",
+      "text": "長年、教育に携わってきた",
       "voice": "jf_alpha",
       "path": "audio/vocab/tazusawaru-ex1.mp3"
     },
@@ -143,7 +143,7 @@
       "id": "tazusawaru",
       "kind": "example",
       "index": 1,
-      "text": "この企画には多くの専門家が携わっている。",
+      "text": "この企画には多くの専門家が携わっている",
       "voice": "jf_alpha",
       "path": "audio/vocab/tazusawaru-ex2.mp3"
     },
@@ -159,7 +159,7 @@
       "id": "hodokosu",
       "kind": "example",
       "index": 0,
-      "text": "必要な処置を施す。",
+      "text": "必要な処置を施す",
       "voice": "jf_alpha",
       "path": "audio/vocab/hodokosu-ex1.mp3"
     },
@@ -167,7 +167,7 @@
       "id": "hodokosu",
       "kind": "example",
       "index": 1,
-      "text": "建物に耐震補強を施した。",
+      "text": "建物に耐震補強を施した",
       "voice": "jf_alpha",
       "path": "audio/vocab/hodokosu-ex2.mp3"
     },
@@ -183,7 +183,7 @@
       "id": "kaerimiru",
       "kind": "example",
       "index": 0,
-      "text": "過去を顧みる。",
+      "text": "過去を顧みる",
       "voice": "jf_alpha",
       "path": "audio/vocab/kaerimiru-ex1.mp3"
     },
@@ -191,7 +191,7 @@
       "id": "kaerimiru",
       "kind": "example",
       "index": 1,
-      "text": "自分の行動を顧みる必要がある。",
+      "text": "自分の行動を顧みる必要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/kaerimiru-ex2.mp3"
     },
@@ -207,7 +207,7 @@
       "id": "toboshii",
       "kind": "example",
       "index": 0,
-      "text": "経験が乏しい。",
+      "text": "経験が乏しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/toboshii-ex1.mp3"
     },
@@ -215,7 +215,7 @@
       "id": "toboshii",
       "kind": "example",
       "index": 1,
-      "text": "この地域は水に乏しい。",
+      "text": "この地域は水に乏しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/toboshii-ex2.mp3"
     },
@@ -231,7 +231,7 @@
       "id": "shiiru",
       "kind": "example",
       "index": 0,
-      "text": "相手に負担を強いてはいけない。",
+      "text": "相手に負担を強いてはいけない",
       "voice": "jf_alpha",
       "path": "audio/vocab/shiiru-ex1.mp3"
     },
@@ -239,7 +239,7 @@
       "id": "shiiru",
       "kind": "example",
       "index": 1,
-      "text": "会社は従業員に無理な残業を強いた。",
+      "text": "会社は従業員に無理な残業を強いた",
       "voice": "jf_alpha",
       "path": "audio/vocab/shiiru-ex2.mp3"
     },
@@ -255,7 +255,7 @@
       "id": "konen",
       "kind": "example",
       "index": 0,
-      "text": "安全性への懸念が高まっている。",
+      "text": "安全性への懸念が高まっている",
       "voice": "jf_alpha",
       "path": "audio/vocab/konen-ex1.mp3"
     },
@@ -263,7 +263,7 @@
       "id": "konen",
       "kind": "example",
       "index": 1,
-      "text": "費用の増加を懸念する声もある。",
+      "text": "費用の増加を懸念する声もある",
       "voice": "jf_alpha",
       "path": "audio/vocab/konen-ex2.mp3"
     },
@@ -279,7 +279,7 @@
       "id": "minaosu",
       "kind": "example",
       "index": 0,
-      "text": "制度を見直す必要がある。",
+      "text": "制度を見直す必要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/minaosu-ex1.mp3"
     },
@@ -287,7 +287,7 @@
       "id": "minaosu",
       "kind": "example",
       "index": 1,
-      "text": "生活習慣を見直した。",
+      "text": "生活習慣を見直した",
       "voice": "jf_alpha",
       "path": "audio/vocab/minaosu-ex2.mp3"
     },
@@ -303,7 +303,7 @@
       "id": "ichijirushii",
       "kind": "example",
       "index": 0,
-      "text": "技術の進歩は著しい。",
+      "text": "技術の進歩は著しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/ichijirushii-ex1.mp3"
     },
@@ -311,7 +311,7 @@
       "id": "ichijirushii",
       "kind": "example",
       "index": 1,
-      "text": "地域によって人口の差が著しい。",
+      "text": "地域によって人口の差が著しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/ichijirushii-ex2.mp3"
     },
@@ -327,7 +327,7 @@
       "id": "hanahadashii",
       "kind": "example",
       "index": 0,
-      "text": "公私混同も甚だしい。",
+      "text": "公私混同も甚だしい",
       "voice": "jf_alpha",
       "path": "audio/vocab/hanahadashii-ex1.mp3"
     },
@@ -335,7 +335,7 @@
       "id": "hanahadashii",
       "kind": "example",
       "index": 1,
-      "text": "その説明は誤解も甚だしい。",
+      "text": "その説明は誤解も甚だしい",
       "voice": "jf_alpha",
       "path": "audio/vocab/hanahadashii-ex2.mp3"
     },
@@ -351,7 +351,7 @@
       "id": "magirawashii",
       "kind": "example",
       "index": 0,
-      "text": "似た名前で紛らわしい。",
+      "text": "似た名前で紛らわしい",
       "voice": "jf_alpha",
       "path": "audio/vocab/magirawashii-ex1.mp3"
     },
@@ -359,7 +359,7 @@
       "id": "magirawashii",
       "kind": "example",
       "index": 1,
-      "text": "紛らわしい表示は避けるべきだ。",
+      "text": "紛らわしい表示は避けるべきだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/magirawashii-ex2.mp3"
     },
@@ -375,7 +375,7 @@
       "id": "sashitsukaeru",
       "kind": "example",
       "index": 0,
-      "text": "仕事に差し支えるほどではない。",
+      "text": "仕事に差し支えるほどではない",
       "voice": "jf_alpha",
       "path": "audio/vocab/sashitsukaeru-ex1.mp3"
     },
@@ -383,7 +383,7 @@
       "id": "sashitsukaeru",
       "kind": "example",
       "index": 1,
-      "text": "ご都合に差し支えなければお越しください。",
+      "text": "ご都合に差し支えなければお越しください",
       "voice": "jf_alpha",
       "path": "audio/vocab/sashitsukaeru-ex2.mp3"
     },
@@ -399,7 +399,7 @@
       "id": "mikomu",
       "kind": "example",
       "index": 0,
-      "text": "来年は増収を見込んでいる。",
+      "text": "来年は増収を見込んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/mikomu-ex1.mp3"
     },
@@ -407,7 +407,7 @@
       "id": "mikomu",
       "kind": "example",
       "index": 1,
-      "text": "成長が見込める市場だ。",
+      "text": "成長が見込める市場だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/mikomu-ex2.mp3"
     },
@@ -423,7 +423,7 @@
       "id": "miotosu",
       "kind": "example",
       "index": 0,
-      "text": "重要な条件を見落としていた。",
+      "text": "重要な条件を見落としていた",
       "voice": "jf_alpha",
       "path": "audio/vocab/miotosu-ex1.mp3"
     },
@@ -431,7 +431,7 @@
       "id": "miotosu",
       "kind": "example",
       "index": 1,
-      "text": "小さな変化を見落とさない。",
+      "text": "小さな変化を見落とさない",
       "voice": "jf_alpha",
       "path": "audio/vocab/miotosu-ex2.mp3"
     },
@@ -447,7 +447,7 @@
       "id": "arifureta",
       "kind": "example",
       "index": 0,
-      "text": "ありふれた話に見える。",
+      "text": "ありふれた話に見える",
       "voice": "jf_alpha",
       "path": "audio/vocab/arifureta-ex1.mp3"
     },
@@ -455,7 +455,7 @@
       "id": "arifureta",
       "kind": "example",
       "index": 1,
-      "text": "日常のありふれた風景を描いた。",
+      "text": "日常のありふれた風景を描いた",
       "voice": "jf_alpha",
       "path": "audio/vocab/arifureta-ex2.mp3"
     },
@@ -471,7 +471,7 @@
       "id": "bodai",
       "kind": "example",
       "index": 0,
-      "text": "膨大な資料を整理する。",
+      "text": "膨大な資料を整理する",
       "voice": "jf_alpha",
       "path": "audio/vocab/bodai-ex1.mp3"
     },
@@ -479,7 +479,7 @@
       "id": "bodai",
       "kind": "example",
       "index": 1,
-      "text": "開発には膨大な費用がかかった。",
+      "text": "開発には膨大な費用がかかった",
       "voice": "jf_alpha",
       "path": "audio/vocab/bodai-ex2.mp3"
     },
@@ -495,7 +495,7 @@
       "id": "kizashi",
       "kind": "example",
       "index": 0,
-      "text": "景気回復の兆しが見える。",
+      "text": "景気回復の兆しが見える",
       "voice": "jf_alpha",
       "path": "audio/vocab/kizashi-ex1.mp3"
     },
@@ -503,7 +503,7 @@
       "id": "kizashi",
       "kind": "example",
       "index": 1,
-      "text": "春の兆しを感じる。",
+      "text": "春の兆しを感じる",
       "voice": "jf_alpha",
       "path": "audio/vocab/kizashi-ex2.mp3"
     },
@@ -519,7 +519,7 @@
       "id": "oomune",
       "kind": "example",
       "index": 0,
-      "text": "計画は概ね順調だ。",
+      "text": "計画は概ね順調だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/oomune-ex1.mp3"
     },
@@ -527,7 +527,7 @@
       "id": "oomune",
       "kind": "example",
       "index": 1,
-      "text": "参加者の反応は概ね好評だった。",
+      "text": "参加者の反応は概ね好評だった",
       "voice": "jf_alpha",
       "path": "audio/vocab/oomune-ex2.mp3"
     },
@@ -543,7 +543,7 @@
       "id": "togeru",
       "kind": "example",
       "index": 0,
-      "text": "目標を遂げる。",
+      "text": "目標を遂げる",
       "voice": "jf_alpha",
       "path": "audio/vocab/togeru-ex1.mp3"
     },
@@ -551,7 +551,7 @@
       "id": "togeru",
       "kind": "example",
       "index": 1,
-      "text": "その企業は急成長を遂げた。",
+      "text": "その企業は急成長を遂げた",
       "voice": "jf_alpha",
       "path": "audio/vocab/togeru-ex2.mp3"
     },
@@ -567,7 +567,7 @@
       "id": "sokonau",
       "kind": "example",
       "index": 0,
-      "text": "信頼を損なう行為だ。",
+      "text": "信頼を損なう行為だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/sokonau-ex1.mp3"
     },
@@ -575,7 +575,7 @@
       "id": "sokonau",
       "kind": "example",
       "index": 1,
-      "text": "電車に乗り損なった。",
+      "text": "電車に乗り損なった",
       "voice": "jf_alpha",
       "path": "audio/vocab/sokonau-ex2.mp3"
     },
@@ -591,7 +591,7 @@
       "id": "sorasu",
       "kind": "example",
       "index": 0,
-      "text": "視線を逸らした。",
+      "text": "視線を逸らした",
       "voice": "jf_alpha",
       "path": "audio/vocab/sorasu-ex1.mp3"
     },
@@ -599,7 +599,7 @@
       "id": "sorasu",
       "kind": "example",
       "index": 1,
-      "text": "話題を逸らそうとした。",
+      "text": "話題を逸らそうとした",
       "voice": "jf_alpha",
       "path": "audio/vocab/sorasu-ex2.mp3"
     },
@@ -615,7 +615,7 @@
       "id": "sueru",
       "kind": "example",
       "index": 0,
-      "text": "長期的な視点を据える。",
+      "text": "長期的な視点を据える",
       "voice": "jf_alpha",
       "path": "audio/vocab/sueru-ex1.mp3"
     },
@@ -623,7 +623,7 @@
       "id": "sueru",
       "kind": "example",
       "index": 1,
-      "text": "機械を所定の位置に据えた。",
+      "text": "機械を所定の位置に据えた",
       "voice": "jf_alpha",
       "path": "audio/vocab/sueru-ex2.mp3"
     },
@@ -639,7 +639,7 @@
       "id": "tadoru",
       "kind": "example",
       "index": 0,
-      "text": "記憶を辿る。",
+      "text": "記憶を辿る",
       "voice": "jf_alpha",
       "path": "audio/vocab/tadoru-ex1.mp3"
     },
@@ -647,7 +647,7 @@
       "id": "tadoru",
       "kind": "example",
       "index": 1,
-      "text": "長い歴史を辿ってきた。",
+      "text": "長い歴史を辿ってきた",
       "voice": "jf_alpha",
       "path": "audio/vocab/tadoru-ex2.mp3"
     },
@@ -663,7 +663,7 @@
       "id": "ninau",
       "kind": "example",
       "index": 0,
-      "text": "次世代を担う人材を育てる。",
+      "text": "次世代を担う人材を育てる",
       "voice": "jf_alpha",
       "path": "audio/vocab/ninau-ex1.mp3"
     },
@@ -671,7 +671,7 @@
       "id": "ninau",
       "kind": "example",
       "index": 1,
-      "text": "重要な役割を担っている。",
+      "text": "重要な役割を担っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/ninau-ex2.mp3"
     },
@@ -687,7 +687,7 @@
       "id": "samatageru",
       "kind": "example",
       "index": 0,
-      "text": "成長を妨げる要因だ。",
+      "text": "成長を妨げる要因だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/samatageru-ex1.mp3"
     },
@@ -695,7 +695,7 @@
       "id": "samatageru",
       "kind": "example",
       "index": 1,
-      "text": "通行を妨げないでください。",
+      "text": "通行を妨げないでください",
       "voice": "jf_alpha",
       "path": "audio/vocab/samatageru-ex2.mp3"
     },
@@ -711,7 +711,7 @@
       "id": "ayabumu",
       "kind": "example",
       "index": 0,
-      "text": "計画の実現を危ぶむ声がある。",
+      "text": "計画の実現を危ぶむ声がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/ayabumu-ex1.mp3"
     },
@@ -719,7 +719,7 @@
       "id": "ayabumu",
       "kind": "example",
       "index": 1,
-      "text": "経営の先行きを危ぶんでいる。",
+      "text": "経営の先行きを危ぶんでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/ayabumu-ex2.mp3"
     },
@@ -735,7 +735,7 @@
       "id": "misueru",
       "kind": "example",
       "index": 0,
-      "text": "将来を見据えた投資だ。",
+      "text": "将来を見据えた投資だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/misueru-ex1.mp3"
     },
@@ -743,7 +743,7 @@
       "id": "misueru",
       "kind": "example",
       "index": 1,
-      "text": "現実を見据えて判断する。",
+      "text": "現実を見据えて判断する",
       "voice": "jf_alpha",
       "path": "audio/vocab/misueru-ex2.mp3"
     },
@@ -759,7 +759,7 @@
       "id": "miawaseru",
       "kind": "example",
       "index": 0,
-      "text": "悪天候のため出発を見合わせた。",
+      "text": "悪天候のため出発を見合わせた",
       "voice": "jf_alpha",
       "path": "audio/vocab/miawaseru-ex1.mp3"
     },
@@ -767,7 +767,7 @@
       "id": "miawaseru",
       "kind": "example",
       "index": 1,
-      "text": "購入は今回、見合わせることにした。",
+      "text": "購入は今回、見合わせることにした",
       "voice": "jf_alpha",
       "path": "audio/vocab/miawaseru-ex2.mp3"
     },
@@ -783,7 +783,7 @@
       "id": "mikiwameru",
       "kind": "example",
       "index": 0,
-      "text": "状況を見極めてから決める。",
+      "text": "状況を見極めてから決める",
       "voice": "jf_alpha",
       "path": "audio/vocab/mikiwameru-ex1.mp3"
     },
@@ -791,7 +791,7 @@
       "id": "mikiwameru",
       "kind": "example",
       "index": 1,
-      "text": "本質を見極める力が必要だ。",
+      "text": "本質を見極める力が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/mikiwameru-ex2.mp3"
     },
@@ -807,7 +807,7 @@
       "id": "mihakarau",
       "kind": "example",
       "index": 0,
-      "text": "頃合いを見計らって声をかけた。",
+      "text": "頃合いを見計らって声をかけた",
       "voice": "jf_alpha",
       "path": "audio/vocab/mihakarau-ex1.mp3"
     },
@@ -815,7 +815,7 @@
       "id": "mihakarau",
       "kind": "example",
       "index": 1,
-      "text": "相手の様子を見計らう。",
+      "text": "相手の様子を見計らう",
       "voice": "jf_alpha",
       "path": "audio/vocab/mihakarau-ex2.mp3"
     },
@@ -831,7 +831,7 @@
       "id": "torimaku",
       "kind": "example",
       "index": 0,
-      "text": "企業を取り巻く環境が変化している。",
+      "text": "企業を取り巻く環境が変化している",
       "voice": "jf_alpha",
       "path": "audio/vocab/torimaku-ex1.mp3"
     },
@@ -839,7 +839,7 @@
       "id": "torimaku",
       "kind": "example",
       "index": 1,
-      "text": "その問題を取り巻く議論は続いている。",
+      "text": "その問題を取り巻く議論は続いている",
       "voice": "jf_alpha",
       "path": "audio/vocab/torimaku-ex2.mp3"
     },
@@ -855,7 +855,7 @@
       "id": "torikumu",
       "kind": "example",
       "index": 0,
-      "text": "環境問題に取り組む。",
+      "text": "環境問題に取り組む",
       "voice": "jf_alpha",
       "path": "audio/vocab/torikumu-ex1.mp3"
     },
@@ -863,7 +863,7 @@
       "id": "torikumu",
       "kind": "example",
       "index": 1,
-      "text": "新しい課題に取り組んでいる。",
+      "text": "新しい課題に取り組んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/torikumu-ex2.mp3"
     },
@@ -879,7 +879,7 @@
       "id": "makanau",
       "kind": "example",
       "index": 0,
-      "text": "費用を寄付で賄う。",
+      "text": "費用を寄付で賄う",
       "voice": "jf_alpha",
       "path": "audio/vocab/makanau-ex1.mp3"
     },
@@ -887,7 +887,7 @@
       "id": "makanau",
       "kind": "example",
       "index": 1,
-      "text": "電力の一部を太陽光で賄う。",
+      "text": "電力の一部を太陽光で賄う",
       "voice": "jf_alpha",
       "path": "audio/vocab/makanau-ex2.mp3"
     },
@@ -903,7 +903,7 @@
       "id": "oginau",
       "kind": "example",
       "index": 0,
-      "text": "不足を補う。",
+      "text": "不足を補う",
       "voice": "jf_alpha",
       "path": "audio/vocab/oginau-ex1.mp3"
     },
@@ -911,7 +911,7 @@
       "id": "oginau",
       "kind": "example",
       "index": 1,
-      "text": "経験の不足を知識で補う。",
+      "text": "経験の不足を知識で補う",
       "voice": "jf_alpha",
       "path": "audio/vocab/oginau-ex2.mp3"
     },
@@ -927,7 +927,7 @@
       "id": "hikaeru",
       "kind": "example",
       "index": 0,
-      "text": "試験を来週に控えている。",
+      "text": "試験を来週に控えている",
       "voice": "jf_alpha",
       "path": "audio/vocab/hikaeru-ex1.mp3"
     },
@@ -935,7 +935,7 @@
       "id": "hikaeru",
       "kind": "example",
       "index": 1,
-      "text": "甘いものを控えている。",
+      "text": "甘いものを控えている",
       "voice": "jf_alpha",
       "path": "audio/vocab/hikaeru-ex2.mp3"
     },
@@ -951,7 +951,7 @@
       "id": "hedataru",
       "kind": "example",
       "index": 0,
-      "text": "二つの町は山を隔てている。",
+      "text": "二つの町は山を隔てている",
       "voice": "jf_alpha",
       "path": "audio/vocab/hedataru-ex1.mp3"
     },
@@ -959,7 +959,7 @@
       "id": "hedataru",
       "kind": "example",
       "index": 1,
-      "text": "世代によって考え方が隔たることもある。",
+      "text": "世代によって考え方が隔たることもある",
       "voice": "jf_alpha",
       "path": "audio/vocab/hedataru-ex2.mp3"
     },
@@ -975,7 +975,7 @@
       "id": "shirizokeru",
       "kind": "example",
       "index": 0,
-      "text": "反対意見を退けた。",
+      "text": "反対意見を退けた",
       "voice": "jf_alpha",
       "path": "audio/vocab/shirizokeru-ex1.mp3"
     },
@@ -983,7 +983,7 @@
       "id": "shirizokeru",
       "kind": "example",
       "index": 1,
-      "text": "誘惑を退ける。",
+      "text": "誘惑を退ける",
       "voice": "jf_alpha",
       "path": "audio/vocab/shirizokeru-ex2.mp3"
     },
@@ -999,7 +999,7 @@
       "id": "uketamawaru",
       "kind": "example",
       "index": 0,
-      "text": "ご注文を承ります。",
+      "text": "ご注文を承ります",
       "voice": "jf_alpha",
       "path": "audio/vocab/uketamawaru-ex1.mp3"
     },
@@ -1007,7 +1007,7 @@
       "id": "uketamawaru",
       "kind": "example",
       "index": 1,
-      "text": "その件は私が承りました。",
+      "text": "その件は私が承りました",
       "voice": "jf_alpha",
       "path": "audio/vocab/uketamawaru-ex2.mp3"
     },
@@ -1023,7 +1023,7 @@
       "id": "moyoosu",
       "kind": "example",
       "index": 0,
-      "text": "式典を催す。",
+      "text": "式典を催す",
       "voice": "jf_alpha",
       "path": "audio/vocab/moyoosu-ex1.mp3"
     },
@@ -1031,7 +1031,7 @@
       "id": "moyoosu",
       "kind": "example",
       "index": 1,
-      "text": "眠気を催した。",
+      "text": "眠気を催した",
       "voice": "jf_alpha",
       "path": "audio/vocab/moyoosu-ex2.mp3"
     },
@@ -1047,7 +1047,7 @@
       "id": "isagiyoi",
       "kind": "example",
       "index": 0,
-      "text": "失敗を潔く認めた。",
+      "text": "失敗を潔く認めた",
       "voice": "jf_alpha",
       "path": "audio/vocab/isagiyoi-ex1.mp3"
     },
@@ -1055,7 +1055,7 @@
       "id": "isagiyoi",
       "kind": "example",
       "index": 1,
-      "text": "潔い態度が評価された。",
+      "text": "潔い態度が評価された",
       "voice": "jf_alpha",
       "path": "audio/vocab/isagiyoi-ex2.mp3"
     },
@@ -1071,7 +1071,7 @@
       "id": "yuruyaka",
       "kind": "example",
       "index": 0,
-      "text": "緩やかな坂が続く。",
+      "text": "緩やかな坂が続く",
       "voice": "jf_alpha",
       "path": "audio/vocab/yuruyaka-ex1.mp3"
     },
@@ -1079,7 +1079,7 @@
       "id": "yuruyaka",
       "kind": "example",
       "index": 1,
-      "text": "景気は緩やかに回復している。",
+      "text": "景気は緩やかに回復している",
       "voice": "jf_alpha",
       "path": "audio/vocab/yuruyaka-ex2.mp3"
     },
@@ -1095,7 +1095,7 @@
       "id": "takumi",
       "kind": "example",
       "index": 0,
-      "text": "巧みな話術で人を引き込む。",
+      "text": "巧みな話術で人を引き込む",
       "voice": "jf_alpha",
       "path": "audio/vocab/takumi-ex1.mp3"
     },
@@ -1103,7 +1103,7 @@
       "id": "takumi",
       "kind": "example",
       "index": 1,
-      "text": "空間を巧みに利用した設計だ。",
+      "text": "空間を巧みに利用した設計だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/takumi-ex2.mp3"
     },
@@ -1119,7 +1119,7 @@
       "id": "kencho",
       "kind": "example",
       "index": 0,
-      "text": "効果が顕著に現れた。",
+      "text": "効果が顕著に現れた",
       "voice": "jf_alpha",
       "path": "audio/vocab/kencho-ex1.mp3"
     },
@@ -1127,7 +1127,7 @@
       "id": "kencho",
       "kind": "example",
       "index": 1,
-      "text": "若年層でその傾向が顕著だ。",
+      "text": "若年層でその傾向が顕著だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/kencho-ex2.mp3"
     },
@@ -1143,7 +1143,7 @@
       "id": "katayoru",
       "kind": "example",
       "index": 0,
-      "text": "栄養が偏らないようにする。",
+      "text": "栄養が偏らないようにする",
       "voice": "jf_alpha",
       "path": "audio/vocab/katayoru-ex1.mp3"
     },
@@ -1151,7 +1151,7 @@
       "id": "katayoru",
       "kind": "example",
       "index": 1,
-      "text": "情報が一方に偏っている。",
+      "text": "情報が一方に偏っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/katayoru-ex2.mp3"
     },
@@ -1167,7 +1167,7 @@
       "id": "okotaru",
       "kind": "example",
       "index": 0,
-      "text": "確認を怠ってはいけない。",
+      "text": "確認を怠ってはいけない",
       "voice": "jf_alpha",
       "path": "audio/vocab/okotaru-ex1.mp3"
     },
@@ -1175,7 +1175,7 @@
       "id": "okotaru",
       "kind": "example",
       "index": 1,
-      "text": "努力を怠らなかった。",
+      "text": "努力を怠らなかった",
       "voice": "jf_alpha",
       "path": "audio/vocab/okotaru-ex2.mp3"
     },
@@ -1191,7 +1191,7 @@
       "id": "tomonau",
       "kind": "example",
       "index": 0,
-      "text": "成長には痛みが伴うこともある。",
+      "text": "成長には痛みが伴うこともある",
       "voice": "jf_alpha",
       "path": "audio/vocab/tomonau-ex1.mp3"
     },
@@ -1199,7 +1199,7 @@
       "id": "tomonau",
       "kind": "example",
       "index": 1,
-      "text": "制度変更に伴い手続きも変わる。",
+      "text": "制度変更に伴い手続きも変わる",
       "voice": "jf_alpha",
       "path": "audio/vocab/tomonau-ex2.mp3"
     },
@@ -1215,7 +1215,7 @@
       "id": "oyobosu",
       "kind": "example",
       "index": 0,
-      "text": "健康に影響を及ぼす。",
+      "text": "健康に影響を及ぼす",
       "voice": "jf_alpha",
       "path": "audio/vocab/oyobosu-ex1.mp3"
     },
@@ -1223,7 +1223,7 @@
       "id": "oyobosu",
       "kind": "example",
       "index": 1,
-      "text": "判断に重大な影響を及ぼした。",
+      "text": "判断に重大な影響を及ぼした",
       "voice": "jf_alpha",
       "path": "audio/vocab/oyobosu-ex2.mp3"
     },
@@ -1239,7 +1239,7 @@
       "id": "obiyakasu",
       "kind": "example",
       "index": 0,
-      "text": "気候変動が食料安全保障を脅かしている。",
+      "text": "気候変動が食料安全保障を脅かしている",
       "voice": "jf_alpha",
       "path": "audio/vocab/obiyakasu-ex1.mp3"
     },
@@ -1247,7 +1247,7 @@
       "id": "obiyakasu",
       "kind": "example",
       "index": 1,
-      "text": "自由を脅かす行為は許されない。",
+      "text": "自由を脅かす行為は許されない",
       "voice": "jf_alpha",
       "path": "audio/vocab/obiyakasu-ex2.mp3"
     },
@@ -1263,7 +1263,7 @@
       "id": "saegiru",
       "kind": "example",
       "index": 0,
-      "text": "高い建物が日光を遮っている。",
+      "text": "高い建物が日光を遮っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/saegiru-ex1.mp3"
     },
@@ -1271,7 +1271,7 @@
       "id": "saegiru",
       "kind": "example",
       "index": 1,
-      "text": "相手の発言を遮らずに最後まで聞く。",
+      "text": "相手の発言を遮らずに最後まで聞く",
       "voice": "jf_alpha",
       "path": "audio/vocab/saegiru-ex2.mp3"
     },
@@ -1287,7 +1287,7 @@
       "id": "shinogu",
       "kind": "example",
       "index": 0,
-      "text": "厳しい暑さを凌ぐために日陰で休んだ。",
+      "text": "厳しい暑さを凌ぐために日陰で休んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/shinogu-ex1.mp3"
     },
@@ -1295,7 +1295,7 @@
       "id": "shinogu",
       "kind": "example",
       "index": 1,
-      "text": "前作を凌ぐ売上を記録した。",
+      "text": "前作を凌ぐ売上を記録した",
       "voice": "jf_alpha",
       "path": "audio/vocab/shinogu-ex2.mp3"
     },
@@ -1311,7 +1311,7 @@
       "id": "sutareru",
       "kind": "example",
       "index": 0,
-      "text": "昔の習慣が次第に廃れていく。",
+      "text": "昔の習慣が次第に廃れていく",
       "voice": "jf_alpha",
       "path": "audio/vocab/sutareru-ex1.mp3"
     },
@@ -1319,7 +1319,7 @@
       "id": "sutareru",
       "kind": "example",
       "index": 1,
-      "text": "流行はいつか廃れるものだ。",
+      "text": "流行はいつか廃れるものだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/sutareru-ex2.mp3"
     },
@@ -1335,7 +1335,7 @@
       "id": "somuku",
       "kind": "example",
       "index": 0,
-      "text": "規則に背く行為は処分の対象となる。",
+      "text": "規則に背く行為は処分の対象となる",
       "voice": "jf_alpha",
       "path": "audio/vocab/somuku-ex1.mp3"
     },
@@ -1343,7 +1343,7 @@
       "id": "somuku",
       "kind": "example",
       "index": 1,
-      "text": "期待に背かないよう努力する。",
+      "text": "期待に背かないよう努力する",
       "voice": "jf_alpha",
       "path": "audio/vocab/somuku-ex2.mp3"
     },
@@ -1359,7 +1359,7 @@
       "id": "tsugunau",
       "kind": "example",
       "index": 0,
-      "text": "損害を金銭で償う。",
+      "text": "損害を金銭で償う",
       "voice": "jf_alpha",
       "path": "audio/vocab/tsugunau-ex1.mp3"
     },
@@ -1367,7 +1367,7 @@
       "id": "tsugunau",
       "kind": "example",
       "index": 1,
-      "text": "過ちを償うには時間がかかる。",
+      "text": "過ちを償うには時間がかかる",
       "voice": "jf_alpha",
       "path": "audio/vocab/tsugunau-ex2.mp3"
     },
@@ -1383,7 +1383,7 @@
       "id": "togameru",
       "kind": "example",
       "index": 0,
-      "text": "遅刻したことを上司に咎められた。",
+      "text": "遅刻したことを上司に咎められた",
       "voice": "jf_alpha",
       "path": "audio/vocab/togameru-ex1.mp3"
     },
@@ -1391,7 +1391,7 @@
       "id": "togameru",
       "kind": "example",
       "index": 1,
-      "text": "誰も彼の判断を咎めることはできない。",
+      "text": "誰も彼の判断を咎めることはできない",
       "voice": "jf_alpha",
       "path": "audio/vocab/togameru-ex2.mp3"
     },
@@ -1407,7 +1407,7 @@
       "id": "hagukumu",
       "kind": "example",
       "index": 0,
-      "text": "地域で子供の好奇心を育む。",
+      "text": "地域で子供の好奇心を育む",
       "voice": "jf_alpha",
       "path": "audio/vocab/hagukumu-ex1.mp3"
     },
@@ -1415,7 +1415,7 @@
       "id": "hagukumu",
       "kind": "example",
       "index": 1,
-      "text": "長い交流を通じて信頼を育んだ。",
+      "text": "長い交流を通じて信頼を育んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/hagukumu-ex2.mp3"
     },
@@ -1431,7 +1431,7 @@
       "id": "habamu",
       "kind": "example",
       "index": 0,
-      "text": "資金不足が研究の進展を阻んでいる。",
+      "text": "資金不足が研究の進展を阻んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/habamu-ex1.mp3"
     },
@@ -1439,7 +1439,7 @@
       "id": "habamu",
       "kind": "example",
       "index": 1,
-      "text": "高い壁が行く手を阻んだ。",
+      "text": "高い壁が行く手を阻んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/habamu-ex2.mp3"
     },
@@ -1455,7 +1455,7 @@
       "id": "hirumu",
       "kind": "example",
       "index": 0,
-      "text": "批判に怯まず意見を述べた。",
+      "text": "批判に怯まず意見を述べた",
       "voice": "jf_alpha",
       "path": "audio/vocab/hirumu-ex1.mp3"
     },
@@ -1463,7 +1463,7 @@
       "id": "hirumu",
       "kind": "example",
       "index": 1,
-      "text": "困難を前にしても怯まなかった。",
+      "text": "困難を前にしても怯まなかった",
       "voice": "jf_alpha",
       "path": "audio/vocab/hirumu-ex2.mp3"
     },
@@ -1479,7 +1479,7 @@
       "id": "yudaneru",
       "kind": "example",
       "index": 0,
-      "text": "最終判断を専門家に委ねた。",
+      "text": "最終判断を専門家に委ねた",
       "voice": "jf_alpha",
       "path": "audio/vocab/yudaneru-ex1.mp3"
     },
@@ -1487,7 +1487,7 @@
       "id": "yudaneru",
       "kind": "example",
       "index": 1,
-      "text": "流れに身を委ねる。",
+      "text": "流れに身を委ねる",
       "voice": "jf_alpha",
       "path": "audio/vocab/yudaneru-ex2.mp3"
     },
@@ -1503,7 +1503,7 @@
       "id": "motarasu",
       "kind": "example",
       "index": 0,
-      "text": "技術革新が社会に大きな変化をもたらした。",
+      "text": "技術革新が社会に大きな変化をもたらした",
       "voice": "jf_alpha",
       "path": "audio/vocab/motarasu-ex1.mp3"
     },
@@ -1511,7 +1511,7 @@
       "id": "motarasu",
       "kind": "example",
       "index": 1,
-      "text": "政策の変更が混乱をもたらす恐れがある。",
+      "text": "政策の変更が混乱をもたらす恐れがある",
       "voice": "jf_alpha",
       "path": "audio/vocab/motarasu-ex2.mp3"
     },
@@ -1527,7 +1527,7 @@
       "id": "kasamu",
       "kind": "example",
       "index": 0,
-      "text": "原材料費が嵩み、利益が減った。",
+      "text": "原材料費が嵩み、利益が減った",
       "voice": "jf_alpha",
       "path": "audio/vocab/kasamu-ex1.mp3"
     },
@@ -1535,7 +1535,7 @@
       "id": "kasamu",
       "kind": "example",
       "index": 1,
-      "text": "出張が続くと交通費が嵩む。",
+      "text": "出張が続くと交通費が嵩む",
       "voice": "jf_alpha",
       "path": "audio/vocab/kasamu-ex2.mp3"
     },
@@ -1551,7 +1551,7 @@
       "id": "azamuku",
       "kind": "example",
       "index": 0,
-      "text": "消費者を欺く表示が問題になった。",
+      "text": "消費者を欺く表示が問題になった",
       "voice": "jf_alpha",
       "path": "audio/vocab/azamuku-ex1.mp3"
     },
@@ -1559,7 +1559,7 @@
       "id": "azamuku",
       "kind": "example",
       "index": 1,
-      "text": "人を欺いて利益を得てはいけない。",
+      "text": "人を欺いて利益を得てはいけない",
       "voice": "jf_alpha",
       "path": "audio/vocab/azamuku-ex2.mp3"
     },
@@ -1575,7 +1575,7 @@
       "id": "ayatsuru",
       "kind": "example",
       "index": 0,
-      "text": "複数の言語を自在に操る。",
+      "text": "複数の言語を自在に操る",
       "voice": "jf_alpha",
       "path": "audio/vocab/ayatsuru-ex1.mp3"
     },
@@ -1583,7 +1583,7 @@
       "id": "ayatsuru",
       "kind": "example",
       "index": 1,
-      "text": "機械を遠隔で操る。",
+      "text": "機械を遠隔で操る",
       "voice": "jf_alpha",
       "path": "audio/vocab/ayatsuru-ex2.mp3"
     },
@@ -1599,7 +1599,7 @@
       "id": "itawaru",
       "kind": "example",
       "index": 0,
-      "text": "疲れた体を労る。",
+      "text": "疲れた体を労る",
       "voice": "jf_alpha",
       "path": "audio/vocab/itawaru-ex1.mp3"
     },
@@ -1607,7 +1607,7 @@
       "id": "itawaru",
       "kind": "example",
       "index": 1,
-      "text": "互いを労る気持ちが大切だ。",
+      "text": "互いを労る気持ちが大切だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/itawaru-ex2.mp3"
     },
@@ -1623,7 +1623,7 @@
       "id": "kabau",
       "kind": "example",
       "index": 0,
-      "text": "部下の失敗を必要以上に庇う。",
+      "text": "部下の失敗を必要以上に庇う",
       "voice": "jf_alpha",
       "path": "audio/vocab/kabau-ex1.mp3"
     },
@@ -1631,7 +1631,7 @@
       "id": "kabau",
       "kind": "example",
       "index": 1,
-      "text": "子供を庇って前に出た。",
+      "text": "子供を庇って前に出た",
       "voice": "jf_alpha",
       "path": "audio/vocab/kabau-ex2.mp3"
     },
@@ -1647,7 +1647,7 @@
       "id": "obitadashii",
       "kind": "example",
       "index": 0,
-      "text": "会場には夥しい数の資料が積まれていた。",
+      "text": "会場には夥しい数の資料が積まれていた",
       "voice": "jf_alpha",
       "path": "audio/vocab/obitadashii-ex1.mp3"
     },
@@ -1655,7 +1655,7 @@
       "id": "obitadashii",
       "kind": "example",
       "index": 1,
-      "text": "災害で夥しい被害が出た。",
+      "text": "災害で夥しい被害が出た",
       "voice": "jf_alpha",
       "path": "audio/vocab/obitadashii-ex2.mp3"
     },
@@ -1671,7 +1671,7 @@
       "id": "sumiyaka",
       "kind": "example",
       "index": 0,
-      "text": "問題が判明したら速やかに報告してください。",
+      "text": "問題が判明したら速やかに報告してください",
       "voice": "jf_alpha",
       "path": "audio/vocab/sumiyaka-ex1.mp3"
     },
@@ -1679,7 +1679,7 @@
       "id": "sumiyaka",
       "kind": "example",
       "index": 1,
-      "text": "速やかな対応が求められる。",
+      "text": "速やかな対応が求められる",
       "voice": "jf_alpha",
       "path": "audio/vocab/sumiyaka-ex2.mp3"
     },
@@ -1695,7 +1695,7 @@
       "id": "takumashii",
       "kind": "example",
       "index": 0,
-      "text": "逆境の中でも逞しく生きる。",
+      "text": "逆境の中でも逞しく生きる",
       "voice": "jf_alpha",
       "path": "audio/vocab/takumashii-ex1.mp3"
     },
@@ -1703,7 +1703,7 @@
       "id": "takumashii",
       "kind": "example",
       "index": 1,
-      "text": "子供たちは想像以上に逞しい。",
+      "text": "子供たちは想像以上に逞しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/takumashii-ex2.mp3"
     },
@@ -1719,7 +1719,7 @@
       "id": "rokotsu",
       "kind": "example",
       "index": 0,
-      "text": "露骨な利益誘導だと批判された。",
+      "text": "露骨な利益誘導だと批判された",
       "voice": "jf_alpha",
       "path": "audio/vocab/rokotsu-ex1.mp3"
     },
@@ -1727,7 +1727,7 @@
       "id": "rokotsu",
       "kind": "example",
       "index": 1,
-      "text": "彼は不満を露骨に表した。",
+      "text": "彼は不満を露骨に表した",
       "voice": "jf_alpha",
       "path": "audio/vocab/rokotsu-ex2.mp3"
     },
@@ -1743,7 +1743,7 @@
       "id": "enkatsu",
       "kind": "example",
       "index": 0,
-      "text": "交渉を円滑に進める。",
+      "text": "交渉を円滑に進める",
       "voice": "jf_alpha",
       "path": "audio/vocab/enkatsu-ex1.mp3"
     },
@@ -1751,7 +1751,7 @@
       "id": "enkatsu",
       "kind": "example",
       "index": 1,
-      "text": "円滑な意思疎通には信頼が欠かせない。",
+      "text": "円滑な意思疎通には信頼が欠かせない",
       "voice": "jf_alpha",
       "path": "audio/vocab/enkatsu-ex2.mp3"
     },
@@ -1767,7 +1767,7 @@
       "id": "genmitsu",
       "kind": "example",
       "index": 0,
-      "text": "厳密に言えば、その二つは別の概念だ。",
+      "text": "厳密に言えば、その二つは別の概念だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/genmitsu-ex1.mp3"
     },
@@ -1775,7 +1775,7 @@
       "id": "genmitsu",
       "kind": "example",
       "index": 1,
-      "text": "条件を厳密に定義する。",
+      "text": "条件を厳密に定義する",
       "voice": "jf_alpha",
       "path": "audio/vocab/genmitsu-ex2.mp3"
     },
@@ -1791,7 +1791,7 @@
       "id": "menmitsu",
       "kind": "example",
       "index": 0,
-      "text": "綿密な調査を行う。",
+      "text": "綿密な調査を行う",
       "voice": "jf_alpha",
       "path": "audio/vocab/menmitsu-ex1.mp3"
     },
@@ -1799,7 +1799,7 @@
       "id": "menmitsu",
       "kind": "example",
       "index": 1,
-      "text": "計画を綿密に練り直した。",
+      "text": "計画を綿密に練り直した",
       "voice": "jf_alpha",
       "path": "audio/vocab/menmitsu-ex2.mp3"
     },
@@ -1815,7 +1815,7 @@
       "id": "bakuzen",
       "kind": "example",
       "index": 0,
-      "text": "将来に漠然とした不安を感じる。",
+      "text": "将来に漠然とした不安を感じる",
       "voice": "jf_alpha",
       "path": "audio/vocab/bakuzen-ex1.mp3"
     },
@@ -1823,7 +1823,7 @@
       "id": "bakuzen",
       "kind": "example",
       "index": 1,
-      "text": "漠然と考えるだけでは解決しない。",
+      "text": "漠然と考えるだけでは解決しない",
       "voice": "jf_alpha",
       "path": "audio/vocab/bakuzen-ex2.mp3"
     },
@@ -1839,7 +1839,7 @@
       "id": "bakudai",
       "kind": "example",
       "index": 0,
-      "text": "開発には莫大な費用がかかる。",
+      "text": "開発には莫大な費用がかかる",
       "voice": "jf_alpha",
       "path": "audio/vocab/bakudai-ex1.mp3"
     },
@@ -1847,7 +1847,7 @@
       "id": "bakudai",
       "kind": "example",
       "index": 1,
-      "text": "莫大な情報を処理する。",
+      "text": "莫大な情報を処理する",
       "voice": "jf_alpha",
       "path": "audio/vocab/bakudai-ex2.mp3"
     },
@@ -1863,7 +1863,7 @@
       "id": "zeijaku",
       "kind": "example",
       "index": 0,
-      "text": "災害に脆弱な地域を調査する。",
+      "text": "災害に脆弱な地域を調査する",
       "voice": "jf_alpha",
       "path": "audio/vocab/zeijaku-ex1.mp3"
     },
@@ -1871,7 +1871,7 @@
       "id": "zeijaku",
       "kind": "example",
       "index": 1,
-      "text": "情報管理の脆弱さが指摘された。",
+      "text": "情報管理の脆弱さが指摘された",
       "voice": "jf_alpha",
       "path": "audio/vocab/zeijaku-ex2.mp3"
     },
@@ -1887,7 +1887,7 @@
       "id": "ketsujo",
       "kind": "example",
       "index": 0,
-      "text": "説明の欠如が不信を招いた。",
+      "text": "説明の欠如が不信を招いた",
       "voice": "jf_alpha",
       "path": "audio/vocab/ketsujo-ex1.mp3"
     },
@@ -1895,7 +1895,7 @@
       "id": "ketsujo",
       "kind": "example",
       "index": 1,
-      "text": "責任感の欠如を批判された。",
+      "text": "責任感の欠如を批判された",
       "voice": "jf_alpha",
       "path": "audio/vocab/ketsujo-ex2.mp3"
     },
@@ -1911,7 +1911,7 @@
       "id": "itsudatsu",
       "kind": "example",
       "index": 0,
-      "text": "議論が本来の目的から逸脱している。",
+      "text": "議論が本来の目的から逸脱している",
       "voice": "jf_alpha",
       "path": "audio/vocab/itsudatsu-ex1.mp3"
     },
@@ -1919,7 +1919,7 @@
       "id": "itsudatsu",
       "kind": "example",
       "index": 1,
-      "text": "規範を逸脱した行動だ。",
+      "text": "規範を逸脱した行動だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/itsudatsu-ex2.mp3"
     },
@@ -1935,7 +1935,7 @@
       "id": "mujun",
       "kind": "example",
       "index": 0,
-      "text": "説明には明らかな矛盾がある。",
+      "text": "説明には明らかな矛盾がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/mujun-ex1.mp3"
     },
@@ -1943,7 +1943,7 @@
       "id": "mujun",
       "kind": "example",
       "index": 1,
-      "text": "二つの主張は互いに矛盾している。",
+      "text": "二つの主張は互いに矛盾している",
       "voice": "jf_alpha",
       "path": "audio/vocab/mujun-ex2.mp3"
     },
@@ -1959,7 +1959,7 @@
       "id": "mosaku",
       "kind": "example",
       "index": 0,
-      "text": "新しい収益源を模索する。",
+      "text": "新しい収益源を模索する",
       "voice": "jf_alpha",
       "path": "audio/vocab/mosaku-ex1.mp3"
     },
@@ -1967,7 +1967,7 @@
       "id": "mosaku",
       "kind": "example",
       "index": 1,
-      "text": "双方が妥協点を模索している。",
+      "text": "双方が妥協点を模索している",
       "voice": "jf_alpha",
       "path": "audio/vocab/mosaku-ex2.mp3"
     },
@@ -1983,7 +1983,7 @@
       "id": "dakai",
       "kind": "example",
       "index": 0,
-      "text": "状況を打開する策を探す。",
+      "text": "状況を打開する策を探す",
       "voice": "jf_alpha",
       "path": "audio/vocab/dakai-ex1.mp3"
     },
@@ -1991,7 +1991,7 @@
       "id": "dakai",
       "kind": "example",
       "index": 1,
-      "text": "交渉の行き詰まりを打開した。",
+      "text": "交渉の行き詰まりを打開した",
       "voice": "jf_alpha",
       "path": "audio/vocab/dakai-ex2.mp3"
     },
@@ -2007,7 +2007,7 @@
       "id": "zesei",
       "kind": "example",
       "index": 0,
-      "text": "格差を是正する政策が必要だ。",
+      "text": "格差を是正する政策が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/zesei-ex1.mp3"
     },
@@ -2015,7 +2015,7 @@
       "id": "zesei",
       "kind": "example",
       "index": 1,
-      "text": "不適切な運用を是正する。",
+      "text": "不適切な運用を是正する",
       "voice": "jf_alpha",
       "path": "audio/vocab/zesei-ex2.mp3"
     },
@@ -2031,7 +2031,7 @@
       "id": "toushuu",
       "kind": "example",
       "index": 0,
-      "text": "従来の方針を踏襲する。",
+      "text": "従来の方針を踏襲する",
       "voice": "jf_alpha",
       "path": "audio/vocab/toushuu-ex1.mp3"
     },
@@ -2039,7 +2039,7 @@
       "id": "toushuu",
       "kind": "example",
       "index": 1,
-      "text": "前例を踏襲するだけでは不十分だ。",
+      "text": "前例を踏襲するだけでは不十分だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/toushuu-ex2.mp3"
     },
@@ -2055,7 +2055,7 @@
       "id": "suikou",
       "kind": "example",
       "index": 0,
-      "text": "任務を遂行するために協力する。",
+      "text": "任務を遂行するために協力する",
       "voice": "jf_alpha",
       "path": "audio/vocab/suikou-ex1.mp3"
     },
@@ -2063,7 +2063,7 @@
       "id": "suikou",
       "kind": "example",
       "index": 1,
-      "text": "計画を着実に遂行した。",
+      "text": "計画を着実に遂行した",
       "voice": "jf_alpha",
       "path": "audio/vocab/suikou-ex2.mp3"
     },
@@ -2079,7 +2079,7 @@
       "id": "tekkai",
       "kind": "example",
       "index": 0,
-      "text": "発言の撤回を求める。",
+      "text": "発言の撤回を求める",
       "voice": "jf_alpha",
       "path": "audio/vocab/tekkai-ex1.mp3"
     },
@@ -2087,7 +2087,7 @@
       "id": "tekkai",
       "kind": "example",
       "index": 1,
-      "text": "会社は値上げ方針を撤回した。",
+      "text": "会社は値上げ方針を撤回した",
       "voice": "jf_alpha",
       "path": "audio/vocab/tekkai-ex2.mp3"
     },
@@ -2103,7 +2103,7 @@
       "id": "hossoku",
       "kind": "example",
       "index": 0,
-      "text": "新しい委員会が来月発足する。",
+      "text": "新しい委員会が来月発足する",
       "voice": "jf_alpha",
       "path": "audio/vocab/hossoku-ex1.mp3"
     },
@@ -2111,7 +2111,7 @@
       "id": "hossoku",
       "kind": "example",
       "index": 1,
-      "text": "制度の発足から十年が経った。",
+      "text": "制度の発足から十年が経った",
       "voice": "jf_alpha",
       "path": "audio/vocab/hossoku-ex2.mp3"
     },
@@ -2127,7 +2127,7 @@
       "id": "yougo",
       "kind": "example",
       "index": 0,
-      "text": "表現の自由を擁護する。",
+      "text": "表現の自由を擁護する",
       "voice": "jf_alpha",
       "path": "audio/vocab/yougo-ex1.mp3"
     },
@@ -2135,7 +2135,7 @@
       "id": "yougo",
       "kind": "example",
       "index": 1,
-      "text": "専門家はその判断を擁護した。",
+      "text": "専門家はその判断を擁護した",
       "voice": "jf_alpha",
       "path": "audio/vocab/yougo-ex2.mp3"
     },
@@ -2151,7 +2151,7 @@
       "id": "jouho",
       "kind": "example",
       "index": 0,
-      "text": "双方が譲歩しなければ合意は難しい。",
+      "text": "双方が譲歩しなければ合意は難しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/jouho-ex1.mp3"
     },
@@ -2159,7 +2159,7 @@
       "id": "jouho",
       "kind": "example",
       "index": 1,
-      "text": "交渉で一定の譲歩を示した。",
+      "text": "交渉で一定の譲歩を示した",
       "voice": "jf_alpha",
       "path": "audio/vocab/jouho-ex2.mp3"
     },
@@ -2175,7 +2175,7 @@
       "id": "dakyou",
       "kind": "example",
       "index": 0,
-      "text": "品質には妥協しない。",
+      "text": "品質には妥協しない",
       "voice": "jf_alpha",
       "path": "audio/vocab/dakyou-ex1.mp3"
     },
@@ -2183,7 +2183,7 @@
       "id": "dakyou",
       "kind": "example",
       "index": 1,
-      "text": "現実的な妥協案を探す。",
+      "text": "現実的な妥協案を探す",
       "voice": "jf_alpha",
       "path": "audio/vocab/dakyou-ex2.mp3"
     },
@@ -2199,7 +2199,7 @@
       "id": "kainyuu",
       "kind": "example",
       "index": 0,
-      "text": "政府が市場に介入した。",
+      "text": "政府が市場に介入した",
       "voice": "jf_alpha",
       "path": "audio/vocab/kainyuu-ex1.mp3"
     },
@@ -2207,7 +2207,7 @@
       "id": "kainyuu",
       "kind": "example",
       "index": 1,
-      "text": "第三者の介入で争いが収まった。",
+      "text": "第三者の介入で争いが収まった",
       "voice": "jf_alpha",
       "path": "audio/vocab/kainyuu-ex2.mp3"
     },
@@ -2223,7 +2223,7 @@
       "id": "haijo",
       "kind": "example",
       "index": 0,
-      "text": "危険な要因を排除する。",
+      "text": "危険な要因を排除する",
       "voice": "jf_alpha",
       "path": "audio/vocab/haijo-ex1.mp3"
     },
@@ -2231,7 +2231,7 @@
       "id": "haijo",
       "kind": "example",
       "index": 1,
-      "text": "特定の人を排除する仕組みは望ましくない。",
+      "text": "特定の人を排除する仕組みは望ましくない",
       "voice": "jf_alpha",
       "path": "audio/vocab/haijo-ex2.mp3"
     },
@@ -2247,7 +2247,7 @@
       "id": "sokushin",
       "kind": "example",
       "index": 0,
-      "text": "地域の交流を促進する。",
+      "text": "地域の交流を促進する",
       "voice": "jf_alpha",
       "path": "audio/vocab/sokushin-ex1.mp3"
     },
@@ -2255,7 +2255,7 @@
       "id": "sokushin",
       "kind": "example",
       "index": 1,
-      "text": "投資を促進する制度が導入された。",
+      "text": "投資を促進する制度が導入された",
       "voice": "jf_alpha",
       "path": "audio/vocab/sokushin-ex2.mp3"
     },
@@ -2271,7 +2271,7 @@
       "id": "yokusei",
       "kind": "example",
       "index": 0,
-      "text": "支出の増加を抑制する。",
+      "text": "支出の増加を抑制する",
       "voice": "jf_alpha",
       "path": "audio/vocab/yokusei-ex1.mp3"
     },
@@ -2279,7 +2279,7 @@
       "id": "yokusei",
       "kind": "example",
       "index": 1,
-      "text": "感染の拡大を抑制する効果がある。",
+      "text": "感染の拡大を抑制する効果がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/yokusei-ex2.mp3"
     },
@@ -2295,7 +2295,7 @@
       "id": "kisei",
       "kind": "example",
       "index": 0,
-      "text": "安全のために規制を強化する。",
+      "text": "安全のために規制を強化する",
       "voice": "jf_alpha",
       "path": "audio/vocab/kisei-ex1.mp3"
     },
@@ -2303,7 +2303,7 @@
       "id": "kisei",
       "kind": "example",
       "index": 1,
-      "text": "過度な規制は競争を妨げる。",
+      "text": "過度な規制は競争を妨げる",
       "voice": "jf_alpha",
       "path": "audio/vocab/kisei-ex2.mp3"
     },
@@ -2319,7 +2319,7 @@
       "id": "kanwa",
       "kind": "example",
       "index": 0,
-      "text": "規制を段階的に緩和する。",
+      "text": "規制を段階的に緩和する",
       "voice": "jf_alpha",
       "path": "audio/vocab/kanwa-ex1.mp3"
     },
@@ -2327,7 +2327,7 @@
       "id": "kanwa",
       "kind": "example",
       "index": 1,
-      "text": "混雑を緩和するため便を増やした。",
+      "text": "混雑を緩和するため便を増やした",
       "voice": "jf_alpha",
       "path": "audio/vocab/kanwa-ex2.mp3"
     },
@@ -2343,7 +2343,7 @@
       "id": "chikuseki",
       "kind": "example",
       "index": 0,
-      "text": "長年の経験が蓄積されている。",
+      "text": "長年の経験が蓄積されている",
       "voice": "jf_alpha",
       "path": "audio/vocab/chikuseki-ex1.mp3"
     },
@@ -2351,7 +2351,7 @@
       "id": "chikuseki",
       "kind": "example",
       "index": 1,
-      "text": "疲労の蓄積に注意する。",
+      "text": "疲労の蓄積に注意する",
       "voice": "jf_alpha",
       "path": "audio/vocab/chikuseki-ex2.mp3"
     },
@@ -2367,7 +2367,7 @@
       "id": "haaku",
       "kind": "example",
       "index": 0,
-      "text": "現状を正確に把握する。",
+      "text": "現状を正確に把握する",
       "voice": "jf_alpha",
       "path": "audio/vocab/haaku-ex1.mp3"
     },
@@ -2375,7 +2375,7 @@
       "id": "haaku",
       "kind": "example",
       "index": 1,
-      "text": "全体像を把握してから判断する。",
+      "text": "全体像を把握してから判断する",
       "voice": "jf_alpha",
       "path": "audio/vocab/haaku-ex2.mp3"
     },
@@ -2391,7 +2391,7 @@
       "id": "hairyo",
       "kind": "example",
       "index": 0,
-      "text": "利用者の安全に配慮する。",
+      "text": "利用者の安全に配慮する",
       "voice": "jf_alpha",
       "path": "audio/vocab/hairyo-ex1.mp3"
     },
@@ -2399,7 +2399,7 @@
       "id": "hairyo",
       "kind": "example",
       "index": 1,
-      "text": "環境に配慮した製品を選ぶ。",
+      "text": "環境に配慮した製品を選ぶ",
       "voice": "jf_alpha",
       "path": "audio/vocab/hairyo-ex2.mp3"
     },
@@ -2415,7 +2415,7 @@
       "id": "n1x101",
       "kind": "example",
       "index": 0,
-      "text": "この概念を理解するには背景知識が必要だ。",
+      "text": "この概念を理解するには背景知識が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x101-ex1.mp3"
     },
@@ -2423,7 +2423,7 @@
       "id": "n1x101",
       "kind": "example",
       "index": 1,
-      "text": "新しい概念が社会に定着しつつある。",
+      "text": "新しい概念が社会に定着しつつある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x101-ex2.mp3"
     },
@@ -2439,7 +2439,7 @@
       "id": "n1x102",
       "kind": "example",
       "index": 0,
-      "text": "制度の趣旨を十分に理解する。",
+      "text": "制度の趣旨を十分に理解する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x102-ex1.mp3"
     },
@@ -2447,7 +2447,7 @@
       "id": "n1x102",
       "kind": "example",
       "index": 1,
-      "text": "発言の趣旨が正しく伝わらなかった。",
+      "text": "発言の趣旨が正しく伝わらなかった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x102-ex2.mp3"
     },
@@ -2463,7 +2463,7 @@
       "id": "n1x103",
       "kind": "example",
       "index": 0,
-      "text": "事故に至った経緯を詳しく調べる。",
+      "text": "事故に至った経緯を詳しく調べる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x103-ex1.mp3"
     },
@@ -2471,7 +2471,7 @@
       "id": "n1x103",
       "kind": "example",
       "index": 1,
-      "text": "これまでの経緯を簡潔に説明してください。",
+      "text": "これまでの経緯を簡潔に説明してください",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x103-ex2.mp3"
     },
@@ -2487,7 +2487,7 @@
       "id": "n1x104",
       "kind": "example",
       "index": 0,
-      "text": "専門家の見解は大きく分かれている。",
+      "text": "専門家の見解は大きく分かれている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x104-ex1.mp3"
     },
@@ -2495,7 +2495,7 @@
       "id": "n1x104",
       "kind": "example",
       "index": 1,
-      "text": "政府は公式な見解を示した。",
+      "text": "政府は公式な見解を示した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x104-ex2.mp3"
     },
@@ -2511,7 +2511,7 @@
       "id": "n1x105",
       "kind": "example",
       "index": 0,
-      "text": "その主張には十分な根拠がない。",
+      "text": "その主張には十分な根拠がない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x105-ex1.mp3"
     },
@@ -2519,7 +2519,7 @@
       "id": "n1x105",
       "kind": "example",
       "index": 1,
-      "text": "客観的な根拠に基づいて判断する。",
+      "text": "客観的な根拠に基づいて判断する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x105-ex2.mp3"
     },
@@ -2535,7 +2535,7 @@
       "id": "n1x106",
       "kind": "example",
       "index": 0,
-      "text": "調査によって労働環境の実態が明らかになった。",
+      "text": "調査によって労働環境の実態が明らかになった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x106-ex1.mp3"
     },
@@ -2543,7 +2543,7 @@
       "id": "n1x106",
       "kind": "example",
       "index": 1,
-      "text": "数字だけでは実態を把握できない。",
+      "text": "数字だけでは実態を把握できない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x106-ex2.mp3"
     },
@@ -2559,7 +2559,7 @@
       "id": "n1x107",
       "kind": "example",
       "index": 0,
-      "text": "市場の動向を注意深く見守る。",
+      "text": "市場の動向を注意深く見守る",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x107-ex1.mp3"
     },
@@ -2567,7 +2567,7 @@
       "id": "n1x107",
       "kind": "example",
       "index": 1,
-      "text": "若者の消費動向に変化が見られる。",
+      "text": "若者の消費動向に変化が見られる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x107-ex2.mp3"
     },
@@ -2583,7 +2583,7 @@
       "id": "n1x108",
       "kind": "example",
       "index": 0,
-      "text": "この案にはまだ改善の余地がある。",
+      "text": "この案にはまだ改善の余地がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x108-ex1.mp3"
     },
@@ -2591,7 +2591,7 @@
       "id": "n1x108",
       "kind": "example",
       "index": 1,
-      "text": "再検討する余地は十分に残されている。",
+      "text": "再検討する余地は十分に残されている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x108-ex2.mp3"
     },
@@ -2607,7 +2607,7 @@
       "id": "n1x109",
       "kind": "example",
       "index": 0,
-      "text": "長年の懸案だった問題がようやく解決した。",
+      "text": "長年の懸案だった問題がようやく解決した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x109-ex1.mp3"
     },
@@ -2615,7 +2615,7 @@
       "id": "n1x109",
       "kind": "example",
       "index": 1,
-      "text": "両国は懸案事項について協議した。",
+      "text": "両国は懸案事項について協議した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x109-ex2.mp3"
     },
@@ -2631,7 +2631,7 @@
       "id": "n1x110",
       "kind": "example",
       "index": 0,
-      "text": "結論を支える論拠が弱い。",
+      "text": "結論を支える論拠が弱い",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x110-ex1.mp3"
     },
@@ -2639,7 +2639,7 @@
       "id": "n1x110",
       "kind": "example",
       "index": 1,
-      "text": "複数の資料を論拠として提示した。",
+      "text": "複数の資料を論拠として提示した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x110-ex2.mp3"
     },
@@ -2655,7 +2655,7 @@
       "id": "n1x111",
       "kind": "example",
       "index": 0,
-      "text": "景気回復の兆候が見え始めた。",
+      "text": "景気回復の兆候が見え始めた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x111-ex1.mp3"
     },
@@ -2663,7 +2663,7 @@
       "id": "n1x111",
       "kind": "example",
       "index": 1,
-      "text": "体調悪化の兆候を見逃してはいけない。",
+      "text": "体調悪化の兆候を見逃してはいけない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x111-ex2.mp3"
     },
@@ -2679,7 +2679,7 @@
       "id": "n1x112",
       "kind": "example",
       "index": 0,
-      "text": "事件の真相はいまだ明らかになっていない。",
+      "text": "事件の真相はいまだ明らかになっていない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x112-ex1.mp3"
     },
@@ -2687,7 +2687,7 @@
       "id": "n1x112",
       "kind": "example",
       "index": 1,
-      "text": "関係者の証言から真相に迫る。",
+      "text": "関係者の証言から真相に迫る",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x112-ex2.mp3"
     },
@@ -2703,7 +2703,7 @@
       "id": "n1x113",
       "kind": "example",
       "index": 0,
-      "text": "社会の規範は時代とともに変化する。",
+      "text": "社会の規範は時代とともに変化する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x113-ex1.mp3"
     },
@@ -2711,7 +2711,7 @@
       "id": "n1x113",
       "kind": "example",
       "index": 1,
-      "text": "倫理的な規範に従って行動する。",
+      "text": "倫理的な規範に従って行動する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x113-ex2.mp3"
     },
@@ -2727,7 +2727,7 @@
       "id": "n1x114",
       "kind": "example",
       "index": 0,
-      "text": "業界の古い慣行を見直す必要がある。",
+      "text": "業界の古い慣行を見直す必要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x114-ex1.mp3"
     },
@@ -2735,7 +2735,7 @@
       "id": "n1x114",
       "kind": "example",
       "index": 1,
-      "text": "長年の慣行として続けられてきた。",
+      "text": "長年の慣行として続けられてきた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x114-ex2.mp3"
     },
@@ -2751,7 +2751,7 @@
       "id": "n1x115",
       "kind": "example",
       "index": 0,
-      "text": "問題を解決するための方策を検討する。",
+      "text": "問題を解決するための方策を検討する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x115-ex1.mp3"
     },
@@ -2759,7 +2759,7 @@
       "id": "n1x115",
       "kind": "example",
       "index": 1,
-      "text": "有効な方策がなかなか見つからない。",
+      "text": "有効な方策がなかなか見つからない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x115-ex2.mp3"
     },
@@ -2775,7 +2775,7 @@
       "id": "n1x116",
       "kind": "example",
       "index": 0,
-      "text": "政府は緊急措置を講じた。",
+      "text": "政府は緊急措置を講じた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x116-ex1.mp3"
     },
@@ -2783,7 +2783,7 @@
       "id": "n1x116",
       "kind": "example",
       "index": 1,
-      "text": "必要な措置を速やかに取るべきだ。",
+      "text": "必要な措置を速やかに取るべきだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x116-ex2.mp3"
     },
@@ -2799,7 +2799,7 @@
       "id": "n1x117",
       "kind": "example",
       "index": 0,
-      "text": "子育て支援の施策を拡充する。",
+      "text": "子育て支援の施策を拡充する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x117-ex1.mp3"
     },
@@ -2807,7 +2807,7 @@
       "id": "n1x117",
       "kind": "example",
       "index": 1,
-      "text": "新たな施策の効果を検証する。",
+      "text": "新たな施策の効果を検証する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x117-ex2.mp3"
     },
@@ -2823,7 +2823,7 @@
       "id": "n1x118",
       "kind": "example",
       "index": 0,
-      "text": "国際協力の新しい枠組みを構築する。",
+      "text": "国際協力の新しい枠組みを構築する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x118-ex1.mp3"
     },
@@ -2831,7 +2831,7 @@
       "id": "n1x118",
       "kind": "example",
       "index": 1,
-      "text": "従来の枠組みでは対応が難しい。",
+      "text": "従来の枠組みでは対応が難しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x118-ex2.mp3"
     },
@@ -2847,7 +2847,7 @@
       "id": "n1x119",
       "kind": "example",
       "index": 0,
-      "text": "重要な事柄から順に話し合う。",
+      "text": "重要な事柄から順に話し合う",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x119-ex1.mp3"
     },
@@ -2855,7 +2855,7 @@
       "id": "n1x119",
       "kind": "example",
       "index": 1,
-      "text": "私的な事柄には立ち入らない。",
+      "text": "私的な事柄には立ち入らない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x119-ex2.mp3"
     },
@@ -2871,7 +2871,7 @@
       "id": "n1x120",
       "kind": "example",
       "index": 0,
-      "text": "注意事項を事前に確認してください。",
+      "text": "注意事項を事前に確認してください",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x120-ex1.mp3"
     },
@@ -2879,7 +2879,7 @@
       "id": "n1x120",
       "kind": "example",
       "index": 1,
-      "text": "契約書に必要事項を記入する。",
+      "text": "契約書に必要事項を記入する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x120-ex2.mp3"
     },
@@ -2895,7 +2895,7 @@
       "id": "n1x121",
       "kind": "example",
       "index": 0,
-      "text": "過度な競争がさまざまな弊害を生む。",
+      "text": "過度な競争がさまざまな弊害を生む",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x121-ex1.mp3"
     },
@@ -2903,7 +2903,7 @@
       "id": "n1x121",
       "kind": "example",
       "index": 1,
-      "text": "便利さの裏にある弊害にも目を向ける。",
+      "text": "便利さの裏にある弊害にも目を向ける",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x121-ex2.mp3"
     },
@@ -2919,7 +2919,7 @@
       "id": "n1x122",
       "kind": "example",
       "index": 0,
-      "text": "地域間の格差が広がっている。",
+      "text": "地域間の格差が広がっている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x122-ex1.mp3"
     },
@@ -2927,7 +2927,7 @@
       "id": "n1x122",
       "kind": "example",
       "index": 1,
-      "text": "教育格差を縮める取り組みが必要だ。",
+      "text": "教育格差を縮める取り組みが必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x122-ex2.mp3"
     },
@@ -2943,7 +2943,7 @@
       "id": "n1x123",
       "kind": "example",
       "index": 0,
-      "text": "偏見を持たずに相手を見る。",
+      "text": "偏見を持たずに相手を見る",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x123-ex1.mp3"
     },
@@ -2951,7 +2951,7 @@
       "id": "n1x123",
       "kind": "example",
       "index": 1,
-      "text": "根強い偏見をなくすのは容易ではない。",
+      "text": "根強い偏見をなくすのは容易ではない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x123-ex2.mp3"
     },
@@ -2967,7 +2967,7 @@
       "id": "n1x124",
       "kind": "example",
       "index": 0,
-      "text": "先入観にとらわれず判断する。",
+      "text": "先入観にとらわれず判断する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x124-ex1.mp3"
     },
@@ -2975,7 +2975,7 @@
       "id": "n1x124",
       "kind": "example",
       "index": 1,
-      "text": "名前だけで先入観を持ってはいけない。",
+      "text": "名前だけで先入観を持ってはいけない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x124-ex2.mp3"
     },
@@ -2991,7 +2991,7 @@
       "id": "n1x125",
       "kind": "example",
       "index": 0,
-      "text": "問題に対する認識を共有する。",
+      "text": "問題に対する認識を共有する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x125-ex1.mp3"
     },
@@ -2999,7 +2999,7 @@
       "id": "n1x125",
       "kind": "example",
       "index": 1,
-      "text": "両者の認識には大きなずれがある。",
+      "text": "両者の認識には大きなずれがある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x125-ex2.mp3"
     },
@@ -3015,7 +3015,7 @@
       "id": "n1x126",
       "kind": "example",
       "index": 0,
-      "text": "担当者が市場の概況を説明した。",
+      "text": "担当者が市場の概況を説明した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x126-ex1.mp3"
     },
@@ -3023,7 +3023,7 @@
       "id": "n1x126",
       "kind": "example",
       "index": 1,
-      "text": "まず業界全体の概況を把握する。",
+      "text": "まず業界全体の概況を把握する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x126-ex2.mp3"
     },
@@ -3039,7 +3039,7 @@
       "id": "n1x127",
       "kind": "example",
       "index": 0,
-      "text": "費用の内訳を確認してください。",
+      "text": "費用の内訳を確認してください",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x127-ex1.mp3"
     },
@@ -3047,7 +3047,7 @@
       "id": "n1x127",
       "kind": "example",
       "index": 1,
-      "text": "売上の内訳を項目別に示した。",
+      "text": "売上の内訳を項目別に示した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x127-ex2.mp3"
     },
@@ -3063,7 +3063,7 @@
       "id": "n1x128",
       "kind": "example",
       "index": 0,
-      "text": "復旧の目処はまだ立っていない。",
+      "text": "復旧の目処はまだ立っていない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x128-ex1.mp3"
     },
@@ -3071,7 +3071,7 @@
       "id": "n1x128",
       "kind": "example",
       "index": 1,
-      "text": "来月までに完成の目処をつけたい。",
+      "text": "来月までに完成の目処をつけたい",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x128-ex2.mp3"
     },
@@ -3087,7 +3087,7 @@
       "id": "n1x129",
       "kind": "example",
       "index": 0,
-      "text": "現場に重要な手掛かりが残されていた。",
+      "text": "現場に重要な手掛かりが残されていた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x129-ex1.mp3"
     },
@@ -3095,7 +3095,7 @@
       "id": "n1x129",
       "kind": "example",
       "index": 1,
-      "text": "解決の手掛かりをつかむ。",
+      "text": "解決の手掛かりをつかむ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x129-ex2.mp3"
     },
@@ -3111,7 +3111,7 @@
       "id": "n1x130",
       "kind": "example",
       "index": 0,
-      "text": "被害を防ぐ手立てを考える。",
+      "text": "被害を防ぐ手立てを考える",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x130-ex1.mp3"
     },
@@ -3119,7 +3119,7 @@
       "id": "n1x130",
       "kind": "example",
       "index": 1,
-      "text": "今のところ有効な手立てがない。",
+      "text": "今のところ有効な手立てがない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x130-ex2.mp3"
     },
@@ -3135,7 +3135,7 @@
       "id": "n1x131",
       "kind": "example",
       "index": 0,
-      "text": "会社は高い目標を掲げている。",
+      "text": "会社は高い目標を掲げている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x131-ex1.mp3"
     },
@@ -3143,7 +3143,7 @@
       "id": "n1x131",
       "kind": "example",
       "index": 1,
-      "text": "改革を掲げて選挙に臨んだ。",
+      "text": "改革を掲げて選挙に臨んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x131-ex2.mp3"
     },
@@ -3159,7 +3159,7 @@
       "id": "n1x132",
       "kind": "example",
       "index": 0,
-      "text": "彼の表情から事情を察した。",
+      "text": "彼の表情から事情を察した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x132-ex1.mp3"
     },
@@ -3167,7 +3167,7 @@
       "id": "n1x132",
       "kind": "example",
       "index": 1,
-      "text": "相手の心情を察して言葉を選ぶ。",
+      "text": "相手の心情を察して言葉を選ぶ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x132-ex2.mp3"
     },
@@ -3183,7 +3183,7 @@
       "id": "n1x133",
       "kind": "example",
       "index": 0,
-      "text": "若い頃から医師を志していた。",
+      "text": "若い頃から医師を志していた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x133-ex1.mp3"
     },
@@ -3191,7 +3191,7 @@
       "id": "n1x133",
       "kind": "example",
       "index": 1,
-      "text": "研究者を志す学生を支援する。",
+      "text": "研究者を志す学生を支援する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x133-ex2.mp3"
     },
@@ -3207,7 +3207,7 @@
       "id": "n1x134",
       "kind": "example",
       "index": 0,
-      "text": "不正な取引を企てた疑いがある。",
+      "text": "不正な取引を企てた疑いがある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x134-ex1.mp3"
     },
@@ -3215,7 +3215,7 @@
       "id": "n1x134",
       "kind": "example",
       "index": 1,
-      "text": "新しい事業を企てる。",
+      "text": "新しい事業を企てる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x134-ex2.mp3"
     },
@@ -3231,7 +3231,7 @@
       "id": "n1x135",
       "kind": "example",
       "index": 0,
-      "text": "不用意な発言が信頼を損ねた。",
+      "text": "不用意な発言が信頼を損ねた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x135-ex1.mp3"
     },
@@ -3239,7 +3239,7 @@
       "id": "n1x135",
       "kind": "example",
       "index": 1,
-      "text": "無理をすると健康を損ねる恐れがある。",
+      "text": "無理をすると健康を損ねる恐れがある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x135-ex2.mp3"
     },
@@ -3255,7 +3255,7 @@
       "id": "n1x136",
       "kind": "example",
       "index": 0,
-      "text": "会社は取材を拒んだ。",
+      "text": "会社は取材を拒んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x136-ex1.mp3"
     },
@@ -3263,7 +3263,7 @@
       "id": "n1x136",
       "kind": "example",
       "index": 1,
-      "text": "変化を拒むだけでは前に進めない。",
+      "text": "変化を拒むだけでは前に進めない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x136-ex2.mp3"
     },
@@ -3279,7 +3279,7 @@
       "id": "n1x137",
       "kind": "example",
       "index": 0,
-      "text": "複数の要因が複雑に絡んでいる。",
+      "text": "複数の要因が複雑に絡んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x137-ex1.mp3"
     },
@@ -3287,7 +3287,7 @@
       "id": "n1x137",
       "kind": "example",
       "index": 1,
-      "text": "金銭が絡む問題は慎重に扱うべきだ。",
+      "text": "金銭が絡む問題は慎重に扱うべきだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x137-ex2.mp3"
     },
@@ -3303,7 +3303,7 @@
       "id": "n1x138",
       "kind": "example",
       "index": 0,
-      "text": "機密情報を外部に漏らしてはいけない。",
+      "text": "機密情報を外部に漏らしてはいけない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x138-ex1.mp3"
     },
@@ -3311,7 +3311,7 @@
       "id": "n1x138",
       "kind": "example",
       "index": 1,
-      "text": "彼は思わずため息を漏らした。",
+      "text": "彼は思わずため息を漏らした",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x138-ex2.mp3"
     },
@@ -3327,7 +3327,7 @@
       "id": "n1x139",
       "kind": "example",
       "index": 0,
-      "text": "新しい証拠によって判決が覆った。",
+      "text": "新しい証拠によって判決が覆った",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x139-ex1.mp3"
     },
@@ -3335,7 +3335,7 @@
       "id": "n1x139",
       "kind": "example",
       "index": 1,
-      "text": "これまでの予想が大きく覆る可能性がある。",
+      "text": "これまでの予想が大きく覆る可能性がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x139-ex2.mp3"
     },
@@ -3351,7 +3351,7 @@
       "id": "n1x140",
       "kind": "example",
       "index": 0,
-      "text": "この地域では観光客が絶えることがない。",
+      "text": "この地域では観光客が絶えることがない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x140-ex1.mp3"
     },
@@ -3359,7 +3359,7 @@
       "id": "n1x140",
       "kind": "example",
       "index": 1,
-      "text": "連絡が絶えてから三年になる。",
+      "text": "連絡が絶えてから三年になる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x140-ex2.mp3"
     },
@@ -3375,7 +3375,7 @@
       "id": "n1x141",
       "kind": "example",
       "index": 0,
-      "text": "時間がたつほど不安が募った。",
+      "text": "時間がたつほど不安が募った",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x141-ex1.mp3"
     },
@@ -3383,7 +3383,7 @@
       "id": "n1x141",
       "kind": "example",
       "index": 1,
-      "text": "会社は新しいアイデアを広く募っている。",
+      "text": "会社は新しいアイデアを広く募っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x141-ex2.mp3"
     },
@@ -3399,7 +3399,7 @@
       "id": "n1x142",
       "kind": "example",
       "index": 0,
-      "text": "彼の声には悔しさが滲んでいた。",
+      "text": "彼の声には悔しさが滲んでいた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x142-ex1.mp3"
     },
@@ -3407,7 +3407,7 @@
       "id": "n1x142",
       "kind": "example",
       "index": 1,
-      "text": "汗がシャツに滲んでいる。",
+      "text": "汗がシャツに滲んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x142-ex2.mp3"
     },
@@ -3423,7 +3423,7 @@
       "id": "n1x143",
       "kind": "example",
       "index": 0,
-      "text": "薬を飲んで痛みが和らいだ。",
+      "text": "薬を飲んで痛みが和らいだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x143-ex1.mp3"
     },
@@ -3431,7 +3431,7 @@
       "id": "n1x143",
       "kind": "example",
       "index": 1,
-      "text": "緊張した雰囲気が少し和らいだ。",
+      "text": "緊張した雰囲気が少し和らいだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x143-ex2.mp3"
     },
@@ -3447,7 +3447,7 @@
       "id": "n1x144",
       "kind": "example",
       "index": 0,
-      "text": "照明を暗くして刺激を和らげる。",
+      "text": "照明を暗くして刺激を和らげる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x144-ex1.mp3"
     },
@@ -3455,7 +3455,7 @@
       "id": "n1x144",
       "kind": "example",
       "index": 1,
-      "text": "冗談が場の緊張を和らげた。",
+      "text": "冗談が場の緊張を和らげた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x144-ex2.mp3"
     },
@@ -3471,7 +3471,7 @@
       "id": "n1x145",
       "kind": "example",
       "index": 0,
-      "text": "雲が山頂を覆い隠している。",
+      "text": "雲が山頂を覆い隠している",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x145-ex1.mp3"
     },
@@ -3479,7 +3479,7 @@
       "id": "n1x145",
       "kind": "example",
       "index": 1,
-      "text": "事実を覆い隠そうとしても無駄だ。",
+      "text": "事実を覆い隠そうとしても無駄だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x145-ex2.mp3"
     },
@@ -3495,7 +3495,7 @@
       "id": "n1x146",
       "kind": "example",
       "index": 0,
-      "text": "二人の証言が食い違っている。",
+      "text": "二人の証言が食い違っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x146-ex1.mp3"
     },
@@ -3503,7 +3503,7 @@
       "id": "n1x146",
       "kind": "example",
       "index": 1,
-      "text": "認識が食い違ったまま議論が進んだ。",
+      "text": "認識が食い違ったまま議論が進んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x146-ex2.mp3"
     },
@@ -3519,7 +3519,7 @@
       "id": "n1x147",
       "kind": "example",
       "index": 0,
-      "text": "詳細についての発言は差し控えます。",
+      "text": "詳細についての発言は差し控えます",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x147-ex1.mp3"
     },
@@ -3527,7 +3527,7 @@
       "id": "n1x147",
       "kind": "example",
       "index": 1,
-      "text": "体調を考えて外出を差し控えた。",
+      "text": "体調を考えて外出を差し控えた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x147-ex2.mp3"
     },
@@ -3543,7 +3543,7 @@
       "id": "n1x148",
       "kind": "example",
       "index": 0,
-      "text": "締め切りが差し迫っている。",
+      "text": "締め切りが差し迫っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x148-ex1.mp3"
     },
@@ -3551,7 +3551,7 @@
       "id": "n1x148",
       "kind": "example",
       "index": 1,
-      "text": "危険が差し迫った状況だった。",
+      "text": "危険が差し迫った状況だった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x148-ex2.mp3"
     },
@@ -3567,7 +3567,7 @@
       "id": "n1x149",
       "kind": "example",
       "index": 0,
-      "text": "警察が違法駐車を取り締まる。",
+      "text": "警察が違法駐車を取り締まる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x149-ex1.mp3"
     },
@@ -3575,7 +3575,7 @@
       "id": "n1x149",
       "kind": "example",
       "index": 1,
-      "text": "不正行為を厳しく取り締まる必要がある。",
+      "text": "不正行為を厳しく取り締まる必要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x149-ex2.mp3"
     },
@@ -3591,7 +3591,7 @@
       "id": "n1x150",
       "kind": "example",
       "index": 0,
-      "text": "この店では中古品も取り扱っている。",
+      "text": "この店では中古品も取り扱っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x150-ex1.mp3"
     },
@@ -3599,7 +3599,7 @@
       "id": "n1x150",
       "kind": "example",
       "index": 1,
-      "text": "個人情報は慎重に取り扱うべきだ。",
+      "text": "個人情報は慎重に取り扱うべきだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x150-ex2.mp3"
     },
@@ -3615,7 +3615,7 @@
       "id": "n1x151",
       "kind": "example",
       "index": 0,
-      "text": "失った信頼を取り戻すには時間がかかる。",
+      "text": "失った信頼を取り戻すには時間がかかる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x151-ex1.mp3"
     },
@@ -3623,7 +3623,7 @@
       "id": "n1x151",
       "kind": "example",
       "index": 1,
-      "text": "ようやく落ち着きを取り戻した。",
+      "text": "ようやく落ち着きを取り戻した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x151-ex2.mp3"
     },
@@ -3639,7 +3639,7 @@
       "id": "n1x152",
       "kind": "example",
       "index": 0,
-      "text": "小さな誤解が大きな対立を引き起こした。",
+      "text": "小さな誤解が大きな対立を引き起こした",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x152-ex1.mp3"
     },
@@ -3647,7 +3647,7 @@
       "id": "n1x152",
       "kind": "example",
       "index": 1,
-      "text": "過度な負担は健康問題を引き起こす。",
+      "text": "過度な負担は健康問題を引き起こす",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x152-ex2.mp3"
     },
@@ -3663,7 +3663,7 @@
       "id": "n1x153",
       "kind": "example",
       "index": 0,
-      "text": "前回の失敗をいつまでも引きずらない。",
+      "text": "前回の失敗をいつまでも引きずらない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x153-ex1.mp3"
     },
@@ -3671,7 +3671,7 @@
       "id": "n1x153",
       "kind": "example",
       "index": 1,
-      "text": "景気低迷の影響を引きずっている。",
+      "text": "景気低迷の影響を引きずっている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x153-ex2.mp3"
     },
@@ -3687,7 +3687,7 @@
       "id": "n1x154",
       "kind": "example",
       "index": 0,
-      "text": "厳しい状況を何とか切り抜けた。",
+      "text": "厳しい状況を何とか切り抜けた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x154-ex1.mp3"
     },
@@ -3695,7 +3695,7 @@
       "id": "n1x154",
       "kind": "example",
       "index": 1,
-      "text": "知恵を出し合って危機を切り抜ける。",
+      "text": "知恵を出し合って危機を切り抜ける",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x154-ex2.mp3"
     },
@@ -3711,7 +3711,7 @@
       "id": "n1x155",
       "kind": "example",
       "index": 0,
-      "text": "自らの力で未来を切り開く。",
+      "text": "自らの力で未来を切り開く",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x155-ex1.mp3"
     },
@@ -3719,7 +3719,7 @@
       "id": "n1x155",
       "kind": "example",
       "index": 1,
-      "text": "新しい市場を切り開いた企業だ。",
+      "text": "新しい市場を切り開いた企業だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x155-ex2.mp3"
     },
@@ -3735,7 +3735,7 @@
       "id": "n1x156",
       "kind": "example",
       "index": 0,
-      "text": "多くの困難を乗り越えて成功した。",
+      "text": "多くの困難を乗り越えて成功した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x156-ex1.mp3"
     },
@@ -3743,7 +3743,7 @@
       "id": "n1x156",
       "kind": "example",
       "index": 1,
-      "text": "世代の違いを乗り越えて協力する。",
+      "text": "世代の違いを乗り越えて協力する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x156-ex2.mp3"
     },
@@ -3759,7 +3759,7 @@
       "id": "n1x157",
       "kind": "example",
       "index": 0,
-      "text": "困難な課題に正面から立ち向かう。",
+      "text": "困難な課題に正面から立ち向かう",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x157-ex1.mp3"
     },
@@ -3767,7 +3767,7 @@
       "id": "n1x157",
       "kind": "example",
       "index": 1,
-      "text": "恐怖に立ち向かう勇気が必要だ。",
+      "text": "恐怖に立ち向かう勇気が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x157-ex2.mp3"
     },
@@ -3783,7 +3783,7 @@
       "id": "n1x158",
       "kind": "example",
       "index": 0,
-      "text": "悪化した経営を立て直す。",
+      "text": "悪化した経営を立て直す",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x158-ex1.mp3"
     },
@@ -3791,7 +3791,7 @@
       "id": "n1x158",
       "kind": "example",
       "index": 1,
-      "text": "生活のリズムを立て直したい。",
+      "text": "生活のリズムを立て直したい",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x158-ex2.mp3"
     },
@@ -3807,7 +3807,7 @@
       "id": "n1x159",
       "kind": "example",
       "index": 0,
-      "text": "長年の目標をついに成し遂げた。",
+      "text": "長年の目標をついに成し遂げた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x159-ex1.mp3"
     },
@@ -3815,7 +3815,7 @@
       "id": "n1x159",
       "kind": "example",
       "index": 1,
-      "text": "一人では成し遂げられない仕事だ。",
+      "text": "一人では成し遂げられない仕事だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x159-ex2.mp3"
     },
@@ -3831,7 +3831,7 @@
       "id": "n1x160",
       "kind": "example",
       "index": 0,
-      "text": "その意見もあながち間違いとは言えない。",
+      "text": "その意見もあながち間違いとは言えない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x160-ex1.mp3"
     },
@@ -3839,7 +3839,7 @@
       "id": "n1x160",
       "kind": "example",
       "index": 1,
-      "text": "彼の予想はあながち外れていなかった。",
+      "text": "彼の予想はあながち外れていなかった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x160-ex2.mp3"
     },
@@ -3855,7 +3855,7 @@
       "id": "n1x161",
       "kind": "example",
       "index": 0,
-      "text": "休日はもっぱら家で本を読んでいる。",
+      "text": "休日はもっぱら家で本を読んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x161-ex1.mp3"
     },
@@ -3863,7 +3863,7 @@
       "id": "n1x161",
       "kind": "example",
       "index": 1,
-      "text": "この制度はもっぱら若者を対象としている。",
+      "text": "この制度はもっぱら若者を対象としている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x161-ex2.mp3"
     },
@@ -3879,7 +3879,7 @@
       "id": "n1x162",
       "kind": "example",
       "index": 0,
-      "text": "個人の努力が組織、ひいては社会を変える。",
+      "text": "個人の努力が組織、ひいては社会を変える",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x162-ex1.mp3"
     },
@@ -3887,7 +3887,7 @@
       "id": "n1x162",
       "kind": "example",
       "index": 1,
-      "text": "環境を守ることは、ひいては生活を守ることにつながる。",
+      "text": "環境を守ることは、ひいては生活を守ることにつながる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x162-ex2.mp3"
     },
@@ -3903,7 +3903,7 @@
       "id": "n1x163",
       "kind": "example",
       "index": 0,
-      "text": "電車にかろうじて間に合った。",
+      "text": "電車にかろうじて間に合った",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x163-ex1.mp3"
     },
@@ -3911,7 +3911,7 @@
       "id": "n1x163",
       "kind": "example",
       "index": 1,
-      "text": "会社はかろうじて赤字を免れた。",
+      "text": "会社はかろうじて赤字を免れた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x163-ex2.mp3"
     },
@@ -3927,7 +3927,7 @@
       "id": "n1x164",
       "kind": "example",
       "index": 0,
-      "text": "経験を積めば答えはおのずと見えてくる。",
+      "text": "経験を積めば答えはおのずと見えてくる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x164-ex1.mp3"
     },
@@ -3935,7 +3935,7 @@
       "id": "n1x164",
       "kind": "example",
       "index": 1,
-      "text": "条件が変われば結果もおのずと変わる。",
+      "text": "条件が変われば結果もおのずと変わる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x164-ex2.mp3"
     },
@@ -3951,7 +3951,7 @@
       "id": "n1x165",
       "kind": "example",
       "index": 0,
-      "text": "健康の大切さをつくづく感じた。",
+      "text": "健康の大切さをつくづく感じた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x165-ex1.mp3"
     },
@@ -3959,7 +3959,7 @@
       "id": "n1x165",
       "kind": "example",
       "index": 1,
-      "text": "自分の未熟さをつくづく思い知らされた。",
+      "text": "自分の未熟さをつくづく思い知らされた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x165-ex2.mp3"
     },
@@ -3975,7 +3975,7 @@
       "id": "n1x166",
       "kind": "example",
       "index": 0,
-      "text": "合格を目指してひたすら勉強した。",
+      "text": "合格を目指してひたすら勉強した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x166-ex1.mp3"
     },
@@ -3983,7 +3983,7 @@
       "id": "n1x166",
       "kind": "example",
       "index": 1,
-      "text": "彼はひたすら謝り続けた。",
+      "text": "彼はひたすら謝り続けた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x166-ex2.mp3"
     },
@@ -3999,7 +3999,7 @@
       "id": "n1x167",
       "kind": "example",
       "index": 0,
-      "text": "予想がことごとく外れた。",
+      "text": "予想がことごとく外れた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x167-ex1.mp3"
     },
@@ -4007,7 +4007,7 @@
       "id": "n1x167",
       "kind": "example",
       "index": 1,
-      "text": "提出した案はことごとく却下された。",
+      "text": "提出した案はことごとく却下された",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x167-ex2.mp3"
     },
@@ -4023,7 +4023,7 @@
       "id": "n1x168",
       "kind": "example",
       "index": 0,
-      "text": "むやみに個人情報を公開してはいけない。",
+      "text": "むやみに個人情報を公開してはいけない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x168-ex1.mp3"
     },
@@ -4031,7 +4031,7 @@
       "id": "n1x168",
       "kind": "example",
       "index": 1,
-      "text": "薬をむやみに飲むのは危険だ。",
+      "text": "薬をむやみに飲むのは危険だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x168-ex2.mp3"
     },
@@ -4047,7 +4047,7 @@
       "id": "n1x169",
       "kind": "example",
       "index": 0,
-      "text": "今日はやたらに電話が多い。",
+      "text": "今日はやたらに電話が多い",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x169-ex1.mp3"
     },
@@ -4055,7 +4055,7 @@
       "id": "n1x169",
       "kind": "example",
       "index": 1,
-      "text": "彼はやたらに人の話へ口を挟む。",
+      "text": "彼はやたらに人の話へ口を挟む",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x169-ex2.mp3"
     },
@@ -4071,7 +4071,7 @@
       "id": "n1x170",
       "kind": "example",
       "index": 0,
-      "text": "この作業はさほど難しくない。",
+      "text": "この作業はさほど難しくない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x170-ex1.mp3"
     },
@@ -4079,7 +4079,7 @@
       "id": "n1x170",
       "kind": "example",
       "index": 1,
-      "text": "結果は予想とさほど変わらなかった。",
+      "text": "結果は予想とさほど変わらなかった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x170-ex2.mp3"
     },
@@ -4095,7 +4095,7 @@
       "id": "n1x171",
       "kind": "example",
       "index": 0,
-      "text": "本人はいたって冷静だった。",
+      "text": "本人はいたって冷静だった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x171-ex1.mp3"
     },
@@ -4103,7 +4103,7 @@
       "id": "n1x171",
       "kind": "example",
       "index": 1,
-      "text": "手続きはいたって簡単だ。",
+      "text": "手続きはいたって簡単だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x171-ex2.mp3"
     },
@@ -4119,7 +4119,7 @@
       "id": "n1x172",
       "kind": "example",
       "index": 0,
-      "text": "彼女の作品は会場でもひときわ目立っていた。",
+      "text": "彼女の作品は会場でもひときわ目立っていた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x172-ex1.mp3"
     },
@@ -4127,7 +4127,7 @@
       "id": "n1x172",
       "kind": "example",
       "index": 1,
-      "text": "今年はひときわ寒さが厳しい。",
+      "text": "今年はひときわ寒さが厳しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x172-ex2.mp3"
     },
@@ -4143,7 +4143,7 @@
       "id": "n1x173",
       "kind": "example",
       "index": 0,
-      "text": "必要な資料をあらかじめ準備する。",
+      "text": "必要な資料をあらかじめ準備する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x173-ex1.mp3"
     },
@@ -4151,7 +4151,7 @@
       "id": "n1x173",
       "kind": "example",
       "index": 1,
-      "text": "変更がある場合はあらかじめ知らせてください。",
+      "text": "変更がある場合はあらかじめ知らせてください",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x173-ex2.mp3"
     },
@@ -4167,7 +4167,7 @@
       "id": "n1x174",
       "kind": "example",
       "index": 0,
-      "text": "しいて言えば、価格が唯一の欠点だ。",
+      "text": "しいて言えば、価格が唯一の欠点だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x174-ex1.mp3"
     },
@@ -4175,7 +4175,7 @@
       "id": "n1x174",
       "kind": "example",
       "index": 1,
-      "text": "しいて一つ選ぶならこの案だ。",
+      "text": "しいて一つ選ぶならこの案だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x174-ex2.mp3"
     },
@@ -4191,7 +4191,7 @@
       "id": "n1x175",
       "kind": "example",
       "index": 0,
-      "text": "反対を承知であえて提案した。",
+      "text": "反対を承知であえて提案した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x175-ex1.mp3"
     },
@@ -4199,7 +4199,7 @@
       "id": "n1x175",
       "kind": "example",
       "index": 1,
-      "text": "難しい道をあえて選ぶ理由がある。",
+      "text": "難しい道をあえて選ぶ理由がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x175-ex2.mp3"
     },
@@ -4215,7 +4215,7 @@
       "id": "n1x176",
       "kind": "example",
       "index": 0,
-      "text": "雨が降って寒さがいっそう厳しくなった。",
+      "text": "雨が降って寒さがいっそう厳しくなった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x176-ex1.mp3"
     },
@@ -4223,7 +4223,7 @@
       "id": "n1x176",
       "kind": "example",
       "index": 1,
-      "text": "説明を聞いて理解がいっそう深まった。",
+      "text": "説明を聞いて理解がいっそう深まった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x176-ex2.mp3"
     },
@@ -4239,7 +4239,7 @@
       "id": "n1x177",
       "kind": "example",
       "index": 0,
-      "text": "この方法はもはや通用しない。",
+      "text": "この方法はもはや通用しない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x177-ex1.mp3"
     },
@@ -4247,7 +4247,7 @@
       "id": "n1x177",
       "kind": "example",
       "index": 1,
-      "text": "問題はもはや一企業だけのものではない。",
+      "text": "問題はもはや一企業だけのものではない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x177-ex2.mp3"
     },
@@ -4263,7 +4263,7 @@
       "id": "n1x178",
       "kind": "example",
       "index": 0,
-      "text": "この地域は冬、とりわけ一月が寒い。",
+      "text": "この地域は冬、とりわけ一月が寒い",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x178-ex1.mp3"
     },
@@ -4271,7 +4271,7 @@
       "id": "n1x178",
       "kind": "example",
       "index": 1,
-      "text": "若者の減少がとりわけ深刻だ。",
+      "text": "若者の減少がとりわけ深刻だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x178-ex2.mp3"
     },
@@ -4287,7 +4287,7 @@
       "id": "n1x179",
       "kind": "example",
       "index": 0,
-      "text": "工事はおおよそ予定通り進んでいる。",
+      "text": "工事はおおよそ予定通り進んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x179-ex1.mp3"
     },
@@ -4295,7 +4295,7 @@
       "id": "n1x179",
       "kind": "example",
       "index": 1,
-      "text": "費用はおおよそ百万円になる。",
+      "text": "費用はおおよそ百万円になる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x179-ex2.mp3"
     },
@@ -4311,7 +4311,7 @@
       "id": "n1x180",
       "kind": "example",
       "index": 0,
-      "text": "価格だけで良し悪しを一概に判断できない。",
+      "text": "価格だけで良し悪しを一概に判断できない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x180-ex1.mp3"
     },
@@ -4319,7 +4319,7 @@
       "id": "n1x180",
       "kind": "example",
       "index": 1,
-      "text": "都会の方が便利だとは一概に言えない。",
+      "text": "都会の方が便利だとは一概に言えない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x180-ex2.mp3"
     },
@@ -4335,7 +4335,7 @@
       "id": "n1x181",
       "kind": "example",
       "index": 0,
-      "text": "何度説明しても一向に理解してくれない。",
+      "text": "何度説明しても一向に理解してくれない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x181-ex1.mp3"
     },
@@ -4343,7 +4343,7 @@
       "id": "n1x181",
       "kind": "example",
       "index": 1,
-      "text": "雨は一向にやむ気配がない。",
+      "text": "雨は一向にやむ気配がない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x181-ex2.mp3"
     },
@@ -4359,7 +4359,7 @@
       "id": "n1x182",
       "kind": "example",
       "index": 0,
-      "text": "問題はひとまず解決した。",
+      "text": "問題はひとまず解決した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x182-ex1.mp3"
     },
@@ -4367,7 +4367,7 @@
       "id": "n1x182",
       "kind": "example",
       "index": 1,
-      "text": "詳しい話はひとまず後にしよう。",
+      "text": "詳しい話はひとまず後にしよう",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x182-ex2.mp3"
     },
@@ -4383,7 +4383,7 @@
       "id": "n1x183",
       "kind": "example",
       "index": 0,
-      "text": "取り急ぎメールにてご連絡いたします。",
+      "text": "取り急ぎメールにてご連絡いたします",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x183-ex1.mp3"
     },
@@ -4391,7 +4391,7 @@
       "id": "n1x183",
       "kind": "example",
       "index": 1,
-      "text": "取り急ぎ結果だけお知らせします。",
+      "text": "取り急ぎ結果だけお知らせします",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x183-ex2.mp3"
     },
@@ -4407,7 +4407,7 @@
       "id": "n1x184",
       "kind": "example",
       "index": 0,
-      "text": "何卒ご理解くださいますようお願いいたします。",
+      "text": "何卒ご理解くださいますようお願いいたします",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x184-ex1.mp3"
     },
@@ -4415,7 +4415,7 @@
       "id": "n1x184",
       "kind": "example",
       "index": 1,
-      "text": "今後とも何卒よろしくお願いいたします。",
+      "text": "今後とも何卒よろしくお願いいたします",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x184-ex2.mp3"
     },
@@ -4431,7 +4431,7 @@
       "id": "n1x185",
       "kind": "example",
       "index": 0,
-      "text": "今年の夏は殊に暑い。",
+      "text": "今年の夏は殊に暑い",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x185-ex1.mp3"
     },
@@ -4439,7 +4439,7 @@
       "id": "n1x185",
       "kind": "example",
       "index": 1,
-      "text": "高齢者には殊に注意が必要だ。",
+      "text": "高齢者には殊に注意が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x185-ex2.mp3"
     },
@@ -4455,7 +4455,7 @@
       "id": "n1x186",
       "kind": "example",
       "index": 0,
-      "text": "大人でも難しい。まして子供には無理だ。",
+      "text": "大人でも難しい。まして子供には無理だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x186-ex1.mp3"
     },
@@ -4463,7 +4463,7 @@
       "id": "n1x186",
       "kind": "example",
       "index": 1,
-      "text": "一人では大変だ。まして初心者ならなおさらだ。",
+      "text": "一人では大変だ。まして初心者ならなおさらだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x186-ex2.mp3"
     },
@@ -4479,7 +4479,7 @@
       "id": "n1x187",
       "kind": "example",
       "index": 0,
-      "text": "この量を一日で終えるのは到底無理だ。",
+      "text": "この量を一日で終えるのは到底無理だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x187-ex1.mp3"
     },
@@ -4487,7 +4487,7 @@
       "id": "n1x187",
       "kind": "example",
       "index": 1,
-      "text": "彼の説明には到底納得できない。",
+      "text": "彼の説明には到底納得できない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x187-ex2.mp3"
     },
@@ -4503,7 +4503,7 @@
       "id": "n1x188",
       "kind": "example",
       "index": 0,
-      "text": "その判断は妥当だと思う。",
+      "text": "その判断は妥当だと思う",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x188-ex1.mp3"
     },
@@ -4511,7 +4511,7 @@
       "id": "n1x188",
       "kind": "example",
       "index": 1,
-      "text": "妥当な価格かどうか検討する。",
+      "text": "妥当な価格かどうか検討する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x188-ex2.mp3"
     },
@@ -4527,7 +4527,7 @@
       "id": "n1x189",
       "kind": "example",
       "index": 0,
-      "text": "状況に応じて適宜休憩を取ってください。",
+      "text": "状況に応じて適宜休憩を取ってください",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x189-ex1.mp3"
     },
@@ -4535,7 +4535,7 @@
       "id": "n1x189",
       "kind": "example",
       "index": 1,
-      "text": "資料は適宜更新される。",
+      "text": "資料は適宜更新される",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x189-ex2.mp3"
     },
@@ -4551,7 +4551,7 @@
       "id": "n1x190",
       "kind": "example",
       "index": 0,
-      "text": "要点を簡潔に説明してください。",
+      "text": "要点を簡潔に説明してください",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x190-ex1.mp3"
     },
@@ -4559,7 +4559,7 @@
       "id": "n1x190",
       "kind": "example",
       "index": 1,
-      "text": "簡潔で分かりやすい文章を心掛ける。",
+      "text": "簡潔で分かりやすい文章を心掛ける",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x190-ex2.mp3"
     },
@@ -4575,7 +4575,7 @@
       "id": "n1x191",
       "kind": "example",
       "index": 0,
-      "text": "緻密な計画を立てて実行する。",
+      "text": "緻密な計画を立てて実行する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x191-ex1.mp3"
     },
@@ -4583,7 +4583,7 @@
       "id": "n1x191",
       "kind": "example",
       "index": 1,
-      "text": "彼の分析は非常に緻密だ。",
+      "text": "彼の分析は非常に緻密だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x191-ex2.mp3"
     },
@@ -4599,7 +4599,7 @@
       "id": "n1x192",
       "kind": "example",
       "index": 0,
-      "text": "潜在していた問題が顕在化した。",
+      "text": "潜在していた問題が顕在化した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x192-ex1.mp3"
     },
@@ -4607,7 +4607,7 @@
       "id": "n1x192",
       "kind": "example",
       "index": 1,
-      "text": "需要はまだ顕在化していない。",
+      "text": "需要はまだ顕在化していない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x192-ex2.mp3"
     },
@@ -4623,7 +4623,7 @@
       "id": "n1x193",
       "kind": "example",
       "index": 0,
-      "text": "市場には大きな潜在需要がある。",
+      "text": "市場には大きな潜在需要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x193-ex1.mp3"
     },
@@ -4631,7 +4631,7 @@
       "id": "n1x193",
       "kind": "example",
       "index": 1,
-      "text": "潜在的な危険を事前に洗い出す。",
+      "text": "潜在的な危険を事前に洗い出す",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x193-ex2.mp3"
     },
@@ -4647,7 +4647,7 @@
       "id": "n1x194",
       "kind": "example",
       "index": 0,
-      "text": "書類に不備があり、申請が戻された。",
+      "text": "書類に不備があり、申請が戻された",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x194-ex1.mp3"
     },
@@ -4655,7 +4655,7 @@
       "id": "n1x194",
       "kind": "example",
       "index": 1,
-      "text": "制度上の不備を改善する必要がある。",
+      "text": "制度上の不備を改善する必要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x194-ex2.mp3"
     },
@@ -4671,7 +4671,7 @@
       "id": "n1x195",
       "kind": "example",
       "index": 0,
-      "text": "企業の不祥事が相次いで発覚した。",
+      "text": "企業の不祥事が相次いで発覚した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x195-ex1.mp3"
     },
@@ -4679,7 +4679,7 @@
       "id": "n1x195",
       "kind": "example",
       "index": 1,
-      "text": "不祥事を受けて社長が謝罪した。",
+      "text": "不祥事を受けて社長が謝罪した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x195-ex2.mp3"
     },
@@ -4695,7 +4695,7 @@
       "id": "n1x196",
       "kind": "example",
       "index": 0,
-      "text": "説明と実態の間に齟齬がある。",
+      "text": "説明と実態の間に齟齬がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x196-ex1.mp3"
     },
@@ -4703,7 +4703,7 @@
       "id": "n1x196",
       "kind": "example",
       "index": 1,
-      "text": "双方の認識に齟齬が生じた。",
+      "text": "双方の認識に齟齬が生じた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x196-ex2.mp3"
     },
@@ -4719,7 +4719,7 @@
       "id": "n1x197",
       "kind": "example",
       "index": 0,
-      "text": "部署間の軋轢が業務に影響している。",
+      "text": "部署間の軋轢が業務に影響している",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x197-ex1.mp3"
     },
@@ -4727,7 +4727,7 @@
       "id": "n1x197",
       "kind": "example",
       "index": 1,
-      "text": "急な改革が現場との軋轢を生んだ。",
+      "text": "急な改革が現場との軋轢を生んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x197-ex2.mp3"
     },
@@ -4743,7 +4743,7 @@
       "id": "n1x198",
       "kind": "example",
       "index": 0,
-      "text": "その発言は社会に大きな波紋を広げた。",
+      "text": "その発言は社会に大きな波紋を広げた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x198-ex1.mp3"
     },
@@ -4751,7 +4751,7 @@
       "id": "n1x198",
       "kind": "example",
       "index": 1,
-      "text": "突然の辞任が業界に波紋を呼んでいる。",
+      "text": "突然の辞任が業界に波紋を呼んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x198-ex2.mp3"
     },
@@ -4767,7 +4767,7 @@
       "id": "n1x199",
       "kind": "example",
       "index": 0,
-      "text": "台風の余波で交通が乱れた。",
+      "text": "台風の余波で交通が乱れた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x199-ex1.mp3"
     },
@@ -4775,7 +4775,7 @@
       "id": "n1x199",
       "kind": "example",
       "index": 1,
-      "text": "値上げの余波が他の商品にも及んだ。",
+      "text": "値上げの余波が他の商品にも及んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x199-ex2.mp3"
     },
@@ -4791,7 +4791,7 @@
       "id": "n1x200",
       "kind": "example",
       "index": 0,
-      "text": "調査で問題の一端が明らかになった。",
+      "text": "調査で問題の一端が明らかになった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x200-ex1.mp3"
     },
@@ -4799,7 +4799,7 @@
       "id": "n1x200",
       "kind": "example",
       "index": 1,
-      "text": "これは複雑な事情の一端にすぎない。",
+      "text": "これは複雑な事情の一端にすぎない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x200-ex2.mp3"
     },
@@ -4815,7 +4815,7 @@
       "id": "n1x201",
       "kind": "example",
       "index": 0,
-      "text": "任された業務を責任を持って遂行する。",
+      "text": "任された業務を責任を持って遂行する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x201-ex1.mp3"
     },
@@ -4831,7 +4831,7 @@
       "id": "n1x202",
       "kind": "example",
       "index": 0,
-      "text": "従来の方針をそのまま踏襲する。",
+      "text": "従来の方針をそのまま踏襲する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x202-ex1.mp3"
     },
@@ -4847,7 +4847,7 @@
       "id": "n1x203",
       "kind": "example",
       "index": 0,
-      "text": "交渉によって行き詰まった状況を打開した。",
+      "text": "交渉によって行き詰まった状況を打開した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x203-ex1.mp3"
     },
@@ -4863,7 +4863,7 @@
       "id": "n1x204",
       "kind": "example",
       "index": 0,
-      "text": "不公平な条件を制度から排除する必要がある。",
+      "text": "不公平な条件を制度から排除する必要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x204-ex1.mp3"
     },
@@ -4879,7 +4879,7 @@
       "id": "n1x205",
       "kind": "example",
       "index": 0,
-      "text": "政府は設備投資を促進する政策を発表した。",
+      "text": "政府は設備投資を促進する政策を発表した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x205-ex1.mp3"
     },
@@ -4895,7 +4895,7 @@
       "id": "n1x206",
       "kind": "example",
       "index": 0,
-      "text": "過度な値上がりを抑制する対策が求められる。",
+      "text": "過度な値上がりを抑制する対策が求められる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x206-ex1.mp3"
     },
@@ -4911,7 +4911,7 @@
       "id": "n1x207",
       "kind": "example",
       "index": 0,
-      "text": "地域間の格差を是正する取り組みが進んでいる。",
+      "text": "地域間の格差を是正する取り組みが進んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x207-ex1.mp3"
     },
@@ -4927,7 +4927,7 @@
       "id": "n1x208",
       "kind": "example",
       "index": 0,
-      "text": "規制を緩和して新規参入を促す。",
+      "text": "規制を緩和して新規参入を促す",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x208-ex1.mp3"
     },
@@ -4943,7 +4943,7 @@
       "id": "n1x209",
       "kind": "example",
       "index": 0,
-      "text": "企業は事業モデルの転換を迫られている。",
+      "text": "企業は事業モデルの転換を迫られている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x209-ex1.mp3"
     },
@@ -4959,7 +4959,7 @@
       "id": "n1x210",
       "kind": "example",
       "index": 0,
-      "text": "各社が新たな収益源を模索している。",
+      "text": "各社が新たな収益源を模索している",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x210-ex1.mp3"
     },
@@ -4975,7 +4975,7 @@
       "id": "n1x211",
       "kind": "example",
       "index": 0,
-      "text": "政策の効果をデータで検証する。",
+      "text": "政策の効果をデータで検証する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x211-ex1.mp3"
     },
@@ -4991,7 +4991,7 @@
       "id": "n1x212",
       "kind": "example",
       "index": 0,
-      "text": "現場の実態を正確に把握することが重要だ。",
+      "text": "現場の実態を正確に把握することが重要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x212-ex1.mp3"
     },
@@ -5007,7 +5007,7 @@
       "id": "n1x213",
       "kind": "example",
       "index": 0,
-      "text": "長年にわたって蓄積されたデータを活用する。",
+      "text": "長年にわたって蓄積されたデータを活用する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x213-ex1.mp3"
     },
@@ -5023,7 +5023,7 @@
       "id": "n1x214",
       "kind": "example",
       "index": 0,
-      "text": "利益の一部を利用者に還元する。",
+      "text": "利益の一部を利用者に還元する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x214-ex1.mp3"
     },
@@ -5039,7 +5039,7 @@
       "id": "n1x215",
       "kind": "example",
       "index": 0,
-      "text": "政府が市場に過度に介入すべきではないとの意見もある。",
+      "text": "政府が市場に過度に介入すべきではないとの意見もある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x215-ex1.mp3"
     },
@@ -5055,7 +5055,7 @@
       "id": "n1x216",
       "kind": "example",
       "index": 0,
-      "text": "複数の業者が介在するため手続きが複雑だ。",
+      "text": "複数の業者が介在するため手続きが複雑だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x216-ex1.mp3"
     },
@@ -5071,7 +5071,7 @@
       "id": "n1x217",
       "kind": "example",
       "index": 0,
-      "text": "自治体と企業が連携して防災対策を進める。",
+      "text": "自治体と企業が連携して防災対策を進める",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x217-ex1.mp3"
     },
@@ -5087,7 +5087,7 @@
       "id": "n1x218",
       "kind": "example",
       "index": 0,
-      "text": "両社は技術開発で提携することを決めた。",
+      "text": "両社は技術開発で提携することを決めた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x218-ex1.mp3"
     },
@@ -5103,7 +5103,7 @@
       "id": "n1x219",
       "kind": "example",
       "index": 0,
-      "text": "複数のサービスを一つのアプリに統合する。",
+      "text": "複数のサービスを一つのアプリに統合する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x219-ex1.mp3"
     },
@@ -5119,7 +5119,7 @@
       "id": "n1x220",
       "kind": "example",
       "index": 0,
-      "text": "災害に備えて拠点を各地に分散させる。",
+      "text": "災害に備えて拠点を各地に分散させる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x220-ex1.mp3"
     },
@@ -5135,7 +5135,7 @@
       "id": "n1x221",
       "kind": "example",
       "index": 0,
-      "text": "計画から大きく逸脱した支出が問題になった。",
+      "text": "計画から大きく逸脱した支出が問題になった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x221-ex1.mp3"
     },
@@ -5151,7 +5151,7 @@
       "id": "n1x222",
       "kind": "example",
       "index": 0,
-      "text": "説明責任の欠如が批判されている。",
+      "text": "説明責任の欠如が批判されている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x222-ex1.mp3"
     },
@@ -5167,7 +5167,7 @@
       "id": "n1x223",
       "kind": "example",
       "index": 0,
-      "text": "市場価格と実態の乖離が広がっている。",
+      "text": "市場価格と実態の乖離が広がっている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x223-ex1.mp3"
     },
@@ -5183,7 +5183,7 @@
       "id": "n1x224",
       "kind": "example",
       "index": 0,
-      "text": "供給網の脆弱さが改めて明らかになった。",
+      "text": "供給網の脆弱さが改めて明らかになった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x224-ex1.mp3"
     },
@@ -5199,7 +5199,7 @@
       "id": "n1x225",
       "kind": "example",
       "index": 0,
-      "text": "若い世代ほどその傾向が顕著だ。",
+      "text": "若い世代ほどその傾向が顕著だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x225-ex1.mp3"
     },
@@ -5215,7 +5215,7 @@
       "id": "n1x226",
       "kind": "example",
       "index": 0,
-      "text": "この地域では人口減少が著しい。",
+      "text": "この地域では人口減少が著しい",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x226-ex1.mp3"
     },
@@ -5231,7 +5231,7 @@
       "id": "n1x227",
       "kind": "example",
       "index": 0,
-      "text": "景気は緩やかな回復を続けている。",
+      "text": "景気は緩やかな回復を続けている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x227-ex1.mp3"
     },
@@ -5247,7 +5247,7 @@
       "id": "n1x228",
       "kind": "example",
       "index": 0,
-      "text": "業務を円滑に進めるため担当を明確にした。",
+      "text": "業務を円滑に進めるため担当を明確にした",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x228-ex1.mp3"
     },
@@ -5263,7 +5263,7 @@
       "id": "n1x229",
       "kind": "example",
       "index": 0,
-      "text": "状況に応じて柔軟に対応する必要がある。",
+      "text": "状況に応じて柔軟に対応する必要がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x229-ex1.mp3"
     },
@@ -5279,7 +5279,7 @@
       "id": "n1x230",
       "kind": "example",
       "index": 0,
-      "text": "影響が大きいため慎重な判断が求められる。",
+      "text": "影響が大きいため慎重な判断が求められる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x230-ex1.mp3"
     },
@@ -5295,7 +5295,7 @@
       "id": "n1x231",
       "kind": "example",
       "index": 0,
-      "text": "個人情報は厳格に管理されなければならない。",
+      "text": "個人情報は厳格に管理されなければならない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x231-ex1.mp3"
     },
@@ -5311,7 +5311,7 @@
       "id": "n1x232",
       "kind": "example",
       "index": 0,
-      "text": "双方が妥協点を探っている。",
+      "text": "双方が妥協点を探っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x232-ex1.mp3"
     },
@@ -5327,7 +5327,7 @@
       "id": "n1x233",
       "kind": "example",
       "index": 0,
-      "text": "高齢者にも使いやすいよう配慮した設計だ。",
+      "text": "高齢者にも使いやすいよう配慮した設計だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x233-ex1.mp3"
     },
@@ -5343,7 +5343,7 @@
       "id": "n1x234",
       "kind": "example",
       "index": 0,
-      "text": "費用だけでなく安全性も考慮すべきだ。",
+      "text": "費用だけでなく安全性も考慮すべきだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x234-ex1.mp3"
     },
@@ -5359,7 +5359,7 @@
       "id": "n1x235",
       "kind": "example",
       "index": 0,
-      "text": "限られた予算を適切に配分する。",
+      "text": "限られた予算を適切に配分する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x235-ex1.mp3"
     },
@@ -5375,7 +5375,7 @@
       "id": "n1x236",
       "kind": "example",
       "index": 0,
-      "text": "納期にはまだ少し余裕がある。",
+      "text": "納期にはまだ少し余裕がある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x236-ex1.mp3"
     },
@@ -5391,7 +5391,7 @@
       "id": "n1x237",
       "kind": "example",
       "index": 0,
-      "text": "家計の負担を軽減する対策が必要だ。",
+      "text": "家計の負担を軽減する対策が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x237-ex1.mp3"
     },
@@ -5407,7 +5407,7 @@
       "id": "n1x238",
       "kind": "example",
       "index": 0,
-      "text": "AI関連製品への需要が急速に伸びている。",
+      "text": "AI関連製品への需要が急速に伸びている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x238-ex1.mp3"
     },
@@ -5423,7 +5423,7 @@
       "id": "n1x239",
       "kind": "example",
       "index": 0,
-      "text": "部品の供給が追いついていない。",
+      "text": "部品の供給が追いついていない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x239-ex1.mp3"
     },
@@ -5439,7 +5439,7 @@
       "id": "n1x240",
       "kind": "example",
       "index": 0,
-      "text": "新事業が安定した収益を生み始めた。",
+      "text": "新事業が安定した収益を生み始めた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x240-ex1.mp3"
     },
@@ -5455,7 +5455,7 @@
       "id": "n1x241",
       "kind": "example",
       "index": 0,
-      "text": "為替変動による損失が拡大した。",
+      "text": "為替変動による損失が拡大した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x241-ex1.mp3"
     },
@@ -5471,7 +5471,7 @@
       "id": "n1x242",
       "kind": "example",
       "index": 0,
-      "text": "原材料費が上がり採算が悪化した。",
+      "text": "原材料費が上がり採算が悪化した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x242-ex1.mp3"
     },
@@ -5487,7 +5487,7 @@
       "id": "n1x243",
       "kind": "example",
       "index": 0,
-      "text": "新制度の財源をどう確保するかが課題だ。",
+      "text": "新制度の財源をどう確保するかが課題だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x243-ex1.mp3"
     },
@@ -5503,7 +5503,7 @@
       "id": "n1x244",
       "kind": "example",
       "index": 0,
-      "text": "社会保障費の増加で歳出が膨らんでいる。",
+      "text": "社会保障費の増加で歳出が膨らんでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x244-ex1.mp3"
     },
@@ -5519,7 +5519,7 @@
       "id": "n1x245",
       "kind": "example",
       "index": 0,
-      "text": "税収の増加で歳入が上振れした。",
+      "text": "税収の増加で歳入が上振れした",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x245-ex1.mp3"
     },
@@ -5535,7 +5535,7 @@
       "id": "n1x246",
       "kind": "example",
       "index": 0,
-      "text": "為替の変動が輸入価格に影響する。",
+      "text": "為替の変動が輸入価格に影響する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x246-ex1.mp3"
     },
@@ -5551,7 +5551,7 @@
       "id": "n1x247",
       "kind": "example",
       "index": 0,
-      "text": "金利の上昇で住宅ローンの負担が増えた。",
+      "text": "金利の上昇で住宅ローンの負担が増えた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x247-ex1.mp3"
     },
@@ -5567,7 +5567,7 @@
       "id": "n1x248",
       "kind": "example",
       "index": 0,
-      "text": "企業は債務の削減を急いでいる。",
+      "text": "企業は債務の削減を急いでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x248-ex1.mp3"
     },
@@ -5583,7 +5583,7 @@
       "id": "n1x249",
       "kind": "example",
       "index": 0,
-      "text": "長期的な視点で資産を運用する。",
+      "text": "長期的な視点で資産を運用する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x249-ex1.mp3"
     },
@@ -5599,7 +5599,7 @@
       "id": "n1x250",
       "kind": "example",
       "index": 0,
-      "text": "研究開発への投資を増やす方針だ。",
+      "text": "研究開発への投資を増やす方針だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x250-ex1.mp3"
     },
@@ -5615,7 +5615,7 @@
       "id": "n1x251",
       "kind": "example",
       "index": 0,
-      "text": "景気の悪化が雇用に影響し始めた。",
+      "text": "景気の悪化が雇用に影響し始めた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x251-ex1.mp3"
     },
@@ -5631,7 +5631,7 @@
       "id": "n1x252",
       "kind": "example",
       "index": 0,
-      "text": "物流業界では深刻な人手不足が続いている。",
+      "text": "物流業界では深刻な人手不足が続いている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x252-ex1.mp3"
     },
@@ -5647,7 +5647,7 @@
       "id": "n1x253",
       "kind": "example",
       "index": 0,
-      "text": "人口減少で労働力の確保が難しくなっている。",
+      "text": "人口減少で労働力の確保が難しくなっている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x253-ex1.mp3"
     },
@@ -5663,7 +5663,7 @@
       "id": "n1x254",
       "kind": "example",
       "index": 0,
-      "text": "デジタル化によって生産性を高める。",
+      "text": "デジタル化によって生産性を高める",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x254-ex1.mp3"
     },
@@ -5679,7 +5679,7 @@
       "id": "n1x255",
       "kind": "example",
       "index": 0,
-      "text": "物価上昇に賃金の伸びが追いついていない。",
+      "text": "物価上昇に賃金の伸びが追いついていない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x255-ex1.mp3"
     },
@@ -5695,7 +5695,7 @@
       "id": "n1x256",
       "kind": "example",
       "index": 0,
-      "text": "物価高で個人消費が弱まっている。",
+      "text": "物価高で個人消費が弱まっている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x256-ex1.mp3"
     },
@@ -5711,7 +5711,7 @@
       "id": "n1x257",
       "kind": "example",
       "index": 0,
-      "text": "エネルギー価格の上昇が物価を押し上げた。",
+      "text": "エネルギー価格の上昇が物価を押し上げた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x257-ex1.mp3"
     },
@@ -5727,7 +5727,7 @@
       "id": "n1x258",
       "kind": "example",
       "index": 0,
-      "text": "景気の先行きには不透明感が残る。",
+      "text": "景気の先行きには不透明感が残る",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x258-ex1.mp3"
     },
@@ -5743,7 +5743,7 @@
       "id": "n1x259",
       "kind": "example",
       "index": 0,
-      "text": "観光需要は徐々に回復している。",
+      "text": "観光需要は徐々に回復している",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x259-ex1.mp3"
     },
@@ -5759,7 +5759,7 @@
       "id": "n1x260",
       "kind": "example",
       "index": 0,
-      "text": "国内需要の低迷が企業収益を圧迫している。",
+      "text": "国内需要の低迷が企業収益を圧迫している",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x260-ex1.mp3"
     },
@@ -5775,7 +5775,7 @@
       "id": "n1x261",
       "kind": "example",
       "index": 0,
-      "text": "交渉が停滞し、合意の時期が見えない。",
+      "text": "交渉が停滞し、合意の時期が見えない",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x261-ex1.mp3"
     },
@@ -5791,7 +5791,7 @@
       "id": "n1x262",
       "kind": "example",
       "index": 0,
-      "text": "原油価格が短期間で急騰した。",
+      "text": "原油価格が短期間で急騰した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x262-ex1.mp3"
     },
@@ -5807,7 +5807,7 @@
       "id": "n1x263",
       "kind": "example",
       "index": 0,
-      "text": "需要減少を受けて価格が下落した。",
+      "text": "需要減少を受けて価格が下落した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x263-ex1.mp3"
     },
@@ -5823,7 +5823,7 @@
       "id": "n1x264",
       "kind": "example",
       "index": 0,
-      "text": "売上の推移を月ごとに確認する。",
+      "text": "売上の推移を月ごとに確認する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x264-ex1.mp3"
     },
@@ -5839,7 +5839,7 @@
       "id": "n1x265",
       "kind": "example",
       "index": 0,
-      "text": "市場は大きな変動を繰り返している。",
+      "text": "市場は大きな変動を繰り返している",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x265-ex1.mp3"
     },
@@ -5855,7 +5855,7 @@
       "id": "n1x266",
       "kind": "example",
       "index": 0,
-      "text": "来年度の成長率見通しが引き下げられた。",
+      "text": "来年度の成長率見通しが引き下げられた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x266-ex1.mp3"
     },
@@ -5871,7 +5871,7 @@
       "id": "n1x267",
       "kind": "example",
       "index": 0,
-      "text": "効果を見極めたうえで次の措置を決める。",
+      "text": "効果を見極めたうえで次の措置を決める",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x267-ex1.mp3"
     },
@@ -5887,7 +5887,7 @@
       "id": "n1x268",
       "kind": "example",
       "index": 0,
-      "text": "十年先を見据えた投資が必要だ。",
+      "text": "十年先を見据えた投資が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x268-ex1.mp3"
     },
@@ -5903,7 +5903,7 @@
       "id": "n1x269",
       "kind": "example",
       "index": 0,
-      "text": "数字だけを見ると重要な変化を見落とすことがある。",
+      "text": "数字だけを見ると重要な変化を見落とすことがある",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x269-ex1.mp3"
     },
@@ -5919,7 +5919,7 @@
       "id": "n1x270",
       "kind": "example",
       "index": 0,
-      "text": "制度の運用方法を根本から見直す。",
+      "text": "制度の運用方法を根本から見直す",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x270-ex1.mp3"
     },
@@ -5935,7 +5935,7 @@
       "id": "n1x271",
       "kind": "example",
       "index": 0,
-      "text": "政府は新たな支援策を打ち出した。",
+      "text": "政府は新たな支援策を打ち出した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x271-ex1.mp3"
     },
@@ -5951,7 +5951,7 @@
       "id": "n1x272",
       "kind": "example",
       "index": 0,
-      "text": "企業が海外市場の開拓に乗り出した。",
+      "text": "企業が海外市場の開拓に乗り出した",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x272-ex1.mp3"
     },
@@ -5967,7 +5967,7 @@
       "id": "n1x273",
       "kind": "example",
       "index": 0,
-      "text": "業界全体で人手不足の解消に取り組む。",
+      "text": "業界全体で人手不足の解消に取り組む",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x273-ex1.mp3"
     },
@@ -5983,7 +5983,7 @@
       "id": "n1x274",
       "kind": "example",
       "index": 0,
-      "text": "政府は追加の安全対策を講じた。",
+      "text": "政府は追加の安全対策を講じた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x274-ex1.mp3"
     },
@@ -5999,7 +5999,7 @@
       "id": "n1x275",
       "kind": "example",
       "index": 0,
-      "text": "制度変更には一定の負担が伴う。",
+      "text": "制度変更には一定の負担が伴う",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x275-ex1.mp3"
     },
@@ -6015,7 +6015,7 @@
       "id": "n1x276",
       "kind": "example",
       "index": 0,
-      "text": "金利上昇が企業活動に影響を及ぼす。",
+      "text": "金利上昇が企業活動に影響を及ぼす",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x276-ex1.mp3"
     },
@@ -6031,7 +6031,7 @@
       "id": "n1x277",
       "kind": "example",
       "index": 0,
-      "text": "被害は周辺の地域にも及んだ。",
+      "text": "被害は周辺の地域にも及んだ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x277-ex1.mp3"
     },
@@ -6047,7 +6047,7 @@
       "id": "n1x278",
       "kind": "example",
       "index": 0,
-      "text": "地域経済を支える重要な役割を担う。",
+      "text": "地域経済を支える重要な役割を担う",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x278-ex1.mp3"
     },
@@ -6063,7 +6063,7 @@
       "id": "n1x279",
       "kind": "example",
       "index": 0,
-      "text": "不足する人員を技術で補う。",
+      "text": "不足する人員を技術で補う",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x279-ex1.mp3"
     },
@@ -6079,7 +6079,7 @@
       "id": "n1x280",
       "kind": "example",
       "index": 0,
-      "text": "運営費の大半を利用料金で賄っている。",
+      "text": "運営費の大半を利用料金で賄っている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x280-ex1.mp3"
     },
@@ -6095,7 +6095,7 @@
       "id": "n1x281",
       "kind": "example",
       "index": 0,
-      "text": "環境対策を経営戦略の柱に据える。",
+      "text": "環境対策を経営戦略の柱に据える",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x281-ex1.mp3"
     },
@@ -6111,7 +6111,7 @@
       "id": "n1x282",
       "kind": "example",
       "index": 0,
-      "text": "中央銀行は政策金利を据え置いた。",
+      "text": "中央銀行は政策金利を据え置いた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x282-ex1.mp3"
     },
@@ -6127,7 +6127,7 @@
       "id": "n1x283",
       "kind": "example",
       "index": 0,
-      "text": "最低賃金を段階的に引き上げる。",
+      "text": "最低賃金を段階的に引き上げる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x283-ex1.mp3"
     },
@@ -6143,7 +6143,7 @@
       "id": "n1x284",
       "kind": "example",
       "index": 0,
-      "text": "需要減少を受けて価格を引き下げた。",
+      "text": "需要減少を受けて価格を引き下げた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x284-ex1.mp3"
     },
@@ -6159,7 +6159,7 @@
       "id": "n1x285",
       "kind": "example",
       "index": 0,
-      "text": "政府は追加支援に踏み切った。",
+      "text": "政府は追加支援に踏み切った",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x285-ex1.mp3"
     },
@@ -6175,7 +6175,7 @@
       "id": "n1x286",
       "kind": "example",
       "index": 0,
-      "text": "市場の混乱を考慮し、利上げを見送った。",
+      "text": "市場の混乱を考慮し、利上げを見送った",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x286-ex1.mp3"
     },
@@ -6191,7 +6191,7 @@
       "id": "n1x287",
       "kind": "example",
       "index": 0,
-      "text": "期限が迫り、早急な判断が必要になった。",
+      "text": "期限が迫り、早急な判断が必要になった",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x287-ex1.mp3"
     },
@@ -6207,7 +6207,7 @@
       "id": "n1x288",
       "kind": "example",
       "index": 0,
-      "text": "原料不足で生産停止を余儀なくされた。",
+      "text": "原料不足で生産停止を余儀なくされた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x288-ex1.mp3"
     },
@@ -6223,7 +6223,7 @@
       "id": "n1x289",
       "kind": "example",
       "index": 0,
-      "text": "高いコストが事業拡大を阻んでいる。",
+      "text": "高いコストが事業拡大を阻んでいる",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x289-ex1.mp3"
     },
@@ -6239,7 +6239,7 @@
       "id": "n1x290",
       "kind": "example",
       "index": 0,
-      "text": "気候変動が地域の生活を脅かしている。",
+      "text": "気候変動が地域の生活を脅かしている",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x290-ex1.mp3"
     },
@@ -6255,7 +6255,7 @@
       "id": "n1x291",
       "kind": "example",
       "index": 0,
-      "text": "年齢とともに筋力が衰える。",
+      "text": "年齢とともに筋力が衰える",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x291-ex1.mp3"
     },
@@ -6271,7 +6271,7 @@
       "id": "n1x292",
       "kind": "example",
       "index": 0,
-      "text": "観光客の増加で地域経済が潤った。",
+      "text": "観光客の増加で地域経済が潤った",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x292-ex1.mp3"
     },
@@ -6287,7 +6287,7 @@
       "id": "n1x293",
       "kind": "example",
       "index": 0,
-      "text": "一定の条件を満たせば手数料が免除される。",
+      "text": "一定の条件を満たせば手数料が免除される",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x293-ex1.mp3"
     },
@@ -6303,7 +6303,7 @@
       "id": "n1x294",
       "kind": "example",
       "index": 0,
-      "text": "企業には対応まで一年の猶予が与えられた。",
+      "text": "企業には対応まで一年の猶予が与えられた",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x294-ex1.mp3"
     },
@@ -6319,7 +6319,7 @@
       "id": "n1x295",
       "kind": "example",
       "index": 0,
-      "text": "余剰電力を地域内で有効活用する。",
+      "text": "余剰電力を地域内で有効活用する",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x295-ex1.mp3"
     },
@@ -6335,7 +6335,7 @@
       "id": "n1x296",
       "kind": "example",
       "index": 0,
-      "text": "過剰な在庫が経営を圧迫している。",
+      "text": "過剰な在庫が経営を圧迫している",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x296-ex1.mp3"
     },
@@ -6351,7 +6351,7 @@
       "id": "n1x297",
       "kind": "example",
       "index": 0,
-      "text": "専門人材の不足が深刻な課題だ。",
+      "text": "専門人材の不足が深刻な課題だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x297-ex1.mp3"
     },
@@ -6367,7 +6367,7 @@
       "id": "n1x298",
       "kind": "example",
       "index": 0,
-      "text": "特定の国への輸入依存を減らす。",
+      "text": "特定の国への輸入依存を減らす",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x298-ex1.mp3"
     },
@@ -6383,7 +6383,7 @@
       "id": "n1x299",
       "kind": "example",
       "index": 0,
-      "text": "地域が経済的に自立できる仕組みを作る。",
+      "text": "地域が経済的に自立できる仕組みを作る",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x299-ex1.mp3"
     },
@@ -6399,7 +6399,7 @@
       "id": "n1x300",
       "kind": "example",
       "index": 0,
-      "text": "成長を持続させるには継続的な投資が必要だ。",
+      "text": "成長を持続させるには継続的な投資が必要だ",
       "voice": "jf_alpha",
       "path": "audio/vocab/n1x300-ex1.mp3"
     },
@@ -7447,7 +7447,7 @@
       "id": "oj-1d578a6738",
       "kind": "word",
       "index": null,
-      "text": "いちじょう",
+      "text": "いってい",
       "voice": "jf_alpha",
       "path": "audio/vocab/openjlpt/oj-1d578a6738-word.mp3"
     },
@@ -9967,7 +9967,7 @@
       "id": "oj-35398ed297",
       "kind": "word",
       "index": null,
-      "text": "かしょう",
+      "text": "やけど",
       "voice": "jf_alpha",
       "path": "audio/vocab/openjlpt/oj-35398ed297-word.mp3"
     },
@@ -20391,7 +20391,7 @@
       "id": "oj-8814988b80",
       "kind": "word",
       "index": null,
-      "text": "ちゅうっぱら",
+      "text": "ちゅうふく",
       "voice": "jf_alpha",
       "path": "audio/vocab/openjlpt/oj-8814988b80-word.mp3"
     },
@@ -28527,7 +28527,7 @@
       "id": "oj-d6c56bc73f",
       "kind": "word",
       "index": null,
-      "text": "やちゅう",
+      "text": "よなか",
       "voice": "jf_alpha",
       "path": "audio/vocab/openjlpt/oj-d6c56bc73f-word.mp3"
     },
@@ -28535,7 +28535,7 @@
       "id": "oj-f3203359ee",
       "kind": "word",
       "index": null,
-      "text": "やっこ",
+      "text": "やつ",
       "voice": "jf_alpha",
       "path": "audio/vocab/openjlpt/oj-f3203359ee-word.mp3"
     },
