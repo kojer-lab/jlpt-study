@@ -2,7 +2,7 @@
   "cohort": "OpenJLPT N1 2933",
   "reviewedRange": [
     1,
-    2500
+    2933
   ],
   "reviewType": "targeted linguistic review",
   "description": "Targeted language review of the recorded consecutive entries. Reviews focus on erroneous Korean glosses, headword/example mismatches, unnatural Japanese, and repetitive examples; reviewed coverage does not imply exhaustive linguistic certification of every sentence.",
@@ -2506,7 +2506,440 @@
     "oj-3356356fb8",
     "oj-b55c78d275",
     "oj-5eb4b23381",
-    "oj-7c8cd24ffc"
+    "oj-7c8cd24ffc",
+    "oj-d20d61f6b7",
+    "oj-0214a293b8",
+    "oj-2967145e45",
+    "oj-4e4240a247",
+    "oj-966b77c0d5",
+    "oj-8f2f3b69ad",
+    "oj-c103994f0c",
+    "oj-29f6f83ec8",
+    "oj-c3fd7b34c2",
+    "oj-add5c108a6",
+    "oj-91965451e5",
+    "oj-d1ca85869d",
+    "oj-d545dfb4f1",
+    "oj-2352843605",
+    "oj-d65feae548",
+    "oj-c161ba7230",
+    "oj-40373b9997",
+    "oj-6d956e7507",
+    "oj-faa9c24081",
+    "oj-8724bbab50",
+    "oj-a07de51f3c",
+    "oj-8f3a807dad",
+    "oj-2ad8eb39d1",
+    "oj-dffc76283b",
+    "oj-d414f6e1f3",
+    "oj-41f92a40f2",
+    "oj-b775abdd11",
+    "oj-0556bb5bbe",
+    "oj-a81b409958",
+    "oj-1e8904b5b7",
+    "oj-f8c0cfc076",
+    "oj-8932970695",
+    "oj-65fc20eed5",
+    "oj-800e05bcf1",
+    "oj-73edd67700",
+    "oj-d5de1db218",
+    "oj-d5c389a11d",
+    "oj-10d587dd95",
+    "oj-f907fc3a9b",
+    "oj-633a98a624",
+    "oj-536520ea92",
+    "oj-a94e911306",
+    "oj-f196c171b6",
+    "oj-cf530cd84a",
+    "oj-ce141a5e31",
+    "oj-e80181aca1",
+    "oj-ea5ad26c76",
+    "oj-2d4100b55d",
+    "oj-d31295f643",
+    "oj-f7b704e228",
+    "oj-f6ece0aafc",
+    "oj-8abbf74882",
+    "oj-eaf04b47de",
+    "oj-e482d02cda",
+    "oj-2dc4fc382a",
+    "oj-97b08ab1d6",
+    "oj-558167f601",
+    "oj-a191aa054e",
+    "oj-b2252b99e0",
+    "oj-53dd27cd3f",
+    "oj-dc58a8f7d2",
+    "oj-832d20702f",
+    "oj-184ff21342",
+    "oj-2f8982fd28",
+    "oj-8da39971fe",
+    "oj-25821d4f0c",
+    "oj-e7ecb4b0a9",
+    "oj-5e72c71c76",
+    "oj-e8815c7d25",
+    "oj-c4991b3b08",
+    "oj-7b855940b0",
+    "oj-48da2af325",
+    "oj-363e220d56",
+    "oj-4153c37df5",
+    "oj-4477736693",
+    "oj-c20ba5147f",
+    "oj-4e9975ebd2",
+    "oj-f73eba62cf",
+    "oj-f1d383593c",
+    "oj-9d2c461a37",
+    "oj-74601e860d",
+    "oj-ef7ac8431d",
+    "oj-3e5a78ba5b",
+    "oj-3a292b13b7",
+    "oj-0be04a2d0d",
+    "oj-2864340a00",
+    "oj-fcb506d21f",
+    "oj-2964d84ae8",
+    "oj-9e08dfb738",
+    "oj-5f0a12f21a",
+    "oj-b00b3d1d04",
+    "oj-994b68956c",
+    "oj-b29a4ed96a",
+    "oj-11c19333fc",
+    "oj-60f77da4d6",
+    "oj-4984694e6d",
+    "oj-12610e01b7",
+    "oj-a9c1579160",
+    "oj-24cf50fa20",
+    "oj-a6b638592c",
+    "oj-8724f25af8",
+    "oj-0c84e3be76",
+    "oj-0234ae0bc2",
+    "oj-fa2a840942",
+    "oj-110edd2c50",
+    "oj-3904257f59",
+    "oj-32afdf9540",
+    "oj-e0f4bf005a",
+    "oj-7444466df7",
+    "oj-3bc1b71a60",
+    "oj-7d2fc5b5b0",
+    "oj-65cd5f0ee7",
+    "oj-ada31963c3",
+    "oj-d172705e37",
+    "oj-f7ffaf9ec1",
+    "oj-c87b23e06b",
+    "oj-61b39f2848",
+    "oj-68e9c896bf",
+    "oj-7e068a9494",
+    "oj-b93e0a31d0",
+    "oj-fad263d0b1",
+    "oj-62dfbdbf3f",
+    "oj-63607fd708",
+    "oj-64a9f67d24",
+    "oj-88bc3515f2",
+    "oj-2b0e48cde1",
+    "oj-bd247508be",
+    "oj-1534662816",
+    "oj-2bbc3577e1",
+    "oj-434fc61861",
+    "oj-2606862998",
+    "oj-e4c887588d",
+    "oj-4b7e4383b0",
+    "oj-0ac82e3b35",
+    "oj-8cfbd85b71",
+    "oj-084bab949b",
+    "oj-492bf6e2fc",
+    "oj-affcd995c2",
+    "oj-5fe2bc62e1",
+    "oj-72f6bc6de3",
+    "oj-cfaa0c9c42",
+    "oj-05164a42ee",
+    "oj-64374f31d6",
+    "oj-aac21ad21e",
+    "oj-14c9478686",
+    "oj-567666993e",
+    "oj-7c7723d97e",
+    "oj-12c93760ce",
+    "oj-676ccd8a3b",
+    "oj-1bdd837b48",
+    "oj-553c385823",
+    "oj-5f2d1f7cc1",
+    "oj-5fbb3143b5",
+    "oj-b94f734eb4",
+    "oj-e3fc8893fa",
+    "oj-bd88a27e3e",
+    "oj-5911280a02",
+    "oj-f3f52aaa64",
+    "oj-83127f9e88",
+    "oj-78fbae6020",
+    "oj-f95af79628",
+    "oj-c4641cd0b3",
+    "oj-f15bb22d8e",
+    "oj-abe619fbd8",
+    "oj-edaccd91e0",
+    "oj-47fbf8e6d0",
+    "oj-f6bb133d94",
+    "oj-8c2103a006",
+    "oj-e167b2659b",
+    "oj-10d56dc624",
+    "oj-4d0b322af9",
+    "oj-7fe8112793",
+    "oj-0c228be627",
+    "oj-4856036a33",
+    "oj-d89704e126",
+    "oj-037267ccd8",
+    "oj-88c5764dde",
+    "oj-c90e42cede",
+    "oj-a256653cab",
+    "oj-5a1c5f8bb5",
+    "oj-55bc6ede70",
+    "oj-8c40174a35",
+    "oj-305f477ff6",
+    "oj-28d427532a",
+    "oj-7a146a885e",
+    "oj-b43cf88b29",
+    "oj-a1a3c1e34b",
+    "oj-7f13f5edd2",
+    "oj-76a17f8fb8",
+    "oj-7d367ef36a",
+    "oj-c8935df87f",
+    "oj-41432923e5",
+    "oj-1c86d23476",
+    "oj-b2d9553d2b",
+    "oj-7f1212c5b6",
+    "oj-97072c51a7",
+    "oj-98f763f2b9",
+    "oj-1ffaa51309",
+    "oj-9f9849e508",
+    "oj-46e1610514",
+    "oj-647bdea783",
+    "oj-d6278ccc96",
+    "oj-e9948598ba",
+    "oj-7f47da093d",
+    "oj-6bbabf5f58",
+    "oj-012f6788c4",
+    "oj-f8ce45a1e1",
+    "oj-264dbc7769",
+    "oj-bb06602638",
+    "oj-08fe449685",
+    "oj-9f6a0cdf6c",
+    "oj-29000d2970",
+    "oj-1dd4a1423d",
+    "oj-ac2fe3732a",
+    "oj-b843d494ba",
+    "oj-c6ce77ca05",
+    "oj-5aa2622835",
+    "oj-ba2699e0fa",
+    "oj-ab6f675ec9",
+    "oj-37a8128b31",
+    "oj-e440e0684c",
+    "oj-0b65c779f2",
+    "oj-f3cfd2a1e8",
+    "oj-303fa096e1",
+    "oj-d58572d331",
+    "oj-9baecfa9f3",
+    "oj-16f035d374",
+    "oj-b81e9f6d15",
+    "oj-fc348186ae",
+    "oj-f77942b430",
+    "oj-0a4e418b78",
+    "oj-c5e616bbf8",
+    "oj-d1f2f342ca",
+    "oj-b1f1dc3610",
+    "oj-c2b9455981",
+    "oj-123bb613f5",
+    "oj-595555080c",
+    "oj-1bf02a30c2",
+    "oj-dd45f4d60f",
+    "oj-9cabd94371",
+    "oj-efd9b9c1fc",
+    "oj-30c939edbf",
+    "oj-b8b395d09e",
+    "oj-2f11827eb9",
+    "oj-52fc6f1676",
+    "oj-f68af590e0",
+    "oj-f6b83448e3",
+    "oj-387f269355",
+    "oj-f3d5f7044e",
+    "oj-b8aa9a9501",
+    "oj-1595a18d12",
+    "oj-250e369af1",
+    "oj-f97c0391b5",
+    "oj-dc0658901e",
+    "oj-da545eed32",
+    "oj-957434f95c",
+    "oj-50dfb74464",
+    "oj-aab82c800b",
+    "oj-12b7d3e1db",
+    "oj-f44b9e17b3",
+    "oj-ee1446d4cb",
+    "oj-dfac47f1ac",
+    "oj-49b4e155dc",
+    "oj-f3edf29743",
+    "oj-bd3e76856f",
+    "oj-d6c56bc73f",
+    "oj-f3203359ee",
+    "oj-7f32303a71",
+    "oj-f95cf14304",
+    "oj-d7a2fbbfc9",
+    "oj-1abdb69949",
+    "oj-7e3f27dbb0",
+    "oj-720c79d386",
+    "oj-8ae69b26ca",
+    "oj-5cfbe1ca69",
+    "oj-5faae23d3b",
+    "oj-9332d2b39b",
+    "oj-a3b8e30808",
+    "oj-1cd603aec5",
+    "oj-9bfec07e36",
+    "oj-4d88022d0e",
+    "oj-ae14eee163",
+    "oj-24ed1f170c",
+    "oj-929201b027",
+    "oj-08f7ce07ce",
+    "oj-863a435217",
+    "oj-c3a437cd2e",
+    "oj-6f6756c48e",
+    "oj-9dd17b71a5",
+    "oj-cf54ac0087",
+    "oj-599056196d",
+    "oj-911636ba99",
+    "oj-ce08ad9623",
+    "oj-6a42957468",
+    "oj-ed498ffde0",
+    "oj-46b8b4d1cc",
+    "oj-e7fd16d05d",
+    "oj-8db345d3da",
+    "oj-59589f7029",
+    "oj-3f164ca482",
+    "oj-4c2d901737",
+    "oj-b9e2b22bf7",
+    "oj-c0a35530c1",
+    "oj-182fdae0a6",
+    "oj-31e870b11a",
+    "oj-9413788b34",
+    "oj-53a8f3fc5e",
+    "oj-e298035599",
+    "oj-2058b2a543",
+    "oj-76255d35db",
+    "oj-78ecbbf24b",
+    "oj-9f069bc7a9",
+    "oj-08791814c0",
+    "oj-16f829442e",
+    "oj-64cae32b6b",
+    "oj-a9dbd9e8d9",
+    "oj-724de6838a",
+    "oj-7f3a84fff7",
+    "oj-47f993e9c4",
+    "oj-ee2d6b3118",
+    "oj-72b86a5ca6",
+    "oj-7492881f35",
+    "oj-de99ebd20d",
+    "oj-145570d162",
+    "oj-192c16376f",
+    "oj-073662256e",
+    "oj-34d33913ff",
+    "oj-cdc0ed51d0",
+    "oj-a22c4bd92f",
+    "oj-0180e8874e",
+    "oj-fdb1756f8e",
+    "oj-a59bbff012",
+    "oj-c685b4940c",
+    "oj-9c552d88c0",
+    "oj-fc653283bc",
+    "oj-8307cffb68",
+    "oj-e22d9858a2",
+    "oj-52b17bca55",
+    "oj-601e4974f7",
+    "oj-8d99b1a5b4",
+    "oj-fe91926aad",
+    "oj-16deaaa427",
+    "oj-fd3790e0c9",
+    "oj-215bd62d34",
+    "oj-c83e444029",
+    "oj-8778116f3a",
+    "oj-aff35fe459",
+    "oj-ed1c4e0b8b",
+    "oj-4e80000648",
+    "oj-9471e53797",
+    "oj-d0cc8bf9a9",
+    "oj-a6fba53840",
+    "oj-7d5268e159",
+    "oj-f045f3fdfe",
+    "oj-9ea667e1d8",
+    "oj-5b1c5016f7",
+    "oj-f04b9925b7",
+    "oj-105141ee39",
+    "oj-16f60442c8",
+    "oj-a46a045f8b",
+    "oj-93039ef052",
+    "oj-09ead8c70e",
+    "oj-1389b25f13",
+    "oj-27d78c0d94",
+    "oj-75af206529",
+    "oj-6325479166",
+    "oj-a434acf5bd",
+    "oj-3e37fcff5a",
+    "oj-8c9facae6d",
+    "oj-b03689d9fa",
+    "oj-864c7afe67",
+    "oj-e6b6167d98",
+    "oj-e0cafd1188",
+    "oj-1450f6b908",
+    "oj-720dca0098",
+    "oj-4863d88e91",
+    "oj-fa1720345c",
+    "oj-21cc63f32d",
+    "oj-17969345a9",
+    "oj-e1864b7eb9",
+    "oj-0d2ff54220",
+    "oj-9e34a9d77a",
+    "oj-d0ffd0f38f",
+    "oj-c0b0e43f57",
+    "oj-63601d234c",
+    "oj-bbecf30aea",
+    "oj-996bce1e41",
+    "oj-8cb7651d8e",
+    "oj-118dd946b4",
+    "oj-d6a5ec1c0b",
+    "oj-e6e8d718b9",
+    "oj-47aa9c6d11",
+    "oj-77aabada2a",
+    "oj-4f878a51a9",
+    "oj-669651e81b",
+    "oj-49dae9ac22",
+    "oj-c7e4c9b610",
+    "oj-bfef822f66",
+    "oj-101cdef592",
+    "oj-1338a3f47d",
+    "oj-ca31bf8db3",
+    "oj-7d28bc070c",
+    "oj-dfe344f4e2",
+    "oj-cefdf0c77c",
+    "oj-04743e6a41",
+    "oj-543a56fe74",
+    "oj-c3ae5da496",
+    "oj-1487ab7edb",
+    "oj-205f841138",
+    "oj-3b514433e9",
+    "oj-edc9704d84",
+    "oj-59cc1aa388",
+    "oj-b083c2fe68",
+    "oj-6098e9e230",
+    "oj-7533eeec58",
+    "oj-077aaeea47",
+    "oj-0168723c14",
+    "oj-0a58b5edbf",
+    "oj-b4527d4c3b",
+    "oj-e91d9f8a96",
+    "oj-58c834514c",
+    "oj-5989bb1293",
+    "oj-bc47957953",
+    "oj-99dd5e0ee7",
+    "oj-421caf025d",
+    "oj-dfecf73c10",
+    "oj-aa88f39126",
+    "oj-95c85f85f2",
+    "oj-0e1d3f747e",
+    "oj-87ec2157d1",
+    "oj-cfd02fb96e",
+    "oj-fd65caed2e",
+    "oj-0bc587dbfe"
   ],
   "changes": [
     {
@@ -7499,6 +7932,721 @@
         "first-example",
         "second-example"
       ]
+    },
+    {
+      "n": 2501,
+      "id": "oj-d20d61f6b7",
+      "word": "法廷",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2503,
+      "id": "oj-2967145e45",
+      "word": "冒頭",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2512,
+      "id": "oj-d1ca85869d",
+      "word": "ホース",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2513,
+      "id": "oj-d545dfb4f1",
+      "word": "ポーズ",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2514,
+      "id": "oj-2352843605",
+      "word": "ホール",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2515,
+      "id": "oj-d65feae548",
+      "word": "保温",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2518,
+      "id": "oj-6d956e7507",
+      "word": "補給",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2522,
+      "id": "oj-8f3a807dad",
+      "word": "捕鯨",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2524,
+      "id": "oj-dffc76283b",
+      "word": "保護",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 2529,
+      "id": "oj-a81b409958",
+      "word": "干し物",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2531,
+      "id": "oj-f8c0cfc076",
+      "word": "補充",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2533,
+      "id": "oj-65fc20eed5",
+      "word": "保障",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2534,
+      "id": "oj-800e05bcf1",
+      "word": "補償",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2545,
+      "id": "oj-ce141a5e31",
+      "word": "保母",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2549,
+      "id": "oj-d31295f643",
+      "word": "捕吏",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2550,
+      "id": "oj-f7b704e228",
+      "word": "捕虜",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 2558,
+      "id": "oj-a191aa054e",
+      "word": "本体",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2567,
+      "id": "oj-e7ecb4b0a9",
+      "word": "枚",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2579,
+      "id": "oj-f1d383593c",
+      "word": "捲る",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2583,
+      "id": "oj-3e5a78ba5b",
+      "word": "真に",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2584,
+      "id": "oj-3a292b13b7",
+      "word": "正しく",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2592,
+      "id": "oj-994b68956c",
+      "word": "股",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2604,
+      "id": "oj-fa2a840942",
+      "word": "まとめ",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2609,
+      "id": "oj-7444466df7",
+      "word": "鞠",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2613,
+      "id": "oj-ada31963c3",
+      "word": "丸める",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2618,
+      "id": "oj-68e9c896bf",
+      "word": "三",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2620,
+      "id": "oj-b93e0a31d0",
+      "word": "未開",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2622,
+      "id": "oj-62dfbdbf3f",
+      "word": "見掛ける",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2625,
+      "id": "oj-88bc3515f2",
+      "word": "見苦しい",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2639,
+      "id": "oj-5fe2bc62e1",
+      "word": "未知",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2640,
+      "id": "oj-72f6bc6de3",
+      "word": "身近",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2648,
+      "id": "oj-12c93760ce",
+      "word": "源",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2655,
+      "id": "oj-e3fc8893fa",
+      "word": "ミュージック",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2656,
+      "id": "oj-bd88a27e3e",
+      "word": "未練",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2658,
+      "id": "oj-f3f52aaa64",
+      "word": "民主",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2667,
+      "id": "oj-f6bb133d94",
+      "word": "婿",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2669,
+      "id": "oj-e167b2659b",
+      "word": "無言",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2673,
+      "id": "oj-0c228be627",
+      "word": "結び付き",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2676,
+      "id": "oj-037267ccd8",
+      "word": "無線",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2682,
+      "id": "oj-8c40174a35",
+      "word": "空しい",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2699,
+      "id": "oj-9f9849e508",
+      "word": "恵み",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2701,
+      "id": "oj-647bdea783",
+      "word": "目覚ましい",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example",
+        "headword"
+      ]
+    },
+    {
+      "n": 2707,
+      "id": "oj-f8ce45a1e1",
+      "word": "滅亡",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2714,
+      "id": "oj-ac2fe3732a",
+      "word": "設ける",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2716,
+      "id": "oj-c6ce77ca05",
+      "word": "申し込み",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2717,
+      "id": "oj-5aa2622835",
+      "word": "申出",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 2718,
+      "id": "oj-ba2699e0fa",
+      "word": "申し出る",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2730,
+      "id": "oj-f77942b430",
+      "word": "持ち切り",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2734,
+      "id": "oj-b1f1dc3610",
+      "word": "持てる",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2756,
+      "id": "oj-957434f95c",
+      "word": "優",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2760,
+      "id": "oj-f44b9e17b3",
+      "word": "野心",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2763,
+      "id": "oj-49b4e155dc",
+      "word": "休める",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2766,
+      "id": "oj-d6c56bc73f",
+      "word": "夜中",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example",
+        "reading"
+      ]
+    },
+    {
+      "n": 2767,
+      "id": "oj-f3203359ee",
+      "word": "奴",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example",
+        "reading"
+      ]
+    },
+    {
+      "n": 2774,
+      "id": "oj-8ae69b26ca",
+      "word": "やり遂げる",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2778,
+      "id": "oj-a3b8e30808",
+      "word": "有益",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2781,
+      "id": "oj-4d88022d0e",
+      "word": "有機",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2787,
+      "id": "oj-c3a437cd2e",
+      "word": "優先",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2790,
+      "id": "oj-cf54ac0087",
+      "word": "有望",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2800,
+      "id": "oj-3f164ca482",
+      "word": "ユニフォーム",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2810,
+      "id": "oj-76255d35db",
+      "word": "養護",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2811,
+      "id": "oj-78ecbbf24b",
+      "word": "用紙",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2824,
+      "id": "oj-145570d162",
+      "word": "預金",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 2829,
+      "id": "oj-a22c4bd92f",
+      "word": "横綱",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2830,
+      "id": "oj-0180e8874e",
+      "word": "葦",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2843,
+      "id": "oj-fd3790e0c9",
+      "word": "弱める",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2845,
+      "id": "oj-c83e444029",
+      "word": "来場",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2847,
+      "id": "oj-aff35fe459",
+      "word": "酪農",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2853,
+      "id": "oj-7d5268e159",
+      "word": "理屈",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2869,
+      "id": "oj-8c9facae6d",
+      "word": "了解",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 2873,
+      "id": "oj-e0cafd1188",
+      "word": "良識",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2879,
+      "id": "oj-17969345a9",
+      "word": "両立",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 2884,
+      "id": "oj-c0b0e43f57",
+      "word": "輪",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2887,
+      "id": "oj-996bce1e41",
+      "word": "類推",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2891,
+      "id": "oj-e6e8d718b9",
+      "word": "冷蔵",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2895,
+      "id": "oj-669651e81b",
+      "word": "レクリエーション",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2910,
+      "id": "oj-3b514433e9",
+      "word": "朗読",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2911,
+      "id": "oj-edc9704d84",
+      "word": "浪費",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2924,
+      "id": "oj-99dd5e0ee7",
+      "word": "煩わしい",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 2931,
+      "id": "oj-cfd02fb96e",
+      "word": "割り当て",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 2933,
+      "id": "oj-0bc587dbfe",
+      "word": "悪者",
+      "fields": [
+        "meaning",
+        "first-example",
+        "second-example"
+      ]
     }
   ],
   "notes": [
@@ -7514,6 +8662,8 @@
     "1501~2000: checked meanings, readings, Korean glosses and both example sentences for all 500 words; corrected nonsensical translations, example mismatches, and duplicate contexts.",
     "中腹: corrected reading to ちゅうふく for mountainside; dictionary also documents the different obsolete ちゅうっぱら sense. Preserved verified rare readings 梯子（ていし） and 鉄片（てっぺん）.",
     "2001~2500: checked all 500 N1 lexical entries with Korean glosses, readings, and both Japanese/Korean examples. Fixed mistranslations, source headword mismatch and unnatural examples.",
-    "Normalized uncommon 何々（どれどれ） display to どれどれ and uncommon 悪い（にくい） display to 憎い; retained stable IDs. Aligned 鼠（ねず） examples to traditional gray-color use and 南（なん） examples to on-yomi compounds."
+    "Normalized uncommon 何々（どれどれ） display to どれどれ and uncommon 悪い（にくい） display to 憎い; retained stable IDs. Aligned 鼠（ねず） examples to traditional gray-color use and 南（なん） examples to on-yomi compounds.",
+    "2501~2933: manually checked remaining 433 N1 words and both examples, corrected translations, example reading/word mismatches and overly repetitive contexts.",
+    "Normalized 目覚ましい headword and aligned 夜中（よなか） and 奴（やつ） with natural modern readings and both example sentences."
   ]
 }
