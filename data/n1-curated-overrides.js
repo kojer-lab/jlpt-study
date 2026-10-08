@@ -373,14 +373,14 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-f3f408a1e8": {
-    "meaning": "끝 / 말단 / 끝부분",
+    "meaning": "나뭇가지 끝 / 끝부분 (うら는 문어·고어적 읽기)",
     "examples": [
       {
         "jp": "枝の末に小さな芽が出ている。",
         "ko": "가지 끝에 작은 싹이 나 있다."
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-4436cfdbab": {
     "meaning": "우위 / 한 수 위 / 능숙한 쪽",
@@ -6098,7 +6098,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "중단하다 / 도중에 끝내다 / 그만두다"
   },
   "oj-a55c5f8705": {
     "examples": [
@@ -6129,7 +6130,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "부채 / 둥근 손부채"
   },
   "oj-c0b855c1c3": {
     "examples": [
@@ -6149,7 +6151,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "호소 / 불평·민원 / 소송·고소"
   },
   "oj-345c476ef0": {
     "examples": [
@@ -6159,7 +6162,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "우중충하다 / 답답하다 / 귀찮고 성가시다"
   },
   "oj-de65bd7649": {
     "examples": [
@@ -6169,7 +6173,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "텅 비다 / 공허하다 / 멍하다"
   },
   "oj-0d9ba347d8": {
     "examples": [
@@ -6200,7 +6205,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "자만 / 자기도취 / 우쭐거림"
   },
   "oj-eac9dd5c43": {
     "meaning": "타고난 성질 / 선천적으로",
@@ -6240,7 +6246,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "판매 개시 / 할인 판매 / 대매출 행사"
   },
   "oj-94031b8804": {
     "meaning": "판매하기 시작하다 / 시장에 내놓다 / 유명해지다",
@@ -6261,7 +6268,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "시끄럽다 / 성가시다 / 까다롭다"
   },
   "oj-3803d886c8": {
     "examples": [
@@ -6291,12 +6299,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-7e99520775": {
     "examples": [
       {
-        "jp": "男性は一人で運搬トラックに荷物を詰め込んでいる。",
-        "ko": "한 남자가 혼자 운반 트럭에 짐을 싣고 있다.",
-        "exampleSource": "manual-review"
+        "jp": "家具の運搬には二人以上の作業員が必要だ。",
+        "ko": "가구 운반에는 두 명 이상의 작업자가 필요하다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "운반 / 물건을 실어 옮김"
   },
   "oj-1103db2949": {
     "examples": [
@@ -6310,7 +6319,14 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-5fd6ea6d24": {
     "meaning": "~겹 / ~중(重), 겹의 수를 나타내는 말",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "この桜は花びらが八重になっている。",
+        "ko": "이 벚꽃은 꽃잎이 여러 겹으로 겹쳐 있다.",
+        "exampleSource": "manual-language-review-20261008"
+      }
+    ]
   },
   "oj-a26814e88a": {
     "meaning": "항공우편",
@@ -6331,7 +6347,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "영사 / 영상을 화면에 투사함"
   },
   "oj-be5ed48bcd": {
     "examples": [
@@ -6341,7 +6358,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "위생 / 청결·건강을 지키는 관리"
   },
   "oj-b1ee34b937": {
     "examples": [
@@ -6351,7 +6369,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "영상 / 화면 / 동영상"
   },
   "oj-62924474c4": {
     "examples": [
@@ -6371,7 +6390,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "먹잇감 / 사냥감 / 노획물"
   },
   "oj-13ff9735e2": {
     "meaning": "옷깃 / 칼라",
@@ -6422,7 +6442,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "연기하다 / 역을 맡다 / 역할을 해내다"
   },
   "oj-b7dd037f7c": {
     "examples": [
@@ -6474,7 +6495,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "원만함 / 화목함 / 순조로움"
   },
   "oj-5cdc0b28ad": {
     "examples": [
@@ -6484,7 +6506,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "궁지로 몰다 / 몰아넣다 / 자신을 몰아붙이다"
   },
   "oj-bbd3ff32ae": {
     "examples": [
@@ -6499,9 +6522,9 @@ window.N1_CURATED_OVERRIDES={
   "oj-98c6945629": {
     "examples": [
       {
-        "jp": "ちょっとの時間、電話を切らないでおいて下さい。",
-        "ko": "잠깐 동안 전화 끊지 말고 그대로 있어 주세요.",
-        "exampleSource": "manual-review"
+        "jp": "地域の発展において教育は重要な役割を果たす。",
+        "ko": "지역 발전에 있어서 교육은 중요한 역할을 한다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -6568,7 +6591,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "좋아 / 알겠어 / 승인 / 문제없음"
   },
   "oj-d8aaab462e": {
     "examples": [
@@ -6578,7 +6602,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "대강 / 큰 줄기 / 전체적인 윤곽·큰 틀"
   },
   "oj-7823eb7759": {
     "examples": [
@@ -6628,7 +6653,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "침해하다 / 침범하다 / 경계를 넘어서다"
   },
   "oj-f20fe91a98": {
     "examples": [
@@ -6638,7 +6664,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "범하다 / 저지르다 / 법·규칙을 어기다"
   },
   "oj-e3025feafa": {
     "examples": [
@@ -6648,7 +6675,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "겁이 많음 / 소심함 / 겁쟁이"
   },
   "oj-1ee8b93761": {
     "examples": [
@@ -6658,7 +6686,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "엄숙하다 / 장엄하다 / 근엄하다"
   },
   "oj-59f87d1565": {
     "examples": [
@@ -6668,10 +6697,11 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "행동 / 행실 / 처신 / 행위"
   },
   "oj-bc37b59298": {
-    "meaning": "교만해지다 / 우쭐대다",
+    "meaning": "교만해지다 / 우쭐거리다 / (식사 등을) 한턱내다",
     "examples": [
       {
         "jp": "驕る平家は久しからず。",
@@ -6679,7 +6709,7 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-019aed3e0a": {
     "meaning": "가라앉다 / 낫다 / 평온해지다",

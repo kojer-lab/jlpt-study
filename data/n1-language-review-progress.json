@@ -2,10 +2,10 @@
   "cohort": "OpenJLPT N1 2933",
   "reviewedRange": [
     1,
-    200
+    300
   ],
   "reviewType": "targeted linguistic review",
-  "description": "Checked first 100 entries for evident Korean gloss errors, mismatched headwords, Japanese syntax errors and semantically repetitive sentences. This does not certify entries 101-2933.",
+  "description": "Targeted language review of the recorded consecutive entries. Reviews focus on erroneous Korean glosses, headword/example mismatches, unnatural Japanese, and repetitive examples; reviewed coverage does not imply exhaustive linguistic certification of every sentence.",
   "reviewedWordIds": [
     "oj-1cf257772e",
     "oj-f9d361f995",
@@ -206,7 +206,107 @@
     "oj-6659596f97",
     "oj-9c8fe060e5",
     "oj-88984a7ed8",
-    "oj-d24ffe73c2"
+    "oj-d24ffe73c2",
+    "oj-4b812c0625",
+    "oj-9728523e51",
+    "oj-a55c5f8705",
+    "oj-90cae1be23",
+    "oj-9f4eec854b",
+    "oj-c0b855c1c3",
+    "oj-80a13982d0",
+    "oj-345c476ef0",
+    "oj-de65bd7649",
+    "oj-1789430d86",
+    "oj-0d9ba347d8",
+    "oj-21bbf8697c",
+    "oj-4bea3861ba",
+    "oj-eac9dd5c43",
+    "oj-c887a99195",
+    "oj-a0a7a8da18",
+    "oj-661870fff1",
+    "oj-f3f408a1e8",
+    "oj-00b65e54a4",
+    "oj-689a54b032",
+    "oj-94031b8804",
+    "oj-cca92e4195",
+    "oj-4014e54a17",
+    "oj-4436cfdbab",
+    "oj-3803d886c8",
+    "oj-57d17c9b5d",
+    "oj-df00842b13",
+    "oj-f326cdd448",
+    "oj-6d4666b784",
+    "oj-2eba52219f",
+    "oj-326a77ddc9",
+    "oj-7e99520775",
+    "oj-645451702d",
+    "oj-01f242436f",
+    "oj-1103db2949",
+    "oj-5da1033412",
+    "oj-5fd6ea6d24",
+    "oj-a26814e88a",
+    "oj-922da07980",
+    "oj-cebfa04858",
+    "oj-189db824d3",
+    "oj-be5ed48bcd",
+    "oj-b1ee34b937",
+    "oj-62924474c4",
+    "oj-19595bf6aa",
+    "oj-ca47625fe8",
+    "oj-2cd66712b3",
+    "oj-d8f1d8b772",
+    "oj-13ff9735e2",
+    "oj-6451784f21",
+    "oj-9214f9905f",
+    "oj-f11ad5d8d2",
+    "oj-281570f768",
+    "oj-f9aaf64bd0",
+    "oj-26a7133c2f",
+    "oj-32f7aa5c9b",
+    "oj-93fe84e748",
+    "oj-e5d4fba484",
+    "oj-d8d1560f90",
+    "oj-62e5ed991c",
+    "oj-df7f4310a6",
+    "oj-b7dd037f7c",
+    "oj-7429dae3d6",
+    "oj-da24646f6d",
+    "oj-3bfb8d81d9",
+    "oj-a24b6a05b0",
+    "oj-ad00cfc278",
+    "oj-4fe63ccd71",
+    "oj-5cdc0b28ad",
+    "oj-bbd3ff32ae",
+    "oj-98c6945629",
+    "oj-df8f0c0717",
+    "oj-4c962a58bb",
+    "oj-263aeb9d53",
+    "oj-75b3f9459f",
+    "oj-571519d3bb",
+    "oj-98909531bf",
+    "oj-3351589df4",
+    "oj-4259b4ca3c",
+    "oj-f1f8fbc2f8",
+    "oj-e8a535ddec",
+    "oj-c117100746",
+    "oj-d8aaab462e",
+    "oj-7823eb7759",
+    "oj-5eec70dba4",
+    "oj-ca1fafcdb2",
+    "oj-226ff96dc6",
+    "oj-a5ee74734c",
+    "oj-9c2a6f0131",
+    "oj-bd73b2faac",
+    "oj-f20fe91a98",
+    "oj-e3025feafa",
+    "oj-7d8114cc2a",
+    "oj-37d3906e02",
+    "oj-1ee8b93761",
+    "oj-59f87d1565",
+    "oj-bc37b59298",
+    "oj-1dd6d7ea55",
+    "oj-019aed3e0a",
+    "oj-6ebf36ca63"
   ],
   "changes": [
     {
@@ -711,6 +811,378 @@
       "fields": [
         "meaning",
         "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 201,
+      "id": "oj-4b812c0625",
+      "word": "打ち合わせる",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 202,
+      "id": "oj-9728523e51",
+      "word": "打ち切る",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 205,
+      "id": "oj-9f4eec854b",
+      "word": "団扇",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 207,
+      "id": "oj-80a13982d0",
+      "word": "訴え",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 208,
+      "id": "oj-345c476ef0",
+      "word": "鬱陶しい",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 209,
+      "id": "oj-de65bd7649",
+      "word": "空ろ",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 213,
+      "id": "oj-4bea3861ba",
+      "word": "自惚れ",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 216,
+      "id": "oj-a0a7a8da18",
+      "word": "埋め込む",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 218,
+      "id": "oj-f3f408a1e8",
+      "word": "末",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 220,
+      "id": "oj-689a54b032",
+      "word": "売り出し",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 222,
+      "id": "oj-cca92e4195",
+      "word": "五月蝿い",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 228,
+      "id": "oj-f326cdd448",
+      "word": "うんざり",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 232,
+      "id": "oj-7e99520775",
+      "word": "運搬",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 234,
+      "id": "oj-01f242436f",
+      "word": "運輸",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 236,
+      "id": "oj-5da1033412",
+      "word": "会",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 237,
+      "id": "oj-5fd6ea6d24",
+      "word": "重",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 240,
+      "id": "oj-cebfa04858",
+      "word": "英字",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 241,
+      "id": "oj-189db824d3",
+      "word": "映写",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 242,
+      "id": "oj-be5ed48bcd",
+      "word": "衛生",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 243,
+      "id": "oj-b1ee34b937",
+      "word": "映像",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 245,
+      "id": "oj-19595bf6aa",
+      "word": "液",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 247,
+      "id": "oj-2cd66712b3",
+      "word": "閲覧",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 248,
+      "id": "oj-d8f1d8b772",
+      "word": "獲物",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 252,
+      "id": "oj-f11ad5d8d2",
+      "word": "縁",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 254,
+      "id": "oj-f9aaf64bd0",
+      "word": "塩",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 255,
+      "id": "oj-26a7133c2f",
+      "word": "縁側",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 261,
+      "id": "oj-df7f4310a6",
+      "word": "演じる",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 266,
+      "id": "oj-a24b6a05b0",
+      "word": "円満",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 268,
+      "id": "oj-4fe63ccd71",
+      "word": "甥",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 269,
+      "id": "oj-5cdc0b28ad",
+      "word": "追い込む",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 271,
+      "id": "oj-98c6945629",
+      "word": "おいて",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 273,
+      "id": "oj-4c962a58bb",
+      "word": "負う",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 274,
+      "id": "oj-263aeb9d53",
+      "word": "応急",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 280,
+      "id": "oj-f1f8fbc2f8",
+      "word": "オーケー",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 282,
+      "id": "oj-c117100746",
+      "word": "大事",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 283,
+      "id": "oj-d8aaab462e",
+      "word": "大筋",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 285,
+      "id": "oj-5eec70dba4",
+      "word": "オートマチック",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 290,
+      "id": "oj-bd73b2faac",
+      "word": "侵す",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 291,
+      "id": "oj-f20fe91a98",
+      "word": "犯す",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 292,
+      "id": "oj-e3025feafa",
+      "word": "臆病",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 293,
+      "id": "oj-7d8114cc2a",
+      "word": "遅らす",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 295,
+      "id": "oj-1ee8b93761",
+      "word": "厳か",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 296,
+      "id": "oj-59f87d1565",
+      "word": "行い",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 297,
+      "id": "oj-bc37b59298",
+      "word": "おごる",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 298,
+      "id": "oj-1dd6d7ea55",
+      "word": "長",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 299,
+      "id": "oj-019aed3e0a",
+      "word": "治まる",
+      "fields": [
         "second-example"
       ]
     }
