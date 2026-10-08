@@ -1495,12 +1495,21 @@ function scheduleFsrs(s,rating,t=now()){
  }
  x.stability=Math.round(newS*1000)/1000;x.difficulty=Math.round(newD*1000)/1000;
  x.retrievabilityAtReview=Math.round(r*1000)/1000;x.scheduler="fsrs6";
+ // Short learning steps adapt per card; long-term intervals remain FSRS-based.
+ // A first failure gets 3 minutes, then repeated failures get 2 / 1 minute.
+ const failStreak=Math.max(0,Number(x.consecutiveAgain)||0);
  if(rating==="again"){
    if(wasGraduated)x.lapses++;
-   x.interval=0;x.due=t+10*MIN;x.state=wasGraduated?"relearning":"learning";x.streak=0;
+   const minutes=failStreak===0?3:failStreak===1?2:1;
+   x.consecutiveAgain=failStreak+1;
+   x.interval=0;x.due=t+minutes*MIN;x.state=wasGraduated?"relearning":"learning";x.streak=0;
  }else if((wasNew||wasLearning||wasRelearning)&&rating==="hard"){
-   x.interval=0;x.due=t+15*MIN;x.state=wasRelearning?"relearning":"learning";x.streak=(x.streak||0)+1;
+   // Previously failed words return sooner, while difficult new cards can wait longer.
+   const minutes=failStreak>=2?8:failStreak===1?10:Math.round(8+7*(x.difficulty-1)/9);
+   x.consecutiveAgain=0;
+   x.interval=0;x.due=t+minutes*MIN;x.state=wasRelearning?"relearning":"learning";x.streak=(x.streak||0)+1;
  }else{
+   x.consecutiveAgain=0;
    x.interval=fsrsInterval(x.stability);x.due=t+x.interval*DAY;x.state="review";x.streak=(x.streak||0)+1;
  }
  x.reviews++;x.last=t;x.updatedAt=t;
