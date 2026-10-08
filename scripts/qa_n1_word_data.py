@@ -38,6 +38,7 @@ def main():
     ids = [x["id"] for x in source_words]
     fail_if(len(set(ids)) != 2933, "Duplicate OpenJLPT IDs found")
     id_set = set(ids)
+    source_by_id = {x["id"]: x for x in source_words}
 
     overrides = parse_js(DATA / "n1-curated-overrides.js")
     fail_if(set(overrides) != id_set,
@@ -48,11 +49,11 @@ def main():
     for x in source_words:
         oid = x["id"]
         o = overrides[oid]
-        meaning = str(o.get("meaning") or "").strip()
+        meaning = str(o.get("meaning") or source_by_id[oid].get("meaning") or "").strip()
         fail_if(not meaning, f"Missing meaning: {oid}")
         fail_if(BAD_TEXT.search(meaning), f"Garbled meaning: {oid}: {meaning}")
 
-        examples = o.get("examples")
+        examples = o.get("examples") or source_by_id[oid].get("examples")
         fail_if(not isinstance(examples, list) or not examples, f"Missing reviewed example: {oid}")
         ex = examples[0]
         fail_if(not isinstance(ex, dict), f"Invalid reviewed example object: {oid}")
