@@ -1,7 +1,7 @@
 {
   "version": 3,
   "engine": "Kokoro-82M / jf_alpha",
-  "count": 6333,
+  "count": 6337,
   "files": {
     "unagasu": {
       "word": "audio/vocab/unagasu-word.mp3",
@@ -18921,19 +18921,27 @@
     },
     "oj-87ec2157d1": {
       "word": "audio/vocab/openjlpt/oj-87ec2157d1-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-87ec2157d1-ex1.mp3"
+      ]
     },
     "oj-cfd02fb96e": {
       "word": "audio/vocab/openjlpt/oj-cfd02fb96e-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-cfd02fb96e-ex1.mp3"
+      ]
     },
     "oj-fd65caed2e": {
       "word": "audio/vocab/openjlpt/oj-fd65caed2e-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-fd65caed2e-ex1.mp3"
+      ]
     },
     "oj-0bc587dbfe": {
       "word": "audio/vocab/openjlpt/oj-0bc587dbfe-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0bc587dbfe-ex1.mp3"
+      ]
     }
   }
 }
