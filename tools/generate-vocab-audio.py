@@ -10,6 +10,29 @@ OUT = ROOT / "audio" / "vocab"
 data = json.loads(SOURCE.read_text(encoding="utf-8"))
 items = data["items"]
 missing = [item for item in items if not (ROOT / item["path"]).exists()]
+# Explicit re-synthesis of exactly 500 legacy example clips; never touch word clips.
+legacy_batch = os.environ.get("VOCAB_AUDIO_LEGACY_BATCH")
+if legacy_batch is not None:
+    import csv
+    import io
+    import re
+    audit = (ROOT / "docs/legacy-wav-mp3-audit.md").read_text(encoding="utf-8")
+    csv_block = audit.split("```csv", 1)[1].split("```", 1)[0].strip()
+    legacy_paths = sorted(row["current_mp3_path"] for row in csv.DictReader(io.StringIO(csv_block))
+                          if row["kind"] == "example")
+    if len(legacy_paths) != 500 or len(set(legacy_paths)) != 500:
+        raise RuntimeError(f"Expected exactly 500 unique legacy examples, got {len(legacy_paths)}")
+    by_path = {item["path"]: item for item in items}
+    if any(p not in by_path or by_path[p]["kind"] != "example" for p in legacy_paths):
+        raise RuntimeError("Legacy MP3 list differs from currently exported example list")
+    batch = int(legacy_batch)
+    if not (0 <= batch < 10):
+        raise RuntimeError("Legacy batch index must be 0 through 9")
+    missing = [dict(by_path[p]) for p in legacy_paths[batch * 50:(batch + 1) * 50]]
+    for item in missing:
+        item["text"] = re.sub(r"。(?=[」』]?\s*$)", "", item["text"]).strip()
+        if not item["text"] or item["text"].endswith("。"):
+            raise RuntimeError(f"Unsafe example text: {item['path']}")
 batch_size = int(os.environ.get("VOCAB_AUDIO_BATCH_SIZE", "0"))
 if batch_size > 0:
     missing = missing[:batch_size]
