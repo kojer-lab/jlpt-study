@@ -1449,19 +1449,37 @@ function renderExampleJP(html,currentWord,exampleIndex=null){
 }
 
 function shortMeaning(w){return (w.meaning||"").split(" / ")[0].trim()}
+function vocabJapaneseContext(w,curated={}){
+ const surface=plain(curated[w.id]?.w||w.w||"").trim();
+ if(!surface)return null;
+ const examples=[...(Array.isArray(curated[w.id]?.examples)?curated[w.id].examples:[]),...(Array.isArray(w.examples)?w.examples:[])];
+ for(const ex of examples){
+  const sentence=plain(typeof ex==="string"?ex:ex?.jp||"").trim();
+  if(sentence&&sentence.length>=8&&!/[가-힣]/.test(sentence)&&sentence.split(surface).length===2){
+   return sentence.replace(surface,"（　）");
+  }
+ }
+ return null;
+}
 function buildExpansionVocabQuiz(src,count=60){
- return src.slice(0,count).map((w,i)=>{
-   const pool=[w,src[(i+17)%src.length],src[(i+37)%src.length],src[(i+71)%src.length]];
-   const a=i%4,slots=new Array(4);
-   pool.forEach((x,j)=>slots[(a+j)%4]=x);
-   return {
-     q:`「${w.w}」の${F("意味","いみ")}として${F("最","もっと")}も${F("近","ちか")}いものは？`,
-     c:slots.map(shortMeaning),
-     a,
-     translation:`「${w.w}」의 의미로 가장 가까운 것은?`,
-     e:`「${w.w}」는 「${w.meaning}」라는 뜻입니다. 단어의 핵심 의미를 확인한 뒤 아래 예문에서 실제 쓰임과 뉘앙스를 살펴보세요.`
-   };
- });
+ const candidates=src.filter(w=>vocabJapaneseContext(w));
+ return candidates.slice(0,count).map((w,i)=>{
+  const seen=new Set([plain(w.w)]),options=[w];
+  for(let j=0;j<src.length&&options.length<4;j++){
+   const x=src[(i*23+j+17)%src.length],surface=plain(x.w||"").trim();
+   if(!surface||seen.has(surface)||/[가-힣]/.test(surface))continue;
+   seen.add(surface);options.push(x);
+  }
+  if(options.length!==4)return null;
+  const answer=i%4,choices=options.slice(1).map(x=>plain(x.w));
+  choices.splice(answer,0,plain(w.w));
+  return {
+   type:"文脈",q:`次の文の（　）に入る語として最も適切なものはどれか。<br>${escapeExampleText(vocabJapaneseContext(w))}`,
+   c:choices,a:answer,
+   translation:`다음 문맥의 빈칸에 가장 적절한 어휘는 무엇인가?`,
+   e:`「${plain(w.w)}」는 「${w.meaning}」라는 뜻입니다. 문장 속에서 어떤 표현과 결합하는지 확인해 보세요.`
+  };
+ }).filter(Boolean);
 }
 function buildExpansionGrammarQuiz(src){
  return src.map((g,i)=>{
@@ -1492,7 +1510,8 @@ function buildReviewedVocab500(){
   const gloss=meaning(w);
   if(!curated[w.id]||!/^[가-힣]/.test(gloss)||gloss.length<2||gloss.length>24||/[?？!！…]|(?:오역|불명|미상)/.test(gloss))continue;
   if(surface.length<2||surface.length>9||!read||!/[一-龯々]/.test(surface))continue;
-  if(!unique.has(surface))unique.set(surface,{id:w.id,surface,read,gloss});
+  const context=vocabJapaneseContext(w,curated);
+  if(!unique.has(surface))unique.set(surface,{id:w.id,surface,read,gloss,context});
  }
  const entries=[...unique.values()].filter(w=>!/[A-Za-z0-9]/.test(w.gloss));
  const result=[];
@@ -1506,17 +1525,21 @@ function buildReviewedVocab500(){
   const left=tokens(a),right=tokens(b);
   return left.some(t=>right.some(u=>t===u||((t.includes(u)||u.includes(t))&&Math.min(t.length,u.length)>=2)));
  };
- const meaningTargets=entries.filter(w=>w.gloss.length>=2).slice(0,250);
+ const meaningTargets=entries.filter(w=>w.gloss.length>=2&&w.context).slice(0,250);
  for(let i=0;i<meaningTargets.length;i++){
   const w=meaningTargets[i],pool=entries.filter(x=>x.surface!==w.surface&&!ambiguousGloss(x.gloss,w.gloss)&&x.gloss.length>=2);
   const seen=new Set([w.gloss]),alternatives=[];
   for(let j=0;j<pool.length&&alternatives.length<3;j++){
-   const candidate=pool[(i*31+j*47)%pool.length].gloss;
-   if(!seen.has(candidate)&&!alternatives.some(other=>ambiguousGloss(candidate,other))){seen.add(candidate);alternatives.push(candidate)}
+   const candidate=pool[(i*31+j*47)%pool.length];
+   if(!seen.has(candidate.gloss)&&!alternatives.some(other=>ambiguousGloss(candidate.gloss,other.gloss))){
+    seen.add(candidate.gloss);alternatives.push(candidate);
+   }
   }
   if(alternatives.length!==3)continue;
-  const answer=(i+1)%4,choices=alternatives.slice();choices.splice(answer,0,w.gloss);
-  result.push({wordId:w.id,q:`「${w.surface}」の意味として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 뜻으로 가장 적절한 것은?`,e:`「${w.surface}」（${w.read}）는 「${w.gloss}」라는 뜻입니다. 예문과 함께 문맥에서의 쓰임도 확인하세요.`});
+  const answer=(i+1)%4,choices=alternatives.map(x=>x.surface);
+  choices.splice(answer,0,w.surface);
+  if(new Set(choices).size!==4)continue;
+  result.push({wordId:w.id,type:"文脈",q:`次の文の（　）に入る語として最も適切なものはどれか。<br>${escapeExampleText(w.context)}`,c:choices,a:answer,translation:"다음 문장의 빈칸에 가장 적절한 어휘는?",e:`「${w.surface}」（${w.read}）는 「${w.gloss}」라는 뜻입니다. 예문에서 주변 단어와의 연결도 확인하세요.`});
  }
  const readingTargets=entries.filter(w=>/^[ぁ-ゖー]+$/.test(w.read)&&w.read.length>=2&&w.read.length<=12).slice(250,500);
  const readingPool=[...new Set(entries.filter(w=>/^[ぁ-ゖー]+$/.test(w.read)).map(w=>w.read))];
