@@ -2425,6 +2425,8 @@ function renderAiListening(){
  const explainTitle=document.createElement("strong");explainTitle.textContent="정답 해설";explainBox.appendChild(explainTitle);
  const answerLine=document.createElement("p");answerLine.textContent="정답 "+(p.answer+1)+"번 · "+p.choices[p.answer];explainBox.appendChild(answerLine);
  const reasonLine=document.createElement("p");reasonLine.textContent=p.explain||"해설을 준비 중입니다.";explainBox.appendChild(reasonLine);
+ if(p.keyPhrase){const keyLine=document.createElement("p");keyLine.textContent="핵심 표현 · "+p.keyPhrase;explainBox.appendChild(keyLine)}
+ if(p.wrongReason){const wrongLine=document.createElement("p");wrongLine.textContent="오답 구분 · "+p.wrongReason;explainBox.appendChild(wrongLine)}
  $("aiListenScript").className="ai-script";$("aiListenScript").innerHTML=p.lines.map(x=>'<div class="ai-script-line"><span class="ai-speaker">'+x[2]+"</span>"+x[0]+"</div>").join("");
  $("aiListenScriptBtn").textContent="스크립트 보기";$("aiListenNext").classList.add("hidden");$("aiListenPlay").disabled=false;
  setAiStatus("현재 문제 음성을 백그라운드에서 준비합니다.");
