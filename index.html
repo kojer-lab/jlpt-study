@@ -1612,19 +1612,49 @@ function renderWordDashboard(){
  $("wordDashTotal").textContent=due.length+fresh.length;$("wordDashMastered").textContent=mastered;
  $("wordCountPill").textContent=`현재 ${words.length} words`;if($("wordLibraryCount"))$("wordLibraryCount").textContent=words.length;
  const total=due.length+fresh.length;
- $("startWordStudy").disabled=total===0;
- $("startWordStudy").textContent=total?`오늘 학습 시작 · ${total}장`:"오늘 학습 완료 ✓";
+ const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0)||(!wordSessionTotal&&restoreWordSession());
+ $("startWordStudy").disabled=!active&&total===0;
+ $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`오늘 학습 시작 · ${total}장`:"오늘 학습 완료 ✓";
+}
+const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
+function persistWordSession(){
+ const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
+  immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),
+  history:wordSessionHistory.map(h=>({...h,word:undefined})),savedAt:Date.now()};
+ try{localStorage.setItem(WORD_SESSION_KEY,JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
+}
+function restoreWordSession(){
+ let data;
+ try{data=JSON.parse(localStorage.getItem(WORD_SESSION_KEY)||"null")}catch(e){return false}
+ if(!data||!Array.isArray(data.immediate)||!Array.isArray(data.learning)||!Number.isFinite(data.total))return false;
+ if(data.total<=0)return false;
+ wordMode=data.mode==="starred"?"starred":"daily";
+ wordSessionQueue=data.immediate.map(id=>wordById.get(id)).filter(Boolean);
+ wordLearningQueue=data.learning.filter(id=>wordById.has(id)).map(id=>({id,due:getSrs(id).due}));
+ wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
+ wordIndex=Math.max(0,Number(data.index)||0);
+ wordSessionHistory=(data.history||[]).map(h=>({...h,word:wordById.get(h.id)})).filter(h=>h.word);
+ if(!wordSessionQueue.length&&!wordLearningQueue.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
+ return true;
+}
+function clearWordSession(){
+ wordSessionQueue=[];wordLearningQueue=[];wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
+ localStorage.removeItem(WORD_SESSION_KEY);
 }
 function showWordDashboard(){
- wordSessionQueue=[];wordLearningQueue=[];wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;wordMode="daily";
+ // Leaving for the dashboard must not discard the active Anki queue.
+ persistWordSession();
  $("wordStudyPanel").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordDashboard").classList.remove("hidden");
  renderWordDashboard();wordTop();
 }
 function startWordStudy(mode="daily"){
- wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];
- wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
- wordSessionTotal=wordSessionQueue.length;
+ if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length))&&!restoreWordSession()){
+  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];
+  wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
+  wordSessionTotal=wordSessionQueue.length;
+ }
  if(!wordSessionTotal){renderWordDashboard();return}
+ persistWordSession();
  $("wordDashboard").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordStudyPanel").classList.remove("hidden");
  renderWord();wordTop();
 }
@@ -1693,6 +1723,7 @@ function showWordLibrary(){
 }
 function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wordSessionHistory.length===0}
 function finishWordStudy(){
+ localStorage.removeItem(WORD_SESSION_KEY);
  updateWordUndo();$("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
  $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
  $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").classList.add("hidden");$("wordSpeakBtn").disabled=true;$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";$("wordTtsStatus").textContent="";
@@ -1877,7 +1908,7 @@ $("wordRating").addEventListener("click",e=>{
  if(needsRepeat)queueLearningCard(wordLearningQueue,currentWord);
  else{wordSessionDone++;wordSessionHistory[wordSessionHistory.length-1].countedDone=true}
  promoteLearningCards(wordSessionQueue,wordLearningQueue,false);
- wordIndex=0;renderWord();wordTop();
+ wordIndex=0;persistWordSession();renderWord();wordTop();
 });
 $("undoWordRating").addEventListener("click",()=>{
  const h=wordSessionHistory.pop();if(!h)return;
@@ -1887,7 +1918,7 @@ $("undoWordRating").addEventListener("click",()=>{
  if(Array.isArray(h.learningQueueBefore))wordLearningQueue=h.learningQueueBefore;
  if(h.word&&!wordSessionQueue.some(w=>w.id===h.id))wordSessionQueue.unshift(h.word);
  if(h.countedDone)wordSessionDone=Math.max(0,wordSessionDone-1);wordIndex=0;
- saveState(state);refreshAll();renderWord();wordTop();
+ saveState(state);persistWordSession();refreshAll();renderWord();wordTop();
  requestAnimationFrame(()=>{
    if(!$("showMeaningBtn").classList.contains("hidden"))$("showMeaningBtn").click();
  });
