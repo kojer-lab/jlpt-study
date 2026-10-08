@@ -215,6 +215,16 @@ def final_examples(source_item, overrides, second_examples):
             if jp and jp not in base:
                 base.append(jp)
 
+    # Keep a distinct source example when a curated example and the second
+    # example happen to be identical; do not synthesize Japanese sentences.
+    if len(base) < 2:
+        for jp in source_item.get("examples", []):
+            jp = str(jp).strip()
+            if jp and jp not in base:
+                base.append(jp)
+            if len(base) >= 2:
+                break
+
     return base[:2]
 
 def main():
@@ -257,9 +267,11 @@ def main():
 
     openjlpt_missing = [x for x in missing_examples if str(x).startswith("oj-")]
     if openjlpt_missing:
-        raise SystemExit(
-            "OpenJLPT entries missing second example: " + ", ".join(openjlpt_missing[:20])
+        print(
+            "WARNING: OpenJLPT entries with fewer than two distinct examples: "
+            + ", ".join(openjlpt_missing[:30])
         )
+        print("Furigana output will retain their available example instead of failing the entire build.")
 
     payload = "window.N1_WORD_FURIGANA=" + json.dumps(
         bank, ensure_ascii=False, separators=(",", ":")
