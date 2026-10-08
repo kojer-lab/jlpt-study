@@ -511,6 +511,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-extra-grammar.js"></script>
 <script src="data/n1-grammar-stage3.js?v=20261008-g1"></script>
 <script src="data/n1-extra-reading.js"></script>
+<script src="data/n1-reading-stage4.js?v=20261008-b1"></script>
 <script src="data/n1-daily-news.js?v=20261008-3x3"></script>
 <script src="data/n1-reading-translations.js?v=20261007-r1"></script>
 <script src="data/n1-reading-furigana.js?v=20261007-f1"></script>
@@ -1486,6 +1487,7 @@ if(window.N1_EXTRA_READING){
   if(Array.isArray(window.N1_EXTRA_READING[mode]))readingSets[mode].push(...window.N1_EXTRA_READING[mode]);
  }
 }
+if(window.N1_READING_STAGE4){for(const mode of ["short","medium","long"]){if(Array.isArray(window.N1_READING_STAGE4[mode]))readingSets[mode].push(...window.N1_READING_STAGE4[mode]);}}
 const dailyNewsBank=Array.isArray(window.N1_DAILY_NEWS)?window.N1_DAILY_NEWS:[];
 if(dailyNewsBank.length)readingSets.news.push(...dailyNewsBank);
 const readingTranslations=window.N1_READING_TRANSLATIONS||{};
