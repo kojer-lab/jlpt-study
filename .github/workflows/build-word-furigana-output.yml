@@ -32,8 +32,40 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Build furigana JS
-        run: python scripts/build_word_furigana.py
+      - name: Build furigana JS and capture diagnostics
+        run: |
+          set +e
+          python scripts/build_word_furigana.py > /tmp/furigana-build.log 2>&1
+          code=$?
+          cat /tmp/furigana-build.log
+          {
+            echo "exit_code=$code"
+            echo "commit=$GITHUB_SHA"
+            echo
+            cat /tmp/furigana-build.log
+          } > data/n1-word-furigana-build-status.txt
+          echo "FURIGANA_BUILD_EXIT=$code" >> "$GITHUB_ENV"
+          exit 0
+
+      - name: Commit build result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/n1-word-furigana-build-status.txt
+          if [ "$FURIGANA_BUILD_EXIT" = "0" ] && [ -s data/n1-word-furigana.js ]; then
+            git add data/n1-word-furigana.js
+          fi
+          if git diff --cached --quiet; then
+            echo "No build result changes."
+            exit 0
+          fi
+          git commit -m "Record word furigana build result"
+          git pull --rebase origin main
+          git push
+
+      - name: Stop on build failure
+        if: env.FURIGANA_BUILD_EXIT != '0'
+        run: exit 1
 
       - name: Verify output
         run: |
@@ -57,15 +89,3 @@ jobs:
           print("Verified entries:", len(data))
           print("Verified bytes:", p.stat().st_size)
           PY
-
-      - name: Commit generated output
-        run: |
-          if git diff --quiet -- data/n1-word-furigana.js; then
-            echo "No furigana output changes."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/n1-word-furigana.js
-          git commit -m "Build complete word furigana output"
-          git push
