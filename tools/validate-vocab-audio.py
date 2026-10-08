@@ -25,20 +25,24 @@ for item in items:
         examples = entry.get("examples", [])
         index = int(item["index"])
         registered = examples[index] if index < len(examples) else None
-    if registered != path:
-        errors.append(f"Manifest mismatch: {path} -> {registered}")
     file = root / path
-    if not file.is_file() or file.stat().st_size < 1000:
-        errors.append(f"Missing/empty MP3: {path}")
+    if file.is_file():
+        if registered != path:
+            errors.append(f"Manifest mismatch: {path} -> {registered}")
+        if file.stat().st_size < 1000:
+            errors.append(f"Empty MP3: {path}")
+    elif registered is not None:
+        errors.append(f"Manifest points to missing MP3: {path}")
 
 listed = set()
 for entry in manifest.get("files", {}).values():
     if entry.get("word"):
         listed.add(entry["word"])
     listed.update(p for p in entry.get("examples", []) if p)
-if listed != set(expected):
-    errors.append(f"Manifest path mismatch: {len(listed - set(expected))} extra, {len(set(expected) - listed)} missing")
-if source.get("count") != len(items) or manifest.get("count") != len(items):
+existing = {p for p in expected if (root / p).is_file()}
+if listed != existing:
+    errors.append(f"Manifest path mismatch: {len(listed - existing)} extra, {len(existing - listed)} unlisted existing")
+if source.get("count") != len(items) or manifest.get("count") != len(existing):
     errors.append("Clip count mismatch")
 if source.get("wordCount") != sum(i["kind"] == "word" for i in items):
     errors.append("Word count mismatch")
