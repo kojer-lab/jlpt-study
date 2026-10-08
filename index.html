@@ -341,8 +341,9 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="topbar"><div><h1>독해</h1><div class="sub">길이에 따라 난이도를 바꾸고, 장문에서는 여러 문제를 같은 지문으로 풉니다.</div></div></div>
       <div class="reading-modes" id="readingModes">
         <button type="button" data-mode="short" class="active">短文 단문</button><button type="button" data-mode="medium">中文 중문</button><button type="button" data-mode="long">長文 장문</button><button type="button" data-mode="news">時事 최신 소식</button>
+        <div id="newsDailyNav" class="hidden" style="gap:10px;align-items:center;flex-wrap:wrap;margin-left:10px"><select id="newsDateSelect" aria-label="학습 날짜 선택" style="max-width:160px;padding:7px;border:1px solid #dce2ee;border-radius:9px;background:white"></select><span id="newsProgressLabel" style="font-size:14px;color:#536078;white-space:nowrap"></span></div>
       </div>
-      <div id="newsDailyNav" class="card hidden" style="margin:0 0 16px;padding:14px"><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><strong>오늘의 시사독해</strong><select id="newsDateSelect" aria-label="학습 날짜 선택" style="max-width:200px"></select><span id="newsProgressLabel"></span></div></div>
+      <style>#newsDailyNav:not(.hidden){display:flex;align-items:center;flex-wrap:wrap}@media(max-width:700px){#newsDailyNav{margin-left:0!important;width:100%;padding-top:4px}}</style>
       <div id="newsDailyComplete" class="card hidden" style="padding:24px;text-align:center"></div>
       <div class="quiz-shell" id="readingQuizShell"><div class="card">
         <div class="tag" id="readingTag"></div>
