@@ -28117,5 +28117,547 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-65aef9dac8": {
+    "meaning": "문 / 문짝 / 책의 속표지",
+    "examples": [
+      {
+        "jp": "彼は静かに扉を閉めた。",
+        "ko": "그는 조용히 문을 닫았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cb0a964ac5": {
+    "meaning": "운전사 / 드라이버 / 나사를 돌리는 공구",
+    "examples": [
+      {
+        "jp": "タクシーのドライバーに住所を伝えた。",
+        "ko": "택시 운전사에게 주소를 알려 주었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-64d39b7bc3": {
+    "meaning": "고민 / 걱정 / 괴로움",
+    "examples": [
+      {
+        "jp": "仕事の悩みを友人に相談した。",
+        "ko": "업무 고민을 친구에게 상담했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0e04473eff": {
+    "meaning": "왠지 / 어쩐지 / 어딘가",
+    "examples": [
+      {
+        "jp": "今日は何だか気分が重い。",
+        "ko": "오늘은 왠지 기분이 무겁다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-fcc6b37129": {
+    "meaning": "뭐라고 / ~라니 / 어쩌면 이렇게 ~한",
+    "examples": [
+      {
+        "jp": "何て美しい景色なんだろう。",
+        "ko": "어쩌면 이렇게 아름다운 경치일까."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-73baff290d": {
+    "meaning": "뭐라고 / 얼마나 / 놀랍게도",
+    "examples": [
+      {
+        "jp": "何と便利な道具だろう。",
+        "ko": "얼마나 편리한 도구인가."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b68826cd51": {
+    "meaning": "짐 / 화물 / 부담",
+    "examples": [
+      {
+        "jp": "重い荷を背負って山道を歩いた。",
+        "ko": "무거운 짐을 지고 산길을 걸었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2e8753951c": {
+    "w": "憎い",
+    "r": "にくい",
+    "meaning": "밉다 / 증오스럽다 / 얄밉다",
+    "examples": [
+      {
+        "jp": "裏切った相手が今でも憎い。",
+        "ko": "배신한 상대가 지금도 밉다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a7c3dfe336": {
+    "meaning": "미움 / 증오",
+    "examples": [
+      {
+        "jp": "憎しみからは何も生まれない。",
+        "ko": "증오에서는 아무것도 생겨나지 않는다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cd6328c488": {
+    "meaning": "입수 / 손에 넣음",
+    "examples": [
+      {
+        "jp": "必要な資料をようやく入手した。",
+        "ko": "필요한 자료를 마침내 입수했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7e1cd0971f": {
+    "meaning": "입욕 / 목욕함",
+    "examples": [
+      {
+        "jp": "入浴前に水分を取っておく。",
+        "ko": "목욕 전에 수분을 섭취해 둔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f91583d66a": {
+    "meaning": "임신",
+    "examples": [
+      {
+        "jp": "妊娠中は無理をしないことが大切だ。",
+        "ko": "임신 중에는 무리하지 않는 것이 중요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-44894d8fd0": {
+    "meaning": "도둑질 / 절도",
+    "examples": [
+      {
+        "jp": "盗みを働いた男が警察に捕まった。",
+        "ko": "절도를 저지른 남자가 경찰에 붙잡혔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-88e26cec55": {
+    "meaning": "소리 / 음색 / 울림",
+    "examples": [
+      {
+        "jp": "遠くから鈴の音が聞こえる。",
+        "ko": "멀리서 방울 소리가 들린다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f373251362": {
+    "meaning": "졸리다 / 잠이 오다",
+    "examples": [
+      {
+        "jp": "昨夜遅くまで起きていたので眠たい。",
+        "ko": "어젯밤 늦게까지 깨어 있어서 졸리다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b4a78b922a": {
+    "meaning": "연소 / 타는 현상",
+    "examples": [
+      {
+        "jp": "燃料が完全に燃焼すると熱が発生する。",
+        "ko": "연료가 완전히 연소하면 열이 발생한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-fd6003e8b5": {
+    "meaning": "연료",
+    "examples": [
+      {
+        "jp": "この車は少ない燃料で長く走れる。",
+        "ko": "이 차는 적은 연료로 오래 달릴 수 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4ac13343dc": {
+    "meaning": "뇌",
+    "examples": [
+      {
+        "jp": "脳は大量の情報を処理している。",
+        "ko": "뇌는 대량의 정보를 처리하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-bdbf18b1d1": {
+    "meaning": "농장",
+    "examples": [
+      {
+        "jp": "農場で野菜や果物を育てている。",
+        "ko": "농장에서 채소와 과일을 기르고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7afb21c39b": {
+    "meaning": "폐 / 허파",
+    "examples": [
+      {
+        "jp": "喫煙は肺に大きな負担をかける。",
+        "ko": "흡연은 폐에 큰 부담을 준다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-29b10e360f": {
+    "meaning": "배경 / 뒤쪽 풍경 / 사건의 사정",
+    "examples": [
+      {
+        "jp": "事件の背景には複雑な事情があった。",
+        "ko": "사건의 배경에는 복잡한 사정이 있었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-25abc3f3fb": {
+    "meaning": "배후 / 뒤쪽 / 뒤에서 움직이는 세력",
+    "examples": [
+      {
+        "jp": "事件の背後に別の組織がいる可能性がある。",
+        "ko": "사건의 배후에 다른 조직이 있을 가능성이 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-58b8070ec3": {
+    "meaning": "폐지 / 제도·운영 등을 없앰",
+    "examples": [
+      {
+        "jp": "古い制度を来年度から廃止する。",
+        "ko": "낡은 제도를 내년부터 폐지한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-35c99c026b": {
+    "meaning": "빌림 / 빌려 씀 · 겸양 표현",
+    "examples": [
+      {
+        "jp": "少しお時間を拝借してもよろしいですか。",
+        "ko": "잠시 시간을 빌려도 괜찮을까요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-373d4785f7": {
+    "meaning": "파괴 / 망가뜨림",
+    "examples": [
+      {
+        "jp": "地震で多くの建物が破壊された。",
+        "ko": "지진으로 많은 건물이 파괴되었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5f88d07bc6": {
+    "meaning": "폭탄",
+    "examples": [
+      {
+        "jp": "不審な爆弾が発見され周辺が封鎖された。",
+        "ko": "수상한 폭탄이 발견되어 주변이 봉쇄되었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9eb0cbae51": {
+    "meaning": "수치 / 부끄러움",
+    "examples": [
+      {
+        "jp": "約束を破ったことを恥に思う。",
+        "ko": "약속을 어긴 것을 부끄럽게 생각한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-65fb50ee7c": {
+    "meaning": "발언 / 말한 내용",
+    "examples": [
+      {
+        "jp": "彼の発言が大きな議論を呼んだ。",
+        "ko": "그의 발언이 큰 논쟁을 불러일으켰다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f50d895a2a": {
+    "meaning": "발생 / 생겨남",
+    "examples": [
+      {
+        "jp": "大雨による被害が各地で発生した。",
+        "ko": "폭우로 인한 피해가 각지에서 발생했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4da424bbd5": {
+    "meaning": "파열 / 터짐",
+    "examples": [
+      {
+        "jp": "古い水道管が破裂した。",
+        "ko": "낡은 수도관이 파열됐다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ebea08a82f": {
+    "meaning": "반감 / 거부감 / 적대감",
+    "examples": [
+      {
+        "jp": "強引な態度が周囲の反感を買った。",
+        "ko": "강압적인 태도가 주변의 반감을 샀다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f0e1839e03": {
+    "meaning": "판결 / 법원의 판단",
+    "examples": [
+      {
+        "jp": "裁判所は来週判決を言い渡す。",
+        "ko": "법원은 다음 주 판결을 선고한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c50f3eed79": {
+    "meaning": "반사 / 되비침",
+    "examples": [
+      {
+        "jp": "鏡が光を強く反射している。",
+        "ko": "거울이 빛을 강하게 반사하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8b03fa57c9": {
+    "meaning": "반응 / 자극에 대한 응답",
+    "examples": [
+      {
+        "jp": "質問に対する反応は人によって違う。",
+        "ko": "질문에 대한 반응은 사람마다 다르다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-962a85276b": {
+    "meaning": "비 / 비용 / 경비",
+    "examples": [
+      {
+        "jp": "交通費は会社が負担する。",
+        "ko": "교통비는 회사가 부담한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4f910a19d7": {
+    "meaning": "비관 / 나쁘게 전망함",
+    "examples": [
+      {
+        "jp": "将来を必要以上に悲観することはない。",
+        "ko": "미래를 필요 이상으로 비관할 필요는 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c1eb4a6e5e": {
+    "meaning": "비서",
+    "examples": [
+      {
+        "jp": "社長の秘書が予定を調整している。",
+        "ko": "사장 비서가 일정을 조정하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ec976107e1": {
+    "meaning": "미소 / 살짝 웃는 표정",
+    "examples": [
+      {
+        "jp": "彼女は穏やかな微笑を浮かべた。",
+        "ko": "그녀는 온화한 미소를 지었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-de4f14f8da": {
+    "meaning": "표 / 투표용지 / 한 표",
+    "examples": [
+      {
+        "jp": "候補者に一票を投じた。",
+        "ko": "후보자에게 한 표를 던졌다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5d58c89d14": {
+    "meaning": "어쩌면 / 혹시 / 우연히",
+    "examples": [
+      {
+        "jp": "ひょっとすると明日は雪になるかもしれない。",
+        "ko": "어쩌면 내일은 눈이 올지도 모른다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3e0f9f6085": {
+    "meaning": "민감 / 자극이나 변화에 예민함",
+    "examples": [
+      {
+        "jp": "彼は音にとても敏感だ。",
+        "ko": "그는 소리에 매우 민감하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-95bddfce2a": {
+    "meaning": "품질",
+    "examples": [
+      {
+        "jp": "価格だけでなく品質も確認したほうがいい。",
+        "ko": "가격뿐 아니라 품질도 확인하는 편이 좋다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5b8eefb9aa": {
+    "meaning": "파일 / 서류철 / 컴퓨터 파일",
+    "examples": [
+      {
+        "jp": "重要なファイルを別の場所に保存した。",
+        "ko": "중요한 파일을 다른 곳에 저장했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ed2719ab9d": {
+    "meaning": "팬 / 애호가",
+    "examples": [
+      {
+        "jp": "彼は昔からその歌手のファンだ。",
+        "ko": "그는 예전부터 그 가수의 팬이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-afaaa117eb": {
+    "meaning": "페리 / 연락선",
+    "examples": [
+      {
+        "jp": "島へはフェリーで渡る。",
+        "ko": "섬에는 페리를 타고 건너간다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-fc498a2e83": {
+    "meaning": "불가결 / 꼭 필요함",
+    "examples": [
+      {
+        "jp": "信頼は長い関係を築くうえで不可欠だ。",
+        "ko": "신뢰는 오래 관계를 쌓는 데 필수적이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3951ae3c0c": {
+    "meaning": "복 / 행복 / 좋은 운",
+    "examples": [
+      {
+        "jp": "新年に家族の福を願った。",
+        "ko": "새해에 가족의 복을 빌었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-069d11eed6": {
+    "meaning": "포고 / 공식 선언",
+    "examples": [
+      {
+        "jp": "政府は新しい法令を布告した。",
+        "ko": "정부는 새 법령을 포고했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-05e2d4d19d": {
+    "meaning": "부활 / 다시 살아남 / 재개",
+    "examples": [
+      {
+        "jp": "一度中止された企画が復活した。",
+        "ko": "한번 중단됐던 기획이 부활했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4302df1674": {
+    "meaning": "불명 / 알 수 없음 / 분명하지 않음",
+    "examples": [
+      {
+        "jp": "事故の原因は今も不明だ。",
+        "ko": "사고 원인은 지금도 불명이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4036541a77": {
+    "meaning": "파란색 / 블루",
+    "examples": [
+      {
+        "jp": "ブルーのシャツを選んだ。",
+        "ko": "파란 셔츠를 골랐다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5f87b1f4e5": {
+    "meaning": "무례 / 예의가 없음",
+    "examples": [
+      {
+        "jp": "そんな無礼な言い方はやめなさい。",
+        "ko": "그런 무례한 말투는 그만둬."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9dc5cc6d2d": {
+    "meaning": "병사 / 군인",
+    "examples": [
+      {
+        "jp": "若い兵士たちが訓練を受けている。",
+        "ko": "젊은 병사들이 훈련을 받고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-025f4f4271": {
+    "meaning": "변호 / 보호하며 대신 주장함",
+    "examples": [
+      {
+        "jp": "弁護士が被告を弁護した。",
+        "ko": "변호사가 피고를 변호했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
   }
 };
