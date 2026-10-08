@@ -1,0 +1,36 @@
+name: QA N1 word data
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/n1-extra-words-openjlpt-*.js"
+      - "data/n1-curated-overrides.js"
+      - "data/n1-second-examples-*.js"
+      - "data/n1-word-breakdowns-*.js"
+      - "data/n1-word-furigana-source.json"
+      - "data/n1-word-furigana.js"
+      - "scripts/qa_n1_word_data.py"
+      - ".github/workflows/qa-n1-word-data.yml"
+  pull_request:
+    paths:
+      - "data/n1-extra-words-openjlpt-*.js"
+      - "data/n1-curated-overrides.js"
+      - "data/n1-second-examples-*.js"
+      - "data/n1-word-breakdowns-*.js"
+      - "data/n1-word-furigana-source.json"
+      - "data/n1-word-furigana.js"
+      - "scripts/qa_n1_word_data.py"
+      - ".github/workflows/qa-n1-word-data.yml"
+  workflow_dispatch:
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run N1 word QA
+        run: python scripts/qa_n1_word_data.py
