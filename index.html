@@ -320,10 +320,18 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="grid3">
         <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p><span id="vocabQuizTotal">문제 수 확인 중</span> · 읽기, 의미, 문맥, 유의어와 용법을 확인합니다.</p></div>
         <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p><span id="grammarQuizTotal">문제 수 확인 중</span> · 형식, 문맥, 문장 배열과 해설을 연습합니다.</p></div>
-        <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>20세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div>
+        <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>20세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div><div class="card action" data-go="mock"><strong>模擬試験 · 실전 모의고사</strong><p>언어지식·독해·청해를 시간제한과 함께 풀고 결과를 확인합니다.</p></div>
       </div>
     </section>
 
+    <section class="view" id="mockView">
+      <div class="topbar"><div><h1>JLPT N1 실전 모의고사</h1><div class="sub">학습 문제은행을 활용한 연습형 모의고사 · 공식 시험과 동일한 문항 구성이나 환산 점수는 아닙니다.</div></div></div>
+      <div class="card" style="max-width:850px;margin:auto">
+       <div id="mockIntro"><p>어휘 20문제 · 문법 20문제 · 독해 15문제 · 청해 15문제, 총 70문제입니다. 언어지식·독해 110분, 청해 55분을 기준으로 연습합니다. 청해는 음성 재생 버튼을 눌러 들을 수 있습니다.</p><button class="primary" id="mockStartBtn" type="button">모의고사 시작</button></div>
+       <div id="mockRunning" class="hidden"><div class="quiz-head"><div class="tag" id="mockSection"></div><div class="counter" id="mockCounter"></div></div><div class="meta" id="mockTimer"></div><div class="passage hidden" id="mockPassage"></div><div class="question" id="mockQuestion"></div><div class="choices" id="mockChoices"></div><div class="next-row" style="justify-content:space-between;gap:8px"><button class="secondary" id="mockPrevBtn" type="button">이전</button><button class="primary" id="mockNextBtn" type="button">다음</button><button class="secondary" id="mockSubmitBtn" type="button">제출</button></div><button class="secondary hidden" id="mockListenBtn" type="button" style="margin-top:12px">청해 음성 듣기</button><div class="meta" id="mockListenStatus"></div></div>
+       <div id="mockResult" class="hidden"></div>
+      </div>
+    </section>
     <section class="view" id="quizView">
       <div class="quiz-shell">
         <div class="quiz-head"><div class="tag" id="quizTypeTag"></div><div class="counter" id="quizCounter"></div></div>
@@ -1723,7 +1731,7 @@ function todayNewPending(){return ensureDailyNew(false).filter(w=>getSrs(w.id).r
 function refreshAll(){renderHome();renderStats();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
- if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
+ if(name==="mock")setupMock();if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();const key=furiStateKey(fu),next=!fu.classList.contains("show");fu.classList.toggle("show",next);if(next)interactiveFuriShown.add(key);else interactiveFuriShown.delete(key)}}});
 
@@ -2554,6 +2562,63 @@ function setupAiListening(){
  $("aiListenNext").addEventListener("click",()=>{aiListenGeneration++;aiListenPlaying=false;releaseKokoroWakeLock();stopKokoroAudio();aiListenIndex=(aiListenIndex+1)%aiListeningProblems.length;renderAiListening()});
 }
 
+let mockItems=[],mockAnswers=[],mockIndex=0,mockStarted=0,mockPhaseStarted=0,mockPhase="language",mockTimerHandle=null,mockReady=false;
+function mockShuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function mockBuild(){
+ const vocab=mockShuffle(quizData.vocab).slice(0,20).map(item=>({kind:"vocab",item}));
+ const grammar=mockShuffle(quizData.grammar).slice(0,20).map(item=>({kind:"grammar",item}));
+ const reading=mockShuffle(Object.entries(readingSets).filter(([k])=>k!=="news").flatMap(([mode,sets])=>sets.flatMap(set=>set.questions.map(item=>({kind:"reading",item,set}))))).slice(0,15);
+ const listening=mockShuffle(aiListeningProblems).slice(0,15).map(item=>({kind:"listening",item}));
+ return [...vocab,...grammar,...reading,...listening];
+}
+function mockRender(){
+ if(!mockItems.length)return;
+ const e=mockItems[mockIndex],listening=e.kind==="listening",phase=listening?"listening":"language";
+ if(phase!==mockPhase){mockPhase=phase;mockPhaseStarted=Date.now();}
+ $("mockSection").textContent=({vocab:"語彙 · 어휘",grammar:"文法 · 문법",reading:"読解 · 독해",listening:"聴解 · 청해"})[e.kind];
+ $("mockCounter").textContent=(mockIndex+1)+" / "+mockItems.length+" · 답변 "+mockAnswers.filter(x=>x!==null).length+"개";
+ $("mockPassage").classList.toggle("hidden",e.kind!=="reading");
+ $("mockPassage").innerHTML=e.set?.furigana?.passage|| (e.set?readingJP(e.set.passage):"");
+ $("mockQuestion").innerHTML=listening?e.item.question:e.kind==="reading"?readingJP(e.item.q):quizJP(e.item.q,e.item);
+ const choices=listening?e.item.choices:e.item.c;
+ $("mockChoices").innerHTML=choices.map((c,i)=>'<button type="button" class="choice'+(mockAnswers[mockIndex]===i?' correct':'')+'" data-mock-choice="'+i+'">'+(i+1)+'. '+(listening?c:e.kind==="reading"?readingJP(c):quizJP(c,e.item))+'</button>').join("");
+ $("mockListenBtn").classList.toggle("hidden",!listening);
+ $("mockListenStatus").textContent="";
+ $("mockPrevBtn").disabled=mockIndex===0||mockIndex===mockItems.length-15;
+ $("mockNextBtn").disabled=mockIndex===mockItems.length-1;
+ $("mockNextBtn").textContent=mockIndex===mockItems.length-16?"청해 영역 시작":"다음";
+}
+function mockFinish(){
+ if(!mockItems.length)return;
+ clearInterval(mockTimerHandle);stopKokoroAudio();
+ let correct=0;const stats={vocab:[0,0],grammar:[0,0],reading:[0,0],listening:[0,0]};
+ mockItems.forEach((e,i)=>{const answer=e.kind==="listening"?e.item.answer:e.item.a;stats[e.kind][1]++;if(mockAnswers[i]===answer){correct++;stats[e.kind][0]++}else if(mockAnswers[i]!==null&&e.kind!=="listening")recordAnswer(e.kind,e.item,mockAnswers[i]);});
+ $("mockRunning").classList.add("hidden");$("mockResult").classList.remove("hidden");
+ $("mockResult").innerHTML='<h2>모의고사 결과</h2><p><strong>'+correct+' / '+mockItems.length+'</strong> 정답 · '+Math.round(correct/mockItems.length*100)+'% (단순 정답률)</p>'+Object.entries(stats).map(([k,v])=>'<p>'+({vocab:"어휘",grammar:"문법",reading:"독해",listening:"청해"})[k]+' · '+v[0]+'/'+v[1]+'</p>').join("")+'<p>공식 JLPT 합격 점수로 환산되지 않습니다. 틀린 어휘·문법·독해 문제는 오답 SRS에 등록됩니다.</p><button class="primary" id="mockRestartBtn" type="button">다시 시작</button>';
+ $("mockRestartBtn").onclick=mockStart;
+}
+function mockStart(){
+ mockItems=mockBuild();mockAnswers=Array(mockItems.length).fill(null);mockIndex=0;mockStarted=Date.now();mockPhaseStarted=mockStarted;mockPhase="language";
+ $("mockIntro").classList.add("hidden");$("mockResult").classList.add("hidden");$("mockRunning").classList.remove("hidden");
+ clearInterval(mockTimerHandle);mockTimerHandle=setInterval(()=>{if(!$("mockRunning").classList.contains("hidden"))return;},1000);
+ mockRender();mockTick();
+}
+function mockTick(){
+ if(!mockItems.length||$("mockRunning").classList.contains("hidden"))return;
+ const max=mockPhase==="language"?110*60:55*60,remain=Math.max(0,max-Math.floor((Date.now()-mockPhaseStarted)/1000));
+ $("mockTimer").textContent="현재 영역 남은 시간 "+Math.floor(remain/60)+":"+String(remain%60).padStart(2,"0");
+ if(!remain){if(mockPhase==="language"){mockIndex=mockItems.length-15;mockRender()}else mockFinish();}
+}
+function setupMock(){
+ if(mockReady)return;mockReady=true;
+ $("mockStartBtn").onclick=mockStart;
+ $("mockChoices").onclick=e=>{const b=e.target.closest("[data-mock-choice]");if(!b)return;mockAnswers[mockIndex]=Number(b.dataset.mockChoice);mockRender();};
+ $("mockPrevBtn").onclick=()=>{if(mockIndex>0){mockIndex--;mockRender()}};
+ $("mockNextBtn").onclick=()=>{if(mockIndex<mockItems.length-1){mockIndex++;mockRender()}};
+ $("mockSubmitBtn").onclick=()=>{if(confirm("모의고사를 제출하고 채점할까요?"))mockFinish()};
+ $("mockListenBtn").onclick=async()=>{const e=mockItems[mockIndex];if(!e||e.kind!=="listening")return;const index=aiListeningProblems.indexOf(e.item);$("mockListenStatus").textContent="음성 준비 중…";try{const job=startAiListenJob(index);for(const slot of job.slots){const x=await slot.promise;await playKokoroUrl(x.url)}$("mockListenStatus").textContent="재생 완료";}catch(err){$("mockListenStatus").textContent="재생 실패: "+err.message}};
+ setInterval(mockTick,1000);
+}
 let listeningReady=false;
 function setupListening(){
  if(listeningReady)return;listeningReady=true;
