@@ -1424,13 +1424,23 @@ function buildReviewedVocab500(){
  }
  const entries=[...unique.values()].filter(w=>!/[A-Za-z0-9]/.test(w.gloss));
  const result=[];
+ // 뜻이 완전히 같거나 핵심 의미가 겹치는 오답은 복수 정답 위험이 있어 제외한다.
+ const normalizeGloss=v=>String(v||"").replace(/\\s+/g,"").replace(/[()（）.,·ㆍ]/g,"").replace(/(?:하다|되다|시키다)$/,"");
+ const ambiguousGloss=(a,b)=>{
+  const x=normalizeGloss(a),y=normalizeGloss(b);
+  if(!x||!y)return true;
+  if(x===y||((x.includes(y)||y.includes(x))&&Math.min(x.length,y.length)>=2))return true;
+  const tokens=v=>String(v).split(/[ ,，、;；·ㆍ()（）]+/).map(normalizeGloss).filter(t=>t.length>=2);
+  const left=tokens(a),right=tokens(b);
+  return left.some(t=>right.some(u=>t===u||((t.includes(u)||u.includes(t))&&Math.min(t.length,u.length)>=2)));
+ };
  const meaningTargets=entries.filter(w=>w.gloss.length>=2).slice(0,250);
  for(let i=0;i<meaningTargets.length;i++){
-  const w=meaningTargets[i],pool=entries.filter(x=>x.surface!==w.surface&&x.gloss!==w.gloss&&x.gloss.length>=2);
+  const w=meaningTargets[i],pool=entries.filter(x=>x.surface!==w.surface&&!ambiguousGloss(x.gloss,w.gloss)&&x.gloss.length>=2);
   const seen=new Set([w.gloss]),alternatives=[];
   for(let j=0;j<pool.length&&alternatives.length<3;j++){
    const candidate=pool[(i*31+j*47)%pool.length].gloss;
-   if(!seen.has(candidate)){seen.add(candidate);alternatives.push(candidate)}
+   if(!seen.has(candidate)&&!alternatives.some(other=>ambiguousGloss(candidate,other))){seen.add(candidate);alternatives.push(candidate)}
   }
   if(alternatives.length!==3)continue;
   const answer=(i+1)%4,choices=alternatives.slice();choices.splice(answer,0,w.gloss);
