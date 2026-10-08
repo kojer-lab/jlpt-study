@@ -3,12 +3,6 @@ import os
 import subprocess
 from pathlib import Path
 
-import numpy as np
-import soundfile as sf
-import torch
-from kokoro import KPipeline
-from misaki import ja
-
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "audio" / "vocab" / "source.json"
 OUT = ROOT / "audio" / "vocab"
@@ -19,6 +13,12 @@ missing = [item for item in items if not (ROOT / item["path"]).exists()]
 print(f"Vocabulary clips: {len(items)} total, {len(missing)} missing")
 
 if missing:
+    import numpy as np
+    import soundfile as sf
+    import torch
+    from kokoro import KPipeline
+    from misaki import ja
+
     torch.set_num_threads(max(1, min(4, os.cpu_count() or 2)))
     # KPipeline normally constructs Misaki's default Japanese frontend first.
     # That frontend expects a downloaded UniDic dictionary, which is unnecessary
@@ -70,7 +70,7 @@ for item in items:
         entry["examples"][idx] = item["path"]
 
 manifest = {
-    "version": 2,
+    "version": 3,
     "engine": "Kokoro-82M / jf_alpha",
     "count": len(items),
     "files": files,

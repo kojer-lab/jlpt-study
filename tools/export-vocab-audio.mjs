@@ -72,14 +72,14 @@ for(const w of words){
   const defaultWordText=(w.reading||readingText(w.w)||baseText(w.w)).trim();
   const wordText=(wordAudioTextOverrides.get(w.id)||defaultWordText).trim();
   const imported=String(w.source||"").toLowerCase()==="openjlpt";
-  if(wordText)items.push({id:w.id,kind:"word",index:null,text:wordText,voice:"jf_alpha",path:imported?`audio/vocab/openjlpt/${w.id}-word.mp3`:`audio/vocab/${w.id}-word.wav`});
+  if(wordText)items.push({id:w.id,kind:"word",index:null,text:wordText,voice:"jf_alpha",path:imported?`audio/vocab/openjlpt/${w.id}-word.mp3`:`audio/vocab/${w.id}-word.mp3`});
   // Imported N1 bank: pre-generate the word pronunciation only.
   // Its example audio stays on-demand in the browser cache to keep the repo compact.
   if(imported)continue;
   for(const [i,ex] of (w.examples||[]).entries()){
-    const text=baseText(ex.jp||"").trim();
+    const text=baseText(ex.jp||"").trim().replace(/。(?=[」』]?\s*$)/u,"");
     if(!text)continue;
-    items.push({id:w.id,kind:"example",index:i,text,voice:"jf_alpha",path:`audio/vocab/${w.id}-ex${i+1}.wav`});
+    items.push({id:w.id,kind:"example",index:i,text,voice:"jf_alpha",path:`audio/vocab/${w.id}-ex${i+1}.mp3`});
   }
 }
 await mkdir("audio/vocab",{recursive:true});
