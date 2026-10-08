@@ -32,9 +32,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install Japanese tokenizer
-        run: python -m pip install --disable-pip-version-check "fugashi[unidic-lite]"
-
       - name: Build furigana JS
         run: python scripts/build_word_furigana.py
 
