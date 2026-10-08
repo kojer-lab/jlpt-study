@@ -6747,12 +6747,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-20d2bde23d": {
     "examples": [
       {
-        "jp": "ケイちゃんはとても運がいいのよ。お産の時から、そうだったわ。",
-        "ko": "케이짱은 정말 운이 좋아. 출산 때부터 그랬어.",
-        "exampleSource": "manual-review"
+        "jp": "初めてのお産は予定より長い時間がかかった。",
+        "ko": "첫 출산은 예상보다 시간이 오래 걸렸다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "출산 / 아이를 낳는 일"
   },
   "oj-9cc36de6c5": {
     "meaning": "밀어 넣다 / 억지로 집어넣다",
@@ -6805,7 +6806,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "아첨 / 빈말 / 립서비스"
   },
   "oj-744be0e917": {
     "examples": [
@@ -6815,7 +6817,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "덮치다 / 습격하다 / 엄습하다"
   },
   "oj-000e220ab0": {
     "meaning": "늦어도",
@@ -6889,7 +6892,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "무섭다 / 겁나다 / 섬뜩하다"
   },
   "oj-f235910220": {
     "examples": [
@@ -6909,7 +6913,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "수행 / 동행 / 함께 따라감"
   },
   "oj-f0375aa40d": {
     "meaning": "동갑 / 같은 나이",
@@ -6987,7 +6992,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "즉흥적인 생각 / 순간 떠오른 발상 / 생각해 낸 것"
   },
   "oj-59b6e4bc77": {
     "examples": [
@@ -7050,7 +7056,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "직물 / 짠 천"
   },
   "oj-dd75448626": {
     "examples": [
@@ -7060,7 +7067,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "천을 짜다 / 베를 짜다"
   },
   "oj-679dc60eb0": {
     "examples": [
@@ -7070,7 +7078,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "소홀히 하다 / 등한시하다 / 대충 다루다"
   },
   "oj-612aa8aa8b": {
     "meaning": "온라인",
@@ -7091,11 +7100,19 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "카펫 / 양탄자"
   },
   "oj-a77c8b1d1f": {
     "meaning": "하위 / 낮은 순위 / 하위 단계",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "順位を上位と下位に分けて集計した。",
+        "ko": "순위를 상위와 하위로 나누어 집계했다.",
+        "exampleSource": "manual-language-review-20261008"
+      }
+    ]
   },
   "oj-230db12bf5": {
     "meaning": "해운 / 해상 운송",
@@ -7157,7 +7174,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "해협 / 두 육지 사이의 좁은 바닷길"
   },
   "oj-3576b5bfed": {
     "examples": [
@@ -7177,14 +7195,15 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "노인·환자를 돌봄 / 간병 / 개호"
   },
   "oj-0e51793639": {
     "examples": [
       {
-        "jp": "このバグを改修してます。",
-        "ko": "이 버그를 수정 중입니다.",
-        "exampleSource": "manual-review"
+        "jp": "市は古い体育館を改修する予定だ。",
+        "ko": "시는 낡은 체육관을 보수할 예정이다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -7197,7 +7216,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "괴수 / 거대한 괴물"
   },
   "oj-a236f969f0": {
     "examples": [
@@ -7228,7 +7248,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "해치다 / 손상시키다 / 방해하다"
   },
   "oj-754e93952d": {
     "meaning": "개설 / 개요 설명",
@@ -7269,7 +7290,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "개정 / 수정판을 냄 (책·문서의 내용을 고침)"
   },
   "oj-71bcfaf693": {
     "meaning": "가이드 / 안내원",
@@ -7364,7 +7386,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "회람 / 여러 사람에게 돌려 읽게 함"
   },
   "oj-7527fce287": {
     "meaning": "해류",
@@ -7390,12 +7413,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-ecd9ff4900": {
     "examples": [
       {
-        "jp": "保護回路を飛ばしてしまおう。",
-        "ko": "보호 회로를 우회해 버리자.",
-        "exampleSource": "manual-review"
+        "jp": "電流が流れないので回路を点検した。",
+        "ko": "전류가 흐르지 않아 회로를 점검했다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "회로 / 전류·신호가 흐르는 경로"
   },
   "oj-4385ccd897": {
     "meaning": "해로 / 뱃길",
