@@ -343,7 +343,17 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <button type="button" data-mode="short" class="active">短文 단문</button><button type="button" data-mode="medium">中文 중문</button><button type="button" data-mode="long">長文 장문</button><button type="button" data-mode="news">時事 최신 소식</button>
         <div id="newsDailyNav" class="hidden" style="gap:10px;align-items:center;flex-wrap:wrap;margin-left:10px"><select id="newsDateSelect" aria-label="학습 날짜 선택" style="max-width:160px;padding:7px;border:1px solid #dce2ee;border-radius:9px;background:white"></select><span id="newsProgressLabel" style="font-size:14px;color:#536078;white-space:nowrap"></span></div>
       </div>
-      <style>#newsDailyNav:not(.hidden){display:flex;align-items:center;flex-wrap:wrap}@media(max-width:700px){#newsDailyNav{margin-left:0!important;width:100%;padding-top:4px}}</style>
+      <style>
+#newsDailyNav:not(.hidden){display:flex;align-items:center;flex-wrap:wrap}
+@media(max-width:700px){
+ #readingView .reading-modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;overflow:visible;flex-wrap:wrap;padding-bottom:0;width:100%;min-width:0}
+ #readingView .reading-modes>button{min-width:0;width:100%;padding:9px 2px;font-size:clamp(11px,3vw,14px);line-height:1.3;white-space:nowrap;letter-spacing:-.04em}
+ #newsDailyNav:not(.hidden){grid-column:1/-1;display:flex;gap:8px;align-items:center;margin:4px 0 0!important;padding:7px 2px 0;width:100%;min-width:0}
+ #newsDateSelect{min-width:0;max-width:145px!important;font-size:13px}
+ #newsProgressLabel{font-size:12px!important;white-space:normal!important;line-height:1.4;flex:1;min-width:0}
+}
+@media(max-width:360px){#readingView .reading-modes>button{font-size:11px;letter-spacing:-.07em}}
+</style>
       <div id="newsDailyComplete" class="card hidden" style="padding:24px;text-align:center"></div>
       <div class="quiz-shell" id="readingQuizShell"><div class="card">
         <div class="tag" id="readingTag"></div>
