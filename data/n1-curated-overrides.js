@@ -29130,14 +29130,20 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review-qa-20261008"
   },
   "oj-08cfe03cb3": {
-    "meaning": "거짓말하다 · 주로 「嘘を吐く」에서 ‘つく’로 읽음",
+    "w": "吐く",
+    "r": "はく",
+    "meaning": "토하다 / 내뱉다 / 숨을 내쉬다 / 「嘘を吐く」는 つく(거짓말하다)",
     "examples": [
       {
-        "jp": "そんな見え透いた嘘を吐くのはやめなさい。",
+        "jp": "そんな見え透いた嘘を<span class=\"furi\" data-r=\"つく\">吐く</span>のはやめなさい。",
         "ko": "그렇게 뻔한 거짓말은 그만해."
+      },
+      {
+        "jp": "気分が悪くなって食べたものを<span class=\"furi\" data-r=\"は\">吐</span>いた。",
+        "ko": "몸이 안 좋아져 먹은 것을 토했다."
       }
     ],
-    "meaningSource": "manual-review-qa-20261008"
+    "meaningSource": "manual-review-qa-20261008-context-readings"
   },
   "oj-a942fde509": {
     "meaning": "다하다 / 힘을 쏟다 / 모두 써 버리다",
