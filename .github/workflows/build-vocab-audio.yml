@@ -9,6 +9,7 @@ on:
       - "data/n1-extra-words-3.js"
       - "tools/export-vocab-audio.mjs"
       - "tools/generate-vocab-audio.py"
+      - "tools/validate-vocab-audio.py"
       - ".github/workflows/build-vocab-audio.yml"
   workflow_dispatch:
 
@@ -69,37 +70,54 @@ jobs:
           python -m pip install --upgrade pip
           pip install "kokoro>=0.9.4" "misaki[ja]>=0.9.4" soundfile
 
-      - name: Generate missing vocabulary audio
-        run: python tools/generate-vocab-audio.py
-
-      - name: Validate MP3 files and manifest
-        run: python tools/validate-vocab-audio.py
-
-      - name: Commit generated audio
+      - name: Generate, validate and checkpoint example MP3 batches
+        shell: bash
         run: |
-          if git diff --quiet -- audio/vocab && [ -z "$(git status --porcelain audio/vocab)" ]; then
-            echo "No audio changes."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add audio/vocab
-          git commit -m "Build static Kokoro vocabulary audio"
-          # UI commits may land while synthesis is running. Rebase those
-          # non-audio changes before pushing the generated clips.
-          for attempt in 1 2 3 4 5; do
-            echo "Push attempt $attempt/5"
-            git fetch origin main
-            if ! git rebase origin/main; then
-              echo "::error::Main contains overlapping audio changes; aborting safely."
-              git rebase --abort
-              exit 1
-            fi
-            if git push origin HEAD:main; then
-              echo "Generated vocabulary audio committed successfully."
+          set -euo pipefail
+          # Each batch is committed so a runner timeout never loses prior clips.
+          for batch in $(seq 1 80); do
+            remaining=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          items=json.loads(Path("audio/vocab/source.json").read_text())["items"]
+          print(sum(not Path(item["path"]).is_file() for item in items))
+          PY
+            )
+            echo "Batch $batch: $remaining clips remaining"
+            if [ "$remaining" -eq 0 ]; then
+              python tools/generate-vocab-audio.py
+              python tools/validate-vocab-audio.py
+              echo "All MP3 clips generated and validated."
               exit 0
             fi
-            sleep 5
+            VOCAB_AUDIO_BATCH_SIZE=100 python tools/generate-vocab-audio.py
+            python tools/validate-vocab-audio.py
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add audio/vocab
+            if git diff --cached --quiet; then
+              echo "::error::No MP3 files produced in this batch."
+              exit 1
+            fi
+            git commit -m "Build Kokoro example MP3 batch $batch"
+            pushed=false
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort
+                echo "::error::Conflicting changes during MP3 publish."
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                pushed=true
+                break
+              fi
+              sleep 5
+            done
+            if [ "$pushed" != true ]; then
+              echo "::error::Could not publish MP3 batch."
+              exit 1
+            fi
           done
-          echo "::error::Main changed during every push retry."
+          echo "::error::Batch limit reached; manually rerun the workflow to resume."
           exit 1
