@@ -2493,7 +2493,7 @@ function startAiListenJob(index){
        slots[i].resolve(result);
      }
      if(aiListenJobs.get(index)===job&&index===aiListenIndex&&!aiListenPlaying)setAiStatus("현재 문제 음성 준비 완료 · 바로 재생할 수 있습니다.","ok");
-     if(aiListenJobs.get(index)===job&&index+1<aiListeningProblems.length)setTimeout(()=>{if(aiListenJobs.get(index)===job)startAiListenJob(index+1)},100);
+     if(!isAppleMobile()&&aiListenJobs.get(index)===job&&index+1<aiListeningProblems.length)setTimeout(()=>{if(aiListenJobs.get(index)===job)startAiListenJob(index+1)},100);
      return true;
    }catch(e){
      slots.forEach(slot=>slot.reject(e));
@@ -2533,13 +2533,13 @@ async function playAiListening(){
  if(aiListenPlaying)return;
  const generation=aiListenGeneration,index=aiListenIndex;
  aiListenPlaying=true;$("aiListenPlay").disabled=true;
- const p=aiListeningProblems[index],job=startAiListenJob(index),prebuffer=isAppleMobile()?3:2;
+ const p=aiListeningProblems[index],job=startAiListenJob(index),prebuffer=isAppleMobile()?1:2;
  try{
    await requestKokoroWakeLock();setAiStatus("선행 버퍼 "+Math.min(prebuffer,p.lines.length)+"개 준비 중…");
    await Promise.all(job.slots.slice(0,Math.min(prebuffer,p.lines.length)).map(x=>x.promise));
    if(generation!==aiListenGeneration)return;
    setAiStatus("재생 중 · 뒤 음성 및 다음 문제를 계속 준비합니다.","ok");
-   job.producer.then(()=>{if(generation===aiListenGeneration&&index+1<aiListeningProblems.length)startAiListenJob(index+1)});
+   if(!isAppleMobile())job.producer.then(()=>{if(generation===aiListenGeneration&&index+1<aiListeningProblems.length)startAiListenJob(index+1)});
    for(let i=0;i<p.lines.length;i++){
      const r=await job.slots[i].promise;
      if(generation!==aiListenGeneration)return;
