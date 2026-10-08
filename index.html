@@ -521,8 +521,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <script src="data/n1-grammar-stage3.js?v=20261008-g1"></script>
 <script src="data/n1-extra-reading.js"></script>
 <script src="data/n1-reading-stage4.js?v=20261008-b1"></script>
-<script src="data/n1-daily-news.js?v=20261008-3x3"></script>
-<script src="data/n1-reading-translations.js?v=20261007-r1"></script>
+<script src="data/n1-daily-news.js?v=20261008-ko-qa2"></script>
+<script src="data/n1-reading-translations.js?v=20261008-ko-qa2"></script>
 <script src="data/n1-reading-furigana.js?v=20261007-f1"></script>
 <script src="data/n1-word-furigana.js?v=20261007-wf1"></script>
 <script src="data/n1-extra-listening.js"></script>
@@ -2329,7 +2329,7 @@ $("readingChoices").addEventListener("click",e=>{
  recordAnswer("reading",q,idx);
  if(readingMode==="news"){newsAnsweredCount++;if(idx===q.a)newsCorrect++;}
  const fq=set.furigana?.questions?.[readingQ];
- $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${fq?.e||readingJP(q.e)}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" style="margin-top:14px">🇰🇷 번역 보기</button><div id="readingTranslationBox" class="hidden">${readingTranslationHTML(set,q)}</div>`;
+ $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${readingMode==="news"?readingJP(q.e):(fq?.e||readingJP(q.e))}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" style="margin-top:14px">🇰🇷 번역 보기</button><div id="readingTranslationBox" class="hidden">${readingTranslationHTML(set,q)}</div>`;
  $("readingExplanation").classList.add("show");$("nextReadingBtn").classList.remove("hidden");if(readingMode==="news"){$("newsProgressLabel").textContent="완료 "+newsAnsweredCount+"/"+newsArticlesForDate(selectedNewsDate).reduce((n,x)=>n+x.questions.length,0)+"문제"}restoreInteractiveFuriState($("readingExplanation"));refreshAll();
 });
 $("readingExplanation").addEventListener("click",e=>{
