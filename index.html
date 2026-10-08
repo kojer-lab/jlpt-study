@@ -1474,7 +1474,7 @@ function buildExpansionVocabQuiz(src,count=60){
   const answer=i%4,choices=options.slice(1).map(x=>plain(x.w));
   choices.splice(answer,0,plain(w.w));
   return {
-   type:"文脈",q:`次の文の（　）に入る語として最も適切なものはどれか。<br>${escapeExampleText(vocabJapaneseContext(w))}`,
+   wordId:w.id,type:"文脈",q:`次の文の（　）に入る語として最も適切なものはどれか。<br>${escapeExampleText(vocabJapaneseContext(w))}`,
    c:choices,a:answer,
    translation:`다음 문맥의 빈칸에 가장 적절한 어휘는 무엇인가?`,
    e:`「${plain(w.w)}」는 「${w.meaning}」라는 뜻입니다. 문장 속에서 어떤 표현과 결합하는지 확인해 보세요.`
