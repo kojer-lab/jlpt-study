@@ -1572,21 +1572,67 @@ function newsTodayKey(){const parts=new Intl.DateTimeFormat("en-US",{timeZone:"A
 function newsDays(){return [...new Set(dailyNewsBank.filter(x=>x.date<=newsTodayKey()).map(x=>x.date))].sort().reverse()}
 let selectedNewsDate=null,newsCorrect=0,newsAnsweredCount=0;
 function newsArticlesForDate(date){return dailyNewsBank.filter(x=>x.date===date).slice(0,3)}
+
+function newsEntry(date){
+ if(!state.newsProgress)state.newsProgress={};
+ return state.newsProgress[date]||(state.newsProgress[date]={answers:{},activeTitle:"",activeQuestion:0,complete:false,resetAt:0,updatedAt:0});
+}
+function newsAnswerKey(title,index){return title+"::"+index}
+function newsAnswer(date,title,index){
+ const day=state.newsProgress?.[date],saved=day?.answers?.[newsAnswerKey(title,index)];
+ return saved&&saved.at>Number(day.resetAt||0)?saved:null;
+}
+function newsScore(date){
+ let answered=0,correct=0,total=0;
+ for(const article of newsArticlesForDate(date))for(let i=0;i<article.questions.length;i++){
+  total++;
+  const saved=newsAnswer(date,article.title,i);
+  if(saved){answered++;if(saved.choice===article.questions[i].a)correct++}
+ }
+ return {answered,correct,total};
+}
+function saveNewsCursor(date,title,index){
+ const day=newsEntry(date);day.activeTitle=title;day.activeQuestion=index;day.updatedAt=Date.now();
+ saveState(state);
+}
+function storeNewsAnswer(article,index,choice){
+ const day=newsEntry(selectedNewsDate),key=newsAnswerKey(article.title,index);
+ if(newsAnswer(selectedNewsDate,article.title,index))return false;
+ day.answers[key]={choice,at:Date.now()};day.complete=false;
+ day.activeTitle=article.title;day.activeQuestion=index;day.updatedAt=Date.now();
+ return true;
+}
+
 function dailyNewsSet(){const dates=newsDays();return newsArticlesForDate(dates[0])[0]||null}
 function dailyNewsReadingIndex(){const set=dailyNewsSet();const i=readingSets.news.indexOf(set);return i>=0?i:0}
-function setupNewsDay(date){
+function setupNewsDay(date,{restart=false}={}){
  const days=newsDays();selectedNewsDate=days.includes(date)?date:days[0];
  const sets=newsArticlesForDate(selectedNewsDate);
  if(!sets.length)return;
- readingSetIndex=readingSets.news.indexOf(sets[0]);readingQ=0;newsCorrect=0;newsAnsweredCount=0;
+ if(restart){
+  const stamp=Date.now();
+  state.newsProgress[selectedNewsDate]={answers:{},activeTitle:sets[0].title,activeQuestion:0,complete:false,resetAt:stamp,updatedAt:stamp};
+  saveState(state);
+ }
+ const day=newsEntry(selectedNewsDate);
+ let article=sets.find(a=>a.title===day.activeTitle),question=day.activeQuestion;
+ if(!article||question>=article.questions.length){
+  article=sets.find(a=>a.questions.some((_,i)=>!newsAnswer(selectedNewsDate,a.title,i)))||sets[sets.length-1];
+  question=article.questions.findIndex((_,i)=>!newsAnswer(selectedNewsDate,article.title,i));
+  if(question<0)question=article.questions.length-1;
+ }
+ readingSetIndex=readingSets.news.indexOf(article);readingQ=question;
+ const score=newsScore(selectedNewsDate);newsCorrect=score.correct;newsAnsweredCount=score.answered;
  $("newsDateSelect").innerHTML=days.map(d=>'<option value="'+d+'">'+d.replaceAll("-",".")+'</option>').join("");
  $("newsDateSelect").value=selectedNewsDate;
  $("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden");
+ if(day.complete&&score.answered===score.total)finishNewsDay();
 }
 function finishNewsDay(){
+ const score=newsScore(selectedNewsDate);newsCorrect=score.correct;newsAnsweredCount=score.answered;
  $("readingQuizShell").classList.add("hidden");$("newsDailyComplete").classList.remove("hidden");
- $("newsDailyComplete").innerHTML='<h2>오늘의 시사독해 완료!</h2><p>총 '+newsAnsweredCount+'문제 중 '+newsCorrect+'문제 정답 · 정답률 '+(newsAnsweredCount?Math.round(newsCorrect/newsAnsweredCount*100):0)+'%</p><button type="button" class="primary" id="retryNewsDay">다시 풀기</button>';
- $("retryNewsDay").addEventListener("click",()=>{setupNewsDay(selectedNewsDate);renderReading()});
+ $("newsDailyComplete").innerHTML='<h2>오늘의 시사독해 완료!</h2><p>총 '+score.answered+'문제 중 '+score.correct+'문제 정답 · 정답률 '+(score.answered?Math.round(score.correct/score.answered*100):0)+'%</p><button type="button" class="primary" id="retryNewsDay">다시 풀기</button>';
+ $("retryNewsDay").addEventListener("click",()=>{setupNewsDay(selectedNewsDate,{restart:true});renderReading()});
  window.scrollTo({top:0,behavior:"smooth"});
 }
 
