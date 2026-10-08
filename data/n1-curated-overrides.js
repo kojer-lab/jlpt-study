@@ -24557,5 +24557,895 @@ window.N1_CURATED_OVERRIDES={
   "oj-fc653283bc": {
     "meaning": "아주 / 상당히 / 어지간히",
     "meaningSource": "manual-review"
+  },
+  "oj-49167c4c88": {
+    "meaning": "붙임성 / 싹싹한 태도 / 사람을 대하는 친절함",
+    "examples": [
+      {
+        "jp": "彼は愛想がよく、初対面の人ともすぐ打ち解ける。",
+        "ko": "그는 붙임성이 좋아 처음 만난 사람과도 금방 친해진다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ddb83d9881": {
+    "meaning": "증거 / 증표 / 어떤 사실을 보여 주는 표지",
+    "examples": [
+      {
+        "jp": "この指輪は二人の約束の証だ。",
+        "ko": "이 반지는 두 사람의 약속을 보여 주는 증표다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b20eb26e92": {
+    "meaning": "오름 / 상승 / 올라간 정도",
+    "examples": [
+      {
+        "jp": "最近は物価の上がりが目立つ。",
+        "ko": "최근에는 물가 상승이 두드러진다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7e9e492582": {
+    "meaning": "단념 / 포기 / 체념",
+    "examples": [
+      {
+        "jp": "まだ可能性があるのに、諦めが早すぎる。",
+        "ko": "아직 가능성이 있는데 포기가 너무 빠르다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0812660ad4": {
+    "meaning": "악 / 나쁜 것 / 악함",
+    "examples": [
+      {
+        "jp": "物語では善と悪の対立が描かれている。",
+        "ko": "이야기에서는 선과 악의 대립이 그려져 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f06b8ec290": {
+    "meaning": "늦잠 / 늦잠을 자는 사람",
+    "examples": [
+      {
+        "jp": "休日に朝寝坊して、昼近くまで寝ていた。",
+        "ko": "휴일에 늦잠을 자서 점심때 가까이까지 잤다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a7d4d501a5": {
+    "meaning": "선명하다 / 생생하다 / 솜씨가 훌륭하다",
+    "examples": [
+      {
+        "jp": "夕焼けが鮮やかな赤に染まった。",
+        "ko": "저녁놀이 선명한 붉은색으로 물들었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-940a36553f": {
+    "meaning": "맛 / 풍미 / 묘미 / 깊은 느낌",
+    "examples": [
+      {
+        "jp": "このスープには独特の深い味わいがある。",
+        "ko": "이 수프에는 독특하고 깊은 풍미가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2b7ed7f48e": {
+    "meaning": "값 / 수치 / 가치",
+    "examples": [
+      {
+        "jp": "この式からxの値を求めなさい。",
+        "ko": "이 식에서 x의 값을 구하세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6859422547": {
+    "meaning": "나 / 저 · 주로 여성이 친근하게 쓰는 1인칭",
+    "examples": [
+      {
+        "jp": "あたしはその映画、もう見たよ。",
+        "ko": "나는 그 영화 벌써 봤어."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e7ce133582": {
+    "meaning": "맞음 / 적중 / 당첨 / ~당·~마다",
+    "examples": [
+      {
+        "jp": "くじを引いたら当たりが出た。",
+        "ko": "제비를 뽑았더니 당첨이 나왔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f20f9cfea9": {
+    "meaning": "취급 / 대우 / 처리 / 다루는 방식",
+    "examples": [
+      {
+        "jp": "個人情報の扱いには十分な注意が必要だ。",
+        "ko": "개인정보 취급에는 충분한 주의가 필요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-08ef2a4717": {
+    "meaning": "상승 / 증가 / 향상 / 확대",
+    "examples": [
+      {
+        "jp": "来月から利用料金が十パーセントアップする。",
+        "ko": "다음 달부터 이용 요금이 10퍼센트 오른다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cb8beba501": {
+    "meaning": "압력 / 압박",
+    "examples": [
+      {
+        "jp": "周囲からの圧力に屈せず意見を貫いた。",
+        "ko": "주변의 압박에 굴하지 않고 의견을 관철했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3862e77007": {
+    "meaning": "~앞 / ~수신인 앞으로 / ~씩",
+    "examples": [
+      {
+        "jp": "この書類は人事部宛に送ってください。",
+        "ko": "이 서류는 인사부 앞으로 보내 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-78ba852907": {
+    "meaning": "아마추어 / 비전문가",
+    "examples": [
+      {
+        "jp": "彼はアマチュアだが、腕はプロ並みだ。",
+        "ko": "그는 아마추어지만 실력은 프로 수준이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6137659b2a": {
+    "meaning": "잘못 / 실수 / 과오",
+    "examples": [
+      {
+        "jp": "同じ過ちを二度と繰り返してはいけない。",
+        "ko": "같은 잘못을 두 번 다시 반복해서는 안 된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ce34129fb9": {
+    "meaning": "아랍 / 아랍권",
+    "examples": [
+      {
+        "jp": "彼はアラブ諸国の歴史を研究している。",
+        "ko": "그는 아랍 국가들의 역사를 연구하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-aca834a881": {
+    "meaning": "알칼리 / 염기성 물질",
+    "examples": [
+      {
+        "jp": "この液体は強いアルカリ性を示す。",
+        "ko": "이 액체는 강한 알칼리성을 띤다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-44c50f365c": {
+    "meaning": "설문조사 / 앙케트",
+    "examples": [
+      {
+        "jp": "利用者を対象にアンケートを実施した。",
+        "ko": "이용자를 대상으로 설문조사를 실시했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9b84f255df": {
+    "meaning": "분노 / 노여움 / 화",
+    "examples": [
+      {
+        "jp": "彼は怒りを抑えて冷静に話した。",
+        "ko": "그는 분노를 억누르고 침착하게 말했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cb3d7cda2e": {
+    "meaning": "전쟁 / 싸움 · 고어적 읽기",
+    "examples": [
+      {
+        "jp": "昔、この地では長い軍が続いたという。",
+        "ko": "옛날 이 지역에서는 오랜 전쟁이 이어졌다고 한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d5373e6a45": {
+    "meaning": "전쟁 / 전투 / 싸움 · 고어적 읽기",
+    "examples": [
+      {
+        "jp": "長い戦の末に国は大きく疲弊した。",
+        "ko": "긴 전쟁 끝에 나라는 크게 피폐해졌다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-dcdd5a11a3": {
+    "meaning": "의상 / 복장 / 옷차림",
+    "examples": [
+      {
+        "jp": "出演者は舞台衣装に着替えて本番に臨んだ。",
+        "ko": "출연자는 무대 의상으로 갈아입고 본공연에 나섰다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-97698d32b7": {
+    "meaning": "꼭대기 / 정상 / 머리 꼭대기",
+    "examples": [
+      {
+        "jp": "山の頂から町を見下ろした。",
+        "ko": "산 정상에서 마을을 내려다보았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e183ec9f8c": {
+    "meaning": "한눈 / 한 번 봄 · 「一目置く」에서는 한 수 위로 인정함",
+    "examples": [
+      {
+        "jp": "彼の技術には専門家も一目置いている。",
+        "ko": "그의 기술은 전문가들도 한 수 위로 인정하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0bf76a38ae": {
+    "meaning": "일절 / 전부 / 전혀 · 주로 부정 표현과 함께 씀",
+    "examples": [
+      {
+        "jp": "この件については一切話していない。",
+        "ko": "이 건에 대해서는 일절 말하지 않았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5d1ad6cf31": {
+    "meaning": "아니 / 부정 / 거절 · 문어적으로 ‘아니, 오히려’의 뜻도 있음",
+    "examples": [
+      {
+        "jp": "参加するか否かを明日までに決めてください。",
+        "ko": "참가할지 말지를 내일까지 결정해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7ac2b47d4c": {
+    "meaning": "구성원 / 인원 / ~원(員)",
+    "examples": [
+      {
+        "jp": "委員は全員そろって会議に出席した。",
+        "ko": "위원들은 전원 빠짐없이 회의에 참석했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d46f3d3b77": {
+    "meaning": "합격하다 / 시험·심사에 붙다",
+    "examples": [
+      {
+        "jp": "第一志望の大学に受かった。",
+        "ko": "제1지망 대학에 합격했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d24ffe73c2": {
+    "meaning": "거짓말쟁이",
+    "examples": [
+      {
+        "jp": "一度の失敗だけで彼を嘘つきと決めつけるのはよくない。",
+        "ko": "한 번의 잘못만으로 그를 거짓말쟁이라고 단정하는 것은 좋지 않다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1789430d86": {
+    "meaning": "그릇 / 용기 / 사람의 역량·그릇",
+    "examples": [
+      {
+        "jp": "大きな器に水を入れて運んだ。",
+        "ko": "큰 그릇에 물을 담아 옮겼다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-df00842b13": {
+    "meaning": "운영 / 관리 / 조직·사업을 꾸려 감",
+    "examples": [
+      {
+        "jp": "イベントの運営を学生が担当した。",
+        "ko": "행사 운영을 학생들이 담당했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f326cdd448": {
+    "meaning": "지긋지긋함 / 싫증이 남 / 진절머리가 남",
+    "examples": [
+      {
+        "jp": "同じ説明を何度も聞かされてうんざりした。",
+        "ko": "같은 설명을 몇 번이나 들어서 진절머리가 났다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-645451702d": {
+    "meaning": "운명 / 숙명",
+    "examples": [
+      {
+        "jp": "運命は自分の手で切り開くものだ。",
+        "ko": "운명은 자신의 손으로 개척하는 것이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5da1033412": {
+    "meaning": "모임 / 회합 · 특히 불교 행사나 제례의 모임을 가리키는 옛말",
+    "examples": [
+      {
+        "jp": "寺では供養のための会が営まれた。",
+        "ko": "절에서는 공양을 위한 법회가 열렸다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-19595bf6aa": {
+    "meaning": "액체 / 액",
+    "examples": [
+      {
+        "jp": "容器から透明な液が漏れていた。",
+        "ko": "용기에서 투명한 액체가 새고 있었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2cd66712b3": {
+    "meaning": "열람 / 문서·자료 등을 읽어 봄",
+    "examples": [
+      {
+        "jp": "この資料は館内で自由に閲覧できる。",
+        "ko": "이 자료는 관내에서 자유롭게 열람할 수 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9214f9905f": {
+    "meaning": "정원 / 공원 / 특정 목적의 시설·구역",
+    "examples": [
+      {
+        "jp": "園の中には季節の花がたくさん咲いている。",
+        "ko": "정원 안에는 계절 꽃이 많이 피어 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f11ad5d8d2": {
+    "meaning": "인연 / 연 / 관계 / 계기",
+    "examples": [
+      {
+        "jp": "不思議な縁で二人は再び出会った。",
+        "ko": "신기한 인연으로 두 사람은 다시 만났다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f9aaf64bd0": {
+    "meaning": "염 / 소금 · 주로 한자음·복합어에서 쓰이는 읽기",
+    "examples": [
+      {
+        "jp": "食塩の主成分は塩化ナトリウムだ。",
+        "ko": "식염의 주성분은 염화나트륨이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-32f7aa5c9b": {
+    "meaning": "연안 / 해안선을 따라 이어진 지역",
+    "examples": [
+      {
+        "jp": "沿岸地域では強風に注意が必要だ。",
+        "ko": "연안 지역에서는 강풍에 주의해야 한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ad00cfc278": {
+    "meaning": "꼬리 / 끝부분 / 산의 능선 끝",
+    "examples": [
+      {
+        "jp": "猫の尾がゆっくり左右に動いている。",
+        "ko": "고양이 꼬리가 천천히 좌우로 움직이고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4fe63ccd71": {
+    "meaning": "조카 · 형제자매의 아들",
+    "examples": [
+      {
+        "jp": "甥が今年から大学に通い始めた。",
+        "ko": "조카가 올해부터 대학에 다니기 시작했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4c962a58bb": {
+    "meaning": "지다 / 떠맡다 / 부담하다 / 책임을 지다",
+    "examples": [
+      {
+        "jp": "事故の責任を一人で負う必要はない。",
+        "ko": "사고의 책임을 혼자 떠안을 필요는 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-263aeb9d53": {
+    "meaning": "응급 / 급한 상황에 임시로 대처함",
+    "examples": [
+      {
+        "jp": "けが人に応急の処置を施した。",
+        "ko": "부상자에게 응급 처치를 했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-571519d3bb": {
+    "meaning": "응모 / 지원 / 모집에 신청함",
+    "examples": [
+      {
+        "jp": "新しい企画の公募に応募した。",
+        "ko": "새 기획 공모에 응모했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e8a535ddec": {
+    "meaning": "과장됨 / 과장스러움 / 유난스러움",
+    "examples": [
+      {
+        "jp": "その程度のことで騒ぐのは大げさだ。",
+        "ko": "그 정도 일로 소란을 피우는 것은 과장스럽다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9c2a6f0131": {
+    "meaning": "공공 / 공식 / 세상에 드러난 것",
+    "examples": [
+      {
+        "jp": "その事実が公になったのは数年後だった。",
+        "ko": "그 사실이 세상에 알려진 것은 몇 년 뒤였다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-37d3906e02": {
+    "meaning": "지연 / 늦음 / 뒤처짐",
+    "examples": [
+      {
+        "jp": "工事の遅れが全体の計画に影響している。",
+        "ko": "공사 지연이 전체 계획에 영향을 주고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f9d8a00b70": {
+    "meaning": "가르침 / 교훈 / 교리",
+    "examples": [
+      {
+        "jp": "師の教えを今でも大切にしている。",
+        "ko": "스승의 가르침을 지금도 소중히 여기고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a25819a086": {
+    "meaning": "두려움 / 우려 / 위험 가능성",
+    "examples": [
+      {
+        "jp": "大雨による土砂災害の恐れがある。",
+        "ko": "폭우로 인한 산사태 위험이 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-486129fbbe": {
+    "meaning": "심부름 / 용무",
+    "examples": [
+      {
+        "jp": "母のお使いで近所の店まで買い物に行った。",
+        "ko": "어머니 심부름으로 근처 가게에 장을 보러 갔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3c74d17c1d": {
+    "meaning": "아우 / 나이가 어린 형제자매 · 고어",
+    "examples": [
+      {
+        "jp": "古い文章では年下のきょうだいを弟と書いて「おと」と読むことがある。",
+        "ko": "옛 문장에서는 나이가 어린 형제자매를 弟라고 쓰고 ‘おと’라고 읽는 경우가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7fca1acfbd": {
+    "meaning": "찾아오다 / 방문하다 / 때·계절 등이 찾아오다",
+    "examples": [
+      {
+        "jp": "春が訪れると、この町は花でいっぱいになる。",
+        "ko": "봄이 찾아오면 이 마을은 꽃으로 가득해진다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5b32f6a19b": {
+    "meaning": "소녀 / 젊은 여성 / 처녀 · 문어적 표현",
+    "examples": [
+      {
+        "jp": "物語には一人の少女が乙女として描かれている。",
+        "ko": "이야기에는 한 소녀가 젊은 처녀로 그려져 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c572358a69": {
+    "meaning": "놀라움 / 경악 / 뜻밖이라고 느끼는 마음",
+    "examples": [
+      {
+        "jp": "突然の発表に会場から驚きの声が上がった。",
+        "ko": "갑작스러운 발표에 행사장에서 놀란 목소리가 터져 나왔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-830a31a8d7": {
+    "meaning": "기억 / 익숙함 / 경험",
+    "examples": [
+      {
+        "jp": "その名前にはどこか覚えがある。",
+        "ko": "그 이름은 어딘가 들어 본 기억이 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-061df73f89": {
+    "meaning": "정취 / 운치 / 취지 / 느낌",
+    "examples": [
+      {
+        "jp": "古い町並みには独特の趣がある。",
+        "ko": "오래된 거리에는 독특한 정취가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c633f63d6a": {
+    "meaning": "중시하다 / 존중하다 / 소중히 여기다",
+    "examples": [
+      {
+        "jp": "この会社は経験よりも本人の意欲を重んじる。",
+        "ko": "이 회사는 경험보다 본인의 의욕을 중시한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1d05a03cd3": {
+    "meaning": "나 · 주로 남성이 거칠고 친근하게 쓰는 1인칭",
+    "examples": [
+      {
+        "jp": "俺は自分のやり方で最後までやる。",
+        "ko": "나는 내 방식대로 끝까지 할 거야."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cfae27ab7c": {
+    "meaning": "오렌지 / 주황색",
+    "examples": [
+      {
+        "jp": "テーブルの上にオレンジを三つ置いた。",
+        "ko": "테이블 위에 오렌지 세 개를 놓았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-68865480c1": {
+    "meaning": "어리석다 / 바보스럽다 / 미련하다",
+    "examples": [
+      {
+        "jp": "同じ失敗を繰り返すのは愚かなことだ。",
+        "ko": "같은 실수를 반복하는 것은 어리석은 일이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-75df9efb1e": {
+    "meaning": "온화함 / 성격·기후 등이 부드럽고 순함",
+    "examples": [
+      {
+        "jp": "彼は温和な性格で、めったに怒らない。",
+        "ko": "그는 성격이 온화해서 좀처럼 화를 내지 않는다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-bacad0baf0": {
+    "meaning": "과 / 부문 / 학과·진료과 등의 구분",
+    "examples": [
+      {
+        "jp": "大学では希望する科を慎重に選んだ。",
+        "ko": "대학에서는 희망하는 학과를 신중히 골랐다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e8f22989ca": {
+    "meaning": "층 / 건물의 층수를 세는 단위",
+    "examples": [
+      {
+        "jp": "会議室はこの建物の五階にある。",
+        "ko": "회의실은 이 건물 5층에 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-42cf1a5950": {
+    "meaning": "거리 / 상가·지구 / ~가(街)",
+    "examples": [
+      {
+        "jp": "駅前にはにぎやかな商店街が広がっている。",
+        "ko": "역 앞에는 번화한 상점가가 펼쳐져 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a260f0ef0d": {
+    "meaning": "조개껍데기 / 패각",
+    "examples": [
+      {
+        "jp": "浜辺で色のきれいな貝殻を拾った。",
+        "ko": "해변에서 색이 예쁜 조개껍데기를 주웠다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4bc51f4a57": {
+    "meaning": "개최 / 행사·회의 등을 엶",
+    "examples": [
+      {
+        "jp": "来月、国際会議が東京で開催される。",
+        "ko": "다음 달 국제회의가 도쿄에서 개최된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-76371e791a": {
+    "meaning": "회수 / 수거 / 되찾음",
+    "examples": [
+      {
+        "jp": "不良品を店頭で回収することになった。",
+        "ko": "불량품을 매장에서 회수하기로 했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e871aeff74": {
+    "meaning": "회담 / 면담 / 서로 만나 의견을 나눔",
+    "examples": [
+      {
+        "jp": "両国の首脳が会談を行った。",
+        "ko": "양국 정상이 회담을 가졌다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-de9ee73238": {
+    "meaning": "개발 / 개척 / 기술·제품 등을 만들어 냄",
+    "examples": [
+      {
+        "jp": "新しい医療技術の開発が進んでいる。",
+        "ko": "새로운 의료 기술 개발이 진행되고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-15569a3a2f": {
+    "meaning": "획 / 한 획 · 한자의 획수를 셀 때 쓰임",
+    "examples": [
+      {
+        "jp": "この漢字は全部で十画ある。",
+        "ko": "이 한자는 모두 열 획이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9c29728f70": {
+    "meaning": "격 / 지위 / 등급 / 격식",
+    "examples": [
+      {
+        "jp": "両者の実力には明らかな格の違いがある。",
+        "ko": "양쪽의 실력에는 분명한 격 차이가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b913b671ea": {
+    "meaning": "각 / 각도 / 장기의 비숍에 해당하는 말",
+    "examples": [
+      {
+        "jp": "二つの直線が作る角の大きさを求める。",
+        "ko": "두 직선이 이루는 각의 크기를 구한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-764a72663e": {
+    "meaning": "확신 / 굳게 믿음",
+    "examples": [
+      {
+        "jp": "彼には計画が成功するという確信があった。",
+        "ko": "그에게는 계획이 성공할 것이라는 확신이 있었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6714738f83": {
+    "meaning": "학력 / 교육을 받은 이력",
+    "examples": [
+      {
+        "jp": "採用では学歴だけでなく経験も重視される。",
+        "ko": "채용에서는 학력뿐 아니라 경험도 중시된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f0b5d3fde5": {
+    "meaning": "외상 / 신용거래 / 나중에 값을 치르는 거래",
+    "examples": [
+      {
+        "jp": "昔は近所の店で掛けで買う人も多かった。",
+        "ko": "예전에는 동네 가게에서 외상으로 사는 사람도 많았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5b0b01155c": {
+    "meaning": "내기 / 도박 / 승부를 건 선택",
+    "examples": [
+      {
+        "jp": "将来を一つの賭けに任せるわけにはいかない。",
+        "ko": "미래를 하나의 도박에 맡길 수는 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c5d3aaf44b": {
+    "meaning": "절벽 / 벼랑",
+    "examples": [
+      {
+        "jp": "崖の近くは危険なので立ち入らないでください。",
+        "ko": "절벽 근처는 위험하니 들어가지 마세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ee23d690d0": {
+    "meaning": "개월 / 달 수를 세는 단위",
+    "examples": [
+      {
+        "jp": "この研修は三ヶ月続く予定だ。",
+        "ko": "이 연수는 3개월 동안 계속될 예정이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f5120815d3": {
+    "meaning": "화성 / 태양계의 행성 Mars",
+    "examples": [
+      {
+        "jp": "火星に生命が存在する可能性が研究されている。",
+        "ko": "화성에 생명체가 존재할 가능성이 연구되고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9f60aaa2a3": {
+    "meaning": "하천 / 강과 내",
+    "examples": [
+      {
+        "jp": "大雨の後は河川の増水に注意が必要だ。",
+        "ko": "폭우 뒤에는 하천 수위 상승에 주의해야 한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f61f8da3d3": {
+    "meaning": "과제 / 해결해야 할 문제 / 주어진 작업",
+    "examples": [
+      {
+        "jp": "少子化への対応は社会全体の大きな課題だ。",
+        "ko": "저출산 대응은 사회 전체의 큰 과제다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-81b1055209": {
+    "meaning": "합병 / 둘 이상의 조직·기업 등을 하나로 합침",
+    "examples": [
+      {
+        "jp": "二つの会社が来年合併することを発表した。",
+        "ko": "두 회사가 내년에 합병한다고 발표했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d4517d7970": {
+    "meaning": "미리 해 두는 말 / 약속의 말 / 예언 · 고어",
+    "examples": [
+      {
+        "jp": "古い歌では未来を言い置く言葉を予言と書いて「かねごと」と読む例がある。",
+        "ko": "옛 노래에서는 미래를 미리 말해 두는 말을 予言이라고 쓰고 ‘かねごと’라고 읽는 예가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ed378b5868": {
+    "meaning": "겸하여 / 동시에 두 역할·목적을 함께 하여",
+    "examples": [
+      {
+        "jp": "視察を兼ねて地方の施設を訪れた。",
+        "ko": "시찰을 겸해 지방 시설을 방문했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-42f7f86db3": {
+    "meaning": "꽃가루 / 화분",
+    "examples": [
+      {
+        "jp": "春になると花粉の飛散量が増える。",
+        "ko": "봄이 되면 꽃가루 비산량이 늘어난다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ba175a37df": {
+    "meaning": "자세 / 태세 / 구조·모양",
+    "examples": [
+      {
+        "jp": "相手の攻撃に備えて防御の構えを取った。",
+        "ko": "상대의 공격에 대비해 방어 자세를 취했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
   }
 };
