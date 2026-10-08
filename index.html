@@ -1731,7 +1731,7 @@ function todayNewPending(){return ensureDailyNew(false).filter(w=>getSrs(w.id).r
 function refreshAll(){renderHome();renderStats();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
- if(name==="mock")setupMock();if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
+ if(name==="mock")setupMock();else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){stopKokoroAudio();}if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();const key=furiStateKey(fu),next=!fu.classList.contains("show");fu.classList.toggle("show",next);if(next)interactiveFuriShown.add(key);else interactiveFuriShown.delete(key)}}});
 
@@ -2563,25 +2563,25 @@ function setupAiListening(){
 }
 
 let mockItems=[],mockAnswers=[],mockIndex=0,mockStarted=0,mockPhaseStarted=0,mockPhase="language",mockTimerHandle=null,mockReady=false;
-function mockShuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function mockShuffle(a){const out=[...a];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
 function mockBuild(){
  const vocab=mockShuffle(quizData.vocab).slice(0,20).map(item=>({kind:"vocab",item}));
  const grammar=mockShuffle(quizData.grammar).slice(0,20).map(item=>({kind:"grammar",item}));
  const reading=mockShuffle(Object.entries(readingSets).filter(([k])=>k!=="news").flatMap(([mode,sets])=>sets.flatMap(set=>set.questions.map(item=>({kind:"reading",item,set}))))).slice(0,15);
- const listening=mockShuffle(aiListeningProblems).slice(0,15).map(item=>({kind:"listening",item}));
+ const listening=mockShuffle(aiListeningProblems.filter(item=>Array.isArray(item.lines)&&item.lines.length&&Array.isArray(item.choices)&&Number.isInteger(item.answer))).slice(0,15).map(item=>({kind:"listening",item}));
  return [...vocab,...grammar,...reading,...listening];
 }
 function mockRender(){
  if(!mockItems.length)return;
  const e=mockItems[mockIndex],listening=e.kind==="listening",phase=listening?"listening":"language";
- if(phase!==mockPhase&&phase==="listening"){mockPhase=phase;mockPhaseStarted=Date.now();}
+ if(phase!==mockPhase&&phase==="listening"){mockPhase=phase;mockPhaseStarted=Date.now();stopKokoroAudio();}
  $("mockSection").textContent=({vocab:"語彙 · 어휘",grammar:"文法 · 문법",reading:"読解 · 독해",listening:"聴解 · 청해"})[e.kind];
  $("mockCounter").textContent=(mockIndex+1)+" / "+mockItems.length+" · 답변 "+mockAnswers.filter(x=>x!==null).length+"개";
  $("mockPassage").classList.toggle("hidden",e.kind!=="reading");
  $("mockPassage").innerHTML=e.set?.furigana?.passage|| (e.set?readingJP(e.set.passage):"");
  $("mockQuestion").innerHTML=listening?e.item.question:e.kind==="reading"?readingJP(e.item.q):quizJP(e.item.q,e.item);
  const choices=listening?e.item.choices:e.item.c;
- $("mockChoices").innerHTML=choices.map((c,i)=>'<button type="button" class="choice'+(mockAnswers[mockIndex]===i?' correct':'')+'" data-mock-choice="'+i+'">'+(i+1)+'. '+(listening?c:e.kind==="reading"?readingJP(c):quizJP(c,e.item))+'</button>').join("");
+ $("mockChoices").innerHTML=choices.map((c,i)=>'<button type="button" class="choice'+(mockAnswers[mockIndex]===i?' selected':'')+'" data-mock-choice="'+i+'">'+(i+1)+'. '+(listening?c:e.kind==="reading"?readingJP(c):quizJP(c,e.item))+'</button>').join("");
  $("mockListenBtn").classList.toggle("hidden",!listening);
  $("mockListenStatus").textContent="";
  $("mockPrevBtn").disabled=mockIndex===0||mockIndex===mockItems.length-15;
@@ -2592,7 +2592,7 @@ function mockFinish(){
  if(!mockItems.length)return;
  clearInterval(mockTimerHandle);stopKokoroAudio();
  let correct=0;const stats={vocab:[0,0],grammar:[0,0],reading:[0,0],listening:[0,0]};
- mockItems.forEach((e,i)=>{const answer=e.kind==="listening"?e.item.answer:e.item.a;stats[e.kind][1]++;if(mockAnswers[i]===answer){correct++;stats[e.kind][0]++}else if(mockAnswers[i]!==null&&e.kind!=="listening")recordAnswer(e.kind,e.item,mockAnswers[i]);});
+ mockItems.forEach((e,i)=>{const answer=e.kind==="listening"?e.item.answer:e.item.a;stats[e.kind][1]++;if(mockAnswers[i]===answer){correct++;stats[e.kind][0]++}else if(e.kind!=="listening")recordAnswer(e.kind,e.item,mockAnswers[i]===null?-1:mockAnswers[i]);});
  $("mockRunning").classList.add("hidden");$("mockResult").classList.remove("hidden");
  $("mockResult").innerHTML='<h2>모의고사 결과</h2><p><strong>'+correct+' / '+mockItems.length+'</strong> 정답 · '+Math.round(correct/mockItems.length*100)+'% (단순 정답률)</p>'+Object.entries(stats).map(([k,v])=>'<p>'+({vocab:"어휘",grammar:"문법",reading:"독해",listening:"청해"})[k]+' · '+v[0]+'/'+v[1]+'</p>').join("")+'<p>공식 JLPT 합격 점수로 환산되지 않습니다. 틀린 어휘·문법·독해 문제는 오답 SRS에 등록됩니다.</p><button class="primary" id="mockRestartBtn" type="button">다시 시작</button>';
  $("mockRestartBtn").onclick=mockStart;
@@ -2613,10 +2613,10 @@ function setupMock(){
  if(mockReady)return;mockReady=true;
  $("mockStartBtn").onclick=mockStart;
  $("mockChoices").onclick=e=>{const b=e.target.closest("[data-mock-choice]");if(!b)return;mockAnswers[mockIndex]=Number(b.dataset.mockChoice);mockRender();};
- $("mockPrevBtn").onclick=()=>{if(mockIndex>0&&mockIndex!==mockItems.length-15){mockIndex--;mockRender()}};
- $("mockNextBtn").onclick=()=>{if(mockIndex<mockItems.length-1){mockIndex++;mockRender()}};
+ $("mockPrevBtn").onclick=()=>{if(mockIndex>0&&mockIndex!==mockItems.length-15){stopKokoroAudio();mockIndex--;mockRender()}};
+ $("mockNextBtn").onclick=()=>{if(mockIndex<mockItems.length-1){stopKokoroAudio();mockIndex++;mockRender()}};
  $("mockSubmitBtn").onclick=()=>{if(confirm("모의고사를 제출하고 채점할까요?"))mockFinish()};
- $("mockListenBtn").onclick=async()=>{const e=mockItems[mockIndex];if(!e||e.kind!=="listening")return;const index=aiListeningProblems.indexOf(e.item);$("mockListenStatus").textContent="음성 준비 중…";try{const job=startAiListenJob(index);for(const slot of job.slots){const x=await slot.promise;await playKokoroUrl(x.url)}$("mockListenStatus").textContent="재생 완료";}catch(err){$("mockListenStatus").textContent="재생 실패: "+err.message}};
+ $("mockListenBtn").onclick=async()=>{const e=mockItems[mockIndex];if(!e||e.kind!=="listening")return;const index=aiListeningProblems.indexOf(e.item),questionIndex=mockIndex;$("mockListenStatus").textContent="음성 준비 중…";try{const job=startAiListenJob(index);if(!job)throw new Error("청해 데이터를 찾지 못했습니다.");for(const slot of job.slots){const x=await slot.promise;if(questionIndex!==mockIndex||$("mockRunning").classList.contains("hidden"))return;await playKokoroUrl(x.url)}if(questionIndex===mockIndex)$("mockListenStatus").textContent="재생 완료";}catch(err){if(questionIndex===mockIndex)$("mockListenStatus").textContent="재생 실패: "+err.message}};
  setInterval(mockTick,1000);
 }
 let listeningReady=false;
