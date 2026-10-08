@@ -32,14 +32,14 @@ window.N1_CURATED_OVERRIDES={
   "oj-03b0ef5987": {
     "w": "悪日",
     "r": "あくにち",
-    "meaning": "흉일 / 운이 좋지 않다고 여겨지는 날",
+    "meaning": "흉일 / 운이 나쁜 날 (あくび는 드문 읽기이며, 보통 あくにち라고 읽음)",
     "examples": [
       {
         "jp": "昔は悪日を避けて日取りを決める人も多かった。",
         "ko": "옛날에는 흉일을 피해 날짜를 정하는 사람도 많았다."
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-b5fbd85675": {
     "meaning": "마 / 삼 / 아마·대마 같은 섬유식물",
@@ -4009,8 +4009,9 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "애증 / 사랑과 미움",
     "examples": [
       {
-        "jp": "フロイトは、親子間の愛憎関係をエディプス・コンプレックスとして展開しました。",
-        "ko": "프로이트는 부모와 자녀 사이의 애증 관계를 오이디푸스 콤플렉스와 관련지어 설명했다."
+        "jp": "彼女は故郷に対して愛憎入り交じる思いを抱いている。",
+        "ko": "그녀는 고향에 대해 애증이 뒤섞인 감정을 품고 있다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -4973,7 +4974,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "틈 / 짬 / 일과 일 사이의 잠깐 남는 시간"
   },
   "oj-3b72fad905": {
     "examples": [
@@ -4993,15 +4995,16 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "다음 / 이튿날의 / 그다음 (날·아침·해 등에 붙는 표현)"
   },
   "oj-9f51d0da76": {
     "meaning": "비웃다 / 조소하다",
     "examples": [
       {
-        "jp": "われわれは貧しい人あざ笑ってはいけない。",
-        "ko": "우리는 가난한 사람을 비웃어서는 안 된다.",
-        "exampleSource": "manual-review"
+        "jp": "貧しい人をあざ笑ってはいけない。",
+        "ko": "가난한 사람을 비웃어서는 안 된다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -5020,9 +5023,9 @@ window.N1_CURATED_OVERRIDES={
   "oj-92da7d5ed8": {
     "examples": [
       {
-        "jp": "あの博物館はくるに値する。",
-        "ko": "그 박물관은 방문할 가치가 있다.",
-        "exampleSource": "manual-review"
+        "jp": "その論文は一読に値する。",
+        "ko": "그 논문은 한 번 읽어 볼 가치가 있다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -5045,7 +5048,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "담백하게 / 쉽게·선뜻 / 미련 없이 / 간단히"
   },
   "oj-eab33fad07": {
     "examples": [
@@ -5065,7 +5069,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "맞춤 제작하다 / 주문해 만들게 하다"
   },
   "oj-23f01f9d4e": {
     "examples": [
@@ -5075,17 +5080,19 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "믿을 구석 / 의지할 대상 / 예상·가늠 / 기대"
   },
   "oj-6a9a11e020": {
     "examples": [
       {
-        "jp": "同一差出人から同一受取人に宛てて郵袋という、文字通り袋に印刷物を入れて郵送します。",
-        "ko": "같은 발신인이 같은 수신인 앞으로 보낼 때는 ‘우편자루’라고 해서, 말 그대로 인쇄물을 자루에 넣어 우송합니다.",
-        "exampleSource": "manual-review"
+        "jp": "担当者に宛てて問い合わせのメールを送った。",
+        "ko": "담당자 앞으로 문의 이메일을 보냈다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "받는 사람을 지정해 ~ 앞으로 보내다·쓰다"
   },
   "oj-20b715b301": {
     "meaning": "뒤로 미룸 / 나중으로 돌림",
@@ -5111,12 +5118,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-2143d1e370": {
     "examples": [
       {
-        "jp": "うまいアプローチだね。",
-        "ko": "좋은 어프로치 샷이네.",
-        "exampleSource": "manual-review"
+        "jp": "新規顧客へのアプローチを見直した。",
+        "ko": "신규 고객에게 접근하는 방식을 재검토했다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "접근 / 접근 방식 / 다가감 / 골프의 어프로치 샷"
   },
   "oj-3d62f0758a": {
     "examples": [
@@ -5150,15 +5158,15 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-b4f987e2d7": {
-    "meaning": "단맛 / 순한 맛 / 듣기 좋은 말·아첨",
+    "meaning": "단맛 / 순한 맛 / (평가가) 후함·온건함",
     "examples": [
       {
-        "jp": "そんな甘口には乗らないよ。",
-        "ko": "그런 감언이설에는 넘어가지 않아.",
-        "exampleSource": "manual-review"
+        "jp": "その評論家は新人には甘口の評価をする。",
+        "ko": "그 평론가는 신인에게는 후한 평가를 한다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-925a73e9ad": {
     "examples": [
@@ -5168,7 +5176,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "그물 / 망 / 네트워크"
   },
   "oj-5d74f8516a": {
     "examples": [
@@ -5198,7 +5207,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "걸음 / 발걸음 / 성장·발전의 과정 / 발자취"
   },
   "oj-9de629082f": {
     "meaning": "걷다 / 걸어가다 / 길·과정을 나아가다",
@@ -5240,7 +5250,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "거칠다 / 난폭하다 / 말·행동이 투박하다"
   },
   "oj-61a475aebb": {
     "meaning": "우박 / 아라레(쌀과자)",
@@ -5292,7 +5303,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "시간(아워) / 특정 시간대를 가리키는 말"
   },
   "oj-dbffd52c9b": {
     "meaning": "맞추다 / 합치다 / 마주하게 하다",
@@ -5313,7 +5325,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "앙코르 요청 / 앙코르 공연"
   },
   "oj-eda4f150bd": {
     "examples": [
@@ -5364,7 +5377,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "안정을 취함 / 몸을 움직이지 않고 쉬는 것"
   },
   "oj-4f85c70c6c": {
     "meaning": "가출 / 집을 나감",
@@ -7920,7 +7934,14 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-64eb41fae7": {
     "meaning": "어머! / 어라! / 아!",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "あら、もうこんな時間なの？",
+        "ko": "어머, 벌써 시간이 이렇게 됐어?",
+        "exampleSource": "manual-language-review-20261008"
+      }
+    ]
   },
   "oj-632cd5989c": {
     "meaning": "다툼 / 싸움 / 분쟁",
@@ -7928,7 +7949,14 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-3044b84bf6": {
     "meaning": "맞춤 / 조합 / 서로 맞댐",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "試験が終わったあと、みんなで答え合わせをした。",
+        "ko": "시험이 끝난 뒤 모두 함께 답을 맞춰 봤다.",
+        "exampleSource": "manual-language-review-20261008"
+      }
+    ]
   },
   "oj-eb3966f9f5": {
     "meaning": "아프다 / 통증이 나다 / 상하다",
@@ -25132,14 +25160,14 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review-qa-20261008"
   },
   "oj-b20eb26e92": {
-    "meaning": "오름 / 상승 / 올라간 정도",
+    "meaning": "오름 / 상승 / 일을 마침·퇴근 (문맥에 따라)",
     "examples": [
       {
         "jp": "最近は物価の上がりが目立つ。",
         "ko": "최근에는 물가 상승이 두드러진다."
       }
     ],
-    "meaningSource": "manual-review-qa-20261008"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-7e9e492582": {
     "meaning": "단념 / 포기 / 체념",

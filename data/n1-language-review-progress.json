@@ -1,0 +1,341 @@
+{
+  "cohort": "OpenJLPT N1 2933",
+  "reviewedRange": [
+    1,
+    100
+  ],
+  "reviewType": "targeted linguistic review",
+  "description": "Checked first 100 entries for evident Korean gloss errors, mismatched headwords, Japanese syntax errors and semantically repetitive sentences. This does not certify entries 101-2933.",
+  "reviewedWordIds": [
+    "oj-1cf257772e",
+    "oj-f9d361f995",
+    "oj-49167c4c88",
+    "oj-5e01def051",
+    "oj-6f6edac49d",
+    "oj-3a407bbc0b",
+    "oj-f7da525529",
+    "oj-69bb692c2b",
+    "oj-568d94afad",
+    "oj-8645802338",
+    "oj-3b72fad905",
+    "oj-ddb83d9881",
+    "oj-6836124c3c",
+    "oj-b82e2ceca8",
+    "oj-ff854ec90e",
+    "oj-b20eb26e92",
+    "oj-61c572fca7",
+    "oj-7e9e492582",
+    "oj-0812660ad4",
+    "oj-1acc5eb731",
+    "oj-c91ead7388",
+    "oj-03b0ef5987",
+    "oj-1977f3c94f",
+    "oj-a91e6b714f",
+    "oj-d290395bb6",
+    "oj-b5fbd85675",
+    "oj-13e5e36fd0",
+    "oj-f06b8ec290",
+    "oj-88828cefce",
+    "oj-a7d4d501a5",
+    "oj-9f51d0da76",
+    "oj-940a36553f",
+    "oj-d0379ff55e",
+    "oj-4905fc6f13",
+    "oj-2b7ed7f48e",
+    "oj-92da7d5ed8",
+    "oj-6859422547",
+    "oj-e7ce133582",
+    "oj-91564706d0",
+    "oj-f20f9cfea9",
+    "oj-74fba72b6f",
+    "oj-06dc06725b",
+    "oj-bd0b0380dc",
+    "oj-eab33fad07",
+    "oj-08ef2a4717",
+    "oj-11fdbf024e",
+    "oj-cb8beba501",
+    "oj-3862e77007",
+    "oj-23f01f9d4e",
+    "oj-f0e6460115",
+    "oj-6a9a11e020",
+    "oj-d4431c8350",
+    "oj-20b715b301",
+    "oj-06f6d3304a",
+    "oj-2143d1e370",
+    "oj-3d62f0758a",
+    "oj-5869bef4e6",
+    "oj-b8e8053584",
+    "oj-b4f987e2d7",
+    "oj-78ba852907",
+    "oj-4570b0ab6b",
+    "oj-925a73e9ad",
+    "oj-5d74f8516a",
+    "oj-6137659b2a",
+    "oj-28a4658761",
+    "oj-e4007809a1",
+    "oj-9de629082f",
+    "oj-64eb41fae7",
+    "oj-d91254a19e",
+    "oj-8a11bf912f",
+    "oj-632cd5989c",
+    "oj-a0c307e58b",
+    "oj-a3363e4ffe",
+    "oj-ce34129fb9",
+    "oj-61a475aebb",
+    "oj-92893bbd77",
+    "oj-085d431d0a",
+    "oj-aca834a881",
+    "oj-bb6e76c774",
+    "oj-c7318ae6de",
+    "oj-dbffd52c9b",
+    "oj-3044b84bf6",
+    "oj-44c50f365c",
+    "oj-01babb71fd",
+    "oj-eda4f150bd",
+    "oj-3db9caca40",
+    "oj-71a29a57d6",
+    "oj-ba3f929e63",
+    "oj-cf51a81d5e",
+    "oj-c052d729c7",
+    "oj-73a0f22579",
+    "oj-79e98bddbd",
+    "oj-299fd7ae70",
+    "oj-4f85c70c6c",
+    "oj-5d8eead4ba",
+    "oj-9215794cc3",
+    "oj-b2f39149f2",
+    "oj-edb73d5cb3",
+    "oj-9b84f255df",
+    "oj-fedad22ef0"
+  ],
+  "changes": [
+    {
+      "n": 4,
+      "word": "愛憎",
+      "id": "oj-5e01def051",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 7,
+      "word": "合間",
+      "id": "oj-f7da525529",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 16,
+      "word": "上がり",
+      "id": "oj-b20eb26e92",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 22,
+      "word": "悪日",
+      "id": "oj-03b0ef5987",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 23,
+      "word": "明くる",
+      "id": "oj-1977f3c94f",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 30,
+      "word": "鮮やか",
+      "id": "oj-a7d4d501a5",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 31,
+      "word": "あざ笑う",
+      "id": "oj-9f51d0da76",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 36,
+      "word": "値する",
+      "id": "oj-92da7d5ed8",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 43,
+      "word": "あっさり",
+      "id": "oj-bd0b0380dc",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 46,
+      "word": "誂える",
+      "id": "oj-11fdbf024e",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 47,
+      "word": "圧力",
+      "id": "oj-cb8beba501",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 49,
+      "word": "当て",
+      "id": "oj-23f01f9d4e",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 51,
+      "word": "宛てる",
+      "id": "oj-6a9a11e020",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 55,
+      "word": "アプローチ",
+      "id": "oj-2143d1e370",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 59,
+      "word": "甘口",
+      "id": "oj-b4f987e2d7",
+      "fields": [
+        "meaning",
+        "first-example"
+      ]
+    },
+    {
+      "n": 62,
+      "word": "網",
+      "id": "oj-925a73e9ad",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 64,
+      "word": "過ち",
+      "id": "oj-6137659b2a",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 66,
+      "word": "歩み",
+      "id": "oj-e4007809a1",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 68,
+      "word": "あら",
+      "id": "oj-64eb41fae7",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 73,
+      "word": "荒っぽい",
+      "id": "oj-a3363e4ffe",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 80,
+      "word": "アワー",
+      "id": "oj-c7318ae6de",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 82,
+      "word": "合わせ",
+      "id": "oj-3044b84bf6",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 83,
+      "word": "アンケート",
+      "id": "oj-44c50f365c",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 84,
+      "word": "アンコール",
+      "id": "oj-01babb71fd",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 89,
+      "word": "安静",
+      "id": "oj-cf51a81d5e",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 99,
+      "word": "怒り",
+      "id": "oj-9b84f255df",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 100,
+      "word": "怒る",
+      "id": "oj-fedad22ef0",
+      "fields": [
+        "second-example"
+      ]
+    }
+  ],
+  "notes": [
+    "悪日 has the rare reading あくび (also あくにち). The source reading is retained.",
+    "Regenerate word-furigana output after integrating revised examples into main."
+  ]
+}
