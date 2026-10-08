@@ -2574,7 +2574,7 @@ function mockBuild(){
 function mockRender(){
  if(!mockItems.length)return;
  const e=mockItems[mockIndex],listening=e.kind==="listening",phase=listening?"listening":"language";
- if(phase!==mockPhase){mockPhase=phase;mockPhaseStarted=Date.now();}
+ if(phase!==mockPhase&&phase==="listening"){mockPhase=phase;mockPhaseStarted=Date.now();}
  $("mockSection").textContent=({vocab:"語彙 · 어휘",grammar:"文法 · 문법",reading:"読解 · 독해",listening:"聴解 · 청해"})[e.kind];
  $("mockCounter").textContent=(mockIndex+1)+" / "+mockItems.length+" · 답변 "+mockAnswers.filter(x=>x!==null).length+"개";
  $("mockPassage").classList.toggle("hidden",e.kind!=="reading");
@@ -2600,7 +2600,7 @@ function mockFinish(){
 function mockStart(){
  mockItems=mockBuild();mockAnswers=Array(mockItems.length).fill(null);mockIndex=0;mockStarted=Date.now();mockPhaseStarted=mockStarted;mockPhase="language";
  $("mockIntro").classList.add("hidden");$("mockResult").classList.add("hidden");$("mockRunning").classList.remove("hidden");
- clearInterval(mockTimerHandle);mockTimerHandle=setInterval(()=>{if(!$("mockRunning").classList.contains("hidden"))return;},1000);
+ clearInterval(mockTimerHandle);
  mockRender();mockTick();
 }
 function mockTick(){
@@ -2613,7 +2613,7 @@ function setupMock(){
  if(mockReady)return;mockReady=true;
  $("mockStartBtn").onclick=mockStart;
  $("mockChoices").onclick=e=>{const b=e.target.closest("[data-mock-choice]");if(!b)return;mockAnswers[mockIndex]=Number(b.dataset.mockChoice);mockRender();};
- $("mockPrevBtn").onclick=()=>{if(mockIndex>0){mockIndex--;mockRender()}};
+ $("mockPrevBtn").onclick=()=>{if(mockIndex>0&&mockIndex!==mockItems.length-15){mockIndex--;mockRender()}};
  $("mockNextBtn").onclick=()=>{if(mockIndex<mockItems.length-1){mockIndex++;mockRender()}};
  $("mockSubmitBtn").onclick=()=>{if(confirm("모의고사를 제출하고 채점할까요?"))mockFinish()};
  $("mockListenBtn").onclick=async()=>{const e=mockItems[mockIndex];if(!e||e.kind!=="listening")return;const index=aiListeningProblems.indexOf(e.item);$("mockListenStatus").textContent="음성 준비 중…";try{const job=startAiListenJob(index);for(const slot of job.slots){const x=await slot.promise;await playKokoroUrl(x.url)}$("mockListenStatus").textContent="재생 완료";}catch(err){$("mockListenStatus").textContent="재생 실패: "+err.message}};
