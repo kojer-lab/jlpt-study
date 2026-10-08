@@ -318,7 +318,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
     <section class="view" id="quizhubView">
       <div class="topbar"><div><h1>문제 풀이</h1><div class="sub">어휘·문법·독해를 원하는 방식으로 골라서 풀 수 있습니다.</div></div></div>
       <div class="grid3">
-        <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p>100문제 · 읽기, 의미, 뉘앙스와 용법을 확인합니다.</p></div>
+        <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p><span id="vocabQuizTotal">문제 수 확인 중</span> · 읽기, 의미, 문맥, 유의어와 용법을 확인합니다.</p></div>
         <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p>100문제 · 문장 뜻과 1~4번 선택지의 오답 이유까지 설명합니다.</p></div>
         <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>20세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div>
       </div>
@@ -1422,7 +1422,7 @@ function buildReviewedVocab500(){
   }
   if(alternatives.length!==3)continue;
   const answer=(i+1)%4,choices=alternatives.slice();choices.splice(answer,0,w.gloss);
-  result.push({q:`「${w.surface}」の意味として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 뜻으로 가장 적절한 것은?`,e:`「${w.surface}」（${w.read}）는 「${w.gloss}」라는 뜻입니다. 예문과 함께 문맥에서의 쓰임도 확인하세요.`});
+  result.push({wordId:w.id,q:`「${w.surface}」の意味として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 뜻으로 가장 적절한 것은?`,e:`「${w.surface}」（${w.read}）는 「${w.gloss}」라는 뜻입니다. 예문과 함께 문맥에서의 쓰임도 확인하세요.`});
  }
  const readingTargets=entries.filter(w=>/^[ぁ-ゖー]+$/.test(w.read)&&w.read.length>=2&&w.read.length<=12).slice(250,500);
  const readingPool=[...new Set(entries.filter(w=>/^[ぁ-ゖー]+$/.test(w.read)).map(w=>w.read))];
@@ -1436,13 +1436,14 @@ function buildReviewedVocab500(){
   }
   if(alternatives.length!==3)continue;
   const answer=(i+2)%4,choices=alternatives.slice();choices.splice(answer,0,w.read);
-  result.push({noFurigana:true,q:`「${w.surface}」の読み方として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 올바른 읽기는?`,e:`「${w.surface}」는 「${w.read}」라고 읽고, 뜻은 「${w.gloss}」입니다.`});
+  result.push({wordId:w.id,noFurigana:true,q:`「${w.surface}」の読み方として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 올바른 읽기는?`,e:`「${w.surface}」는 「${w.read}」라고 읽고, 뜻은 「${w.gloss}」입니다.`});
  }
  return result;
 }
 const reviewedVocab500=buildReviewedVocab500();
 quizData.vocab.push(...reviewedVocab500);
 quizData.vocab.push(...(window.N1_CURATED_VOCAB_PRACTICE||[]));
+const vocabQuizTotalEl=document.getElementById("vocabQuizTotal");if(vocabQuizTotalEl)vocabQuizTotalEl.textContent=quizData.vocab.length+"문제";
 
 quizData.grammar.push(...buildExpansionGrammarQuiz(window.N1_EXTRA_GRAMMAR||[]));
 
@@ -2056,12 +2057,13 @@ const vocabUsageNotes={
 function quizTargetWord(item){
  if(quizMode!=="vocab")return null;
  const q=plain(item.q);
- return [...words].sort((a,b)=>plain(b.w).length-plain(a.w).length).find(w=>{const x=plain(w.w);return x.length>=2&&q.includes(x)})||null;
+ if(item.wordId){const exact=words.find(w=>w.id===item.wordId);if(exact)return exact;}
+ return words.filter(w=>{const x=plain(w.w);return x.length>=2&&q.includes(x)}).sort((a,b)=>plain(b.w).length-plain(a.w).length)[0]||null;
 }
 function renderVocabDeepDive(item){
  const w=quizTargetWord(item);if(!w)return "";
  const note=vocabUsageNotes[w.id]||"같은 단어라도 함께 쓰이는 명사와 문형에 따라 자연스러운 한국어 번역이 달라질 수 있으므로, 대표 예문과 함께 익혀 두는 것이 좋습니다.";
- return `<div class="vocab-deep"><div class="vocab-deep-title">뜻 자세히</div><div class="vocab-deep-head"><span class="vocab-deep-word">${w.w}</span></div><div class="vocab-deep-meaning"><strong>핵심 의미</strong> · ${w.meaning}</div><div class="vocab-deep-context"><strong>용법 포인트</strong><br>${note}</div><div class="vocab-deep-examples">${w.examples.slice(0,2).map((ex,i)=>`<div class="vocab-deep-example"><div class="vocab-deep-example-jp">${renderExampleJP(ex.jp,w,i)}</div><div class="vocab-deep-example-ko">${ex.ko}</div></div>`).join("")}</div></div>`;
+ return `<div class="vocab-deep"><div class="vocab-deep-title">뜻 자세히</div><div class="vocab-deep-head" style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span class="vocab-deep-word">${w.w}</span><button type="button" class="star-btn ${isStarred(w.id)?"on":""}" data-vocab-star="${w.id}" aria-label="${isStarred(w.id)?"즐겨찾기 해제":"단어 즐겨찾기 저장"}" title="안키 단어장 즐겨찾기">${isStarred(w.id)?"★":"☆"}</button></div><div class="vocab-deep-meaning"><strong>핵심 의미</strong> · ${w.meaning}</div><div class="vocab-deep-context"><strong>용법 포인트</strong><br>${note}</div><div class="vocab-deep-examples">${w.examples.slice(0,2).map((ex,i)=>`<div class="vocab-deep-example"><div class="vocab-deep-example-jp">${renderExampleJP(ex.jp,w,i)}</div><div class="vocab-deep-example-ko">${ex.ko}</div></div>`).join("")}</div></div>`;
 }
 
 function shuffleMistakeRetry(items){
@@ -2138,6 +2140,7 @@ function quizJP(html,item){
 }
 function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘"+(item.type?" · "+item.type:""):"文法 · 문법";$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.noFurigana?item.q:quizJP(item.q,item);$("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(choice,item)}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");restoreInteractiveFuriState($("quizView"))}
 $("quizChoices").addEventListener("click",e=>{if(e.target.closest(".furi"))return;const b=e.target.closest(".choice");if(!b)return;if(mistakeRetryActive){answerMistakeRetry(+b.dataset.i);return}if(quizAnswered)return;quizAnswered=true;const item=quizData[quizMode][quizOrder[quizIndex]],idx=+b.dataset.i;[...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});recordAnswer(quizMode,item,idx);const details=item.details?`<div class="detail-list">${item.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${quizJP(d,item)}</div>`).join("")}</div>`:"";$("quizExplanation").innerHTML=`<strong>${idx===item.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${item.a+1}. ${quizJP(item.c[item.a],item)}<div class="translation"><strong>문제 뜻</strong><br>${quizJP(item.translation||"",item)}</div><div style="margin-top:12px"><strong>해설</strong><br>${quizJP(item.e,item)}</div>${quizMode==="vocab"?renderVocabDeepDive(item):""}${details}`;$("quizExplanation").classList.add("show");$("nextQuizBtn").classList.remove("hidden");restoreInteractiveFuriState($("quizExplanation"));refreshAll()});
+$("quizExplanation").addEventListener("click",e=>{const b=e.target.closest("[data-vocab-star]");if(!b)return;const id=b.dataset.vocabStar;if(!words.some(w=>w.id===id))return;toggleStar(id);const active=isStarred(id);b.textContent=active?"★":"☆";b.classList.toggle("on",active);b.setAttribute("aria-label",active?"즐겨찾기 해제":"단어 즐겨찾기 저장");});
 $("nextQuizBtn").addEventListener("click",()=>{if(mistakeRetryActive){if(mistakeRetryIndex<mistakeRetryQueue.length-1){mistakeRetryIndex++;renderMistakeRetry()}else{mistakeRetryActive=false;mistakeRetryQueue=[];mistakeRetryIndex=0;showView("mistakes");renderMistakes()}return}if(quizIndex<quizOrder.length-1){quizIndex++;renderQuiz()}else showView("quizhub")});
 function recordAnswer(type,item,idx){state.solved++;if(idx===item.a)state.correct++;else{const id=type+"-"+plain(item.q),t=Date.now();let m=state.mistakes.find(x=>x.id===id);if(m){m.count++;m.updatedAt=t}else state.mistakes.unshift({id,type,q:item.q,correct:item.c[item.a],translation:item.translation||"",explanation:item.e,details:item.details||[],count:1,updatedAt:t})}saveState(state)}
 
