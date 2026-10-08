@@ -27317,5 +27317,805 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-675f38a4a5": {
+    "meaning": "설정 / 정해 놓음 / 기기·앱의 설정",
+    "examples": [
+      {
+        "jp": "通知の設定を変更した。",
+        "ko": "알림 설정을 변경했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-669ea4bc3c": {
+    "meaning": "설득 / 상대를 납득시킴",
+    "examples": [
+      {
+        "jp": "家族を説得して計画に賛成してもらった。",
+        "ko": "가족을 설득해 계획에 찬성받았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ecd2111666": {
+    "meaning": "절망 / 희망을 잃음",
+    "examples": [
+      {
+        "jp": "失敗しても絶望する必要はない。",
+        "ko": "실패해도 절망할 필요는 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-feb47e8478": {
+    "meaning": "설립 / 조직·기관을 새로 세움",
+    "examples": [
+      {
+        "jp": "この会社は二十年前に設立された。",
+        "ko": "이 회사는 20년 전에 설립되었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-21f2e9018e": {
+    "meaning": "전 / 이전 / 앞선 · 주로 복합어·수량 표현에서 씀",
+    "examples": [
+      {
+        "jp": "会議は三日前に終わった。",
+        "ko": "회의는 사흘 전에 끝났다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-fc38e878fb": {
+    "meaning": "선거",
+    "examples": [
+      {
+        "jp": "来月、市長選挙が行われる。",
+        "ko": "다음 달 시장 선거가 치러진다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e3d5b8418e": {
+    "meaning": "선언 / 공식적으로 밝힘",
+    "examples": [
+      {
+        "jp": "政府は非常事態を宣言した。",
+        "ko": "정부는 비상사태를 선언했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d3548d2342": {
+    "meaning": "총 / 전체 / 모든 · 주로 복합어의 앞부분",
+    "examples": [
+      {
+        "jp": "総人口は去年より減少した。",
+        "ko": "총인구는 지난해보다 감소했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ddd21016f5": {
+    "meaning": "상 / 형상 / 이미지 / 조각상",
+    "examples": [
+      {
+        "jp": "駅前に有名な人物の銅像が立っている。",
+        "ko": "역 앞에 유명 인물의 동상이 서 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-bcb48bd662": {
+    "meaning": "조속함 / 매우 급함 / 서둘러 처리함",
+    "examples": [
+      {
+        "jp": "この問題には早急な対応が必要だ。",
+        "ko": "이 문제에는 조속한 대응이 필요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-89d4b97740": {
+    "meaning": "조종 / 기계·비행기 등을 다룸",
+    "examples": [
+      {
+        "jp": "彼は小型飛行機を操縦できる。",
+        "ko": "그는 소형 비행기를 조종할 수 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1b16857a25": {
+    "meaning": "창조 / 새롭게 만들어 냄",
+    "examples": [
+      {
+        "jp": "新しい価値を創造する企業を目指している。",
+        "ko": "새로운 가치를 창조하는 기업을 목표로 하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a00244f562": {
+    "meaning": "장비 / 갖추어 둔 기구·도구",
+    "examples": [
+      {
+        "jp": "登山には十分な装備が必要だ。",
+        "ko": "등산에는 충분한 장비가 필요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e8937187a7": {
+    "meaning": "창립 / 조직을 처음 세움",
+    "examples": [
+      {
+        "jp": "学校の創立百周年を祝った。",
+        "ko": "학교 창립 100주년을 축하했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4fb12cffa9": {
+    "meaning": "저지 / 막아 냄 / 방지",
+    "examples": [
+      {
+        "jp": "事故の発生を未然に阻止した。",
+        "ko": "사고 발생을 미연에 저지했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f10cd927a7": {
+    "meaning": "성장 / 자람 / 자란 환경",
+    "examples": [
+      {
+        "jp": "彼は東京育ちだが、地方にも詳しい。",
+        "ko": "그는 도쿄에서 자랐지만 지방 사정에도 밝다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-15230778c8": {
+    "meaning": "존속 / 계속 존재함",
+    "examples": [
+      {
+        "jp": "伝統を守りながら会社を存続させる。",
+        "ko": "전통을 지키면서 회사를 존속시킨다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-59ac3278b5": {
+    "meaning": "다스 / 12개 한 묶음",
+    "examples": [
+      {
+        "jp": "卵を一ダース買った。",
+        "ko": "달걀을 한 다스 샀다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-dbe0f53624": {
+    "meaning": "제 / 순서를 나타내는 접두 표현",
+    "examples": [
+      {
+        "jp": "第一回の会議は来週開かれる。",
+        "ko": "제1회 회의는 다음 주 열린다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-37bf931e32": {
+    "meaning": "대응 / 상황에 맞춰 처리함 / 서로 대응함",
+    "examples": [
+      {
+        "jp": "問い合わせには迅速に対応してください。",
+        "ko": "문의에는 신속히 대응해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-92f1f8e6fe": {
+    "meaning": "체험 / 직접 경험함",
+    "examples": [
+      {
+        "jp": "農業体験に参加して畑仕事を学んだ。",
+        "ko": "농업 체험에 참가해 밭일을 배웠다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-89d988ae18": {
+    "meaning": "대담함 / 과감함",
+    "examples": [
+      {
+        "jp": "大胆な発想で新しい市場を開拓した。",
+        "ko": "대담한 발상으로 새로운 시장을 개척했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d93ec9aaed": {
+    "meaning": "타이밍 / 시기 / 순간의 맞음",
+    "examples": [
+      {
+        "jp": "話を切り出すタイミングを逃した。",
+        "ko": "말을 꺼낼 타이밍을 놓쳤다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c91305c9d6": {
+    "meaning": "다운 / 하락·감소 / 쓰러짐 / 솜털",
+    "examples": [
+      {
+        "jp": "売上が前月より十パーセントダウンした。",
+        "ko": "매출이 전월보다 10퍼센트 감소했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6020741e51": {
+    "meaning": "견디다 / 참다",
+    "examples": [
+      {
+        "jp": "長時間の暑さに耐えるのは難しい。",
+        "ko": "장시간 더위를 견디는 것은 어렵다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3d456d6cf7": {
+    "meaning": "금액·수량의 총액 / 정도 / 높이",
+    "examples": [
+      {
+        "jp": "今年の売上高は過去最高を記録した。",
+        "ko": "올해 매출액은 사상 최고를 기록했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c8291517d8": {
+    "meaning": "종류 / 부류 / 같은 종류의 것",
+    "examples": [
+      {
+        "jp": "この類の問題は以前にも起きている。",
+        "ko": "이런 종류의 문제는 이전에도 일어난 적이 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2f632ca933": {
+    "meaning": "길이 / 키 / 옷의 기장",
+    "examples": [
+      {
+        "jp": "このスカートは丈が少し長い。",
+        "ko": "이 치마는 기장이 조금 길다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5123dd1f49": {
+    "meaning": "도움 / 구조 / 지원",
+    "examples": [
+      {
+        "jp": "困った時に友人の助けを借りた。",
+        "ko": "곤란할 때 친구의 도움을 받았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c755d9154e": {
+    "meaning": "달성 / 목표를 이룸",
+    "examples": [
+      {
+        "jp": "長年の目標をついに達成した。",
+        "ko": "오랜 목표를 마침내 달성했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-589a614801": {
+    "meaning": "존귀하다 / 소중하다 / 귀중하다",
+    "examples": [
+      {
+        "jp": "人の命は何よりも尊い。",
+        "ko": "사람의 생명은 무엇보다 소중하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a7273380c4": {
+    "meaning": "부탁 / 의뢰 / 의지할 대상",
+    "examples": [
+      {
+        "jp": "一つ頼みがあるんだけど、聞いてくれる？",
+        "ko": "부탁 하나 있는데 들어 줄래?"
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ea169df7d8": {
+    "meaning": "한편 / 다른 한쪽 / 다른 방향",
+    "examples": [
+      {
+        "jp": "便利な一方、他方では問題も残っている。",
+        "ko": "편리한 한편 다른 쪽에서는 문제도 남아 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8926d1d955": {
+    "meaning": "쉽다 / 간단하다",
+    "examples": [
+      {
+        "jp": "言うのは容易いが、実行するのは難しい。",
+        "ko": "말하기는 쉽지만 실행하기는 어렵다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5b13a6dd8f": {
+    "meaning": "타워 / 탑",
+    "examples": [
+      {
+        "jp": "展望タワーから町全体が見渡せる。",
+        "ko": "전망 타워에서 도시 전체를 내려다볼 수 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-bd5b683c73": {
+    "meaning": "단결 / 힘을 하나로 모음",
+    "examples": [
+      {
+        "jp": "困難を乗り越えるために全員が団結した。",
+        "ko": "어려움을 극복하기 위해 모두가 단결했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-06e0608460": {
+    "meaning": "탐험 / 미지의 지역을 조사함",
+    "examples": [
+      {
+        "jp": "子どもの頃から洞窟探検に憧れていた。",
+        "ko": "어릴 때부터 동굴 탐험을 동경했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-789e5505bb": {
+    "meaning": "탄소",
+    "examples": [
+      {
+        "jp": "炭素は生命を構成する重要な元素だ。",
+        "ko": "탄소는 생명을 구성하는 중요한 원소다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b0f4698e45": {
+    "meaning": "단조로움 / 변화가 없어 지루함",
+    "examples": [
+      {
+        "jp": "毎日同じ作業で生活が単調に感じる。",
+        "ko": "매일 같은 작업이라 생활이 단조롭게 느껴진다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5f504d816e": {
+    "meaning": "남편 / 집주인·주인을 친근하게 부르는 말",
+    "examples": [
+      {
+        "jp": "旦那は今日は仕事で帰りが遅い。",
+        "ko": "남편은 오늘 일 때문에 귀가가 늦다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-10df370c17": {
+    "meaning": "짐승 / 천한 놈 / ‘젠장!’에 가까운 욕설",
+    "examples": [
+      {
+        "jp": "畜生、また失敗した。",
+        "ko": "젠장, 또 실패했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-df0cb2db26": {
+    "meaning": "젖 / 모유 / 유방",
+    "examples": [
+      {
+        "jp": "赤ちゃんが母の乳を飲んでいる。",
+        "ko": "아기가 엄마의 젖을 먹고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3d4be6166f": {
+    "meaning": "지적 / 지성적인",
+    "examples": [
+      {
+        "jp": "彼女は知的で落ち着いた印象を与える。",
+        "ko": "그녀는 지적이고 차분한 인상을 준다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-81f6ea6bb3": {
+    "meaning": "채널 / 통신·방송의 경로",
+    "examples": [
+      {
+        "jp": "テレビのチャンネルを変えた。",
+        "ko": "텔레비전 채널을 바꿨다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-168c31d617": {
+    "meaning": "충고 / 조언 / 경고",
+    "examples": [
+      {
+        "jp": "医師の忠告に従って生活習慣を変えた。",
+        "ko": "의사의 충고에 따라 생활 습관을 바꿨다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-05dfa1ae82": {
+    "meaning": "충실 / 충성스럽고 성실함 / 원문을 정확히 따름",
+    "examples": [
+      {
+        "jp": "原文に忠実な翻訳を心がけた。",
+        "ko": "원문에 충실한 번역을 하려고 했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cc066cbad3": {
+    "meaning": "중독 / 독에 중독됨 / 어떤 것에 지나치게 빠짐",
+    "examples": [
+      {
+        "jp": "アルコール中毒の治療を受けている。",
+        "ko": "알코올 중독 치료를 받고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-200363d3b2": {
+    "meaning": "중화 / 서로 반대되는 성질을 상쇄함",
+    "examples": [
+      {
+        "jp": "酸をアルカリで中和する。",
+        "ko": "산을 알칼리로 중화한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-74af193f01": {
+    "meaning": "조화 / 서로 어울려 균형을 이룸",
+    "examples": [
+      {
+        "jp": "自然と建物が美しく調和している。",
+        "ko": "자연과 건물이 아름답게 조화를 이루고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-48116559a0": {
+    "meaning": "직면 / 문제·상황을 바로 맞닥뜨림",
+    "examples": [
+      {
+        "jp": "会社は深刻な人手不足に直面している。",
+        "ko": "회사는 심각한 인력 부족에 직면해 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-68fc255618": {
+    "meaning": "치료",
+    "examples": [
+      {
+        "jp": "早めに治療を始めることが大切だ。",
+        "ko": "일찍 치료를 시작하는 것이 중요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7958a1a674": {
+    "meaning": "침묵 / 말하지 않음",
+    "examples": [
+      {
+        "jp": "質問されても彼は沈黙を続けた。",
+        "ko": "질문을 받아도 그는 계속 침묵했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-286333828b": {
+    "meaning": "추락 / 높은 곳에서 떨어짐",
+    "examples": [
+      {
+        "jp": "小型機が山中に墜落した。",
+        "ko": "소형기가 산속에 추락했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c6f69808b7": {
+    "meaning": "통상 / 보통 / 일반적으로",
+    "examples": [
+      {
+        "jp": "通常は九時から営業している。",
+        "ko": "보통은 9시부터 영업한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-08cfe03cb3": {
+    "meaning": "거짓말하다 · 주로 「嘘を吐く」에서 ‘つく’로 읽음",
+    "examples": [
+      {
+        "jp": "そんな見え透いた嘘を吐くのはやめなさい。",
+        "ko": "그렇게 뻔한 거짓말은 그만해."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a942fde509": {
+    "meaning": "다하다 / 힘을 쏟다 / 모두 써 버리다",
+    "examples": [
+      {
+        "jp": "最後まで全力を尽くす。",
+        "ko": "끝까지 전력을 다한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4b3148b7e1": {
+    "meaning": "알리다 / 고하다 / 전하다",
+    "examples": [
+      {
+        "jp": "医師は家族に検査結果を告げた。",
+        "ko": "의사는 가족에게 검사 결과를 알렸다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8ba1e58b80": {
+    "meaning": "총 / 총포 · 옛스러운 읽기",
+    "examples": [
+      {
+        "jp": "古い文章では「銃」を「つつ」と読むことがある。",
+        "ko": "옛 문장에서는 ‘銃’을 ‘つつ’라고 읽는 경우가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e90119f304": {
+    "meaning": "쓰나미 / 지진해일",
+    "examples": [
+      {
+        "jp": "大地震の後、津波警報が出された。",
+        "ko": "대지진 뒤 쓰나미 경보가 발령됐다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-fac8d25e69": {
+    "meaning": "침 / 타액",
+    "examples": [
+      {
+        "jp": "道に唾を吐いてはいけない。",
+        "ko": "길에 침을 뱉어서는 안 된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-060bd26d75": {
+    "meaning": "체 / 모양 / 상태 / 태도",
+    "examples": [
+      {
+        "jp": "彼は何も知らないという体で話を続けた。",
+        "ko": "그는 아무것도 모르는 체하며 이야기를 계속했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-80ca5a134c": {
+    "meaning": "정의 / 개념의 뜻을 명확히 규정함",
+    "examples": [
+      {
+        "jp": "まず用語の意味を明確に定義する。",
+        "ko": "먼저 용어의 의미를 명확히 정의한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f6de4ac7bc": {
+    "meaning": "정정 / 잘못된 내용을 바로잡음",
+    "examples": [
+      {
+        "jp": "資料の誤りを訂正して再提出した。",
+        "ko": "자료의 오류를 정정해 다시 제출했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0c72f993c8": {
+    "meaning": "데이터 / 자료",
+    "examples": [
+      {
+        "jp": "集めたデータを分析して傾向を調べた。",
+        "ko": "수집한 데이터를 분석해 경향을 조사했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a50ce976f1": {
+    "meaning": "~적 / ~의 성질을 띤",
+    "examples": [
+      {
+        "jp": "科学的な根拠に基づいて判断する。",
+        "ko": "과학적인 근거에 따라 판단한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-221e4e0f2e": {
+    "meaning": "디자인 / 설계·의장",
+    "examples": [
+      {
+        "jp": "この製品はシンプルなデザインが人気だ。",
+        "ko": "이 제품은 심플한 디자인이 인기다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1941689b4f": {
+    "meaning": "점 / 가게·영업점에 붙는 말",
+    "examples": [
+      {
+        "jp": "東京支店は駅の近くにある。",
+        "ko": "도쿄 지점은 역 근처에 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4548e5ac9d": {
+    "meaning": "천국 / 극락 / 아주 좋은 곳",
+    "examples": [
+      {
+        "jp": "ここは温泉好きには天国のような場所だ。",
+        "ko": "이곳은 온천을 좋아하는 사람에게 천국 같은 곳이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-290e4e8db6": {
+    "meaning": "~하면 / ~하자 / ~때 · 조건·계기를 나타내는 조사",
+    "examples": [
+      {
+        "jp": "春になると暖かくなる。",
+        "ko": "봄이 되면 따뜻해진다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b808627399": {
+    "meaning": "동의 / 같은 의견 / 승낙",
+    "examples": [
+      {
+        "jp": "その条件には同意できない。",
+        "ko": "그 조건에는 동의할 수 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-dc02744e3e": {
+    "meaning": "토의 / 의견을 주고받으며 논의함",
+    "examples": [
+      {
+        "jp": "会議で今後の方針を討議した。",
+        "ko": "회의에서 앞으로의 방침을 토의했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-886d9fe5b2": {
+    "meaning": "등교 / 학교에 감",
+    "examples": [
+      {
+        "jp": "毎朝八時までに登校する。",
+        "ko": "매일 아침 8시까지 등교한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c4e90fc977": {
+    "meaning": "끼리 / 같은 처지·종류의 사람들",
+    "examples": [
+      {
+        "jp": "学生同士で意見を交換した。",
+        "ko": "학생끼리 의견을 교환했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-fe1257bd71": {
+    "meaning": "통제 / 전체를 일정한 기준으로 조절함",
+    "examples": [
+      {
+        "jp": "政府が価格を厳しく統制した。",
+        "ko": "정부가 가격을 엄격히 통제했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4a985a772f": {
+    "meaning": "도달 / 일정한 지점·수준에 이름",
+    "examples": [
+      {
+        "jp": "長い研究の末に結論へ到達した。",
+        "ko": "오랜 연구 끝에 결론에 도달했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e05c40bb3c": {
+    "meaning": "동력 / 기계를 움직이는 힘",
+    "examples": [
+      {
+        "jp": "この機械の動力は電気だ。",
+        "ko": "이 기계의 동력은 전기다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-61384ae276": {
+    "meaning": "때때로 / 가끔",
+    "examples": [
+      {
+        "jp": "時折、昔の友人から連絡が来る。",
+        "ko": "가끔 옛 친구에게서 연락이 온다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8d4e07c793": {
+    "meaning": "독자적 / 고유한 / 남과 다른 방식",
+    "examples": [
+      {
+        "jp": "この会社は独自の技術を持っている。",
+        "ko": "이 회사는 독자적인 기술을 가지고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-75abef3a63": {
+    "meaning": "잠자리 / 침상 / 바닥의 자리 · 「床に就く」 등에서 씀",
+    "examples": [
+      {
+        "jp": "体調が悪かったので早めに床に就いた。",
+        "ko": "몸 상태가 좋지 않아 일찍 잠자리에 들었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d102cfbac6": {
+    "meaning": "신고 / 신고서 / 관청 등에 내는 통지",
+    "examples": [
+      {
+        "jp": "役所に転居届を提出した。",
+        "ko": "관공서에 전입 신고서를 제출했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
   }
 };
