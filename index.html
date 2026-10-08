@@ -2528,7 +2528,14 @@ async function pushCloudState(showMessage=false){
  catch(err){setSyncStatus("bad","업로드 실패",err.message||"클라우드 저장에 실패했습니다.");return false}
  finally{cloudSyncing=false;updateSyncUI()}
 }
-function scheduleCloudPush(){if(!cloudClient||!cloudUser||cloudSyncing)return;clearTimeout(cloudPushTimer);cloudPushTimer=setTimeout(()=>pushCloudState(false),1400)}
+function scheduleCloudPush(){
+ if(!cloudClient||!cloudUser)return;
+ clearTimeout(cloudPushTimer);
+ cloudPushTimer=setTimeout(()=>{
+  if(cloudSyncing){scheduleCloudPush();return}
+  syncNow("merge");
+ },1400);
+}
 async function syncNow(mode="merge"){
  if(!cloudClient||!cloudUser){updateSyncUI();return false}if(!navigator.onLine){setSyncStatus("bad","오프라인","인터넷 연결 후 다시 시도하세요.");return false}
  cloudSyncing=true;updateSyncUI();
@@ -2543,6 +2550,7 @@ async function syncNow(mode="merge"){
    const merged=mergeStudyStates(state,data.state);state=merged;saveState(state,{touch:false,skipCloud:true});refreshAll();
    if(!sameState(merged,data.state)){const {error:upErr}=await cloudClient.from("jlpt_study_state").upsert({user_id:cloudUser.id,state:merged,updated_at:new Date().toISOString()},{onConflict:"user_id"});if(upErr)throw upErr}
   }
+  if(readingMode==="news"&&$("readingView")?.classList.contains("active")){setupNewsDay(selectedNewsDate||newsDays()[0]);renderReading()}
   setCloudMeta({lastSyncAt:Date.now()});setSyncStatus("ok","동기화 완료","PC와 모바일에서 같은 학습 기록을 사용할 수 있습니다.");return true;
  }catch(err){setSyncStatus("bad","동기화 실패",err.message||"동기화에 실패했습니다.");return false}
  finally{cloudSyncing=false;updateSyncUI()}
