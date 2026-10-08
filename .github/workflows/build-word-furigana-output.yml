@@ -39,11 +39,22 @@ jobs:
         run: |
           test -s data/n1-word-furigana.js
           python - <<'PY'
+          import json
           from pathlib import Path
           p = Path("data/n1-word-furigana.js")
           text = p.read_text(encoding="utf-8")
-          assert text.startswith("window.N1_WORD_FURIGANA=")
-          assert "class=\"furi\"" in text
+          prefix = "window.N1_WORD_FURIGANA="
+          assert text.startswith(prefix)
+          payload = text[len(prefix):].strip()
+          assert payload.endswith(";")
+          data = json.loads(payload[:-1])
+          assert len(data) >= 3000
+          assert any(
+              'class="furi"' in html
+              for item in data.values()
+              for html in item.get("examples", [])
+          )
+          print("Verified entries:", len(data))
           print("Verified bytes:", p.stat().st_size)
           PY
 
