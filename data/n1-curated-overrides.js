@@ -2958,8 +2958,8 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review",
     "examples": [
       {
-        "jp": "なるたけ早く返事をください。",
-        "ko": "가능한 한 빨리 답장을 주세요.",
+        "jp": "今日は忙しいので、なるたけ手短に説明してほしい。",
+        "ko": "오늘은 바쁘니 되도록 간단히 설명해 줬으면 좋겠다.",
         "exampleSource": "manual-qa-2026-10-08"
       }
     ]
@@ -3292,8 +3292,8 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review",
     "examples": [
       {
-        "jp": "来月から大阪支社へ赴任することになった。",
-        "ko": "다음 달부터 오사카 지사로 부임하게 됐다.",
+        "jp": "海外赴任に備えて家族で引っ越しの準備をした。",
+        "ko": "해외 부임에 대비해 가족과 함께 이사 준비를 했다.",
         "exampleSource": "manual-qa-2026-10-08"
       }
     ]
@@ -3551,8 +3551,8 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review",
     "examples": [
       {
-        "jp": "ぼつぼつ帰る時間になった。",
-        "ko": "슬슬 돌아갈 시간이 됐다.",
+        "jp": "桜の花がぼつぼつ咲き始めた。",
+        "ko": "벚꽃이 여기저기 조금씩 피기 시작했다.",
         "exampleSource": "manual-qa-2026-10-08"
       }
     ]
