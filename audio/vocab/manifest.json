@@ -1,7 +1,7 @@
 {
   "version": 3,
   "engine": "Kokoro-82M / jf_alpha",
-  "count": 4333,
+  "count": 4433,
   "files": {
     "unagasu": {
       "word": "audio/vocab/unagasu-word.mp3",
@@ -5965,11 +5965,15 @@
     },
     "oj-521d19d407": {
       "word": "audio/vocab/openjlpt/oj-521d19d407-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-521d19d407-ex1.mp3"
+      ]
     },
     "oj-90e522f730": {
       "word": "audio/vocab/openjlpt/oj-90e522f730-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-90e522f730-ex1.mp3"
+      ]
     },
     "oj-972ca66946": {
       "word": "audio/vocab/openjlpt/oj-972ca66946-word.mp3",
@@ -5977,15 +5981,21 @@
     },
     "oj-5523e28c32": {
       "word": "audio/vocab/openjlpt/oj-5523e28c32-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-5523e28c32-ex1.mp3"
+      ]
     },
     "oj-5fda236b3d": {
       "word": "audio/vocab/openjlpt/oj-5fda236b3d-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-5fda236b3d-ex1.mp3"
+      ]
     },
     "oj-0500973033": {
       "word": "audio/vocab/openjlpt/oj-0500973033-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0500973033-ex1.mp3"
+      ]
     },
     "oj-4b0b74219f": {
       "word": "audio/vocab/openjlpt/oj-4b0b74219f-word.mp3",
@@ -5993,11 +6003,15 @@
     },
     "oj-a8ba7d61d2": {
       "word": "audio/vocab/openjlpt/oj-a8ba7d61d2-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-a8ba7d61d2-ex1.mp3"
+      ]
     },
     "oj-a7495d2ed6": {
       "word": "audio/vocab/openjlpt/oj-a7495d2ed6-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-a7495d2ed6-ex1.mp3"
+      ]
     },
     "oj-424c018f3e": {
       "word": "audio/vocab/openjlpt/oj-424c018f3e-word.mp3",
@@ -6005,95 +6019,141 @@
     },
     "oj-bc1f0acc20": {
       "word": "audio/vocab/openjlpt/oj-bc1f0acc20-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-bc1f0acc20-ex1.mp3"
+      ]
     },
     "oj-ba660e4e5a": {
       "word": "audio/vocab/openjlpt/oj-ba660e4e5a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-ba660e4e5a-ex1.mp3"
+      ]
     },
     "oj-aed9fbb1c2": {
       "word": "audio/vocab/openjlpt/oj-aed9fbb1c2-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-aed9fbb1c2-ex1.mp3"
+      ]
     },
     "oj-effe5c2acb": {
       "word": "audio/vocab/openjlpt/oj-effe5c2acb-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-effe5c2acb-ex1.mp3"
+      ]
     },
     "oj-746e5a2a80": {
       "word": "audio/vocab/openjlpt/oj-746e5a2a80-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-746e5a2a80-ex1.mp3"
+      ]
     },
     "oj-c5acfdc8ca": {
       "word": "audio/vocab/openjlpt/oj-c5acfdc8ca-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-c5acfdc8ca-ex1.mp3"
+      ]
     },
     "oj-451a92254d": {
       "word": "audio/vocab/openjlpt/oj-451a92254d-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-451a92254d-ex1.mp3"
+      ]
     },
     "oj-e25e5b82f0": {
       "word": "audio/vocab/openjlpt/oj-e25e5b82f0-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-e25e5b82f0-ex1.mp3"
+      ]
     },
     "oj-2ca2f2c406": {
       "word": "audio/vocab/openjlpt/oj-2ca2f2c406-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-2ca2f2c406-ex1.mp3"
+      ]
     },
     "oj-314af27802": {
       "word": "audio/vocab/openjlpt/oj-314af27802-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-314af27802-ex1.mp3"
+      ]
     },
     "oj-d81ca0a2b5": {
       "word": "audio/vocab/openjlpt/oj-d81ca0a2b5-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d81ca0a2b5-ex1.mp3"
+      ]
     },
     "oj-775cb6278a": {
       "word": "audio/vocab/openjlpt/oj-775cb6278a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-775cb6278a-ex1.mp3"
+      ]
     },
     "oj-c7c6864d64": {
       "word": "audio/vocab/openjlpt/oj-c7c6864d64-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-c7c6864d64-ex1.mp3"
+      ]
     },
     "oj-f43ce78911": {
       "word": "audio/vocab/openjlpt/oj-f43ce78911-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-f43ce78911-ex1.mp3"
+      ]
     },
     "oj-0c7666523d": {
       "word": "audio/vocab/openjlpt/oj-0c7666523d-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0c7666523d-ex1.mp3"
+      ]
     },
     "oj-890a56cd6a": {
       "word": "audio/vocab/openjlpt/oj-890a56cd6a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-890a56cd6a-ex1.mp3"
+      ]
     },
     "oj-b7e93ba2fc": {
       "word": "audio/vocab/openjlpt/oj-b7e93ba2fc-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-b7e93ba2fc-ex1.mp3"
+      ]
     },
     "oj-bb46d28cb9": {
       "word": "audio/vocab/openjlpt/oj-bb46d28cb9-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-bb46d28cb9-ex1.mp3"
+      ]
     },
     "oj-1a857b8ff7": {
       "word": "audio/vocab/openjlpt/oj-1a857b8ff7-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-1a857b8ff7-ex1.mp3"
+      ]
     },
     "oj-58b6a6ca0a": {
       "word": "audio/vocab/openjlpt/oj-58b6a6ca0a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-58b6a6ca0a-ex1.mp3"
+      ]
     },
     "oj-22562443d0": {
       "word": "audio/vocab/openjlpt/oj-22562443d0-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-22562443d0-ex1.mp3"
+      ]
     },
     "oj-da3d3e127b": {
       "word": "audio/vocab/openjlpt/oj-da3d3e127b-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-da3d3e127b-ex1.mp3"
+      ]
     },
     "oj-13cadbf1d1": {
       "word": "audio/vocab/openjlpt/oj-13cadbf1d1-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-13cadbf1d1-ex1.mp3"
+      ]
     },
     "oj-cf40697176": {
       "word": "audio/vocab/openjlpt/oj-cf40697176-word.mp3",
@@ -6105,7 +6165,9 @@
     },
     "oj-cfdb0d4137": {
       "word": "audio/vocab/openjlpt/oj-cfdb0d4137-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-cfdb0d4137-ex1.mp3"
+      ]
     },
     "oj-576bcd05c5": {
       "word": "audio/vocab/openjlpt/oj-576bcd05c5-word.mp3",
@@ -6113,35 +6175,51 @@
     },
     "oj-90bc8fc506": {
       "word": "audio/vocab/openjlpt/oj-90bc8fc506-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-90bc8fc506-ex1.mp3"
+      ]
     },
     "oj-d17666b653": {
       "word": "audio/vocab/openjlpt/oj-d17666b653-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d17666b653-ex1.mp3"
+      ]
     },
     "oj-4d62fb410a": {
       "word": "audio/vocab/openjlpt/oj-4d62fb410a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-4d62fb410a-ex1.mp3"
+      ]
     },
     "oj-237ff96ee6": {
       "word": "audio/vocab/openjlpt/oj-237ff96ee6-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-237ff96ee6-ex1.mp3"
+      ]
     },
     "oj-11ad69064c": {
       "word": "audio/vocab/openjlpt/oj-11ad69064c-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-11ad69064c-ex1.mp3"
+      ]
     },
     "oj-388eca3ffa": {
       "word": "audio/vocab/openjlpt/oj-388eca3ffa-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-388eca3ffa-ex1.mp3"
+      ]
     },
     "oj-700b8c4ea1": {
       "word": "audio/vocab/openjlpt/oj-700b8c4ea1-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-700b8c4ea1-ex1.mp3"
+      ]
     },
     "oj-7588b0ad98": {
       "word": "audio/vocab/openjlpt/oj-7588b0ad98-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-7588b0ad98-ex1.mp3"
+      ]
     },
     "oj-9c0046c678": {
       "word": "audio/vocab/openjlpt/oj-9c0046c678-word.mp3",
@@ -6149,83 +6227,123 @@
     },
     "oj-67ac5aceff": {
       "word": "audio/vocab/openjlpt/oj-67ac5aceff-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-67ac5aceff-ex1.mp3"
+      ]
     },
     "oj-4d5c43bf88": {
       "word": "audio/vocab/openjlpt/oj-4d5c43bf88-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-4d5c43bf88-ex1.mp3"
+      ]
     },
     "oj-6c1dc988ce": {
       "word": "audio/vocab/openjlpt/oj-6c1dc988ce-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-6c1dc988ce-ex1.mp3"
+      ]
     },
     "oj-0e833fb33f": {
       "word": "audio/vocab/openjlpt/oj-0e833fb33f-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0e833fb33f-ex1.mp3"
+      ]
     },
     "oj-5e70b323ad": {
       "word": "audio/vocab/openjlpt/oj-5e70b323ad-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-5e70b323ad-ex1.mp3"
+      ]
     },
     "oj-3f68e34ac7": {
       "word": "audio/vocab/openjlpt/oj-3f68e34ac7-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-3f68e34ac7-ex1.mp3"
+      ]
     },
     "oj-7dd1f2e142": {
       "word": "audio/vocab/openjlpt/oj-7dd1f2e142-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-7dd1f2e142-ex1.mp3"
+      ]
     },
     "oj-74638a00a2": {
       "word": "audio/vocab/openjlpt/oj-74638a00a2-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-74638a00a2-ex1.mp3"
+      ]
     },
     "oj-a0ad5884f8": {
       "word": "audio/vocab/openjlpt/oj-a0ad5884f8-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-a0ad5884f8-ex1.mp3"
+      ]
     },
     "oj-0e4bfbe5d4": {
       "word": "audio/vocab/openjlpt/oj-0e4bfbe5d4-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0e4bfbe5d4-ex1.mp3"
+      ]
     },
     "oj-4e7af4d59e": {
       "word": "audio/vocab/openjlpt/oj-4e7af4d59e-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-4e7af4d59e-ex1.mp3"
+      ]
     },
     "oj-8290ed6e7a": {
       "word": "audio/vocab/openjlpt/oj-8290ed6e7a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-8290ed6e7a-ex1.mp3"
+      ]
     },
     "oj-784a9e0069": {
       "word": "audio/vocab/openjlpt/oj-784a9e0069-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-784a9e0069-ex1.mp3"
+      ]
     },
     "oj-24de60011c": {
       "word": "audio/vocab/openjlpt/oj-24de60011c-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-24de60011c-ex1.mp3"
+      ]
     },
     "oj-7ea034ef1f": {
       "word": "audio/vocab/openjlpt/oj-7ea034ef1f-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-7ea034ef1f-ex1.mp3"
+      ]
     },
     "oj-fc67aa10fe": {
       "word": "audio/vocab/openjlpt/oj-fc67aa10fe-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-fc67aa10fe-ex1.mp3"
+      ]
     },
     "oj-81dfeba28b": {
       "word": "audio/vocab/openjlpt/oj-81dfeba28b-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-81dfeba28b-ex1.mp3"
+      ]
     },
     "oj-d3f48aa17a": {
       "word": "audio/vocab/openjlpt/oj-d3f48aa17a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d3f48aa17a-ex1.mp3"
+      ]
     },
     "oj-26de298aa1": {
       "word": "audio/vocab/openjlpt/oj-26de298aa1-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-26de298aa1-ex1.mp3"
+      ]
     },
     "oj-069b9a3fc0": {
       "word": "audio/vocab/openjlpt/oj-069b9a3fc0-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-069b9a3fc0-ex1.mp3"
+      ]
     },
     "oj-e7553c2eb8": {
       "word": "audio/vocab/openjlpt/oj-e7553c2eb8-word.mp3",
@@ -6233,31 +6351,45 @@
     },
     "oj-0dff3c38d4": {
       "word": "audio/vocab/openjlpt/oj-0dff3c38d4-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0dff3c38d4-ex1.mp3"
+      ]
     },
     "oj-b36f12de15": {
       "word": "audio/vocab/openjlpt/oj-b36f12de15-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-b36f12de15-ex1.mp3"
+      ]
     },
     "oj-8703a8fa42": {
       "word": "audio/vocab/openjlpt/oj-8703a8fa42-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-8703a8fa42-ex1.mp3"
+      ]
     },
     "oj-e934b6a0ba": {
       "word": "audio/vocab/openjlpt/oj-e934b6a0ba-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-e934b6a0ba-ex1.mp3"
+      ]
     },
     "oj-5eb3025a5c": {
       "word": "audio/vocab/openjlpt/oj-5eb3025a5c-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-5eb3025a5c-ex1.mp3"
+      ]
     },
     "oj-d07bdd00a7": {
       "word": "audio/vocab/openjlpt/oj-d07bdd00a7-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d07bdd00a7-ex1.mp3"
+      ]
     },
     "oj-13ce9c407b": {
       "word": "audio/vocab/openjlpt/oj-13ce9c407b-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-13ce9c407b-ex1.mp3"
+      ]
     },
     "oj-62c5b0c54f": {
       "word": "audio/vocab/openjlpt/oj-62c5b0c54f-word.mp3",
@@ -6265,87 +6397,129 @@
     },
     "oj-c93dff6c1a": {
       "word": "audio/vocab/openjlpt/oj-c93dff6c1a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-c93dff6c1a-ex1.mp3"
+      ]
     },
     "oj-d447b34a14": {
       "word": "audio/vocab/openjlpt/oj-d447b34a14-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d447b34a14-ex1.mp3"
+      ]
     },
     "oj-8d2dc17edc": {
       "word": "audio/vocab/openjlpt/oj-8d2dc17edc-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-8d2dc17edc-ex1.mp3"
+      ]
     },
     "oj-191be01339": {
       "word": "audio/vocab/openjlpt/oj-191be01339-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-191be01339-ex1.mp3"
+      ]
     },
     "oj-1bc2d68e6c": {
       "word": "audio/vocab/openjlpt/oj-1bc2d68e6c-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-1bc2d68e6c-ex1.mp3"
+      ]
     },
     "oj-65a9516d95": {
       "word": "audio/vocab/openjlpt/oj-65a9516d95-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-65a9516d95-ex1.mp3"
+      ]
     },
     "oj-04517cb668": {
       "word": "audio/vocab/openjlpt/oj-04517cb668-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-04517cb668-ex1.mp3"
+      ]
     },
     "oj-6bcbf0c06c": {
       "word": "audio/vocab/openjlpt/oj-6bcbf0c06c-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-6bcbf0c06c-ex1.mp3"
+      ]
     },
     "oj-beaeaf4c59": {
       "word": "audio/vocab/openjlpt/oj-beaeaf4c59-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-beaeaf4c59-ex1.mp3"
+      ]
     },
     "oj-38cbad27b0": {
       "word": "audio/vocab/openjlpt/oj-38cbad27b0-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-38cbad27b0-ex1.mp3"
+      ]
     },
     "oj-3296476a71": {
       "word": "audio/vocab/openjlpt/oj-3296476a71-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-3296476a71-ex1.mp3"
+      ]
     },
     "oj-afccc3e42c": {
       "word": "audio/vocab/openjlpt/oj-afccc3e42c-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-afccc3e42c-ex1.mp3"
+      ]
     },
     "oj-1f71194201": {
       "word": "audio/vocab/openjlpt/oj-1f71194201-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-1f71194201-ex1.mp3"
+      ]
     },
     "oj-578664e5a2": {
       "word": "audio/vocab/openjlpt/oj-578664e5a2-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-578664e5a2-ex1.mp3"
+      ]
     },
     "oj-fc259785af": {
       "word": "audio/vocab/openjlpt/oj-fc259785af-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-fc259785af-ex1.mp3"
+      ]
     },
     "oj-d3c748f3ba": {
       "word": "audio/vocab/openjlpt/oj-d3c748f3ba-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d3c748f3ba-ex1.mp3"
+      ]
     },
     "oj-eb830c293c": {
       "word": "audio/vocab/openjlpt/oj-eb830c293c-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-eb830c293c-ex1.mp3"
+      ]
     },
     "oj-8e53bced4f": {
       "word": "audio/vocab/openjlpt/oj-8e53bced4f-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-8e53bced4f-ex1.mp3"
+      ]
     },
     "oj-7197c6d07a": {
       "word": "audio/vocab/openjlpt/oj-7197c6d07a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-7197c6d07a-ex1.mp3"
+      ]
     },
     "oj-914c5e15b1": {
       "word": "audio/vocab/openjlpt/oj-914c5e15b1-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-914c5e15b1-ex1.mp3"
+      ]
     },
     "oj-0f9f515d94": {
       "word": "audio/vocab/openjlpt/oj-0f9f515d94-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0f9f515d94-ex1.mp3"
+      ]
     },
     "oj-d777353b7e": {
       "word": "audio/vocab/openjlpt/oj-d777353b7e-word.mp3",
@@ -6353,47 +6527,69 @@
     },
     "oj-0023032732": {
       "word": "audio/vocab/openjlpt/oj-0023032732-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-0023032732-ex1.mp3"
+      ]
     },
     "oj-a0f10b94be": {
       "word": "audio/vocab/openjlpt/oj-a0f10b94be-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-a0f10b94be-ex1.mp3"
+      ]
     },
     "oj-abf31d2e6d": {
       "word": "audio/vocab/openjlpt/oj-abf31d2e6d-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-abf31d2e6d-ex1.mp3"
+      ]
     },
     "oj-635298ff5d": {
       "word": "audio/vocab/openjlpt/oj-635298ff5d-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-635298ff5d-ex1.mp3"
+      ]
     },
     "oj-d6fa203e33": {
       "word": "audio/vocab/openjlpt/oj-d6fa203e33-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d6fa203e33-ex1.mp3"
+      ]
     },
     "oj-2c50c4ff4a": {
       "word": "audio/vocab/openjlpt/oj-2c50c4ff4a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-2c50c4ff4a-ex1.mp3"
+      ]
     },
     "oj-174eaed3df": {
       "word": "audio/vocab/openjlpt/oj-174eaed3df-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-174eaed3df-ex1.mp3"
+      ]
     },
     "oj-c914c38ecd": {
       "word": "audio/vocab/openjlpt/oj-c914c38ecd-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-c914c38ecd-ex1.mp3"
+      ]
     },
     "oj-8f082e1c23": {
       "word": "audio/vocab/openjlpt/oj-8f082e1c23-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-8f082e1c23-ex1.mp3"
+      ]
     },
     "oj-02f10efa6a": {
       "word": "audio/vocab/openjlpt/oj-02f10efa6a-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-02f10efa6a-ex1.mp3"
+      ]
     },
     "oj-29904e38b1": {
       "word": "audio/vocab/openjlpt/oj-29904e38b1-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-29904e38b1-ex1.mp3"
+      ]
     },
     "oj-4b3b320d8a": {
       "word": "audio/vocab/openjlpt/oj-4b3b320d8a-word.mp3",
@@ -6401,11 +6597,15 @@
     },
     "oj-d7246d0f6f": {
       "word": "audio/vocab/openjlpt/oj-d7246d0f6f-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-d7246d0f6f-ex1.mp3"
+      ]
     },
     "oj-caf7c2157f": {
       "word": "audio/vocab/openjlpt/oj-caf7c2157f-word.mp3",
-      "examples": []
+      "examples": [
+        "audio/vocab/openjlpt/oj-caf7c2157f-ex1.mp3"
+      ]
     },
     "oj-c9307c08c4": {
       "word": "audio/vocab/openjlpt/oj-c9307c08c4-word.mp3",
