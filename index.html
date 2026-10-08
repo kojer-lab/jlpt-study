@@ -1387,7 +1387,7 @@ function buildExpansionVocabQuiz(src,count=60){
      c:slots.map(shortMeaning),
      a,
      translation:`「${w.w}」의 의미로 가장 가까운 것은?`,
-     e:`「${w.w}」は「${w.meaning}」という${F("意味","いみ")}です。${F("例文","れいぶん")}の${F("中","なか")}で${F("使","つか")}い${F("方","かた")}も${F("確認","かくにん")}しましょう。`
+     e:`「${w.w}」는 「${w.meaning}」라는 뜻입니다. 단어의 핵심 의미를 확인한 뒤 아래 예문에서 실제 쓰임과 뉘앙스를 살펴보세요.`
    };
  });
 }
@@ -2165,10 +2165,10 @@ function quizJP(html,item){
 }
 function normalizeQuizExplanation(value){
  let t=String(value||"");
- // 한국어 설명 뒤에 붙은 일괄 생성 일본어 안내문만 제거한다.
- t=t.replace(/(?:。|\.)?\s*例文の中で使い方も確認しましょう[。.]?/g,"");
- t=t.replace(/(?:。|\.)?\s*例文とともに覚えましょう[。.]?/g,"");
- t=t.replace(/(?:。|\.)?\s*文脈での使い方も確認しましょう[。.]?/g,"");
+ // 기존에 생성된 일본어 설명 문구를 한국어로 통일한다.
+ t=t.replace(/(?:。|\\.)?\\s*例文の中で使い方も確認しましょう[。.]?/g," 예문에서 실제 사용법도 확인해 보세요.");
+ t=t.replace(/(?:。|\\.)?\\s*例文とともに覚えましょう[。.]?/g," 예문과 함께 익혀 보세요.");
+ t=t.replace(/(?:。|\\.)?\\s*文脈での使い方も確認しましょう[。.]?/g," 문맥 속 쓰임도 확인해 보세요.");
  return t.trim();
 }
 function normalizeQuizChoice(value){
