@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 import json
 import re
+from difflib import SequenceMatcher
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 BAD_TEXT = re.compile(r"[�□■]|\?\?\?")
+
+HANGUL_RE = re.compile(r"[가-힣]")
+JAPANESE_RE = re.compile(r"[ぁ-ゖァ-ヺ一-龯]")
+
+def normalized_japanese(text):
+    return re.sub(r"[\\s、。！？!?,.「」『』（）()]", "", clean(text))
 
 def parse_js(path: Path):
     text = path.read_text(encoding="utf-8")
@@ -37,6 +44,7 @@ def main():
             f"Override ID coverage mismatch: overrides={len(overrides)} source={len(id_set)}")
 
     first_examples = {}
+    candidates = []
     for x in source_words:
         oid = x["id"]
         o = overrides[oid]
@@ -53,6 +61,10 @@ def main():
         fail_if(not jp or not ko, f"Incomplete reviewed example: {oid}")
         fail_if(BAD_TEXT.search(jp + ko), f"Garbled reviewed example: {oid}")
         first_examples[oid] = clean(jp)
+        if not HANGUL_RE.search(meaning) or not HANGUL_RE.search(ko):
+            candidates.append((oid, "missing Korean in meaning or first example"))
+        if not JAPANESE_RE.search(jp):
+            candidates.append((oid, "first example not Japanese"))
 
     seconds = {}
     for i in range(1, 31):
@@ -71,8 +83,15 @@ def main():
         ko = str(ex.get("ko") or "").strip()
         fail_if(not jp or not ko, f"Incomplete second example: {oid}")
         fail_if(BAD_TEXT.search(jp + ko), f"Garbled second example: {oid}")
-        if clean(jp) == first_examples[oid]:
+        if not HANGUL_RE.search(ko):
+            candidates.append((oid, "missing Korean in second example"))
+        if not JAPANESE_RE.search(jp):
+            candidates.append((oid, "second example not Japanese"))
+        a, b = normalized_japanese(jp), normalized_japanese(first_examples[oid])
+        if a == b:
             duplicate_pairs.append(oid)
+        elif min(len(a), len(b)) >= 8 and SequenceMatcher(None, a, b).ratio() >= 0.88:
+            candidates.append((oid, "near-duplicate examples"))
     fail_if(duplicate_pairs, "Identical example 1/2: " + ", ".join(duplicate_pairs[:20]))
 
     breakdowns = {}
@@ -108,7 +127,10 @@ def main():
         bank = json.loads(payload[:-1])
         fail_if(len(bank) < 3233, f"Furigana output too small: {len(bank)}")
 
-    print("N1 word QA passed")
+    print("N1 word structural QA passed (linguistic verification still required)")
+    print(f"  Linguistic-review candidates: {len(candidates)}")
+    for oid, reason in candidates[:100]:
+        print(f"  REVIEW {oid}: {reason}")
     print(f"  OpenJLPT words: {len(source_words)}")
     print(f"  Reviewed meanings/examples: {len(overrides)}")
     print(f"  Second examples: {len(seconds)}")
