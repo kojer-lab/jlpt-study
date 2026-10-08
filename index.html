@@ -1131,7 +1131,70 @@ for(const w of words){
  const d=wordBreakdowns[w.id],key=wordBreakdownSurfaceKey(w);
  if(d&&key&&!wordBreakdownBySurface.has(key))wordBreakdownBySurface.set(key,d);
 }
-function wordBreakdownFor(w){return w?(wordBreakdowns[w.id]||wordBreakdownBySurface.get(wordBreakdownSurfaceKey(w))||null):null}
+
+/* QA normalization for auto-generated breakdowns.
+   Reuse good kanji glosses from manually curated breakdowns and fill related words
+   from the actual N1 word bank instead of showing generic placeholders. */
+const breakdownGenericLabels=new Set(["의미 요소","읽기·결합 요소","활용·어미","접두·결합 요소","표현 전체"]);
+const breakdownKanjiGloss=(()=>{
+ const counts=new Map();
+ for(const d of Object.values(wordBreakdowns)){
+  for(const p of (d?.parts||[])){
+   const surface=String(p?.[0]||""),gloss=String(p?.[1]||"").trim();
+   if([...surface].length!==1||!/[一-龯々〆ヵヶ]/.test(surface)||!gloss||breakdownGenericLabels.has(gloss))continue;
+   if(!counts.has(surface))counts.set(surface,new Map());
+   const m=counts.get(surface);m.set(gloss,(m.get(gloss)||0)+1);
+  }
+ }
+ const out=new Map();
+ for(const [k,m] of counts)out.set(k,[...m.entries()].sort((a,b)=>b[1]-a[1])[0][0]);
+ return out;
+})();
+const breakdownWordsByKanji=(()=>{
+ const out=new Map();
+ for(const w of words){
+  const chars=[...new Set([...plain(w.w)].filter(ch=>/[一-龯々〆ヵヶ]/.test(ch)))];
+  for(const ch of chars){if(!out.has(ch))out.set(ch,[]);out.get(ch).push(w)}
+ }
+ return out;
+})();
+function breakdownAutoRelated(w){
+ if(!w)return [];
+ const chars=[...new Set([...plain(w.w)].filter(ch=>/[一-龯々〆ヵヶ]/.test(ch)))];
+ if(!chars.length)return [];
+ const scored=new Map();
+ for(const ch of chars){
+  for(const x of (breakdownWordsByKanji.get(ch)||[])){
+   if(x.id===w.id)continue;
+   const item=scored.get(x.id)||{w:x,score:0};item.score++;scored.set(x.id,item);
+  }
+ }
+ return [...scored.values()]
+   .sort((a,b)=>b.score-a.score||plain(a.w.w).length-plain(b.w.w).length)
+   .slice(0,3)
+   .map(x=>`${plain(x.w.w)} · ${shortMeaning(x.w)}`);
+}
+function normalizeWordBreakdown(d,w){
+ if(!d)return null;
+ const surface=plain(w?.w||"");
+ const fallbackMeaning=shortMeaning(w||{meaning:""})||"핵심 의미";
+ const parts=(d.parts||[]).map(p=>{
+  const part=String(p?.[0]||""),raw=String(p?.[1]||"").trim();
+  let gloss=raw;
+  if(raw==="의미 요소"&&[...part].length===1&&breakdownKanjiGloss.has(part))gloss=breakdownKanjiGloss.get(part);
+  if(breakdownGenericLabels.has(gloss)&&part===surface)gloss=fallbackMeaning;
+  if((gloss==="표현 전체"||gloss==="읽기·결합 요소")&&/^[ァ-ヺー・]+$/.test(part))gloss=`외래어 · ${fallbackMeaning}`;
+  if(gloss==="활용·어미"&&(d.parts||[]).length===1)gloss=fallbackMeaning;
+  return [part,gloss||fallbackMeaning];
+ });
+ const related=(Array.isArray(d.related)&&d.related.length)?d.related:breakdownAutoRelated(w);
+ return {...d,parts,related};
+}
+function wordBreakdownFor(w){
+ if(!w)return null;
+ const d=wordBreakdowns[w.id]||wordBreakdownBySurface.get(wordBreakdownSurfaceKey(w))||null;
+ return normalizeWordBreakdown(d,w);
+}
 function breakdownEsc(s){return escapeExampleText(String(s??""))}
 function breakdownInnerHTML(d,detailOpen=false,wordId=""){
  if(!d)return "";
