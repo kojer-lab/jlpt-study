@@ -2870,18 +2870,18 @@ window.N1_CURATED_OVERRIDES={
     ]
   },
   "oj-9ed26e130c": {
-    "meaning": "스모 경기장 / 씨름판 / 활동 무대",
+    "meaning": "씨름판 / 도효 / 스모 경기장 / 활동 무대",
     "meaningSource": "manual-review",
     "examples": [
       {
-        "jp": "力士たちが土俵の上で激しくぶつかり合った。",
-        "ko": "스모 선수들이 도효 위에서 격렬하게 맞붙었다.",
-        "exampleSource": "manual-qa-2026-10-08"
+        "jp": "力士が土俵に上がって取組を始めた。",
+        "ko": "스모 선수가 도효에 올라 경기를 시작했다.",
+        "exampleSource": "manual-review"
       }
     ]
   },
   "oj-ecec76a53b": {
-    "meaning": "토목 / 토목공사",
+    "meaning": "토목 / 도로·교량·하천 등 기반 시설 공사",
     "meaningSource": "manual-review",
     "examples": [
       {
@@ -2924,13 +2924,13 @@ window.N1_CURATED_OVERRIDES={
     ]
   },
   "oj-4ec7fe1166": {
-    "meaning": "어디 보자 / 어느 것인지 보자",
+    "meaning": "어디 보자 / 자, 한번 보자",
     "meaningSource": "manual-review",
     "examples": [
       {
-        "jp": "何々、そんなことがあったのか。",
-        "ko": "뭐라고, 그런 일이 있었구나.",
-        "exampleSource": "manual-qa-2026-10-08"
+        "jp": "どれどれ、君の描いた絵を見せてごらん。",
+        "ko": "어디 보자, 네가 그린 그림을 보여 줘.",
+        "exampleSource": "manual-review"
       }
     ]
   },
@@ -2946,7 +2946,7 @@ window.N1_CURATED_OVERRIDES={
     ]
   },
   "oj-432e75bc0b": {
-    "meaning": "살아 있는 몸 / 생신의 육체 / 맨몸",
+    "meaning": "살아 있는 몸 / 실제 인간 / 맨몸",
     "meaningSource": "manual-review",
     "examples": [
       {
@@ -2978,17 +2978,18 @@ window.N1_CURATED_OVERRIDES={
     ]
   },
   "oj-67f7a8d49f": {
-    "meaning": "남쪽",
+    "meaning": "남 / 남쪽(음독 ナン, 복합어에 쓰임)",
     "examples": [
       {
-        "jp": "風は南から吹いている。",
-        "ko": "바람은 남쪽에서 불고 있다."
+        "jp": "南北に伸びる道をまっすぐ進んだ。",
+        "ko": "남북으로 뻗은 길을 똑바로 갔다.",
+        "exampleSource": "manual-review"
       }
     ],
     "meaningSource": "manual-review"
   },
   "oj-17b1b51e96": {
-    "meaning": "사진의 네거티브 / 음화",
+    "meaning": "네거티브 필름 / 음화 / 사진 원판",
     "meaningSource": "manual-review",
     "examples": [
       {
@@ -3065,11 +3066,12 @@ window.N1_CURATED_OVERRIDES={
     ]
   },
   "oj-cb2008f46b": {
-    "meaning": "배계 / 편지 첫머리의 ‘삼가 아룁니다’에 해당하는 표현",
+    "meaning": "근계 / 삼가 아룁니다(격식 있는 편지 서두)",
     "examples": [
       {
-        "jp": "正式な手紙は『拝啓』で書き始めた。",
-        "ko": "격식 있는 편지는 ‘拝啓’로 시작했다."
+        "jp": "手紙の冒頭に『拝啓』と書いた。",
+        "ko": "편지의 첫머리에 '拝啓'라고 썼다.",
+        "exampleSource": "manual-review"
       }
     ],
     "meaningSource": "manual-review"
@@ -3229,8 +3231,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "미(未) / 십이지의 여덟째인 양",
     "examples": [
       {
-        "jp": "干支では未は羊を表す。",
-        "ko": "십이지에서 미(未)는 양을 나타낸다.",
+        "jp": "未年の人は十二支では羊に当たる。",
+        "ko": "미년생은 십이지에서 양에 해당한다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -3248,11 +3250,11 @@ window.N1_CURATED_OVERRIDES={
     ]
   },
   "oj-6898b85866": {
-    "meaning": "보(歩) / 쇼기에서 가장 기본적인 말",
+    "meaning": "쇼기의 '후(歩)' 말 / 일본 장기의 보병",
     "examples": [
       {
-        "jp": "歩を一枚進めた。",
-        "ko": "쇼기의 보 한 말을 전진시켰다.",
+        "jp": "将棋で歩を一マス前に進めた。",
+        "ko": "쇼기에서 '후' 말을 한 칸 전진시켰다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -18246,8 +18248,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "붙잡아 두다 / 머물게 하다 / 남겨 두다 / 마음에 새기다",
     "examples": [
       {
-        "jp": "彼の勇気は歴史に名をとどめた。",
-        "ko": "그의 용기는 역사에 이름을 남겼다.",
+        "jp": "故郷の風景を心に留めておきたい。",
+        "ko": "고향 풍경을 마음속에 간직하고 싶다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -18265,7 +18267,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-850d0b8295": {
-    "meaning": "휘장 / 장막 / 커튼",
+    "meaning": "휘장 / 장막 / 커튼(문어)",
     "examples": [
       {
         "jp": "夜になると、部屋の帳を下ろした。",
@@ -18279,8 +18281,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "부 / 재산 / 부유함",
     "examples": [
       {
-        "jp": "彼は一代で富を築いた。",
-        "ko": "그는 한 세대 만에 큰 부를 일구었다.",
+        "jp": "一代で巨万の富を築いた。",
+        "ko": "한 세대 만에 막대한 부를 일구었다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -18298,7 +18300,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-b6b8baaa21": {
-    "meaning": "맞벌이 / 부부가 함께 벌어 생활함",
+    "meaning": "맞벌이 / 부부가 함께 경제활동함",
     "examples": [
       {
         "jp": "今では多くの家庭が共稼ぎで、夫と妻の両方が働いている。",
@@ -18341,11 +18343,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-cc10bd8df6": {
-    "meaning": "드라이브인 / 자동차로 들르는 휴게·음식 시설",
+    "meaning": "드라이브인 / 자동차 여행자를 위한 휴게·식사 시설",
     "examples": [
       {
-        "jp": "次のドライブインで休憩していこう。",
-        "ko": "다음 드라이브인에서 쉬었다 가자.",
+        "jp": "旅の途中でドライブインに立ち寄った。",
+        "ko": "여행 도중 드라이브인 휴게 시설에 들렀다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -18359,7 +18361,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "meaning": "문제 / 말썽 / 사고 / 트러블"
   },
   "oj-35b3613e22": {
     "examples": [
@@ -18422,8 +18425,8 @@ window.N1_CURATED_OVERRIDES={
   "oj-b921800266": {
     "examples": [
       {
-        "jp": "事件の原因を取り調べるために実情調査委員会が作られた。",
-        "ko": "사건의 원인을 조사하기 위해 실태조사위원회가 구성되었다.",
+        "jp": "刑事は事件の関係者を取り調べた。",
+        "ko": "형사는 사건 관계자를 조사했다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -18462,11 +18465,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-c239ea3b65": {
-    "meaning": "드릴 / 반복 훈련 / 연습 문제",
+    "meaning": "드릴 / 전동 공구 / 반복 학습·훈련 문제",
     "examples": [
       {
-        "jp": "これはドリルではない。",
-        "ko": "이것은 훈련이 아니다.",
+        "jp": "語彙を覚えるために毎日ドリルを解いている。",
+        "ko": "어휘를 외우려고 매일 반복 연습 문제를 풀고 있다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -18613,7 +18616,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-2b6f94e367": {
-    "meaning": "싱크대 / 개수대",
+    "meaning": "개수대 / 싱크대 / 부엌 설거지통",
     "examples": [
       {
         "jp": "食器を流しに置いた。",
@@ -18672,11 +18675,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-f0daebddc3": {
-    "meaning": "흔적 / 자취 / 여운 / 작별의 아쉬움",
+    "meaning": "흔적 / 자취 / 여운 / 떠나는 아쉬움",
     "examples": [
       {
-        "jp": "大聖堂は西の扉にロマネスク様式の名残があり、半円状のアーチを見ることができる。",
-        "ko": "대성당 서쪽 문에는 로마네스크 양식의 흔적이 남아 있어 반원형 아치를 볼 수 있다.",
+        "jp": "彼女は名残惜しそうに駅を後にした。",
+        "ko": "그녀는 떠나는 것이 아쉬운 듯 역을 뒤로했다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -18934,7 +18937,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-7432246708": {
-    "meaning": "말도 안 됨 / 터무니없음 / 난센스",
+    "meaning": "터무니없음 / 말도 안 되는 소리",
     "meaningSource": "manual-review"
   },
   "oj-9bd5945236": {
@@ -19007,8 +19010,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "육체 / 몸",
     "examples": [
       {
-        "jp": "肉体は死すべきものである。",
-        "ko": "육체는 죽을 운명에 있다.",
+        "jp": "精神だけでなく肉体の健康も大切だ。",
+        "ko": "정신뿐 아니라 육체의 건강도 중요하다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -19102,7 +19105,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-c2bed1715c": {
-    "meaning": "새로운 / 신(新)~",
+    "meaning": "뉴- / 새로운 / 신형",
     "examples": [
       {
         "jp": "ニューアルバムが来月発売される。",
@@ -19241,11 +19244,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-1ac6d9ceaf": {
-    "meaning": "쥐 / 진회색(합성어에서 ‘ねず’로 쓰임)",
+    "meaning": "쥐색 / 회색 계열의 색(ねず) / 쥐를 가리키는 옛말·축약형",
     "examples": [
       {
-        "jp": "彼は立ち上がり、ネズミを見た。",
-        "ko": "그는 일어서서 쥐를 보았다.",
+        "jp": "薄鼠の帯を着物に合わせた。",
+        "ko": "연한 쥐색 띠를 기모노에 맞췄다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -19322,7 +19325,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-48a804961e": {
-    "meaning": "사전 교섭 / 사전 조율 / 물밑 작업",
+    "meaning": "사전 조율 / 물밑 교섭 / 사전 교섭",
     "examples": [
       {
         "jp": "大統領は辞任する前にお金に困らないように根回しした。",
@@ -19400,12 +19403,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-34eeb4ae79": {
     "examples": [
       {
-        "jp": "本物のノイローゼの奴がノイローゼだなんて自称するのかね？",
-        "ko": "정말 신경증인 사람이 스스로 신경증이라고 말하겠어?",
+        "jp": "彼はストレスでノイローゼ気味になっていた。",
+        "ko": "그는 스트레스 때문에 신경증에 가까운 상태였다.",
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "meaning": "노이로제 / 신경증(일상적 표현)"
   },
   "oj-9c37735220": {
     "meaning": "농지 / 농업용 토지",
@@ -19473,7 +19477,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-6cbe3e8ae9": {
-    "meaning": "욕하다 / 매도하다 / 험담하다",
+    "meaning": "욕설을 퍼붓다 / 욕하다 / 매도하다",
     "examples": [
       {
         "jp": "彼女は面と向かって夫を罵った。",
@@ -19487,8 +19491,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "총계 / 누계 / 연인원·연대수의 합계",
     "examples": [
       {
-        "jp": "わが戦闘機の延べ出撃機数は平均１日４３０機であった。",
-        "ko": "우리 전투기의 누적 출격 기수는 하루 평균 430기였다.",
+        "jp": "その展示会には延べ二万人が来場した。",
+        "ko": "그 전시회에는 연인원 2만 명이 방문했다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -19668,7 +19672,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-0d807d23a0": {
-    "meaning": "일이 잘 진행되다 / 진척되다",
+    "meaning": "순조롭게 진행되다 / 진척되다",
     "examples": [
       {
         "jp": "仕事は非常にはかどっている。",
@@ -19850,11 +19854,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-08fac022a1": {
-    "meaning": "튀기다 / 손가락으로 퉁기다 / 튕겨내다",
+    "meaning": "튕기다 / 손가락으로 퉁기다 / 튀겨 내다",
     "examples": [
       {
-        "jp": "指でコインを弾いた。",
-        "ko": "손가락으로 동전을 튕겼다.",
+        "jp": "指先で小石を弾いて飛ばした。",
+        "ko": "손끝으로 작은 돌을 튕겨 날렸다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -19885,8 +19889,8 @@ window.N1_CURATED_OVERRIDES={
   "oj-fd0167bb1a": {
     "examples": [
       {
-        "jp": "この橋は１０本の柱で支えられている。",
-        "ko": "이 다리는 열 개의 기둥으로 지탱되고 있다.",
+        "jp": "屋根を支える木の柱を補修した。",
+        "ko": "지붕을 지탱하는 나무 기둥을 보수했다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -20010,7 +20014,15 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-9298e216ea": {
     "meaning": "출발 / 발사 / ~발(총알·열차 등의 단위)",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "次の電車は東京駅を九時発です。",
+        "ko": "다음 전철은 도쿄역에서 9시 출발입니다.",
+        "tatoebaId": 228639,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-e685744c25": {
     "examples": [
@@ -20070,8 +20082,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "끝나다 / 기진맥진하다 / 죽다",
     "examples": [
       {
-        "jp": "私達は疲れ果てるまで何時間も、その音楽に合わせて踊った。",
-        "ko": "우리는 완전히 지칠 때까지 몇 시간이나 그 음악에 맞춰 춤췄다.",
+        "jp": "長い逃亡の末に力尽きて果てた。",
+        "ko": "오랜 도주 끝에 기력이 다해 죽었다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -20107,7 +20119,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "meaning": "매우 / 대단히 / 심히(격식체)"
   },
   "oj-047bfb10cf": {
     "examples": [
@@ -20132,11 +20145,27 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-d02723096e": {
     "meaning": "해변 / 바닷가",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "漁師たちは浜に船を引き上げた。",
+        "ko": "어부들은 해변으로 배를 끌어올렸다.",
+        "tatoebaId": 85218,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-7f5bba0531": {
     "meaning": "해변 / 바닷가",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "夕暮れの浜辺を一人で歩いた。",
+        "ko": "해 질 무렵 해변을 혼자 걸었다.",
+        "tatoebaId": 85218,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-5f261717b0": {
     "meaning": "꼭 맞다 / 빠지다 / 열중하다",
@@ -20238,8 +20267,16 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-6b5f079fa9": {
-    "meaning": "판 / 판본 / 에디션",
-    "meaningSource": "manual-review"
+    "meaning": "판 / 판본 / 출판물의 버전",
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "この本は改訂版がすでに発売されている。",
+        "ko": "이 책은 개정판이 이미 발매되어 있다.",
+        "tatoebaId": 893186,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-dcd00f82ed": {
     "meaning": "반 / 조 / 그룹",
@@ -20348,7 +20385,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-b6ee1dd14e": {
-    "meaning": "어중간함 / 불완전함 / 자투리",
+    "meaning": "어중간함 / 덜 됨 / 어설픔",
     "examples": [
       {
         "jp": "半端な時間に自転車に乗るだけだ。",
@@ -20500,8 +20537,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "오래되다 / 오랜 / 오래 지속되다",
     "examples": [
       {
-        "jp": "驕る平家は久しからず。",
-        "ko": "교만한 헤이케의 권세도 오래가지 못한다.",
+        "jp": "彼と会わなくなって久しい。",
+        "ko": "그를 만나지 않은 지 오래되었다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -20509,7 +20546,15 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-eb729b5f01": {
     "meaning": "비참함 / 참혹함",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "事故の後には悲惨な光景が広がっていた。",
+        "ko": "사고 후에는 참혹한 광경이 펼쳐져 있었다.",
+        "tatoebaId": 3488320,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-edfcab4b38": {
     "examples": [
@@ -20630,11 +20675,19 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-f3c62d6d70": {
-    "meaning": "한숨 / 잠깐 쉼 / 조금 더",
-    "meaningSource": "manual-review"
+    "meaning": "잠깐 쉼 / 한숨 돌림 / 조금만 더",
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "作業が一段落したので、一息ついた。",
+        "ko": "작업이 한 고비 끝나서 한숨 돌렸다.",
+        "tatoebaId": 234289,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-77a848f1a4": {
-    "meaning": "홑겹 / 한 겹",
+    "meaning": "홑겹 / 안감이 없는 기모노",
     "examples": [
       {
         "jp": "単の着物を着る。",
@@ -20715,7 +20768,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-58e8f6d00f": {
-    "meaning": "피난 / 대피",
+    "meaning": "피난 / 대피 / 위험을 피해 피함",
     "examples": [
       {
         "jp": "彼は雨を避ける避難場所を捜した。",
@@ -21130,12 +21183,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-a45caec8b5": {
     "examples": [
       {
-        "jp": "彼の福祉の概念はかなり観念的だ。",
-        "ko": "그의 복지 개념은 상당히 관념적이다.",
+        "jp": "高齢者向けの福祉サービスが充実してきた。",
+        "ko": "고령자를 위한 복지 서비스가 점차 확충되고 있다.",
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "meaning": "복지 / 사회복지"
   },
   "oj-07145cdc5b": {
     "meaning": "복면 / 가면 / 정체를 감추는 것",
@@ -21222,8 +21276,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "어울리다 / 적합하다 / 걸맞다",
     "examples": [
       {
-        "jp": "君にふさわしいはずはないのだから。",
-        "ko": "너에게 어울릴 리가 없으니까.",
+        "jp": "彼はその職務に相応しい経験を持っている。",
+        "ko": "그는 그 직무에 걸맞은 경험을 갖추고 있다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -21298,11 +21352,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-969a3774bd": {
-    "meaning": "부진 / 상태가 나쁨 / 불화",
+    "meaning": "상태 불량 / 부진 / 작동 이상 / 불화",
     "examples": [
       {
-        "jp": "商売は先月ちょっと不調だった。",
-        "ko": "지난달에는 장사가 조금 부진했다.",
+        "jp": "体調が不調なので今日は早く休む。",
+        "ko": "몸 상태가 좋지 않아 오늘은 일찍 쉰다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -21579,7 +21633,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-9e39f13090": {
-    "meaning": "분(시간 단위)",
+    "meaning": "분 / 시간 단위",
     "examples": [
       {
         "jp": "あと五分待ってください。",
@@ -21705,11 +21759,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-292ff50e0a": {
-    "meaning": "분리 / 격리",
+    "meaning": "분리 / 격리 / 나누어 떼어냄",
     "examples": [
       {
-        "jp": "最高裁が人種分離教育を攻撃。",
-        "ko": "대법원은 인종 분리 교육을 비판했다.",
+        "jp": "水と油を分離する実験を行った。",
+        "ko": "물과 기름을 분리하는 실험을 했다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -21816,11 +21870,11 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-c88c1274da": {
-    "meaning": "편 / 편찬·편집 / ~편(작품 단위)",
+    "meaning": "편 / 편집 / 작품의 한 편 / 편찬",
     "examples": [
       {
-        "jp": "この小説は三編から成る。",
-        "ko": "이 소설은 세 편으로 이루어져 있다.",
+        "jp": "この作品集には短編小説が五編収められている。",
+        "ko": "이 작품집에는 단편소설 다섯 편이 실려 있다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -21905,8 +21959,8 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "변론 / 논쟁 / 토론",
     "examples": [
       {
-        "jp": "弁護士たちはその事件を何時間も弁論した。",
-        "ko": "변호사들은 그 사건을 몇 시간이나 변론했다.",
+        "jp": "被告側の弁護士が法廷で弁論した。",
+        "ko": "피고 측 변호사가 법정에서 변론했다.",
         "exampleSource": "manual-review"
       }
     ],
@@ -21983,7 +22037,15 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-e10b8d5307": {
     "meaning": "붕괴 / 무너짐",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "かつてソビエト連邦は崩壊し、複数の独立国家が誕生した。",
+        "ko": "과거 소련이 붕괴하면서 여러 독립 국가가 탄생했다.",
+        "tatoebaId": 13231578,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-f916dfd1cc": {
     "meaning": "방해 / 방해 행위 / 교란",
@@ -22018,7 +22080,7 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-817825c9b9": {
-    "meaning": "봉건 / 봉건적인",
+    "meaning": "봉건 / 봉건제 / 봉건적인",
     "examples": [
       {
         "jp": "前世紀の中頃まで日本が封建国家であったことは、よくしられている。",
@@ -22074,12 +22136,13 @@ window.N1_CURATED_OVERRIDES={
   "oj-c015ddb7c6": {
     "examples": [
       {
-        "jp": "今回の雨には放射能はない。",
-        "ko": "이번 비에는 방사능이 없다.",
+        "jp": "放射能を持つ物質は厳重に管理する必要がある。",
+        "ko": "방사능을 지닌 물질은 엄격하게 관리할 필요가 있다.",
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "meaning": "방사능 / 방사선을 방출하는 성질"
   },
   "oj-a227e50797": {
     "meaning": "보수 / 보상 / 사례금",
@@ -22161,7 +22224,15 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-2ec5748d47": {
     "meaning": "부 / 부문 / 부분 / 책·신문 등의 부수 단위",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "新聞を百部印刷した。",
+        "ko": "신문을 100부 인쇄했다.",
+        "tatoebaId": 958526,
+        "exampleSource": "manual-review"
+      }
+    ]
   },
   "oj-0214a293b8": {
     "meaning": "보도 / 보도 내용 / 보도하다",
@@ -29297,10 +29368,11 @@ window.N1_CURATED_OVERRIDES={
     "examples": [
       {
         "jp": "裏切った相手が今でも憎い。",
-        "ko": "배신한 상대가 지금도 밉다."
+        "ko": "배신한 상대가 지금도 밉다.",
+        "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review-qa-20261008"
+    "meaningSource": "manual-review"
   },
   "oj-a7c3dfe336": {
     "meaning": "미움 / 증오",
@@ -29453,14 +29525,15 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review-qa-20261008"
   },
   "oj-35c99c026b": {
-    "meaning": "빌림 / 빌려 씀 · 겸양 표현",
+    "meaning": "삼가 빌리다 / 빌려 쓰다(겸양어)",
     "examples": [
       {
-        "jp": "少しお時間を拝借してもよろしいですか。",
-        "ko": "잠시 시간을 빌려도 괜찮을까요."
+        "jp": "大切な資料を拝借してもよろしいでしょうか。",
+        "ko": "중요한 자료를 잠시 빌려도 될까요?",
+        "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review-qa-20261008"
+    "meaningSource": "manual-review"
   },
   "oj-373d4785f7": {
     "meaning": "파괴 / 망가뜨림",
@@ -29566,21 +29639,22 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "비 / 비용 / 경비",
     "examples": [
       {
-        "jp": "交通費は会社が負担する。",
-        "ko": "교통비는 회사가 부담한다."
+        "jp": "医療費の負担が家計を圧迫している。",
+        "ko": "의료비 부담이 가계를 압박하고 있다.",
+        "exampleSource": "manual-review"
       }
     ],
     "meaningSource": "manual-review-qa-20261008"
   },
   "oj-4f910a19d7": {
-    "meaning": "비관 / 나쁘게 전망함",
+    "meaning": "비관 / 나쁜 쪽으로 전망함",
     "examples": [
       {
         "jp": "将来を必要以上に悲観することはない。",
         "ko": "미래를 필요 이상으로 비관할 필요는 없다."
       }
     ],
-    "meaningSource": "manual-review-qa-20261008"
+    "meaningSource": "manual-review"
   },
   "oj-c1eb4a6e5e": {
     "meaning": "비서",
@@ -29676,8 +29750,9 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "불가결 / 꼭 필요함",
     "examples": [
       {
-        "jp": "信頼は長い関係を築くうえで不可欠だ。",
-        "ko": "신뢰는 오래 관계를 쌓는 데 필수적이다."
+        "jp": "海外生活では現地の情報収集が不可欠だ。",
+        "ko": "해외 생활에서는 현지 정보 수집이 필수다.",
+        "exampleSource": "manual-review"
       }
     ],
     "meaningSource": "manual-review-qa-20261008"
