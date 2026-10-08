@@ -24091,7 +24091,7 @@ window.N1_CURATED_OVERRIDES={
       {
         "jp": "好きなものを指差しなさい。",
         "ko": "좋아하는 것을 손가락으로 가리키세요.",
-        "exampleSource": "manual-review"
+        "exampleSource": "manual-qa-2026-10-08"
       }
     ],
     "meaningSource": "manual-review"
@@ -24100,9 +24100,9 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "느슨해지다 / 풀리다 / 긴장이 누그러지다",
     "examples": [
       {
-        "jp": "普通ネジはね、のの字に回すと締まって、のの字の反対に回すと緩むんだよ。",
-        "ko": "보통 나사는 시계 방향으로 돌리면 조여지고 반대로 돌리면 풀려.",
-        "exampleSource": "manual-review"
+        "jp": "ネジが緩んでいる。",
+        "ko": "나사가 풀려 있다.",
+        "exampleSource": "manual-qa-2026-10-08"
       }
     ],
     "meaningSource": "manual-review"
@@ -29467,8 +29467,9 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "활",
     "examples": [
       {
-        "jp": "弓を引いて的を狙った。",
-        "ko": "활을 당겨 과녁을 겨냥했다."
+        "jp": "トムは弓矢で魚を捕るのが好きだ。",
+        "ko": "톰은 활과 화살로 물고기를 잡는 것을 좋아한다.",
+        "exampleSource": "manual-qa-2026-10-08"
       }
     ],
     "meaningSource": "manual-review-qa-20261008"
