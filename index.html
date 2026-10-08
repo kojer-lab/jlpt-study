@@ -331,7 +331,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
           <div class="passage hidden" id="quizPassage"></div>
           <div class="question" id="quizQuestion"></div>
           <div class="choices" id="quizChoices"></div>
-          <div class="explain" id="quizExplanation"></div>
+          <div class="explain" id="quizExplanation"></div><div id="mistakeGradePanel" class="hidden" style="margin-top:12px"><div style="font-weight:700;margin-bottom:9px">이 문제, 얼마나 기억났나요?</div><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px"><button type="button" class="secondary" data-mistake-grade="again">다시 · 10분</button><button type="button" class="secondary" data-mistake-grade="hard">어려움 · 1일</button><button type="button" class="secondary" data-mistake-grade="good">알맞음 · 기본 간격</button><button type="button" class="secondary" data-mistake-grade="easy">쉬움 · 긴 간격</button></div></div>
           <div class="next-row"><button class="primary hidden" id="nextQuizBtn" type="button">다음 문제</button></div>
         </div>
       </div>
@@ -2175,14 +2175,16 @@ function renderMistakeRetry(){
   $("quizQuestion").innerHTML=item.noFurigana?item.q:quizJP(item.q,item);
   $("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(normalizeQuizChoice(choice),item)}</button>`).join("");
  }
- $("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");
+ $("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");$("nextQuizBtn").disabled=false;$("mistakeGradePanel").classList.add("hidden");
  restoreInteractiveFuriState($("quizView"));
 }
 function answerMistakeRetry(idx){
  if(!mistakeRetryActive||mistakeRetryAnswered)return;
  const entry=mistakeRetryQueue[mistakeRetryIndex],item=entry.item;mistakeRetryAnswered=true;quizAnswered=true;if(entry.type!=="reading"&&item.noFurigana){$("quizQuestion").innerHTML=quizJP(item.q,item);restoreInteractiveFuriState($("quizQuestion"));}
  [...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});
- recordAnswer(entry.type,item,idx);
+ recordAnswer(entry.type,item,idx,{deferMistakeSchedule:true});
+ $("mistakeGradePanel").classList.remove("hidden");$("mistakeGradePanel").dataset.correct=String(idx===item.a);
+ $("nextQuizBtn").disabled=true;
  if(entry.type==="reading"){
   const fq=entry.set.furigana?.questions?.[entry.questionIndex];
   const passageKo=entry.set.passageKo||"",questionKo=item.translation||"";
@@ -2211,7 +2213,7 @@ function normalizeQuizExplanation(value){
 function normalizeQuizChoice(value){
  return String(value??"").trim().replace(/[。．.]\s*$/u,"").trim();
 }
-function renderQuiz(){const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘"+(item.type?" · "+item.type:""):"文法 · 문법"+(item.type?" · "+item.type:"");$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.noFurigana?item.q:quizJP(item.q,item);$("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(choice,item)}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");restoreInteractiveFuriState($("quizView"))}
+function renderQuiz(){$("mistakeGradePanel").classList.add("hidden");$("nextQuizBtn").disabled=false;const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘"+(item.type?" · "+item.type:""):"文法 · 문법"+(item.type?" · "+item.type:"");$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.noFurigana?item.q:quizJP(item.q,item);$("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(choice,item)}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");restoreInteractiveFuriState($("quizView"))}
 $("quizChoices").addEventListener("click",e=>{if(e.target.closest(".furi"))return;const b=e.target.closest(".choice");if(!b)return;if(mistakeRetryActive){answerMistakeRetry(+b.dataset.i);return}if(quizAnswered)return;quizAnswered=true;const item=quizData[quizMode][quizOrder[quizIndex]],idx=+b.dataset.i;if(item.noFurigana){$("quizQuestion").innerHTML=quizJP(item.q,item);restoreInteractiveFuriState($("quizQuestion"));}[...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});recordAnswer(quizMode,item,idx);const details=item.details?`<div class="detail-list">${item.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${quizJP(d,item)}</div>`).join("")}</div>`:"";$("quizExplanation").innerHTML=`<strong>${idx===item.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${item.a+1}. ${quizJP(item.c[item.a],item)}<div class="translation"><strong>문제 뜻</strong><br>${quizJP(item.translation||"",item)}</div><div style="margin-top:12px"><strong>해설</strong><br>${quizJP(normalizeQuizExplanation(item.e),item)}</div>${quizMode==="vocab"?renderVocabDeepDive(item):""}${details}`;$("quizExplanation").classList.add("show");$("nextQuizBtn").classList.remove("hidden");restoreInteractiveFuriState($("quizExplanation"));refreshAll()});
 $("quizExplanation").addEventListener("click",e=>{const b=e.target.closest("[data-vocab-star]");if(!b)return;const id=b.dataset.vocabStar;if(!words.some(w=>w.id===id))return;toggleStar(id);const active=isStarred(id);b.textContent=active?"★":"☆";b.classList.toggle("on",active);b.setAttribute("aria-label",active?"즐겨찾기 해제":"단어 즐겨찾기 저장");});
 function scrollToNewQuestion(viewId){
@@ -2223,13 +2225,14 @@ function scrollToNewQuestion(viewId){
   window.scrollTo({top:Math.max(0,y),behavior:"instant"});
  }));
 }
+$("mistakeGradePanel").addEventListener("click",e=>{const btn=e.target.closest("[data-mistake-grade]");if(!btn||!mistakeRetryActive)return;const entry=mistakeRetryQueue[mistakeRetryIndex],m=state.mistakes.find(x=>x.id===entry.mistake.id);if(!m)return;const grade=btn.dataset.mistakeGrade,correct=$("mistakeGradePanel").dataset.correct==="true";const t=Date.now();m.updatedAt=t;if(!correct||grade==="again"){m.count+=(correct?0:1);m.streak=0;m.interval=0;m.ease=Math.max(1.3,(Number(m.ease)||2.5)-.2);m.due=t+10*60000;}else{m.streak=(Number(m.streak)||0)+1;const base=m.streak===1?1:m.streak===2?3:Math.max(4,Math.round((Number(m.interval)||3)*(Number(m.ease)||2.5)));m.interval=grade==="hard"?Math.max(1,Math.round(base*.6)):grade==="easy"?Math.max(2,Math.round(base*1.6)):base;m.ease=Math.min(3,Math.max(1.3,(Number(m.ease)||2.5)+(grade==="hard"?-.1:grade==="easy"?.1:.05)));m.due=t+m.interval*86400000;}saveState(state);$("mistakeGradePanel").classList.add("hidden");$("nextQuizBtn").disabled=false;refreshAll();});
 $("nextQuizBtn").addEventListener("click",()=>{if(mistakeRetryActive){if(mistakeRetryIndex<mistakeRetryQueue.length-1){mistakeRetryIndex++;renderMistakeRetry();scrollToNewQuestion("quizView")}else{mistakeRetryActive=false;mistakeRetryQueue=[];mistakeRetryIndex=0;showView("mistakes");renderMistakes();window.scrollTo({top:0,behavior:"instant"})}return}if(quizIndex<quizOrder.length-1){quizIndex++;renderQuiz();scrollToNewQuestion("quizView")}else{showView("quizhub");window.scrollTo({top:0,behavior:"instant"})}});
-function recordAnswer(type,item,idx){
+function recordAnswer(type,item,idx,opts={}){
  state.solved++;if(idx===item.a)state.correct++;
  const id=type+"-"+plain(item.q),t=Date.now();
  let m=state.mistakes.find(x=>x.id===id);
  if(idx!==item.a&&!m){m={id,type,q:item.q,correct:item.c[item.a],translation:item.translation||"",explanation:item.e,details:item.details||[],count:0,updatedAt:t,due:t,interval:0,ease:2.5,streak:0};state.mistakes.unshift(m)}
- if(m){
+ if(m&&!opts.deferMistakeSchedule){
   m.updatedAt=t;
   if(idx!==item.a){m.count++;m.streak=0;m.interval=0;m.ease=Math.max(1.3,(Number(m.ease)||2.5)-.2);m.due=t+10*60000;}
   else{
