@@ -342,7 +342,9 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="reading-modes" id="readingModes">
         <button type="button" data-mode="short" class="active">短文 단문</button><button type="button" data-mode="medium">中文 중문</button><button type="button" data-mode="long">長文 장문</button><button type="button" data-mode="news">時事 최신 소식</button>
       </div>
-      <div class="quiz-shell"><div class="card">
+      <div id="newsDailyNav" class="card hidden" style="margin:0 0 16px;padding:14px"><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><strong>오늘의 시사독해</strong><select id="newsDateSelect" aria-label="학습 날짜 선택" style="max-width:200px"></select><span id="newsProgressLabel"></span></div></div>
+      <div id="newsDailyComplete" class="card hidden" style="padding:24px;text-align:center"></div>
+      <div class="quiz-shell" id="readingQuizShell"><div class="card">
         <div class="tag" id="readingTag"></div>
         <div class="passage long-passage" id="readingPassage"></div>
         <div class="question" id="readingQuestion"></div>
@@ -1429,16 +1431,26 @@ for(const mode of ["short","medium","long","news"]){
   set.furigana=readingFuriganaBank[set.title]||null;
  }
 }
-function dailyNewsSet(){
- if(!dailyNewsBank.length)return null;
- const key=todayKey(),exact=dailyNewsBank.find(x=>x.date===key);
- if(exact)return exact;
- const [y,m,d]=key.split("-").map(Number),dayNo=Math.floor(new Date(y,m-1,d).getTime()/DAY);
- return dailyNewsBank[((dayNo%dailyNewsBank.length)+dailyNewsBank.length)%dailyNewsBank.length];
+function newsTodayKey(){const parts=new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date(Date.now()-6*60*60*1000));const p=Object.fromEntries(parts.map(x=>[x.type,x.value]));return p.year+"-"+p.month+"-"+p.day}
+function newsDays(){return [...new Set(dailyNewsBank.filter(x=>x.date<=newsTodayKey()).map(x=>x.date))].sort().reverse()}
+let selectedNewsDate=null,newsCorrect=0,newsAnsweredCount=0;
+function newsArticlesForDate(date){return dailyNewsBank.filter(x=>x.date===date).slice(0,3)}
+function dailyNewsSet(){const dates=newsDays();return newsArticlesForDate(dates[0])[0]||null}
+function dailyNewsReadingIndex(){const set=dailyNewsSet();const i=readingSets.news.indexOf(set);return i>=0?i:0}
+function setupNewsDay(date){
+ const days=newsDays();selectedNewsDate=days.includes(date)?date:days[0];
+ const sets=newsArticlesForDate(selectedNewsDate);
+ if(!sets.length)return;
+ readingSetIndex=readingSets.news.indexOf(sets[0]);readingQ=0;newsCorrect=0;newsAnsweredCount=0;
+ $("newsDateSelect").innerHTML=days.map(d=>'<option value="'+d+'">'+d.replaceAll("-",".")+'</option>').join("");
+ $("newsDateSelect").value=selectedNewsDate;
+ $("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden");
 }
-function dailyNewsReadingIndex(){
- const set=dailyNewsSet();if(!set)return 0;
- const i=readingSets.news.indexOf(set);return i>=0?i:0;
+function finishNewsDay(){
+ $("readingQuizShell").classList.add("hidden");$("newsDailyComplete").classList.remove("hidden");
+ $("newsDailyComplete").innerHTML='<h2>오늘의 시사독해 완료!</h2><p>총 '+newsAnsweredCount+'문제 중 '+newsCorrect+'문제 정답 · 정답률 '+(newsAnsweredCount?Math.round(newsCorrect/newsAnsweredCount*100):0)+'%</p><button type="button" class="primary" id="retryNewsDay">다시 풀기</button>';
+ $("retryNewsDay").addEventListener("click",()=>{setupNewsDay(selectedNewsDate);renderReading()});
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
 let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordLearningQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewLearningQueue=[],reviewIndex=0;let mistakeRetryActive=false,mistakeRetryQueue=[],mistakeRetryIndex=0,mistakeRetryAnswered=false;
@@ -1620,10 +1632,10 @@ function refreshAll(){renderHome();renderStats();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
  if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
-function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;showView("reading");renderReading()}else showView(target)}
+function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();const key=furiStateKey(fu),next=!fu.classList.contains("show");fu.classList.toggle("show",next);if(next)interactiveFuriShown.add(key);else interactiveFuriShown.delete(key)}}});
 
-function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"});const dn=dailyNewsSet();if(dn){$("homeNewsDate").textContent=todayKey().replaceAll("-",".")+" · 時事読解";$("homeNewsTitle").textContent=dn.headline||dn.title;$("homeNewsSub").textContent=(dn.sourceDate?dn.sourceDate+" 기사 기반 · ":"")+"매일 자동으로 다른 시사독해가 선택됩니다."}}
+function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"});const dn=dailyNewsSet();if(dn){$("homeNewsDate").textContent=todayKey().replaceAll("-",".")+" · 時事読解";$("homeNewsTitle").textContent="오늘의 시사독해 · "+newsArticlesForDate(dn.date).length+"개 기사";$("homeNewsSub").textContent=(dn.sourceDate?dn.sourceDate+" 기사 기반 · ":"")+"일본 시간 오전 6시 기준 · 하루 3기사, 9문제"}}
 
 function buildWordStudyQueue(){
  const due=dueWords(),fresh=todayNewPending(),seen=new Set();
@@ -2087,6 +2099,11 @@ function readingTranslationHTML(set,q){
 }
 function renderReading(){
  const bank=readingSets[readingMode],set=bank[readingSetIndex],q=set.questions[readingQ],fq=set.furigana?.questions?.[readingQ];
+ $("newsDailyNav").classList.toggle("hidden",readingMode!=="news");
+ if(readingMode==="news"){
+  const group=newsArticlesForDate(selectedNewsDate),n=group.indexOf(set),total=group.reduce((sum,x)=>sum+x.questions.length,0);
+  $("newsProgressLabel").textContent="기사 "+(n+1)+"/"+group.length+" · 완료 "+newsAnsweredCount+"/"+total+"문제";
+ }
  readingAnswered=false;
  document.querySelectorAll("#readingModes button").forEach(b=>b.classList.toggle("active",b.dataset.mode===readingMode));
  $("readingTag").textContent=set.title+` · 세트 ${readingSetIndex+1}/${bank.length} · 문제 ${readingQ+1}/${set.questions.length}`;
@@ -2100,7 +2117,7 @@ function renderReading(){
 }
 $("readingModes").addEventListener("click",e=>{
  const b=e.target.closest("button[data-mode]");if(!b)return;
- readingMode=b.dataset.mode;readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;renderReading();
+ readingMode=b.dataset.mode;readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}renderReading();
 });
 $("readingChoices").addEventListener("click",e=>{
  if(e.target.closest(".furi"))return;
@@ -2109,9 +2126,10 @@ $("readingChoices").addEventListener("click",e=>{
  const set=readingSets[readingMode][readingSetIndex],q=set.questions[readingQ],idx=+b.dataset.i;
  [...$("readingChoices").children].forEach((x,i)=>{x.setAttribute("aria-disabled","true");x.classList.add("answered");if(i===q.a)x.classList.add("correct");if(i===idx&&idx!==q.a)x.classList.add("wrong")});
  recordAnswer("reading",q,idx);
+ if(readingMode==="news"){newsAnsweredCount++;if(idx===q.a)newsCorrect++;}
  const fq=set.furigana?.questions?.[readingQ];
  $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${fq?.e||readingJP(q.e)}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" style="margin-top:14px">🇰🇷 번역 보기</button><div id="readingTranslationBox" class="hidden">${readingTranslationHTML(set,q)}</div>`;
- $("readingExplanation").classList.add("show");$("nextReadingBtn").classList.remove("hidden");restoreInteractiveFuriState($("readingExplanation"));refreshAll();
+ $("readingExplanation").classList.add("show");$("nextReadingBtn").classList.remove("hidden");if(readingMode==="news"){$("newsProgressLabel").textContent="완료 "+newsAnsweredCount+"/"+newsArticlesForDate(selectedNewsDate).reduce((n,x)=>n+x.questions.length,0)+"문제"}restoreInteractiveFuriState($("readingExplanation"));refreshAll();
 });
 $("readingExplanation").addEventListener("click",e=>{
  const b=e.target.closest("#readingTranslationBtn");if(!b)return;
@@ -2123,10 +2141,16 @@ $("nextReadingBtn").addEventListener("click",()=>{
  const bank=readingSets[readingMode],set=bank[readingSetIndex];
  if(readingQ<set.questions.length-1){readingQ++;renderReading();return}
  readingQ=0;
+ if(readingMode==="news"){
+  const group=newsArticlesForDate(selectedNewsDate),i=group.indexOf(set);
+  if(i<group.length-1){readingSetIndex=bank.indexOf(group[i+1]);renderReading();window.scrollTo({top:0,behavior:"smooth"})}else finishNewsDay();
+  return;
+ }
  if(readingSetIndex<bank.length-1){readingSetIndex++;renderReading();window.scrollTo({top:0,behavior:"smooth"});return}
  readingSetIndex=0;renderReading();window.scrollTo({top:0,behavior:"smooth"});
 });
 
+$("newsDateSelect").addEventListener("change",e=>{setupNewsDay(e.target.value);renderReading()});
 function startReview(){reviewQueue=dueWords();reviewIndex=0;renderReview()}
 function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords().length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-card-body"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>연속 ${s.streak||0} · 다시 ${s.lapses}회</span></div><div class="word-title-row"><div><div class="word-main">${w.w}</div></div><button type="button" class="star-btn ${isStarred(w.id)?"on":""}" id="reviewStarBtn" data-word="${w.id}">${isStarred(w.id)?"★":"☆"}</button></div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);restoreInteractiveFuriState(root);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewStarBtn").addEventListener("click",()=>{toggleStar(w.id);renderReview()});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);clearStudyFuriganaState();reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
 
