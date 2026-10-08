@@ -10,7 +10,10 @@ OUT = ROOT / "audio" / "vocab"
 data = json.loads(SOURCE.read_text(encoding="utf-8"))
 items = data["items"]
 missing = [item for item in items if not (ROOT / item["path"]).exists()]
-print(f"Vocabulary clips: {len(items)} total, {len(missing)} missing")
+batch_size = int(os.environ.get("VOCAB_AUDIO_BATCH_SIZE", "0"))
+if batch_size > 0:
+    missing = missing[:batch_size]
+print(f"Vocabulary clips: {len(items)} total, generating {len(missing)} missing this batch")
 
 if missing:
     import numpy as np
@@ -60,6 +63,9 @@ if missing:
 
 files = {}
 for item in items:
+    # Never publish an ungenerated MP3 URL to mobile Safari.
+    if not (ROOT / item["path"]).is_file():
+        continue
     entry = files.setdefault(item["id"], {"word": None, "examples": []})
     if item["kind"] == "word":
         entry["word"] = item["path"]
@@ -72,8 +78,8 @@ for item in items:
 manifest = {
     "version": 3,
     "engine": "Kokoro-82M / jf_alpha",
-    "count": len(items),
+    "count": sum(1 for item in items if (ROOT / item["path"]).is_file()),
     "files": files,
 }
 (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print(f"Done: {len(items)} clips in manifest")
+print(f"Done: {manifest['count']}/{len(items)} clips in manifest")
