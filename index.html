@@ -205,6 +205,14 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
  }
  #wordsView #wordStudyPanel .word-main{font-size:clamp(40px,8vw,50px)}
 }
+/* Align the example audio control to the first Japanese text line, not the label above it. */
+#wordsView #wordStudyPanel .example-line{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:8px;align-items:start;min-width:0}
+#wordsView #wordStudyPanel .example-line .example-jp{min-width:0;overflow-wrap:anywhere}
+#wordsView #wordStudyPanel .example-line .example-speak{align-self:start;margin-top:11px;white-space:nowrap;flex-shrink:0}
+@media(max-width:760px){
+ #wordsView #wordStudyPanel .example-line{column-gap:6px}
+ #wordsView #wordStudyPanel .example-line .example-speak{margin-top:10px}
+}
 </style>
 <!-- static-vocab-audio-build-v1 -->
 </head>
@@ -2026,7 +2034,7 @@ function renderWord(){
  $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
  $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");
  $("showMeaningBtn").textContent="뜻 · 예문 보기";
- $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+ $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div></div><div class="example-line"><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
  $("wordExamples").classList.add("hidden");
  const breakdown=wordBreakdownFor(w);
  $("wordBreakdown").innerHTML=breakdown?studyBreakdownHTML(breakdown,w.id):"";
