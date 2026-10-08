@@ -1466,7 +1466,7 @@ function buildExpansionVocabQuiz(src,count=60){
  return candidates.slice(0,count).map((w,i)=>{
   const seen=new Set([plain(w.w)]),options=[w];
   for(let j=0;j<src.length&&options.length<4;j++){
-   const x=src[(i*23+j+17)%src.length],surface=plain(x.w||"").trim();
+   const x=src[(i*29+j*691+613)%src.length],surface=plain(x.w||"").trim();
    if(!surface||seen.has(surface)||/[가-힣]/.test(surface))continue;
    seen.add(surface);options.push(x);
   }
