@@ -1732,7 +1732,7 @@ function todayNewPending(){return ensureDailyNew(false).filter(w=>getSrs(w.id).r
 function refreshAll(){renderHome();renderStats();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
- if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){stopKokoroAudio();}if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
+ if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){mockStopListening();}if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();const key=furiStateKey(fu),next=!fu.classList.contains("show");fu.classList.toggle("show",next);if(next)interactiveFuriShown.add(key);else interactiveFuriShown.delete(key)}}});
 
@@ -2585,7 +2585,8 @@ function setupAiListening(){
  $("aiListenNext").addEventListener("click",()=>{aiListenGeneration++;aiListenPlaying=false;releaseKokoroWakeLock();stopKokoroAudio();aiListenIndex=(aiListenIndex+1)%aiListeningProblems.length;renderAiListening()});
 }
 
-let mockItems=[],mockAnswers=[],mockIndex=0,mockStarted=0,mockPhaseStarted=0,mockPhase="language",mockTimerHandle=null,mockReady=false,mockSubmitted=false;
+let mockItems=[],mockAnswers=[],mockIndex=0,mockStarted=0,mockPhaseStarted=0,mockPhase="language",mockTimerHandle=null,mockReady=false,mockSubmitted=false,mockListenRun=0,mockListening=false;
+function mockStopListening(){mockListenRun++;mockListening=false;stopKokoroAudio();const btn=$("mockListenBtn");if(btn)btn.disabled=false;}
 function mockShuffle(a){const out=[...a];for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
 const MOCK_SAVE_KEY="jlpt-n1-mock-v1";
 function mockPools(){return {vocab:quizData.vocab.map(item=>({kind:"vocab",item})),grammar:quizData.grammar.map(item=>({kind:"grammar",item})),reading:Object.entries(readingSets).filter(([k])=>k!=="news").flatMap(([mode,sets])=>sets.flatMap(set=>set.questions.map(item=>({kind:"reading",item,set})))),listening:aiListeningProblems.filter(item=>Array.isArray(item.lines)&&item.lines.length&&Array.isArray(item.choices)&&Number.isInteger(item.answer)).map(item=>({kind:"listening",item}))};}
@@ -2639,7 +2640,7 @@ function mockBuild(){
 function mockRender(){
  if(!mockItems.length)return;
  const e=mockItems[mockIndex],listening=e.kind==="listening",phase=listening?"listening":"language";
- if(phase!==mockPhase&&phase==="listening"){mockPhase=phase;mockPhaseStarted=Date.now();stopKokoroAudio();mockSave();}
+ if(phase!==mockPhase&&phase==="listening"){mockPhase=phase;mockPhaseStarted=Date.now();mockStopListening();mockSave();}
  $("mockSection").textContent=({vocab:"語彙 · 어휘",grammar:"文法 · 문법",reading:"読解 · 독해",listening:"聴解 · 청해"})[e.kind];
  $("mockCounter").textContent=(mockIndex+1)+" / "+mockItems.length+" · 답변 "+mockAnswers.filter(x=>x!==null).length+"개";
  $("mockPassage").classList.toggle("hidden",e.kind!=="reading");
@@ -2648,14 +2649,14 @@ function mockRender(){
  const choices=listening?e.item.choices:e.item.c;
  $("mockChoices").innerHTML=choices.map((c,i)=>'<button type="button" class="choice'+(mockAnswers[mockIndex]===i?' selected':'')+'" data-mock-choice="'+i+'">'+(i+1)+'. '+(listening?c:e.kind==="reading"?readingJP(c):quizJP(c,e.item))+'</button>').join("");
  $("mockListenBtn").classList.toggle("hidden",!listening);
- $("mockListenStatus").textContent="";
+ if(!mockListening)$("mockListenStatus").textContent="";
  $("mockPrevBtn").disabled=mockIndex===0||mockIndex===mockItems.length-15;
  $("mockNextBtn").disabled=mockIndex===mockItems.length-1;
  $("mockNextBtn").textContent=mockIndex===mockItems.length-16?"청해 영역 시작":"다음";
 }
 function mockFinish(){
  if(!mockItems.length||mockSubmitted)return;
- mockSubmitted=true;localStorage.removeItem(MOCK_SAVE_KEY);clearInterval(mockTimerHandle);stopKokoroAudio();
+ mockSubmitted=true;localStorage.removeItem(MOCK_SAVE_KEY);clearInterval(mockTimerHandle);mockStopListening();
  let correct=0;const stats={vocab:[0,0],grammar:[0,0],reading:[0,0],listening:[0,0]},wrong=[];
  const labels={vocab:"어휘",grammar:"문법",reading:"독해",listening:"청해"};
  const escapeMock=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -2685,6 +2686,7 @@ function mockFinish(){
  $("mockRestartBtn").onclick=mockStart;
 }
 function mockStart(){
+ mockStopListening();
  mockItems=mockBuild();mockAnswers=Array(mockItems.length).fill(null);mockSubmitted=false;mockIndex=0;mockStarted=Date.now();mockPhaseStarted=mockStarted;mockPhase="language";
  $("mockIntro").classList.add("hidden");$("mockResult").classList.add("hidden");$("mockRunning").classList.remove("hidden");
  clearInterval(mockTimerHandle);
@@ -2700,10 +2702,30 @@ function setupMock(){
  if(mockReady)return;mockReady=true;
  $("mockStartBtn").onclick=mockStart;
  $("mockChoices").onclick=e=>{mockTick();if(mockSubmitted)return;const b=e.target.closest("[data-mock-choice]");if(!b)return;mockAnswers[mockIndex]=Number(b.dataset.mockChoice);mockRender();mockSave();};
- $("mockPrevBtn").onclick=()=>{if(mockIndex>0&&mockIndex!==mockItems.length-15){stopKokoroAudio();mockIndex--;mockRender();mockSave()}};
- $("mockNextBtn").onclick=()=>{mockTick();if(mockSubmitted)return;if(mockIndex<mockItems.length-1){stopKokoroAudio();if(mockIndex===mockItems.length-16){if(!confirm("언어지식·독해 영역을 종료하고 청해를 시작할까요? 이전 영역으로 돌아갈 수 없습니다."))return;mockPhase="listening";mockPhaseStarted=Date.now();}mockIndex++;mockRender();mockSave()}};
+ $("mockPrevBtn").onclick=()=>{if(mockIndex>0&&mockIndex!==mockItems.length-15){mockStopListening();mockIndex--;mockRender();mockSave()}};
+ $("mockNextBtn").onclick=()=>{mockTick();if(mockSubmitted)return;if(mockIndex<mockItems.length-1){mockStopListening();if(mockIndex===mockItems.length-16){if(!confirm("언어지식·독해 영역을 종료하고 청해를 시작할까요? 이전 영역으로 돌아갈 수 없습니다."))return;mockPhase="listening";mockPhaseStarted=Date.now();}mockIndex++;mockRender();mockSave()}};
  $("mockSubmitBtn").onclick=()=>{if(confirm("모의고사를 제출하고 채점할까요?"))mockFinish()};
- $("mockListenBtn").onclick=async()=>{const e=mockItems[mockIndex];if(!e||e.kind!=="listening")return;const index=aiListeningProblems.indexOf(e.item),questionIndex=mockIndex;$("mockListenStatus").textContent="음성 준비 중…";try{const job=startAiListenJob(index);if(!job)throw new Error("청해 데이터를 찾지 못했습니다.");for(const slot of job.slots){const x=await slot.promise;if(questionIndex!==mockIndex||mockSubmitted||$("mockRunning").classList.contains("hidden"))return;await playKokoroUrl(x.url)}if(questionIndex===mockIndex)$("mockListenStatus").textContent="재생 완료";}catch(err){if(questionIndex===mockIndex)$("mockListenStatus").textContent="재생 실패: "+err.message}};
+ $("mockListenBtn").onclick=async()=>{
+  const e=mockItems[mockIndex];
+  if(!e||e.kind!=="listening"||mockListening||mockSubmitted)return;
+  mockListening=true;
+  const token=++mockListenRun,questionIndex=mockIndex,index=aiListeningProblems.indexOf(e.item);
+  $("mockListenBtn").disabled=true;
+  $("mockListenStatus").textContent="음성 준비 중…";
+  try{
+   const job=startAiListenJob(index);if(!job)throw new Error("청해 데이터를 찾지 못했습니다.");
+   for(const slot of job.slots){
+    const audio=await slot.promise;
+    if(token!==mockListenRun||questionIndex!==mockIndex||mockSubmitted||$("mockRunning").classList.contains("hidden"))return;
+    await playKokoroUrl(audio.url);
+   }
+   if(token===mockListenRun)$("mockListenStatus").textContent="재생 완료";
+  }catch(err){
+   if(token===mockListenRun)$("mockListenStatus").textContent="재생 실패: "+err.message;
+  }finally{
+   if(token===mockListenRun){mockListening=false;$("mockListenBtn").disabled=false}
+  }
+ };
  setInterval(mockTick,1000);
 }
 let listeningReady=false;
