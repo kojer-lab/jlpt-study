@@ -1425,7 +1425,7 @@ function buildReviewedVocab500(){
  const entries=[...unique.values()].filter(w=>!/[A-Za-z0-9]/.test(w.gloss));
  const result=[];
  // 뜻이 완전히 같거나 핵심 의미가 겹치는 오답은 복수 정답 위험이 있어 제외한다.
- const normalizeGloss=v=>String(v||"").replace(/\\s+/g,"").replace(/[()（）.,·ㆍ]/g,"").replace(/(?:하다|되다|시키다)$/,"");
+ const normalizeGloss=v=>String(v||"").replace(/\s+/g,"").replace(/[()（）.,·ㆍ]/g,"").replace(/(?:하다|되다|시키다)$/,"");
  const ambiguousGloss=(a,b)=>{
   const x=normalizeGloss(a),y=normalizeGloss(b);
   if(!x||!y)return true;
