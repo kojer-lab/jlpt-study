@@ -1394,6 +1394,54 @@ function buildExpansionGrammarQuiz(src){
  });
 }
 quizData.vocab.push(...buildExpansionVocabQuiz(extraWordRaw,60));
+
+// 2단계 N1 어휘 확장: 검수된 2,933개 표제어에서 의미 250 + 한자 읽기 250.
+// 출제 후보가 부족하거나 보기가 중복될 때에는 잘못된 문제를 강제로 생성하지 않는다.
+function buildReviewedVocab500(){
+ const curated=window.N1_CURATED_OVERRIDES||{};
+ const clean=w=>String(w||"").replace(/<[^>]*>/g,"").trim();
+ const meaning=w=>String(curated[w.id]?.meaning||w.meaning||"").split(/\s*\/\s*/)[0].trim();
+ const unique=new Map();
+ for(const w of extraWordRaw){
+  const surface=clean(curated[w.id]?.w||w.w),read=String(curated[w.id]?.r||w.r||"").trim();
+  const gloss=meaning(w);
+  if(!curated[w.id]||!/^[가-힣]/.test(gloss)||gloss.length<2||gloss.length>24||/[?？!！…]|(?:오역|불명|미상)/.test(gloss))continue;
+  if(surface.length<2||surface.length>9||!read||!/[一-龯々]/.test(surface))continue;
+  if(!unique.has(surface))unique.set(surface,{id:w.id,surface,read,gloss});
+ }
+ const entries=[...unique.values()].filter(w=>!/[A-Za-z0-9]/.test(w.gloss));
+ const result=[];
+ const meaningTargets=entries.filter(w=>w.gloss.length>=2).slice(0,250);
+ for(let i=0;i<meaningTargets.length;i++){
+  const w=meaningTargets[i],pool=entries.filter(x=>x.surface!==w.surface&&x.gloss!==w.gloss&&x.gloss.length>=2);
+  const seen=new Set([w.gloss]),alternatives=[];
+  for(let j=0;j<pool.length&&alternatives.length<3;j++){
+   const candidate=pool[(i*31+j*47)%pool.length].gloss;
+   if(!seen.has(candidate)){seen.add(candidate);alternatives.push(candidate)}
+  }
+  if(alternatives.length!==3)continue;
+  const answer=(i+1)%4,choices=alternatives.slice();choices.splice(answer,0,w.gloss);
+  result.push({q:`「${w.surface}」の意味として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 뜻으로 가장 적절한 것은?`,e:`「${w.surface}」（${w.read}）는 「${w.gloss}」라는 뜻입니다. 예문과 함께 문맥에서의 쓰임도 확인하세요.`});
+ }
+ const readingTargets=entries.filter(w=>/^[ぁ-ゖー]+$/.test(w.read)&&w.read.length>=2&&w.read.length<=12).slice(250,500);
+ const readingPool=[...new Set(entries.filter(w=>/^[ぁ-ゖー]+$/.test(w.read)).map(w=>w.read))];
+ for(let i=0;i<readingTargets.length;i++){
+  const w=readingTargets[i],seen=new Set([w.read]),alternatives=[];
+  // 길이가 비슷한 다른 단어의 실제 읽기를 오답 보기로 활용
+  const candidates=readingPool.filter(r=>r!==w.read&&Math.abs(r.length-w.read.length)<=1);
+  for(let j=0;j<candidates.length&&alternatives.length<3;j++){
+   const candidate=candidates[(i*17+j*19)%candidates.length];
+   if(!seen.has(candidate)){seen.add(candidate);alternatives.push(candidate)}
+  }
+  if(alternatives.length!==3)continue;
+  const answer=(i+2)%4,choices=alternatives.slice();choices.splice(answer,0,w.read);
+  result.push({q:`「${w.surface}」の読み方として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 올바른 읽기는?`,e:`「${w.surface}」는 「${w.read}」라고 읽고, 뜻은 「${w.gloss}」입니다.`});
+ }
+ return result;
+}
+const reviewedVocab500=buildReviewedVocab500();
+quizData.vocab.push(...reviewedVocab500);
+
 quizData.grammar.push(...buildExpansionGrammarQuiz(window.N1_EXTRA_GRAMMAR||[]));
 
 const readingSets={
