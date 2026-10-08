@@ -2921,7 +2921,58 @@ function setupListening(){
  player.addEventListener("error",()=>{$("audioStatus").textContent="외부 음원을 불러오지 못했습니다. ‘음원 새 창’을 사용해 주세요."});
 }
 
-function applyTheme(){const d=localStorage.getItem("jlptN1ThemeV3")==="dark";document.body.classList.toggle("dark",d);$("themeBtn").textContent=d?"☀️ 라이트모드":"🌙 다크모드"}function toggleTheme(){localStorage.setItem("jlptN1ThemeV3",document.body.classList.contains("dark")?"light":"dark");applyTheme()}$("themeBtn").addEventListener("click",toggleTheme);$("mobileTheme").addEventListener("click",toggleTheme);
+// Mobile defaults to the device appearance. Desktop retains its existing manual preference.
+const MOBILE_THEME_KEY="jlptN1MobileThemeV1";
+const mobileLayoutQuery=window.matchMedia("(max-width: 760px)");
+const systemDarkQuery=window.matchMedia("(prefers-color-scheme: dark)");
+function mobileThemeMode(){
+ const saved=localStorage.getItem(MOBILE_THEME_KEY);
+ return saved==="light"||saved==="dark"?saved:"auto";
+}
+function applyTheme(){
+ const isMobile=mobileLayoutQuery.matches;
+ const mobileMode=mobileThemeMode();
+ const isDark=isMobile
+  ?(mobileMode==="auto"?systemDarkQuery.matches:mobileMode==="dark")
+  :localStorage.getItem("jlptN1ThemeV3")==="dark";
+ document.body.classList.toggle("dark",isDark);
+ document.documentElement.style.colorScheme=isDark?"dark":"light";
+ const desktopBtn=$("themeBtn");
+ if(desktopBtn)desktopBtn.textContent=isDark?"☀️ 라이트모드":"🌙 다크모드";
+ const mobileBtn=$("mobileTheme");
+ if(mobileBtn){
+  mobileBtn.textContent=mobileMode==="auto"?"◐":isDark?"🌙":"☀️";
+  const label=mobileMode==="auto"
+   ?`테마: 시스템 자동 (${isDark?"다크":"라이트"})`
+   :`테마: ${isDark?"다크":"라이트"} 수동 설정`;
+  mobileBtn.title=label+" · 탭해서 변경";
+  mobileBtn.setAttribute("aria-label",label+" · 탭해서 변경");
+ }
+ const meta=document.querySelector('meta[name="theme-color"]');
+ if(meta)meta.setAttribute("content",isDark?"#10131a":"#4f46e5");
+}
+function toggleTheme(){
+ localStorage.setItem("jlptN1ThemeV3",document.body.classList.contains("dark")?"light":"dark");
+ applyTheme();
+}
+function toggleMobileTheme(){
+ const mode=mobileThemeMode(),system=systemDarkQuery.matches?"dark":"light";
+ // Cycle: automatic -> opposite of system -> same as system -> automatic.
+ const next=mode==="auto"?(system==="dark"?"light":"dark"):mode===system?"auto":system;
+ if(next==="auto")localStorage.removeItem(MOBILE_THEME_KEY);
+ else localStorage.setItem(MOBILE_THEME_KEY,next);
+ applyTheme();
+}
+$("themeBtn").addEventListener("click",toggleTheme);
+$("mobileTheme").addEventListener("click",toggleMobileTheme);
+function watchThemeQuery(query){
+ if(query.addEventListener)query.addEventListener("change",applyTheme);
+ else if(query.addListener)query.addListener(applyTheme);
+}
+watchThemeQuery(systemDarkQuery);
+watchThemeQuery(mobileLayoutQuery);
+window.addEventListener("pageshow",applyTheme);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)applyTheme()});
 function applyFuri(){const m=localStorage.getItem("jlptN1FuriV3")||"interactive";$("furiMode").value=m;document.body.classList.toggle("furi-always",m==="always");document.body.classList.toggle("furi-off",m==="off");if(m!=="interactive")document.querySelectorAll(".furi.show").forEach(x=>x.classList.remove("show"));$("mobileFuri").textContent=m==="interactive"?"あ":m==="always"?"振":"×"}$("furiMode").addEventListener("change",()=>{localStorage.setItem("jlptN1FuriV3",$("furiMode").value);applyFuri()});$("mobileFuri").addEventListener("click",()=>{const cur=localStorage.getItem("jlptN1FuriV3")||"interactive",next=cur==="interactive"?"always":cur==="always"?"off":"interactive";localStorage.setItem("jlptN1FuriV3",next);applyFuri();$("mobileFuri").textContent=next==="interactive"?"あ":next==="always"?"振":"×"});
 
 window.__jlptAudioManifest=()=>words.flatMap(w=>[
