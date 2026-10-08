@@ -2,7 +2,7 @@ name: QA N1 word data
 
 on:
   push:
-    branches: [main]
+    branches: [main, qa-word-data-20261008]
     paths:
       - "data/n1-extra-words-openjlpt-*.js"
       - "data/n1-curated-overrides.js"
