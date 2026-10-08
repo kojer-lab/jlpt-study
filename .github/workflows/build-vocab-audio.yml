@@ -72,6 +72,9 @@ jobs:
       - name: Generate missing vocabulary audio
         run: python tools/generate-vocab-audio.py
 
+      - name: Validate MP3 files and manifest
+        run: python tools/validate-vocab-audio.py
+
       - name: Commit generated audio
         run: |
           if git diff --quiet -- audio/vocab && [ -z "$(git status --porcelain audio/vocab)" ]; then
