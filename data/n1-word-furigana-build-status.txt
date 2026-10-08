@@ -1,8 +1,8 @@
 exit_code=0
-commit=8e6d88c3161b3f9129413a63e3f4910696043935
+commit=adfb105a6c5652f54e3f58b20de77d74a1b1a72f
 
 Items without direct headword metadata: 2
 Examples: arifureta, motarasu
 Built 3233 furigana entries -> /home/runner/work/jlpt-study/jlpt-study/data/n1-word-furigana.js
-Furigana spans: 16112
-Output bytes: 1475613
+Furigana spans: 16116
+Output bytes: 1476165
