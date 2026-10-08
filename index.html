@@ -2396,7 +2396,12 @@ const aiBaseEvidence=[
  ["「個室を予約できるのが決め手でした」","역에서는 더 멀고 요금은 비슷하며, 음식 종류도 충분하다는 설명일 뿐 선택의 결정적 이유는 개인실입니다."],
  ["「効率が上がったという数字だけを見て成功だと判断するのではなく」","제도 중단이나 전면 온라인화를 주장한 것이 아니라 효율과 이용자 지원을 함께 평가하자는 내용입니다."]
 ];
-aiListeningProblems.forEach((p,i)=>{if(i<aiBaseEvidence.length){p.keyPhrase=aiBaseEvidence[i][0];p.wrongReason=aiBaseEvidence[i][1]}});
+const aiBaseDetailed=[
+ {keyTranslation:"먼저 참가자들에게 연락해 주시겠어요?",choiceReasons:["회의실은 이미 302호로 예약됐습니다.","자료 인쇄는 다음 날 해도 된다고 했습니다.","변경된 시작 시간을 참가자들에게 먼저 알려야 합니다.","부장에게는 여자가 이미 확인했습니다."],studyPoint:"「まず」「先に」를 듣고 가장 먼저 해야 할 일을 확인하세요. 이미 끝난 업무는 제외합니다."},
+ {keyTranslation:"개인실을 예약할 수 있다는 점이 결정적이었습니다.",choiceReasons:["새 가게는 역에서 오히려 더 멉니다.","요금은 이전 가게와 거의 같습니다.","중요한 업무 이야기를 조용히 나눌 수 있는 개인실이 선택의 결정적 이유입니다.","요리 종류가 충분하다는 설명은 있지만 가장 큰 이유는 아닙니다."],studyPoint:"「決め手」는 최종 선택을 좌우한 결정적 이유입니다. 부가 정보와 구분하세요."},
+ {keyTranslation:"효율이 올랐다는 수치만 보고 성공이라고 판단하는 것이 아니라.",choiceReasons:["새 제도를 즉시 중단하자는 의견은 아닙니다.","효율 수치뿐 아니라 이용자 지원과 설명의 이해도를 함께 살펴야 한다는 주장입니다.","설명을 줄이는 대신 더 이해하기 쉬운지 확인해야 합니다.","전면 온라인화를 요구한 것이 아니라 온라인 이용에 익숙하지 않은 사람을 고려하자는 뜻입니다."],studyPoint:"「～だけを見て～のではなく」는 단일 평가 기준을 부정하고 추가 조건을 제시하는 표현입니다."}
+];
+aiListeningProblems.forEach((p,i)=>{if(i<aiBaseEvidence.length){p.keyPhrase=aiBaseEvidence[i][0];p.wrongReason=aiBaseEvidence[i][1];Object.assign(p,aiBaseDetailed[i])}});
 
 for(let i=aiListeningProblems.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[aiListeningProblems[i],aiListeningProblems[j]]=[aiListeningProblems[j],aiListeningProblems[i]]}
 let aiListenIndex=0,aiListenPlaying=false,aiListenGeneration=0;
