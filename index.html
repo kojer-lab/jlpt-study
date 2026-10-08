@@ -1435,7 +1435,7 @@ function buildReviewedVocab500(){
   }
   if(alternatives.length!==3)continue;
   const answer=(i+2)%4,choices=alternatives.slice();choices.splice(answer,0,w.read);
-  result.push({q:`「${w.surface}」の読み方として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 올바른 읽기는?`,e:`「${w.surface}」는 「${w.read}」라고 읽고, 뜻은 「${w.gloss}」입니다.`});
+  result.push({noFurigana:true,q:`「${w.surface}」の読み方として最も適切なものはどれか。`,c:choices,a:answer,translation:`「${w.surface}」의 올바른 읽기는?`,e:`「${w.surface}」는 「${w.read}」라고 읽고, 뜻은 「${w.gloss}」입니다.`});
  }
  return result;
 }
@@ -2106,7 +2106,7 @@ function renderMistakeRetry(){
   $("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${fq?.c?.[i]||readingJP(choice)}</button>`).join("");
  }else{
   $("quizPassage").classList.add("hidden");$("quizPassage").innerHTML="";
-  $("quizQuestion").innerHTML=quizJP(item.q,item);
+  $("quizQuestion").innerHTML=item.noFurigana?item.q:quizJP(item.q,item);
   $("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(choice,item)}</button>`).join("");
  }
  $("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");
