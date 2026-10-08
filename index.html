@@ -1846,7 +1846,7 @@ function ensureDailyNew(save=true){
  return ids.map(id=>words.find(w=>w.id===id)).filter(Boolean);
 }
 function todayNewPending(){return ensureDailyNew(false).filter(w=>getSrs(w.id).reviews===0)}
-function refreshAll(){renderHome();renderStats();}
+function refreshAll(){renderHome();renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
  if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){mockStopListening();}if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
@@ -2532,7 +2532,12 @@ function mergeStudyStates(a,b){
  a=normalizeState(a);b=normalizeState(b);const out=freshState();
  out.solved=Math.max(a.solved,b.solved);out.correct=Math.max(a.correct,b.correct);
  const sa=a.settings||{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},sb=b.settings||{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0};out.settings=Number(sa.updatedAt||0)>=Number(sb.updatedAt||0)?sa:sb;
- const da=a.dailyNew||{date:"",ids:[],updatedAt:0},db=b.dailyNew||{date:"",ids:[],updatedAt:0};out.dailyNew=Number(da.updatedAt||0)>=Number(db.updatedAt||0)?da:db;
+ const da=a.dailyNew||{date:"",ids:[],updatedAt:0},db=b.dailyNew||{date:"",ids:[],updatedAt:0};
+ const newerDaily=Number(da.updatedAt||0)>=Number(db.updatedAt||0)?da:db;
+ if(da.date===db.date&&da.date){
+  const mergedIds=[...new Set([...(newerDaily.ids||[]),...(newerDaily===da?db:da).ids||[]])];
+  out.dailyNew={date:da.date,ids:mergedIds,updatedAt:Math.max(Number(da.updatedAt)||0,Number(db.updatedAt)||0)};
+ }else out.dailyNew=newerDaily;
  out.stars={};const starIds=new Set([...Object.keys(a.stars||{}),...Object.keys(b.stars||{})]);starIds.forEach(id=>{const x=a.stars?.[id],y=b.stars?.[id];if(!x)out.stars[id]=y;else if(!y)out.stars[id]=x;else out.stars[id]=Number(x.updatedAt||0)>=Number(y.updatedAt||0)?x:y});
  const ids=new Set([...Object.keys(a.srs||{}),...Object.keys(b.srs||{})]);
  ids.forEach(id=>{const x=a.srs[id],y=b.srs[id];if(!x)out.srs[id]=y;else if(!y)out.srs[id]=x;else{const tx=Number(x.updatedAt||x.last||0),ty=Number(y.updatedAt||y.last||0);out.srs[id]=tx>=ty?x:y}});
@@ -2586,10 +2591,12 @@ async function syncNow(mode="merge"){
    if(!sameState(merged,data.state)){const {error:upErr}=await cloudClient.from("jlpt_study_state").upsert({user_id:cloudUser.id,state:merged,updated_at:new Date().toISOString()},{onConflict:"user_id"});if(upErr)throw upErr}
   }
   if(readingMode==="news"&&$("readingView")?.classList.contains("active")){setupNewsDay(selectedNewsDate||newsDays()[0]);renderReading()}
-  setCloudMeta({lastSyncAt:Date.now()});setSyncStatus("ok","동기화 완료","PC와 모바일에서 같은 학습 기록을 사용할 수 있습니다.");return true;
+  setCloudMeta({lastSyncAt:Date.now()});setSyncStatus("ok","동기화 완료","PC와 모바일에서 같은 학습 기록을 사용할 수 있습니다.");updateSyncUI();return true;
  }catch(err){setSyncStatus("bad","동기화 실패",err.message||"동기화에 실패했습니다.");return false}
  finally{cloudSyncing=false;updateSyncUI()}
 }
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&cloudClient&&cloudUser&&!cloudSyncing)syncNow("merge");});
+window.addEventListener("focus",()=>{if(cloudClient&&cloudUser&&!cloudSyncing)syncNow("merge");});
 function bindCloudControls(){
  if(!$("saveCloudConfigBtn"))return;
  $("saveCloudConfigBtn").addEventListener("click",async()=>{const url=$("supabaseUrlInput").value.trim().replace(/\/$/,""),key=$("supabaseKeyInput").value.trim();if(!url||!key){alert("Project URL과 공개용 키를 모두 입력하세요.");return}saveCloudConfig({url,key});await initializeCloudClient(false);updateSyncUI();alert("연결 정보를 저장했습니다. 이제 로그인하세요.")});
