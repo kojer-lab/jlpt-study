@@ -26317,5 +26317,1005 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3356c0b63c": {
+    "meaning": "근본 / 근원 / 토대",
+    "examples": [
+      {
+        "jp": "問題を解決するには根本から見直す必要がある。",
+        "ko": "문제를 해결하려면 근본부터 재검토할 필요가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-fe783aee7a": {
+    "meaning": "세 / 살 · 나이를 세는 단위",
+    "examples": [
+      {
+        "jp": "彼は今年二十歳になる。",
+        "ko": "그는 올해 스무 살이 된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a22764c8da": {
+    "meaning": "재산 / 재물 / 자산",
+    "examples": [
+      {
+        "jp": "若い頃から事業で大きな財を成した。",
+        "ko": "젊을 때부터 사업으로 큰 재산을 모았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7ec70ac5e6": {
+    "meaning": "재해 / 재난",
+    "examples": [
+      {
+        "jp": "災害に備えて非常用品を準備している。",
+        "ko": "재해에 대비해 비상용품을 준비하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-25fc642064": {
+    "meaning": "세포",
+    "examples": [
+      {
+        "jp": "人体は無数の細胞からできている。",
+        "ko": "인체는 무수한 세포로 이루어져 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-03c235eae3": {
+    "meaning": "지저귀다 / 재잘거리다",
+    "examples": [
+      {
+        "jp": "朝になると庭で小鳥が囀る。",
+        "ko": "아침이 되면 정원에서 작은 새들이 지저귄다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2f52c4d5d8": {
+    "meaning": "사기 / 남을 속여 이익을 취함",
+    "examples": [
+      {
+        "jp": "高齢者を狙った詐欺が増えている。",
+        "ko": "고령자를 노린 사기가 늘고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9314be824f": {
+    "meaning": "작품 / 만든 것 / 작황",
+    "examples": [
+      {
+        "jp": "これは彼の代表作として有名だ。",
+        "ko": "이것은 그의 대표작으로 유명하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-98daf18614": {
+    "meaning": "울타리 / 목책",
+    "examples": [
+      {
+        "jp": "畑の周りに木の柵を作った。",
+        "ko": "밭 주위에 나무 울타리를 만들었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2349af2f2f": {
+    "meaning": "방책 / 계책 / 대책",
+    "examples": [
+      {
+        "jp": "有効な対策を講じるには新しい策が必要だ。",
+        "ko": "효과적인 대책을 세우려면 새로운 방책이 필요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0de2011ee3": {
+    "meaning": "외침 / 고함 / 절규",
+    "examples": [
+      {
+        "jp": "助けを求める叫びが遠くから聞こえた。",
+        "ko": "도움을 청하는 외침이 멀리서 들렸다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d46b54b4ac": {
+    "meaning": "빼다 / 공제하다 / 차감하다",
+    "examples": [
+      {
+        "jp": "給料から税金を差し引く。",
+        "ko": "급여에서 세금을 공제한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5d038b3b98": {
+    "meaning": "권 · 책을 세는 단위",
+    "examples": [
+      {
+        "jp": "今月は小説を三冊読んだ。",
+        "ko": "이번 달에는 소설을 세 권 읽었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3b5a252a70": {
+    "meaning": "거칠다 / 조잡하다 / 대충이다",
+    "examples": [
+      {
+        "jp": "仕事が雑だとミスが増える。",
+        "ko": "일을 대충 하면 실수가 늘어난다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-42a1f92fce": {
+    "meaning": "살인",
+    "examples": [
+      {
+        "jp": "警察は殺人事件として捜査を始めた。",
+        "ko": "경찰은 살인 사건으로 수사를 시작했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2e94c5f285": {
+    "meaning": "~님 / 모습 / 상태 / 모양",
+    "examples": [
+      {
+        "jp": "お客様はこちらでお待ちください。",
+        "ko": "손님께서는 이쪽에서 기다려 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1fbd5e412c": {
+    "meaning": "산 / 산성 물질",
+    "examples": [
+      {
+        "jp": "酸とアルカリが反応すると中和が起こる。",
+        "ko": "산과 알칼리가 반응하면 중화가 일어난다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4d05f662c5": {
+    "meaning": "산화",
+    "examples": [
+      {
+        "jp": "鉄は空気中で徐々に酸化する。",
+        "ko": "철은 공기 중에서 서서히 산화한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e089e5d870": {
+    "meaning": "참조 / 참고",
+    "examples": [
+      {
+        "jp": "詳しくは次のページを参照してください。",
+        "ko": "자세한 내용은 다음 페이지를 참조해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ee1a37fa61": {
+    "meaning": "죽음 / 사망",
+    "examples": [
+      {
+        "jp": "生と死について深く考える作品だ。",
+        "ko": "삶과 죽음에 대해 깊이 생각하게 하는 작품이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-966e181cea": {
+    "meaning": "차 / 순서 / 다음 단계",
+    "examples": [
+      {
+        "jp": "第二次調査は来月から始まる。",
+        "ko": "2차 조사는 다음 달부터 시작된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ae6a0942f1": {
+    "meaning": "사업 / 기업 활동 / 프로젝트",
+    "examples": [
+      {
+        "jp": "会社は海外で新しい事業を始めた。",
+        "ko": "회사는 해외에서 새로운 사업을 시작했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e111d4b814": {
+    "meaning": "자기 / 자신",
+    "examples": [
+      {
+        "jp": "自己評価だけでなく他人の意見も聞くべきだ。",
+        "ko": "자기 평가뿐 아니라 다른 사람의 의견도 들어야 한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-aadd965d71": {
+    "meaning": "지옥 / 몹시 괴로운 상태",
+    "examples": [
+      {
+        "jp": "真夏の工事現場はまるで地獄のようだった。",
+        "ko": "한여름 공사 현장은 마치 지옥 같았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6fd972e632": {
+    "meaning": "시간표 / 운행 시각표",
+    "examples": [
+      {
+        "jp": "駅で電車の時刻表を確認した。",
+        "ko": "역에서 전철 시간표를 확인했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-70c9f8812e": {
+    "meaning": "지지 / 지원 / 찬성",
+    "examples": [
+      {
+        "jp": "多くの市民がその提案を支持した。",
+        "ko": "많은 시민이 그 제안을 지지했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d8525590a4": {
+    "meaning": "자신감 / 자신",
+    "examples": [
+      {
+        "jp": "経験を積むうちに自信がついてきた。",
+        "ko": "경험을 쌓는 동안 자신감이 생겼다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-27fc686a45": {
+    "meaning": "시설 / 설비가 갖추어진 장소",
+    "examples": [
+      {
+        "jp": "この地域には高齢者向けの施設が多い。",
+        "ko": "이 지역에는 고령자용 시설이 많다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f575593bf5": {
+    "meaning": "실 / 방 / ~실",
+    "examples": [
+      {
+        "jp": "会議室は二階にあります。",
+        "ko": "회의실은 2층에 있습니다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6dcfd99e2c": {
+    "meaning": "사실 / 실질 / 진실",
+    "examples": [
+      {
+        "jp": "実を言うと、その計画には反対だった。",
+        "ko": "사실을 말하자면 그 계획에는 반대였다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9ee0d57fa7": {
+    "meaning": "차분히 / 충분한 시간을 들여 꼼꼼히",
+    "examples": [
+      {
+        "jp": "一度じっくり考えてから答えてください。",
+        "ko": "한번 차분히 생각한 뒤 대답해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0c02e83a22": {
+    "meaning": "자전 / 천체가 스스로 회전함",
+    "examples": [
+      {
+        "jp": "地球は約二十四時間で一回自転する。",
+        "ko": "지구는 약 24시간에 한 번 자전한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-15a5796d8c": {
+    "meaning": "잔디 / 떼",
+    "examples": [
+      {
+        "jp": "庭の芝をきれいに刈った。",
+        "ko": "정원의 잔디를 깔끔하게 깎았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3861eaa614": {
+    "meaning": "사명 / 맡겨진 중요한 임무",
+    "examples": [
+      {
+        "jp": "医師として命を守ることを使命だと考えている。",
+        "ko": "의사로서 생명을 지키는 일을 사명이라고 생각한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b7459622cc": {
+    "meaning": "하인 / 종 / 신의 종",
+    "examples": [
+      {
+        "jp": "昔、その家には多くの僕が仕えていた。",
+        "ko": "옛날 그 집에는 많은 하인이 섬기고 있었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0db578581a": {
+    "meaning": "재즈",
+    "examples": [
+      {
+        "jp": "休日にはよくジャズを聴く。",
+        "ko": "휴일에는 자주 재즈를 듣는다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c36a974856": {
+    "meaning": "점프 / 뛰어오름",
+    "examples": [
+      {
+        "jp": "選手は高くジャンプしてボールを取った。",
+        "ko": "선수는 높이 점프해 공을 잡았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6fdfa5e5ee": {
+    "meaning": "종 / 종류 / 품종",
+    "examples": [
+      {
+        "jp": "新種の昆虫が発見された。",
+        "ko": "신종 곤충이 발견되었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5f947c1f81": {
+    "meaning": "주 / 둘레 / 한 바퀴",
+    "examples": [
+      {
+        "jp": "湖の周りを一周歩いた。",
+        "ko": "호수 둘레를 한 바퀴 걸었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3a37cfc263": {
+    "meaning": "주거 / 생활 / 거주",
+    "examples": [
+      {
+        "jp": "衣食住は生活の基本だ。",
+        "ko": "의식주는 생활의 기본이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-818b55e107": {
+    "meaning": "집계 / 수치를 모아 합산함",
+    "examples": [
+      {
+        "jp": "アンケートの回答を集計して結果をまとめた。",
+        "ko": "설문 응답을 집계해 결과를 정리했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ffe3908e99": {
+    "meaning": "주권 / 국가가 독립적으로 행사하는 최고 권력",
+    "examples": [
+      {
+        "jp": "国家の主権を尊重することが重要だ。",
+        "ko": "국가의 주권을 존중하는 것이 중요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9200a3f01e": {
+    "meaning": "출혈",
+    "examples": [
+      {
+        "jp": "傷口から出血していたので病院へ行った。",
+        "ko": "상처에서 피가 나서 병원에 갔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a41e86909d": {
+    "meaning": "출산 / 아이를 낳음",
+    "examples": [
+      {
+        "jp": "彼女は来月出産する予定だ。",
+        "ko": "그녀는 다음 달 출산할 예정이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-936ab44960": {
+    "meaning": "여러 / 각종 / 여러 가지의",
+    "examples": [
+      {
+        "jp": "諸問題について専門家が議論した。",
+        "ko": "여러 문제에 대해 전문가들이 논의했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-205f3a5a29": {
+    "meaning": "도움 / 보조 / 조력",
+    "examples": [
+      {
+        "jp": "専門家から助言を受けた。",
+        "ko": "전문가에게 조언을 받았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-de97947c0c": {
+    "meaning": "몫 / 나눗셈의 결과",
+    "examples": [
+      {
+        "jp": "十二を三で割った商は四だ。",
+        "ko": "12를 3으로 나눈 몫은 4다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3fd60efde5": {
+    "meaning": "증 / 병증 / 질환",
+    "examples": [
+      {
+        "jp": "毎年春になると花粉症に悩まされる。",
+        "ko": "매년 봄이 되면 꽃가루 알레르기로 고생한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-29a0a31b60": {
+    "meaning": "정 / 감정 / 인정",
+    "examples": [
+      {
+        "jp": "家族への愛情を素直に表した。",
+        "ko": "가족에 대한 애정을 솔직하게 표현했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b50c4ba582": {
+    "meaning": "상태 / 모양 / 형태",
+    "examples": [
+      {
+        "jp": "まず現状を正確に把握する必要がある。",
+        "ko": "먼저 현재 상태를 정확히 파악할 필요가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6ea8615b30": {
+    "meaning": "충격 / 강한 물리적·정신적 영향",
+    "examples": [
+      {
+        "jp": "突然の知らせに大きな衝撃を受けた。",
+        "ko": "갑작스러운 소식에 큰 충격을 받았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-bba5fd08c0": {
+    "meaning": "증거 / 사실을 뒷받침하는 자료",
+    "examples": [
+      {
+        "jp": "警察は事件を裏付ける証拠を集めた。",
+        "ko": "경찰은 사건을 뒷받침하는 증거를 모았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1766fb87d2": {
+    "meaning": "상승 / 위로 오름",
+    "examples": [
+      {
+        "jp": "原材料の価格が急激に上昇した。",
+        "ko": "원자재 가격이 급격히 상승했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-212f11a616": {
+    "meaning": "소수 / 적은 수",
+    "examples": [
+      {
+        "jp": "反対したのはごく少数だった。",
+        "ko": "반대한 사람은 극소수였다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7a67174d34": {
+    "meaning": "상징 / 어떤 개념을 대표하는 것",
+    "examples": [
+      {
+        "jp": "桜は日本の春を象徴する花だ。",
+        "ko": "벚꽃은 일본의 봄을 상징하는 꽃이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4548e205d7": {
+    "meaning": "증인 / 사실을 직접 보고 증언하는 사람",
+    "examples": [
+      {
+        "jp": "裁判で証人として証言した。",
+        "ko": "재판에서 증인으로 증언했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-3994f4472f": {
+    "meaning": "승리",
+    "examples": [
+      {
+        "jp": "チームは決勝戦で見事な勝利を収めた。",
+        "ko": "팀은 결승전에서 훌륭한 승리를 거두었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cbeffe12e0": {
+    "meaning": "쇼 / 공연 / 볼거리",
+    "examples": [
+      {
+        "jp": "ホテルで夜のショーを楽しんだ。",
+        "ko": "호텔에서 밤 공연을 즐겼다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-58a624504d": {
+    "meaning": "식민지",
+    "examples": [
+      {
+        "jp": "その地域は長い間植民地として支配された。",
+        "ko": "그 지역은 오랫동안 식민지로 지배되었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-60f3531d47": {
+    "meaning": "제군 / 여러분 · 청중에게 격식 있게 부르는 말",
+    "examples": [
+      {
+        "jp": "諸君、今日の任務を説明する。",
+        "ko": "여러분, 오늘의 임무를 설명하겠다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8ec63b1e46": {
+    "meaning": "서행 / 천천히 달림",
+    "examples": [
+      {
+        "jp": "学校の前では車は徐行してください。",
+        "ko": "학교 앞에서는 차를 서행해 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2da612d928": {
+    "meaning": "소재 / 위치 / 행방",
+    "examples": [
+      {
+        "jp": "本人の所在がまだ確認できていない。",
+        "ko": "본인의 소재가 아직 확인되지 않았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e4705834e5": {
+    "meaning": "소지 / 가지고 있음",
+    "examples": [
+      {
+        "jp": "身分証を所持しているか確認された。",
+        "ko": "신분증을 소지하고 있는지 확인받았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-144fead37b": {
+    "meaning": "처치 / 조치 / 처리",
+    "examples": [
+      {
+        "jp": "けが人にすぐ応急処置を行った。",
+        "ko": "부상자에게 즉시 응급 처치를 했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-318139be02": {
+    "meaning": "충격 / 쇼크",
+    "examples": [
+      {
+        "jp": "事故の知らせを聞いて大きなショックを受けた。",
+        "ko": "사고 소식을 듣고 큰 충격을 받았다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7b32f8b552": {
+    "meaning": "자주 / 늘 / 수시로",
+    "examples": [
+      {
+        "jp": "彼はしょっちゅう同じ話をしている。",
+        "ko": "그는 자주 같은 이야기를 한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1357fa159f": {
+    "meaning": "조사 / 조사한 결과 / 살펴봄",
+    "examples": [
+      {
+        "jp": "警察の調べで新しい事実が分かった。",
+        "ko": "경찰 조사에서 새로운 사실이 밝혀졌다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-927fd85192": {
+    "meaning": "신 / 새로운 · 주로 복합어의 앞부분",
+    "examples": [
+      {
+        "jp": "来月、新製品が発売される。",
+        "ko": "다음 달 신제품이 출시된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6bebbaf4b0": {
+    "meaning": "~인 / 사람 · 국적·직업 등을 나타내는 말",
+    "examples": [
+      {
+        "jp": "彼は日本人だが海外生活が長い。",
+        "ko": "그는 일본인이지만 해외 생활이 길다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e9264225ab": {
+    "meaning": "진화 / 발전",
+    "examples": [
+      {
+        "jp": "生物は長い時間をかけて進化してきた。",
+        "ko": "생물은 오랜 시간에 걸쳐 진화해 왔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-265aa93d86": {
+    "meaning": "인격 / 사람으로서의 성품과 품격",
+    "examples": [
+      {
+        "jp": "能力だけでなく人格も評価される。",
+        "ko": "능력뿐 아니라 인격도 평가된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-810ee5534d": {
+    "meaning": "신고 / 세금·물품 등을 공식적으로 알림",
+    "examples": [
+      {
+        "jp": "所得を正しく申告しなければならない。",
+        "ko": "소득을 정확히 신고해야 한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a55ef652d7": {
+    "meaning": "인재 / 능력 있는 사람",
+    "examples": [
+      {
+        "jp": "会社は優秀な人材の確保に力を入れている。",
+        "ko": "회사는 우수한 인재 확보에 힘쓰고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8d4a91a6fb": {
+    "meaning": "진실 / 사실",
+    "examples": [
+      {
+        "jp": "いつか真実が明らかになるだろう。",
+        "ko": "언젠가 진실이 밝혀질 것이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-bd1e5daff0": {
+    "meaning": "신속 / 빠르고 민첩함",
+    "examples": [
+      {
+        "jp": "問い合わせには迅速に対応します。",
+        "ko": "문의에는 신속하게 대응하겠습니다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-545b44f6b8": {
+    "meaning": "인체 / 사람의 몸",
+    "examples": [
+      {
+        "jp": "人体の仕組みを詳しく学ぶ。",
+        "ko": "인체의 구조를 자세히 배운다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6de88050b9": {
+    "meaning": "신비 / 알 수 없는 신기함",
+    "examples": [
+      {
+        "jp": "宇宙にはまだ多くの神秘が残されている。",
+        "ko": "우주에는 아직 많은 신비가 남아 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e27b945f77": {
+    "meaning": "인내 / 참음 / 끈기",
+    "examples": [
+      {
+        "jp": "もう少し辛抱すれば状況は良くなる。",
+        "ko": "조금만 더 참으면 상황이 좋아질 것이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-194ead860f": {
+    "meaning": "침략 / 다른 나라의 영토를 무력으로 침범함",
+    "examples": [
+      {
+        "jp": "他国への侵略は決して正当化できない。",
+        "ko": "타국에 대한 침략은 결코 정당화할 수 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1a978e6776": {
+    "meaning": "추리 / 논리적으로 결론을 이끌어 냄",
+    "examples": [
+      {
+        "jp": "手がかりから犯人を推理した。",
+        "ko": "단서로 범인을 추리했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d88d1e6c34": {
+    "meaning": "숭배 / 매우 높이 받들어 섬김",
+    "examples": [
+      {
+        "jp": "古代には太陽を崇拝する文化もあった。",
+        "ko": "고대에는 태양을 숭배하는 문화도 있었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-73155c92ff": {
+    "meaning": "~가 지나고 / ~를 조금 넘어서",
+    "examples": [
+      {
+        "jp": "会議は三時過ぎに終わった。",
+        "ko": "회의는 3시가 조금 지나 끝났다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-67f5a63d23": {
+    "meaning": "구원 / 도움 / 위안",
+    "examples": [
+      {
+        "jp": "苦しい時、友人の言葉が大きな救いになった。",
+        "ko": "힘들 때 친구의 말이 큰 위안이 되었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5be448e6cb": {
+    "meaning": "스트레스 / 심리적·신체적 압박",
+    "examples": [
+      {
+        "jp": "仕事のストレスをためないようにしている。",
+        "ko": "업무 스트레스를 쌓아 두지 않으려고 한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ef159e6567": {
+    "meaning": "빨대",
+    "examples": [
+      {
+        "jp": "冷たい飲み物をストローで飲んだ。",
+        "ko": "차가운 음료를 빨대로 마셨다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-09049312f0": {
+    "meaning": "속도 / 스피드",
+    "examples": [
+      {
+        "jp": "雨の日は車のスピードを落としたほうがいい。",
+        "ko": "비 오는 날에는 차의 속도를 줄이는 편이 좋다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-01106fe229": {
+    "meaning": "슬랙스 / 정장 바지",
+    "examples": [
+      {
+        "jp": "黒いスラックスに白いシャツを合わせた。",
+        "ko": "검은 슬랙스에 흰 셔츠를 맞춰 입었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9b4e449cc9": {
+    "meaning": "정의 / 올바름",
+    "examples": [
+      {
+        "jp": "彼は正義のために声を上げた。",
+        "ko": "그는 정의를 위해 목소리를 냈다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-a2b132d4cd": {
+    "meaning": "별자리 / 성좌",
+    "examples": [
+      {
+        "jp": "冬の夜空では多くの星座がよく見える。",
+        "ko": "겨울 밤하늘에서는 많은 별자리가 잘 보인다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-49ec60e121": {
+    "meaning": "청산 / 정산 / 관계·채무를 정리함",
+    "examples": [
+      {
+        "jp": "出張で使った費用を月末に清算した。",
+        "ko": "출장에서 쓴 비용을 월말에 정산했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4ddbf879b9": {
+    "meaning": "생사 / 삶과 죽음",
+    "examples": [
+      {
+        "jp": "事故現場では生死を分ける判断が必要だった。",
+        "ko": "사고 현장에서는 생사를 가르는 판단이 필요했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4e718e1c73": {
+    "meaning": "성실 / 거짓 없이 진지함",
+    "examples": [
+      {
+        "jp": "誠実な態度で相手に謝った。",
+        "ko": "성실한 태도로 상대에게 사과했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-36b8c3f521": {
+    "meaning": "청춘 / 젊은 시절",
+    "examples": [
+      {
+        "jp": "学生時代は私の青春そのものだった。",
+        "ko": "학창 시절은 내 청춘 그 자체였다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-76dfc8fd35": {
+    "meaning": "성서 / 성경",
+    "examples": [
+      {
+        "jp": "彼は大学で聖書について研究している。",
+        "ko": "그는 대학에서 성경에 대해 연구하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cc53a14609": {
+    "meaning": "성대함 / 규모가 크고 화려함",
+    "examples": [
+      {
+        "jp": "創立記念式典が盛大に行われた。",
+        "ko": "창립 기념식이 성대하게 열렸다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-94171ec6a4": {
+    "meaning": "정당 / 이치에 맞고 타당함",
+    "examples": [
+      {
+        "jp": "その要求には正当な理由がある。",
+        "ko": "그 요구에는 정당한 이유가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1e58b7331c": {
+    "meaning": "정복 / 굴복시켜 지배함 / 어려움을 극복함",
+    "examples": [
+      {
+        "jp": "登山家はついにその山を征服した。",
+        "ko": "등산가는 마침내 그 산을 정복했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-5fe5d25c22": {
+    "meaning": "세일 / 할인 판매",
+    "examples": [
+      {
+        "jp": "週末に大きなセールが始まる。",
+        "ko": "주말에 큰 할인 행사가 시작된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-bec9e3995a": {
+    "meaning": "세대 / 한 집에서 생계를 같이하는 가구",
+    "examples": [
+      {
+        "jp": "この地域では一人暮らしの世帯が増えている。",
+        "ko": "이 지역에서는 1인 가구가 늘고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-57054ddfeb": {
+    "meaning": "절 / 구절 / 마디 / 시기",
+    "examples": [
+      {
+        "jp": "教科書の第一節を読んでください。",
+        "ko": "교과서의 제1절을 읽어 주세요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
   }
 };
