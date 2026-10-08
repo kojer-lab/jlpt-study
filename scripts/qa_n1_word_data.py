@@ -12,7 +12,7 @@ HANGUL_RE = re.compile(r"[가-힣]")
 JAPANESE_RE = re.compile(r"[ぁ-ゖァ-ヺ一-龯]")
 
 def normalized_japanese(text):
-    return re.sub(r"[\\s、。！？!?,.「」『』（）()]", "", clean(text))
+    return re.sub(r"[\s、。！？!?,.「」『』（）()]", "", clean(text))
 
 def parse_js(path: Path):
     text = path.read_text(encoding="utf-8")
