@@ -1618,6 +1618,7 @@ function renderWordDashboard(){
 }
 const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
 function persistWordSession(){
+ if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length)))return;
  const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
   immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),
   history:wordSessionHistory.map(h=>({...h,word:undefined})),savedAt:Date.now()};
@@ -1724,6 +1725,7 @@ function showWordLibrary(){
 function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wordSessionHistory.length===0}
 function finishWordStudy(){
  localStorage.removeItem(WORD_SESSION_KEY);
+ wordSessionTotal=0;wordSessionQueue=[];wordLearningQueue=[];
  updateWordUndo();$("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
  $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
  $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").classList.add("hidden");$("wordSpeakBtn").disabled=true;$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";$("wordTtsStatus").textContent="";
