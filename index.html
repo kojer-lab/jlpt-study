@@ -145,7 +145,10 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
   .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--panel);border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -7px 20px rgba(0,0,0,.06)}.bottom-nav button{border:0;background:transparent;color:var(--muted);display:grid;gap:2px;place-items:center;padding:5px 2px;font-size:11px;border-radius:9px}.bottom-nav button span{font-size:19px;line-height:1}.bottom-nav button.active{color:var(--accent);background:var(--accent-soft);font-weight:750}.mistake{display:block}.mistake>button{margin-top:10px}.data-actions{display:grid}.data-actions>*{width:100%;justify-content:center}.mobile-only{display:block!important}
 }
 @media(min-width:761px){.mobile-only{display:none!important}}
-#wordsView .word-main{font-size:clamp(48px,6vw,66px);line-height:1.2}
+/* Keep the kanji prominent; make tap-to-reveal readings secondary and compact. */
+#wordsView .word-main{font-size:clamp(48px,6vw,66px);line-height:1.12;padding-top:4px}
+#wordsView .word-main .furi::before{font-size:.37em;bottom:calc(100% - .24em);line-height:1.1}
+#wordsView .word-title-row{margin-top:5px;margin-bottom:8px}
 </style>
 <!-- static-vocab-audio-build-v1 -->
 </head>
