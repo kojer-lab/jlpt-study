@@ -1958,14 +1958,20 @@ function renderWord(){
 function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
 
 let wordAudioPrefetchRun=0;
+// Kokoro's sentence-final Japanese full stop can cause an audible tail artifact
+// in some synthesized examples. Keep the visible example unchanged and normalize
+// only the text supplied for fresh example synthesis / future audio exports.
+function normalizeExampleTtsText(text){
+ return String(text||"").trim().replace(/。(?=[」』]?\s*$)/u,"");
+}
 function wordAudioText(w,exampleIndex=null){
  if(exampleIndex===null)return readingOf(w.w);
- const sentence=plain(w.examples[exampleIndex].jp);
+ let sentence=plain(w.examples[exampleIndex].jp);
  if(w.id==="oj-08cfe03cb3"){
   // Context-specific disambiguation for Kokoro synthesis.
-  return exampleIndex===0?sentence.replace("嘘を吐く","嘘をつく"):sentence.replace("吐いた","はいた");
+  sentence=exampleIndex===0?sentence.replace("嘘を吐く","嘘をつく"):sentence.replace("吐いた","はいた");
  }
- return sentence;
+ return normalizeExampleTtsText(sentence);
 }
 async function prefetchWordAudio(w){
  if(!w||$("wordSpeakBtn").dataset.word!==w.id)return;
@@ -2021,7 +2027,7 @@ async function prefetchLibraryExampleAudio(w){
    for(let i=0;i<Math.min(w.examples.length,2);i++){
      if(libraryAudioPrefetchWord!==w.id||!wordLibraryExamplesOpen.has(w.id))return;
      if(staticVocabAudio?.[w.id]?.examples?.[i])continue;
-     await kokoroGenerate(plain(w.examples[i].jp),"jf_alpha");
+     await kokoroGenerate(wordAudioText(w,i),"jf_alpha");
    }
  }catch(e){console.warn("단어 목록 예문 음성 준비 실패",e)}
 }
@@ -2778,7 +2784,7 @@ function applyFuri(){const m=localStorage.getItem("jlptN1FuriV3")||"interactive"
 
 window.__jlptAudioManifest=()=>words.flatMap(w=>[
  {id:w.id,kind:"word",index:null,text:readingOf(w.w),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-word.wav"},
- ...w.examples.map((ex,i)=>({id:w.id,kind:"example",index:i,text:plain(ex.jp),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-ex"+(i+1)+".wav"}))
+ ...w.examples.map((ex,i)=>({id:w.id,kind:"example",index:i,text:wordAudioText(w,i),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-ex"+(i+1)+".wav"}))
 ]);
 applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
 </script>
