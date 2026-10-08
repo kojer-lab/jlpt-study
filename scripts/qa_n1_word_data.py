@@ -91,9 +91,11 @@ def main():
         a, b = normalized_japanese(jp), normalized_japanese(first_examples[oid])
         if a == b:
             duplicate_pairs.append(oid)
+        elif min(len(a), len(b)) >= 8 and (a in b or b in a):
+            duplicate_pairs.append(oid)
         elif min(len(a), len(b)) >= 8 and SequenceMatcher(None, a, b).ratio() >= 0.88:
             candidates.append((oid, "near-duplicate examples"))
-    fail_if(duplicate_pairs, "Identical example 1/2: " + ", ".join(duplicate_pairs[:20]))
+    fail_if(duplicate_pairs, "Identical or contained example 1/2: " + ", ".join(duplicate_pairs[:20]))
 
     breakdowns = {}
     duplicate_breakdown_ids = set()
@@ -145,7 +147,7 @@ def main():
     print(f"  OpenJLPT breakdown entries: {len(covered_openjlpt)}")
     print(f"  Other/legacy breakdown entries: {len(breakdowns) - len(covered_openjlpt)}")
     print(f"  Earlier breakdown entries superseded: {len(duplicate_breakdown_ids)}")
-    print("  Identical example pairs: 0")
+    print("  Identical/contained example pairs: 0")
     print("  Garbled/missing required fields: 0")
 
 if __name__ == "__main__":
