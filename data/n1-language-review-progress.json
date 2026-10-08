@@ -2,7 +2,7 @@
   "cohort": "OpenJLPT N1 2933",
   "reviewedRange": [
     1,
-    400
+    500
   ],
   "reviewType": "targeted linguistic review",
   "description": "Targeted language review of the recorded consecutive entries. Reviews focus on erroneous Korean glosses, headword/example mismatches, unnatural Japanese, and repetitive examples; reviewed coverage does not imply exhaustive linguistic certification of every sentence.",
@@ -406,7 +406,107 @@
     "oj-dd35b714da",
     "oj-7527fce287",
     "oj-534de6d5d3",
-    "oj-ecd9ff4900"
+    "oj-ecd9ff4900",
+    "oj-4385ccd897",
+    "oj-4ff84bb232",
+    "oj-3bd1fc1cbb",
+    "oj-3b8b02f40f",
+    "oj-f89fe48d9d",
+    "oj-408b1b2559",
+    "oj-e21caf00ad",
+    "oj-2bde908249",
+    "oj-d3c0bd8213",
+    "oj-15569a3a2f",
+    "oj-9c29728f70",
+    "oj-0fc3c4aca9",
+    "oj-b913b671ea",
+    "oj-939c8fef9e",
+    "oj-ca1ba3dd2f",
+    "oj-81d5fdffc8",
+    "oj-768e199110",
+    "oj-7d0a45022f",
+    "oj-bca7171d6e",
+    "oj-764a72663e",
+    "oj-9b8758c027",
+    "oj-645ccfe3be",
+    "oj-5dd7bb9fa5",
+    "oj-829c94e4bb",
+    "oj-8dbc359e88",
+    "oj-0213bc7a8e",
+    "oj-9354298dbe",
+    "oj-af4552502c",
+    "oj-4c51a40f31",
+    "oj-6714738f83",
+    "oj-f0b5d3fde5",
+    "oj-5b0b01155c",
+    "oj-c5d3aaf44b",
+    "oj-661af4249f",
+    "oj-50a82211b1",
+    "oj-ee23d690d0",
+    "oj-cfb357ec03",
+    "oj-b5f8d282d1",
+    "oj-7860c45396",
+    "oj-27629e72c4",
+    "oj-f1aeb32800",
+    "oj-0830cb0b68",
+    "oj-b3f3b18c7d",
+    "oj-904529718c",
+    "oj-4641b96f3b",
+    "oj-35398ed297",
+    "oj-c283e8c6ea",
+    "oj-807c84bfa5",
+    "oj-6f92f7e305",
+    "oj-a5a7b2d6d5",
+    "oj-6ba1bae967",
+    "oj-f5120815d3",
+    "oj-5b0765a40d",
+    "oj-fc3ea58ad0",
+    "oj-9f60aaa2a3",
+    "oj-deed4a1ac8",
+    "oj-af871ac284",
+    "oj-712db68fb8",
+    "oj-f61f8da3d3",
+    "oj-9f4f812711",
+    "oj-a63d59c119",
+    "oj-a2ee87bdca",
+    "oj-898632e4f2",
+    "oj-ae870bde15",
+    "oj-31abecc2fa",
+    "oj-cf7e10e3e2",
+    "oj-ab92b16431",
+    "oj-7b0ff27c4a",
+    "oj-637ddc23e2",
+    "oj-b8251bb129",
+    "oj-8d4eb1d5d4",
+    "oj-f29bc600e2",
+    "oj-4a24741cdf",
+    "oj-9ac5d77795",
+    "oj-6552d03076",
+    "oj-226962592a",
+    "oj-6ff26acc7a",
+    "oj-bb98750fc8",
+    "oj-bf831318fb",
+    "oj-35ff0c814b",
+    "oj-18c78b84a5",
+    "oj-81b1055209",
+    "oj-06f4d19456",
+    "oj-1f8754ca0a",
+    "oj-f62a99c583",
+    "oj-e5f895f32e",
+    "oj-d0f0a90008",
+    "oj-378a7e05c1",
+    "oj-d4517d7970",
+    "oj-ed378b5868",
+    "oj-11ea9854e2",
+    "oj-9914ba6768",
+    "oj-b892be6c8b",
+    "oj-17127782ea",
+    "oj-42f7f86db3",
+    "oj-ea13ce8188",
+    "oj-ba175a37df",
+    "oj-0cf4699a61",
+    "oj-faa5d9f423",
+    "oj-9f4cb35bae"
   ],
   "changes": [
     {
@@ -1545,11 +1645,256 @@
         "first-example",
         "second-example"
       ]
+    },
+    {
+      "n": 410,
+      "id": "oj-15569a3a2f",
+      "word": "画",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 412,
+      "id": "oj-0fc3c4aca9",
+      "word": "核",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 414,
+      "id": "oj-939c8fef9e",
+      "word": "欠く",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 415,
+      "id": "oj-ca1ba3dd2f",
+      "word": "学芸",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 429,
+      "id": "oj-4c51a40f31",
+      "word": "確立",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 433,
+      "id": "oj-c5d3aaf44b",
+      "word": "崖",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 437,
+      "id": "oj-cfb357ec03",
+      "word": "駆けっこ",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 439,
+      "id": "oj-7860c45396",
+      "word": "賭ける",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 442,
+      "id": "oj-0830cb0b68",
+      "word": "風車",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 444,
+      "id": "oj-904529718c",
+      "word": "華奢",
+      "fields": [
+        "meaning",
+        "second-example"
+      ]
+    },
+    {
+      "n": 445,
+      "id": "oj-4641b96f3b",
+      "word": "箇所",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 446,
+      "id": "oj-35398ed297",
+      "word": "火傷",
+      "fields": [
+        "second-example",
+        "reading",
+        "breakdown"
+      ]
+    },
+    {
+      "n": 448,
+      "id": "oj-807c84bfa5",
+      "word": "微か",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 450,
+      "id": "oj-a5a7b2d6d5",
+      "word": "化する",
+      "fields": [
+        "first-example",
+        "second-example"
+      ]
+    },
+    {
+      "n": 452,
+      "id": "oj-f5120815d3",
+      "word": "火星",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 455,
+      "id": "oj-9f60aaa2a3",
+      "word": "河川",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 457,
+      "id": "oj-af871ac284",
+      "word": "過多",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 465,
+      "id": "oj-31abecc2fa",
+      "word": "傾ける",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 466,
+      "id": "oj-cf7e10e3e2",
+      "word": "固める",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 474,
+      "id": "oj-9ac5d77795",
+      "word": "合唱",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 475,
+      "id": "oj-6552d03076",
+      "word": "がっしり",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 481,
+      "id": "oj-18c78b84a5",
+      "word": "月日",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 482,
+      "id": "oj-81b1055209",
+      "word": "合併",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 484,
+      "id": "oj-1f8754ca0a",
+      "word": "門",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 486,
+      "id": "oj-e5f895f32e",
+      "word": "叶える",
+      "fields": [
+        "meaning"
+      ]
+    },
+    {
+      "n": 488,
+      "id": "oj-378a7e05c1",
+      "word": "加入",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 490,
+      "id": "oj-ed378b5868",
+      "word": "兼ねて",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 492,
+      "id": "oj-9914ba6768",
+      "word": "華美",
+      "fields": [
+        "first-example"
+      ]
+    },
+    {
+      "n": 497,
+      "id": "oj-ba175a37df",
+      "word": "構え",
+      "fields": [
+        "second-example"
+      ]
+    },
+    {
+      "n": 498,
+      "id": "oj-0cf4699a61",
+      "word": "構える",
+      "fields": [
+        "second-example"
+      ]
     }
   ],
   "notes": [
     "悪日 has the rare reading あくび (also あくにち). The source reading is retained.",
     "Regenerate word-furigana output after integrating revised examples into main.",
-    "一定 (entry 131): corrected headword reading from archaic いちじょう to modern いってい to match both examples and breakdown."
+    "一定 (entry 131): corrected headword reading from archaic いちじょう to modern いってい to match both examples and breakdown.",
+    "火傷 (entry 446): corrected headword reading from technical かしょう to everyday やけど to match example readings."
   ]
 }

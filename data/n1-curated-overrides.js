@@ -673,14 +673,14 @@ window.N1_CURATED_OVERRIDES={
     "meaningSource": "manual-review"
   },
   "oj-904529718c": {
-    "meaning": "화사함 / 사치 / 가냘픔·섬세함",
+    "meaning": "가녀리다 / 섬세하다 / 약해 보이다",
     "examples": [
       {
         "jp": "彼女は華奢な体つきをしている。",
         "ko": "그녀는 가냘픈 체격을 하고 있다."
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008"
   },
   "oj-35398ed297": {
     "meaning": "화상 / 데임",
@@ -776,8 +776,9 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "월일 / 날짜",
     "examples": [
       {
-        "jp": "申請書に生年月日と月日を正確に記入した。",
-        "ko": "신청서에 생년월일과 날짜를 정확히 기입했다."
+        "jp": "受験票には試験の月日が記されている。",
+        "ko": "수험표에는 시험 날짜가 적혀 있다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -7474,7 +7475,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "핵 / 중심 / 핵심"
   },
   "oj-939c8fef9e": {
     "examples": [
@@ -7484,7 +7486,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "결여하다 / 부족하다 / 빠뜨리다 / 잃다"
   },
   "oj-81d5fdffc8": {
     "examples": [
@@ -7606,7 +7609,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "확립 / 굳게 세움 / 체계·질서가 자리 잡음"
   },
   "oj-661af4249f": {
     "meaning": "달리기 / 구보",
@@ -7638,7 +7642,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "달리기 시합 / 달리기 놀이"
   },
   "oj-b5f8d282d1": {
     "examples": [
@@ -7658,7 +7663,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "내기에 걸다 / 승부를 걸다 / 위험을 감수하다"
   },
   "oj-27629e72c4": {
     "examples": [
@@ -7700,7 +7706,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "부분 / 장소 / 지점"
   },
   "oj-807c84bfa5": {
     "examples": [
@@ -7710,7 +7717,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "희미하다 / 미미하다 / 어렴풋하다"
   },
   "oj-6f92f7e305": {
     "examples": [
@@ -7724,7 +7732,14 @@ window.N1_CURATED_OVERRIDES={
   },
   "oj-a5a7b2d6d5": {
     "meaning": "변하다 / ~로 만들다·변환하다",
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-review",
+    "examples": [
+      {
+        "jp": "台風で道路は川と化した。",
+        "ko": "태풍으로 도로가 강처럼 변했다.",
+        "exampleSource": "manual-language-review-20261008"
+      }
+    ]
   },
   "oj-6ba1bae967": {
     "meaning": "스치다 / 살짝 닿다 / 일부를 떼다",
@@ -7790,7 +7805,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "기울이다 / 집중하다 / 귀 기울이다"
   },
   "oj-cf7e10e3e2": {
     "examples": [
@@ -7800,7 +7816,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "굳히다 / 단단하게 하다 / 결심을 확고히 하다"
   },
   "oj-ab92b16431": {
     "examples": [
@@ -7836,9 +7853,9 @@ window.N1_CURATED_OVERRIDES={
   "oj-9ac5d77795": {
     "examples": [
       {
-        "jp": "全員で歌を合唱した。",
-        "ko": "모두 함께 노래를 불렀다.",
-        "exampleSource": "manual-review"
+        "jp": "会場の人々は最後に同じ曲を合唱した。",
+        "ko": "행사장 사람들은 마지막에 같은 곡을 합창했다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
@@ -7851,7 +7868,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "튼튼하게 / 다부지게 / 우람하게"
   },
   "oj-6ff26acc7a": {
     "meaning": "단단히 / 빈틈없이 / 야무지게",
@@ -7906,7 +7924,8 @@ window.N1_CURATED_OVERRIDES={
         "exampleSource": "manual-review"
       }
     ],
-    "meaningSource": "manual-review"
+    "meaningSource": "manual-language-review-20261008",
+    "meaning": "실현하다 / 소원·요구를 들어주다"
   },
   "oj-d0f0a90008": {
     "meaning": "망치 / 수영을 전혀 못하는 사람(속어)",
@@ -7933,9 +7952,9 @@ window.N1_CURATED_OVERRIDES={
     "meaning": "화려함 / 사치스러움",
     "examples": [
       {
-        "jp": "結婚の後、アランは黴だらけの小さいアパートを出て、生活が華美に流れた。",
-        "ko": "결혼 후 앨런은 곰팡이투성이의 작은 아파트를 떠났고, 생활은 사치스러운 쪽으로 흘렀다.",
-        "exampleSource": "manual-review"
+        "jp": "そのパーティーでは華美な飾り付けが目立った。",
+        "ko": "그 파티에서는 지나치게 화려한 장식이 눈에 띄었다.",
+        "exampleSource": "manual-language-review-20261008"
       }
     ],
     "meaningSource": "manual-review"
