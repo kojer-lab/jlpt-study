@@ -1598,8 +1598,9 @@ function saveNewsCursor(date,title,index){
 function storeNewsAnswer(article,index,choice){
  const day=newsEntry(selectedNewsDate),key=newsAnswerKey(article.title,index);
  if(newsAnswer(selectedNewsDate,article.title,index))return false;
- day.answers[key]={choice,at:Date.now()};day.complete=false;
- day.activeTitle=article.title;day.activeQuestion=index;day.updatedAt=Date.now();
+ const stamp=Math.max(Date.now(),Number(day.resetAt||0)+1);
+ day.answers[key]={choice,at:stamp};day.complete=false;
+ day.activeTitle=article.title;day.activeQuestion=index;day.updatedAt=stamp;
  return true;
 }
 
