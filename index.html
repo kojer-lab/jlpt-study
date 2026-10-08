@@ -2420,7 +2420,11 @@ function renderAiListening(){
  $("aiListenType").textContent=p.type;$("aiListenCounter").textContent=(aiListenIndex+1)+" / "+aiListeningProblems.length;$("aiListenQuestion").textContent=p.question;
  $("aiEngineText").textContent=(kokoroEngine||kokoroConfig()).label+" · 다음 문제도 듣는 동안 미리 생성";
  $("aiListenChoices").innerHTML=p.choices.map((c,i)=>'<button type="button" class="ai-choice" data-ai-choice="'+i+'">'+(i+1)+'. '+c+"</button>").join("");
- $("aiListenExplain").className="ai-explain";$("aiListenExplain").innerHTML="<strong>해설</strong><br>"+p.explain;
+ $("aiListenExplain").className="ai-explain";
+ const explainBox=$("aiListenExplain");explainBox.replaceChildren();
+ const explainTitle=document.createElement("strong");explainTitle.textContent="정답 해설";explainBox.appendChild(explainTitle);
+ const answerLine=document.createElement("p");answerLine.textContent="정답 "+(p.answer+1)+"번 · "+p.choices[p.answer];explainBox.appendChild(answerLine);
+ const reasonLine=document.createElement("p");reasonLine.textContent=p.explain||"해설을 준비 중입니다.";explainBox.appendChild(reasonLine);
  $("aiListenScript").className="ai-script";$("aiListenScript").innerHTML=p.lines.map(x=>'<div class="ai-script-line"><span class="ai-speaker">'+x[2]+"</span>"+x[0]+"</div>").join("");
  $("aiListenScriptBtn").textContent="스크립트 보기";$("aiListenNext").classList.add("hidden");$("aiListenPlay").disabled=false;
  setAiStatus("현재 문제 음성을 백그라운드에서 준비합니다.");
