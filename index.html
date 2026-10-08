@@ -2431,9 +2431,13 @@ function renderAiListening(){
  const explainBox=$("aiListenExplain");explainBox.replaceChildren();
  const explainTitle=document.createElement("strong");explainTitle.textContent="정답 해설";explainBox.appendChild(explainTitle);
  const answerLine=document.createElement("p");answerLine.textContent="정답 "+(p.answer+1)+"번 · "+p.choices[p.answer];explainBox.appendChild(answerLine);
- const reasonLine=document.createElement("p");reasonLine.textContent=p.explain||"해설을 준비 중입니다.";explainBox.appendChild(reasonLine);
- if(p.keyPhrase){const keyLine=document.createElement("p");keyLine.textContent="핵심 표현 · "+p.keyPhrase;explainBox.appendChild(keyLine)}
- if(p.wrongReason){const wrongLine=document.createElement("p");wrongLine.textContent="오답 구분 · "+p.wrongReason;explainBox.appendChild(wrongLine)}
+ const addExplainSection=(heading,body)=>{if(!body)return;const h=document.createElement("strong");h.textContent=heading;h.style.display="block";h.style.marginTop="14px";explainBox.appendChild(h);const t=document.createElement("p");t.textContent=body;t.style.whiteSpace="pre-line";explainBox.appendChild(t)};
+ addExplainSection("정답 근거",p.explain||"해설을 준비 중입니다.");
+ if(p.keyPhrase)addExplainSection("핵심 일본어 표현",p.keyPhrase);
+ if(p.keyTranslation)addExplainSection("핵심 표현 번역",p.keyTranslation);
+ if(p.choiceReasons&&p.choiceReasons.length===4){addExplainSection("보기별 분석",p.choices.map((c,i)=>(i+1)+"번 "+(i===p.answer?"✓ 정답":"✗ 오답")+" · "+p.choiceReasons[i]).join("\n"))}
+ else if(p.wrongReason)addExplainSection("오답 구분",p.wrongReason);
+ if(p.studyPoint)addExplainSection("학습 포인트",p.studyPoint);
  $("aiListenScript").className="ai-script";$("aiListenScript").innerHTML=p.lines.map(x=>'<div class="ai-script-line"><span class="ai-speaker">'+x[2]+"</span>"+x[0]+"</div>").join("");
  $("aiListenScriptBtn").textContent="스크립트 보기";$("aiListenNext").classList.add("hidden");$("aiListenPlay").disabled=false;
  setAiStatus("현재 문제 음성을 백그라운드에서 준비합니다.");
