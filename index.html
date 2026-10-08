@@ -2131,7 +2131,7 @@ function renderMistakeRetry(){
 }
 function answerMistakeRetry(idx){
  if(!mistakeRetryActive||mistakeRetryAnswered)return;
- const entry=mistakeRetryQueue[mistakeRetryIndex],item=entry.item;mistakeRetryAnswered=true;quizAnswered=true;
+ const entry=mistakeRetryQueue[mistakeRetryIndex],item=entry.item;mistakeRetryAnswered=true;quizAnswered=true;if(entry.type!=="reading"&&item.noFurigana){$("quizQuestion").innerHTML=quizJP(item.q,item);restoreInteractiveFuriState($("quizQuestion"));}
  [...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});
  recordAnswer(entry.type,item,idx);
  if(entry.type==="reading"){
