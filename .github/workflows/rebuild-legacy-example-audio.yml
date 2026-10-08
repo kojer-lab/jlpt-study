@@ -35,7 +35,13 @@ jobs:
           python-version: "3.11"
       - name: Export current vocabulary audio texts
         run: node tools/export-vocab-audio.mjs
-      - name: Install native Japanese Kokoro and ffmpeg
+      - name: Install FFmpeg audio encoder
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          command -v ffmpeg
+          ffmpeg -version | head -n 1
+      - name: Install native Japanese Kokoro
         run: |
           python -m pip install --upgrade pip
           pip install "kokoro>=0.9.4" "misaki[ja]>=0.9.4" soundfile
