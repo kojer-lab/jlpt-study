@@ -79,6 +79,20 @@ def packet(start=None, batch=500):
     progress=json.loads((DATA/"n1-language-review-progress.json").read_text(encoding="utf-8"))
     last=int(progress["reviewedRange"][1])
     start=(last+1) if start is None else start
+    if last == TOTAL and start == TOTAL+1:
+        reviewed_ids = progress.get("reviewedWordIds") or []
+        if len(reviewed_ids) != TOTAL or len(set(reviewed_ids)) != TOTAL:
+            raise ValueError("Completed review has missing or duplicate word IDs")
+        return {
+            "status": "complete",
+            "notice": "All 2,933 N1 vocabulary entries have been reviewed; no further batch remains.",
+            "range": None,
+            "reviewed_before_packet": last,
+            "total": 0,
+            "risk_counts": {"high": 0, "medium": 0, "normal": 0},
+            "ranked_ids": [],
+            "entries": [],
+        }
     if not 1<=start<=TOTAL: raise ValueError(f"All batches complete or invalid start: {start}")
     end=min(start+batch-1,TOTAL)
     words=[]
