@@ -1958,6 +1958,15 @@ function renderWord(){
 function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
 
 let wordAudioPrefetchRun=0;
+function wordAudioText(w,exampleIndex=null){
+ if(exampleIndex===null)return readingOf(w.w);
+ const sentence=plain(w.examples[exampleIndex].jp);
+ if(w.id==="oj-08cfe03cb3"){
+  // Context-specific disambiguation for Kokoro synthesis.
+  return exampleIndex===0?sentence.replace("嘘を吐く","嘘をつく"):sentence.replace("吐いた","はいた");
+ }
+ return sentence;
+}
 async function prefetchWordAudio(w){
  if(!w||$("wordSpeakBtn").dataset.word!==w.id)return;
  const run=++wordAudioPrefetchRun;
@@ -1973,14 +1982,14 @@ async function prefetchWordAudio(w){
    }
    // 단어만 사전 저장된 경우에도 예문은 별도로 미리 생성해야 한다.
    if(!entry?.word||w.id==="oj-08cfe03cb3"){
-     await kokoroGenerate(readingOf(w.w),"jf_alpha",status);
+     await kokoroGenerate(wordAudioText(w),"jf_alpha",status);
      if(!stillCurrent())return;
    }
    if(isAppleMobile()){
      status("현재 예문 음성 준비 중…");
      for(const ex of missingExamples){
        if(!stillCurrent())return;
-       await kokoroGenerate(plain(ex.jp),"jf_alpha");
+       await kokoroGenerate(wordAudioText(w,w.examples.indexOf(ex)),"jf_alpha");
      }
      if(stillCurrent())status("현재 단어·예문 음성 준비 완료");
      return;
@@ -1993,7 +2002,7 @@ async function prefetchWordAudio(w){
    }
    for(const ex of missingExamples){
      if(!stillCurrent())return;
-     await kokoroGenerate(plain(ex.jp),"jf_alpha");
+     await kokoroGenerate(wordAudioText(w,w.examples.indexOf(ex)),"jf_alpha");
    }
    const rest=wordSessionQueue.filter(x=>x&&x.id!==w.id&&!upcoming.some(n=>n.id===x.id));
    for(const next of rest){
@@ -2018,7 +2027,7 @@ async function prefetchLibraryExampleAudio(w){
 }
 async function playWordAudio(w,exampleIndex=null,button=null){
  if(!w)return;
- const text=exampleIndex===null?readingOf(w.w):plain(w.examples[exampleIndex].jp);
+ const text=wordAudioText(w,exampleIndex);
  const status=msg=>$("wordTtsStatus").textContent=msg;
  try{
    if(button){button.disabled=true;button.classList.remove("playing","audio-error");button.classList.add("loading")}
