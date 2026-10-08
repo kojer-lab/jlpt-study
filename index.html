@@ -808,12 +808,27 @@ async function kokoroGenerate(text,voice="jf_alpha",onStatus){
  })().finally(()=>kokoroInflight.delete(key));
  kokoroInflight.set(key,task);return task;
 }
-function stopKokoroAudio(){if(kokoroCurrentAudio){kokoroCurrentAudio.pause();kokoroCurrentAudio.currentTime=0;kokoroCurrentAudio=null}}
+let kokoroPlaybackCancel=null;
+function stopKokoroAudio(){
+ if(kokoroPlaybackCancel){const cancel=kokoroPlaybackCancel;kokoroPlaybackCancel=null;cancel()}
+ if(kokoroCurrentAudio){kokoroCurrentAudio.pause();kokoroCurrentAudio.currentTime=0;kokoroCurrentAudio=null}
+}
 function playKokoroUrl(url){
  return new Promise((resolve,reject)=>{
    stopKokoroAudio();const a=new Audio(url);kokoroCurrentAudio=a;
-   a.onended=()=>{if(kokoroCurrentAudio===a)kokoroCurrentAudio=null;resolve()};
-   a.onerror=reject;a.play().catch(reject);
+   let settled=false;
+   const finish=(error)=>{
+     if(settled)return;settled=true;
+     a.onended=null;a.onerror=null;
+     if(kokoroCurrentAudio===a)kokoroCurrentAudio=null;
+     if(kokoroPlaybackCancel===cancel)kokoroPlaybackCancel=null;
+     if(error)reject(error);else resolve();
+   };
+   const cancel=()=>finish(new Error("재생이 중단되었습니다."));
+   kokoroPlaybackCancel=cancel;
+   a.onended=()=>finish();
+   a.onerror=()=>finish(new Error("음성 재생에 실패했습니다."));
+   a.play().catch(finish);
  });
 }
 async function requestKokoroWakeLock(){
@@ -2412,20 +2427,38 @@ function startAiListenJob(index){
  if(index<0||index>=aiListeningProblems.length)return null;
  if(aiListenJobs.has(index))return aiListenJobs.get(index);
  const p=aiListeningProblems[index],slots=p.lines.map(()=>aiMakeSlot());
+ const job={slots,producer:null};aiListenJobs.set(index,job);
  const producer=(async()=>{
-   for(let i=0;i<p.lines.length;i++){
-     const [text,voice]=p.lines[i];
-     try{
-       const r=await kokoroGenerate(text,voice,msg=>{if(index===aiListenIndex)setAiStatus("음성 준비 "+(i+1)+" / "+p.lines.length+" · "+msg)});
-       slots[i].resolve(r);
-     }catch(e){slots[i].reject(e);throw e}
+   try{
+     for(let i=0;i<p.lines.length;i++){
+       const [text,voice]=p.lines[i];
+       let result;
+       for(let attempt=0;attempt<2;attempt++){
+         try{
+           result=await kokoroGenerate(text,voice,msg=>{if(aiListenJobs.get(index)===job&&index===aiListenIndex)setAiStatus("음성 준비 "+(i+1)+" / "+p.lines.length+" · "+msg)});
+           break;
+         }catch(e){
+           if(attempt===1)throw e;
+           if(aiListenJobs.get(index)===job&&index===aiListenIndex)setAiStatus("음성 생성 재시도 "+(i+1)+" / "+p.lines.length);
+         }
+       }
+       slots[i].resolve(result);
+     }
+     if(aiListenJobs.get(index)===job&&index===aiListenIndex&&!aiListenPlaying)setAiStatus("현재 문제 음성 준비 완료 · 바로 재생할 수 있습니다.","ok");
+     if(aiListenJobs.get(index)===job&&index+1<aiListeningProblems.length)setTimeout(()=>{if(aiListenJobs.get(index)===job)startAiListenJob(index+1)},100);
+     return true;
+   }catch(e){
+     slots.forEach(slot=>slot.reject(e));
+     if(aiListenJobs.get(index)===job){
+       aiListenJobs.delete(index);
+       if(index===aiListenIndex)setAiStatus("음성 준비 실패 · 재생 버튼을 눌러 다시 시도하세요.","bad");
+     }
+     throw e;
    }
-   if(index===aiListenIndex&&!aiListenPlaying)setAiStatus("현재 문제 음성 준비 완료 · 바로 재생할 수 있습니다.","ok");
-   if(index+1<aiListeningProblems.length)setTimeout(()=>startAiListenJob(index+1),100);
-   return true;
  })();
- producer.catch(e=>{if(index===aiListenIndex)setAiStatus("음성 준비 실패 · "+(e&&e.message?e.message:String(e)),"bad")});
- const job={slots,producer};aiListenJobs.set(index,job);return job;
+ job.producer=producer;
+ producer.catch(()=>{});
+ return job;
 }
 function renderAiListening(){
  const p=aiListeningProblems[aiListenIndex];
