@@ -2568,7 +2568,7 @@ function mockShuffle(a){const out=[...a];for(let i=out.length-1;i>0;i--){const j
 const MOCK_SAVE_KEY="jlpt-n1-mock-v1";
 function mockPools(){return {vocab:quizData.vocab.map(item=>({kind:"vocab",item})),grammar:quizData.grammar.map(item=>({kind:"grammar",item})),reading:Object.entries(readingSets).filter(([k])=>k!=="news").flatMap(([mode,sets])=>sets.flatMap(set=>set.questions.map(item=>({kind:"reading",item,set})))),listening:aiListeningProblems.filter(item=>Array.isArray(item.lines)&&item.lines.length&&Array.isArray(item.choices)&&Number.isInteger(item.answer)).map(item=>({kind:"listening",item}))};}
 function mockSave(){if(mockSubmitted||!mockItems.length)return;try{const pools=mockPools();localStorage.setItem(MOCK_SAVE_KEY,JSON.stringify({version:1,refs:mockItems.map(e=>[e.kind,pools[e.kind].findIndex(p=>p.item===e.item)]),answers:mockAnswers,index:mockIndex,started:mockStarted,phaseStarted:mockPhaseStarted,phase:mockPhase}));}catch(e){console.warn("모의고사 저장 실패",e)}}
-function mockRestore(){try{const raw=localStorage.getItem(MOCK_SAVE_KEY);if(!raw)return false;const d=JSON.parse(raw),pools=mockPools();if(d.version!==1||!Array.isArray(d.refs)||d.refs.length!==70||!Array.isArray(d.answers)||d.answers.length!==70)return false;const entries=d.refs.map(([kind,index])=>pools[kind]?.[index]);if(entries.some(e=>!e)||entries.some((e,i)=>!["vocab","grammar","reading","listening"].includes(d.refs[i][0]))||entries.some((e,i)=>i<20?e.kind!=="vocab":i<40?e.kind!=="grammar":i<55?e.kind!=="reading":e.kind!=="listening"))return false;mockItems=entries;mockAnswers=d.answers.map((x,i)=>Number.isInteger(x)&&x>=0&&x<(entries[i].kind==="listening"?entries[i].item.choices.length:entries[i].item.c.length)?x:null);mockIndex=Math.min(69,Math.max(0,Number(d.index)||0));mockStarted=Number(d.started)||Date.now();mockPhaseStarted=Number(d.phaseStarted)||Date.now();mockPhase=d.phase==="listening"?"listening":"language";if(mockPhase==="listening")mockIndex=Math.max(55,mockIndex);mockSubmitted=false;$("mockIntro").classList.add("hidden");$("mockResult").classList.add("hidden");$("mockRunning").classList.remove("hidden");mockRender();mockTick();return true;}catch(e){console.warn("모의고사 복원 실패",e);return false}}
+function mockRestore(){try{const raw=localStorage.getItem(MOCK_SAVE_KEY);if(!raw)return false;const d=JSON.parse(raw),pools=mockPools();if(d.version!==1||!Array.isArray(d.refs)||d.refs.length!==70||!Array.isArray(d.answers)||d.answers.length!==70)return false;const entries=d.refs.map(([kind,index])=>pools[kind]?.[index]);if(entries.some(e=>!e)||entries.some((e,i)=>!["vocab","grammar","reading","listening"].includes(d.refs[i][0]))||entries.some((e,i)=>i<20?e.kind!=="vocab":i<40?e.kind!=="grammar":i<55?e.kind!=="reading":e.kind!=="listening"))return false;mockItems=entries;mockAnswers=d.answers.map((x,i)=>Number.isInteger(x)&&x>=0&&x<(entries[i].kind==="listening"?entries[i].item.choices.length:entries[i].item.c.length)?x:null);mockIndex=Math.min(69,Math.max(0,Number(d.index)||0));mockStarted=Number(d.started)||Date.now();mockPhaseStarted=Number(d.phaseStarted)||Date.now();mockPhase=d.phase==="listening"?"listening":"language";if(mockPhase==="listening")mockIndex=Math.max(55,mockIndex);else mockIndex=Math.min(54,mockIndex);mockSubmitted=false;$("mockIntro").classList.add("hidden");$("mockResult").classList.add("hidden");$("mockRunning").classList.remove("hidden");mockRender();mockTick();return true;}catch(e){console.warn("모의고사 복원 실패",e);return false}}
 function mockBuild(){
  const vocab=mockShuffle(quizData.vocab).slice(0,20).map(item=>({kind:"vocab",item}));
  const grammar=mockShuffle(quizData.grammar).slice(0,20).map(item=>({kind:"grammar",item}));
@@ -2579,7 +2579,7 @@ function mockBuild(){
 function mockRender(){
  if(!mockItems.length)return;
  const e=mockItems[mockIndex],listening=e.kind==="listening",phase=listening?"listening":"language";
- if(phase!==mockPhase&&phase==="listening"){mockPhase=phase;mockPhaseStarted=Date.now();stopKokoroAudio();}
+ if(phase!==mockPhase&&phase==="listening"){mockPhase=phase;mockPhaseStarted=Date.now();stopKokoroAudio();mockSave();}
  $("mockSection").textContent=({vocab:"語彙 · 어휘",grammar:"文法 · 문법",reading:"読解 · 독해",listening:"聴解 · 청해"})[e.kind];
  $("mockCounter").textContent=(mockIndex+1)+" / "+mockItems.length+" · 답변 "+mockAnswers.filter(x=>x!==null).length+"개";
  $("mockPassage").classList.toggle("hidden",e.kind!=="reading");
@@ -2630,14 +2630,14 @@ function mockTick(){
  if(!mockItems.length||mockSubmitted||$("mockRunning").classList.contains("hidden"))return;
  const max=mockPhase==="language"?110*60:55*60,remain=Math.max(0,max-Math.floor((Date.now()-mockPhaseStarted)/1000));
  $("mockTimer").textContent="현재 영역 남은 시간 "+Math.floor(remain/60)+":"+String(remain%60).padStart(2,"0");
- if(!remain){if(mockPhase==="language"){mockIndex=mockItems.length-15;mockRender();mockSave()}else mockFinish();}
+ if(!remain){if(mockPhase==="language"){mockPhase="listening";mockPhaseStarted=mockPhaseStarted+110*60000;mockIndex=mockItems.length-15;mockRender();mockSave();mockTick()}else mockFinish();}
 }
 function setupMock(){
  if(mockReady)return;mockReady=true;
  $("mockStartBtn").onclick=mockStart;
  $("mockChoices").onclick=e=>{const b=e.target.closest("[data-mock-choice]");if(!b)return;mockAnswers[mockIndex]=Number(b.dataset.mockChoice);mockRender();mockSave();};
  $("mockPrevBtn").onclick=()=>{if(mockIndex>0&&mockIndex!==mockItems.length-15){stopKokoroAudio();mockIndex--;mockRender();mockSave()}};
- $("mockNextBtn").onclick=()=>{if(mockIndex<mockItems.length-1){stopKokoroAudio();if(mockIndex===mockItems.length-16){if(!confirm("언어지식·독해 영역을 종료하고 청해를 시작할까요? 이전 영역으로 돌아갈 수 없습니다."))return;}mockIndex++;mockRender();mockSave()}};
+ $("mockNextBtn").onclick=()=>{if(mockIndex<mockItems.length-1){stopKokoroAudio();if(mockIndex===mockItems.length-16){if(!confirm("언어지식·독해 영역을 종료하고 청해를 시작할까요? 이전 영역으로 돌아갈 수 없습니다."))return;mockPhase="listening";mockPhaseStarted=Date.now();}mockIndex++;mockRender();mockSave()}};
  $("mockSubmitBtn").onclick=()=>{if(confirm("모의고사를 제출하고 채점할까요?"))mockFinish()};
  $("mockListenBtn").onclick=async()=>{const e=mockItems[mockIndex];if(!e||e.kind!=="listening")return;const index=aiListeningProblems.indexOf(e.item),questionIndex=mockIndex;$("mockListenStatus").textContent="음성 준비 중…";try{const job=startAiListenJob(index);if(!job)throw new Error("청해 데이터를 찾지 못했습니다.");for(const slot of job.slots){const x=await slot.promise;if(questionIndex!==mockIndex||mockSubmitted||$("mockRunning").classList.contains("hidden"))return;await playKokoroUrl(x.url)}if(questionIndex===mockIndex)$("mockListenStatus").textContent="재생 완료";}catch(err){if(questionIndex===mockIndex)$("mockListenStatus").textContent="재생 실패: "+err.message}};
  setInterval(mockTick,1000);
