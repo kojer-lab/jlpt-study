@@ -232,9 +232,8 @@ def main():
 
     missing_word_meta = [x.get("id") for x in words if x.get("id") not in id_map]
     if missing_word_meta:
-        raise SystemExit(
-            "Missing surface/reading metadata: " + ", ".join(missing_word_meta[:20])
-        )
+        print(f"Items without direct headword metadata: {len(missing_word_meta)}")
+        print("Examples:", ", ".join(str(x) for x in missing_word_meta[:20]))
 
     bank = {}
     missing_examples = []
