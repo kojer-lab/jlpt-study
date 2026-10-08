@@ -151,18 +151,58 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 #wordsView .word-main .furi::before{font-size:16px!important;font-weight:700;line-height:18px!important;top:0!important;bottom:auto!important}
 #wordsView .word-title-row{margin-top:4px;margin-bottom:6px}
 #wordsView .word-card-body .word-title-row{padding-top:2px}
-/* Anki study card only: tighten the gap above the large headword while
-   keeping the 16px click-to-reveal furigana and headword font size intact. */
-#wordsView #wordStudyPanel .word-card-body{padding-top:12px}
-#wordsView #wordStudyPanel .word-title-row{margin-top:0;margin-bottom:2px;padding-top:0}
-#wordsView #wordStudyPanel .word-main{line-height:1.09;padding-top:0}
+/* Anki study card: smaller kanji and tighter top gap; align side buttons to
+   the visible kanji center (below the furigana), not the ruby box center. */
+#wordsView #wordStudyPanel .word-card-body{padding-top:8px}
+#wordsView #wordStudyPanel .word-meta{line-height:1.25}
+#wordsView #wordStudyPanel .word-title-row{
+ display:grid;
+ grid-template-columns:44px minmax(0,1fr) 44px;
+ column-gap:10px;
+ align-items:center;
+ margin:0 0 2px;
+ padding:0;
+}
+#wordsView #wordStudyPanel .word-title-row>div{
+ grid-column:2;
+ grid-row:1;
+ min-width:0;
+}
+#wordsView #wordStudyPanel .word-title-row #wordStarBtn,
+#wordsView #wordStudyPanel .word-title-row #wordSpeakBtn{
+ position:static;
+ left:auto;
+ right:auto;
+ top:auto;
+ grid-row:1;
+ justify-self:center;
+ align-self:center;
+ transform:none;
+}
+#wordsView #wordStudyPanel .word-title-row #wordStarBtn{grid-column:1}
+#wordsView #wordStudyPanel .word-title-row #wordSpeakBtn{grid-column:3}
+/* Kanji with furigana have extra space above the glyph: center buttons on
+   the glyph, while leaving pure-kana cards centered normally. */
+#wordsView #wordStudyPanel .word-title-row:has(.furi) #wordStarBtn,
+#wordsView #wordStudyPanel .word-title-row:has(.furi) #wordSpeakBtn{
+ transform:translateY(7px);
+}
+#wordsView #wordStudyPanel .word-main{
+ font-size:clamp(40px,5vw,56px);
+ line-height:1.06;
+ padding-top:0;
+}
 #wordsView #wordStudyPanel .word-main .furi{padding-top:16px}
 #wordsView #wordStudyPanel .word-main .furi::before{top:-2px!important}
 #wordsView #wordStudyPanel .word-reading{display:none!important}
 #wordsView #wordStudyPanel .word-focus-hint{margin-top:1px;margin-bottom:10px}
 @media(max-width:760px){
- #wordsView #wordStudyPanel .word-card-body{padding-top:10px}
- #wordsView #wordStudyPanel .word-main .furi{padding-top:16px}
+ #wordsView #wordStudyPanel .word-card-body{padding-top:7px}
+ #wordsView #wordStudyPanel .word-title-row{
+  grid-template-columns:40px minmax(0,1fr) 40px;
+  column-gap:8px;
+ }
+ #wordsView #wordStudyPanel .word-main{font-size:clamp(40px,8vw,50px)}
 }
 </style>
 <!-- static-vocab-audio-build-v1 -->
