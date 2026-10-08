@@ -1431,7 +1431,7 @@ for(const mode of ["short","medium","long","news"]){
   set.furigana=readingFuriganaBank[set.title]||null;
  }
 }
-function newsTodayKey(){return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date()).replace(/\//g,"-")}
+function newsTodayKey(){const parts=new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Tokyo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date(Date.now()-6*60*60*1000));const p=Object.fromEntries(parts.map(x=>[x.type,x.value]));return p.year+"-"+p.month+"-"+p.day}
 function newsDays(){return [...new Set(dailyNewsBank.filter(x=>x.date<=newsTodayKey()).map(x=>x.date))].sort().reverse()}
 let selectedNewsDate=null,newsCorrect=0,newsAnsweredCount=0;
 function newsArticlesForDate(date){return dailyNewsBank.filter(x=>x.date===date).slice(0,3)}
