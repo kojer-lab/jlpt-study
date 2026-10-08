@@ -918,7 +918,7 @@ window.N1_EXTRA_LISTENING=[
         "ナレーション"
       ]
     ],
-    "keyPhrase": "「まず見出しを直してください。」",
+    "keyPhrase": "「先にそこを直してもらえますか。」",
     "wrongReason": "",
     "keyTranslation": "먼저 제목을 수정해 주세요.",
     "choiceReasons": [
@@ -1750,7 +1750,7 @@ window.N1_EXTRA_LISTENING=[
         "ナレーション"
       ]
     ],
-    "keyPhrase": "「まずそこを確認してから送ってください。」",
+    "keyPhrase": "「数値を確認して差し替えたら、参加者に送ってください。」",
     "wrongReason": "",
     "keyTranslation": "먼저 그 부분을 확인한 다음 보내 주세요.",
     "choiceReasons": [
@@ -1804,7 +1804,7 @@ window.N1_EXTRA_LISTENING=[
         "ナレーション"
       ]
     ],
-    "keyPhrase": "「まだ故障した場所が分かっていません。まず原因を調べてください。」",
+    "keyPhrase": "「では、まず点検記録と現物を照らし合わせて原因を調べます。」",
     "wrongReason": "",
     "keyTranslation": "아직 고장 난 부분을 모릅니다. 먼저 원인을 조사해 주세요.",
     "choiceReasons": [
@@ -1858,7 +1858,7 @@ window.N1_EXTRA_LISTENING=[
         "ナレーション"
       ]
     ],
-    "keyPhrase": "「交通費の計算が古い基準のままです。先にその部分を直してください。」",
+    "keyPhrase": "「該当する項目を洗い出して計算し直します。」",
     "wrongReason": "",
     "keyTranslation": "교통비 계산이 예전 기준 그대로입니다. 먼저 그 부분을 고쳐 주세요.",
     "choiceReasons": [
@@ -1912,7 +1912,7 @@ window.N1_EXTRA_LISTENING=[
         "ナレーション"
       ]
     ],
-    "keyPhrase": "「その前に申し込みが何人あるか集計してもらえますか。」",
+    "keyPhrase": "「その前に現在の申込者数を集計してもらえますか。」",
     "wrongReason": "",
     "keyTranslation": "그 전에 신청자가 몇 명인지 집계해 주시겠어요?",
     "choiceReasons": [
@@ -1966,7 +1966,7 @@ window.N1_EXTRA_LISTENING=[
         "ナレーション"
       ]
     ],
-    "keyPhrase": "「遠方の人が参加しやすくなるのがいいですね。」",
+    "keyPhrase": "「参加できる人が増えることのほうが重要だと思います。」",
     "wrongReason": "",
     "keyTranslation": "멀리 사는 사람도 참여하기 쉬워진다는 점이 좋네요.",
     "choiceReasons": [
@@ -2074,7 +2074,7 @@ window.N1_EXTRA_LISTENING=[
         "ナレーション"
       ]
     ],
-    "keyPhrase": "「申し込み画面の説明が分かりにくいという声が多くて。」",
+    "keyPhrase": "「申し込み画面の説明が分かりにくく、途中で手続きをやめた人もいるようです。」",
     "wrongReason": "",
     "keyTranslation": "신청 화면의 설명이 이해하기 어렵다는 의견이 많아서요.",
     "choiceReasons": [
