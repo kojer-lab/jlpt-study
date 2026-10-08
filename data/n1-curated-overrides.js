@@ -28659,5 +28659,435 @@ window.N1_CURATED_OVERRIDES={
       }
     ],
     "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d20d61f6b7": {
+    "meaning": "법정 / 재판이 열리는 곳",
+    "examples": [
+      {
+        "jp": "証人は法廷で事実を証言した。",
+        "ko": "증인은 법정에서 사실을 증언했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-dffc76283b": {
+    "meaning": "보호 / 지켜 안전하게 함",
+    "examples": [
+      {
+        "jp": "子どもの安全を保護する制度が必要だ。",
+        "ko": "아이들의 안전을 보호하는 제도가 필요하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-1e8904b5b7": {
+    "meaning": "보수 / 기존 제도·가치를 지키려는 입장 / 유지보수",
+    "examples": [
+      {
+        "jp": "彼は政治的にかなり保守的だ。",
+        "ko": "그는 정치적으로 꽤 보수적이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f8c0cfc076": {
+    "meaning": "보충 / 부족한 것을 채움",
+    "examples": [
+      {
+        "jp": "不足した在庫を補充した。",
+        "ko": "부족한 재고를 보충했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-53dd27cd3f": {
+    "meaning": "단지 / 겨우 / 아주 조금의",
+    "examples": [
+      {
+        "jp": "それはほんの小さな違いにすぎない。",
+        "ko": "그것은 아주 작은 차이에 불과하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-0be04a2d0d": {
+    "meaning": "능가하다 / 더 낫다 / 뛰어나다",
+    "examples": [
+      {
+        "jp": "経験では彼に勝る人はいない。",
+        "ko": "경험 면에서는 그를 능가할 사람이 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e0f4bf005a": {
+    "meaning": "눈썹",
+    "examples": [
+      {
+        "jp": "彼は驚いて眉を上げた。",
+        "ko": "그는 놀라서 눈썹을 치켜올렸다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d172705e37": {
+    "meaning": "보름달 / 만월",
+    "examples": [
+      {
+        "jp": "今夜は雲のない空に満月が見える。",
+        "ko": "오늘 밤은 구름 없는 하늘에 보름달이 보인다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2b0e48cde1": {
+    "meaning": "전망 / 가능성 / 예상",
+    "examples": [
+      {
+        "jp": "来年は業績が回復する見込みだ。",
+        "ko": "내년에는 실적이 회복될 전망이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cfaa0c9c42": {
+    "meaning": "이끌다 / 인도하다",
+    "examples": [
+      {
+        "jp": "経験が彼を正しい判断へ導いた。",
+        "ko": "경험이 그를 올바른 판단으로 이끌었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f95af79628": {
+    "meaning": "민족",
+    "examples": [
+      {
+        "jp": "この地域には複数の民族が暮らしている。",
+        "ko": "이 지역에는 여러 민족이 살고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-47fbf8e6d0": {
+    "meaning": "~용 / ~대상 / ~을 겨냥한",
+    "examples": [
+      {
+        "jp": "この本は日本語学習者向けに書かれている。",
+        "ko": "이 책은 일본어 학습자용으로 쓰였다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-7fe8112793": {
+    "meaning": "맺음 / 결말 / 매듭",
+    "examples": [
+      {
+        "jp": "話の結びに感謝の言葉を述べた。",
+        "ko": "이야기의 맺음말로 감사의 말을 전했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9f9849e508": {
+    "meaning": "은혜 / 혜택 / 자연이 주는 풍요",
+    "examples": [
+      {
+        "jp": "私たちは自然の恵みに支えられて暮らしている。",
+        "ko": "우리는 자연의 혜택에 힘입어 살아가고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-012f6788c4": {
+    "meaning": "메시지 / 전갈 / 전달하려는 뜻",
+    "examples": [
+      {
+        "jp": "あとでメッセージを送ります。",
+        "ko": "나중에 메시지를 보내겠습니다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-264dbc7769": {
+    "meaning": "미디어 / 매체",
+    "examples": [
+      {
+        "jp": "SNSも重要なメディアの一つになった。",
+        "ko": "SNS도 중요한 미디어의 하나가 되었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b8aa9a9501": {
+    "meaning": "화살",
+    "examples": [
+      {
+        "jp": "放った矢が的の中央に刺さった。",
+        "ko": "쏜 화살이 과녁 중앙에 꽂혔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-50dfb74464": {
+    "meaning": "저택 / 큰 집과 그 부지",
+    "examples": [
+      {
+        "jp": "古い屋敷が文化財として保存されている。",
+        "ko": "오래된 저택이 문화재로 보존되고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-aab82c800b": {
+    "meaning": "기르다 / 부양하다 / 능력·습관을 키우다",
+    "examples": [
+      {
+        "jp": "家族を養うために懸命に働いている。",
+        "ko": "가족을 부양하기 위해 열심히 일하고 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-9bfec07e36": {
+    "meaning": "용감 / 두려움 없이 행동함",
+    "examples": [
+      {
+        "jp": "彼は勇敢に危険な現場へ入った。",
+        "ko": "그는 용감하게 위험한 현장으로 들어갔다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ae14eee163": {
+    "meaning": "해질 무렵 / 저녁노을이 질 때",
+    "examples": [
+      {
+        "jp": "夕暮れになると急に冷えてきた。",
+        "ko": "해질 무렵이 되자 갑자기 추워졌다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c3a437cd2e": {
+    "meaning": "우선 / 먼저 중요하게 다룸",
+    "examples": [
+      {
+        "jp": "緊急の案件を優先して処理する。",
+        "ko": "긴급한 안건을 우선 처리한다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-6a42957468": {
+    "meaning": "유령 / 귀신",
+    "examples": [
+      {
+        "jp": "この古いホテルには幽霊が出るという噂がある。",
+        "ko": "이 오래된 호텔에는 유령이 나온다는 소문이 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-ed498ffde0": {
+    "meaning": "유혹 / 마음을 끌어 꾐",
+    "examples": [
+      {
+        "jp": "甘い誘惑に負けず計画を続けた。",
+        "ko": "달콤한 유혹에 지지 않고 계획을 계속했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8db345d3da": {
+    "meaning": "여유 / 시간·공간·경제적 여유",
+    "examples": [
+      {
+        "jp": "出発までまだ少し時間のゆとりがある。",
+        "ko": "출발까지 아직 약간의 시간 여유가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b9e2b22bf7": {
+    "meaning": "활",
+    "examples": [
+      {
+        "jp": "弓を引いて的を狙った。",
+        "ko": "활을 당겨 과녁을 겨냥했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-2058b2a543": {
+    "meaning": "용건 / 처리해야 할 일",
+    "examples": [
+      {
+        "jp": "ご用件をお伺いしてもよろしいですか。",
+        "ko": "용건을 여쭤봐도 될까요."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cdc0ed51d0": {
+    "meaning": "욕망 / 강한 욕구",
+    "examples": [
+      {
+        "jp": "欲望をすべて満たすことはできない。",
+        "ko": "모든 욕망을 충족할 수는 없다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4e80000648": {
+    "meaning": "낙관 / 긍정적으로 전망함",
+    "examples": [
+      {
+        "jp": "状況を楽観しすぎるのは危険だ。",
+        "ko": "상황을 지나치게 낙관하는 것은 위험하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-f04b9925b7": {
+    "meaning": "이성 / 합리적으로 판단하는 능력",
+    "examples": [
+      {
+        "jp": "感情ではなく理性で判断する必要がある。",
+        "ko": "감정이 아니라 이성으로 판단할 필요가 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-93039ef052": {
+    "meaning": "이점 / 장점",
+    "examples": [
+      {
+        "jp": "オンライン化には時間を節約できる利点がある。",
+        "ko": "온라인화에는 시간을 절약할 수 있는 이점이 있다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-8c9facae6d": {
+    "meaning": "알겠습니다 / 이해·승낙함",
+    "examples": [
+      {
+        "jp": "内容を了解したうえで手続きを進めた。",
+        "ko": "내용을 이해한 뒤 절차를 진행했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e6b6167d98": {
+    "meaning": "양호 / 상태가 좋고 만족스러움",
+    "examples": [
+      {
+        "jp": "患者の経過は良好だ。",
+        "ko": "환자의 경과는 양호하다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-e0cafd1188": {
+    "meaning": "양식 / 건전한 판단력 / 상식",
+    "examples": [
+      {
+        "jp": "社会人としての良識ある行動が求められる。",
+        "ko": "사회인으로서 양식 있는 행동이 요구된다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-4863d88e91": {
+    "meaning": "양심",
+    "examples": [
+      {
+        "jp": "良心に従って正直に話した。",
+        "ko": "양심에 따라 솔직하게 말했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-d0ffd0f38f": {
+    "meaning": "이론 / 논리적으로 체계화된 설명",
+    "examples": [
+      {
+        "jp": "新しい理論を実験で検証した。",
+        "ko": "새로운 이론을 실험으로 검증했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-c3ae5da496": {
+    "meaning": "연방 / 여러 주·국가가 결합한 국가 형태",
+    "examples": [
+      {
+        "jp": "その国は複数の州から成る連邦国家だ。",
+        "ko": "그 나라는 여러 주로 이루어진 연방 국가다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-edc9704d84": {
+    "meaning": "낭비 / 헛되이 씀",
+    "examples": [
+      {
+        "jp": "時間を浪費しないよう計画を立てた。",
+        "ko": "시간을 낭비하지 않도록 계획을 세웠다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-b083c2fe68": {
+    "meaning": "로프 / 밧줄",
+    "examples": [
+      {
+        "jp": "安全のため腰にロープを結んだ。",
+        "ko": "안전을 위해 허리에 로프를 묶었다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-077aaeea47": {
+    "meaning": "로맨틱 / 낭만적인",
+    "examples": [
+      {
+        "jp": "海辺でロマンチックな夕食を楽しんだ。",
+        "ko": "해변에서 로맨틱한 저녁 식사를 즐겼다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-58c834514c": {
+    "meaning": "행성 / 혹성",
+    "examples": [
+      {
+        "jp": "地球は太陽の周りを回る惑星だ。",
+        "ko": "지구는 태양 주위를 도는 행성이다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-aa88f39126": {
+    "meaning": "사과 / 사죄",
+    "examples": [
+      {
+        "jp": "遅れたことへの詫びを伝えた。",
+        "ko": "늦은 것에 대한 사과를 전했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
+  },
+  "oj-cfd02fb96e": {
+    "meaning": "할당 / 배정 / 할당량",
+    "examples": [
+      {
+        "jp": "担当者ごとの作業の割り当てを決めた。",
+        "ko": "담당자별 작업 할당을 정했다."
+      }
+    ],
+    "meaningSource": "manual-review-qa-20261008"
   }
 };
