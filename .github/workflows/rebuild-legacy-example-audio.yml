@@ -1,0 +1,78 @@
+name: Rebuild 500 legacy example MP3s without trailing punctuation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rebuild-legacy-example-audio.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: legacy-example-audio-rebuild
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Check out latest files
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Export current vocabulary audio texts
+        run: node tools/export-vocab-audio.mjs
+      - name: Install native Japanese Kokoro and ffmpeg
+        run: |
+          python -m pip install --upgrade pip
+          pip install "kokoro>=0.9.4" "misaki[ja]>=0.9.4" soundfile
+          ffmpeg -version | head -1
+      - name: Regenerate 500 historic example-only MP3s and checkpoint in ten batches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for batch in $(seq 0 9); do
+            echo "Rebuilding legacy example batch $((batch+1))/10 (50 MP3s)"
+            VOCAB_AUDIO_LEGACY_BATCH="$batch" python tools/generate-vocab-audio.py
+            git add audio/vocab
+            if git diff --cached --quiet; then
+              echo "::error::Batch $batch did not modify any audio files."
+              exit 1
+            fi
+            git commit -m "audio: regenerate punctuation-safe legacy examples batch $((batch+1)) of 10"
+            published=false
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort
+                echo "::error::Conflicting changes during audio publish."
+                exit 1
+              fi
+              if git push origin HEAD:main; then
+                published=true
+                break
+              fi
+              sleep 5
+            done
+            if [ "$published" != true ]; then
+              echo "::error::Could not publish legacy audio batch $batch"
+              exit 1
+            fi
+          done
+          python tools/validate-vocab-audio.py
+          echo "Completed exactly 500 legacy example re-syntheses."
