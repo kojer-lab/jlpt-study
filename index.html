@@ -1595,7 +1595,7 @@ function promoteLearningCards(immediate,delayed,allowAhead=true){
    const x=delayed.shift(),w=wordById.get(x.id);if(w)immediate.push(w);
  }
 }
-function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,true);return wordSessionQueue}
+function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,false);return wordSessionQueue}
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
 function renderWordDashboard(){
  const daily=ensureDailyNew(false),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
@@ -1700,7 +1700,22 @@ function renderWord(){
  wordAudioPrefetchRun++;
  const queue=currentWordQueue();
  updateWordUndo();
- if(!queue.length){finishWordStudy();return}
+ if(!queue.length){
+  if(wordLearningQueue.length){
+   const wait=Math.max(0,Math.min(...wordLearningQueue.map(x=>getSrs(x.id).due))-now());
+   $("wordStudyProgress").textContent=`복습 대기 · ${wordLearningQueue.length}장`;
+   $("wordIndexText").textContent="잠시 후 복습";$("wordDueText").textContent="";
+   $("wordMain").textContent=Math.max(1,Math.ceil(wait/MIN))+"분 후";
+   $("wordFocusHint").textContent="복습 시간이 되면 이 화면에 카드가 다시 나타납니다.";
+   $("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").classList.add("hidden");
+   $("showMeaningBtn").classList.add("hidden");$("wordMeaning").classList.add("hidden");
+   $("wordExamples").classList.add("hidden");$("wordBreakdown").classList.add("hidden");$("wordRating").classList.add("hidden");
+   const expectedSession=wordSessionHistory.length;
+   setTimeout(()=>{if(!$("wordStudyPanel").classList.contains("hidden")&&wordSessionHistory.length===expectedSession)renderWord()},Math.max(100,Math.min(wait,60000)));
+   return;
+  }
+  finishWordStudy();return;
+ }
  $("showMeaningBtn").dataset.finished="";
  $("wordStarBtn").classList.remove("hidden");$("wordSpeakBtn").classList.remove("hidden");$("showMeaningBtn").classList.remove("hidden");
  if(wordIndex>=queue.length)wordIndex=0;
@@ -1858,7 +1873,7 @@ $("wordRating").addEventListener("click",e=>{
  wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
  if(needsRepeat)queueLearningCard(wordLearningQueue,currentWord);
  else{wordSessionDone++;wordSessionHistory[wordSessionHistory.length-1].countedDone=true}
- promoteLearningCards(wordSessionQueue,wordLearningQueue,true);
+ promoteLearningCards(wordSessionQueue,wordLearningQueue,false);
  wordIndex=0;renderWord();wordTop();
 });
 $("undoWordRating").addEventListener("click",()=>{
