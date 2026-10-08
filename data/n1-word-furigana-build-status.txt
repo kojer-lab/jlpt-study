@@ -1,0 +1,6 @@
+exit_code=1
+commit=5681e0e0743f327e2eeead93f5ac040bc9196449
+
+Items without direct headword metadata: 2
+Examples: arifureta, motarasu
+OpenJLPT entries missing second example: oj-2ed570cfb3, oj-9ed26e130c, oj-ecec76a53b, oj-926d078a4a, oj-edbb308319, oj-4ec7fe1166, oj-a6b3309e5a, oj-432e75bc0b, oj-c88fd01898, oj-17b1b51e96, oj-64e8f7eda0, oj-2bc12ccbaf, oj-c67f56091c, oj-6d57e2cc71, oj-7c05439ccd, oj-f4567b25f5, oj-8996248374, oj-e6a2f28faa, oj-7444ba3ed5, oj-3089867b81
