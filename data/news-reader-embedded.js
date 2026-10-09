@@ -14,13 +14,55 @@ for(const row of "日本銀行|にほんぎんこう\n日本政府|にほんせ�
  if(!extra.has(initial))extra.set(initial,[]);
  extra.get(initial).push({surface,reading});
 }
+// Article-by-article QA readings take precedence over the general vocabulary dictionary.
+const reviewed=window.KOJER_NEWS_FURI_REVIEWED_V1||{};
+for(const [surface,reading] of Object.entries(reviewed)){
+ if(!surface||!reading||!/[一-龯々]/.test(surface))continue;
+ const first=surface[0],arr=extra.get(first)||[];
+ const old=arr.findIndex(entry=>entry.surface===surface);
+ if(old>=0)arr.splice(old,1);
+ arr.push({surface,reading,reviewed:true});
+ extra.set(first,arr);
+}
 for(const arr of extra.values())arr.sort((a,b)=>b.surface.length-a.surface.length);
 function wordHTML(surface,reading){
- const kanji=/[一-龯々]/;
- if(!kanji.test(surface))return esc(surface);
- const part=typeof furiganaParts==="function"?furiganaParts(surface,reading):{head:"",base:surface,reading,tail:""};
- if(!part.base||!part.reading||!kanji.test(part.base))return esc(surface);
- return esc(part.head)+'<span class="furi" data-r="'+esc(part.reading)+'">'+esc(part.base)+'</span>'+esc(part.tail);
+ const hasKanji=/[一-龯々〆ヵヶ]/;
+ if(!hasKanji.test(surface))return esc(surface);
+ // Only Kanji runs may receive furigana. Preserve visible hiragana/katakana as plain text.
+ // Never annotate mixed kana/kanji text with one large ruby spanning the kana.
+ const runs=[];
+ for(const char of surface){
+   const type=hasKanji.test(char)?"kanji":"plain";
+   if(runs.length&&runs[runs.length-1].type===type)runs[runs.length-1].text+=char;
+   else runs.push({type,text:char});
+ }
+ let out="",position=0,valid=true;
+ const kanaOnly=x=>/^[ぁ-ゖァ-ヺー]+$/.test(x);
+ for(let i=0;i<runs.length;i++){
+  const run=runs[i];
+  if(run.type==="plain"){
+   if(kanaOnly(run.text)){
+    if(!reading.startsWith(run.text,position)){valid=false;break}
+    position+=run.text.length;
+   }
+   out+=esc(run.text);
+   continue;
+  }
+  let end=reading.length;
+  const next=runs.slice(i+1).find(run=>run.type==="plain"&&kanaOnly(run.text));
+  if(next){
+   const nextAt=runs.indexOf(next);
+   end=nextAt===runs.length-1?reading.lastIndexOf(next.text):reading.indexOf(next.text,position+1);
+  }
+  if(end<=position){valid=false;break}
+  const sound=reading.slice(position,end);
+  if(!/^[ぁ-ゖァ-ヺー]+$/.test(sound)){valid=false;break}
+  out+='<span class="furi" data-r="'+esc(sound)+'">'+esc(run.text)+'</span>';
+  position=end;
+ }
+ if(valid&&position===reading.length)return out;
+ // Bad or ambiguous segmentation: keep the actual text unchanged, no misleading ruby.
+ return esc(surface);
 }
 function annotate(str){
  const text=String(str||"");let output="",offset=0,covered=0,kanji=0;
