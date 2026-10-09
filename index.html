@@ -240,6 +240,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .pron-actions{display:flex;flex-wrap:wrap;gap:7px}
 .pron-actions button{flex:1 1 128px;min-height:43px;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);font-weight:750}
 .pron-actions .primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pron-actions button:disabled{opacity:.55;cursor:not-allowed}.pron-alternatives{margin-top:10px}.pron-alternatives summary{font-size:12px;color:var(--muted);cursor:pointer;margin:6px 0 10px}.pron-alternatives .pron-actions{margin-top:8px}.pron-feedback{min-height:18px;font-size:13px;line-height:1.5;margin-top:8px;white-space:pre-wrap}
 .pron-feedback{font-size:12px;color:var(--good);min-height:18px;margin-top:10px}
 </style>
 <!-- static-vocab-audio-build-v1 -->
@@ -663,8 +664,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <button type="button" class="pron-close" id="pronClose" aria-label="닫기">✕</button><h3 id="pronHeading">⚑ 발음 오류 신고</h3><div id="pronTarget" class="pron-target"></div>
 <label for="pronType">오류 유형</label><select id="pronType"><option>한자 읽기가 다름</option><option>발음·억양이 부자연스러움</option><option>문장 끝에 이상한 소리</option><option>다른 단어·문장을 읽음</option><option>음성이 없거나 재생 실패</option><option>기타</option></select>
 <label for="pronNote">잘못 들린 부분 / 올바른 발음 (선택)</label><textarea id="pronNote" rows="3" maxlength="1000" placeholder="예: はく인데 つく로 들려요"></textarea>
-<p class="pron-hint">단어 ID·예문 번호·MP3 경로가 자동 포함돼. GitHub에서 최종 제출하거나 복사해서 채팅으로 보내줘. 이 창을 연 것만으로는 접수되지 않아.</p>
-<div class="pron-actions"><button type="button" id="pronCopy">내용 복사</button><button type="button" id="pronShare">아이폰 공유</button><button class="primary" type="button" id="pronGithub">GitHub에 신고 작성 ↗</button></div>
+<p class="pron-hint" id="pronHint">Supabase에 로그인하면 이 화면에서 바로 접수할 수 있어. 단어·예문·MP3 경로는 자동 기록돼.</p>
+<div class="pron-actions"><button class="primary" type="button" id="pronSubmit">신고 접수</button><button type="button" id="pronLogin" class="hidden">Supabase 로그인 설정</button></div><details class="pron-alternatives"><summary>다른 신고 방법</summary><div class="pron-actions"><button type="button" id="pronCopy">내용 복사</button><button type="button" id="pronShare">아이폰 공유</button><button type="button" id="pronGithub">GitHub에 신고 작성 ↗</button></div></details>
 <div id="pronFeedback" class="pron-feedback" role="status" aria-live="polite"></div></section></div>
 <script>
 function F(b,r){
@@ -2211,7 +2212,7 @@ function openPronReport(id,ix,trigger){
  if(!w||(index!==null&&(!Number.isInteger(index)||index<0||index>=w.examples.length)))return;
  pronReturnFocus=trigger;const data={id,index,path:null};pronCurrent=data;
  $("pronTarget").textContent=(index===null?"단어":"예문 "+(index+1))+" · "+plain(w.w)+" ("+readingOf(w.w)+")\n"+(index===null?plain(w.w):plain(w.examples[index].jp))+"\nID: "+w.id;
- $("pronType").selectedIndex=0;$("pronNote").value="";$("pronFeedback").textContent="";$("pronOverlay").classList.remove("hidden");$("pronType").focus();
+ $("pronType").selectedIndex=0;$("pronNote").value="";$("pronFeedback").textContent="";$("pronOverlay").classList.remove("hidden");updatePronReportActions();$("pronType").focus();
  staticVocabAudioUrl(w,index).then(path=>{if(pronCurrent===data)data.path=path||null}).catch(()=>{});
 }
 function closePronReport(){$("pronOverlay").classList.add("hidden");pronCurrent=null;if(pronReturnFocus?.isConnected)pronReturnFocus.focus();pronReturnFocus=null}
@@ -2221,6 +2222,71 @@ function pronReportPayload(){
  const body=["## 발음 오류 신고","- 대상: "+kind,"- 단어: "+plain(w.w),"- 읽기: "+readingOf(w.w),"- 단어 ID: "+w.id,"- 예문 번호: "+(r.index===null?"단어":r.index+1),"- MP3 경로: "+(r.path||"미확인 / 브라우저 합성 가능"),"- 오류: "+$("pronType").value,"","## 대상 일본어",r.index===null?plain(w.w):plain(w.examples[r.index].jp),"","## 상세 설명",$("pronNote").value.trim()||"(없음)","", "- 기기: "+(isAppleMobile()?"iPhone/iPad":"PC/Mac")].join("\n");
  return {title,body,text:title+"\n\n"+body};
 }
+// Reports use the EXISTING signed-in Supabase Auth user; no public writable endpoint
+// or service-role key is ever shipped to the browser. SQL setup is required once.
+let pronSubmitting=false;
+function updatePronReportActions(){
+ const signedIn=!!(cloudClient&&cloudUser);
+ const send=$("pronSubmit"), login=$("pronLogin");
+ if(!send||!login)return;
+ send.disabled=!signedIn||pronSubmitting;
+ send.textContent=pronSubmitting?"접수 중…":"신고 접수";
+ login.classList.toggle("hidden",signedIn);
+ $("pronHint").textContent=signedIn
+  ?"신고 접수를 누르면 Supabase에 저장돼. 단어 ID·예문 번호·MP3 경로는 자동 기록돼."
+  :"즉시 접수하려면 먼저 PC·모바일 동기화에서 Supabase에 로그인해야 해. 로그인하지 않아도 아래 '다른 신고 방법'은 사용할 수 있어.";
+}
+function pronSubmissionError(error){
+ const message=String(error?.message||"");
+ if(message.includes("duplicate_report"))return "같은 항목의 신고가 최근 24시간 내에 접수됐어. 기존 신고를 먼저 확인할게.";
+ if(message.includes("report_rate_hour"))return "한 시간에 최대 12건까지 접수할 수 있어. 잠시 뒤 다시 시도해 줘.";
+ if(message.includes("report_rate_day"))return "24시간에 최대 50건까지 접수할 수 있어. 내일 다시 시도해 줘.";
+ if(message.includes("report_login_required")||error?.code==="42501")return "Supabase 로그인 권한을 확인해 줘. 로그인 후에도 계속되면 다시 접속해 줘.";
+ if(error?.code==="42P01"||error?.code==="PGRST205"||/jlpt_pronunciation_reports.*(not find|not exist)|could not find the table/i.test(message))
+  return "아직 Supabase 신고용 SQL이 적용되지 않았어. 관리자에게 설정을 요청하거나 '다른 신고 방법'을 이용해 줘.";
+ return "신고를 저장하지 못했어. 네트워크와 Supabase 설정을 확인하고 다시 시도해 줘.";
+}
+async function submitPronReport(){
+ if(pronSubmitting||!pronCurrent)return;
+ if(!cloudClient||!cloudUser){updatePronReportActions();$("pronFeedback").textContent="먼저 Supabase에 로그인해 줘.";return;}
+ if(!navigator.onLine){$("pronFeedback").textContent="오프라인이야. 인터넷 연결 후 다시 접수해 줘.";return;}
+ const current=pronCurrent,w=wordById.get(current.id);
+ if(!w)return;
+ pronSubmitting=true;updatePronReportActions();$("pronFeedback").textContent="신고를 안전하게 저장하는 중…";
+ try{
+  const {data:authData,error:authError}=await cloudClient.auth.getUser();
+  if(authError||!authData?.user||authData.user.id!==cloudUser.id)throw new Error("report_login_required");
+  const japanese=current.index===null?plain(w.w):plain(w.examples[current.index]?.jp||"");
+  const audioPath=await staticVocabAudioUrl(w,current.index);
+  if(japanese.length>1200)throw new Error("report_text_too_long");
+  const payload={
+   word_id:String(w.id),
+   target_kind:current.index===null?"word":"example",
+   example_index:current.index,
+   word_text:plain(w.w).slice(0,160),
+   japanese_text:japanese,
+   reading:readingOf(w.w).slice(0,160),
+   audio_path:audioPath||"",
+   error_type:$("pronType").value,
+   note:$("pronNote").value.trim()
+  };
+  const {error}=await cloudClient.from("jlpt_pronunciation_reports").insert(payload);
+  if(error)throw error;
+  if(pronCurrent!==current)return;
+  $("pronFeedback").textContent="접수 완료! 오류 신고가 Supabase에 저장됐어. 검토 후 음성을 수정할 수 있어.";
+  $("pronSubmit").disabled=true;
+ }catch(error){
+  console.warn("Pronunciation report submission failed",error);
+  if(pronCurrent===current)$("pronFeedback").textContent=pronSubmissionError(error);
+ }finally{
+  pronSubmitting=false;
+  if(pronCurrent===current&&$("pronFeedback").textContent.startsWith("접수 완료")){
+   $("pronSubmit").disabled=true;
+  }else if(pronCurrent===current)updatePronReportActions();
+ }
+}
+$("pronSubmit").addEventListener("click",submitPronReport);
+$("pronLogin").addEventListener("click",()=>{closePronReport();showView("cloud");});
 document.addEventListener("click",e=>{const b=e.target.closest("[data-pron-id]");if(!b)return;e.preventDefault();e.stopPropagation();openPronReport(b.dataset.pronId,b.dataset.pronEx,b)},true);
 $("pronClose").addEventListener("click",closePronReport);
 $("pronOverlay").addEventListener("click",e=>{if(e.target===$("pronOverlay"))closePronReport()});
