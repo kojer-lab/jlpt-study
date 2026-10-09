@@ -61,7 +61,7 @@ Deno.serve(async req=>{
   const summaryMeta=(
     doc.querySelector('meta[property="og:description"]')?.getAttribute("content") ||
     doc.querySelector('meta[name="description"]')?.getAttribute("content") || ""
-  ).trim().replace(/\\s+/g," ").slice(0,500);
+  ).trim().replace(/\s+/g," ").slice(0,500);
   const cleanMeta=summaryMeta.length>=65
     && /[一-龯ぁ-ゖァ-ヺ]/.test(summaryMeta)
     && !/ログイン|登録が必要|ご利用案内|プライバシーポリシー|クッキー|視聴のご案内/.test(summaryMeta);
