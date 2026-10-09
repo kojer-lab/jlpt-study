@@ -26,6 +26,16 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
+      - name: Install FFmpeg and ffprobe before audio smoke tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
       - name: Validate reviewed trim requests and unit tests
         run: |
           python -m py_compile tools/trim-reported-vocab-audio.py tools/test_trim_reported_vocab_audio.py
