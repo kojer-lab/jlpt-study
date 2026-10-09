@@ -24,6 +24,7 @@ function captureProgress(force=false){
   state[article.id]={index,offset,updatedAt:now};
   localStorage.setItem(progressKey,JSON.stringify(state));
   lastProgressSave=now;
+  window.dispatchEvent(new Event("kojer-news:changed"));
  }catch(e){console.warn("뉴스 읽기 위치 저장 실패",e)}
 }
 function restoreProgress(id){
@@ -168,9 +169,103 @@ function expressionTab(open){
  $("newsExpressionArrow").textContent=expressionOpen?"－":"＋";
  if(!expressionOpen)clearExpressionSelection();
 }
+
+/* News-only spaced-expression review. Does not touch the main JLPT SRS deck. */
+let reviewQueue=[],reviewIndex=0,reviewRevealed=false;
+function dueExpressions(){
+ const now=Date.now();
+ return saved().filter(x=>x&&!x.deleted&&(!x.review||!Number.isFinite(x.review.due)||x.review.due<=now));
+}
+function countReviews(){
+ const n=dueExpressions().length,all=saved().length;
+ $("newsDueCount").textContent=all?"("+n+"개 복습 예정)":"(저장된 표현 없음)";
+}
+function beginReview(){
+ if(!saved().length){
+  $("newsSavedPanel").classList.remove("hidden");
+  $("newsSavedToggle").setAttribute("aria-expanded","true");
+  $("newsReviewArea").classList.remove("hidden");
+  $("newsReviewQuestion").textContent="아직 저장한 표현이 없어. 기사 아래 실전 표현 탭에서 먼저 저장해 줘.";
+  $("newsReviewProgress").textContent="";
+  $("newsReviewAnswer").classList.add("hidden");
+  $("newsReviewReveal").classList.add("hidden");
+  $("newsReviewRatings").classList.add("hidden");
+  return;
+ }
+ const due=dueExpressions();
+ reviewQueue=(due.length?due:saved()).map(x=>x.id).sort(()=>Math.random()-.5);
+ reviewIndex=0;reviewRevealed=false;
+ $("newsReviewArea").classList.remove("hidden");
+ renderReviewCard();
+}
+function renderReviewCard(){
+ $("newsReviewAnswer").classList.add("hidden");
+ $("newsReviewRatings").classList.add("hidden");
+ $("newsReviewReveal").classList.remove("hidden");
+ reviewRevealed=false;
+ if(reviewIndex>=reviewQueue.length){
+  $("newsReviewProgress").textContent="오늘의 복습 완료";
+  $("newsReviewQuestion").textContent="잘했어! 저장한 표현의 다음 복습 날짜가 갱신됐어.";
+  $("newsReviewReveal").classList.add("hidden");
+  $("newsReviewRatings").classList.add("hidden");
+  countReviews();return;
+ }
+ const id=reviewQueue[reviewIndex],item=saved().find(x=>x.id===id);
+ if(!item){reviewIndex++;renderReviewCard();return}
+ const due=dueExpressions().length;
+ $("newsReviewProgress").textContent=(reviewIndex+1)+" / "+reviewQueue.length+" · "+(due?"오늘 복습":"자유 복습");
+ $("newsReviewQuestion").textContent=item.form;
+ $("newsReviewAnswer").innerHTML="";
+}
+function revealReview(){
+ if(reviewIndex>=reviewQueue.length)return;
+ const item=saved().find(x=>x.id===reviewQueue[reviewIndex]);
+ if(!item)return;
+ const id=item.id,a=source.find(x=>id.startsWith(x.id+":"));
+ const e=a?.expressions.find(x=>x.form===item.form);
+ const reading=e?.reading||item.reading||"";
+ const meaning=e?.meaning||item.meaning||"";
+ const similar=e?.similar||item.compare||"";
+ const note=e?.note||item.note||"";
+ const example=item.example||a?.paragraphs.find(x=>x.includes(item.form))?.split(/(?<=[。！？!?])/).find(x=>x.includes(item.form))||"";
+ const answer=$("newsReviewAnswer");
+ answer.innerHTML='<p><strong class="news-expression-ruby" lang="ja">'+expressionRuby(item.form,reading)+'</strong></p>'+
+  '<p><b>뜻</b> '+esc(meaning)+'</p>'+
+  (example?'<p lang="ja">'+esc(example)+'</p>':"")+
+  (item.translation?'<p class="sub">'+esc(item.translation)+'</p>':"")+
+  (similar?'<p class="sub"><b>유사 표현</b> '+esc(similar)+'</p>':"")+
+  (note?'<p class="sub"><b>사용 뉘앙스</b> '+esc(note)+'</p>':"");
+ answer.classList.remove("hidden");
+ $("newsReviewReveal").classList.add("hidden");
+ $("newsReviewRatings").classList.remove("hidden");
+ reviewRevealed=true;
+}
+function rateReview(grade){
+ if(!reviewRevealed||!["again","hard","good","easy"].includes(grade)||reviewIndex>=reviewQueue.length)return;
+ const id=reviewQueue[reviewIndex],now=Date.now();
+ const cards=saved(),item=cards.find(x=>x.id===id);
+ if(!item){reviewIndex++;renderReviewCard();return}
+ const previous=item.review||{},days=Number(previous.intervalDays)||0;
+ const intervalMs=grade==="again"?600000:86400000*(grade==="hard"?Math.max(1,Math.ceil(days*1.2)):grade==="good"?Math.max(3,Math.ceil(days*2.2)):Math.max(5,Math.ceil(days*3)));
+ const review={
+  due:now+intervalMs,intervalDays:grade==="again"?0:intervalMs/86400000,
+  reps:(Number(previous.reps)||0)+1,
+  lapses:(Number(previous.lapses)||0)+(grade==="again"?1:0),
+  lastGrade:grade,lastReviewedAt:now,updatedAt:now
+ };
+ try{
+  localStorage.setItem(storeKey,JSON.stringify(cards.map(x=>x.id===id?{...x,updatedAt:now,review}:x)));
+  window.dispatchEvent(new Event("kojer-news:changed"));
+ }catch(e){console.warn("뉴스 복습 기록 저장 실패",e);return}
+ reviewIndex++;
+ renderSavedNotebook();
+ renderReviewCard();
+}
+
 function renderSavedNotebook(){
  const arr=saved().slice().sort((a,b)=>String(b.savedAt||"").localeCompare(String(a.savedAt||"")));
  $("newsSavedCount").textContent=String(arr.length);
+ countReviews();
  const list=$("newsSavedList");
  if(!arr.length){list.innerHTML='<p class="sub">아직 저장한 표현이 없어. 기사를 읽은 뒤 아래 실전 표현 탭에서 저장해 봐.</p>';return}
  list.innerHTML=arr.map(item=>{
@@ -237,8 +332,14 @@ function phrase(key,{preserve=false}={}){
  });
  $("newsSavePhrase").addEventListener("click",()=>{
   const all=saved();
-  const next=all.some(x=>x.id===id)?all.filter(x=>x.id!==id):[...all,{id,type:"뉴스 표현",form:key,reading:e.reading||"",meaning:e.meaning||"",example:sentence,translation:ko,note:e.note||"보도를 바탕으로 재구성한 학습 기사 표현",compare:e.similar||"",source:article.source,title:article.title,cat:article.category,savedAt:new Date().toISOString()}];
-  try{localStorage.setItem(storeKey,JSON.stringify(next));phrase(key,{preserve:true});renderSavedNotebook()}catch{$("newsSavePhrase").textContent="저장할 수 없어"}
+  const now=Date.now();
+  const next=all.some(x=>x.id===id)?all.filter(x=>x.id!==id):[...all,{id,type:"뉴스 표현",form:key,reading:e.reading||"",meaning:e.meaning||"",example:sentence,translation:ko,note:e.note||"보도를 바탕으로 재구성한 학습 기사 표현",compare:e.similar||"",source:article.source,title:article.title,cat:article.category,savedAt:new Date(now).toISOString(),updatedAt:now,review:{due:now,intervalDays:0,reps:0,lapses:0,updatedAt:now}}];
+  try{
+   localStorage.setItem(storeKey,JSON.stringify(next));
+   if(already)window.KOJER_NEWS_SYNC?.markDeleted(id);
+   window.dispatchEvent(new Event("kojer-news:changed"));
+   phrase(key,{preserve:true});renderSavedNotebook()
+  }catch{$("newsSavePhrase").textContent="저장할 수 없어"}
  });
 }
 function refreshMode(){
@@ -315,11 +416,24 @@ function init(){
   $("newsSavedToggle").setAttribute("aria-expanded",String(open));
   if(open)renderSavedNotebook();
  });
+ $("newsStartReview").addEventListener("click",beginReview);
+ $("newsReviewReveal").addEventListener("click",revealReview);
+ $("newsReviewExit").addEventListener("click",()=>{
+  reviewQueue=[];reviewIndex=0;$("newsReviewArea").classList.add("hidden")
+ });
+ $("newsReviewRatings").addEventListener("click",e=>{
+  const b=e.target.closest("[data-news-grade]");if(b)rateReview(b.dataset.newsGrade);
+ });
  $("newsSavedList").addEventListener("click",e=>{
   const btn=e.target.closest("[data-delete-news-expression]");
   if(!btn)return;
   const remaining=saved().filter(x=>x.id!==btn.dataset.deleteNewsExpression);
-  try{localStorage.setItem(storeKey,JSON.stringify(remaining));renderSavedNotebook()}catch(e){console.warn(e)}
+  try{
+   localStorage.setItem(storeKey,JSON.stringify(remaining));
+   window.KOJER_NEWS_SYNC?.markDeleted(btn.dataset.deleteNewsExpression);
+   window.dispatchEvent(new Event("kojer-news:changed"));
+   renderSavedNotebook()
+  }catch(e){console.warn(e)}
  });
  window.addEventListener("scroll",()=>captureProgress(),{passive:true});
  window.addEventListener("pagehide",()=>captureProgress(true));
@@ -337,6 +451,12 @@ function init(){
  },true);
  window.addEventListener("hashchange",route);
  window.addEventListener("popstate",route);
+ window.addEventListener("kojer-news:updated",()=>{
+  renderSavedNotebook();
+  if(article&&$("newsreaderView").classList.contains("active")){
+   $("newsReadResume").textContent="PC·아이폰 뉴스 학습 기록을 동기화했어. 다음에 기사를 열면 저장된 위치로 이어져.";
+  }
+ });
  renderSavedNotebook();
  route();
 }
