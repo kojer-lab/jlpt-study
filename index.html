@@ -245,6 +245,19 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .pron-receipt-toast{position:fixed;z-index:1001;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);padding:12px 18px;background:var(--panel);color:var(--good);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 30px #0002;text-align:center;font-size:14px;font-weight:750;pointer-events:none}
 </style>
 <!-- static-vocab-audio-build-v1 -->
+<style id="news-embedded-style">
+.news-article-body{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-size:clamp(17px,2.5vw,19px);line-height:2.75;letter-spacing:.006em;overflow-wrap:anywhere;word-break:normal}
+.news-article-body p{margin:0 0 1.25em;padding-top:6px}
+.news-article-body .furi::before{font-size:.60em;bottom:calc(100% - .3em)}
+.news-article-translation{border-top:1px solid var(--line);padding:22px 0 4px;font-size:15px;line-height:1.95;color:var(--text)}
+.news-article-translation p{margin:0 0 1.3em}
+.news-article-expressions{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
+.news-article-expressions .secondary{margin:4px 6px 4px 0;font-size:13px}
+.news-article-body .news-phrase{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:5px;text-decoration-thickness:2px}
+#newsArticleExpressionInfo{background:var(--accent-soft);border:1px solid var(--line);padding:14px;border-radius:12px;margin-top:12px;line-height:1.7}
+#newsArticleTools button{padding:9px 10px;font-size:12px}#newsArticleTools button.active{background:var(--accent);color:#fff}
+@media(max-width:700px){#newsCuratedDetail{max-width:100%}.news-article-body{line-height:2.65;font-size:17px}#newsArticleTools{gap:6px}#newsArticleTools button{font-size:12px;padding:8px}#newsArticleTitle{line-height:1.52}}
+</style>
 </head>
 <body>
 <div class="mobile-header">
@@ -366,6 +379,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 
     <section class="view" id="newsreaderView">
       <div class="topbar"><div><h1>ニュースを読む · 뉴스 읽기</h1><div class="sub">실제 일본 뉴스를 바탕으로 다시 쓴 900~1,200자 기사 · 문제 없이 읽는 일본어</div></div></div>
+      <div id="newsCuratedBrowser">
       <div class="card" style="line-height:1.75;margin-bottom:18px">
         <strong>엄선한 일본 뉴스</strong>
         <p style="margin:6px 0 0;color:var(--muted);font-size:14px">기사별로 보도 사실을 확인하고 일본어 문체를 살려 재구성했어. 기사 원문 전체를 복사한 것이 아니며, 별도 유료 AI API를 사용하지 않아. 읽기 화면에서는 후리가나와 한국어 번역을 이용할 수 있어.</p>
@@ -373,6 +387,27 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div id="newsCuratedFilters" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0"></div>
       <div class="grid3" id="newsCuratedList"></div>
       <p style="font-size:13px;color:var(--muted);margin-top:25px">실시간 RSS 단신 수집은 <a href="news-reading-test.html" style="color:inherit;text-decoration:underline">별도 테스트 화면</a>에서 이용할 수 있어. 장문 편집 기사와는 다르게, RSS 소개문만 표시해.</p>
+      </div>
+      <div id="newsCuratedDetail" class="hidden" style="max-width:850px;margin:auto">
+        <button id="newsCuratedBack" class="secondary" type="button" style="margin-bottom:16px">← 뉴스 목록으로</button>
+        <div class="card" style="padding:clamp(18px,4vw,32px)">
+          <div class="sub" id="newsArticleMeta" style="font-size:13px;margin:0 0 10px"></div>
+          <h2 id="newsArticleTitle" lang="ja" style="font-size:clamp(22px,3.4vw,31px);line-height:1.55;word-break:keep-all;margin:0"></h2>
+          <p class="sub" style="font-size:12px;margin:12px 0 20px">실제 보도를 기반으로 다시 작성한 학습용 기사입니다. 원문을 그대로 게재한 것은 아닙니다.</p>
+          <div class="toolbar" id="newsArticleTools" style="padding:13px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 22px">
+            <span style="font-size:13px;color:var(--muted)">후리가나</span>
+            <button class="secondary" type="button" data-news-furi="interactive">한자 클릭</button>
+            <button class="secondary" type="button" data-news-furi="always">모두 보기</button>
+            <button class="secondary" type="button" data-news-furi="off">숨기기</button>
+            <button class="secondary" type="button" id="newsArticleTranslate">한국어 번역 보기</button>
+          </div>
+          <div id="newsArticleBody" class="news-article-body" lang="ja"></div>
+          <div id="newsArticleTranslation" class="news-article-translation hidden" lang="ko"></div>
+          <div id="newsArticleExpressions" class="news-article-expressions"></div>
+          <div id="newsArticleExpressionInfo" class="hidden" aria-live="polite"></div>
+        </div>
+        <button type="button" id="newsCuratedBottomBack" class="secondary" style="margin:18px 0">← 뉴스 목록으로</button>
+      </div>
     </section>
 
     <section class="view" id="mockView">
@@ -2011,7 +2046,7 @@ function renderCuratedNewsHome(){
   const title=document.createElement("strong");title.textContent=item.title;title.lang="ja";
   title.style.cssText="font-size:17px;line-height:1.6;word-break:keep-all";
   const link=document.createElement("a");
-  link.href="news-reader.html?curated="+encodeURIComponent(item.id);
+  link.href="#newsreader/"+encodeURIComponent(item.id);
   link.textContent="기사 읽기 →";
   link.style.cssText="margin-top:auto;display:inline-block;color:#9ec5ff;font-weight:700;text-decoration:none";
   card.append(meta,title,link);list.appendChild(card);
@@ -3388,5 +3423,6 @@ window.__jlptAudioManifest=()=>words.flatMap(w=>[
 applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
+<script src="data/news-reader-embedded.js?v=20261010-fix1"></script>
 </body>
 </html>
