@@ -23,7 +23,7 @@ small{font-size:12px}.help{font-size:13px;line-height:1.7;color:#b7c2d4}.row{dis
 <div class="card"><small id="meta" class="dim"></small><h1 id="title" lang="ja">뉴스 읽기</h1><p id="status" class="status" role="status">뉴스 본문을 준비 중입니다.</p>
 <div class="controls"><small class="dim">후리가나</small><button class="active" id="m-click" onclick="mode('click')">한자 클릭</button><button id="m-all" onclick="mode('all')">모두 보기</button><button id="m-off" onclick="mode('off')">숨기기</button></div>
 <div id="body" class="mode-click" lang="ja"></div><div id="hint" hidden></div></div>
-<details id="import" class="card"><summary>기사 텍스트 직접 넣어서 읽기</summary>
+<details id="import" class="card"><summary>기사 본문을 직접 넣어서 읽기 · 자동 추출 실패 시</summary>
 <p class="help">출처의 접근 제한이나 웹페이지 구조 때문에 본문을 자동으로 가져오지 못하는 경우, 기사 텍스트를 입력해 이 화면에서 읽을 수 있습니다. 입력 내용은 서버에 업로드하거나 저장하지 않습니다.</p>
 <textarea id="usertext" placeholder="읽고 싶은 일본어 기사 본문을 붙여넣으세요." spellcheck="false"></textarea>
 <div class="row"><small class="dim">최대 3만 자 · 개인 기기에서 처리</small><button class="primary" onclick="importText()">본문 읽기</button></div>
@@ -35,6 +35,12 @@ const esc=x=>String(x??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"
 const params=new URLSearchParams(location.search);
 const news={title:(params.get("title")||"일본어 기사").slice(0,220),url:params.get("url")||"",source:(params.get("source")||"").slice(0,90),category:(params.get("category")||"").slice(0,40)};
 $("title").textContent=news.title;$("meta").textContent=[news.category,news.source].filter(Boolean).join(" · ");
+let rssSummary="";
+try {
+ const stored=JSON.parse(sessionStorage.getItem("jlptNewsReaderSelectedV1")||"null");
+ if(stored&&stored.url===news.url&&typeof stored.summary==="string")rssSummary=stored.summary.trim().slice(0,850);
+} catch(e) {console.warn("뉴스 소개문 조회 실패",e)}
+
 let paragraphs=[],tokenizerPromise=null,loadedTextId=0;
 const patterns=[
 ["とはいえ","접속 표현","그렇다고는 하지만","앞선 사실을 인정하면서도 다른 관점을 제시해."],
@@ -158,8 +164,17 @@ async function initial(){
   paragraphs=data.paragraphs.filter(x=>typeof x==="string").slice(0,110);
   await render()
  }catch(error){
-  status("이 기사는 자동 가져오기가 어렵습니다: "+(error.message||error)+" 아래에 텍스트를 입력하면 앱에서 그대로 읽을 수 있습니다.",true);
-  $("import").open=true
+  // Published RSS excerpts can still be studied inside the app, even when
+  // the publisher only serves a short public preview instead of full text.
+  if(rssSummary.length>=45 && /[ぁ-ゖァ-ヺ一-龯]/.test(rssSummary)){
+    paragraphs=[rssSummary];
+    await render();
+    status("이 언론사에서는 기사 전문을 자동으로 가져오지 못했어. 아래 내용은 RSS가 제공한 소개문이며 기사 전문이 아니야. · "+(error.message||error),true);
+    $("import").open=false;
+  } else {
+    status("자동 본문 추출 실패: "+(error.message||error)+" · 해당 기사에서는 공개 RSS 소개문도 확보하지 못했어. 아래에 직접 본문을 입력하면 후리가나를 이용할 수 있어.",true);
+    $("import").open=true
+  }
  }
 }
 initial();
