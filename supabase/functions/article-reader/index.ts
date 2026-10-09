@@ -58,17 +58,36 @@ Deno.serve(async req=>{
   const page=await checkedFetch(payload.url);
   const doc=new DOMParser().parseFromString(page.text,"text/html");
   if(!doc)throw new Error("HTML을 해석하지 못했습니다.");
+  const summaryMeta=(
+    doc.querySelector('meta[property="og:description"]')?.getAttribute("content") ||
+    doc.querySelector('meta[name="description"]')?.getAttribute("content") || ""
+  ).trim().replace(/\\s+/g," ").slice(0,500);
+  const cleanMeta=summaryMeta.length>=65
+    && /[一-龯ぁ-ゖァ-ヺ]/.test(summaryMeta)
+    && !/ログイン|登録が必要|ご利用案内|プライバシーポリシー|クッキー|視聴のご案内/.test(summaryMeta);
+  const excerpt=(title: string) => cleanMeta && summaryMeta!==title && summaryMeta.length>=title.length+10
+    ? ok({title,source:new URL(page.url).hostname,url:page.url,paragraphs:[summaryMeta],
+          chars:summaryMeta.length,contentScope:"preview",notice:"이 출처는 기사 전문 대신 공개 소개문만 제공했습니다."})
+    : null;
   for(const elem of doc.querySelectorAll("script,style,iframe,form,nav,footer,aside"))elem.remove();
-  const parsed=new Readability(doc as unknown as Document,{charThreshold:180,keepClasses:false}).parse();
-  if(!parsed?.content || !parsed?.textContent)throw new Error("기사 본문을 구분하지 못했습니다.");
+  const parsed=new Readability(doc as unknown as Document,{charThreshold:120,keepClasses:false}).parse();
+  if(!parsed?.content || !parsed?.textContent){
+    const preview=excerpt(doc.title||"");
+    if(preview)return preview;
+    throw new Error("이 언론사의 본문에 접근할 수 없습니다.");
+  }
   const body=new DOMParser().parseFromString("<main>"+parsed.content+"</main>","text/html");
   const main=body?.querySelector("main");
   if(!main)throw new Error("본문 추출에 실패했습니다.");
   const paragraphs=[...main.querySelectorAll("p,h2,h3,li")].map(el=>(el.textContent||"").trim().replace(/\s+/g," ")).filter(x=>x.length>=18 && /[\u3040-\u30ff\u3400-\u9fff]/.test(x)).slice(0,110);
   if(!paragraphs.length){const txt=(parsed.textContent||"").trim();if(txt.length>160)paragraphs.push(...txt.split(/\n+/).map(x=>x.trim()).filter(x=>x.length>18).slice(0,90));}
   const clean=paragraphs.join("\n\n");
-  if(clean.length<180)throw new Error("읽을 만한 본문을 충분히 가져오지 못했습니다.");
+  if(clean.length<180) {
+    const preview=excerpt(String(parsed.title||doc.title||"").slice(0,240));
+    if(preview)return preview;
+    throw new Error("기사 본문이 매우 짧거나 제한되어 자동 추출하지 못했습니다.");
+  }
   const source=new URL(page.url).hostname;
-  return ok({title:String(parsed.title||"").slice(0,240),source,url:page.url,paragraphs:paragraphs.map(p=>p.slice(0,1600)),chars:clean.length,notice:"공개 접근 가능 본문을 개인 열람용으로 가져왔습니다. 출처별 이용조건이 적용됩니다."});
+  return ok({title:String(parsed.title||"").slice(0,240),source,url:page.url,paragraphs:paragraphs.map(p=>p.slice(0,1600)),chars:clean.length,contentScope:"full",notice:"공개 접근 가능한 본문을 가져왔습니다."});
  }catch(e){return ok({error:e instanceof Error?e.message:"기사 본문을 불러오지 못했습니다."},422)}
 });
