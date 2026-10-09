@@ -1845,7 +1845,7 @@ function ensureDailyNew(save=true){
  if(changed){state.dailyNew.updatedAt=Date.now();if(save)saveState(state)}
  return ids.map(id=>words.find(w=>w.id===id)).filter(Boolean);
 }
-function todayNewPending(){return ensureDailyNew(false).filter(w=>getSrs(w.id).reviews===0)}
+function todayNewPending(){return ensureDailyNew(true).filter(w=>getSrs(w.id).reviews===0)}
 function refreshAll(){renderHome();renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
 function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
@@ -1853,7 +1853,7 @@ function showView(name){document.querySelectorAll(".view").forEach(v=>v.classLis
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();const key=furiStateKey(fu),next=!fu.classList.contains("show");fu.classList.toggle("show",next);if(next)interactiveFuriShown.add(key);else interactiveFuriShown.delete(key)}}});
 
-function renderHome(){const due=dueWords().length,daily=ensureDailyNew(false),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"});const dn=dailyNewsSet();if(dn){$("homeNewsDate").textContent=todayKey().replaceAll("-",".")+" · 時事読解";$("homeNewsTitle").textContent="오늘의 시사독해 · "+newsArticlesForDate(dn.date).length+"개 기사";$("homeNewsSub").textContent=(dn.sourceDate?dn.sourceDate+" 기사 기반 · ":"")+"일본 시간 오전 6시 기준 · 하루 3기사, 9문제"}}
+function renderHome(){const due=dueWords().length,daily=ensureDailyNew(true),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"});const dn=dailyNewsSet();if(dn){$("homeNewsDate").textContent=todayKey().replaceAll("-",".")+" · 時事読解";$("homeNewsTitle").textContent="오늘의 시사독해 · "+newsArticlesForDate(dn.date).length+"개 기사";$("homeNewsSub").textContent=(dn.sourceDate?dn.sourceDate+" 기사 기반 · ":"")+"일본 시간 오전 6시 기준 · 하루 3기사, 9문제"}}
 
 function buildWordStudyQueue(){
  const due=dueWords(),fresh=todayNewPending(),seen=new Set();
@@ -1886,7 +1886,7 @@ function promoteLearningCards(immediate,delayed,allowAhead=true){
 function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,false);promoteQuickWord();return wordSessionQueue}
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
 function renderWordDashboard(){
- const daily=ensureDailyNew(false),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
+ const daily=ensureDailyNew(true),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
  const learned=words.filter(w=>getSrs(w.id).reviews>0).length;
  const mastered=words.filter(w=>getSrs(w.id).reviews>0&&getSrs(w.id).stability>=30).length;
  $("dailyNewLimit").value=String(state.settings.dailyNewLimit||10);
@@ -2535,9 +2535,9 @@ function mergeStudyStates(a,b){
  const da=a.dailyNew||{date:"",ids:[],updatedAt:0},db=b.dailyNew||{date:"",ids:[],updatedAt:0};
  const newerDaily=Number(da.updatedAt||0)>=Number(db.updatedAt||0)?da:db;
  if(da.date===db.date&&da.date){
-  const mergedIds=[...new Set([...(newerDaily.ids||[]),...(newerDaily===da?db:da).ids||[]])];
+  const mergedIds=[...new Set([...(newerDaily.ids||[]),...((newerDaily===da?db:da).ids||[])])];
   out.dailyNew={date:da.date,ids:mergedIds,updatedAt:Math.max(Number(da.updatedAt)||0,Number(db.updatedAt)||0)};
- }else out.dailyNew=newerDaily;
+ }else out.dailyNew=da.date>db.date?da:db;
  out.stars={};const starIds=new Set([...Object.keys(a.stars||{}),...Object.keys(b.stars||{})]);starIds.forEach(id=>{const x=a.stars?.[id],y=b.stars?.[id];if(!x)out.stars[id]=y;else if(!y)out.stars[id]=x;else out.stars[id]=Number(x.updatedAt||0)>=Number(y.updatedAt||0)?x:y});
  const ids=new Set([...Object.keys(a.srs||{}),...Object.keys(b.srs||{})]);
  ids.forEach(id=>{const x=a.srs[id],y=b.srs[id];if(!x)out.srs[id]=y;else if(!y)out.srs[id]=x;else{const tx=Number(x.updatedAt||x.last||0),ty=Number(y.updatedAt||y.last||0);out.srs[id]=tx>=ty?x:y}});
@@ -2546,7 +2546,7 @@ function mergeStudyStates(a,b){
  const mm=new Map();[...(a.mistakes||[]),...(b.mistakes||[])].forEach(m=>{const old=mm.get(m.id);if(!old)mm.set(m.id,Object.assign({},m));else{const newer=Number(m.updatedAt||0)>=Number(old.updatedAt||0)?m:old;mm.set(m.id,Object.assign({},newer,{count:Math.max(Number(old.count)||0,Number(m.count)||0),updatedAt:Math.max(Number(old.updatedAt)||0,Number(m.updatedAt)||0)}))}});
  out.mistakes=[...mm.values()].sort((x,y)=>(Number(y.updatedAt)||0)-(Number(x.updatedAt)||0));
  out.newsProgress=mergeNewsProgress(a.newsProgress,b.newsProgress);
- out._updatedAt=Math.max(Number(a._updatedAt)||0,Number(b._updatedAt)||0,Date.now());return out;
+ out._updatedAt=Math.max(Number(a._updatedAt)||0,Number(b._updatedAt)||0);return out;
 }
 function sameState(a,b){try{return JSON.stringify(a)===JSON.stringify(b)}catch(e){return false}}
 async function initializeCloudClient(runSync=true){
@@ -2597,6 +2597,8 @@ async function syncNow(mode="merge"){
 }
 document.addEventListener("visibilitychange",()=>{if(!document.hidden&&cloudClient&&cloudUser&&!cloudSyncing)syncNow("merge");});
 window.addEventListener("focus",()=>{if(cloudClient&&cloudUser&&!cloudSyncing)syncNow("merge");});
+// Background refresh for simultaneously open Mac/iPhone sessions.
+setInterval(()=>{if(!document.hidden&&cloudClient&&cloudUser&&!cloudSyncing&&navigator.onLine)syncNow("merge");},45000);
 function bindCloudControls(){
  if(!$("saveCloudConfigBtn"))return;
  $("saveCloudConfigBtn").addEventListener("click",async()=>{const url=$("supabaseUrlInput").value.trim().replace(/\/$/,""),key=$("supabaseKeyInput").value.trim();if(!url||!key){alert("Project URL과 공개용 키를 모두 입력하세요.");return}saveCloudConfig({url,key});await initializeCloudClient(false);updateSyncUI();alert("연결 정보를 저장했습니다. 이제 로그인하세요.")});
