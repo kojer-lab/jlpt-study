@@ -32,7 +32,7 @@ window.KOJER_CURATED_NEWS = {
       "editorialNote": "映画.comの報道で確認できる事実をもとに独立して再構成した日本語学習記事。原文の全文転載ではありません。",
       "expressions": [
         {
-          "form": "足を運ぶ",
+          "form": "足を運んだ",
           "meaning": "직접 찾아가다",
           "origin": "source"
         },
@@ -42,12 +42,12 @@ window.KOJER_CURATED_NEWS = {
           "origin": "source"
         },
         {
-          "form": "関心が及ぶ",
+          "form": "関心が及び",
           "meaning": "관심이 ~까지 미치다",
           "origin": "adapted"
         },
         {
-          "form": "～ならでは",
+          "form": "ならでは",
           "meaning": "~만의, ~이기에 가능한",
           "origin": "source"
         },
@@ -57,14 +57,9 @@ window.KOJER_CURATED_NEWS = {
           "origin": "source"
         },
         {
-          "form": "描き下ろす",
+          "form": "描き下ろした",
           "meaning": "새롭게 그리다",
           "origin": "source"
-        },
-        {
-          "form": "見え隠れする",
-          "meaning": "드러났다 숨었다 하다",
-          "origin": "adapted"
         },
         {
           "form": "垣根を越えて",
@@ -99,7 +94,7 @@ window.KOJER_CURATED_NEWS = {
       ],
       "expressions": [
         {
-          "form": "波及する",
+          "form": "波及している",
           "meaning": "파급되다, 영향을 미치다",
           "origin": "adapted"
         },
@@ -109,7 +104,7 @@ window.KOJER_CURATED_NEWS = {
           "origin": "adapted"
         },
         {
-          "form": "下支えする",
+          "form": "下支えしている",
           "meaning": "밑에서 뒷받침하다",
           "origin": "adapted"
         },
@@ -124,7 +119,7 @@ window.KOJER_CURATED_NEWS = {
           "origin": "adapted"
         },
         {
-          "form": "～かねない",
+          "form": "かねない",
           "meaning": "~할 우려가 있다",
           "origin": "adapted"
         },
@@ -167,12 +162,12 @@ window.KOJER_CURATED_NEWS = {
           "origin": "source"
         },
         {
-          "form": "めどが立たない",
+          "form": "めどは立っていない",
           "meaning": "전망이 서지 않다",
           "origin": "source"
         },
         {
-          "form": "浮き彫りにする",
+          "form": "浮き彫りにした",
           "meaning": "문제를 뚜렷하게 드러내다",
           "origin": "adapted"
         },
@@ -187,7 +182,7 @@ window.KOJER_CURATED_NEWS = {
           "origin": "adapted"
         },
         {
-          "form": "～かねない",
+          "form": "かねない",
           "meaning": "~할 위험이 있다",
           "origin": "adapted"
         },
@@ -372,12 +367,12 @@ window.KOJER_CURATED_NEWS = {
           "origin": "adapted"
         },
         {
-          "form": "内に秘める",
+          "form": "内に秘めた",
           "meaning": "마음속에 간직하다",
           "origin": "source"
         },
         {
-          "form": "重なる",
+          "form": "重なって見えた",
           "meaning": "겹치다, 부합하다",
           "origin": "source"
         },
