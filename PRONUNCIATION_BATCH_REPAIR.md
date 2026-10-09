@@ -49,6 +49,37 @@ ChatGPT 작업 순서:
 - 코드/파일 검증 성공은 **일본어의 실제 청각적 자연스러움까지 보장하지 않음**. 실제 청취 확인이 필요.
 - GitHub Actions 작업은 실행된 배치만 처리하며 매일 자동으로 Supabase를 감시하지 않음.
 
+
+## 문장 끝에 이상한 소리: 기존 목소리를 유지하는 MP3 끝소리 보정
+
+- 앱에서 오류 유형 **문장 끝에 이상한 소리**로 신고된 경우만 검수 후 이 경로를 사용한다. 다른 오류는 기존 Kokoro 재생성 경로를 사용한다.
+- 신고 자체가 MP3를 변경하지 않는다. 먼저 정상 일본어 마지막 음절과 불필요한 끝소리의 경계를 확인해 `remove_tail_ms`를 **수동으로 승인**한다. 정상 음절과 붙어 있어 경계가 불명확하면 임의 절단하지 말고 별도 검수한다.
+- `audio/vocab/trim-batch.json`에 최대 20개를 등록한다. `error_type`은 정확히 `문장 끝에 이상한 소리`, `reviewed`는 `true`, `report_ids`에는 실제 신고 ID가 있어야 한다. `remove_tail_ms`는 **50~800ms**, 기존 음성 길이의 25% 이내여야 한다.
+- 승인된 배치가 main에 커밋되면 `.github/workflows/trim-reported-vocab-batch.yml`이 실행된다. 기존 MP3의 **끝부분만 제거**하고 짧은 페이드아웃 후 MP3를 재인코딩한다. Kokoro 모델이나 화자를 변경하지 않는다.
+- 한 건이라도 포맷·길이·경로 검증이 실패하면 전체 배치를 게시하지 않는다. 결과는 `audio/vocab/repaired-revisions.json`에 해시를 기록해 iPhone Safari의 구버전 캐시를 우회한다. 최종 청취 검수 후에만 신고를 `fixed` 처리한다.
+- 검수 대기 중인 신고만으로는 자동 절단이 일어나지 않는다. **불필요한 끝소리만 분명하게 구분될 때** 승인하고, 그렇지 않으면 MP3를 그대로 둔다.
+
+예시 형식(실제 리뷰 후 대상과 길이 지정):
+
+```json
+{
+  "version": 1,
+  "batch_id": "reviewed-endtrim-20261009-a",
+  "items": [{
+    "word_id": "todokooru",
+    "kind": "example",
+    "index": 0,
+    "error_type": "문장 끝에 이상한 소리",
+    "reviewed": true,
+    "remove_tail_ms": 220,
+    "report_ids": [2],
+    "reason": "원래 문장의 마지막 음절 이후에 붙은 소리만 제거"
+  }]
+}
+```
+
+*위의 220ms와 신고 ID는 형식 설명용 예시이며 실제 보정 승인값이 아니다.*
+
 ## 구현 파일
 
 - `tools/repair-reported-vocab-audio.py` — 입력 검증, Kokoro 1회 로딩, 다중 MP3 생성
