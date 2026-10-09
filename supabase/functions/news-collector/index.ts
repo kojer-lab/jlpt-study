@@ -13,7 +13,7 @@ const CATEGORIES = [
   ["영화·애니", "映画 OR アニメ OR ドラマ"],
   ["생활·IT", "暮らし OR テクノロジー OR 生活"],
 ] as const;
-type News = { id: string; category: string; title: string; source: string; url: string; publishedAt: string };
+type News = { id: string; category: string; title: string; source: string; url: string; publishedAt: string; summary?: string };
 const ALLOWED_ORIGIN = "https://kojer-lab.github.io";
 const CORS = {
   "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
@@ -75,8 +75,22 @@ async function loadFeed(category: string, query: string): Promise<News[]> {
 
 const NHK_FEEDS = [
  ["시사","cat4"],["사건·사고","cat1"],["국제","cat6"],
- ["스포츠","cat7"],["과학","cat3"],["경제","cat5"],["영화·애니","cat2"]
+ ["스포츠","cat7"],["과학","cat3"],["경제","cat5"],["문화·연예","cat2"]
 ] as const;
+function normalizeCategory(title: string, fallback: string): string {
+ const t=String(title);
+ // NHK RSS sometimes syndicates broad-interest headlines across nominal categories.
+ if(/コメ.{0,35}(価格|円|値下がり|値上がり)|(?:物価|株価|為替|円安|円高|金利|賃金|日経平均|企業決算|インフレ)/.test(t))return "경제";
+ if(/アニメ|映画|ドラマ|漫画|声優|Netflix|配信作品/.test(t))return "영화·애니";
+ if(/サッカー|野球|大谷|ホームラン|スポーツ|五輪|選手権|優勝|試合|決勝戦/.test(t))return "스포츠";
+ if(/ノーベル|人工知能|AI研究|新技術|宇宙|研究|論文|科学|医療|感染症/.test(t))return "과학";
+ return fallback;
+}
+function cleanSummary(text: string, title: string) {
+ const s=text.replace(/\s+/g," ").trim().slice(0,850);
+ if(s.length<45 || s===title || (s.replace(/\s+/g,"").includes(title.replace(/\s+/g,"")) && s.length<title.length+35))return "";
+ return s;
+}
 async function loadNHK(category: string, code: string): Promise<News[]> {
  const feedUrl="https://news.web.nhk/n-data/conf/na/rss/"+code+".xml";
  const response=await fetch(feedUrl,{
@@ -89,13 +103,14 @@ async function loadNHK(category: string, code: string): Promise<News[]> {
  const result: News[]=[];
  for(const [,item] of xml.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)){
    const title=tag(item,"title").slice(0,260);
+   const summary=cleanSummary(tag(item,"description"),title);
    const link=tag(item,"link");
    const stamp=Date.parse(tag(item,"pubDate"));
    if(!title||!Number.isFinite(stamp)||stamp<cutoff||stamp>Date.now()+3600_000)continue;
    let url: URL;
    try{url=new URL(link)}catch{continue}
    if(url.protocol!=="https:"||url.hostname!=="news.web.nhk")continue;
-   result.push({id:"NHK:"+category+":"+link,category,title,source:"NHK ONE ニュース",url:link,publishedAt:new Date(stamp).toISOString()});
+   result.push({id:"NHK:"+category+":"+link,category:normalizeCategory(title,category),title,source:"NHK ONE ニュース",url:link,publishedAt:new Date(stamp).toISOString(),...(summary?{summary}:{})});
    if(result.length>=2)break
  }
  return result
