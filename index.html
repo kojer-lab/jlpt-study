@@ -2280,9 +2280,11 @@ async function submitPronReport(){
   if(pronCurrent===current)$("pronFeedback").textContent=pronSubmissionError(error);
  }finally{
   pronSubmitting=false;
-  if(pronCurrent===current&&$("pronFeedback").textContent.startsWith("접수 완료")){
-   $("pronSubmit").disabled=true;
-  }else if(pronCurrent===current)updatePronReportActions();
+  if(pronCurrent){
+   updatePronReportActions();
+   if(pronCurrent===current&&$("pronFeedback").textContent.startsWith("접수 완료"))
+    $("pronSubmit").disabled=true;
+  }
  }
 }
 $("pronSubmit").addEventListener("click",submitPronReport);
