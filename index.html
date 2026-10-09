@@ -2191,7 +2191,12 @@ async function playWordAudio(w,exampleIndex=null,button=null){
    const staticUrl=await staticVocabAudioUrl(w,exampleIndex);
    if(staticUrl){
      if(button){button.classList.remove("loading");button.classList.add("playing")}
-     await playKokoroUrl(staticUrl);return;
+     // Force the repaired audio past Safari/desktop caches without changing
+     // the canonical manifest path stored in pronunciation reports.
+     const playbackUrl=(w.id==="todokooru"&&exampleIndex===0)
+       ?staticUrl+(staticUrl.includes("?")?"&":"?")+"v=fd1ed723a0dc"
+       :staticUrl;
+     await playKokoroUrl(playbackUrl);return;
    }
    const key=kokoroKey(text,"jf_alpha"),alreadyReady=kokoroUrls.has(key);
    if(!alreadyReady)status("음성을 준비하고 있습니다…");
