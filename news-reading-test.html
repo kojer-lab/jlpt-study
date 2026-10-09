@@ -9,10 +9,9 @@
 <section id="news">
   <div class="card live-box">
     <div class="row"><div><h2 style="margin:0">오늘의 일본 뉴스</h2><small>시사 · 사건·사고 · 국제 · 스포츠 · 과학 · 경제 · 연예 · 문화 · 생활</small></div><span class="pill">실시간 RSS</span></div>
-    <p class="note">버튼을 누르는 시점에 최근 약 2일간의 일본어 뉴스 제목을 분야별로 모읍니다. 기사를 누르면 언론사 사이트로 이동하지 않고, 뉴스 제목과 확인된 RSS 소개문을 즉시 표시합니다. RSS에 소개문이 없는 기사는 제목만 읽을 수 있습니다. 유료 AI API는 사용하지 않습니다.</p>
+    <p class="note">버튼을 누르면 최근 일본 뉴스를 분야별로 모읍니다. 읽을 만한 일본어 내용이 포함된 기사만 보여주며, 제목만 있는 기사는 자동 제외합니다. 유료 AI API는 사용하지 않습니다.</p>
     <button id="collectBtn" onclick="collectNews()">↻ 오늘의 기사 모으기</button>
     <p id="news-status" class="note" role="status" aria-live="polite">원할 때 버튼을 눌러 최신 기사를 가져오세요.</p>
-    <div class="filters" style="align-items:center"><button id="briefFilterBtn" onclick="toggleBriefFilter()">지문 있는 기사만 보기</button><small id="brief-count" class="muted"></small></div>
     <div class="filters" id="live-filters"></div><div id="live-list"></div>
   </div>
   <details id="samples" open class="samples"><summary><strong>실전 표현 수첩 연습 · 예시 기사 8개</strong> <small>(고급 문형 16개 포함)</small></summary>
@@ -96,13 +95,17 @@ persist();renderFilters();renderSaved();
 const NEWS_FUNCTION_URL="https://honnatvsuwzhdcyyftzl.supabase.co/functions/v1/news-collector";
 const NEWS_CONFIG_KEY="jlptN1CloudConfigV31";
 const NEWS_CACHE_KEY="jlptNewsRecentHeadlinesV1";
-let liveNews=[],liveFilter="전체",liveErrors=[],liveFetchedAt="",newsBusy=false,onlyBriefs=false;
-function hasBrief(article){
- return !!(article&&typeof article.summary==="string"&&article.summary.trim().length>=18&&/[一-龯ぁ-ゖァ-ヺ]/.test(article.summary));
-}
-function toggleBriefFilter(){
- onlyBriefs=!onlyBriefs;
- renderLive();
+let liveNews=[],liveFilter="전체",liveErrors=[],liveFetchedAt="",newsBusy=false;
+function hasBrief(x){
+ if(!x||typeof x.title!=="string"||typeof x.summary!=="string")return false;
+ const summary=x.summary.trim();
+ if(summary.length<45||!/[一-龯ぁ-ゖァ-ヺ]/.test(summary))return false;
+ const norm=t=>String(t).replace(/[\s　、。！？!?:：,.．・「」『』（）()【】－-]/g,"").toLowerCase();
+ const title=norm(x.title.replace(/\s*[-－]\s*[^-－]{2,45}$/,""));
+ const plain=norm(summary);
+ if(plain===title)return false;
+ if(title.length>12&&plain.includes(title)&&plain.replace(title,"").length<40)return false;
+ return summary.split(/[。！？!？\n]/).some(t=>t.trim().length>=30&&/[一-龯ぁ-ゖァ-ヺ]/.test(t)&&norm(t)!==title);
 }
 function formatPublished(ts){
  try{return new Date(ts).toLocaleString("ko-KR",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"})+" JST"}catch{return ""}
@@ -126,26 +129,20 @@ function openInApp(index){
 function renderLive(){
  const cats=["전체",...new Set(liveNews.map(x=>x.category))];
  const filters=document.getElementById("live-filters");
- filters.innerHTML=liveNews.length?cats.map(cat=>'<button class="'+(cat===liveFilter?"active":"")+'" data-filter="'+safe(cat)+'">'+safe(cat)+'</button>').join(""):"";
+ filters.innerHTML=cats.map(cat=>'<button class="'+(cat===liveFilter?"active":"")+'" data-filter="'+safe(cat)+'">'+safe(cat)+'</button>').join("");
  filters.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{liveFilter=b.dataset.filter;renderLive()}));
- const withinGenre=liveNews.filter(x=>liveFilter==="전체"||x.category===liveFilter);
- const readable=withinGenre.filter(hasBrief).length;
- document.getElementById("brief-count").textContent=withinGenre.length+"건 중 읽을 지문 "+readable+"건";
- const filterButton=document.getElementById("briefFilterBtn");
- filterButton.classList.toggle("active",onlyBriefs);
- filterButton.textContent=onlyBriefs?"✓ 지문 있는 기사만":"지문 있는 기사만 보기";
- const items=withinGenre.filter(x=>!onlyBriefs||hasBrief(x));
+ const items=liveNews.filter(x=>hasBrief(x)&&(liveFilter==="전체"||x.category===liveFilter));
  document.getElementById("live-list").innerHTML=items.map(x=>{
    const link=x.url;
    if(typeof link!=="string"||!/^https:\/\//i.test(link))return "";
-   return '<article class="live-item"><div class="row"><span class="pill">'+safe(x.category)+'</span><small>'+safe(x.source)+'</small><small>'+safe(formatPublished(x.publishedAt))+'</small></div><h3 lang="ja">'+safe(x.title)+'</h3><p class="note">'+(hasBrief(x)?"<span style=\"color:#91d6ad\">● 간추린 지문 있음</span>":"<span>○ 제목만 확인됨</span>") +'</p><button class="read-in-app" data-index="'+liveNews.indexOf(x)+'">📖 일본어 지문 읽기 →</button></article>'
- }).join("")+(onlyBriefs&&!items.length?'<div class="empty">선택한 분야에는 RSS 소개문이 있는 기사가 없습니다. 필터를 해제하면 전체 뉴스를 볼 수 있어요.</div>':"");
+   return '<article class="live-item"><div class="row"><span class="pill">'+safe(x.category)+'</span><small>'+safe(x.source)+'</small><small>'+safe(formatPublished(x.publishedAt))+'</small></div><h3 lang="ja">'+safe(x.title)+'</h3><button class="read-in-app" data-index="'+liveNews.indexOf(x)+'">📖 일본어 지문 읽기 →</button></article>';
+ }).join("")+(!items.length?'<div class="empty">읽을 내용이 있는 최신 기사가 없습니다. 다른 날짜에 다시 수집해 주세요.</div>':"");
  document.querySelectorAll("#live-list .read-in-app").forEach(button=>button.addEventListener("click",()=>openInApp(Number(button.dataset.index))));
 }
 function readCachedNews(){
  try{const data=JSON.parse(localStorage.getItem(NEWS_CACHE_KEY)||"null");if(!data||!Array.isArray(data.articles))return;
-   liveNews=data.articles;liveFetchedAt=data.generatedAt||"";liveErrors=data.failedCategories||[];
-   noticeNews("지난 수집 결과 "+liveNews.length+"건 ("+formatPublished(liveFetchedAt)+") · 최신 정보를 보려면 버튼을 눌러주세요.");
+   liveNews=data.articles.filter(hasBrief);liveFetchedAt=data.generatedAt||"";liveErrors=data.failedCategories||[];
+   noticeNews(liveNews.length?"지난 뉴스 지문 "+liveNews.length+"건 ("+formatPublished(liveFetchedAt)+") · 최신 기사는 다시 모으기":"이전 수집 결과에 읽을 만한 지문이 없어 제외했어. 새로 기사 모으기를 눌러줘.");
    renderLive();
  }catch(e){console.warn("뉴스 캐시 복원 실패",e)}
 }
@@ -168,7 +165,8 @@ async function collectNews(){
    const payload=await request.json().catch(()=>({}));
    if(!request.ok)throw Error(payload.error||"뉴스 수집 실패 (HTTP "+request.status+")");
    if(!Array.isArray(payload.articles)||!payload.articles.length)throw Error("최근 2일 내 기사 수집 결과가 없습니다.");
-   liveNews=payload.articles.filter(x=>x&&typeof x.title==="string"&&typeof x.url==="string"&&typeof x.category==="string");
+   liveNews=payload.articles.filter(x=>x&&typeof x.url==="string"&&typeof x.category==="string"&&hasBrief(x));
+   if(!liveNews.length)throw Error("읽을 내용이 있는 최신 기사가 없어 제목만 있는 결과는 제외했어.");
    liveErrors=Array.isArray(payload.failedCategories)?payload.failedCategories:[];
    liveFetchedAt=payload.generatedAt||new Date().toISOString();liveFilter="전체";
    try{localStorage.setItem(NEWS_CACHE_KEY,JSON.stringify({articles:liveNews,generatedAt:liveFetchedAt,failedCategories:liveErrors}))}catch(e){console.warn("뉴스 캐시 저장 실패",e)}
