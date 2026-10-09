@@ -26,6 +26,7 @@ REVISIONS_PATH = ROOT / "audio/vocab/repaired-revisions.json"
 BATCH_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}$")
 WORD_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{1,128}$")
 PATH_PATTERN = re.compile(r"^audio/vocab/(?:openjlpt/)?[A-Za-z0-9_-]+-(?:word|ex[1-9]\d*)\.mp3$")
+ALLOWED_JAPANESE_VOICES = {"jf_alpha", "jf_gongitsune", "jf_nezumi", "jf_tebukuro", "jm_kumo"}
 
 
 def load_json(path: Path) -> dict:
@@ -64,6 +65,9 @@ def check_batch() -> list[dict]:
         kind = req.get("kind")
         index = req.get("index")
         text = req.get("spoken_text")
+        voice = req.get("voice", "jf_alpha")
+        if voice not in ALLOWED_JAPANESE_VOICES:
+            raise ValueError(f"Unsupported Japanese voice for {word_id}: {voice}")
         if not isinstance(word_id, str) or not WORD_ID_PATTERN.fullmatch(word_id):
             raise ValueError(f"Invalid word ID in request #{num}")
         if kind not in ("word", "example"):
@@ -111,7 +115,7 @@ def check_batch() -> list[dict]:
         if path.is_symlink() or not path.is_file() or path.stat().st_size < 1000:
             raise ValueError(f"Existing MP3 is missing, linked, or empty: {rel}")
         targets.append({
-            "path": path, "relative": rel, "spoken_text": text,
+            "path": path, "relative": rel, "spoken_text": text, "voice": voice,
             "word_id": word_id, "kind": kind, "index": index,
             "report_ids": reports,
         })
@@ -141,7 +145,7 @@ def resynthesize(targets: list[dict]) -> None:
         temp = Path(temp_dir)
         for i, t in enumerate(targets, 1):
             chunks = []
-            for out in pipeline(t["spoken_text"], voice="jf_alpha", speed=1.0):
+            for out in pipeline(t["spoken_text"], voice=t["voice"], speed=1.0):
                 a = out.audio if hasattr(out, "audio") else out[2]
                 if a is None:
                     continue
@@ -189,7 +193,7 @@ def resynthesize(targets: list[dict]) -> None:
             if oldhash == newhash:
                 raise RuntimeError(f"Regenerated file identical to original: {t['relative']}")
             staged.append((t, data, newhash[:16]))
-            print(f"[{i}/{len(targets)}] OK {t['relative']} {mp3_duration:.2f}s {oldhash[:10]} -> {newhash[:10]}")
+            print(f"[{i}/{len(targets)}] OK {t['relative']} voice={t['voice']} {mp3_duration:.2f}s {oldhash[:10]} -> {newhash[:10]}")
 
         # Only publish local replacements after ALL clips pass their checks.
         for t, data, _ in staged:
