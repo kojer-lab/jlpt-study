@@ -432,7 +432,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
           <div class="section-title" style="margin-top:22px">공식 문제지</div>
           <div class="official-sheet">
             <div class="official-sheet-head"><strong id="sheetTitle">問題 1 문제지 · PDF 3페이지부터</strong><span>JLPT 공식 2018 N1</span></div>
-            <iframe class="official-sheet-frame" id="officialSheetFrame" title="JLPT N1 공식 청해 문제지" loading="eager" referrerpolicy="no-referrer"></iframe>
+            <iframe class="official-sheet-frame" id="officialSheetFrame" title="JLPT N1 공식 청해 문제지" loading="lazy" referrerpolicy="no-referrer"></iframe>
             <div class="sheet-fallback">문제지는 이 화면 안에서 열립니다. 음원을 재생한 채 문제지를 스크롤하거나 問題를 바꿔도 오디오 플레이어는 같은 페이지에 유지됩니다.</div>
           </div>
           <div class="next-row" style="justify-content:flex-start;position:static;background:none;padding-top:12px">
@@ -3242,12 +3242,12 @@ function setupListening(){
    if(tab==="ai"){player.pause();if(enteringAi)restartAiListening()}else{aiListenGeneration++;aiListenPlaying=false;releaseKokoroWakeLock();stopKokoroAudio()}
  });
  const pdf="https://ns.jlpt.jp/samples/sample2018/pdf/N1L.pdf";
- const viewer="https://docs.google.com/gview?embedded=true&url="+encodeURIComponent(pdf);
+ // Use the browser PDF viewer directly: avoid Google gview background downloads.
  const showSheet=(b)=>{
    const pages=(b.dataset.pages||"3").split(",").map(Number).filter(Boolean),page=pages[0]||3;
    $("sheetTitle").textContent=b.dataset.name.split(" · ")[0]+" 공식 문제지";
    $("officialPdfLink").href=pdf+"#page="+page;
-   $("officialSheetFrame").src=viewer+"#:0.page."+(page-1);
+   $("officialSheetFrame").src=pdf+"#page="+page;
  };
  const selectTrack=b=>{
    document.querySelectorAll(".track").forEach(x=>x.classList.remove("active"));b.classList.add("active");
