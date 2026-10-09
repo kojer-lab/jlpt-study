@@ -2658,6 +2658,47 @@ aiListeningProblems.forEach((p,i)=>{if(i<aiBaseEvidence.length){p.keyPhrase=aiBa
 for(let i=aiListeningProblems.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[aiListeningProblems[i],aiListeningProblems[j]]=[aiListeningProblems[j],aiListeningProblems[i]]}
 let aiListenIndex=0,aiListenPlaying=false,aiListenGeneration=0;
 const aiListenJobs=new Map();
+// Cache only the small manifest; prefetch only the current and next MP3.
+let aiListenManifestPromise=null;
+const aiListenMp3Fetch=new Map();
+function aiListeningSignature(p){
+ const body=JSON.stringify(p.lines.map(x=>[x[0],x[1]]));
+ let hash=2166136261;
+ for(let i=0;i<body.length;i++)hash=Math.imul(hash^body.charCodeAt(i),16777619);
+ return (hash>>>0).toString(16).padStart(8,"0");
+}
+function loadAiListeningManifest(){
+ if(!aiListenManifestPromise){
+  aiListenManifestPromise=fetch("audio/listening/manifest.json",{cache:"no-cache"})
+   .then(r=>r.ok?r.json():null).then(m=>m?.count===100&&m?.files?m.files:null).catch(()=>null);
+ }
+ return aiListenManifestPromise;
+}
+async function aiListeningMp3Url(p){
+ const files=await loadAiListeningManifest();
+ return files?.[aiListeningSignature(p)]||null;
+}
+async function prefetchAiListeningMp3(index){
+ const p=aiListeningProblems[index];
+ if(!p)return false;
+ const url=await aiListeningMp3Url(p);
+ if(!url)return false;
+ if(!aiListenMp3Fetch.has(url)){
+  aiListenMp3Fetch.set(url,fetch(url,{cache:"force-cache"}).then(r=>{
+   if(!r.ok)throw new Error("MP3 not available: "+r.status);
+   return true;
+  }).catch(()=>{aiListenMp3Fetch.delete(url);return false}));
+ }
+ return await aiListenMp3Fetch.get(url);
+}
+async function warmAiListening(index){
+ const p=aiListeningProblems[index];
+ const ready=await prefetchAiListeningMp3(index);
+ if(p!==aiListeningProblems[index]||index!==aiListenIndex||aiListenPlaying)return;
+ if(ready){setAiStatus("사전 생성된 청해 MP3 준비 완료 · 바로 재생할 수 있습니다.","ok");return}
+ // During server-side audio production, retain the existing offline TTS fallback.
+ startAiListenJob(index);
+}
 function aiMakeSlot(){let resolve,reject;const promise=new Promise((res,rej)=>{resolve=res;reject=rej});return {promise,resolve,reject}}
 function setAiStatus(msg,type=""){const el=$("aiListenStatus");el.textContent=msg;el.className="ai-status"+(type?" "+type:"")}
 function startAiListenJob(index){
@@ -2700,7 +2741,7 @@ function startAiListenJob(index){
 function renderAiListening(){
  const p=aiListeningProblems[aiListenIndex];
  $("aiListenType").textContent=p.type;$("aiListenCounter").textContent=(aiListenIndex+1)+" / "+aiListeningProblems.length;$("aiListenQuestion").textContent=p.question;
- $("aiEngineText").textContent=(kokoroEngine||kokoroConfig()).label+" · 다음 문제도 듣는 동안 미리 생성";
+ $("aiEngineText").textContent="사전 생성 MP3 우선 · 다음 문제 음성 미리 다운로드 · Kokoro 예비 재생";
  $("aiListenChoices").innerHTML=p.choices.map((c,i)=>'<button type="button" class="ai-choice" data-ai-choice="'+i+'">'+(i+1)+'. '+c+"</button>").join("");
  $("aiListenExplain").className="ai-explain";
  const explainBox=$("aiListenExplain");explainBox.replaceChildren();
@@ -2715,19 +2756,37 @@ function renderAiListening(){
  if(p.studyPoint)addExplainSection("학습 포인트",p.studyPoint);
  $("aiListenScript").className="ai-script";$("aiListenScript").innerHTML=p.lines.map(x=>'<div class="ai-script-line"><span class="ai-speaker">'+x[2]+"</span>"+x[0]+"</div>").join("");
  $("aiListenScriptBtn").textContent="스크립트 보기";$("aiListenNext").classList.add("hidden");$("aiListenPlay").disabled=false;
- setAiStatus("현재 문제 음성을 백그라운드에서 준비합니다.");
- setTimeout(()=>startAiListenJob(aiListenIndex),80);
+ setAiStatus("현재 문제 음성을 확인하고 있습니다.");
+ setTimeout(()=>{if(aiListeningProblems[aiListenIndex]===p)warmAiListening(aiListenIndex)},80);
 }
 async function playAiListening(){
  if(aiListenPlaying)return;
  const generation=aiListenGeneration,index=aiListenIndex;
  aiListenPlaying=true;$("aiListenPlay").disabled=true;
- const p=aiListeningProblems[index],job=startAiListenJob(index),prebuffer=isAppleMobile()?1:2;
+ const p=aiListeningProblems[index],prebuffer=isAppleMobile()?1:2;
  try{
-   await requestKokoroWakeLock();setAiStatus("선행 버퍼 "+Math.min(prebuffer,p.lines.length)+"개 준비 중…");
+   await requestKokoroWakeLock();
+   const mp3=await aiListeningMp3Url(p);
+   if(generation!==aiListenGeneration)return;
+   if(mp3){
+     try{
+       setAiStatus("사전 생성 MP3 재생 중 · 다음 문제 다운로드 중…","ok");
+       if(index+1<aiListeningProblems.length)prefetchAiListeningMp3(index+1).catch(()=>{});
+       await playKokoroUrl(mp3);
+       if(generation!==aiListenGeneration)return;
+       setAiStatus("재생 완료 · 정답을 선택해 보세요.","ok");
+       return;
+     }catch(error){
+       if(generation!==aiListenGeneration)return;
+       console.warn("Listening MP3 unavailable, falling back to Kokoro:",error);
+     }
+   }
+   // Fallback until the MP3 manifest is fully built or if an asset is unavailable.
+   const job=startAiListenJob(index);
+   setAiStatus("예비 AI 음성 · 선행 버퍼 "+Math.min(prebuffer,p.lines.length)+"개 준비 중…");
    await Promise.all(job.slots.slice(0,Math.min(prebuffer,p.lines.length)).map(x=>x.promise));
    if(generation!==aiListenGeneration)return;
-   setAiStatus("재생 중 · 뒤 음성 및 다음 문제를 계속 준비합니다.","ok");
+   setAiStatus("AI 음성 재생 중 · 나머지 대사 준비 중…","ok");
    if(!isAppleMobile())job.producer.then(()=>{if(generation===aiListenGeneration&&index+1<aiListeningProblems.length)startAiListenJob(index+1)});
    for(let i=0;i<p.lines.length;i++){
      const r=await job.slots[i].promise;
