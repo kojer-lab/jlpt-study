@@ -18,12 +18,19 @@ textarea{font:inherit;background:#10151f;color:#f2f2f2;border:1px solid #43516c;
 details summary{cursor:pointer;font-weight:700}details .dim{font-size:13px;line-height:1.7}
 small{font-size:12px}.help{font-size:13px;line-height:1.7;color:#b7c2d4}.row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./data/news-curated-v1.js?v=20261010-1"></script></head><body><main>
 <div class="top"><a href="./news-reading-test.html">← 뉴스 목록으로</a><span class="pill">뉴스 문장 정리 · 무료</span></div>
 <div class="card"><small id="meta" class="dim"></small><h1 id="title" lang="ja">뉴스 읽기</h1><p id="status" class="status" role="status">뉴스를 정리해서 표시합니다.</p>
 <div class="controls"><small class="dim">후리가나</small><button class="active" id="m-click" onclick="mode('click')">한자 클릭</button><button id="m-all" onclick="mode('all')">모두 보기</button><button id="m-off" onclick="mode('off')">숨기기</button></div>
 <div class="row" style="margin:2px 0 16px"><span id="brief-type" class="pill">확인된 뉴스만 정리</span><small id="brief-detail" class="dim"></small></div>
-<div id="body" class="mode-click" lang="ja"></div><div id="hint" hidden></div></div>
+<div id="body" class="mode-click" lang="ja"></div>
+<div id="hint" hidden></div>
+<div id="translation-controls" hidden style="margin-top:28px;border-top:1px solid #44516a;padding-top:20px">
+<button id="translation-button" onclick="toggleTranslation()" aria-expanded="false">한국어 번역 보기</button>
+<div id="translation-body" hidden style="line-height:1.95;margin-top:18px;color:#d4dded;font-size:15px"></div>
+<p class="dim" style="font-size:12px">출처의 사실관계를 바탕으로 다시 작성한 학습용 일본어 지문입니다.</p>
+</div>
+</div>
 <details id="import" class="card"><summary>다른 일본어 글 직접 넣어서 읽기 (선택)</summary>
 <p class="help">읽고 싶은 일본어 텍스트가 따로 있다면 여기에 입력해 동일한 후리가나·표현 설명 기능을 사용할 수 있습니다. 입력 내용은 서버에 업로드하거나 저장하지 않습니다.</p>
 <textarea id="usertext" placeholder="읽고 싶은 일본어 기사 본문을 붙여넣으세요." spellcheck="false"></textarea>
@@ -34,7 +41,11 @@ small{font-size:12px}.help{font-size:13px;line-height:1.7;color:#b7c2d4}.row{dis
 const $=id=>document.getElementById(id);
 const esc=x=>String(x??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 const params=new URLSearchParams(location.search);
-const news={title:(params.get("title")||"일본어 기사").slice(0,220),url:params.get("url")||"",source:(params.get("source")||"").slice(0,90),category:(params.get("category")||"").slice(0,40)};
+const curatedId=params.get("curated");
+const curated=(window.KOJER_CURATED_NEWS?.articles||[]).find(a=>a.id===curatedId)||null;
+const news=curated
+ ? {title:curated.title,url:curated.sourceUrl,source:curated.source,category:curated.category}
+ : {title:(params.get("title")||"일본어 기사").slice(0,220),url:params.get("url")||"",source:(params.get("source")||"").slice(0,90),category:(params.get("category")||"").slice(0,40)};
 $("title").textContent=news.title;$("meta").textContent=[news.category,news.source].filter(Boolean).join(" · ");
 let rssSummary="";
 try {
@@ -59,9 +70,25 @@ const patterns=[
 ["に至っては","고급 문형","~에 이르러서는","더 극단적인 사례를 강조해."],
 ["歯止めがかからない","관용어","제동이 걸리지 않다","문제나 증가세가 억제되지 않을 때 사용해."],
 ["踏み切る","뉴스 표현","단행하다","결정을 실행에 옮기는 뉘앙스가 있어."],
-["水を差す","관용어","찬물을 끼얹다","분위기나 진행을 방해하는 비유야."]
+["水を差す","관용어","찬물을 끼얹다","분위기나 진행을 방해하는 비유야."],
+["食い入るように","실전 관용 표현","뚫어지게, 열중해서","시선을 떼지 못할 만큼 집중하는 모습을 묘사해."],
+["足を運んだ","뉴스 관용 표현","직접 방문했다","단순히 가다보다 실제로 찾아갔음을 강조해."],
+["足を運ぶ","뉴스 관용 표현","직접 방문하다","현장을 찾아가는 행동을 나타내."],
+["描き下ろした","뉴스 관용 표현","새롭게 그려낸","기존 그림이 아니라 새로 제작했다는 뜻이야."],
+["垣根を越えて","뉴스 관용 표현","분야의 경계를 넘어","분야나 조직 사이의 차이를 넘는 비유야."],
+["こだわり","뉴스 어휘","세심한 공들임, 고집","제작 과정에서 특정 요소를 중요하게 여기는 태도야."]
+
 ].sort((a,b)=>b[0].length-a[0].length);
 let activeMode="click";
+let showKorean=false;
+function toggleTranslation(){
+ if(!curated)return;
+ showKorean=!showKorean;
+ $("translation-body").hidden=!showKorean;
+ $("translation-button").textContent=showKorean?"한국어 번역 숨기기":"한국어 번역 보기";
+ $("translation-button").setAttribute("aria-expanded",String(showKorean));
+}
+
 function mode(value){activeMode=value;$("body").className="mode-"+value;["click","all","off"].forEach(m=>$("m-"+m).classList.toggle("active",m===value))}
 function status(message,bad=false){$("status").textContent=message;$("status").className="status"+(bad?" error":"")}
 function ensureTokenizer(){
@@ -219,6 +246,16 @@ function prepareBrief(raw){
  return {paragraphs:groups.slice(0,8),hasDescription:true,sentenceCount:sentences.length};
 }
 function initial(){
+ if(curated){
+   briefIsHeadlineOnly=false;
+   paragraphs=curated.paragraphs.slice();
+   $("brief-type").textContent="검수한 학습용 재구성";
+   $("brief-detail").textContent=curated.bodyLength+"자 · "+paragraphs.length+"문단 · "+curated.date+" · 기사 원문 아님";
+   $("translation-controls").hidden=false;
+   $("translation-body").innerHTML=curated.translationParagraphs.map(p=>"<p>"+esc(p)+"</p>").join("");
+   render();
+   return;
+ }
  const brief=prepareBrief(rssSummary);
  $("brief-type").textContent=brief.hasDescription?"RSS 소개문 정리":"제목만 확인됨";
  if(brief.hasDescription){
