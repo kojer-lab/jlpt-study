@@ -19,7 +19,7 @@ details summary{cursor:pointer;font-weight:700}details .dim{font-size:13px;line-
 small{font-size:12px}.help{font-size:13px;line-height:1.7;color:#b7c2d4}.row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./data/news-curated-v1.js?v=20261010-1"></script></head><body><main>
-<div class="top"><a href="./news-reading-test.html">← 뉴스 목록으로</a><span class="pill">뉴스 문장 정리 · 무료</span></div>
+<div class="top"><a id="news-back-link" href="./news-reading-test.html">← 뉴스 목록으로</a><span class="pill">뉴스 문장 정리 · 무료</span></div>
 <div class="card"><small id="meta" class="dim"></small><h1 id="title" lang="ja">뉴스 읽기</h1><p id="status" class="status" role="status">뉴스를 정리해서 표시합니다.</p>
 <div class="controls"><small class="dim">후리가나</small><button class="active" id="m-click" onclick="mode('click')">한자 클릭</button><button id="m-all" onclick="mode('all')">모두 보기</button><button id="m-off" onclick="mode('off')">숨기기</button></div>
 <div class="row" style="margin:2px 0 16px"><span id="brief-type" class="pill">확인된 뉴스만 정리</span><small id="brief-detail" class="dim"></small></div>
@@ -79,6 +79,13 @@ const patterns=[
 ["こだわり","뉴스 어휘","세심한 공들임, 고집","제작 과정에서 특정 요소를 중요하게 여기는 태도야."]
 
 ].sort((a,b)=>b[0].length-a[0].length);
+if(curated&&Array.isArray(curated.expressions)){
+ for(const expr of curated.expressions){
+  if(!expr?.form||patterns.some(p=>p[0]===expr.form))continue;
+  patterns.push([expr.form,"실전 뉴스 표현",expr.meaning||"문맥에서 의미 확인","이 기사에 실제로 등장하는 표현이야. 문장의 앞뒤를 함께 읽어 봐."]);
+ }
+ patterns.sort((a,b)=>b[0].length-a[0].length);
+}
 let activeMode="click";
 let showKorean=false;
 function toggleTranslation(){
@@ -146,10 +153,16 @@ function showPattern(key){
  const storageKey="jlpt-news-expression-test-v2";let arr=[];
  try{arr=JSON.parse(localStorage.getItem(storageKey)||"[]")}catch{}
  if(!Array.isArray(arr))arr=[];
- const on=arr.some(x=>x.id===key);
+ const saveId=curated?curated.id+":"+key:key;
+ const on=arr.some(x=>x.id===saveId);
+ const paragraphIndex=curated?.paragraphs.findIndex(p=>p.includes(key))??-1;
+ const jpPara=paragraphIndex>=0?curated.paragraphs[paragraphIndex]:"";
+ const koPara=paragraphIndex>=0?curated.translationParagraphs?.[paragraphIndex]||"":"";
+ const excerpt=jpPara?jpPara.split(/(?<=[。！？!?])/).find(t=>t.includes(key))||jpPara:"";
+ 
  $("hint").hidden=false;$("hint").innerHTML='<span class="pill">'+esc(item[1])+'</span><h2 lang="ja">'+esc(item[0])+'</h2><p>'+esc(item[2])+'</p><p>'+esc(item[3])+'</p><button id="save-pattern">'+(on?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+'</button>';
  $("save-pattern").addEventListener("click",()=>{
-  arr=arr.some(x=>x.id===key)?arr.filter(x=>x.id!==key):[...arr,{id:key,type:item[1],form:key,reading:"",meaning:item[2],example:"",translation:"",note:item[3],compare:"",source:news.source,title:news.title,cat:news.category,savedAt:new Date().toISOString()}];
+  arr=arr.some(x=>x.id===saveId)?arr.filter(x=>x.id!==saveId):[...arr,{id:saveId,type:item[1],form:key,reading:"",meaning:item[2],example:excerpt,translation:koPara,note:item[3],compare:"",source:news.source,title:news.title,cat:news.category,savedAt:new Date().toISOString()}];
   try{localStorage.setItem(storageKey,JSON.stringify(arr));showPattern(key)}catch{status("브라우저 저장 공간이 부족합니다.",true)}
  });
  $("hint").scrollIntoView({block:"nearest",behavior:"smooth"})
@@ -247,6 +260,8 @@ function prepareBrief(raw){
 }
 function initial(){
  if(curated){
+   $("news-back-link").href="./index.html#newsreader";
+   $("news-back-link").textContent="← JLPT 뉴스 읽기로";
    briefIsHeadlineOnly=false;
    paragraphs=curated.paragraphs.slice();
    $("brief-type").textContent="검수한 학습용 재구성";
