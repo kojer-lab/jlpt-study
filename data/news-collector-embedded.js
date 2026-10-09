@@ -70,13 +70,16 @@ async function collect(){
   // Reuse the main JLPT Supabase session; do not create a second auth client.
   if(typeof cloudClient==="undefined"||!cloudClient||typeof cloudUser==="undefined"||!cloudUser)
    throw new Error("PC·모바일 동기화 메뉴에서 Supabase에 로그인해야 최신 RSS 뉴스를 모을 수 있어.");
+  const config=loadCloudConfig();
+  if(config.url!=="https://honnatvsuwzhdcyyftzl.supabase.co"||!config.key)
+   throw new Error("기존 JLPT Supabase 프로젝트에 먼저 연결해 줘.");
   const {data:auth,error:authError}=await cloudClient.auth.getSession();
   if(authError||!auth?.session?.access_token)throw new Error("로그인이 만료됐어. 동기화 메뉴에서 다시 로그인해 줘.");
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),18000);
   let response;
   try{
-   response=await fetch(API,{method:"GET",headers:{"Authorization":"Bearer "+auth.session.access_token,"apikey":loadCloudConfig().key},signal:controller.signal,cache:"no-store"});
+   response=await fetch(API,{method:"GET",headers:{"Authorization":"Bearer "+auth.session.access_token,"apikey":config.key},signal:controller.signal,cache:"no-store"});
   }finally{clearTimeout(timeout)}
   const result=await response.json().catch(()=>({}));
   if(!response.ok)throw new Error(typeof result.error==="string"?result.error:"뉴스 수집 실패 (HTTP "+response.status+")");
