@@ -324,7 +324,7 @@ function phrase(key,{preserve=false}={}){
  '<button type="button" class="secondary news-jump-to-expression" id="newsJumpToExpression" aria-label="본문에서 이 표현의 위치로 이동" title="본문의 표현 위치로 이동">↗ <span>본문으로</span></button></div>'+
  (e.reading?'<p style="margin:7px 0;color:var(--accent)">읽기 · '+esc(e.reading)+'</p>':"")+
  '<p style="margin:8px 0">뜻 · '+esc(e.meaning||"")+'</p>'+
- '<p lang="ja" style="font-size:14px;margin:8px 0">'+esc(sentence)+'</p>'+
+ '<p lang="ja" class="news-expression-example" style="font-size:14px;margin:8px 0;line-height:2.2">'+annotate(sentence).output+'</p>'+
  (e.similar?'<p style="margin:8px 0"><b>유사 표현</b> '+esc(e.similar)+'</p>':"")+
  (e.note?'<p style="margin:8px 0"><b>사용 뉘앙스</b> '+esc(e.note)+'</p>':"")+
  '<button type="button" class="secondary" id="newsSavePhrase">'+(already?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+"</button>";
