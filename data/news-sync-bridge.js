@@ -19,7 +19,7 @@ function items(){
  const stored=storageRead(EXPR,[]);
  for(const expression of Array.isArray(stored)?stored:[]){
   if(!expression||typeof expression.id!=="string"||!expression.id||expression.id.length>200)continue;
-  const stamp=timestamp(expression.updatedAt)||timestamp(expression.savedAt)||Date.now();
+  const stamp=timestamp(expression.updatedAt)||timestamp(expression.savedAt)||1;
   const data={...expression,updatedAt:stamp};
   results.set("expression:"+expression.id,{item_type:"expression",item_key:expression.id,data,ts:stamp});
  }
