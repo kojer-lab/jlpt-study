@@ -11,7 +11,7 @@ const progressKey="jlptNewsReadProgressV1";
 function savedProgress(){try{const v=JSON.parse(localStorage.getItem(progressKey)||"{}");return v&&typeof v==="object"?v:{}}catch{return {}}}
 function progressFor(id){const p=savedProgress()[id];return p&&Number.isInteger(p.index)?p:null}
 function captureProgress(force=false){
- if(!article||!$("newsCuratedDetail")||$("newsCuratedDetail").classList.contains("hidden"))return;
+ if(!article||!$("newsreaderView")?.classList.contains("active")||!$("newsCuratedDetail")||$("newsCuratedDetail").classList.contains("hidden"))return;
  const now=Date.now();
  if(!force&&(now-lastProgressSave<400||now<suppressProgressSaveUntil))return;
  const nodes=[...$("newsArticleBody").querySelectorAll(".news-paragraph")];
@@ -50,7 +50,7 @@ for(const row of "日本銀行|にほんぎんこう\n日本政府|にほんせ�
 // Article-by-article QA readings take precedence over the general vocabulary dictionary.
 const reviewed=window.KOJER_NEWS_FURI_REVIEWED_V1||{};
 for(const [surface,reading] of Object.entries(reviewed)){
- if(!surface||!reading||!/[一-龯々]/.test(surface))continue;
+ if(!surface||!reading||!/[一-龯々〇]/.test(surface))continue;
  const first=surface[0],arr=extra.get(first)||[];
  const old=arr.findIndex(entry=>entry.surface===surface);
  if(old>=0)arr.splice(old,1);
