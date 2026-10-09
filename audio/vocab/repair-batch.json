@@ -1,28 +1,5 @@
 {
   "version": 1,
-  "batch_id": "todokooru-prosody-review-20261009-c",
-  "items": [
-    {
-      "word_id": "todokooru",
-      "kind": "example",
-      "index": 0,
-      "spoken_text": "手続きがとどこおっている",
-      "voice": "jf_gongitsune",
-      "report_ids": [
-        2
-      ],
-      "reason": "첫번째 jf_alpha 재생성 후에도 끝 억양 지속: 다른 일본어 화자로 비교 생성. 최종 청취 확인 필요"
-    },
-    {
-      "word_id": "todokooru",
-      "kind": "example",
-      "index": 1,
-      "spoken_text": "大雨の影響で物流がとどこおった",
-      "voice": "jf_gongitsune",
-      "report_ids": [
-        4
-      ],
-      "reason": "두 번째 예문도 동일한 문장 끝 이상 음성 신고: 다른 화자로 검증용 재생성"
-    }
-  ]
+  "batch_id": "paused-persistent-end-vowel-20261009",
+  "items": []
 }
