@@ -99,6 +99,8 @@ begin
       and r.target_kind = new.target_kind
       and r.example_index is not distinct from new.example_index
       and r.error_type = new.error_type
+      -- A resolved report must not block reporting a persisting / recurring bug.
+      and r.status in ('open', 'reviewing')
       and r.created_at > pg_catalog.now() - interval '24 hours'
   ) then
     raise exception 'duplicate_report' using errcode = 'P0001';
