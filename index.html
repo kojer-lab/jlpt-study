@@ -262,7 +262,16 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-saved-card button{margin-top:7px}
 
 .news-article-expressions{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
-.news-article-expressions .secondary{margin:4px 6px 4px 0;font-size:13px}
+.news-article-expressions .secondary{margin:6px 6px 6px 0;font-size:14px;line-height:1.7;padding:10px 12px;min-height:46px}
+.news-expression-ruby{display:inline-block;line-height:1.7}
+.news-expression-ruby ruby{ruby-position:over;ruby-align:center;white-space:nowrap}
+.news-expression-ruby rt{font-size:.64em;font-weight:700;line-height:1;color:var(--accent)}
+.news-expression-info-heading{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.news-expression-info-heading strong.news-expression-ruby{font-size:18px}
+.news-jump-to-expression{margin-left:auto;padding:8px 11px;font-size:13px;display:inline-flex;gap:5px;align-items:center;justify-content:center}
+.news-jump-to-expression:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.news-saved-card .news-expression-ruby{font-size:16px}
+
 .news-article-body .news-phrase{text-decoration:none;background:transparent;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .news-article-body .news-phrase.news-phrase-selected{background:color-mix(in srgb,var(--accent) 24%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent);outline:1px solid color-mix(in srgb,var(--accent) 44%,transparent)}
 .news-expression-tools{margin-top:26px;border-top:1px solid var(--line);padding-top:20px}
@@ -429,7 +438,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
               <span>🔎 실전 표현 보기 <span id="newsExpressionCount"></span></span><span id="newsExpressionArrow" aria-hidden="true">＋</span>
             </button>
             <div id="newsExpressionPanel" class="hidden">
-              <p class="sub" style="font-size:13px;margin:14px 0 8px">표현을 선택하면 기사에서 해당 부분만 색으로 강조해 줘. 같은 표현을 다시 누르면 해제돼.</p>
+              <p class="sub" style="font-size:13px;margin:14px 0 8px">표현을 선택하면 여기에서 설명이 먼저 열려. 본문 위치는 설명의 ↗ 본문으로 버튼을 눌렀을 때만 이동해. 같은 표현을 다시 누르면 선택이 해제돼.</p>
               <div id="newsArticleExpressions" class="news-article-expressions"></div>
               <div id="newsArticleExpressionInfo" class="hidden" aria-live="polite"></div>
             </div>
@@ -3454,6 +3463,6 @@ applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);ren
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-news10"></script>
+<script src="data/news-reader-embedded.js?v=20261010-expression-ruby-jump1"></script>
 </body>
 </html>
