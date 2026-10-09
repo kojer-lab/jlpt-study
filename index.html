@@ -422,6 +422,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       </div>
       <div class="toolbar" style="margin:14px 0 12px">
  <button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button>
+ <button type="button" id="newsSyncButton" class="secondary" style="font-size:12px">☁️ 뉴스 기록 지금 동기화</button>
  <span class="sub" id="newsSyncState" style="font-size:12px" role="status" aria-live="polite">뉴스 학습 기록: 이 기기에 저장</span>
 </div>
       <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
@@ -3507,8 +3508,8 @@ applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);ren
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-news-sync-review1"></script>
-<script src="data/news-collector-embedded.js?v=20261010-news-sync-review1"></script>
-<script src="data/news-sync-bridge.js?v=20261010-news-sync-review1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-news-sync-review2"></script>
+<script src="data/news-collector-embedded.js?v=20261010-news-sync-review2"></script>
+<script src="data/news-sync-bridge.js?v=20261010-news-sync-review2"></script>
 </body>
 </html>
