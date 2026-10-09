@@ -1,0 +1,166 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101218"><title>ニュースを読む | 본문 읽기</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101218;color:#f4f5f8;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Noto Sans JP",sans-serif}main{max-width:860px;padding:20px 16px 100px;margin:auto}
+button{border:1px solid #3e4860;background:#252f43;color:#e6edff;border-radius:11px;padding:10px 14px;cursor:pointer;font:inherit}
+button:disabled{opacity:.6}button.primary{background:#315fbb;border-color:#315fbb;color:white;font-weight:700}
+a{color:#a4c5ff}.top{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:20px}.dim{color:#9da9bb}
+.card{background:#1b2230;border:1px solid #3a4355;border-radius:17px;padding:clamp(16px,4vw,30px);margin:14px 0}
+h1{font-size:clamp(24px,4vw,34px);line-height:1.55;margin:15px 0}h2{font-size:19px}
+.pill{display:inline-block;border-radius:100px;padding:5px 9px;color:#b9cdff;background:#2e4268;font-size:12px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:22px 0 10px;border-bottom:1px solid #40506a;padding-bottom:16px}.controls button.active{background:#315fbb;border-color:#5284e3}
+.status{line-height:1.7;color:#adbad0;font-size:14px;min-height:24px}.status.error{color:#ffb1b1}
+#body{font-size:clamp(17px,2.7vw,20px);line-height:2.45;letter-spacing:.014em;overflow-wrap:anywhere}
+#body p{margin:0 0 1.35em}#body ruby{cursor:pointer;user-select:text}#body rt{font-size:.58em;color:#b8cfff;visibility:hidden;user-select:none}
+#body.mode-all rt,#body.mode-click ruby.shown rt{visibility:visible}#body.mode-off rt{display:none}
+#body .marked{box-shadow:inset 0 -3px #6698ff;cursor:pointer}#body .marked:hover{background:#29436a}
+#hint{padding:15px;background:#131a27;border:1px solid #3a4961;border-radius:13px;line-height:1.7;margin-top:18px}
+textarea{font:inherit;background:#10151f;color:#f2f2f2;border:1px solid #43516c;border-radius:12px;min-height:160px;line-height:1.8;padding:14px;width:100%;resize:vertical}
+details summary{cursor:pointer;font-weight:700}details .dim{font-size:13px;line-height:1.7}
+small{font-size:12px}.help{font-size:13px;line-height:1.7;color:#b7c2d4}.row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><main>
+<div class="top"><a href="./news-reading-test.html">← 뉴스 목록으로</a><span class="pill">기사 내부 읽기 · 실험판</span></div>
+<div class="card"><small id="meta" class="dim"></small><h1 id="title" lang="ja">뉴스 읽기</h1><p id="status" class="status" role="status">뉴스 본문을 준비 중입니다.</p>
+<div class="controls"><small class="dim">후리가나</small><button class="active" id="m-click" onclick="mode('click')">한자 클릭</button><button id="m-all" onclick="mode('all')">모두 보기</button><button id="m-off" onclick="mode('off')">숨기기</button></div>
+<div id="body" class="mode-click" lang="ja"></div><div id="hint" hidden></div></div>
+<details id="import" class="card"><summary>기사 텍스트 직접 넣어서 읽기</summary>
+<p class="help">출처의 접근 제한이나 웹페이지 구조 때문에 본문을 자동으로 가져오지 못하는 경우, 기사 텍스트를 입력해 이 화면에서 읽을 수 있습니다. 입력 내용은 서버에 업로드하거나 저장하지 않습니다.</p>
+<textarea id="usertext" placeholder="읽고 싶은 일본어 기사 본문을 붙여넣으세요." spellcheck="false"></textarea>
+<div class="row"><small class="dim">최대 3만 자 · 개인 기기에서 처리</small><button class="primary" onclick="importText()">본문 읽기</button></div>
+</details>
+<p class="help">공개적으로 접근 가능한 본문을 한 번만 요청하며, 유료 구독이나 접근 제한을 우회하지 않습니다. 원문 출처와 저작권은 해당 언론사에 있습니다. 한자 읽기는 자동 분석이므로 다의어·인명에서 오류가 발생할 수 있습니다.</p>
+</main><script>
+const $=id=>document.getElementById(id);
+const esc=x=>String(x??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const params=new URLSearchParams(location.search);
+const news={title:(params.get("title")||"일본어 기사").slice(0,220),url:params.get("url")||"",source:(params.get("source")||"").slice(0,90),category:(params.get("category")||"").slice(0,40)};
+$("title").textContent=news.title;$("meta").textContent=[news.category,news.source].filter(Boolean).join(" · ");
+let paragraphs=[],tokenizerPromise=null,loadedTextId=0;
+const patterns=[
+["とはいえ","접속 표현","그렇다고는 하지만","앞선 사실을 인정하면서도 다른 관점을 제시해."],
+["それどころか","접속 표현","그 정도가 아니라 오히려","앞의 예상을 뒤집는 더 강한 상황을 설명해."],
+["ひいては","접속 표현","더 나아가, 나아가서는","영향과 결과가 더 큰 범위로 확장됨을 보여줘."],
+["にひきかえ","고급 문형","~와는 대조적으로","두 대상 사이의 뚜렷한 대조를 나타내."],
+["と相まって","고급 문형","~와 맞물려","서로 다른 요인이 결합하여 결과를 만들 때 써."],
+["を踏まえて","고급 문형","~을 고려하여","사실이나 자료를 판단의 근거로 삼아."],
+["にほかならない","고급 문형","다름 아닌 ~이다","판단이나 본질을 강조하여 단정해."],
+["を余儀なくされる","고급 문형","어쩔 수 없이 ~하게 되다","외부 사정으로 선택의 여지 없이 행동할 때 써."],
+["ものの","접속 문형","~하기는 했지만","앞의 사실에 역접으로 이어져."],
+["のみならず","접속 문형","~뿐만 아니라","대상이나 범위를 추가로 넓혀."],
+["をめぐって","뉴스 문형","~을 둘러싸고","논쟁이나 갈등, 대응의 대상이 되는 주제를 나타내."],
+["を機に","뉴스 문형","~을 계기로","새로운 움직임이 시작되는 계기를 나타내."],
+["に至っては","고급 문형","~에 이르러서는","더 극단적인 사례를 강조해."],
+["歯止めがかからない","관용어","제동이 걸리지 않다","문제나 증가세가 억제되지 않을 때 사용해."],
+["踏み切る","뉴스 표현","단행하다","결정을 실행에 옮기는 뉘앙스가 있어."],
+["水を差す","관용어","찬물을 끼얹다","분위기나 진행을 방해하는 비유야."]
+].sort((a,b)=>b[0].length-a[0].length);
+let activeMode="click";
+function mode(value){activeMode=value;$("body").className="mode-"+value;["click","all","off"].forEach(m=>$("m-"+m).classList.toggle("active",m===value))}
+function status(message,bad=false){$("status").textContent=message;$("status").className="status"+(bad?" error":"")}
+function ensureTokenizer(){
+ if(tokenizerPromise)return tokenizerPromise;
+ tokenizerPromise=new Promise((resolve,reject)=>{
+  const build=()=>{
+   if(!window.kuromoji)return reject(new Error("일본어 분석기 라이브러리를 읽지 못했습니다."));
+   window.kuromoji.builder({dicPath:"https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict/"}).build((err,tokenizer)=>err?reject(err):resolve(tokenizer))
+  };
+  if(window.kuromoji){build();return}
+  const script=document.createElement("script");script.src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js";
+  script.onload=build;script.onerror=()=>reject(new Error("후리가나 분석기 다운로드 실패"));document.head.appendChild(script)
+ }).catch(e=>{tokenizerPromise=null;throw e});
+ return tokenizerPromise
+}
+function hira(x){return String(x||"").replace(/[ァ-ヶ]/g,x=>String.fromCharCode(x.charCodeAt(0)-96))}
+function tokenHTML(token){
+ const form=token.surface_form||"",reading=hira(token.reading);
+ if(!/[一-龯々]/.test(form)||!reading||reading==="*"||token.word_type==="UNKNOWN")return esc(form);
+ let left=0,right=form.length,rd=reading.length;const kana=s=>/[ぁ-ゖァ-ヺー]/.test(s);
+ while(left<right&&left<rd&&kana(form[left])&&hira(form[left])===reading[left])left++;
+ while(right>left&&rd>left&&kana(form[right-1])&&hira(form[right-1])===reading[rd-1]){right--;rd--}
+ const middle=form.slice(left,right),yomi=reading.slice(left,rd);
+ if(!middle||!yomi||!/[一-龯々]/.test(middle))return esc(form);
+ return esc(form.slice(0,left))+"<ruby>"+esc(middle)+"<rt>"+esc(yomi)+"</rt></ruby>"+esc(form.slice(right))
+}
+function textHTML(text,tokenizer){
+ if(!tokenizer)return esc(text);
+ let html="",cursor=0;
+ for(const t of tokenizer.tokenize(text)){
+  const form=t.surface_form||"";if(!form)continue;
+  const index=text.indexOf(form,cursor);if(index<0)continue;
+  html+=esc(text.slice(cursor,index))+tokenHTML(t);cursor=index+form.length;
+ }
+ return html+esc(text.slice(cursor))
+}
+function paragraphHTML(paragraph,tokenizer){
+ let out="",pos=0;
+ while(pos<paragraph.length){
+  let best=null;
+  for(const item of patterns){
+   const found=paragraph.indexOf(item[0],pos);
+   if(found<0)continue;
+   if(!best||found<best.pos||(found===best.pos&&item[0].length>best.item[0].length))best={pos:found,item}
+  }
+  if(!best){out+=textHTML(paragraph.slice(pos),tokenizer);break}
+  out+=textHTML(paragraph.slice(pos,best.pos),tokenizer);
+  out+='<span class="marked" data-pattern="'+esc(best.item[0])+'">'+textHTML(best.item[0],tokenizer)+'</span>';
+  pos=best.pos+best.item[0].length
+ }
+ return out
+}
+function showPattern(key){
+ const item=patterns.find(x=>x[0]===key);if(!item)return;
+ const storageKey="jlpt-news-expression-test-v2";let arr=[];
+ try{arr=JSON.parse(localStorage.getItem(storageKey)||"[]")}catch{}
+ if(!Array.isArray(arr))arr=[];
+ const on=arr.some(x=>x.id===key);
+ $("hint").hidden=false;$("hint").innerHTML='<span class="pill">'+esc(item[1])+'</span><h2 lang="ja">'+esc(item[0])+'</h2><p>'+esc(item[2])+'</p><p>'+esc(item[3])+'</p><button id="save-pattern">'+(on?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+'</button>';
+ $("save-pattern").addEventListener("click",()=>{
+  arr=arr.some(x=>x.id===key)?arr.filter(x=>x.id!==key):[...arr,{id:key,type:item[1],form:key,reading:"",meaning:item[2],example:"",translation:"",note:item[3],compare:"",source:news.source,title:news.title,cat:news.category,savedAt:new Date().toISOString()}];
+  try{localStorage.setItem(storageKey,JSON.stringify(arr));showPattern(key)}catch{status("브라우저 저장 공간이 부족합니다.",true)}
+ });
+ $("hint").scrollIntoView({block:"nearest",behavior:"smooth"})
+}
+async function render(){
+ const work=++loadedTextId;
+ if(!paragraphs.length){$("body").innerHTML="";return}
+ status("후리가나를 준비 중입니다. 처음에는 일본어 사전 다운로드가 필요합니다.");
+ let tokenizer=null;
+ try{tokenizer=await ensureTokenizer()}catch(e){status("본문 표시 완료. 후리가나 준비 실패: "+(e.message||e),true)}
+ if(work!==loadedTextId)return;
+ $("body").innerHTML=paragraphs.map(p=>"<p>"+paragraphHTML(p,tokenizer)+"</p>").join("");
+ $("body").querySelectorAll("ruby").forEach(r=>r.addEventListener("click",e=>{e.stopPropagation();if(activeMode==="click")r.classList.toggle("shown")}));
+ $("body").querySelectorAll(".marked").forEach(e=>e.addEventListener("click",ev=>{ev.stopPropagation();showPattern(e.dataset.pattern)}));
+ if(tokenizer)status("본문 "+paragraphs.length+"문단 · 한자를 눌러 후리가나 보기 · 밑줄 친 고급 표현을 눌러 설명 보기")
+}
+async function importText(){
+ const value=$("usertext").value.trim();
+ if(!value){status("일본어 본문을 먼저 붙여넣어주세요.",true);return}
+ if(value.length>30000){status("3만 자 이하만 입력할 수 있습니다.",true);return}
+ paragraphs=value.replace(/\r/g,"").split(/\n+/).map(x=>x.trim()).filter(Boolean).slice(0,130);
+ $("import").open=false;await render()
+}
+async function initial(){
+ if(!news.url){status("기사를 선택하거나 아래에 일본어 텍스트를 입력해주세요.");$("import").open=true;return}
+ try{
+  const cfg=JSON.parse(localStorage.getItem("jlptN1CloudConfigV31")||"{}");
+  if(!cfg.key||cfg.url!=="https://honnatvsuwzhdcyyftzl.supabase.co")throw new Error("JLPT 사이트의 Supabase 동기화 연결이 필요합니다.");
+  if(!window.supabase)throw new Error("Supabase 모듈을 불러오지 못했습니다.");
+  const db=window.supabase.createClient(cfg.url,cfg.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false,storageKey:"jlpt-n1-auth-v31"}});
+  const result=await db.auth.getSession();
+  if(!result.data?.session?.access_token)throw new Error("JLPT 사이트에서 로그인을 먼저 완료해주세요.");
+  const response=await fetch("https://honnatvsuwzhdcyyftzl.supabase.co/functions/v1/article-reader",{
+    method:"POST",headers:{"Content-Type":"application/json","apikey":cfg.key,"Authorization":"Bearer "+result.data.session.access_token},
+    body:JSON.stringify({url:news.url}),signal:AbortSignal.timeout(15000)
+  });
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||"본문 추출에 실패했습니다.");
+  if(!Array.isArray(data.paragraphs)||!data.paragraphs.length)throw new Error("본문 내용을 충분히 추출하지 못했습니다.");
+  paragraphs=data.paragraphs.filter(x=>typeof x==="string").slice(0,110);
+  await render()
+ }catch(error){
+  status("이 기사는 자동 가져오기가 어렵습니다: "+(error.message||error)+" 아래에 텍스트를 입력하면 앱에서 그대로 읽을 수 있습니다.",true);
+  $("import").open=true
+ }
+}
+initial();
+</script></body></html>
