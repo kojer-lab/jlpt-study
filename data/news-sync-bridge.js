@@ -122,6 +122,7 @@ async function sync(){
 }
 function schedule(delay=2200){clearTimeout(timer);timer=setTimeout(sync,delay)}
 window.KOJER_NEWS_SYNC={sync,schedule,markDeleted,localEntries:items};
+const manual=$("newsSyncButton");if(manual)manual.addEventListener("click",()=>sync());
 window.addEventListener("kojer-news:changed",()=>schedule());
 window.addEventListener("focus",()=>{if(!document.hidden)schedule(500)});
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)schedule(550)});
