@@ -184,7 +184,7 @@ function splitNewsSentences(text){
   if(/[。！？!?]/.test(char)&&quoteDepth===0){
    while(i+1<text.length&&/[」』）)]/.test(text[i+1]))part+=text[++i];
    push();
-  }else if((char==="」"||char==="』")&&quoteDepth===0&&/[。！？!?][」』]$/.test(part))push();
+  }
  }
  push();return out;
 }
