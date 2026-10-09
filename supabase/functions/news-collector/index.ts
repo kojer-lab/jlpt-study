@@ -114,7 +114,7 @@ function hasReadingText(summary: string | undefined, title: string): boolean {
    if(descriptionCore.replace(titleCore,"").length<40)return false;
  }
  const fragments=cleaned.split(/[。！？!？\n]/g).map(x=>x.trim()).filter(Boolean);
- return fragments.some(x=>x.length>=30 && /[\u3040-\u30ff\u3400-\u9fff]/.test(x)
+ return fragments.some(x=>x.length>=18 && /[\u3040-\u30ff\u3400-\u9fff]/.test(x)
    && compact(x)!==titleCore);
 }
 
