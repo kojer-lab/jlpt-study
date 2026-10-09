@@ -58,6 +58,7 @@ async function loadFeed(category: string, query: string): Promise<News[]> {
   for (const [, item] of items.slice(0, 45)) {
     const title = tag(item, "title").slice(0, 260);
     const summary = cleanSummary(tag(item, "description"), title);
+    if(!hasReadingText(summary,title))continue;
     const link = tag(item, "link");
     const pub = tag(item, "pubDate");
     const source = tag(item, "source").slice(0, 70) || "Google ニュース";
@@ -98,6 +99,25 @@ function cleanSummary(text: string, title: string) {
  if(/^(?:Google News|この記事の詳細|最新ニュース一覧)/.test(s))return "";
  return s;
 }
+
+function hasReadingText(summary: string | undefined, title: string): boolean {
+ if(typeof summary!=="string")return false;
+ const cleaned=summary.trim();
+ if(cleaned.length<45 || !/[\u3040-\u30ff\u3400-\u9fff]/.test(cleaned))return false;
+ const compact=(text:string)=>text.replace(/[\s　\u3000、。!！?？：:「」『』（）()【】,.．・\-－]/g,"").toLowerCase();
+ const titleCore=compact(title.replace(/\s*[-－]\s*[^-－]{2,45}$/,""));
+ const descriptionCore=compact(cleaned);
+ if(!descriptionCore||descriptionCore===titleCore)return false;
+ // If a syndicated description repeats the headline, enough independent prose
+ // must remain; a link, publisher or headline alone is never a reading passage.
+ if(titleCore.length>12&&descriptionCore.includes(titleCore)){
+   if(descriptionCore.replace(titleCore,"").length<40)return false;
+ }
+ const fragments=cleaned.split(/[。！？!？\n]/g).map(x=>x.trim()).filter(Boolean);
+ return fragments.some(x=>x.length>=30 && /[\u3040-\u30ff\u3400-\u9fff]/.test(x)
+   && compact(x)!==titleCore);
+}
+
 async function loadNHK(category: string, code: string): Promise<News[]> {
  const feedUrl="https://news.web.nhk/n-data/conf/na/rss/"+code+".xml";
  const response=await fetch(feedUrl,{
@@ -111,6 +131,7 @@ async function loadNHK(category: string, code: string): Promise<News[]> {
  for(const [,item] of xml.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)){
    const title=tag(item,"title").slice(0,260);
    const summary=cleanSummary(tag(item,"description"),title);
+   if(!hasReadingText(summary,title))continue;
    const link=tag(item,"link");
    const stamp=Date.parse(tag(item,"pubDate"));
    if(!title||!Number.isFinite(stamp)||stamp<cutoff||stamp>Date.now()+3600_000)continue;
@@ -167,10 +188,10 @@ Deno.serve(async (req: Request) => {
       articles.unshift(entry);
     }
   });
-  // Show stories with usable excerpts first while preserving genre variety.
-  articles.sort((a,b) => Number(Boolean(b.summary))-Number(Boolean(a.summary)));
-  if (!articles.length) return json({ error: "실시간 뉴스 수집에 실패했습니다. 잠시 뒤 다시 시도해주세요.", failedCategories: errors }, 502);
-  const body = { version: 2, generatedAt: new Date().toISOString(), rangeHours: 72, articles, failedCategories: errors, contentScope: "rss_briefs", generation: "no_ai" };
+  // Belt-and-braces filter: never return headline-only entries.
+  const readableArticles=articles.filter(a=>hasReadingText(a.summary,a.title));
+  if (!readableArticles.length) return json({ error: "읽을 내용이 있는 최신 기사를 찾지 못했습니다. 제목만 제공하는 뉴스는 제외했습니다.", failedCategories: errors }, 422);
+  const body = { version: 3, generatedAt: new Date().toISOString(), rangeHours: 72, articles: readableArticles, failedCategories: errors, contentScope: "rss_briefs_only", generation: "no_ai" };
   cache = { time: Date.now(), body };
   return json(body);
 });
