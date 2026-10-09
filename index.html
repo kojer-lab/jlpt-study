@@ -2023,10 +2023,10 @@ function restoreWordSession(){
  wordMode=data.mode==="starred"?"starred":"daily";
  wordSessionQueue=[...new Map(data.immediate.map(id=>wordById.get(id)).filter(Boolean).map(w=>[w.id,w])).values()];
  wordLearningQueue=[...new Set(data.learning.map(canonicalWordId))].filter(id=>wordById.has(id)).map(id=>({id,due:getSrs(id).due}));
- wordQuickRepeats=(data.quick||[]).filter(x=>wordById.has(x.id));wordQuickTurn=Number(data.quickTurn)||0;wordQuickActive=data.quickActive||null;
+ wordQuickRepeats=(data.quick||[]).map(x=>({...x,id:canonicalWordId(x.id)})).filter(x=>wordById.has(x.id));wordQuickTurn=Number(data.quickTurn)||0;wordQuickActive=data.quickActive?{...data.quickActive,id:canonicalWordId(data.quickActive.id)}:null;
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
- wordSessionHistory=(data.history||[]).map(h=>({...h,word:wordById.get(h.id)})).filter(h=>h.word);
+ wordSessionHistory=(data.history||[]).map(h=>({...h,id:canonicalWordId(h.id),word:wordById.get(h.id)})).filter(h=>h.word);
  if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
  return true;
 }
@@ -2456,8 +2456,9 @@ $("wordRating").addEventListener("click",e=>{
 });
 $("undoWordRating").addEventListener("click",()=>{
  const h=wordSessionHistory.pop();if(!h)return;
- if(h.hadSrs)state.srs[h.id]=h.before;else delete state.srs[h.id];
- for(const alias of duplicateWordAliases.get(canonicalWordId(h.id))||[]){
+ const undoId=canonicalWordId(h.id);
+ if(h.hadSrs)state.srs[undoId]=h.before;else delete state.srs[undoId];
+ for(const alias of duplicateWordAliases.get(undoId)||[]){
   if(h.hadSrs)state.srs[alias]=h.before;else delete state.srs[alias];
  }
  if(Number.isInteger(h.reviewLogLength))state.reviewLog=(state.reviewLog||[]).slice(0,h.reviewLogLength);
