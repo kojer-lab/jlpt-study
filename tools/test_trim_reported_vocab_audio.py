@@ -105,6 +105,27 @@ class TrimReportedTests(unittest.TestCase):
         new_rev = mod.load_json(mod.REVISIONS_PATH)
         self.assertIn(self.rel, new_rev["files"])
 
+    def test_trim_uses_speech_end_not_encoded_trailing_silence(self):
+        """A/B preview trims the actual last spoken sound, not the MP3 footer."""
+        self.queue([self.entry])
+        subprocess.run([
+            "ffmpeg", "-nostdin", "-y", "-loglevel", "error",
+            "-f", "lavfi", "-i", "sine=frequency=440:duration=1.40",
+            "-af", "apad=pad_dur=0.70", "-codec:a", "libmp3lame",
+            "-ar", "24000", "-ac", "1", "-b:a", "48k", str(self.path)
+        ], check=True)
+        original = self.path.read_bytes()
+        original_duration = mod.probe_mp3(self.path)
+        speech_end = mod.speech_end_seconds(self.path)
+        self.assertGreater(original_duration, speech_end + 0.55)
+        self.assertAlmostEqual(speech_end, 1.4, delta=0.05)
+        mod.apply_trim(mod.check_batch())
+        new_duration = mod.probe_mp3(self.path)
+        expected = speech_end - 0.220 + 0.025 + 0.120
+        self.assertAlmostEqual(new_duration, expected, delta=0.16)
+        self.assertLess(new_duration, original_duration - 0.45)
+        self.assertNotEqual(original, self.path.read_bytes())
+
     def test_protect_short_clip(self):
         self.queue([dict(self.entry, remove_tail_ms=700)])
         subprocess.run([
