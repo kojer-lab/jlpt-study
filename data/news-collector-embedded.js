@@ -64,7 +64,40 @@ function fmtCache(t){try{return new Date(t).toLocaleString("ko-KR",{timeZone:"As
 async function collect(){
  if(busy)return;
  busy=true;
- const btn=$("newsCollectButton");btn.disabled=true;btn.textContent="뉴스 수집 중…";
+ async function loadArchive(){
+ if(typeof cloudClient==="undefined"||!cloudClient||typeof cloudUser==="undefined"||!cloudUser)return;
+ const {data,error}=await cloudClient.from("jlpt_news_generated_articles").select("article").eq("owner_id",cloudUser.id).order("created_at",{ascending:false}).limit(500);
+ if(!error&&Array.isArray(data))window.KOJER_ADD_GENERATED_NEWS?.(data.map(x=>x.article));
+}
+async function generateSix(){
+ const button=$("newsGenerateButton");
+ if(!button||busy)return;
+ if(typeof cloudClient==="undefined"||!cloudClient||typeof cloudUser==="undefined"||!cloudUser){setStatus("먼저 PC·모바일 동기화 메뉴에서 로그인해 줘.",true);return}
+ if(!items.length){setStatus("먼저 오늘의 기사 모으기를 실행해 줘.",true);return}
+ button.disabled=true;button.textContent="6개 학습 기사 생성 중…";
+ setStatus("무료 AI로 학습 기사를 순서대로 만들고 있어. 최대 몇 분 걸릴 수 있어.");
+ try{
+  const config=loadCloudConfig();
+  const {data:auth,error:authError}=await cloudClient.auth.getSession();
+  if(authError||!auth?.session?.access_token)throw new Error("로그인이 만료됐어.");
+  const response=await fetch("https://honnatvsuwzhdcyyftzl.supabase.co/functions/v1/news-generate",{
+   method:"POST",headers:{"authorization":"Bearer "+auth.session.access_token,"apikey":config.key,"content-type":"application/json"},
+   body:JSON.stringify({candidates:items.slice(0,25)})
+  });
+  const result=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(result.error||"기사 생성 실패");
+  const added=Array.isArray(result.articles)?result.articles:[];
+  window.KOJER_ADD_GENERATED_NEWS?.(added);
+  setStatus(added.length+"개 학습 기사 생성·저장 완료"+(result.errors?.length?" · "+result.errors.length+"개는 생성 또는 검수 실패":"")+". 기존 10개 기사는 유지돼.");
+ }catch(e){setStatus(e.message||"기사 생성 실패",true)}
+ finally{button.disabled=false;button.textContent="✨ 학습 기사 6개 만들기"}
+}
+const gen=$("newsGenerateButton");
+if(gen)gen.addEventListener("click",generateSix);
+window.addEventListener("focus",()=>{if(!document.hidden)loadArchive()});
+window.addEventListener("kojer-news:updated",loadArchive);
+setTimeout(loadArchive,1800);
+const btn=$("newsCollectButton");btn.disabled=true;btn.textContent="뉴스 수집 중…";
  setStatus("최근 일본 뉴스를 분야별로 수집하고 있어…");
  try{
   // Reuse the main JLPT Supabase session; do not create a second auth client.
