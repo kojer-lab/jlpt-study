@@ -321,9 +321,10 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         </div>
         <div class="word-dash-setting">
           <label for="ankiTapSoundSetting">안키 버튼 효과음</label>
-          <div class="anki-sfx-controls"><select id="ankiTapSoundSetting"><option value="on">켬 · 또렷한 클릭</option><option value="off">끔</option></select><button type="button" class="secondary" id="ankiSoundTest">▶ 들어보기</button></div>
+          <div class="anki-sfx-controls"><select id="ankiTapSoundSetting"><option value="on">켬</option><option value="off">끔</option></select><button type="button" class="secondary" id="ankiSoundTest">▶ 들어보기</button></div>
         </div>
-        <div class="anki-sfx-status" id="ankiSoundTestStatus" aria-live="polite"></div>
+        <div class="word-dash-setting"><label for="ankiTapSoundStyle">클릭음 종류</label><select id="ankiTapSoundStyle"><option value="home">홈 버튼 · 딸깍딸깍</option><option value="switch">무음 스위치 · 딱</option></select></div>
+        <div class="anki-sfx-status" id="ankiSoundTestStatus" aria-live="polite">올려준 영상의 효과음을 짧게 추출했어. 종류를 고르고 들어볼 수 있어.</div>
         <button class="primary word-start" type="button" id="startWordStudy">지금 학습 시작</button>
         <div class="word-dash-actions"><button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button><button class="secondary" type="button" data-go="review">복습만 보기</button></div>
         <button class="secondary word-start" type="button" id="openWordLibrary" style="margin-top:8px">📚 N1 전체 단어장 · <span id="wordLibraryCount">0</span>개</button>
@@ -674,6 +675,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <div class="pron-actions"><button class="primary" type="button" id="pronSubmit">신고 접수</button><button type="button" id="pronLogin" class="hidden">사이트에서 로그인</button></div><details class="pron-alternatives"><summary>접수가 안 될 때</summary><div class="pron-actions"><button type="button" id="pronCopy">신고 내용 복사</button></div></details>
 <div id="pronFeedback" class="pron-feedback" role="status" aria-live="polite"></div></section></div>
 <div class="pron-receipt-toast hidden" id="pronReceiptToast" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="assets/anki-button-sounds.js?v=20261009-ref01"></script>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -765,9 +767,9 @@ function restoreInteractiveFuriState(root=document){
 const DAY=86400000, MIN=60000;
 const STORE_KEY="jlptN1StudyV3";
 const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
-const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,ankiTapSound:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},newsProgress:{},_updatedAt:0};
+const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,ankiTapSound:true,ankiTapSoundStyle:"home",updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},newsProgress:{},_updatedAt:0};
 function freshState(){return JSON.parse(JSON.stringify(defaultState));}
-function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,ankiTapSound:true,updatedAt:0},x.settings||{});x.settings.ankiTapSound=x.settings.ankiTapSound!==false;x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.newsProgress=normalizeNewsProgress(x.newsProgress);x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return reconcileDuplicateWordState(x);}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,ankiTapSound:true,ankiTapSoundStyle:"home",updatedAt:0},x.settings||{});x.settings.ankiTapSound=x.settings.ankiTapSound!==false;x.settings.ankiTapSoundStyle=x.settings.ankiTapSoundStyle==="switch"?"switch":"home";x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.newsProgress=normalizeNewsProgress(x.newsProgress);x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return reconcileDuplicateWordState(x);}
 
 // Normalize alias IDs when reading local or Supabase state; keep historical records.
 function reconcileDuplicateWordState(x){
@@ -833,77 +835,47 @@ function saveState(s,opts={}){if(opts.touch!==false)s._updatedAt=Date.now();pers
 // Short, clearly audible tactile feedback. Prefer HTMLAudioElement on iOS Safari
 // (Web Audio can be inaudible in silent mode); use Web Audio as a fallback.
 // An in-memory WAV avoids network requests, external audio files, and TTS latency.
-let ankiTapAudioContext=null,ankiTapPlayer=null,ankiTapWavUrl=null;
-function makeAnkiTapWavUrl(){
- if(ankiTapWavUrl)return ankiTapWavUrl;
- const sr=24000,duration=0.095,n=Math.floor(sr*duration);
- const bytes=new ArrayBuffer(44+n*2),v=new DataView(bytes);
- const put=(offset,value)=>{for(let i=0;i<value.length;i++)v.setUint8(offset+i,value.charCodeAt(i))};
- put(0,"RIFF");v.setUint32(4,36+n*2,true);put(8,"WAVE");put(12,"fmt ");
- v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
- v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);
- put(36,"data");v.setUint32(40,n*2,true);
- let seed=13579;
- for(let i=0;i<n;i++){
-  const t=i/sr;
-  seed=(Math.imul(seed,1664525)+1013904223)>>>0;
-  const noise=((seed/4294967296)*2-1);
-  const attack=Math.min(1,t/0.002);
-  const click=0.25*Math.sin(2*Math.PI*(960*t-1900*t*t))*Math.exp(-32*t)
-             +0.19*noise*Math.exp(-77*t)
-             +0.07*Math.sin(2*Math.PI*520*t)*Math.exp(-31*t);
-  const sample=Math.max(-0.85,Math.min(0.85,attack*click));
-  v.setInt16(44+i*2,Math.round(sample*32767),true);
- }
- const raw=new Uint8Array(bytes);
- let binary="";for(let i=0;i<raw.length;i+=2048)binary+=String.fromCharCode(...raw.subarray(i,i+2048));
- ankiTapWavUrl="data:audio/wav;base64,"+btoa(binary);
- return ankiTapWavUrl;
-}
-function playAnkiWebAudioFallback(){
- const Ctor=window.AudioContext||window.webkitAudioContext;
- if(!Ctor)return false;
- try{
-  const ctx=ankiTapAudioContext||(ankiTapAudioContext=new Ctor());
-  if(ctx.state==="suspended")ctx.resume().catch(()=>{});
-  const t=ctx.currentTime+0.005,duration=0.090;
-  const osc=ctx.createOscillator(),gain=ctx.createGain();
-  osc.type="triangle";osc.frequency.setValueAtTime(1000,t);
-  osc.frequency.exponentialRampToValueAtTime(520,t+duration);
-  gain.gain.setValueAtTime(0.001,t);
-  gain.gain.linearRampToValueAtTime(0.145,t+0.003);
-  gain.gain.exponentialRampToValueAtTime(0.001,t+duration);
-  osc.connect(gain);gain.connect(ctx.destination);
-  osc.start(t);osc.stop(t+duration);
-  return true;
- }catch(err){return false}
-}
+// Original mechanical clicks from the reference video, with no synthesized
+// electronic tone. Inline MP3 data: no fetch delay even on iPhone Safari.
+const ankiTapPlayers=new Map();
 function playAnkiTapSound(force=false){
  if(!force&&state.settings?.ankiTapSound===false)return false;
+ const style=state.settings?.ankiTapSoundStyle==="switch"?"switch":"home";
+ const src=window.N1_ANKI_BUTTON_SOUNDS?.[style];
+ if(!src)return false;
  try{
-  if(!window.Audio)return playAnkiWebAudioFallback();
-  const player=ankiTapPlayer||(ankiTapPlayer=new window.Audio());
-  if(!player.src){player.preload="auto";player.src=makeAnkiTapWavUrl();player.volume=1}
-  // Call play() directly in the button's trusted click handler on iPhone.
+  let player=ankiTapPlayers.get(style);
+  if(!player){
+   player=new Audio(src);
+   player.preload="auto";
+   player.volume=1;
+   ankiTapPlayers.set(style,player);
+  }
   if(!player.paused)player.pause();
-  try{player.currentTime=0}catch(err){}
-  const pending=player.play();
-  if(pending&&typeof pending.catch==="function")pending.catch(err=>{
-   if(err?.name!=="AbortError")playAnkiWebAudioFallback();
-  });
+  try{player.currentTime=0}catch(e){}
+  // Important: invoked synchronously inside the iPhone's trusted click handler.
+  const promise=player.play();
+  if(promise&&typeof promise.catch==="function"){
+   promise.catch(error=>{
+    if(error?.name==="AbortError")return;
+    const status=document.getElementById("ankiSoundTestStatus");
+    if(status)status.textContent="재생되지 않았어. 미디어 음량과 Safari 사운드 권한을 확인해 줘.";
+   });
+  }
   return true;
- }catch(err){return playAnkiWebAudioFallback()}
+ }catch(error){return false}
 }
 function testAnkiTapSound(){
  const status=document.getElementById("ankiSoundTestStatus");
- if(status)status.textContent="클릭음 재생을 요청했어. 안 들리면 미디어 음량과 무음 모드를 확인해 줘.";
- const ok=playAnkiTapSound(true);
- if(!ok&&status)status.textContent="이 브라우저에서 소리 재생을 시작할 수 없어.";
+ const result=playAnkiTapSound(true);
+ if(status)status.textContent=result?"영상 속 버튼 클릭음 재생 중 · 안 들리면 미디어 음량을 확인해 줘.":"사운드를 불러올 수 없어. 페이지를 새로고침해 줘.";
 }
 function syncAnkiSoundControls(){
  const enabled=state.settings?.ankiTapSound!==false;
  const selector=document.getElementById("ankiTapSoundSetting");
  if(selector)selector.value=enabled?"on":"off";
+ const styleSelector=document.getElementById("ankiTapSoundStyle");
+ if(styleSelector)styleSelector.value=state.settings?.ankiTapSoundStyle==="switch"?"switch":"home";
  const toggle=document.getElementById("ankiSoundToggle");
  if(toggle){toggle.textContent=enabled?"♪ 켬":"♪ 끔";toggle.setAttribute("aria-pressed",String(enabled));toggle.setAttribute("aria-label",enabled?"안키 클릭 효과음 켜짐":"안키 클릭 효과음 꺼짐")}
 }
@@ -911,6 +883,10 @@ function setAnkiTapSound(enabled){
  state.settings=Object.assign({},state.settings,{ankiTapSound:!!enabled,updatedAt:Date.now()});
  saveState(state);syncAnkiSoundControls();
  if(enabled)playAnkiTapSound();
+}
+function setAnkiTapSoundStyle(style){
+ state.settings=Object.assign({},state.settings,{ankiTapSoundStyle:style==="switch"?"switch":"home",updatedAt:Date.now()});
+ saveState(state);syncAnkiSoundControls();playAnkiTapSound(true);
 }
 function now(){return Date.now()}
 function dateLabel(ts){if(!ts)return"새 단어";const d=new Date(ts);return d.toLocaleDateString("ko-KR",{month:"numeric",day:"numeric"})+" 복습"}
@@ -2572,6 +2548,7 @@ $("dailyNewLimit").addEventListener("change",()=>{const n=Math.max(1,Math.min(50
 $("desiredRetention").addEventListener("change",()=>{const r=clampNum(Number($("desiredRetention").value)||.90,.80,.97);state.settings=Object.assign({},state.settings,{desiredRetention:r,updatedAt:Date.now()});saveState(state);renderWordDashboard();refreshAll()});
 $("ankiTapSoundSetting").addEventListener("change",e=>setAnkiTapSound(e.target.value==="on"));
 $("ankiSoundTest").addEventListener("click",testAnkiTapSound);
+$("ankiTapSoundStyle").addEventListener("change",e=>setAnkiTapSoundStyle(e.target.value));
 $("ankiSoundToggle").addEventListener("click",()=>setAnkiTapSound(state.settings?.ankiTapSound===false));
 $("startWordStudy").addEventListener("click",()=>startWordStudy("daily"));
 $("startStarredStudy").addEventListener("click",()=>startWordStudy("starred"));
