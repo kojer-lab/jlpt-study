@@ -37,11 +37,17 @@ jobs:
           assert Path(target).is_file()
           print("Verified manifest target:", target)
           PY
+      - name: Install FFmpeg audio encoder
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          command -v ffmpeg
+          command -v ffprobe
+          ffmpeg -version | head -1
       - name: Install native Japanese Kokoro synthesizer
         run: |
           python -m pip install --upgrade pip
           pip install "kokoro>=0.9.4" "misaki[ja]>=0.9.4" soundfile
-          ffmpeg -version | head -1
       - name: Resynthesize one pronunciation with explicit kana
         shell: bash
         run: |
