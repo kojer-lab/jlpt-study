@@ -812,10 +812,19 @@ const KOKORO_CDN="https://cdn.jsdelivr.net/npm/kokoro-js-jp@0.2.0/dist/kokoro-jp
 const KOKORO_DB="jlpt-kokoro-audio-v1",KOKORO_STORE="audio";
 let kokoroModulePromise=null,kokoroTTS=null,kokoroEngine=null,kokoroDbPromise=null,kokoroQueue=Promise.resolve(),kokoroCurrentAudio=null,kokoroWakeLock=null;
 const kokoroUrls=new Map(),kokoroInflight=new Map();
-let staticVocabAudio=null,staticVocabAudioPromise=null;
+let staticVocabAudio=null,staticVocabAudioPromise=null,staticVocabAudioRevisions={};
 function loadStaticVocabAudioManifest(){
  if(staticVocabAudioPromise)return staticVocabAudioPromise;
- staticVocabAudioPromise=fetch("audio/vocab/manifest.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).then(m=>{staticVocabAudio=m&&m.files?m.files:null;return staticVocabAudio}).catch(()=>null);
+ // The small revision map makes repaired MP3s bypass stale iPhone/Safari caches.
+ // Fetch it alongside the existing manifest; no new request per playback.
+ staticVocabAudioPromise=Promise.all([
+  fetch("audio/vocab/manifest.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null),
+  fetch("audio/vocab/repaired-revisions.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null)
+ ]).then(([m,revisions])=>{
+  staticVocabAudio=m&&m.files?m.files:null;
+  staticVocabAudioRevisions=revisions&&revisions.version===1&&revisions.files?revisions.files:{};
+  return staticVocabAudio;
+ }).catch(()=>null);
  return staticVocabAudioPromise;
 }
 async function staticVocabAudioUrl(w,exampleIndex=null){
@@ -2191,10 +2200,11 @@ async function playWordAudio(w,exampleIndex=null,button=null){
    const staticUrl=await staticVocabAudioUrl(w,exampleIndex);
    if(staticUrl){
      if(button){button.classList.remove("loading");button.classList.add("playing")}
-     // Force the repaired audio past Safari/desktop caches without changing
-     // the canonical manifest path stored in pronunciation reports.
-     const playbackUrl=(w.id==="todokooru"&&exampleIndex===0)
-       ?staticUrl+(staticUrl.includes("?")?"&":"?")+"v=fd1ed723a0dc"
+     // Revision is a hash of the MP3, automatically updated by the batch builder.
+     // Keep the canonical URL unchanged for report storage.
+     const revision=staticVocabAudioRevisions[staticUrl];
+     const playbackUrl=revision
+       ?staticUrl+(staticUrl.includes("?")?"&":"?")+"v="+encodeURIComponent(revision)
        :staticUrl;
      await playKokoroUrl(playbackUrl);return;
    }
