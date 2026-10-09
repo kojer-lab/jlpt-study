@@ -12,6 +12,7 @@
     <p class="note">버튼을 누르는 시점에 최근 약 2일간의 일본어 뉴스 제목을 분야별로 모읍니다. 기사를 누르면 언론사 사이트로 이동하지 않고, 뉴스 제목과 확인된 RSS 소개문을 즉시 표시합니다. RSS에 소개문이 없는 기사는 제목만 읽을 수 있습니다. 유료 AI API는 사용하지 않습니다.</p>
     <button id="collectBtn" onclick="collectNews()">↻ 오늘의 기사 모으기</button>
     <p id="news-status" class="note" role="status" aria-live="polite">원할 때 버튼을 눌러 최신 기사를 가져오세요.</p>
+    <div class="filters" style="align-items:center"><button id="briefFilterBtn" onclick="toggleBriefFilter()">지문 있는 기사만 보기</button><small id="brief-count" class="muted"></small></div>
     <div class="filters" id="live-filters"></div><div id="live-list"></div>
   </div>
   <details id="samples" open class="samples"><summary><strong>실전 표현 수첩 연습 · 예시 기사 8개</strong> <small>(고급 문형 16개 포함)</small></summary>
@@ -95,7 +96,14 @@ persist();renderFilters();renderSaved();
 const NEWS_FUNCTION_URL="https://honnatvsuwzhdcyyftzl.supabase.co/functions/v1/news-collector";
 const NEWS_CONFIG_KEY="jlptN1CloudConfigV31";
 const NEWS_CACHE_KEY="jlptNewsRecentHeadlinesV1";
-let liveNews=[],liveFilter="전체",liveErrors=[],liveFetchedAt="",newsBusy=false;
+let liveNews=[],liveFilter="전체",liveErrors=[],liveFetchedAt="",newsBusy=false,onlyBriefs=false;
+function hasBrief(article){
+ return !!(article&&typeof article.summary==="string"&&article.summary.trim().length>=18&&/[一-龯ぁ-ゖァ-ヺ]/.test(article.summary));
+}
+function toggleBriefFilter(){
+ onlyBriefs=!onlyBriefs;
+ renderLive();
+}
 function formatPublished(ts){
  try{return new Date(ts).toLocaleString("ko-KR",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"})+" JST"}catch{return ""}
 }
@@ -120,12 +128,18 @@ function renderLive(){
  const filters=document.getElementById("live-filters");
  filters.innerHTML=liveNews.length?cats.map(cat=>'<button class="'+(cat===liveFilter?"active":"")+'" data-filter="'+safe(cat)+'">'+safe(cat)+'</button>').join(""):"";
  filters.querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{liveFilter=b.dataset.filter;renderLive()}));
- const items=liveNews.filter(x=>liveFilter==="전체"||x.category===liveFilter);
+ const withinGenre=liveNews.filter(x=>liveFilter==="전체"||x.category===liveFilter);
+ const readable=withinGenre.filter(hasBrief).length;
+ document.getElementById("brief-count").textContent=withinGenre.length+"건 중 읽을 지문 "+readable+"건";
+ const filterButton=document.getElementById("briefFilterBtn");
+ filterButton.classList.toggle("active",onlyBriefs);
+ filterButton.textContent=onlyBriefs?"✓ 지문 있는 기사만":"지문 있는 기사만 보기";
+ const items=withinGenre.filter(x=>!onlyBriefs||hasBrief(x));
  document.getElementById("live-list").innerHTML=items.map(x=>{
    const link=x.url;
    if(typeof link!=="string"||!/^https:\/\//i.test(link))return "";
-   return '<article class="live-item"><div class="row"><span class="pill">'+safe(x.category)+'</span><small>'+safe(x.source)+'</small><small>'+safe(formatPublished(x.publishedAt))+'</small></div><h3 lang="ja">'+safe(x.title)+'</h3><p class="note">'+(typeof x.summary==="string"&&x.summary.trim().length>=18?"<span style=\"color:#91d6ad\">● 간추린 지문 있음</span>":"<span>○ 제목만 확인됨</span>") +'</p><button class="read-in-app" data-index="'+liveNews.indexOf(x)+'">📖 뉴스 간추려 읽기 →</button></article>'
- }).join("");
+   return '<article class="live-item"><div class="row"><span class="pill">'+safe(x.category)+'</span><small>'+safe(x.source)+'</small><small>'+safe(formatPublished(x.publishedAt))+'</small></div><h3 lang="ja">'+safe(x.title)+'</h3><p class="note">'+(hasBrief(x)?"<span style=\"color:#91d6ad\">● 간추린 지문 있음</span>":"<span>○ 제목만 확인됨</span>") +'</p><button class="read-in-app" data-index="'+liveNews.indexOf(x)+'">📖 일본어 지문 읽기 →</button></article>'
+ }).join("")+(onlyBriefs&&!items.length?'<div class="empty">선택한 분야에는 RSS 소개문이 있는 기사가 없습니다. 필터를 해제하면 전체 뉴스를 볼 수 있어요.</div>':"");
  document.querySelectorAll("#live-list .read-in-app").forEach(button=>button.addEventListener("click",()=>openInApp(Number(button.dataset.index))));
 }
 function readCachedNews(){
