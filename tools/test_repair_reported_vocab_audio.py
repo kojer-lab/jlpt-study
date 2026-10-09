@@ -71,6 +71,21 @@ class ReviewedBatchTests(unittest.TestCase):
         self.assertEqual(len(targets), 2)
         self.assertEqual(targets[1]["relative"], "audio/vocab/test123-ex1.mp3")
 
+    def test_alternative_japanese_voice_is_accepted(self):
+        self.queue([dict(self.example, voice="jf_gongitsune")])
+        targets = batch.check_batch()
+        self.assertEqual(targets[0]["voice"], "jf_gongitsune")
+
+    def test_unknown_or_non_japanese_voice_is_rejected(self):
+        self.queue([dict(self.example, voice="af_heart")])
+        with self.assertRaisesRegex(ValueError, "Unsupported Japanese voice"):
+            batch.check_batch()
+
+    def test_default_voice_kept_for_unmodified_requests(self):
+        self.queue([self.word])
+        targets = batch.check_batch()
+        self.assertEqual(targets[0]["voice"], "jf_alpha")
+
     def test_duplicate_target_rejected(self):
         self.queue([self.word, dict(self.word, report_ids=[3])])
         with self.assertRaisesRegex(ValueError, "Duplicate target"):
