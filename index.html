@@ -293,6 +293,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 #newsArticleExpressionInfo{background:var(--accent-soft);border:1px solid var(--line);padding:14px;border-radius:12px;margin-top:12px;line-height:1.7}
 #newsArticleTools button{padding:9px 10px;font-size:12px}#newsArticleTools button.active{background:var(--accent);color:#fff}
 @media(max-width:700px){#newsCuratedDetail{max-width:100%}.news-article-body{line-height:2.65;font-size:17px}#newsArticleTools{gap:6px}#newsArticleTools button{font-size:12px;padding:8px}#newsArticleTitle{line-height:1.52}}
+.news-expression-example .furi{cursor:pointer}
+.news-expression-example .furi::before{font-size:.62em;bottom:calc(100% - .32em);line-height:1}
 .news-expression-interactive .furi{cursor:pointer}
 .news-expression-interactive .furi::before{font-size:.62em;bottom:calc(100% - .32em);line-height:1}
 /* Mobile news reading: avoid overly tall text and forced CJK character wrapping. */
@@ -3520,7 +3522,7 @@ applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);ren
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-expression-tap-furi1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-expression-example-furi1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-news-sync-review3"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
