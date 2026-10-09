@@ -122,7 +122,7 @@ function route(){
  if(!$("newsreaderView")?.classList.contains("active")&&typeof showView==="function")showView("newsreader");
  const id=hash.startsWith("#newsreader/")?hash.slice("#newsreader/".length):"";
  if(id)displayArticle(id);else displayList();
- window.scrollTo({top:0,behavior:"instant"});
+ window.scrollTo({top:0,behavior:"auto"});
 }
 function init(){
  if(!$("newsCuratedDetail"))return;
