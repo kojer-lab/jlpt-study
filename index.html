@@ -664,8 +664,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <button type="button" class="pron-close" id="pronClose" aria-label="닫기">✕</button><h3 id="pronHeading">⚑ 발음 오류 신고</h3><div id="pronTarget" class="pron-target"></div>
 <label for="pronType">오류 유형</label><select id="pronType"><option>한자 읽기가 다름</option><option>발음·억양이 부자연스러움</option><option>문장 끝에 이상한 소리</option><option>다른 단어·문장을 읽음</option><option>음성이 없거나 재생 실패</option><option>기타</option></select>
 <label for="pronNote">잘못 들린 부분 / 올바른 발음 (선택)</label><textarea id="pronNote" rows="3" maxlength="1000" placeholder="예: はく인데 つく로 들려요"></textarea>
-<p class="pron-hint" id="pronHint">Supabase에 로그인하면 이 화면에서 바로 접수할 수 있어. 단어·예문·MP3 경로는 자동 기록돼.</p>
-<div class="pron-actions"><button class="primary" type="button" id="pronSubmit">신고 접수</button><button type="button" id="pronLogin" class="hidden">Supabase 로그인 설정</button></div><details class="pron-alternatives"><summary>다른 신고 방법</summary><div class="pron-actions"><button type="button" id="pronCopy">내용 복사</button><button type="button" id="pronShare">아이폰 공유</button><button type="button" id="pronGithub">GitHub에 신고 작성 ↗</button></div></details>
+<p class="pron-hint" id="pronHint">신고 접수 버튼만 누르면 이 사이트에서 Supabase로 바로 저장돼. 외부 페이지는 열리지 않아.</p>
+<div class="pron-actions"><button class="primary" type="button" id="pronSubmit">신고 접수</button><button type="button" id="pronLogin" class="hidden">사이트에서 로그인</button></div><details class="pron-alternatives"><summary>접수가 안 될 때</summary><div class="pron-actions"><button type="button" id="pronCopy">신고 내용 복사</button></div></details>
 <div id="pronFeedback" class="pron-feedback" role="status" aria-live="polite"></div></section></div>
 <script>
 function F(b,r){
@@ -2233,8 +2233,8 @@ function updatePronReportActions(){
  send.textContent=pronSubmitting?"접수 중…":"신고 접수";
  login.classList.toggle("hidden",signedIn);
  $("pronHint").textContent=signedIn
-  ?"신고 접수를 누르면 Supabase에 저장돼. 단어 ID·예문 번호·MP3 경로는 자동 기록돼."
-  :"즉시 접수하려면 먼저 PC·모바일 동기화에서 Supabase에 로그인해야 해. 로그인하지 않아도 아래 '다른 신고 방법'은 사용할 수 있어.";
+  ?"신고 접수만 누르면 이 화면에서 바로 저장돼. 단어 ID·예문 번호·MP3 경로도 자동 기록돼."
+  :"신고 접수를 하려면 먼저 사이트의 PC·모바일 동기화 메뉴에서 Supabase에 로그인해 줘.";
 }
 function pronSubmissionError(error){
  const message=String(error?.message||"");
@@ -2243,7 +2243,7 @@ function pronSubmissionError(error){
  if(message.includes("report_rate_day"))return "24시간에 최대 50건까지 접수할 수 있어. 내일 다시 시도해 줘.";
  if(message.includes("report_login_required")||error?.code==="42501")return "Supabase 로그인 권한을 확인해 줘. 로그인 후에도 계속되면 다시 접속해 줘.";
  if(error?.code==="42P01"||error?.code==="PGRST205"||/jlpt_pronunciation_reports.*(not find|not exist)|could not find the table/i.test(message))
-  return "아직 Supabase 신고용 SQL이 적용되지 않았어. 관리자에게 설정을 요청하거나 '다른 신고 방법'을 이용해 줘.";
+  return "신고 저장 기능에 연결할 수 없어. 잠시 후 다시 시도하거나 '접수가 안 될 때'에서 신고 내용을 복사해 줘.";
  return "신고를 저장하지 못했어. 네트워크와 Supabase 설정을 확인하고 다시 시도해 줘.";
 }
 async function submitPronReport(){
@@ -2282,8 +2282,10 @@ async function submitPronReport(){
   pronSubmitting=false;
   if(pronCurrent){
    updatePronReportActions();
-   if(pronCurrent===current&&$("pronFeedback").textContent.startsWith("접수 완료"))
+   if(pronCurrent===current&&$("pronFeedback").textContent.startsWith("접수 완료")){
     $("pronSubmit").disabled=true;
+    $("pronSubmit").textContent="✓ 접수 완료";
+   }
   }
  }
 }
@@ -2293,11 +2295,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-pron-id]")
 $("pronClose").addEventListener("click",closePronReport);
 $("pronOverlay").addEventListener("click",e=>{if(e.target===$("pronOverlay"))closePronReport()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("pronOverlay").classList.contains("hidden"))closePronReport()});
-$("pronCopy").addEventListener("click",async()=>{const r=pronReportPayload();if(!r)return;try{if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(r.text);else{const t=document.createElement("textarea");t.value=r.text;document.body.appendChild(t);t.select();const ok=document.execCommand("copy");t.remove();if(!ok)throw Error("copy failed")};$("pronFeedback").textContent="복사 완료! 채팅에 붙여넣으면 확인할 수 있어."}catch(e){$("pronFeedback").textContent="복사가 안 돼. GitHub 신고 작성으로 보내줘."}});
-$("pronShare").hidden=!navigator.share;
-$("pronShare").addEventListener("click",async()=>{const r=pronReportPayload();if(!r||!navigator.share)return;try{await navigator.share({title:r.title,text:r.text});$("pronFeedback").textContent="선택한 앱에서 전송을 마쳐줘."}catch(e){if(e.name!=="AbortError")$("pronFeedback").textContent="공유 실패. 내용 복사를 이용해 줘."}});
-$("pronGithub").addEventListener("click",()=>{const r=pronReportPayload();if(!r)return;window.open("https://github.com/kojer-lab/jlpt-study/issues/new?"+new URLSearchParams({title:r.title,body:r.body}),"_blank","noopener,noreferrer");$("pronFeedback").textContent="GitHub에서 'Submit new issue'를 눌러야 접수돼."});
-
+$("pronCopy").addEventListener("click",async()=>{const r=pronReportPayload();if(!r)return;try{if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(r.text);else{const t=document.createElement("textarea");t.value=r.text;document.body.appendChild(t);t.select();const ok=document.execCommand("copy");t.remove();if(!ok)throw Error("copy failed")};$("pronFeedback").textContent="복사 완료! 채팅에 붙여넣으면 확인할 수 있어."}catch(e){$("pronFeedback").textContent="복사할 수 없어. 브라우저의 복사 권한을 확인해 줘."}});
 $("openWordLibrary").addEventListener("click",showWordLibrary);
 $("desktopWordLibrary").addEventListener("click",()=>{showView("words");showWordLibrary()});
 $("exitWordLibrary").addEventListener("click",showWordDashboard);
