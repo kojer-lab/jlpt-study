@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ニュースを読む · 테스트</title>
 <style>
-:root{color-scheme:dark light;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}*{box-sizing:border-box}body{margin:0;background:#101218;color:#f2f3f6}main{max-width:940px;margin:auto;padding:20px 16px 80px}h1{font-size:25px;margin:4px 0}small,.muted{color:#a7afbd}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.tabs,.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tabs button,.filters button,button{border:1px solid #3a4250;color:#e8ebf2;background:#202632;padding:10px 14px;border-radius:11px;cursor:pointer;font-size:14px}.active{background:#3169ca!important;border-color:#5489e5!important}.card{background:#1b202b;border:1px solid #353d4c;border-radius:16px;padding:18px;margin:12px 0}.pill{font-size:12px;background:#303d57;padding:4px 8px;border-radius:12px;color:#bcd2ff}.card h2{font-size:19px;line-height:1.5}.card p{line-height:1.7}a{color:#9bc2ff}.row{display:flex;gap:12px;align-items:center;justify-content:space-between}.expr{margin-top:12px;border-top:1px solid #394353;padding-top:12px}.expr button{background:#243e63}.note{font-size:13px;color:#a7afbd;line-height:1.65}.hidden{display:none}input{width:100%;background:#181e28;color:white;border:1px solid #3d4857;border-radius:10px;padding:12px}ruby rt{font-size:11px;color:#aabbe1} .empty{padding:22px;text-align:center;color:#a7afbd}
+:root{color-scheme:dark light;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}*{box-sizing:border-box}body{margin:0;background:#101218;color:#f2f3f6}main{max-width:940px;margin:auto;padding:20px 16px 80px}h1{font-size:25px;margin:4px 0}small,.muted{color:#a7afbd}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.tabs,.filters{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tabs button,.filters button,button{border:1px solid #3a4250;color:#e8ebf2;background:#202632;padding:10px 14px;border-radius:11px;cursor:pointer;font-size:14px}.active{background:#3169ca!important;border-color:#5489e5!important}.card{background:#1b202b;border:1px solid #353d4c;border-radius:16px;padding:18px;margin:12px 0}.pill{font-size:12px;background:#303d57;padding:4px 8px;border-radius:12px;color:#bcd2ff}.card h2{font-size:19px;line-height:1.5}.card p{line-height:1.7}a{color:#9bc2ff}.row{display:flex;gap:12px;align-items:center;justify-content:space-between}.expr{margin-top:12px;border-top:1px solid #394353;padding-top:12px}.expr button{background:#243e63}.note{font-size:13px;color:#a7afbd;line-height:1.65}.hidden{display:none}input{width:100%;background:#181e28;color:white;border:1px solid #3d4857;border-radius:10px;padding:12px}ruby rt{font-size:11px;color:#aabbe1} .empty{padding:22px;text-align:center;color:#a7afbd} .expr-item{padding:11px 0;border-bottom:1px solid #394353} .expr-item summary{cursor:pointer;display:flex;align-items:center;gap:10px;flex-wrap:wrap;line-height:1.65;list-style:none} .expr-item summary::-webkit-details-marker{display:none}.expr-item summary:after{content:"⌄";margin-left:auto;color:#a7afbd}.expr-item[open] summary:after{content:"⌃"}.expr-item .muted{font-size:13px}.expr-item .expr-detail{margin:12px 0 0 0;background:#141923;padding:14px;border-radius:10px;line-height:1.75}.expr-detail b{color:#bcd2ff}.expr-detail p{margin:8px 0}.expr h3{font-size:16px;margin-bottom:8px}
 </style></head><body><main>
-<div class="top"><div><small>JLPT STUDY · 별도 실험 화면</small><h1>ニュースを読む</h1><small>뉴스 읽기 · 관용어/표현 수첩</small></div><span class="pill">2026.10.09 테스트</span></div>
-<p class="note">오늘 확인한 실제 일본 뉴스 출처를 분야별로 모은 초기 시제품입니다. 기사 제목은 일본어 원문 제목 일부를 참고한 짧은 소개이며, 기사 전문은 원문 사이트에서 읽습니다. 아래 일본어 연습 문장은 원문 인용이 아닌 학습용 예시입니다. 아직 자동 수집·본문 루비·AI 분석 기능은 연결하지 않았습니다.</p>
-<div class="tabs"><button id="tab-news" class="active" onclick="setTab('news')">📰 뉴스 읽기</button><button id="tab-save" onclick="setTab('save')">🔖 저장한 표현 <span id="count">0</span></button></div>
+<div class="top"><div><small>JLPT STUDY · 별도 실험 화면</small><h1>ニュースを読む</h1><small>뉴스 읽기 · 실전 표현 수첩</small></div><span class="pill">2026.10.09 테스트</span></div>
+<p class="note">오늘 확인한 실제 일본 뉴스 출처를 분야별로 모은 초기 시제품입니다. 기사 제목은 일본어 원문 제목 일부를 참고한 짧은 소개이며, 기사 전문은 원문 사이트에서 읽습니다. 관용어·접속 표현·고급 문형은 기사 분야에 맞춰 만든 학습용 예시이며 원문에서 직접 추출한 내용은 아닙니다. 아직 자동 수집·본문 루비·AI 분석 기능은 연결하지 않았습니다.</p>
+<div class="tabs"><button id="tab-news" class="active" onclick="setTab('news')">📰 뉴스 읽기</button><button id="tab-save" onclick="setTab('save')">🔖 실전 표현 수첩 <span id="count">0</span></button></div>
 <section id="news"><div class="filters" id="filters"></div><div id="articles"></div></section>
-<section id="saved" class="hidden"><input type="search" placeholder="저장한 표현 검색" id="query" oninput="renderSaved()"><div id="saved-list"></div></section>
+<section id="saved" class="hidden"><div class="filters" id="saved-filters"></div><input type="search" placeholder="저장한 표현 검색" id="query" oninput="renderSaved()"><div id="saved-list"></div></section>
 </main>
 <script>
 const articles=[
@@ -20,13 +20,64 @@ const articles=[
 {cat:"영화·애니",title:"만화 '뱀파이어 십자계' 2027년 TV 애니화",jp:"「ヴァンパイア十字界」27年にTVアニメ化",source:"映画.com",url:"https://cinema.eiga.com/news/20261009/",expression:["脚光を浴びる","きゃっこうをあびる","각광을 받다","原作漫画が再び脚光を浴びている。","원작 만화가 다시 주목받고 있다."]},
 {cat:"생활",title:"돗토리현 상어 급증, 어업 피해 400건 이상",jp:"鳥取県でサメ急増、被害400件超",source:"テレビ朝日",url:"https://news.tv-asahi.co.jp/news_society/",expression:["被害が相次ぐ","ひがいがあいつぐ","피해가 잇따르다","沿岸では漁業被害が相次いでいる。","연안에서는 어업 피해가 잇따르고 있다."]}
 ];
-const storeKey="jlpt-news-expression-test-v1";let saved=[];try{saved=JSON.parse(localStorage.getItem(storeKey)||"[]")}catch(e){}let filter="전체";
-function persist(){localStorage.setItem(storeKey,JSON.stringify(saved));document.getElementById("count").textContent=saved.length}
-function setTab(tab){document.getElementById("news").classList.toggle("hidden",tab!=="news");document.getElementById("saved").classList.toggle("hidden",tab!=="save");document.getElementById("tab-news").classList.toggle("active",tab==="news");document.getElementById("tab-save").classList.toggle("active",tab==="save");renderSaved()}
-function toggle(i){const item=articles[i],key=item.expression[0];saved=saved.some(s=>s.expression[0]===key)?saved.filter(s=>s.expression[0]!==key):[...saved,{...item,savedAt:new Date().toISOString()}];persist();renderArticles();renderSaved()}
-function renderArticles(){document.getElementById("articles").innerHTML=articles.map((a,i)=>({...a,i})).filter(a=>filter==="전체"||a.cat===filter).map(a=>{let e=a.expression,on=saved.some(s=>s.expression[0]===e[0]);return '<article class="card"><div class="row"><span class="pill">'+a.cat+'</span><small>'+a.source+'</small></div><h2 lang="ja">'+a.jp+'</h2><p class="muted">'+a.title+'</p><a href="'+a.url+'" target="_blank" rel="noopener noreferrer">원문 뉴스 출처 열기 ↗</a><div class="expr"><span class="pill">학습용 표현 예시</span><h2 lang="ja">'+e[0]+' <small>('+e[1]+')</small></h2><p>'+e[2]+'</p><p lang="ja">'+e[3]+'</p><small>'+e[4]+'</small><p><button onclick="toggle('+a.i+')">'+(on?'✓ 저장됨 · 해제':'＋ 관용어·표현 저장')+'</button></p></div></article>'}).join('')}
-function renderSaved(){const q=(document.getElementById("query").value||"").toLowerCase();const a=saved.filter(x=>(x.expression.join(" ")+x.title).toLowerCase().includes(q));document.getElementById("saved-list").innerHTML=a.length?a.map(x=>'<article class="card"><span class="pill">'+x.cat+'</span><h2 lang="ja">'+x.expression[0]+' <small>'+x.expression[1]+'</small></h2><p>'+x.expression[2]+'</p><p lang="ja">'+x.expression[3]+'</p><p class="muted">'+x.expression[4]+'</p><small>발견 출처: '+x.source+'</small><p><button onclick="toggle('+articles.findIndex(z=>z.expression[0]===x.expression[0])+')">저장 해제</button></p></article>').join(''):'<div class="empty">저장한 표현이 없습니다.</div>'}
-const cats=['전체',...new Set(articles.map(x=>x.cat))];document.getElementById('filters').innerHTML=cats.map(x=>'<button class="'+(x===filter?'active':'')+'" onclick="filter=\''+x+'\';renderFilters()">'+x+'</button>').join('');
-function renderFilters(){document.getElementById('filters').innerHTML=cats.map(x=>'<button class="'+(x===filter?'active':'')+'" onclick="filter=\''+x+'\';renderFilters()">'+x+'</button>').join('');renderArticles()}
-persist();renderArticles();renderSaved();
+
+const supplement = [[["접속 표현","とはいえ","とはいえ","그렇다고는 하지만","対策は進んでいる。とはいえ、課題は山積している。","대책은 진행 중이다. 그렇다고는 하지만 과제는 산적해 있다.","앞 문장의 사실을 인정한 뒤, 반대되는 판단이나 제한을 덧붙이는 접속 표현.","しかし보다 앞 내용에 대한 인정·양보의 뉘앙스가 강해."],["고급 문형","～にほかならない","～にほかならない","다름 아닌 ~이다","今回の混乱は、情報管理の甘さにほかならない。","이번 혼란은 다름 아닌 정보 관리의 허술함 때문이다.","원인이나 본질을 강하게 단정하는 문형. 명사 뒤에 붙어.","～だ라고만 할 때보다 단정·강조의 느낌이 분명해."]],[["고급 문형","～を余儀なくされる","～をよぎなくされる","어쩔 수 없이 ~하게 되다","住民は一時避難を余儀なくされた。","주민들은 일시 대피할 수밖에 없었다.","외부 상황 때문에 의도하지 않은 행동을 강제로 하게 되는 상황을 설명해.","～ざるを得ない와 비슷하지만 뉴스에서는 사태·피해 결과를 객관적으로 기술할 때 자주 써."],["뉴스 문형","～をめぐって","～をめぐって","~을 둘러싸고","事件の対応をめぐって議論が続いている。","사건 대응을 둘러싸고 논의가 계속되고 있다.","논쟁이나 조사, 이해관계의 대상이 되는 주제 뒤에 붙어.","～について는 단순 주제이고 ～をめぐって는 대립·움직임을 수반하는 경우가 많아."]],[["고급 문형","～を皮切りに","～をかわきりに","~을 시작으로","東京公演を皮切りに全国ツアーが始まる。","도쿄 공연을 시작으로 전국 투어가 시작된다.","첫 행사나 첫 지역을 출발점으로 뒤이어 여러 일정이 이어질 때 써.","～から始まって보다 연속적으로 확대되는 전개를 강조해."],["고급 문형","～にひきかえ","～にひきかえ","~와는 대조적으로","昨年の不振にひきかえ、今年は好調だ。","작년의 부진과는 대조적으로 올해는 호조다.","두 대상을 선명하게 대조할 때 사용하는 문어적인 표현.","一方で보다 비교·대조의 평가가 더 강하게 드러나."]],[["고급 문형","～と相まって","～とあいまって","~와 맞물려, 상승작용하여","新技術の導入と研究者の努力が相まって成果が出た。","신기술 도입과 연구자들의 노력이 맞물려 성과가 나왔다.","둘 이상의 원인이나 조건이 서로 영향을 주어 결과를 만들 때 사용해.","～によって는 원인 하나를 나타낼 수 있지만, ～と相まって는 복합적인 작용을 강조해."],["접속 표현","ひいては","ひいては","더 나아가, 나아가서는","基礎研究の進展は、ひいては社会全体の利益につながる。","기초 연구의 발전은 나아가 사회 전체의 이익으로 이어진다.","앞의 결과가 더 크고 넓은 결과로 연결됨을 나타내는 문어적 접속 부사.","さらに는 단순 추가이고 ひいては는 영향의 확장과 파급을 강조해."]],[["고급 문형","～を踏まえて","～をふまえて","~을 고려하여, 바탕으로","最新の経済指標を踏まえて政策を見直す。","최신 경제 지표를 고려해 정책을 재검토한다.","자료·경험·상황을 판단의 근거로 삼을 때 자주 쓰는 공적 표현.","～によると는 정보 출처, ～を踏まえて는 그 내용을 판단에 반영한다는 뜻이야."],["고급 문형","～に至っては","～にいたっては","~에 이르러서는, ~의 경우에는 특히","小売業に至っては、売り上げの減少が著しい。","소매업에 이르러서는 매출 감소가 두드러진다.","여러 사례 중 더 극단적이거나 두드러지는 예를 꺼낼 때 사용해.","～について는 단순 주제 제시, ～に至っては는 극단 사례의 강조야."]],[["접속 문형","～ものの","～ものの","~하기는 했지만","出演を予定していたものの、急きょ欠席した。","출연할 예정이었지만 급히 불참했다.","앞 내용을 인정하면서도 기대와 다른 결과를 이어 주는 역접 표현.","けれども보다 문어적이며 기사 문장에 자연스럽게 등장해."],["접속 표현","それどころか","それどころか","그 정도가 아니라, 오히려","人気が衰えるどころか、ますます高まっている。","인기가 시들기는커녕 오히려 더욱 높아지고 있다.","앞서 예상한 수준을 부정하고 그 반대이거나 더 강한 상황을 제시해.","それに는 단순한 추가지만 それどころか는 예상의 뒤집힘을 나타내."]],[["고급 문형","～のみならず","～のみならず","~뿐만 아니라","原作ファンのみならず、新しい視聴者からも注目されている。","원작 팬뿐만 아니라 새로운 시청자들에게도 주목받고 있다.","명사·보통형에 이어 추가 범위를 넓히는 격식 있는 표현.","～だけでなく와 뜻이 비슷하지만 공식 발표나 기사에 더 어울려."],["뉴스 문형","～を機に","～をきに","~을 계기로","映画化を機に、原作の売り上げも伸びた。","영화화를 계기로 원작 판매도 늘었다.","특정 사건이 변화나 행동의 계기가 되었을 때 사용해.","～をきっかけに와 가깝지만 ～を機に가 조금 더 공식적이야."]],[["고급 문형","～ないまでも","～ないまでも","~까지는 아니더라도","全面禁止にしないまでも、一定の規制は必要だ。","전면 금지까지는 아니더라도 일정한 규제는 필요하다.","극단적인 선택까지는 하지 않더라도 최소한의 조치는 필요함을 나타내.","～なくても보다 양보하는 범위와 최소 기준을 더 뚜렷하게 드러내."],["고급 문형","～にかかわらず","～にかかわらず","~과 관계없이","天候にかかわらず調査を実施する。","날씨와 관계없이 조사를 실시한다.","어떤 조건이 달라져도 결과나 방침이 바뀌지 않을 때 사용해.","～にもかかわらず는 역접(~인데도), ～にかかわらず는 조건 무관(~와 관계없이)이야."]]];
+const kindOrder=["전체","관용어","접속 표현","접속 문형","고급 문형","뉴스 문형","뉴스 표현"];
+const storeKey="jlpt-news-expression-test-v2";
+const oldKey="jlpt-news-expression-test-v1";
+const safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const makeBase=(a)=>({type:["実を結ぶ","脚光を浴びる"].includes(a.expression[0])?"관용어":"뉴스 표현",form:a.expression[0],reading:a.expression[1],meaning:a.expression[2],example:a.expression[3],translation:a.expression[4],note:"기사의 상황을 이해할 때 유용한 표현이야. 앞뒤 문맥에서 어떤 역할을 하는지 확인해 봐.",compare:"비슷한 표현과의 비교는 정식 분석 기능에서 제공할 예정이야."});
+const entryAt=(i,j)=>{const a=articles[i];if(!a)return null;if(j===0)return makeBase(a);const v=supplement[i]?.[j-1];if(!v)return null;const [type,form,reading,meaning,example,translation,note,compare]=v;return {type,form,reading,meaning,example,translation,note,compare}};
+const getAll=(i)=>[makeBase(articles[i]),...(supplement[i]||[]).map(v=>{const [type,form,reading,meaning,example,translation,note,compare]=v;return {type,form,reading,meaning,example,translation,note,compare}})];
+let saved=[];
+try{saved=JSON.parse(localStorage.getItem(storeKey)||"null")||[]}catch(e){}
+if(!Array.isArray(saved))saved=[];
+if(!localStorage.getItem(storeKey)){
+  try{const prev=JSON.parse(localStorage.getItem(oldKey)||"[]");if(Array.isArray(prev)){saved=prev.filter(x=>x&&Array.isArray(x.expression)).map(x=>({...makeBase(x),source:x.source,title:x.title,cat:x.cat,savedAt:x.savedAt||"",id:x.expression[0]}))}}catch(e){}
+}
+let filter="전체",savedKind="전체";
+function persist(){try{localStorage.setItem(storeKey,JSON.stringify(saved))}catch(e){console.warn("표현 저장 실패",e)}document.getElementById("count").textContent=saved.length}
+function setTab(tab){
+ document.getElementById("news").classList.toggle("hidden",tab!=="news");
+ document.getElementById("saved").classList.toggle("hidden",tab!=="save");
+ document.getElementById("tab-news").classList.toggle("active",tab==="news");
+ document.getElementById("tab-save").classList.toggle("active",tab==="save");
+ renderSaved()
+}
+function toggleExpr(i,j){
+ const a=articles[i],e=entryAt(i,j);if(!a||!e)return;
+ const k=e.form;
+ saved=saved.some(s=>s.id===k)?saved.filter(s=>s.id!==k):[...saved,{...e,id:k,source:a.source,title:a.title,cat:a.cat,savedAt:new Date().toISOString()}];
+ persist();renderArticles();renderSaved()
+}
+function expressionMarkup(e,i,j){
+ const on=saved.some(s=>s.id===e.form);
+ return '<details class="expr-item"><summary><span class="pill">'+safe(e.type)+'</span><strong lang="ja">'+safe(e.form)+'</strong><span class="muted">'+safe(e.meaning)+'</span></summary><div class="expr-detail"><p><small>읽기</small> '+safe(e.reading)+'</p><p class="meaning">'+safe(e.meaning)+'</p><p lang="ja">'+safe(e.example)+'</p><p class="muted">'+safe(e.translation)+'</p><p><b>사용 맥락</b> '+safe(e.note)+'</p><p><b>비슷한 표현과 차이</b> '+safe(e.compare)+'</p><button onclick="toggleExpr('+i+','+j+')">'+(on?"✓ 저장됨 · 해제":"＋ 실전 표현 저장")+'</button></div></details>'
+}
+function renderArticles(){
+ document.getElementById("articles").innerHTML=articles.map((a,i)=>({...a,i})).filter(a=>filter==="전체"||a.cat===filter).map(a=>
+ '<article class="card"><div class="row"><span class="pill">'+safe(a.cat)+'</span><small>'+safe(a.source)+'</small></div><h2 lang="ja">'+safe(a.jp)+'</h2><p class="muted">'+safe(a.title)+'</p><a href="'+safe(a.url)+'" target="_blank" rel="noopener noreferrer">원문 뉴스 출처 열기 ↗</a><div class="expr"><h3>실전 표현 미리보기</h3><p class="note">아래는 해당 분야에 어울리는 학습용 예시이며, 기사 원문에서 추출한 표현은 아닙니다.</p>'+getAll(a.i).map((e,j)=>expressionMarkup(e,a.i,j)).join("")+'</div></article>'
+ ).join("")
+}
+function kindFilters(){
+ const options=kindOrder.filter(k=>k==="전체"||saved.some(s=>s.type===k));
+ document.getElementById("saved-filters").innerHTML=options.map(k=>'<button class="'+(savedKind===k?"active":"")+'" onclick="savedKind='+JSON.stringify(k).replace(/"/g,"&quot;")+';kindFilters();renderSaved()">'+safe(k)+'</button>').join("")
+}
+function renderSaved(){
+ const q=(document.getElementById("query").value||"").trim().toLowerCase();
+ const items=saved.filter(x=>(savedKind==="전체"||x.type===savedKind)&&[x.form,x.reading,x.meaning,x.note,x.example,x.title].join(" ").toLowerCase().includes(q));
+ document.getElementById("saved-list").innerHTML=items.length?items.map(x=>
+ '<article class="card"><div class="row"><span class="pill">'+safe(x.type)+'</span><small>'+safe(x.cat)+'</small></div><h2 lang="ja">'+safe(x.form)+' <small>'+safe(x.reading)+'</small></h2><p>'+safe(x.meaning)+'</p><p lang="ja">'+safe(x.example)+'</p><p class="muted">'+safe(x.translation)+'</p><p><b>사용 맥락</b> '+safe(x.note)+'</p><p><b>비교</b> '+safe(x.compare)+'</p><small>저장 당시 뉴스 출처: '+safe(x.source)+'</small><p><button onclick="removeSaved('+JSON.stringify(x.id).replace(/"/g,"&quot;")+')">저장 해제</button></p></article>'
+ ).join(""):'<div class="empty">해당하는 저장 표현이 없습니다.</div>';
+ kindFilters()
+}
+function removeSaved(id){saved=saved.filter(x=>x.id!==id);persist();renderArticles();renderSaved()}
+const cats=["전체",...new Set(articles.map(x=>x.cat))];
+function renderFilters(){
+ document.getElementById("filters").innerHTML=cats.map(x=>'<button class="'+(x===filter?"active":"")+'" data-cat="'+safe(x)+'">'+safe(x)+'</button>').join("");
+ document.querySelectorAll("#filters button").forEach(b=>b.addEventListener("click",()=>{filter=b.getAttribute("data-cat");renderFilters()}));
+ renderArticles()
+}
+persist();renderFilters();renderSaved();
+
 </script></body></html>
