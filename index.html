@@ -424,7 +424,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
             <div class="ai-listen-head"><div><span class="tag" id="aiListenType">問題1 · 課題理解</span><div class="ai-engine" id="aiEngineText">Kokoro 준비 전</div></div><div class="counter" id="aiListenCounter">1 / 3</div></div>
             <div class="ai-question" id="aiListenQuestion"></div>
             <div class="ai-choices" id="aiListenChoices"></div>
-            <div class="ai-audio-actions"><button type="button" class="primary" id="aiListenPlay">🔊 문제 듣기</button><button type="button" class="secondary" id="aiListenScriptBtn">스크립트 보기</button><button type="button" class="secondary" id="aiListenShuffle">↻ 문제 섞기</button><button type="button" class="secondary hidden" id="aiListenNext">다음 문제</button></div>
+            <div class="ai-audio-actions"><button type="button" class="primary" id="aiListenPlay">🔊 문제 듣기</button><button type="button" class="secondary" id="aiListenScriptBtn">스크립트 보기</button><button type="button" class="secondary hidden" id="aiListenNext">다음 문제</button></div>
             <div class="ai-status" id="aiListenStatus">AI 탭에 들어오면 현재 문제부터 음성을 미리 준비합니다.</div>
             <div class="ai-explain" id="aiListenExplain"></div>
             <div class="ai-script" id="aiListenScript"></div>
@@ -1848,8 +1848,10 @@ function ensureDailyNew(save=true){
 function todayNewPending(){return ensureDailyNew(true).filter(w=>getSrs(w.id).reviews===0)}
 function refreshAll(){renderHome();renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
-function showView(name){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
- if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){mockStopListening();}if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening")setupListening();window.scrollTo({top:0,behavior:"smooth"});}
+function showView(name){
+ const restartingAi=name==="listening"&&!$("listeningView")?.classList.contains("active")&&!$("aiListeningPanel")?.classList.contains("hidden");
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+ if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){mockStopListening();}if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening"){setupListening();if(restartingAi)restartAiListening()}window.scrollTo({top:0,behavior:"smooth"});}
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();const key=furiStateKey(fu),next=!fu.classList.contains("show");fu.classList.toggle("show",next);if(next)interactiveFuriShown.add(key);else interactiveFuriShown.delete(key)}}});
 
@@ -2655,7 +2657,14 @@ const aiBaseDetailed=[
 ];
 aiListeningProblems.forEach((p,i)=>{if(i<aiBaseEvidence.length){p.keyPhrase=aiBaseEvidence[i][0];p.wrongReason=aiBaseEvidence[i][1];Object.assign(p,aiBaseDetailed[i])}});
 
-for(let i=aiListeningProblems.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[aiListeningProblems[i],aiListeningProblems[j]]=[aiListeningProblems[j],aiListeningProblems[i]]}
+// Shuffle for each new AI listening session, but never change order mid-session.
+function shuffleAiListeningProblems(){
+ for(let i=aiListeningProblems.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [aiListeningProblems[i],aiListeningProblems[j]]=[aiListeningProblems[j],aiListeningProblems[i]];
+ }
+}
+shuffleAiListeningProblems();
 let aiListenIndex=0,aiListenPlaying=false,aiListenGeneration=0;
 const aiListenJobs=new Map();
 // Cache only the small manifest; prefetch only the current and next MP3.
@@ -2799,16 +2808,33 @@ async function playAiListening(){
  }catch(e){console.error(e);if(generation===aiListenGeneration)setAiStatus("재생 실패 · "+(e&&e.message?e.message:String(e)),"bad")}
  finally{if(generation===aiListenGeneration){aiListenPlaying=false;$("aiListenPlay").disabled=false;await releaseKokoroWakeLock()}}
 }
+function restartAiListening(){
+ aiListenGeneration++;
+ aiListenPlaying=false;
+ releaseKokoroWakeLock();
+ stopKokoroAudio();
+ aiListenJobs.clear();
+ shuffleAiListeningProblems();
+ aiListenIndex=0;
+ renderAiListening();
+}
 function setupAiListening(){
  $("aiListenPlay").addEventListener("click",playAiListening);
  $("aiListenScriptBtn").addEventListener("click",()=>{const show=$("aiListenScript").classList.toggle("show");$("aiListenScriptBtn").textContent=show?"스크립트 숨기기":"스크립트 보기"});
- $("aiListenShuffle").addEventListener("click",()=>{aiListenGeneration++;aiListenPlaying=false;releaseKokoroWakeLock();stopKokoroAudio();aiListenJobs.clear();for(let i=aiListeningProblems.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[aiListeningProblems[i],aiListeningProblems[j]]=[aiListeningProblems[j],aiListeningProblems[i]]}aiListenIndex=0;renderAiListening()});
  $("aiListenChoices").addEventListener("click",e=>{
    const b=e.target.closest("[data-ai-choice]");if(!b)return;const p=aiListeningProblems[aiListenIndex],picked=Number(b.dataset.aiChoice);
    [...$("aiListenChoices").children].forEach((x,i)=>{x.disabled=true;if(i===p.answer)x.classList.add("correct");if(i===picked&&i!==p.answer)x.classList.add("wrong")});
    $("aiListenExplain").classList.add("show");$("aiListenNext").classList.remove("hidden");
  });
- $("aiListenNext").addEventListener("click",()=>{aiListenGeneration++;aiListenPlaying=false;releaseKokoroWakeLock();stopKokoroAudio();aiListenIndex=(aiListenIndex+1)%aiListeningProblems.length;renderAiListening()});
+ $("aiListenNext").addEventListener("click",()=>{
+  if(aiListenIndex+1>=aiListeningProblems.length){restartAiListening();return}
+  aiListenGeneration++;
+  aiListenPlaying=false;
+  releaseKokoroWakeLock();
+  stopKokoroAudio();
+  aiListenIndex++;
+  renderAiListening();
+ });
 }
 
 let mockItems=[],mockAnswers=[],mockIndex=0,mockStarted=0,mockPhaseStarted=0,mockPhase="language",mockTimerHandle=null,mockReady=false,mockSubmitted=false,mockListenRun=0,mockListening=false;
@@ -2962,9 +2988,10 @@ function setupListening(){
  setupAiListening();
  $("listeningTabs").addEventListener("click",e=>{
    const b=e.target.closest("[data-listen-tab]");if(!b)return;const tab=b.dataset.listenTab;
+   const enteringAi=tab==="ai"&&$("aiListeningPanel").classList.contains("hidden");
    document.querySelectorAll(".listen-tab").forEach(x=>x.classList.toggle("active",x===b));
    $("officialListeningPanel").classList.toggle("hidden",tab!=="official");$("aiListeningPanel").classList.toggle("hidden",tab!=="ai");
-   if(tab==="ai"){player.pause();renderAiListening()}else{aiListenGeneration++;aiListenPlaying=false;releaseKokoroWakeLock();stopKokoroAudio()}
+   if(tab==="ai"){player.pause();if(enteringAi)restartAiListening()}else{aiListenGeneration++;aiListenPlaying=false;releaseKokoroWakeLock();stopKokoroAudio()}
  });
  const pdf="https://ns.jlpt.jp/samples/sample2018/pdf/N1L.pdf";
  const viewer="https://docs.google.com/gview?embedded=true&url="+encodeURIComponent(pdf);
