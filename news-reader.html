@@ -162,7 +162,11 @@ async function initial(){
   if(!response.ok)throw new Error(data.error||"본문 추출에 실패했습니다.");
   if(!Array.isArray(data.paragraphs)||!data.paragraphs.length)throw new Error("본문 내용을 충분히 추출하지 못했습니다.");
   paragraphs=data.paragraphs.filter(x=>typeof x==="string").slice(0,110);
-  await render()
+  await render();
+  if(data.contentScope==="preview"){
+    status("이 언론사에서 제공한 공개 소개문만 표시 중이야. 기사 전문은 아니지만 후리가나 기능은 사용할 수 있어.",true);
+    $("import").open=false;
+  }
  }catch(error){
   // Published RSS excerpts can still be studied inside the app, even when
   // the publisher only serves a short public preview instead of full text.
