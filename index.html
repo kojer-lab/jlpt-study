@@ -454,7 +454,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <strong>🗞️ 오늘의 일본 뉴스</strong><span class="tag">RSS · 짧은 소개문</span>
        </div>
        <p class="sub" style="margin:8px 0 13px;font-size:13px">최근 일본 소식을 직접 모아봐. 900~1,200자 편집 지문과 달리 이곳은 RSS 소개문만 제공해. 충분한 내용이 있는 기사만 표시하며, 원문은 언론사 사이트에서 열 수 있어.</p>
-       <button id="newsCollectButton" type="button">↻ 오늘의 기사 모으기</button>
+       <div class="toolbar"><button id="newsCollectButton" type="button">↻ 오늘의 기사 모으기</button><button id="newsCollectorGoCloud" type="button" class="secondary">동기화 로그인·설정</button></div>
        <p class="sub" id="newsCollectStatus" style="font-size:13px;margin:10px 0" role="status" aria-live="polite">버튼을 누르면 최신 일본 뉴스를 가져와.</p>
        <div id="newsCollectFilters" class="toolbar" style="margin:12px 0"></div>
        <div id="newsCollectList"></div>
@@ -2980,7 +2980,7 @@ async function initializeCloudClient(runSync=true){
  try{
   cloudClient=window.supabase.createClient(cfg.url,cfg.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:"jlpt-n1-auth-v31"}});
   const sessionResult=await cloudClient.auth.getSession();cloudUser=sessionResult.data.session?.user||null;
-  const sub=cloudClient.auth.onAuthStateChange((event,session)=>{cloudUser=session?.user||null;updateSyncUI();if(cloudUser&&event!=="TOKEN_REFRESHED")setTimeout(()=>syncNow("merge"),100)});cloudAuthSubscription=sub.data.subscription;
+  const sub=cloudClient.auth.onAuthStateChange((event,session)=>{cloudUser=session?.user||null;updateSyncUI();window.KOJER_NEWS_SYNC?.schedule(700);if(cloudUser&&event!=="TOKEN_REFRESHED")setTimeout(()=>syncNow("merge"),100)});cloudAuthSubscription=sub.data.subscription;
   updateSyncUI();if(cloudUser&&runSync)await syncNow("merge");
  }catch(err){cloudClient=null;setSyncStatus("bad","연결 실패",err.message||"Supabase 연결에 실패했습니다.")}
 }
@@ -3023,7 +3023,7 @@ async function syncNow(mode="merge"){
     setupNewsDay(currentDate);renderReading();
    }
   }
-  setCloudMeta({lastSyncAt:Date.now()});setSyncStatus("ok","동기화 완료","PC와 모바일에서 같은 학습 기록을 사용할 수 있습니다.");updateSyncUI();return true;
+  setCloudMeta({lastSyncAt:Date.now()});setSyncStatus("ok","동기화 완료","PC와 모바일에서 같은 학습 기록을 사용할 수 있습니다.");updateSyncUI();window.KOJER_NEWS_SYNC?.schedule(350);return true;
  }catch(err){setSyncStatus("bad","동기화 실패",err.message||"동기화에 실패했습니다.");return false}
  finally{cloudSyncing=false;updateSyncUI()}
 }
