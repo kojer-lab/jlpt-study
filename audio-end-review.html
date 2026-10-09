@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4f46e5">
+<title>JLPT N1 · 끝소리 음성 비교</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Noto Sans JP",sans-serif;background:#f6f7fb;color:#1e293b}
+*{box-sizing:border-box}body{margin:0;padding:18px 12px 60px}main{max-width:760px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}a{color:#4f46e5}
+h1{font-size:24px;margin:26px 0 7px}h2{font-size:18px;margin:0 0 6px}
+p{line-height:1.6}.sub{font-size:14px;color:#64748b;margin:0 0 19px}
+.notice{background:#fefce8;border:1px solid #fef08a;border-radius:12px;padding:13px;font-size:14px;line-height:1.7}
+.card{margin-top:14px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:17px}
+.sentence{font-size:18px;line-height:1.6;margin:8px 0 13px}
+.group{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+button{appearance:none;cursor:pointer;border:1px solid #cbd5e1;border-radius:9px;background:#f8fafc;color:#334155;font:inherit;padding:10px 2px;font-size:12px;min-height:44px}
+button:disabled{opacity:.5;cursor:wait}button:focus-visible,select:focus-visible{outline:3px solid #818cf8;outline-offset:2px}
+button.playing{background:#e0e7ff;border-color:#6366f1;font-weight:700}
+.info{font-size:12px;color:#64748b;min-height:20px;margin:10px 0}
+.review{display:flex;align-items:center;gap:9px;padding-top:12px;border-top:1px solid #e2e8f0}
+.review label{font-size:14px;font-weight:700;white-space:nowrap}
+.review select{font:inherit;border:1px solid #cbd5e1;border-radius:9px;background:white;min-height:42px;padding:0 10px;flex:1;min-width:0}
+.summary{margin-top:25px;background:#fff;padding:17px;border:1px solid #e2e8f0;border-radius:16px}
+textarea{width:100%;min-height:150px;resize:vertical;font:13px/1.6 ui-monospace,monospace;padding:10px;border:1px solid #cbd5e1;border-radius:10px;color:#1e293b;background:#f8fafc}
+#copy{background:#4f46e5;color:#fff;border-color:#4f46e5;padding:10px 18px;font-size:14px;margin:10px 0}
+@media(max-width:480px){body{padding:14px 10px 55px}.card{padding:13px}.group{gap:4px}button{font-size:11px;padding:11px 0}h1{font-size:22px}.sentence{font-size:17px}}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;background:#0f172a;color:#e2e8f0}.card,.summary{background:#1e293b;border-color:#334155}.sub,.info{color:#94a3b8}button{background:#334155;border-color:#475569;color:#f1f5f9}button.playing{background:#312e81;border-color:#818cf8}.review{border-color:#334155}.review select{background:#1e293b;color:#e2e8f0;border-color:#64748b}textarea{background:#0f172a;color:#e2e8f0;border-color:#64748b}.notice{background:#422006;border-color:#a16207}}
+</style>
+</head>
+<body>
+<main>
+<header><strong>JLPT N1</strong><a href="./">학습 앱으로 돌아가기</a></header>
+<h1>예문 끝소리 비교 · 신고 8건</h1>
+<p class="sub">기존 Kokoro jf_alpha · 신고 #5–#12</p>
+<div class="notice">이 페이지는 MP3를 <strong>수정하지 않고 미리듣기만</strong> 합니다. 말소리가 실제로 끝나는 시점을 기준으로 80~320ms를 줄여 비교할 수 있습니다. 마지막 정상 일본어 발음이 잘리는 경우에는 <strong>보류</strong>를 선택해 주세요.</div>
+<div id="items"></div>
+<section class="summary">
+<h2>검수 결과</h2>
+<p class="sub">각 문장에서 가장 자연스러운 버전을 선택하세요. 선택 후 아래 내용을 복사해 ChatGPT에 보내면 됩니다.</p>
+<textarea id="result" readonly></textarea>
+<button type="button" id="copy">선택 내용 복사</button>
+<span id="copyInfo" class="info" aria-live="polite"></span>
+</section>
+</main>
+<script>
+"use strict";
+const clips=[
+{id:5,word:"賄う",text:"費用を寄付で賄う。",path:"audio/vocab/makanau-ex1.mp3"},
+{id:6,word:"賄う",text:"電力の一部を太陽光で賄う。",path:"audio/vocab/makanau-ex2.mp3"},
+{id:7,word:"承る",text:"ご注文を承ります。",path:"audio/vocab/uketamawaru-ex1.mp3"},
+{id:8,word:"承る",text:"その件は私が承りました。",path:"audio/vocab/uketamawaru-ex2.mp3"},
+{id:9,word:"催す",text:"式典を催す。",path:"audio/vocab/moyoosu-ex1.mp3"},
+{id:10,word:"催す",text:"眠気を催した。",path:"audio/vocab/moyoosu-ex2.mp3"},
+{id:11,word:"補う",text:"経験の不足を知識で補う。",path:"audio/vocab/oginau-ex2.mp3"},
+{id:12,word:"補う",text:"不足を補う。",path:"audio/vocab/oginau-ex1.mp3"}
+];
+const modes=[["0","원본"],["80","−80ms"],["160","−160ms"],["240","−240ms"],["320","−320ms"]];
+const storageKey="jlpt-ending-review-20261009";
+let selected={};try{selected=JSON.parse(localStorage.getItem(storageKey)||"{}")}catch(e){}
+const buffers=new Map();
+let ctx=null,currentSource=null,currentButton=null;
+function make(tag,cls,label){const e=document.createElement(tag);if(cls)e.className=cls;if(label!==undefined)e.textContent=label;return e}
+function speechEnd(buffer){
+ const arr=buffer.getChannelData(0), step=Math.max(1,Math.round(buffer.sampleRate*0.01)),rms=[];
+ for(let i=0;i<arr.length;i+=step){let sum=0;const max=Math.min(arr.length,i+step);for(let j=i;j<max;j++)sum+=arr[j]*arr[j];rms.push(Math.sqrt(sum/(max-i)))}
+ let peak=0;for(const a of rms)peak=Math.max(peak,a);
+ const floor=Math.max(0.006,peak*0.06);
+ for(let i=rms.length-1;i>=4;i--){let active=0;for(let j=i-4;j<=i;j++)if(rms[j]>floor)active++;if(active>=3)return Math.min(buffer.duration,(i+1)*step/buffer.sampleRate)}
+ return buffer.duration;
+}
+async function getBuffer(path){
+ if(!buffers.has(path)){
+  buffers.set(path,(async()=>{const r=await fetch(path,{cache:"no-cache"});if(!r.ok)throw new Error("MP3를 불러올 수 없습니다 ("+r.status+")");return ctx.decodeAudioData(await r.arrayBuffer())})());
+ }
+ try{return await buffers.get(path)}catch(e){buffers.delete(path);throw e}
+}
+function stop(){
+ if(currentSource){try{currentSource.stop()}catch(e){}currentSource=null}
+ if(currentButton){currentButton.classList.remove("playing");currentButton=null}
+}
+async function play(clip,millis,button,status){
+ try{
+  if(!ctx)ctx=new (window.AudioContext||window.webkitAudioContext)();
+  await ctx.resume();stop();
+  const buttons=document.querySelectorAll("button[data-play]");
+  buttons.forEach(b=>b.disabled=true);
+  status.textContent="음성 준비 중…";
+  const buffer=await getBuffer(clip.path);
+  buttons.forEach(b=>b.disabled=false);
+  const last=speechEnd(buffer);
+  const until=millis===0?buffer.duration:Math.max(0.2,last-millis/1000+0.025);
+  const src=ctx.createBufferSource(),gain=ctx.createGain();
+  src.buffer=buffer;src.connect(gain);gain.connect(ctx.destination);
+  const fade=Math.min(0.025,until/20);
+  gain.gain.setValueAtTime(1,ctx.currentTime);
+  gain.gain.setValueAtTime(1,ctx.currentTime+until-fade);
+  gain.gain.linearRampToValueAtTime(0,ctx.currentTime+until);
+  src.onended=()=>{if(currentSource===src){currentSource=null;if(currentButton)currentButton.classList.remove("playing");currentButton=null}};
+  currentSource=src;currentButton=button;button.classList.add("playing");
+  status.textContent=millis===0?"원본 MP3":("말소리 끝 기준 "+millis+"ms 제거 · 미리듣기");
+  src.start(0,0,until);
+ }catch(e){stop();document.querySelectorAll("button[data-play]").forEach(b=>b.disabled=false);status.textContent="재생 실패: "+e.message}
+}
+function summary(){
+ const done=clips.filter(c=>selected[c.id]).length;
+ document.getElementById("result").value="JLPT N1 끝소리 8개 검수 ("+done+"/8)\n"+
+ clips.map(c=>"#"+c.id+" "+c.word+" / "+c.text+" — "+(selected[c.id]||"미선택")).join("\n")+
+ "\n\n선택한 것만 보정하고 보류와 미선택 항목은 유지해줘.";
+ try{localStorage.setItem(storageKey,JSON.stringify(selected))}catch(e){}
+}
+for(const clip of clips){
+ const card=make("section","card"),title=make("h2","","#"+clip.id+" · "+clip.word),sentence=make("p","sentence",clip.text);
+ const group=make("div","group"),status=make("p","info","원본과 보정 길이를 비교하세요."),review=make("div","review");
+ for(const [v,label] of modes){const b=make("button","",label);b.type="button";b.dataset.play="1";b.addEventListener("click",()=>play(clip,Number(v),b,status));group.appendChild(b)}
+ const label=make("label","","검수 선택"),select=make("select");select.id="select-"+clip.id;label.htmlFor=select.id;
+ for(const [v,labelText] of [["","선택 안 함"],["보류","보류 (끝소리 불분명)"],["원본","원본 유지"],...modes.slice(1).map(([v])=>[v,"끝소리 −"+v+"ms"])]){
+  const option=make("option","",labelText);option.value=v;select.appendChild(option)
+ }
+ select.value=selected[clip.id]||"";
+ select.addEventListener("change",()=>{if(select.value)selected[clip.id]=select.value;else delete selected[clip.id];summary()});
+ review.append(label,select);card.append(title,sentence,group,status,review);document.getElementById("items").appendChild(card);
+}
+document.getElementById("copy").addEventListener("click",async()=>{
+ const result=document.getElementById("result"),info=document.getElementById("copyInfo");
+ try{await navigator.clipboard.writeText(result.value);info.textContent="✓ 복사 완료"}catch(e){result.focus();result.select();info.textContent="복사하려면 선택된 내용을 직접 복사해주세요."}
+});
+summary();
+</script>
+</body>
+</html>
