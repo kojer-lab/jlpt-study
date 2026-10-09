@@ -297,6 +297,12 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-expression-example .furi::before{font-size:.62em;bottom:calc(100% - .32em);line-height:1}
 .news-expression-interactive .furi{cursor:pointer}
 .news-expression-interactive .furi::before{font-size:.62em;bottom:calc(100% - .32em);line-height:1}
+#newsCuratedList{min-width:0;max-width:100%}
+#newsCuratedList>.card{min-width:0;max-width:100%;overflow-wrap:anywhere}
+#newsCuratedList>.card strong[lang="ja"]{white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;min-width:0}
+@media(max-width:700px){#newsCuratedList{grid-template-columns:minmax(0,1fr)!important}}
+#newsArticleExpressionInfo .news-expression-example .furi{display:inline-block;position:relative;cursor:pointer;white-space:nowrap}
+#newsArticleExpressionInfo .news-expression-example .furi.show::before{opacity:1!important}
 /* Mobile news reading: avoid overly tall text and forced CJK character wrapping. */
 @media(max-width:700px){
  #newsCuratedDetail{width:100%;max-width:100%;min-width:0}
@@ -2142,7 +2148,7 @@ function renderCuratedNewsHome(){
   meta.textContent=[item.category,item.date,item.source,item.bodyLength+"자"].join(" · ");
   meta.style.cssText="font-size:12px;line-height:1.6;color:var(--muted)";
   const title=document.createElement("strong");title.textContent=item.title;title.lang="ja";
-  title.style.cssText="font-size:17px;line-height:1.6;word-break:keep-all";
+  title.style.cssText="font-size:17px;line-height:1.6;word-break:normal;overflow-wrap:anywhere;white-space:normal;max-width:100%;min-width:0;display:block";
   const link=document.createElement("a");
   link.href="#newsreader/"+encodeURIComponent(item.id);
   link.textContent="기사 읽기 →";
