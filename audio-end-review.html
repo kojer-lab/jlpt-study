@@ -14,7 +14,7 @@ p{line-height:1.6}.sub{font-size:14px;color:#64748b;margin:0 0 19px}
 .notice{background:#fefce8;border:1px solid #fef08a;border-radius:12px;padding:13px;font-size:14px;line-height:1.7}
 .card{margin-top:14px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:17px}
 .sentence{font-size:18px;line-height:1.6;margin:8px 0 13px}
-.group{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+.group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
 button{appearance:none;cursor:pointer;border:1px solid #cbd5e1;border-radius:9px;background:#f8fafc;color:#334155;font:inherit;padding:10px 2px;font-size:12px;min-height:44px}
 button:disabled{opacity:.5;cursor:wait}button:focus-visible,select:focus-visible{outline:3px solid #818cf8;outline-offset:2px}
 button.playing{background:#e0e7ff;border-color:#6366f1;font-weight:700}
@@ -56,7 +56,7 @@ const clips=[
 {id:11,word:"補う",text:"経験の不足を知識で補う。",path:"audio/vocab/oginau-ex2.mp3"},
 {id:12,word:"補う",text:"不足を補う。",path:"audio/vocab/oginau-ex1.mp3"}
 ];
-const modes=[["0","원본"],["80","−80ms"],["160","−160ms"],["240","−240ms"],["320","−320ms"]];
+const modes=[["0","원본"],["80","−80ms"],["160","−160ms"],["220","−220ms"],["240","−240ms"],["320","−320ms"]];
 const storageKey="jlpt-ending-review-20261009";
 let selected={};try{selected=JSON.parse(localStorage.getItem(storageKey)||"{}")}catch(e){}
 const buffers=new Map();
