@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "batch_id": "20261009-new-ending-reports-5-through-12",
+  "items": [
+    {
+      "word_id": "makanau",
+      "kind": "example",
+      "index": 0,
+      "report_id": 5
+    },
+    {
+      "word_id": "makanau",
+      "kind": "example",
+      "index": 1,
+      "report_id": 6
+    },
+    {
+      "word_id": "uketamawaru",
+      "kind": "example",
+      "index": 0,
+      "report_id": 7
+    },
+    {
+      "word_id": "uketamawaru",
+      "kind": "example",
+      "index": 1,
+      "report_id": 8
+    },
+    {
+      "word_id": "moyoosu",
+      "kind": "example",
+      "index": 0,
+      "report_id": 9
+    },
+    {
+      "word_id": "moyoosu",
+      "kind": "example",
+      "index": 1,
+      "report_id": 10
+    },
+    {
+      "word_id": "oginau",
+      "kind": "example",
+      "index": 1,
+      "report_id": 11
+    },
+    {
+      "word_id": "oginau",
+      "kind": "example",
+      "index": 0,
+      "report_id": 12
+    }
+  ]
+}
