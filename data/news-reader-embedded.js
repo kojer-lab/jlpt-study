@@ -26,7 +26,7 @@ for(const [surface,reading] of Object.entries(reviewed)){
 }
 for(const arr of extra.values())arr.sort((a,b)=>b.surface.length-a.surface.length);
 function wordHTML(surface,reading){
- const hasKanji=/[一-龯々〆ヵヶ]/;
+ const hasKanji=/[一-龯々〇〆ヵヶ]/;
  if(!hasKanji.test(surface))return esc(surface);
  // Only Kanji runs may receive furigana. Preserve visible hiragana/katakana as plain text.
  // Never annotate mixed kana/kanji text with one large ruby spanning the kana.
@@ -66,7 +66,7 @@ function wordHTML(surface,reading){
 }
 function annotate(str){
  const text=String(str||"");let output="",offset=0,covered=0,kanji=0;
- kanji=(text.match(/[一-龯々]/g)||[]).length;
+ kanji=(text.match(/[一-龯々〇]/g)||[]).length;
  while(offset<text.length){
   let hit=null;
   for(const entry of extra.get(text[offset])||[]){if(text.startsWith(entry.surface,offset)){hit=entry;break}}
@@ -77,8 +77,9 @@ function annotate(str){
    }
   }
   if(hit){
-   output+=wordHTML(hit.surface,hit.reading);
-   covered+=(hit.surface.match(/[一-龯々]/g)||[]).length;
+   const rendered=wordHTML(hit.surface,hit.reading);
+   output+=rendered;
+   if(rendered.includes('class="furi"'))covered+=(hit.surface.match(/[一-龯々〇]/g)||[]).length;
    offset+=hit.surface.length;
   }else{output+=esc(text[offset]);offset++}
  }
