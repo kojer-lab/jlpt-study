@@ -72,6 +72,35 @@ async function loadFeed(category: string, query: string): Promise<News[]> {
   }
   return result;
 }
+
+const NHK_FEEDS = [
+ ["시사","cat4"],["사건·사고","cat1"],["국제","cat6"],
+ ["스포츠","cat7"],["과학","cat3"],["경제","cat5"],["영화·애니","cat2"]
+] as const;
+async function loadNHK(category: string, code: string): Promise<News[]> {
+ const feedUrl="https://news.web.nhk/n-data/conf/na/rss/"+code+".xml";
+ const response=await fetch(feedUrl,{
+   headers:{"Accept":"application/rss+xml,application/xml,text/xml"},signal:AbortSignal.timeout(8200)
+ });
+ if(!response.ok)throw new Error("NHK RSS "+response.status);
+ const xml=await response.text();
+ if(!/<rss\b/i.test(xml))throw new Error("NHK feed unavailable");
+ const cutoff=Date.now()-72*3600_000;
+ const result: News[]=[];
+ for(const [,item] of xml.matchAll(/<item\b[^>]*>([\s\S]*?)<\/item>/gi)){
+   const title=tag(item,"title").slice(0,260);
+   const link=tag(item,"link");
+   const stamp=Date.parse(tag(item,"pubDate"));
+   if(!title||!Number.isFinite(stamp)||stamp<cutoff||stamp>Date.now()+3600_000)continue;
+   let url: URL;
+   try{url=new URL(link)}catch{continue}
+   if(url.protocol!=="https:"||url.hostname!=="news.web.nhk")continue;
+   result.push({id:"NHK:"+category+":"+link,category,title,source:"NHK ONE ニュース",url:link,publishedAt:new Date(stamp).toISOString()});
+   if(result.length>=2)break
+ }
+ return result
+}
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
   if (req.method !== "GET") return json({ error: "Method not allowed" }, 405);
@@ -91,6 +120,7 @@ Deno.serve(async (req: Request) => {
   } catch { return json({ error: "인증 서버에 연결할 수 없습니다." }, 503); }
   if (cache && Date.now() - cache.time < 5 * 60_000) return json(cache.body);
   const results = await Promise.allSettled(CATEGORIES.map(([category, query]) => loadFeed(category, query)));
+  const directResults = await Promise.allSettled(NHK_FEEDS.map(([category, code]) => loadNHK(category, code)));
   const unique = new Set<string>();
   const articles: News[] = [];
   const errors: string[] = [];
@@ -103,6 +133,16 @@ Deno.serve(async (req: Request) => {
       if (unique.has(key)) continue;
       unique.add(key);
       articles.push(entry);
+    }
+  });
+  directResults.forEach((result) => {
+    if (result.status !== "fulfilled") return;
+    for (const entry of result.value) {
+      const key = entry.title.replace(/\s*[-－]\s*[^-－]{2,40}$/, "").replace(/[\s　]/g,"");
+      if (unique.has(key)) continue;
+      unique.add(key);
+      // Direct-source entries first so the in-app reader has better chances.
+      articles.unshift(entry);
     }
   });
   if (!articles.length) return json({ error: "실시간 뉴스 수집에 실패했습니다. 잠시 뒤 다시 시도해주세요.", failedCategories: errors }, 502);
