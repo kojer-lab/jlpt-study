@@ -293,6 +293,16 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 #newsArticleExpressionInfo{background:var(--accent-soft);border:1px solid var(--line);padding:14px;border-radius:12px;margin-top:12px;line-height:1.7}
 #newsArticleTools button{padding:9px 10px;font-size:12px}#newsArticleTools button.active{background:var(--accent);color:#fff}
 @media(max-width:700px){#newsCuratedDetail{max-width:100%}.news-article-body{line-height:2.65;font-size:17px}#newsArticleTools{gap:6px}#newsArticleTools button{font-size:12px;padding:8px}#newsArticleTitle{line-height:1.52}}
+/* Mobile news reading: avoid overly tall text and forced CJK character wrapping. */
+@media(max-width:700px){
+ #newsCuratedDetail{width:100%;max-width:100%;min-width:0}
+ #newsCuratedDetail>.card{padding:16px!important;min-width:0}
+ #newsArticleTitle{font-size:clamp(19px,5vw,23px)!important;line-height:1.55!important;word-break:normal!important;overflow-wrap:anywhere}
+ #newsArticleBody.news-article-body{font-size:16px!important;line-height:2.05!important;letter-spacing:0;word-break:normal;overflow-wrap:break-word}
+ #newsArticleBody .news-japanese-paragraph{line-height:2.05!important;margin:0;padding-top:4px}
+ #newsArticleBody .news-paragraph{margin-bottom:1.05em}
+ #newsArticleBody .furi::before{font-size:.60em;bottom:calc(100% - .38em)}
+}
 </style>
 </head>
 <body>
