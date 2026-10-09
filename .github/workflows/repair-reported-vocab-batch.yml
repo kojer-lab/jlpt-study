@@ -1,0 +1,118 @@
+name: Batch repair reported pronunciation MP3s
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "audio/vocab/repair-batch.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jlpt-reviewed-pronunciation-batch
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      # Use the exact reviewed batch commit. Never silently substitute a later
+      # batch if two requests were queued close together.
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Validate batch targets without installing voice models
+        run: |
+          python -m py_compile tools/repair-reported-vocab-audio.py
+          python tools/repair-reported-vocab-audio.py --check
+
+      - name: Count reviewed targets
+        id: batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "count=$(python -c 'import json; print(len(json.load(open("audio/vocab/repair-batch.json"))["items"]))')" >> "$GITHUB_OUTPUT"
+
+      - name: Skip empty batches
+        if: steps.batch.outputs.count == '0'
+        run: echo "Nothing queued. Validation passed without running Kokoro."
+
+      - name: Install FFmpeg and ffprobe once
+        if: steps.batch.outputs.count != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          command -v ffmpeg
+          command -v ffprobe
+
+      - name: Install Kokoro once
+        if: steps.batch.outputs.count != '0'
+        run: |
+          python -m pip install --upgrade pip
+          pip install "kokoro>=0.9.4" "misaki[ja]>=0.9.4" soundfile
+
+      - name: Resynthesize and validate all reviewed clips in one model session
+        if: steps.batch.outputs.count != '0'
+        run: python tools/repair-reported-vocab-audio.py --generate
+
+      - name: Commit all corrected clips and revisions together
+        if: steps.batch.outputs.count != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t targets < <(python - <<'PY'
+          import json
+          cfg=json.load(open("audio/vocab/repair-batch.json"))
+          m=json.load(open("audio/vocab/manifest.json"))
+          for req in cfg["items"]:
+              e=m["files"][req["word_id"]]
+              print(e["word"] if req["kind"]=="word" else e["examples"][req["index"]])
+          PY
+          )
+          test "${#targets[@]}" -gt 0
+          git add -- audio/vocab/repaired-revisions.json "${targets[@]}"
+          python - <<'PY'
+          import json, subprocess
+          cfg=json.load(open("audio/vocab/repair-batch.json"))
+          m=json.load(open("audio/vocab/manifest.json"))
+          expected={"audio/vocab/repaired-revisions.json"}
+          for req in cfg["items"]:
+              e=m["files"][req["word_id"]]
+              expected.add(e["word"] if req["kind"]=="word" else e["examples"][req["index"]])
+          changed=set(subprocess.check_output(["git","diff","--cached","--name-only"],text=True).splitlines())
+          if changed != expected:
+              raise SystemExit(f"Changed files do not match reviewed batch: {changed ^ expected}")
+          print("Exactly the reviewed MP3s plus one cache revision file are staged.")
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          batch_id=$(python -c 'import json; print(json.load(open("audio/vocab/repair-batch.json"))["batch_id"])')
+          git commit -m "audio: repair reviewed pronunciation batch ${batch_id}"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "::error::Repair batch conflicts with a newer commit; review before retry."
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Batch published in one commit."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Could not publish the batch after five retries."
+          exit 1
