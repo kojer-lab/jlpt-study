@@ -85,7 +85,11 @@ async function generateSix(){
   if(!response.ok)throw new Error(result.error||"기사 생성 실패");
   const added=Array.isArray(result.articles)?result.articles:[];
   window.KOJER_ADD_GENERATED_NEWS?.(added);
-  setStatus(added.length+"개 학습 기사 생성·저장 완료"+(result.errors?.length?" · "+result.errors.length+"개는 생성 또는 검수 실패":"")+". 기존 10개 기사는 유지돼.");
+  const issues=Array.isArray(result.errors)?result.errors:[];
+  const reasons=[...new Set(issues.map(e=>String(e?.error||"원인 미상").slice(0,180)))];
+  const detail=reasons.length?" · 실패 원인: "+reasons.slice(0,3).join(" / "):"";
+  setStatus(added.length+"개 학습 기사 생성·저장 완료"+(issues.length?" · "+issues.length+"개 실패":"")+(result.selected===0?" · 생성 가능한 새 기사 없음":"")+detail+". 기존 10개 기사는 유지돼.",issues.length>0||added.length===0);
+  if(issues.length)console.warn("학습 기사 생성 실패 상세",issues);
  }catch(e){setStatus(e.message||"기사 생성 실패",true)}
  finally{button.disabled=false;button.textContent="✨ 학습 기사 6개 만들기"}
 }
