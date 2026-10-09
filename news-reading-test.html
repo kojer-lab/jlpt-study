@@ -187,7 +187,7 @@ function renderCuratedNews(){
  const items=window.KOJER_CURATED_NEWS?.articles||[];
  const el=document.getElementById("curated-news-list");
  el.innerHTML=items.map(item=>{
-   const href="news-reader.html?"+new URLSearchParams({curated:item.id}).toString();
+   const href="index.html#newsreader/"+encodeURIComponent(item.id);
    return '<article class="live-item"><div class="row"><span class="pill">'+safe(item.category)+'</span><small>'+safe(item.source)+'</small><small>'+safe(item.date)+'</small><small>'+Number(item.bodyLength||0)+'자 · '+item.paragraphs.length+'문단</small></div><h3 lang="ja">'+safe(item.title)+'</h3><a href="'+safe(href)+'" style="display:inline-block;padding:10px 0;font-weight:700">📖 장문 뉴스 읽기 →</a></article>';
  }).join("")||'<p class="note">현재 등록된 편집 지문이 없습니다.</p>';
 }
