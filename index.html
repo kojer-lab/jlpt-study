@@ -2243,34 +2243,52 @@ async function prefetchLibraryExampleAudio(w){
    }
  }catch(e){console.warn("단어 목록 예문 음성 준비 실패",e)}
 }
+let wordAudioRequestId=0;
+let wordAudioActiveButton=null;
+function cancelPendingWordAudio(){
+ wordAudioRequestId++;
+ stopKokoroAudio();
+ if(wordAudioActiveButton){
+  wordAudioActiveButton.disabled=false;
+  wordAudioActiveButton.classList.remove("loading","playing");
+  wordAudioActiveButton=null;
+ }
+}
 async function playWordAudio(w,exampleIndex=null,button=null){
  if(!w)return;
+ cancelPendingWordAudio();
+ const requestId=wordAudioRequestId;
+ const current=()=>requestId===wordAudioRequestId;
  const text=wordAudioText(w,exampleIndex);
- const status=msg=>$("wordTtsStatus").textContent=msg;
+ const status=msg=>{if(current())$("wordTtsStatus").textContent=msg};
+ wordAudioActiveButton=button;
  try{
-   if(button){button.disabled=true;button.classList.remove("playing","audio-error");button.classList.add("loading")}
-   const staticUrl=await staticVocabAudioUrl(w,exampleIndex);
-   if(staticUrl){
-     if(button){button.classList.remove("loading");button.classList.add("playing")}
-     // Revision is a hash of the MP3, automatically updated by the batch builder.
-     // Keep the canonical URL unchanged for report storage.
-     const revision=staticVocabAudioRevisions[staticUrl];
-     const playbackUrl=revision
-       ?staticUrl+(staticUrl.includes("?")?"&":"?")+"v="+encodeURIComponent(revision)
-       :staticUrl;
-     await playKokoroUrl(playbackUrl);return;
-   }
-   const key=kokoroKey(text,"jf_alpha"),alreadyReady=kokoroUrls.has(key);
-   if(!alreadyReady)status("음성을 준비하고 있습니다…");
-   const r=await kokoroGenerate(text,"jf_alpha");
-   if(button){button.classList.remove("loading");button.classList.add("playing")}
-   await requestKokoroWakeLock();await playKokoroUrl(r.url);
+  if(button){button.disabled=true;button.classList.remove("playing","audio-error");button.classList.add("loading")}
+  const staticUrl=await staticVocabAudioUrl(w,exampleIndex);
+  if(!current())return;
+  let playbackUrl;
+  if(staticUrl){
+   const revision=staticVocabAudioRevisions[staticUrl];
+   playbackUrl=revision?staticUrl+(staticUrl.includes("?")?"&":"?")+"v="+encodeURIComponent(revision):staticUrl;
+  }else{
+   const key=kokoroKey(text,"jf_alpha");
+   if(!kokoroUrls.has(key))status("음성을 준비하고 있습니다…");
+   const result=await kokoroGenerate(text,"jf_alpha");
+   if(!current())return;
+   playbackUrl=result.url;
+  }
+  if(!current())return;
+  if(button){button.classList.remove("loading");button.classList.add("playing")}
+  await playKokoroUrl(playbackUrl);
  }catch(e){
-   console.error(e);status("음성 재생 실패");
-   if(button){button.classList.remove("loading","playing");button.classList.add("audio-error");setTimeout(()=>button.classList.remove("audio-error"),1200)}
+  if(!current())return;
+  console.error(e);status("음성 재생 실패");
+  if(button){button.classList.remove("loading","playing");button.classList.add("audio-error");setTimeout(()=>button.classList.remove("audio-error"),1200)}
  }finally{
+  if(current()){
    if(button){button.disabled=false;button.classList.remove("loading","playing")}
-   await releaseKokoroWakeLock()
+   wordAudioActiveButton=null;
+  }
  }
 }
 
