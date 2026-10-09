@@ -93,5 +93,7 @@ async function collect(){
 }
 const btn=$("newsCollectButton");
 if(btn){btn.addEventListener("click",collect);loadCache();publish();}
+const setup=$("newsCollectorGoCloud");
+if(setup)setup.addEventListener("click",()=>{if(typeof showView==="function")showView("cloud")});
 window.KOJER_COLLECT_NEWS={collect,hasBrief};
 })();
