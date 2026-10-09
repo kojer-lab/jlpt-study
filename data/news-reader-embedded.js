@@ -97,6 +97,18 @@ function wordHTML(surface,reading){
  // Bad or ambiguous segmentation: keep the actual text unchanged, no misleading ruby.
  return esc(surface);
 }
+function expressionRuby(form,reading){
+ // Expressions use visible <ruby>, not interactive .furi elements.
+ // This keeps the expression button clickable, even when its entire label is kanji.
+ const converted=wordHTML(String(form||""),String(reading||"")).replace(
+  /<span class="furi" data-r="([^"]+)">([^<]+)<\/span>/g,
+  "<ruby>$2<rt>$1</rt></ruby>"
+ );
+ return converted.includes("<ruby>")?converted:annotate(form).output.replace(
+  /<span class="furi" data-r="([^"]+)">([^<]+)<\/span>/g,
+  "<ruby>$2<rt>$1</rt></ruby>"
+ );
+}
 function annotate(str){
  const text=String(str||"");let output="",offset=0,covered=0,kanji=0;
  kanji=(text.match(/[一-龯々〇]/g)||[]).length;
@@ -173,7 +185,7 @@ function renderSavedNotebook(){
   const example=item.example||(paraIndex>=0?matched.paragraphs[paraIndex].split(/(?<=[。！？!?])/).find(p=>p.includes(item.form)):"")||"";
   const ko=item.translation||(paraIndex>=0?matched.translationParagraphs[paraIndex]:"")||"";
   const articleLink=matched?'<a href="#newsreader/'+encodeURIComponent(matched.id)+'" class="secondary" style="display:inline-block;padding:6px 10px;text-decoration:none;font-size:12px">기사로 이동 →</a>':"";
-  return '<article class="news-saved-card"><div lang="ja"><strong>'+esc(item.form)+'</strong>'+(reading?'<span class="news-reading">'+esc(reading)+'</span>':"")+'</div><p class="sub"><b>뜻</b> '+esc(meaning)+'</p>'+(example?'<div class="news-sentence" lang="ja">'+esc(example)+'</div>':"")+(ko?'<p class="sub">'+esc(ko)+'</p>':"")+(similar?'<p class="sub"><b>유사 표현</b> '+esc(similar)+'</p>':"")+(usage?'<p class="sub"><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+'<div class="toolbar">'+articleLink+'<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div></article>';
+  return '<article class="news-saved-card"><div lang="ja"><strong class="news-expression-ruby">'+expressionRuby(item.form,reading)+'</strong></div><p class="sub"><b>뜻</b> '+esc(meaning)+'</p>'+(example?'<div class="news-sentence" lang="ja">'+esc(example)+'</div>':"")+(ko?'<p class="sub">'+esc(ko)+'</p>':"")+(similar?'<p class="sub"><b>유사 표현</b> '+esc(similar)+'</p>':"")+(usage?'<p class="sub"><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+'<div class="toolbar">'+articleLink+'<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div></article>';
  }).join("");
 }
 function updateParagraphTranslation(){
@@ -187,7 +199,7 @@ function updateParagraphTranslation(){
  });
  $("newsArticleTranslate").textContent=translationOpen?"전체 번역 숨기기":"전체 번역 보기";
 }
-function phrase(key,{preserve=false,scroll=true}={}){
+function phrase(key,{preserve=false}={}){
  if(!article||!expressionOpen)return;
  const e=article.expressions.find(x=>x.form===key);if(!e)return;
  if(!preserve&&selectedExpression===key){clearExpressionSelection();return;}
@@ -209,7 +221,8 @@ function phrase(key,{preserve=false,scroll=true}={}){
  const ko=index>=0?(article.translationParagraphs?.[index]||""):"";
  const id=article.id+":"+key,already=saved().some(x=>x.id===id);
  const panel=$("newsArticleExpressionInfo");
- panel.innerHTML='<div><strong lang="ja">'+esc(key)+'</strong> <span class="tag">실전 표현</span></div>'+
+ panel.innerHTML='<div class="news-expression-info-heading"><strong class="news-expression-ruby" lang="ja">'+expressionRuby(key,e.reading)+'</strong> <span class="tag">실전 표현</span>'+
+ '<button type="button" class="secondary news-jump-to-expression" id="newsJumpToExpression" aria-label="본문에서 이 표현의 위치로 이동" title="본문의 표현 위치로 이동">↗ <span>본문으로</span></button></div>'+
  (e.reading?'<p style="margin:7px 0;color:var(--accent)">읽기 · '+esc(e.reading)+'</p>':"")+
  '<p style="margin:8px 0">뜻 · '+esc(e.meaning||"")+'</p>'+
  '<p lang="ja" style="font-size:14px;margin:8px 0">'+esc(sentence)+'</p>'+
@@ -217,12 +230,16 @@ function phrase(key,{preserve=false,scroll=true}={}){
  (e.note?'<p style="margin:8px 0"><b>사용 뉘앙스</b> '+esc(e.note)+'</p>':"")+
  '<button type="button" class="secondary" id="newsSavePhrase">'+(already?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+"</button>";
  panel.classList.remove("hidden");
+ $("newsJumpToExpression").addEventListener("click",()=>{
+  // The only action that scrolls from expression notes to the highlighted article text.
+  const target=$("newsArticleBody").querySelector(".news-phrase-selected");
+  if(target)target.scrollIntoView({block:"center",behavior:"smooth"});
+ });
  $("newsSavePhrase").addEventListener("click",()=>{
   const all=saved();
   const next=all.some(x=>x.id===id)?all.filter(x=>x.id!==id):[...all,{id,type:"뉴스 표현",form:key,reading:e.reading||"",meaning:e.meaning||"",example:sentence,translation:ko,note:e.note||"보도를 바탕으로 재구성한 학습 기사 표현",compare:e.similar||"",source:article.source,title:article.title,cat:article.category,savedAt:new Date().toISOString()}];
-  try{localStorage.setItem(storeKey,JSON.stringify(next));phrase(key,{preserve:true,scroll:false});renderSavedNotebook()}catch{$("newsSavePhrase").textContent="저장할 수 없어"}
+  try{localStorage.setItem(storeKey,JSON.stringify(next));phrase(key,{preserve:true});renderSavedNotebook()}catch{$("newsSavePhrase").textContent="저장할 수 없어"}
  });
- if(scroll&&firstHighlight)firstHighlight.scrollIntoView({block:"center",behavior:"smooth"});
 }
 function refreshMode(){
  const m=localStorage.getItem("jlptN1FuriV3")||"interactive";
@@ -249,7 +266,7 @@ function displayArticle(id){
  }).join("");
  updateParagraphTranslation();
  $("newsExpressionCount").textContent="("+a.expressions.length+"개)";
- $("newsArticleExpressions").innerHTML=a.expressions.map(e=>'<button class="secondary" type="button" aria-pressed="false" data-news-expression-button="'+esc(e.form)+'">'+esc(e.form)+'</button>').join("");
+ $("newsArticleExpressions").innerHTML=a.expressions.map(e=>'<button class="secondary" type="button" aria-pressed="false" data-news-expression-button="'+esc(e.form)+'"><span class="news-expression-ruby" lang="ja">'+expressionRuby(e.form,e.reading)+'</span></button>').join("");
  expressionTab(false);
  refreshMode();
  if(typeof restoreInteractiveFuriState==="function")restoreInteractiveFuriState($("newsArticleBody"));
