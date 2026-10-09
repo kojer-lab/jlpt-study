@@ -329,6 +329,16 @@ function phrase(key,{preserve=false}={}){
  (e.note?'<p style="margin:8px 0"><b>사용 뉘앙스</b> '+esc(e.note)+'</p>':"")+
  '<button type="button" class="secondary" id="newsSavePhrase">'+(already?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+"</button>";
  panel.classList.remove("hidden");
+ // The global furigana click delegate is scoped to the article body.
+ // Handle explanation-only furigana locally, without toggling the expression selection.
+ panel.querySelectorAll(".news-expression-interactive .furi, .news-expression-example .furi").forEach(node=>{
+  node.setAttribute("role","button");
+  node.setAttribute("tabindex","0");
+  node.setAttribute("aria-label",node.textContent+" 후리가나 보기");
+  const toggle=()=>{if(!document.body.classList.contains("furi-off"))node.classList.toggle("show")};
+  node.addEventListener("click",e=>{e.stopPropagation();toggle()});
+  node.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
+ });
  $("newsJumpToExpression").addEventListener("click",()=>{
   // The only action that scrolls from expression notes to the highlighted article text.
   const target=$("newsArticleBody").querySelector(".news-phrase-selected");
