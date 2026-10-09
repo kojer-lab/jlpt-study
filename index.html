@@ -396,7 +396,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="topbar"><div><h1>ニュースを読む · 뉴스 읽기</h1><div class="sub">실제 일본 뉴스를 바탕으로 다시 쓴 900~1,200자 기사 · 문제 없이 읽는 일본어</div></div></div>
       <div id="newsCuratedBrowser">
       <div class="card" style="line-height:1.75;margin-bottom:18px">
-        <strong>엄선한 일본 뉴스</strong>
+        <strong>엄선한 일본 뉴스 <span id="newsArticleCount" class="tag">10개</span></strong>
         <p style="margin:6px 0 0;color:var(--muted);font-size:14px">기사별로 보도 사실을 확인하고 일본어 문체를 살려 재구성했어. 기사 원문 전체를 복사한 것이 아니며, 별도 유료 AI API를 사용하지 않아. 읽기 화면에서는 후리가나와 한국어 번역을 이용할 수 있어.</p>
       </div>
       <div class="toolbar" style="margin:14px 0 12px"><button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button></div>
@@ -2051,6 +2051,7 @@ function renderCuratedNewsHome(){
  const bank=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
  const filters=$("newsCuratedFilters"),list=$("newsCuratedList");
  if(!filters||!list)return;
+ $("newsArticleCount").textContent=bank.length+"개";
  const genres=["전체",...new Set(bank.map(a=>a.category).filter(Boolean))];
  filters.replaceChildren();
  for(const cat of genres){
@@ -2061,7 +2062,7 @@ function renderCuratedNewsHome(){
   filters.appendChild(btn);
  }
  list.replaceChildren();
- const selected=bank.filter(a=>newsCuratedCategory==="전체"||a.category===newsCuratedCategory);
+ const selected=bank.filter(a=>newsCuratedCategory==="전체"||a.category===newsCuratedCategory).sort((a,b)=>String(b.date).localeCompare(String(a.date))||bank.indexOf(b)-bank.indexOf(a));
  if(!selected.length){
   const box=document.createElement("div");box.className="card";
   box.textContent="이 분야의 편집 기사는 아직 없어.";list.appendChild(box);return
