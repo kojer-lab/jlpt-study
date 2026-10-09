@@ -110,7 +110,7 @@ begin
     select count(*) from public.jlpt_pronunciation_reports r
     where r.user_id = new.user_id
       and r.created_at > pg_catalog.now() - interval '1 hour'
-  ) >= 12 then
+  ) >= 100 then
     raise exception 'report_rate_hour' using errcode = 'P0001';
   end if;
 
@@ -118,7 +118,7 @@ begin
     select count(*) from public.jlpt_pronunciation_reports r
     where r.user_id = new.user_id
       and r.created_at > pg_catalog.now() - interval '24 hours'
-  ) >= 50 then
+  ) >= 500 then
     raise exception 'report_rate_day' using errcode = 'P0001';
   end if;
 
