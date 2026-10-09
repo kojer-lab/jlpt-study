@@ -32,7 +32,8 @@ jobs:
 
       - name: Validate batch targets without installing voice models
         run: |
-          python -m py_compile tools/repair-reported-vocab-audio.py
+          python -m py_compile tools/repair-reported-vocab-audio.py tools/test_repair_reported_vocab_audio.py
+          python -m unittest discover -s tools -p 'test_repair_reported_vocab_audio.py' -v
           python tools/repair-reported-vocab-audio.py --check
 
       - name: Count reviewed targets
