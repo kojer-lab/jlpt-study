@@ -259,6 +259,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <button type="button" data-view="words">🗂 단어 학습</button>
       <button type="button" id="desktopWordLibrary">📚 전체 단어장</button>
       <button type="button" data-view="quizhub">🧩 문제 풀이</button>
+      <button type="button" data-view="newsreader">📰 뉴스 읽기</button>
       <button type="button" data-view="listening">🎧 청해</button>
       <button type="button" data-view="mistakes">📝 오답노트</button>
       <button type="button" data-view="cloud">☁️ PC·모바일 동기화</button>
@@ -286,6 +287,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       <div class="grid3">
         <div class="card action" data-go="review"><strong>🔁 오늘의 복습</strong><p>복습 예정일이 된 단어만 자동으로 모아서 보여줍니다.</p></div>
         <div class="card action" data-go="reading"><strong>📖 독해</strong><p>단문·중문·장문·오늘의 시사독해를 단계별로 풉니다.</p></div>
+        <div class="card action" data-go="newsreader"><strong>📰 뉴스 읽기</strong><p>일본 최신 소식을 900~1,200자 실전 기사로 읽고, 후리가나·번역·표현을 익힙니다.</p></div>
         <div class="card action" data-go="listening"><strong>🎧 공식 청해</strong><p>JLPT 공식 N1 실제 녹음 음원을 바로 재생합니다.</p></div>
       </div>
       <div class="section-title">오늘의 시사독해</div>
@@ -360,6 +362,17 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p><span id="grammarQuizTotal">문제 수 확인 중</span> · 형식, 문맥, 문장 배열과 해설을 연습합니다.</p></div>
         <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>20세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div><div class="card action" data-go="mock"><strong>模擬試験 · 실전 모의고사</strong><p>언어지식·독해·청해를 시간제한과 함께 풀고 결과를 확인합니다.</p></div>
       </div>
+    </section>
+
+    <section class="view" id="newsreaderView">
+      <div class="topbar"><div><h1>ニュースを読む · 뉴스 읽기</h1><div class="sub">실제 일본 뉴스를 바탕으로 다시 쓴 900~1,200자 기사 · 문제 없이 읽는 일본어</div></div></div>
+      <div class="card" style="line-height:1.75;margin-bottom:18px">
+        <strong>엄선한 일본 뉴스</strong>
+        <p style="margin:6px 0 0;color:var(--muted);font-size:14px">기사별로 보도 사실을 확인하고 일본어 문체를 살려 재구성했어. 기사 원문 전체를 복사한 것이 아니며, 별도 유료 AI API를 사용하지 않아. 읽기 화면에서는 후리가나와 한국어 번역을 이용할 수 있어.</p>
+      </div>
+      <div id="newsCuratedFilters" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0"></div>
+      <div class="grid3" id="newsCuratedList"></div>
+      <p style="font-size:13px;color:var(--muted);margin-top:25px">실시간 RSS 단신 수집은 <a href="news-reading-test.html" style="color:inherit;text-decoration:underline">별도 테스트 화면</a>에서 이용할 수 있어. 장문 편집 기사와는 다르게, RSS 소개문만 표시해.</p>
     </section>
 
     <section class="view" id="mockView">
@@ -544,6 +557,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="data/news-curated-v1.js?v=20261010-six1"></script>
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
 <script src="data/n1-extra-words-3.js"></script>
@@ -1968,10 +1982,45 @@ function ensureDailyNew(save=true){
 function todayNewPending(){return ensureDailyNew(true).filter(w=>getSrs(w.id).reviews===0)}
 function refreshAll(){renderHome();renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
+let newsCuratedCategory="전체";
+function renderCuratedNewsHome(){
+ const bank=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
+ const filters=$("newsCuratedFilters"),list=$("newsCuratedList");
+ if(!filters||!list)return;
+ const genres=["전체",...new Set(bank.map(a=>a.category).filter(Boolean))];
+ filters.replaceChildren();
+ for(const cat of genres){
+  const btn=document.createElement("button");
+  btn.type="button";btn.className="secondary";btn.textContent=cat;
+  btn.style.cssText="border-radius:10px;padding:9px 14px"+(cat===newsCuratedCategory?";background:#315fbb;color:#fff;border-color:#5284e3":"");
+  btn.addEventListener("click",()=>{newsCuratedCategory=cat;renderCuratedNewsHome()});
+  filters.appendChild(btn);
+ }
+ list.replaceChildren();
+ const selected=bank.filter(a=>newsCuratedCategory==="전체"||a.category===newsCuratedCategory);
+ if(!selected.length){
+  const box=document.createElement("div");box.className="card";
+  box.textContent="이 분야의 편집 기사는 아직 없어.";list.appendChild(box);return
+ }
+ for(const item of selected){
+  const card=document.createElement("div");card.className="card";
+  card.style.cssText="display:flex;flex-direction:column;gap:12px;min-width:0";
+  const meta=document.createElement("div");meta.className="sub";
+  meta.textContent=[item.category,item.date,item.source,item.bodyLength+"자"].join(" · ");
+  meta.style.cssText="font-size:12px;line-height:1.6;color:var(--muted)";
+  const title=document.createElement("strong");title.textContent=item.title;title.lang="ja";
+  title.style.cssText="font-size:17px;line-height:1.6;word-break:keep-all";
+  const link=document.createElement("a");
+  link.href="news-reader.html?curated="+encodeURIComponent(item.id);
+  link.textContent="기사 읽기 →";
+  link.style.cssText="margin-top:auto;display:inline-block;color:#9ec5ff;font-weight:700;text-decoration:none";
+  card.append(meta,title,link);list.appendChild(card);
+ }
+}
 function showView(name){
  const restartingAi=name==="listening"&&!$("listeningView")?.classList.contains("active")&&!$("aiListeningPanel")?.classList.contains("hidden");
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
- if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){mockStopListening();}if(name==="home")renderHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening"){setupListening();if(restartingAi)restartAiListening()}window.scrollTo({top:0,behavior:"smooth"});}
+ if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){mockStopListening();}if(name==="home")renderHome();if(name==="newsreader")renderCuratedNewsHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening"){setupListening();if(restartingAi)restartAiListening()}window.scrollTo({top:0,behavior:"smooth"});}
 function go(target){if(target==="vocab"||target==="grammar"){startQuiz(target);showView("quiz")}else if(target==="reading"||target==="newsreading"){readingMode=target==="newsreading"?"news":"short";readingSetIndex=readingMode==="news"?dailyNewsReadingIndex():0;readingQ=0;if(readingMode==="news")setupNewsDay(newsDays()[0]);else{$("newsDailyComplete").classList.add("hidden");$("readingQuizShell").classList.remove("hidden")}showView("reading");renderReading()}else showView(target)}
 document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");if(nav){showView(nav.dataset.view);return}const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}if(!document.body.classList.contains("furi-off")&&!document.body.classList.contains("furi-always")){const fu=e.target.closest(".furi");if(fu){e.preventDefault();e.stopPropagation();const key=furiStateKey(fu),next=!fu.classList.contains("show");fu.classList.toggle("show",next);if(next)interactiveFuriShown.add(key);else interactiveFuriShown.delete(key)}}});
 
