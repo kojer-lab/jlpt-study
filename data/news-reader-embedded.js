@@ -98,6 +98,10 @@ function wordHTML(surface,reading){
  // Bad or ambiguous segmentation: keep the actual text unchanged, no misleading ruby.
  return esc(surface);
 }
+function expressionDetailRuby(form,reading){
+ const converted=wordHTML(String(form||""),String(reading||""));
+ return converted.includes('class="furi"')?converted:annotate(form).output;
+}
 function expressionRuby(form,reading){
  // Expressions use visible <ruby>, not interactive .furi elements.
  // This keeps the expression button clickable, even when its entire label is kanji.
@@ -316,7 +320,7 @@ function phrase(key,{preserve=false}={}){
  const ko=index>=0?(article.translationParagraphs?.[index]||""):"";
  const id=article.id+":"+key,already=saved().some(x=>x.id===id);
  const panel=$("newsArticleExpressionInfo");
- panel.innerHTML='<div class="news-expression-info-heading"><strong class="news-expression-ruby" lang="ja">'+expressionRuby(key,e.reading)+'</strong> <span class="tag">실전 표현</span>'+
+ panel.innerHTML='<div class="news-expression-info-heading"><strong class="news-expression-ruby news-expression-interactive" lang="ja">'+expressionDetailRuby(key,e.reading)+'</strong> <span class="tag">실전 표현</span>'+
  '<button type="button" class="secondary news-jump-to-expression" id="newsJumpToExpression" aria-label="본문에서 이 표현의 위치로 이동" title="본문의 표현 위치로 이동">↗ <span>본문으로</span></button></div>'+
  (e.reading?'<p style="margin:7px 0;color:var(--accent)">읽기 · '+esc(e.reading)+'</p>':"")+
  '<p style="margin:8px 0">뜻 · '+esc(e.meaning||"")+'</p>'+
@@ -367,7 +371,7 @@ function displayArticle(id){
  }).join("");
  updateParagraphTranslation();
  $("newsExpressionCount").textContent="("+a.expressions.length+"개)";
- $("newsArticleExpressions").innerHTML=a.expressions.map(e=>'<button class="secondary" type="button" aria-pressed="false" data-news-expression-button="'+esc(e.form)+'"><span class="news-expression-ruby" lang="ja">'+expressionRuby(e.form,e.reading)+'</span></button>').join("");
+ $("newsArticleExpressions").innerHTML=a.expressions.map(e=>'<button class="secondary" type="button" aria-pressed="false" data-news-expression-button="'+esc(e.form)+'"><span lang="ja">'+esc(e.form)+'</span></button>').join("");
  expressionTab(false);
  refreshMode();
  if(typeof restoreInteractiveFuriState==="function")restoreInteractiveFuriState($("newsArticleBody"));
