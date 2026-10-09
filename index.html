@@ -260,6 +260,18 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-saved-card .news-reading{color:var(--accent);font-size:13px;margin-left:8px}
 .news-saved-card .news-sentence{background:var(--bg);padding:10px 12px;border-radius:8px;font-size:14px;line-height:1.8;word-break:break-word}
 .news-saved-card button{margin-top:7px}
+.news-review-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(14px,3vw,25px);margin:14px 0}
+.news-review-question{font-size:clamp(24px,4vw,36px);font-weight:750;line-height:1.9;padding:20px 6px 12px;word-break:keep-all}
+#newsReviewAnswer{line-height:1.8;padding:14px 8px;border-top:1px solid var(--line)}
+#newsReviewRatings button{flex:1;min-width:100px}
+.news-rss-item{border-top:1px solid var(--line);padding:15px 0;line-height:1.7}
+.news-rss-item h3{font-size:17px;line-height:1.6;margin:8px 0}
+.news-rss-item details{margin:8px 0}
+.news-rss-item summary{cursor:pointer;color:var(--accent);font-size:13px}
+.news-rss-item .news-rss-summary{white-space:pre-wrap;font-size:15px;line-height:1.9;margin:10px 0;word-break:break-word}
+.news-rss-item .sub{font-size:12px}
+#newsCollectFilters button{font-size:12px;padding:8px 10px}
+
 
 .news-article-expressions{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
 .news-article-expressions .secondary{margin:6px 6px 6px 0;font-size:14px;line-height:1.7;padding:10px 12px;min-height:46px}
@@ -408,15 +420,47 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <strong>엄선한 일본 뉴스 <span id="newsArticleCount" class="tag">10개</span></strong>
         <p style="margin:6px 0 0;color:var(--muted);font-size:14px">기사별로 보도 사실을 확인하고 일본어 문체를 살려 재구성했어. 기사 원문 전체를 복사한 것이 아니며, 별도 유료 AI API를 사용하지 않아. 읽기 화면에서는 후리가나와 한국어 번역을 이용할 수 있어.</p>
       </div>
-      <div class="toolbar" style="margin:14px 0 12px"><button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button></div>
+      <div class="toolbar" style="margin:14px 0 12px">
+ <button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button>
+ <span class="sub" id="newsSyncState" style="font-size:12px" role="status" aria-live="polite">뉴스 학습 기록: 이 기기에 저장</span>
+</div>
       <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
        <strong>내 실전 표현 수첩</strong>
        <p class="sub" style="font-size:13px;margin-top:6px">기사에서 저장한 표현의 읽기, 뜻, 원문 문맥과 유사 표현을 모아 볼 수 있어.</p>
-       <div id="newsSavedList"></div>
+       <div class="toolbar" style="margin:12px 0">
+ <button id="newsStartReview" type="button" class="secondary">🧠 실전 표현 복습 시작 <span id="newsDueCount"></span></button>
+ </div>
+ <div id="newsReviewArea" class="hidden" aria-live="polite">
+   <div class="news-review-card">
+     <div class="sub" id="newsReviewProgress"></div>
+     <div class="news-review-question" id="newsReviewQuestion" lang="ja"></div>
+     <div id="newsReviewAnswer" class="hidden"></div>
+     <div class="toolbar" style="margin-top:15px">
+       <button id="newsReviewReveal" type="button">정답·문맥 확인</button>
+       <button id="newsReviewExit" type="button" class="secondary">복습 종료</button>
+     </div>
+     <div id="newsReviewRatings" class="toolbar hidden" style="margin-top:12px">
+       <button type="button" class="secondary" data-news-grade="again">다시 · 10분</button>
+       <button type="button" class="secondary" data-news-grade="hard">어려움</button>
+       <button type="button" class="secondary" data-news-grade="good">알겠음</button>
+       <button type="button" class="secondary" data-news-grade="easy">쉬움</button>
+     </div>
+   </div>
+ </div>
+ <div id="newsSavedList"></div>
+      </section>
+      <section class="card" id="newsCollectorSection" style="margin-bottom:18px">
+       <div class="toolbar" style="justify-content:space-between;align-items:center">
+        <strong>🗞️ 오늘의 일본 뉴스</strong><span class="tag">RSS · 짧은 소개문</span>
+       </div>
+       <p class="sub" style="margin:8px 0 13px;font-size:13px">최근 일본 소식을 직접 모아봐. 900~1,200자 편집 지문과 달리 이곳은 RSS 소개문만 제공해. 충분한 내용이 있는 기사만 표시하며, 원문은 언론사 사이트에서 열 수 있어.</p>
+       <button id="newsCollectButton" type="button">↻ 오늘의 기사 모으기</button>
+       <p class="sub" id="newsCollectStatus" style="font-size:13px;margin:10px 0" role="status" aria-live="polite">버튼을 누르면 최신 일본 뉴스를 가져와.</p>
+       <div id="newsCollectFilters" class="toolbar" style="margin:12px 0"></div>
+       <div id="newsCollectList"></div>
       </section>
       <div id="newsCuratedFilters" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0"></div>
       <div class="grid3" id="newsCuratedList"></div>
-      <p style="font-size:13px;color:var(--muted);margin-top:25px">실시간 RSS 단신 수집은 <a href="news-reading-test.html" style="color:inherit;text-decoration:underline">별도 테스트 화면</a>에서 이용할 수 있어. 장문 편집 기사와는 다르게, RSS 소개문만 표시해.</p>
       </div>
       <div id="newsCuratedDetail" class="hidden" style="max-width:850px;margin:auto">
         <button id="newsCuratedBack" class="secondary" type="button" style="margin-bottom:16px">← 뉴스 목록으로</button>
@@ -3463,6 +3507,8 @@ applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);ren
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-expression-ruby-jump1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-news-sync-review1"></script>
+<script src="data/news-collector-embedded.js?v=20261010-news-sync-review1"></script>
+<script src="data/news-sync-bridge.js?v=20261010-news-sync-review1"></script>
 </body>
 </html>
