@@ -1,0 +1,152 @@
+name: Repair reported Todokooru example pronunciation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/repair-todokooru-example.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jlpt-todokooru-example-audio
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Confirm only the reported audio target
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest=json.loads(Path("audio/vocab/manifest.json").read_text(encoding="utf-8"))
+          target=manifest["files"]["todokooru"]["examples"][0]
+          assert target=="audio/vocab/todokooru-ex1.mp3", target
+          assert Path(target).is_file()
+          print("Verified manifest target:", target)
+          PY
+      - name: Install native Japanese Kokoro synthesizer
+        run: |
+          python -m pip install --upgrade pip
+          pip install "kokoro>=0.9.4" "misaki[ja]>=0.9.4" soundfile
+          ffmpeg -version | head -1
+      - name: Resynthesize one pronunciation with explicit kana
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, os, subprocess, tempfile
+          from pathlib import Path
+          import numpy as np
+          import soundfile as sf
+          import torch
+          from kokoro import KPipeline
+          from misaki import ja
+
+          target=Path("audio/vocab/todokooru-ex1.mp3")
+          original_hash=hashlib.sha256(target.read_bytes()).hexdigest()
+          # User reports an extra sound at the end of the original Kokoro
+          # synthesis. This keeps the spoken Japanese unchanged, but uses
+          # explicit kana for the tricky inflection and no sentence-final
+          # punctuation, avoiding a problematic phonetic frontend path.
+          spoken_text="手続きがとどこおっている"
+          torch.set_num_threads(max(1, min(4, os.cpu_count() or 2)))
+          original_jag2p=ja.JAG2P
+          try:
+              ja.JAG2P=lambda *args, **kwargs: original_jag2p(version="pyopenjtalk")
+              pipeline=KPipeline(lang_code="j",repo_id="hexgrad/Kokoro-82M",device="cpu")
+          finally:
+              ja.JAG2P=original_jag2p
+          chunks=[]
+          for r in pipeline(spoken_text,voice="jf_alpha",speed=1.0):
+              signal=r.audio if hasattr(r,"audio") else r[2]
+              if signal is None:
+                  continue
+              if hasattr(signal,"detach"):
+                  signal=signal.detach().cpu().numpy()
+              chunks.append(np.asarray(signal,dtype=np.float32).reshape(-1))
+          if not chunks:
+              raise RuntimeError("Kokoro generated zero chunks")
+          audio=np.concatenate(chunks)
+          if not np.isfinite(audio).all():
+              raise RuntimeError("Kokoro generated NaN/inf")
+          peak=float(np.max(np.abs(audio)))
+          if peak<0.012 or peak>1.01:
+              raise RuntimeError(f"Unexpected peak amplitude {peak}")
+          length=len(audio)/24000.0
+          if not (1.0<length<12.0):
+              raise RuntimeError(f"Unexpected example duration {length:.2f}s")
+          # Remove only near-silent tail and fade the boundary to prevent
+          # digital end clicks, without cutting any substantial speech.
+          audible=np.flatnonzero(np.abs(audio)>max(peak*0.006,0.0008))
+          if audible.size:
+              end=min(len(audio),int(audible[-1])+1+int(0.12*24000))
+              audio=audio[:end].copy()
+          fade=min(960,len(audio)//10)
+          audio[-fade:]*=np.linspace(1.0,0.0,fade,endpoint=True,dtype=np.float32)
+          audio=np.concatenate([audio,np.zeros(int(.12*24000),dtype=np.float32)])
+          with tempfile.TemporaryDirectory() as tmp:
+              wav=Path(tmp)/"corrected.wav"
+              mp3=Path(tmp)/"corrected.mp3"
+              sf.write(wav,audio,24000,subtype="PCM_16")
+              subprocess.run(["ffmpeg","-nostdin","-y","-loglevel","error",
+                "-i",str(wav),"-ac","1","-ar","24000","-codec:a","libmp3lame",
+                "-b:a","48k",str(mp3)],check=True)
+              info=subprocess.check_output(["ffprobe","-v","error",
+                "-show_entries","stream=codec_name,sample_rate:format=duration",
+                "-of","default=nw=1",str(mp3)],text=True)
+              if "codec_name=mp3" not in info or "sample_rate=24000" not in info:
+                  raise RuntimeError("New MP3 failed codec validation: "+info)
+              if mp3.stat().st_size<2500:
+                  raise RuntimeError("New MP3 too small")
+              target.write_bytes(mp3.read_bytes())
+          updated_hash=hashlib.sha256(target.read_bytes()).hexdigest()
+          if original_hash==updated_hash:
+              raise RuntimeError("Audio unchanged; repair was not produced")
+          print("REPAIRED",target)
+          print("input:",spoken_text)
+          print("duration:",round(len(audio)/24000,2),"seconds")
+          print("old_sha256:",original_hash)
+          print("new_sha256:",updated_hash)
+          PY
+      - name: Publish only the repaired example MP3
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- audio/vocab/todokooru-ex1.mp3
+          git diff --cached --exit-code && {
+            echo "::error::No change to reported audio."
+            exit 1
+          } || true
+          git diff --cached --name-only | grep -Fx "audio/vocab/todokooru-ex1.mp3"
+          test "$(git diff --cached --name-only | wc -l)" -eq 1
+          git commit -m "audio: repair reported trailing sound in 滞る example 1"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "::error::Conflict while publishing repaired audio"
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Published corrected MP3"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Failed to push corrected audio"
+          exit 1
