@@ -34,37 +34,58 @@ window.KOJER_CURATED_NEWS = {
         {
           "form": "足を運んだ",
           "meaning": "직접 찾아가다",
-          "origin": "source"
+          "origin": "source",
+          "reading": "あしをはこんだ",
+          "similar": "訪れた（おとずれた）",
+          "note": "현장이나 장소를 직접 찾아갔다는 보도체 표현."
         },
         {
           "form": "食い入るように",
           "meaning": "뚫어지게, 열중해서",
-          "origin": "source"
+          "origin": "source",
+          "reading": "くいいるように",
+          "similar": "じっと見つめる",
+          "note": "관심이 강해서 시선을 떼지 못하는 모습을 강조."
         },
         {
           "form": "関心が及び",
           "meaning": "관심이 ~까지 미치다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かんしんがおよび",
+          "similar": "関心を寄せる",
+          "note": "화제나 관심의 범위가 넓어졌다는 뜻."
         },
         {
           "form": "ならでは",
           "meaning": "~만의, ~이기에 가능한",
-          "origin": "source"
+          "origin": "source",
+          "reading": "ならでは",
+          "similar": "特有の（とくゆうの）",
+          "note": "그 대상만의 특징이나 장점을 드러냄."
         },
         {
           "form": "こだわり",
           "meaning": "철저한 고집, 세밀한 공들임",
-          "origin": "source"
+          "origin": "source",
+          "reading": "こだわり",
+          "similar": "妥協しない姿勢（だきょうしないしせい）",
+          "note": "제작자가 세부적인 부분을 중요하게 여김."
         },
         {
           "form": "描き下ろした",
           "meaning": "새롭게 그리다",
-          "origin": "source"
+          "origin": "source",
+          "reading": "かきおろした",
+          "similar": "新たに描いた（あらたにえがいた）",
+          "note": "기존 작품을 재활용한 게 아니라 새로 그렸다는 의미."
         },
         {
           "form": "垣根を越えて",
           "meaning": "분야의 경계를 넘어",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かきねをこえて",
+          "similar": "分野を超えて（ぶんやをこえて）",
+          "note": "분야나 조직 사이의 경계를 넘어 함께한다는 비유."
         }
       ]
     },
@@ -96,37 +117,58 @@ window.KOJER_CURATED_NEWS = {
         {
           "form": "波及している",
           "meaning": "파급되다, 영향을 미치다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "はきゅうしている",
+          "similar": "影響が広がる（えいきょうがひろがる）",
+          "note": "경제·사회 문제의 영향이 다른 곳까지 미침."
         },
         {
           "form": "価格転嫁",
           "meaning": "비용을 판매가격에 반영함",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かかくてんか",
+          "similar": "販売価格に反映する（はんばいかかくにはんえいする）",
+          "note": "원가 부담을 판매가격으로 옮기는 경제 기사 표현."
         },
         {
           "form": "下支えしている",
           "meaning": "밑에서 뒷받침하다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "したざさえしている",
+          "similar": "支えている（ささえている）",
+          "note": "경기나 수요의 하락을 아래에서 지탱함."
         },
         {
           "form": "底堅さ",
           "meaning": "꾸준한 견조함",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "そこがたさ",
+          "similar": "堅調さ（けんちょうさ）",
+          "note": "쉽게 무너지지 않는 경제 지표나 수요의 모습."
         },
         {
           "form": "とりわけ",
           "meaning": "특히, 그중에서도",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "とりわけ",
+          "similar": "特に（とくに）",
+          "note": "여러 항목 중 한 대상을 특히 강조."
         },
         {
           "form": "かねない",
           "meaning": "~할 우려가 있다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かねない",
+          "similar": "おそれがある",
+          "note": "좋지 않은 결과가 발생할 가능성을 나타냄."
         },
         {
           "form": "踏み切る",
           "meaning": "결단하고 실행하다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "ふみきる",
+          "similar": "実行を決める（じっこうをきめる）",
+          "note": "고민 끝에 조치를 단행한다는 뜻."
         }
       ],
       "bodyLength": 957
@@ -159,37 +201,58 @@ window.KOJER_CURATED_NEWS = {
         {
           "form": "相次ぐ",
           "meaning": "잇따르다",
-          "origin": "source"
+          "origin": "source",
+          "reading": "あいつぐ",
+          "similar": "続発する（ぞくはつする）",
+          "note": "사건·사고가 연속해서 발생할 때 사용."
         },
         {
           "form": "めどは立っていない",
           "meaning": "전망이 서지 않다",
-          "origin": "source"
+          "origin": "source",
+          "reading": "めどはたっていない",
+          "similar": "見通しがつかない（みとおしがつかない）",
+          "note": "복구나 완공 시점 등의 전망이 서지 않음."
         },
         {
           "form": "浮き彫りにした",
           "meaning": "문제를 뚜렷하게 드러내다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "うきぼりにした",
+          "similar": "明らかにした（あきらかにした）",
+          "note": "숨어 있던 문제나 특징이 선명하게 드러남."
         },
         {
           "form": "万一",
           "meaning": "만일의 경우",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "まんいち",
+          "similar": "もしもの場合（もしものばあい）",
+          "note": "일어날 가능성은 작지만 대비해야 하는 상황."
         },
         {
           "form": "初動対応",
           "meaning": "초기 대응",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "しょどうたいおう",
+          "similar": "初期対応（しょきたいおう）",
+          "note": "사고 발생 직후의 첫 조치."
         },
         {
           "form": "かねない",
           "meaning": "~할 위험이 있다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かねない",
+          "similar": "おそれがある",
+          "note": "좋지 않은 결과가 발생할 가능성을 나타냄."
         },
         {
           "form": "欠かせない",
           "meaning": "빠뜨릴 수 없다, 필수적이다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かかせない",
+          "similar": "不可欠だ（ふかけつだ）",
+          "note": "없어서는 안 되는 필수 조건."
         }
       ],
       "bodyLength": 1011
@@ -222,37 +285,58 @@ window.KOJER_CURATED_NEWS = {
         {
           "form": "遺憾の意",
           "meaning": "유감의 뜻",
-          "origin": "source"
+          "origin": "source",
+          "reading": "いかんのい",
+          "similar": "残念に思う意向（ざんねんにおもういこう）",
+          "note": "공식 성명에서 깊은 유감이나 불만을 표시하는 격식 있는 표현."
         },
         {
           "form": "一貫して",
           "meaning": "일관되게",
-          "origin": "source"
+          "origin": "source",
+          "reading": "いっかんして",
+          "similar": "終始（しゅうし）",
+          "note": "처음부터 끝까지 입장을 바꾸지 않음."
         },
         {
           "form": "にとどまらない",
           "meaning": "~에 그치지 않는다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "にとどまらない",
+          "similar": "だけではない",
+          "note": "영향이나 범위가 그 수준을 넘음."
         },
         {
           "form": "延長線上",
           "meaning": "연장선상",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "えんちょうせんじょう",
+          "similar": "一連の流れの中（いちれんのながれのなか）",
+          "note": "앞선 사건과 이어지는 흐름 속에 위치함."
         },
         {
           "form": "申し入れ",
           "meaning": "공식 요청·항의",
-          "origin": "source"
+          "origin": "source",
+          "reading": "もうしいれ",
+          "similar": "要請（ようせい）",
+          "note": "기관이나 국가에 공식적으로 요구·의견을 전달."
         },
         {
           "form": "法の支配",
           "meaning": "법의 지배, 법치주의",
-          "origin": "source"
+          "origin": "source",
+          "reading": "ほうのしはい",
+          "similar": "法治主義（ほうちしゅぎ）",
+          "note": "권력도 법과 절차의 통제를 받아야 한다는 원칙."
         },
         {
           "form": "欠かせない",
           "meaning": "필수적이다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かかせない",
+          "similar": "不可欠だ（ふかけつだ）",
+          "note": "없어서는 안 되는 필수 조건."
         }
       ],
       "bodyLength": 1020
@@ -288,37 +372,58 @@ window.KOJER_CURATED_NEWS = {
         {
           "form": "見逃さず",
           "meaning": "놓치지 않고",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "みのがさず",
+          "similar": "見落とさない（みおとさない）",
+          "note": "일어나거나 보이는 변화를 놓치지 않음."
         },
         {
           "form": "一時的",
           "meaning": "일시적",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "いちじてき",
+          "similar": "短期的（たんきてき）",
+          "note": "오래 지속되지 않고 잠깐 나타나는 상태."
         },
         {
           "form": "欠かせない",
           "meaning": "필수적이다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かかせない",
+          "similar": "不可欠だ（ふかけつだ）",
+          "note": "없어서는 안 되는 필수 조건."
         },
         {
           "form": "見落としかねない",
           "meaning": "놓칠 우려가 있다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "みおとしかねない",
+          "similar": "見逃すおそれがある",
+          "note": "중요한 변화를 미처 발견하지 못할 위험."
         },
         {
           "form": "手掛かり",
           "meaning": "단서",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "てがかり",
+          "similar": "糸口（いとぐち）",
+          "note": "문제를 풀거나 사실을 확인하는 단서."
         },
         {
           "form": "迫る",
           "meaning": "다가가다, 진상에 접근하다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "せまる",
+          "similar": "解明に近づく（かいめいにちかづく）",
+          "note": "사건의 원인이나 실체에 다가간다는 의미."
         },
         {
           "form": "垣根を越えて",
           "meaning": "분야의 경계를 넘어서",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "かきねをこえて",
+          "similar": "分野を超えて（ぶんやをこえて）",
+          "note": "분야나 조직 사이의 경계를 넘어 함께한다는 비유."
         }
       ],
       "bodyLength": 1002
@@ -354,37 +459,58 @@ window.KOJER_CURATED_NEWS = {
         {
           "form": "高揚感",
           "meaning": "고양감, 들뜬 기분",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "こうようかん",
+          "similar": "興奮（こうふん）",
+          "note": "특별한 일 앞에서 마음이 고조되는 느낌."
         },
         {
           "form": "揺れ動く",
           "meaning": "갈등하며 흔들리다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "ゆれうごく",
+          "similar": "迷う（まよう）",
+          "note": "상반되는 선택이나 감정 사이에서 흔들림."
         },
         {
           "form": "扮する",
           "meaning": "~역으로 분장해 연기하다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "ふんする",
+          "similar": "演じる（えんじる）",
+          "note": "배우가 특정 역할을 맡아 연기한다는 기사식 표현."
         },
         {
           "form": "内に秘めた",
           "meaning": "마음속에 간직하다",
-          "origin": "source"
+          "origin": "source",
+          "reading": "うちにひめた",
+          "similar": "心に抱いた（こころにいだいた）",
+          "note": "밖으로 드러내지 않고 마음에 간직함."
         },
         {
           "form": "重なって見えた",
           "meaning": "겹치다, 부합하다",
-          "origin": "source"
+          "origin": "source",
+          "reading": "かさなってみえた",
+          "similar": "一致するように感じた（いっちするようにかんじた）",
+          "note": "인물과 배우 등 두 이미지가 겹쳐 보임."
         },
         {
           "form": "うかがい知れない",
           "meaning": "겉으로는 헤아릴 수 없다",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "うかがいしれない",
+          "similar": "推し量れない（おしはかれない）",
+          "note": "겉으로 보는 것만으로는 속사정을 알 수 없음."
         },
         {
           "form": "見どころ",
           "meaning": "볼거리, 관전 포인트",
-          "origin": "adapted"
+          "origin": "adapted",
+          "reading": "みどころ",
+          "similar": "注目点（ちゅうもくてん）",
+          "note": "작품·행사에서 특히 볼 만한 부분."
         }
       ],
       "bodyLength": 991
