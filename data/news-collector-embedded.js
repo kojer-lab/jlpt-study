@@ -61,10 +61,7 @@ function loadCache(){
  }catch(e){console.warn("뉴스 캐시 읽기 실패",e)}
 }
 function fmtCache(t){try{return new Date(t).toLocaleString("ko-KR",{timeZone:"Asia/Tokyo"})+" JST"}catch{return t}}
-async function collect(){
- if(busy)return;
- busy=true;
- async function loadArchive(){
+async function loadArchive(){
  if(typeof cloudClient==="undefined"||!cloudClient||typeof cloudUser==="undefined"||!cloudUser)return;
  const {data,error}=await cloudClient.from("jlpt_news_generated_articles").select("article").eq("owner_id",cloudUser.id).order("created_at",{ascending:false}).limit(500);
  if(!error&&Array.isArray(data))window.KOJER_ADD_GENERATED_NEWS?.(data.map(x=>x.article));
@@ -97,7 +94,10 @@ if(gen)gen.addEventListener("click",generateSix);
 window.addEventListener("focus",()=>{if(!document.hidden)loadArchive()});
 window.addEventListener("kojer-news:updated",loadArchive);
 setTimeout(loadArchive,1800);
-const btn=$("newsCollectButton");btn.disabled=true;btn.textContent="뉴스 수집 중…";
+async function collect(){
+ if(busy)return;
+ busy=true;
+ const btn=$("newsCollectButton");btn.disabled=true;btn.textContent="뉴스 수집 중…";
  setStatus("최근 일본 뉴스를 분야별로 수집하고 있어…");
  try{
   // Reuse the main JLPT Supabase session; do not create a second auth client.
