@@ -1,0 +1,62 @@
+name: Read-only diagnostics for reported MP3 endings
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "audio/vocab/end-sound-diagnostic-queue.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jlpt-ending-waveform-review
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install ffmpeg for PCM reading
+        run: |
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -1
+      - name: Analyze without editing any MP3
+        run: |
+          python -m py_compile tools/diagnose-reported-vocab-endings.py
+          python tools/diagnose-reported-vocab-endings.py
+      - name: Publish review-only diagnostics
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add audio/vocab/end-sound-diagnostics.json
+          test "$(git diff --cached --name-only)" = "audio/vocab/end-sound-diagnostics.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "audio: inspect reported MP3 endings (no edits)"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "::error::Diagnostic conflict, please rerun"
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Read-only report published"
+              exit 0
+            fi
+            sleep 4
+          done
+          exit 1
