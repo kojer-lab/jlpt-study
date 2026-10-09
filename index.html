@@ -3386,6 +3386,7 @@ window.__jlptAudioManifest=()=>words.flatMap(w=>[
  ...w.examples.map((ex,i)=>({id:w.id,kind:"example",index:i,text:wordAudioText(w,i),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-ex"+(i+1)+".wav"}))
 ]);
 applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
+if(location.hash==="#newsreader")showView("newsreader");
 </script>
 </body>
 </html>
