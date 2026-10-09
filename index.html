@@ -2315,8 +2315,8 @@ function updatePronReportActions(){
 function pronSubmissionError(error){
  const message=String(error?.message||"");
  if(message.includes("duplicate_report"))return "같은 항목의 신고가 최근 24시간 내에 접수됐어. 기존 신고를 먼저 확인할게.";
- if(message.includes("report_rate_hour"))return "한 시간에 최대 12건까지 접수할 수 있어. 잠시 뒤 다시 시도해 줘.";
- if(message.includes("report_rate_day"))return "24시간에 최대 50건까지 접수할 수 있어. 내일 다시 시도해 줘.";
+ if(message.includes("report_rate_hour"))return "최근 1시간 동안 최대 100건까지 신고할 수 있어. 조금 뒤 다시 시도해 줘.";
+ if(message.includes("report_rate_day"))return "최근 24시간 동안 최대 500건까지 신고할 수 있어. 조금 뒤 다시 시도해 줘.";
  if(message.includes("report_login_required")||error?.code==="42501")return "Supabase 로그인 권한을 확인해 줘. 로그인 후에도 계속되면 다시 접속해 줘.";
  if(error?.code==="42P01"||error?.code==="PGRST205"||/jlpt_pronunciation_reports.*(not find|not exist)|could not find the table/i.test(message))
   return "신고 저장 기능에 연결할 수 없어. 잠시 후 다시 시도하거나 '접수가 안 될 때'에서 신고 내용을 복사해 줘.";
