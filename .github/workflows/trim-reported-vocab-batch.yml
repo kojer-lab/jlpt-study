@@ -1,0 +1,96 @@
+name: Trim reviewed trailing artifacts from vocabulary MP3s
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "audio/vocab/trim-batch.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jlpt-reviewed-endtrim-batch
+  cancel-in-progress: false
+
+jobs:
+  trim:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Validate reviewed trim requests and unit tests
+        run: |
+          python -m py_compile tools/trim-reported-vocab-audio.py tools/test_trim_reported_vocab_audio.py
+          python -m unittest discover -s tools -p 'test_trim_reported_vocab_audio.py' -v
+          python tools/trim-reported-vocab-audio.py --check
+      - name: Count approved targets
+        id: batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "count=$(python -c 'import json; print(len(json.load(open("audio/vocab/trim-batch.json"))["items"]))')" >> "$GITHUB_OUTPUT"
+      - name: Skip when no MP3 has been approved for trimming
+        if: steps.batch.outputs.count == '0'
+        run: echo "Empty queue. No MP3 was modified."
+      - name: Trim only reviewed MP3s without loading Kokoro
+        if: steps.batch.outputs.count != '0'
+        run: |
+          command -v ffmpeg
+          command -v ffprobe
+          python tools/trim-reported-vocab-audio.py --apply
+      - name: Commit audited MP3 revisions
+        if: steps.batch.outputs.count != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t targets < <(python - <<'PY'
+          import json
+          cfg=json.load(open('audio/vocab/trim-batch.json'))
+          m=json.load(open('audio/vocab/manifest.json'))
+          for req in cfg['items']:
+              e=m['files'][req['word_id']]
+              print(e['word'] if req['kind']=='word' else e['examples'][req['index']])
+          PY
+          )
+          test "${#targets[@]}" -gt 0
+          git add -- audio/vocab/repaired-revisions.json "${targets[@]}"
+          python - <<'PY'
+          import json, subprocess
+          cfg=json.load(open('audio/vocab/trim-batch.json'))
+          m=json.load(open('audio/vocab/manifest.json'))
+          expected={'audio/vocab/repaired-revisions.json'}
+          for req in cfg['items']:
+              e=m['files'][req['word_id']]
+              expected.add(e['word'] if req['kind']=='word' else e['examples'][req['index']])
+          changed=set(subprocess.check_output(['git','diff','--cached','--name-only'],text=True).splitlines())
+          if changed != expected:
+              raise SystemExit(f'Unexpected staged files: {changed ^ expected}')
+          print('Only the approved MP3s and cache revisions will be committed.')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          batch_id=$(python -c 'import json; print(json.load(open("audio/vocab/trim-batch.json"))["batch_id"])')
+          git commit -m "audio: trim reviewed MP3 endings ${batch_id}"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "::error::Newer MP3 changes conflict with this trim batch. Re-review required."
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Trim batch published."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Could not publish reviewed trim batch."
+          exit 1
