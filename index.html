@@ -2663,8 +2663,12 @@ function readingTranslationHTML(set,q){
  if(!passage&&!question)return '<div class="translation"><strong>번역</strong><br>아직 등록된 번역이 없습니다.</div>';
  return `<div class="translation"><strong>지문 번역</strong><br>${passage||"아직 등록된 지문 번역이 없습니다."}${question?`<div style="margin-top:12px"><strong>문제 뜻</strong><br>${question}</div>`:""}</div>`;
 }
+let readingTranslationKey="",readingTranslationOpen=false;
 function renderReading(){
  const bank=readingSets[readingMode],set=bank[readingSetIndex],q=set.questions[readingQ],fq=set.furigana?.questions?.[readingQ];
+ // Keep the open translation through cloud-driven redraws of this same question.
+ const key=[readingMode,readingMode==="news"?selectedNewsDate:"",set.title,readingQ].join("|");
+ if(key!==readingTranslationKey){readingTranslationKey=key;readingTranslationOpen=false}
  $("newsDailyNav").classList.toggle("hidden",readingMode!=="news");
  if(readingMode==="news"){
   const group=newsArticlesForDate(selectedNewsDate),n=group.indexOf(set),total=group.reduce((sum,x)=>sum+x.questions.length,0);
@@ -2693,7 +2697,7 @@ function showReadingResult(idx){
  const set=readingSets[readingMode][readingSetIndex],q=set.questions[readingQ],fq=set.furigana?.questions?.[readingQ];
  readingAnswered=true;
  [...$("readingChoices").children].forEach((x,i)=>{x.setAttribute("aria-disabled","true");x.classList.add("answered");if(i===q.a)x.classList.add("correct");if(i===idx&&idx!==q.a)x.classList.add("wrong")});
- $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${readingMode==="news"?readingJP(q.e):(fq?.e||readingJP(q.e))}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" style="margin-top:14px">🇰🇷 번역 보기</button><div id="readingTranslationBox" class="hidden">${readingTranslationHTML(set,q)}</div>`;
+ $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${readingMode==="news"?readingJP(q.e):(fq?.e||readingJP(q.e))}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" aria-expanded="${readingTranslationOpen}" aria-controls="readingTranslationBox" style="margin-top:14px">${readingTranslationOpen?"🇰🇷 번역 숨기기":"🇰🇷 번역 보기"}</button><div id="readingTranslationBox" class="${readingTranslationOpen?"":"hidden"}">${readingTranslationHTML(set,q)}</div>`;
  $("readingExplanation").classList.add("show");$("nextReadingBtn").classList.remove("hidden");
  if(readingMode==="news"){
   const score=newsScore(selectedNewsDate);newsAnsweredCount=score.answered;newsCorrect=score.correct;
@@ -2716,7 +2720,9 @@ $("readingExplanation").addEventListener("click",e=>{
  const b=e.target.closest("#readingTranslationBtn");if(!b)return;
  const box=$("readingTranslationBox");if(!box)return;
  const open=box.classList.toggle("hidden")===false;
+ readingTranslationOpen=open;
  b.textContent=open?"🇰🇷 번역 숨기기":"🇰🇷 번역 보기";
+ b.setAttribute("aria-expanded",String(open));
 });
 $("nextReadingBtn").addEventListener("click",()=>{
  const bank=readingSets[readingMode],set=bank[readingSetIndex];
@@ -2828,6 +2834,9 @@ function scheduleCloudPush(){
 }
 async function syncNow(mode="merge"){
  if(!cloudClient||!cloudUser){updateSyncUI();return false}if(!navigator.onLine){setSyncStatus("bad","오프라인","인터넷 연결 후 다시 시도하세요.");return false}
+ // A routine cloud sync must not collapse a translation the learner is reading.
+ const newsDateAtStart=readingMode==="news"&&$("readingView")?.classList.contains("active")?selectedNewsDate:null;
+ const newsProgressAtStart=newsDateAtStart?JSON.stringify(state.newsProgress?.[newsDateAtStart]||null):null;
  cloudSyncing=true;updateSyncUI();
  try{
   const {data,error}=await cloudClient.from("jlpt_study_state").select("state,updated_at").eq("user_id",cloudUser.id).maybeSingle();if(error)throw error;
@@ -2840,7 +2849,13 @@ async function syncNow(mode="merge"){
    const merged=mergeStudyStates(state,data.state);state=merged;saveState(state,{touch:false,skipCloud:true});refreshAll();
    if(!sameState(merged,data.state)){const {error:upErr}=await cloudClient.from("jlpt_study_state").upsert({user_id:cloudUser.id,state:merged,updated_at:new Date().toISOString()},{onConflict:"user_id"});if(upErr)throw upErr}
   }
-  if(readingMode==="news"&&$("readingView")?.classList.contains("active")){setupNewsDay(selectedNewsDate||newsDays()[0]);renderReading()}
+  if(readingMode==="news"&&$("readingView")?.classList.contains("active")){
+   const currentDate=selectedNewsDate||newsDays()[0];
+   // Only reconcile the reading view if the article progress actually changed.
+   if(newsDateAtStart!==currentDate||newsProgressAtStart!==JSON.stringify(state.newsProgress?.[currentDate]||null)){
+    setupNewsDay(currentDate);renderReading();
+   }
+  }
   setCloudMeta({lastSyncAt:Date.now()});setSyncStatus("ok","동기화 완료","PC와 모바일에서 같은 학습 기록을 사용할 수 있습니다.");updateSyncUI();return true;
  }catch(err){setSyncStatus("bad","동기화 실패",err.message||"동기화에 실패했습니다.");return false}
  finally{cloudSyncing=false;updateSyncUI()}
