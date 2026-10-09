@@ -13,6 +13,9 @@ any existing MP3 or the revision map is changed.
 from __future__ import annotations
 
 import argparse
+import array
+import math
+import sys
 import hashlib
 import json
 import re
@@ -110,6 +113,43 @@ def probe_mp3(path: Path) -> float:
     return duration
 
 
+def speech_end_seconds(path: Path) -> float:
+    """Match the review page's 10-ms RMS endpoint, ignoring encoded silence.
+
+    This is the same algorithm used by audio-end-review.html: 6% peak RMS
+    (minimum 0.006) and at least 3 active frames in a rolling 5-frame window.
+    Never interpret the MP3 container duration as the end of speech.
+    """
+    raw = subprocess.check_output([
+        "ffmpeg", "-nostdin", "-v", "error", "-i", str(path),
+        "-ac", "1", "-ar", "24000", "-f", "f32le", "-"
+    ])
+    if not raw or len(raw) % 4:
+        raise RuntimeError(f"Could not decode PCM: {path}")
+    samples = array.array("f")
+    samples.frombytes(raw)
+    if sys.byteorder != "little":
+        samples.byteswap()
+    sample_rate = 24000
+    step = 240
+    rms = []
+    for start in range(0, len(samples), step):
+        frame = samples[start:start + step]
+        val = math.sqrt(sum(float(x) * float(x) for x in frame) / len(frame))
+        rms.append(val)
+    peak = max(rms)
+    threshold = max(0.006, peak * 0.06)
+    decoded_duration = len(samples) / sample_rate
+    for i in range(len(rms) - 1, 3, -1):
+        active = sum(1 for j in range(i-4, i+1) if rms[j] > threshold)
+        if active >= 3:
+            end = min(decoded_duration, (i + 1) * step / sample_rate)
+            if end < 0.5:
+                raise ValueError(f"Detected speech suspiciously short: {path}")
+            return end
+    raise ValueError(f"Could not detect speech endpoint: {path}")
+
+
 def apply_trim(targets: list[dict]) -> None:
     if not targets:
         raise RuntimeError("No reviewed MP3s queued")
@@ -122,13 +162,20 @@ def apply_trim(targets: list[dict]) -> None:
         for i, target in enumerate(targets, 1):
             original = target["path"]
             duration = probe_mp3(original)
+            speech_end = speech_end_seconds(original)
             removed = target["remove_tail_ms"] / 1000.0
-            if removed > duration * 0.25 or duration - removed < 0.5:
-                raise ValueError(f"Cut would remove too much of {original}: {removed:.3f}s/{duration:.3f}s")
-            end = duration - removed
-            fade = min(0.035, end / 20)
+            # Match JS review preview: fade starting 25ms after the chosen cutoff,
+            # which is relative to last speech, NOT trailing file silence.
+            if removed > speech_end * 0.25 or speech_end - removed < 0.5:
+                raise ValueError(f"Cut would remove too much of {original}: {removed:.3f}s/{speech_end:.3f}s speech")
+            end = min(duration, max(0.2, speech_end - removed + 0.025))
+            if duration - end < 0.045:
+                raise ValueError(f"Cut has no measurable effect on {original}")
+            fade = min(0.025, end / 20)
             output = work / f"{i}.mp3"
-            filters = f"atrim=end={end:.6f},asetpts=N/SR/TB,afade=t=out:st={end - fade:.6f}:d={fade:.6f},apad=pad_dur=0.12"
+            filters = (f"aresample=24000,asetpts=N/SR/TB,"
+                       f"atrim=end={end:.6f},asetpts=N/SR/TB,"
+                       f"afade=t=out:st={end - fade:.6f}:d={fade:.6f},apad=pad_dur=0.12")
             subprocess.run([
                 "ffmpeg", "-nostdin", "-y", "-loglevel", "error", "-i", str(original),
                 "-af", filters, "-ac", "1", "-ar", "24000", "-codec:a", "libmp3lame",
@@ -143,7 +190,7 @@ def apply_trim(targets: list[dict]) -> None:
             if old_sha == new_sha:
                 raise RuntimeError(f"Unchanged audio: {original}")
             staged.append((target, data, new_sha[:16]))
-            print(f"[{i}/{len(targets)}] Staged {target['relative']}: {duration:.2f}s -> {new_duration:.2f}s, removed {removed:.2f}s")
+            print(f"[{i}/{len(targets)}] Staged {target['relative']}: file={duration:.2f}s speech_end={speech_end:.2f}s preview_cut={removed:.2f}s -> {new_duration:.2f}s")
 
         for target, data, _ in staged:
             target["path"].write_bytes(data)
