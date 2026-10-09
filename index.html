@@ -850,6 +850,32 @@ function loadStaticVocabAudioManifest(){
  }).catch(()=>null);
  return staticVocabAudioPromise;
 }
+function readyStaticVocabAudioUrl(w,exampleIndex=null){
+ if(!staticVocabAudio||!w)return null;
+ if(w.id==="oj-08cfe03cb3"&&exampleIndex===null)return null;
+ const entry=staticVocabAudio[w.id];
+ return exampleIndex===null?(entry?.word||null):(entry?.examples?.[exampleIndex]||null);
+}
+function versionedVocabAudioUrl(url){
+ const revision=staticVocabAudioRevisions[url];
+ return revision?url+(url.includes("?")?"&":"?")+"v="+encodeURIComponent(revision):url;
+}
+// Warm only the visible word and its two examples; avoid loading thousands of files.
+const vocabWarmUrls=new Set();
+function warmVocabAudio(w){
+ if(!w||!staticVocabAudio)return;
+ for(const index of [null,0,1]){
+  if(index!==null&&index>=w.examples.length)continue;
+  const url=readyStaticVocabAudioUrl(w,index);
+  if(!url)continue;
+  const versioned=versionedVocabAudioUrl(url);
+  if(vocabWarmUrls.has(versioned))continue;
+  vocabWarmUrls.add(versioned);
+  if(vocabWarmUrls.size>36)vocabWarmUrls.delete(vocabWarmUrls.values().next().value);
+  // HTTP cache may satisfy subsequent media requests; failure is nonfatal.
+  fetch(versioned,{cache:"force-cache"}).catch(()=>{vocabWarmUrls.delete(versioned)});
+ }
+}
 async function staticVocabAudioUrl(w,exampleIndex=null){
  const files=await loadStaticVocabAudioManifest(),entry=files&&w?files[w.id]:null;
  // 吐く is now taught as はく; the older baked word file says つく.
@@ -2194,6 +2220,7 @@ async function prefetchWordAudio(w){
    await loadStaticVocabAudioManifest();
    if(!stillCurrent())return;
    const entry=staticVocabAudio?.[w.id];
+   warmVocabAudio(w);
    const missingExamples=w.examples.filter((ex,i)=>!entry?.examples?.[i]);
    if(entry?.word&&w.id!=="oj-08cfe03cb3"&&!missingExamples.length){
      status("사전 생성 Kokoro 단어·예문 음성 · 즉시 재생");return;
@@ -2264,12 +2291,11 @@ async function playWordAudio(w,exampleIndex=null,button=null){
  wordAudioActiveButton=button;
  try{
   if(button){button.disabled=true;button.classList.remove("playing","audio-error");button.classList.add("loading")}
-  const staticUrl=await staticVocabAudioUrl(w,exampleIndex);
+  const staticUrl=readyStaticVocabAudioUrl(w,exampleIndex)||await staticVocabAudioUrl(w,exampleIndex);
   if(!current())return;
   let playbackUrl;
   if(staticUrl){
-   const revision=staticVocabAudioRevisions[staticUrl];
-   playbackUrl=revision?staticUrl+(staticUrl.includes("?")?"&":"?")+"v="+encodeURIComponent(revision):staticUrl;
+   playbackUrl=versionedVocabAudioUrl(staticUrl);
   }else{
    const key=kokoroKey(text,"jf_alpha");
    if(!kokoroUrls.has(key))status("음성을 준비하고 있습니다…");
