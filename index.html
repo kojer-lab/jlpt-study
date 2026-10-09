@@ -2487,7 +2487,7 @@ const vocabUsageNotes={
 function quizTargetWord(item){
  if(quizMode!=="vocab")return null;
  const q=plain(item.q);
- if(item.wordId){const exact=words.find(w=>w.id===item.wordId);if(exact)return exact;}
+ if(item.wordId){const exact=wordById.get(item.wordId);if(exact)return exact;}
  return words.filter(w=>{const x=plain(w.w);return x.length>=2&&q.includes(x)}).sort((a,b)=>plain(b.w).length-plain(a.w).length)[0]||null;
 }
 function renderVocabDeepDive(item){
