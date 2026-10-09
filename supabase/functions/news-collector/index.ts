@@ -57,6 +57,7 @@ async function loadFeed(category: string, query: string): Promise<News[]> {
   const result: News[] = [];
   for (const [, item] of items.slice(0, 45)) {
     const title = tag(item, "title").slice(0, 260);
+    const summary = cleanSummary(tag(item, "description"), title);
     const link = tag(item, "link");
     const pub = tag(item, "pubDate");
     const source = tag(item, "source").slice(0, 70) || "Google ニュース";
@@ -67,6 +68,7 @@ async function loadFeed(category: string, query: string): Promise<News[]> {
       id: category + ":" + link,
       category, title, source, url: link,
       publishedAt: new Date(ms).toISOString(),
+      ...(summary ? { summary } : {}),
     });
     if (result.length >= 4) break;
   }
@@ -87,8 +89,13 @@ function normalizeCategory(title: string, fallback: string): string {
  return fallback;
 }
 function cleanSummary(text: string, title: string) {
- const s=text.replace(/\s+/g," ").trim().slice(0,850);
- if(s.length<45 || s===title || (s.replace(/\s+/g,"").includes(title.replace(/\s+/g,"")) && s.length<title.length+35))return "";
+ const s=text
+   .replace(/<[^>]*>/g," ").replace(/&lt;[^&]*?&gt;/g," ")
+   .replace(/\s+/g," ").trim().slice(0,1000);
+ if(s.length<30 || s===title ||
+    (s.replace(/\s+/g,"").includes(title.replace(/\s+/g,"")) && s.length<title.length+35))return "";
+ if(!/[一-龯ぁ-ゖァ-ヺ]/.test(s))return "";
+ if(/^(?:Google News|この記事の詳細|最新ニュース一覧)/.test(s))return "";
  return s;
 }
 async function loadNHK(category: string, code: string): Promise<News[]> {
@@ -160,8 +167,10 @@ Deno.serve(async (req: Request) => {
       articles.unshift(entry);
     }
   });
+  // Show stories with usable excerpts first while preserving genre variety.
+  articles.sort((a,b) => Number(Boolean(b.summary))-Number(Boolean(a.summary)));
   if (!articles.length) return json({ error: "실시간 뉴스 수집에 실패했습니다. 잠시 뒤 다시 시도해주세요.", failedCategories: errors }, 502);
-  const body = { version: 1, generatedAt: new Date().toISOString(), rangeHours: 72, articles, failedCategories: errors, contentScope: "headlines" };
+  const body = { version: 2, generatedAt: new Date().toISOString(), rangeHours: 72, articles, failedCategories: errors, contentScope: "rss_briefs", generation: "no_ai" };
   cache = { time: Date.now(), body };
   return json(body);
 });
