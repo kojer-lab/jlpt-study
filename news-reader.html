@@ -5,7 +5,7 @@ button{border:1px solid #3e4860;background:#252f43;color:#e6edff;border-radius:1
 button:disabled{opacity:.6}button.primary{background:#315fbb;border-color:#315fbb;color:white;font-weight:700}
 a{color:#a4c5ff}.top{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:20px}.dim{color:#9da9bb}
 .card{background:#1b2230;border:1px solid #3a4355;border-radius:17px;padding:clamp(16px,4vw,30px);margin:14px 0}
-h1{font-size:clamp(24px,4vw,34px);line-height:1.55;margin:15px 0}h2{font-size:19px}
+h1{font-size:clamp(22px,3vw,30px);line-height:1.55;margin:15px 0}h2{font-size:19px}
 .pill{display:inline-block;border-radius:100px;padding:5px 9px;color:#b9cdff;background:#2e4268;font-size:12px}
 .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:22px 0 10px;border-bottom:1px solid #40506a;padding-bottom:16px}.controls button.active{background:#315fbb;border-color:#5284e3}
 .status{line-height:1.7;color:#adbad0;font-size:14px;min-height:24px}.status.error{color:#ffb1b1}
@@ -42,7 +42,7 @@ try {
  if(stored&&stored.url===news.url&&typeof stored.summary==="string")rssSummary=stored.summary.trim().slice(0,850);
 } catch(e) {console.warn("뉴스 소개문 조회 실패",e)}
 
-let paragraphs=[],tokenizerPromise=null,loadedTextId=0;
+let paragraphs=[],tokenizerPromise=null,loadedTextId=0,briefIsHeadlineOnly=false;
 const patterns=[
 ["とはいえ","접속 표현","그렇다고는 하지만","앞선 사실을 인정하면서도 다른 관점을 제시해."],
 ["それどころか","접속 표현","그 정도가 아니라 오히려","앞의 예상을 뒤집는 더 강한 상황을 설명해."],
@@ -142,7 +142,7 @@ function render(){
    if(work!==loadedTextId)return;
    $("body").innerHTML=paragraphs.map(p=>"<p>"+paragraphHTML(p,tokenizer)+"</p>").join("");
    wireTextInteractions();
-   status("읽기 준비 완료 · 한자를 누르면 후리가나 · 밑줄 친 문형을 누르면 설명")
+   status("읽기 준비 완료 · 한자를 누르면 후리가나 · 밑줄 친 문형을 누르면 설명"+(briefIsHeadlineOnly?" · 이 뉴스는 제목만 확인됨":""))
  }).catch(e=>{
    if(work!==loadedTextId)return;
    status("뉴스 지문은 표시됐지만 후리가나 사전 로딩에 실패했어. 화면의 문장은 그대로 읽을 수 있어.",true)
@@ -168,21 +168,24 @@ function prepareBrief(raw){
    accepted.push(sentence);
  }
  const result=accepted.join(" ");
- if(result.length>=30)return {paragraphs:accepted.slice(0,7),hasDescription:true};
+ if(result.length>=18)return {paragraphs:accepted.slice(0,7),hasDescription:true};
  return {paragraphs:[],hasDescription:false}
 }
 function initial(){
  const brief=prepareBrief(rssSummary);
  $("brief-type").textContent=brief.hasDescription?"RSS 소개문 정리":"제목만 확인됨";
  if(brief.hasDescription){
-   paragraphs=brief.paragraphs;
+   briefIsHeadlineOnly=false;
+   paragraphs=[news.title,...brief.paragraphs];
    $("brief-detail").textContent="출처에서 제공한 공개 소개문 · 기사 전문 아님";
    render();
    return;
  }
  $("brief-detail").textContent="소개문을 제공하지 않는 기사";
- $("body").innerHTML='<p style="color:#bbc4d5">이 출처는 RSS에 기사 내용이 없어 제목만 확인됐어. 정확성을 위해 기사에 없는 내용을 임의로 만들어 넣지 않았어.</p>';
- status("뉴스 제목은 즉시 볼 수 있어. 본문 소개문이 있는 다른 기사를 선택하면 짧은 지문을 바로 읽을 수 있어.");
+ briefIsHeadlineOnly=true;
+ paragraphs=[news.title];render();
+ $("brief-detail").textContent="기사 전문 제공 없음 · 제목만 학습";
+ status("현재 확인되는 내용은 제목뿐이야. 한자 읽기는 준비되는 대로 적용되고, RSS에 없는 기사 내용을 임의로 만들지 않았어.");
 }
 initial();
 </script></body></html>
