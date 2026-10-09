@@ -762,7 +762,30 @@ const STORE_KEY="jlptN1StudyV3";
 const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
 const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},newsProgress:{},_updatedAt:0};
 function freshState(){return JSON.parse(JSON.stringify(defaultState));}
-function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.newsProgress=normalizeNewsProgress(x.newsProgress);x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return x;}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.newsProgress=normalizeNewsProgress(x.newsProgress);x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return reconcileDuplicateWordState(x);}
+
+// Normalize alias IDs when reading local or Supabase state; keep historical records.
+function reconcileDuplicateWordState(x){
+ for(const [canonical,aliases] of duplicateWordAliases){
+  const ids=[canonical,...aliases];
+  const past=ids.map(id=>x.srs[id]).filter(s=>s&&typeof s==="object");
+  if(past.length){
+   const best=past.reduce((a,b)=>{
+    const ra=Number(a.reviews)||0,rb=Number(b.reviews)||0;
+    if(ra!==rb)return ra>rb?a:b;
+    return Number(a.updatedAt||a.last||0)>=Number(b.updatedAt||b.last||0)?a:b;
+   });
+   for(const id of ids)x.srs[id]=best;
+  }
+  const marked=ids.map(id=>x.stars[id]).filter(v=>v&&typeof v==="object");
+  if(marked.length){
+   const best=marked.reduce((a,b)=>Number(a.updatedAt||0)>=Number(b.updatedAt||0)?a:b);
+   for(const id of ids)x.stars[id]=best;
+  }
+ }
+ if(x.dailyNew&&Array.isArray(x.dailyNew.ids))x.dailyNew.ids=[...new Set(x.dailyNew.ids.map(canonicalWordId))];
+ return x;
+}
 
 function normalizeNewsProgress(raw){
  const result={};
@@ -1315,7 +1338,25 @@ for(const w of words){
   if(w.examples.length>=2)break;
  }
 }
+// Coalesce identical written forms + readings from curated and imported banks.
+// Keep the first (original) card and its verified MP3s; retain alias IDs for SRS migration.
+const canonicalWordIdByAlias=new Map(),duplicateWordAliases=new Map();
+const uniqueWordEntries=[],canonicalByWordIdentity=new Map();
+function wordIdentityKey(w){
+ return plain(w.w).normalize("NFKC").replace(/\s+/g,"")+"\u0000"+readingOf(w.w).normalize("NFKC").replace(/\s+/g,"");
+}
+for(const w of words){
+ if(w.category!=="vocab"){uniqueWordEntries.push(w);continue}
+ const key=wordIdentityKey(w),existing=canonicalByWordIdentity.get(key);
+ if(!existing){canonicalByWordIdentity.set(key,w);uniqueWordEntries.push(w);continue}
+ canonicalWordIdByAlias.set(w.id,existing.id);
+ if(!duplicateWordAliases.has(existing.id))duplicateWordAliases.set(existing.id,[]);
+ duplicateWordAliases.get(existing.id).push(w.id);
+}
+words.splice(0,words.length,...uniqueWordEntries);
+function canonicalWordId(id){return canonicalWordIdByAlias.get(id)||id}
 const wordById=new Map(words.map(w=>[w.id,w]));
+for(const [oldId,canonicalId] of canonicalWordIdByAlias)wordById.set(oldId,wordById.get(canonicalId));
 const wordFuriganaBank=window.N1_WORD_FURIGANA||{};
 const wordBreakdownBanks=[window.N1_WORD_BREAKDOWNS_1||{},window.N1_WORD_BREAKDOWNS_2||{},window.N1_WORD_BREAKDOWNS_3||{},window.N1_WORD_BREAKDOWNS_4||{},window.N1_WORD_BREAKDOWNS_5||{},window.N1_WORD_BREAKDOWNS_6||{},window.N1_WORD_BREAKDOWNS_7||{},window.N1_WORD_BREAKDOWNS_8||{},window.N1_WORD_BREAKDOWNS_9||{},window.N1_WORD_BREAKDOWNS_10||{},window.N1_WORD_BREAKDOWNS_11||{},window.N1_WORD_BREAKDOWNS_12||{},window.N1_WORD_BREAKDOWNS_13||{},window.N1_WORD_BREAKDOWNS_14||{},window.N1_WORD_BREAKDOWNS_15||{},window.N1_WORD_BREAKDOWNS_16||{},window.N1_WORD_BREAKDOWNS_17||{},window.N1_WORD_BREAKDOWNS_18||{},window.N1_WORD_BREAKDOWNS_19||{},window.N1_WORD_BREAKDOWNS_20||{},window.N1_WORD_BREAKDOWNS_21||{},window.N1_WORD_BREAKDOWNS_22||{},window.N1_WORD_BREAKDOWNS_23||{},window.N1_WORD_BREAKDOWNS_24||{},window.N1_WORD_BREAKDOWNS_25||{},window.N1_WORD_BREAKDOWNS_26||{},window.N1_WORD_BREAKDOWNS_27||{},window.N1_WORD_BREAKDOWNS_28||{},window.N1_WORD_BREAKDOWNS_29||{},window.N1_WORD_BREAKDOWNS_30||{},window.N1_WORD_BREAKDOWNS_31||{},window.N1_WORD_BREAKDOWNS_32||{},window.N1_WORD_BREAKDOWNS_33||{},window.N1_WORD_BREAKDOWNS_34||{},window.N1_WORD_BREAKDOWNS_35||{},window.N1_WORD_BREAKDOWNS_36||{},window.N1_WORD_BREAKDOWNS_37||{},window.N1_WORD_BREAKDOWNS_38||{},window.N1_WORD_BREAKDOWNS_39||{},window.N1_WORD_BREAKDOWNS_40||{},window.N1_WORD_BREAKDOWNS_41||{},window.N1_WORD_BREAKDOWNS_42||{},window.N1_WORD_BREAKDOWNS_43||{},window.N1_WORD_BREAKDOWNS_44||{},window.N1_WORD_BREAKDOWNS_45||{},window.N1_WORD_BREAKDOWNS_46||{},window.N1_WORD_BREAKDOWNS_47||{},window.N1_WORD_BREAKDOWNS_48||{},window.N1_WORD_BREAKDOWNS_49||{},window.N1_WORD_BREAKDOWNS_50||{},window.N1_WORD_BREAKDOWNS_51||{},window.N1_WORD_BREAKDOWNS_52||{},window.N1_WORD_BREAKDOWNS_53||{},window.N1_WORD_BREAKDOWNS_54||{},window.N1_WORD_BREAKDOWNS_55||{},window.N1_WORD_BREAKDOWNS_56||{},window.N1_WORD_BREAKDOWNS_57||{},window.N1_WORD_BREAKDOWNS_58||{},window.N1_WORD_BREAKDOWNS_59||{},window.N1_WORD_BREAKDOWNS_60||{},window.N1_WORD_BREAKDOWNS_61||{},window.N1_WORD_BREAKDOWNS_62||{},window.N1_WORD_BREAKDOWNS_63||{},window.N1_WORD_BREAKDOWNS_64||{},window.N1_WORD_BREAKDOWNS_65||{},window.N1_WORD_BREAKDOWNS_66||{}];
 const wordBreakdowns=Object.assign({},...wordBreakdownBanks);
@@ -1805,8 +1846,13 @@ function migrateLegacySrs(raw){
  s.interval=Math.max(0,Number(s.interval)||0);s.reviews=Math.max(0,Number(s.reviews)||0);s.lapses=Math.max(0,Number(s.lapses)||0);
  return s;
 }
-function getSrs(id){return migrateLegacySrs(state.srs[id]);}
-function setSrs(id,s){state.srs[id]=s;saveState(state)}
+function getSrs(id){return migrateLegacySrs(state.srs[canonicalWordId(id)]);}
+function setSrs(id,s){
+ const key=canonicalWordId(id);
+ state.srs[key]=s;
+ for(const alias of duplicateWordAliases.get(key)||[])state.srs[alias]=s;
+ saveState(state);
+}
 function scheduleFsrs(s,rating,t=now()){
  const x=migrateLegacySrs(JSON.parse(JSON.stringify(s||{}))),g=SRS_GRADE[rating]||3;
  const wasNew=x.reviews===0||x.state==="new",wasLearning=x.state==="learning",wasRelearning=x.state==="relearning";
@@ -1861,9 +1907,14 @@ function rateWord(id,rating){
 }
 function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
 function unseenWords(){return words.filter(w=>getSrs(w.id).reviews===0)}
-function isStarred(id){return !!state.stars?.[id]?.value}
+function isStarred(id){return !!state.stars?.[canonicalWordId(id)]?.value}
 function starredWords(){return words.filter(w=>isStarred(w.id))}
-function toggleStar(id){const old=state.stars?.[id];state.stars[id]={value:!old?.value,updatedAt:Date.now()};saveState(state)}
+function toggleStar(id){
+ const key=canonicalWordId(id),old=state.stars?.[key],value={value:!old?.value,updatedAt:Date.now()};
+ state.stars[key]=value;
+ for(const alias of duplicateWordAliases.get(key)||[])state.stars[alias]=value;
+ saveState(state);
+}
 function ensureDailyNew(save=true){
  const key=todayKey(),limit=state.settings.dailyNewLimit||10;
  let changed=false;
@@ -1970,8 +2021,8 @@ function restoreWordSession(){
  if(!data||!Array.isArray(data.immediate)||!Array.isArray(data.learning)||!Number.isFinite(data.total))return false;
  if(data.total<=0)return false;
  wordMode=data.mode==="starred"?"starred":"daily";
- wordSessionQueue=data.immediate.map(id=>wordById.get(id)).filter(Boolean);
- wordLearningQueue=data.learning.filter(id=>wordById.has(id)).map(id=>({id,due:getSrs(id).due}));
+ wordSessionQueue=[...new Map(data.immediate.map(id=>wordById.get(id)).filter(Boolean).map(w=>[w.id,w])).values()];
+ wordLearningQueue=[...new Set(data.learning.map(canonicalWordId))].filter(id=>wordById.has(id)).map(id=>({id,due:getSrs(id).due}));
  wordQuickRepeats=(data.quick||[]).filter(x=>wordById.has(x.id));wordQuickTurn=Number(data.quickTurn)||0;wordQuickActive=data.quickActive||null;
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
@@ -2406,6 +2457,9 @@ $("wordRating").addEventListener("click",e=>{
 $("undoWordRating").addEventListener("click",()=>{
  const h=wordSessionHistory.pop();if(!h)return;
  if(h.hadSrs)state.srs[h.id]=h.before;else delete state.srs[h.id];
+ for(const alias of duplicateWordAliases.get(canonicalWordId(h.id))||[]){
+  if(h.hadSrs)state.srs[alias]=h.before;else delete state.srs[alias];
+ }
  if(Number.isInteger(h.reviewLogLength))state.reviewLog=(state.reviewLog||[]).slice(0,h.reviewLogLength);
  if(h.profileBefore)state.fsrsProfile=h.profileBefore;
  if(Array.isArray(h.learningQueueBefore))wordLearningQueue=h.learningQueueBefore;
@@ -2696,7 +2750,7 @@ function mergeStudyStates(a,b){
  const mm=new Map();[...(a.mistakes||[]),...(b.mistakes||[])].forEach(m=>{const old=mm.get(m.id);if(!old)mm.set(m.id,Object.assign({},m));else{const newer=Number(m.updatedAt||0)>=Number(old.updatedAt||0)?m:old;mm.set(m.id,Object.assign({},newer,{count:Math.max(Number(old.count)||0,Number(m.count)||0),updatedAt:Math.max(Number(old.updatedAt)||0,Number(m.updatedAt)||0)}))}});
  out.mistakes=[...mm.values()].sort((x,y)=>(Number(y.updatedAt)||0)-(Number(x.updatedAt)||0));
  out.newsProgress=mergeNewsProgress(a.newsProgress,b.newsProgress);
- out._updatedAt=Math.max(Number(a._updatedAt)||0,Number(b._updatedAt)||0);return out;
+ out._updatedAt=Math.max(Number(a._updatedAt)||0,Number(b._updatedAt)||0);return reconcileDuplicateWordState(out);
 }
 function sameState(a,b){try{return JSON.stringify(a)===JSON.stringify(b)}catch(e){return false}}
 async function initializeCloudClient(runSync=true){
