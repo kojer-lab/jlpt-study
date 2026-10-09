@@ -251,6 +251,16 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-article-body .furi::before{font-size:.60em;bottom:calc(100% - .38em);line-height:.95}
 .news-article-translation{border-top:1px solid var(--line);padding:22px 0 4px;font-size:15px;line-height:1.95;color:var(--text)}
 .news-article-translation p{margin:0 0 1.3em}
+.news-paragraph{position:relative;scroll-margin-top:22px;margin-bottom:1.3em}
+.news-paragraph .news-japanese-paragraph{margin:0;padding:6px 0 0}
+.news-paragraph-translate{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:8px;font-size:12px;padding:6px 11px;margin:0 0 7px;cursor:pointer}
+.news-paragraph-ko{background:var(--accent-soft);border:1px solid var(--line);padding:12px 14px;border-radius:10px;margin:0 0 14px;font-size:15px;line-height:1.85;color:var(--text)}
+.news-saved-card{border-top:1px solid var(--line);padding:15px 0;line-height:1.8}
+.news-saved-card .sub{font-size:13px;margin:5px 0}
+.news-saved-card .news-reading{color:var(--accent);font-size:13px;margin-left:8px}
+.news-saved-card .news-sentence{background:var(--bg);padding:10px 12px;border-radius:8px;font-size:14px;line-height:1.8;word-break:break-word}
+.news-saved-card button{margin-top:7px}
+
 .news-article-expressions{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
 .news-article-expressions .secondary{margin:4px 6px 4px 0;font-size:13px}
 .news-article-body .news-phrase{text-decoration:none;background:transparent;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
@@ -389,6 +399,12 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <strong>엄선한 일본 뉴스</strong>
         <p style="margin:6px 0 0;color:var(--muted);font-size:14px">기사별로 보도 사실을 확인하고 일본어 문체를 살려 재구성했어. 기사 원문 전체를 복사한 것이 아니며, 별도 유료 AI API를 사용하지 않아. 읽기 화면에서는 후리가나와 한국어 번역을 이용할 수 있어.</p>
       </div>
+      <div class="toolbar" style="margin:14px 0 12px"><button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button></div>
+      <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
+       <strong>내 실전 표현 수첩</strong>
+       <p class="sub" style="font-size:13px;margin-top:6px">기사에서 저장한 표현의 읽기, 뜻, 원문 문맥과 유사 표현을 모아 볼 수 있어.</p>
+       <div id="newsSavedList"></div>
+      </section>
       <div id="newsCuratedFilters" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0"></div>
       <div class="grid3" id="newsCuratedList"></div>
       <p style="font-size:13px;color:var(--muted);margin-top:25px">실시간 RSS 단신 수집은 <a href="news-reading-test.html" style="color:inherit;text-decoration:underline">별도 테스트 화면</a>에서 이용할 수 있어. 장문 편집 기사와는 다르게, RSS 소개문만 표시해.</p>
@@ -406,8 +422,8 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
             <button class="secondary" type="button" data-news-furi="off">숨기기</button>
             <button class="secondary" type="button" id="newsArticleTranslate">한국어 번역 보기</button>
           </div>
+          <div id="newsReadResume" class="sub" style="margin:4px 0 14px;font-size:12px" aria-live="polite"></div>
           <div id="newsArticleBody" class="news-article-body" lang="ja"></div>
-          <div id="newsArticleTranslation" class="news-article-translation hidden" lang="ko"></div>
           <div class="news-expression-tools">
             <button id="newsExpressionToggle" class="secondary" type="button" aria-expanded="false" aria-controls="newsExpressionPanel" style="width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px">
               <span>🔎 실전 표현 보기 <span id="newsExpressionCount"></span></span><span id="newsExpressionArrow" aria-hidden="true">＋</span>
