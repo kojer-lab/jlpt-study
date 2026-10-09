@@ -253,7 +253,12 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-article-translation p{margin:0 0 1.3em}
 .news-article-expressions{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
 .news-article-expressions .secondary{margin:4px 6px 4px 0;font-size:13px}
-.news-article-body .news-phrase{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:5px;text-decoration-thickness:2px}
+.news-article-body .news-phrase{text-decoration:none;background:transparent;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.news-article-body .news-phrase.news-phrase-selected{background:color-mix(in srgb,var(--accent) 24%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent);outline:1px solid color-mix(in srgb,var(--accent) 44%,transparent)}
+.news-expression-tools{margin-top:26px;border-top:1px solid var(--line);padding-top:20px}
+.news-expression-tools #newsExpressionToggle{font-size:15px;font-weight:750;padding:14px 16px}
+.news-expression-tools [data-news-expression-button].active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.news-article-expressions{margin-top:10px;border-top:0;padding-top:0}
 #newsArticleExpressionInfo{background:var(--accent-soft);border:1px solid var(--line);padding:14px;border-radius:12px;margin-top:12px;line-height:1.7}
 #newsArticleTools button{padding:9px 10px;font-size:12px}#newsArticleTools button.active{background:var(--accent);color:#fff}
 @media(max-width:700px){#newsCuratedDetail{max-width:100%}.news-article-body{line-height:2.65;font-size:17px}#newsArticleTools{gap:6px}#newsArticleTools button{font-size:12px;padding:8px}#newsArticleTitle{line-height:1.52}}
@@ -403,8 +408,16 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
           </div>
           <div id="newsArticleBody" class="news-article-body" lang="ja"></div>
           <div id="newsArticleTranslation" class="news-article-translation hidden" lang="ko"></div>
-          <div id="newsArticleExpressions" class="news-article-expressions"></div>
-          <div id="newsArticleExpressionInfo" class="hidden" aria-live="polite"></div>
+          <div class="news-expression-tools">
+            <button id="newsExpressionToggle" class="secondary" type="button" aria-expanded="false" aria-controls="newsExpressionPanel" style="width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <span>🔎 실전 표현 보기 <span id="newsExpressionCount"></span></span><span id="newsExpressionArrow" aria-hidden="true">＋</span>
+            </button>
+            <div id="newsExpressionPanel" class="hidden">
+              <p class="sub" style="font-size:13px;margin:14px 0 8px">표현을 선택하면 기사에서 해당 부분만 색으로 강조해 줘. 같은 표현을 다시 누르면 해제돼.</p>
+              <div id="newsArticleExpressions" class="news-article-expressions"></div>
+              <div id="newsArticleExpressionInfo" class="hidden" aria-live="polite"></div>
+            </div>
+          </div>
         </div>
         <button type="button" id="newsCuratedBottomBack" class="secondary" style="margin:18px 0">← 뉴스 목록으로</button>
       </div>
@@ -3423,6 +3436,6 @@ window.__jlptAudioManifest=()=>words.flatMap(w=>[
 applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
-<script src="data/news-reader-embedded.js?v=20261010-fix3"></script>
+<script src="data/news-reader-embedded.js?v=20261010-expression-tab1"></script>
 </body>
 </html>
