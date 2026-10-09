@@ -3,15 +3,15 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 // JLPT News Reading: authenticated, title-only Japanese RSS retrieval.
 // No article-body scraping, no AI billing, and no writes to JLPT study tables.
 const CATEGORIES = [
-  ["시사", "日本 政策 社会"],
-  ["사건·사고", "日本 事件 事故 逮捕"],
-  ["국제", "国際 世界 外交"],
-  ["스포츠", "スポーツ プロ野球 サッカー"],
-  ["과학", "科学 研究 宇宙"],
-  ["경제", "経済 日経 企業"],
-  ["연예", "芸能 タレント 音楽"],
-  ["영화·애니", "映画 アニメ 新作"],
-  ["생활·IT", "暮らし IT テクノロジー"],
+  ["시사", "政治 OR 政策 OR 社会"],
+  ["사건·사고", "事件 OR 事故 OR 逮捕"],
+  ["국제", "国際 OR 世界 OR 外交"],
+  ["스포츠", "スポーツ OR プロ野球 OR サッカー"],
+  ["과학", "科学 OR 研究 OR 宇宙"],
+  ["경제", "経済 OR 日経平均 OR 企業"],
+  ["연예", "芸能 OR アイドル OR 音楽"],
+  ["영화·애니", "映画 OR アニメ OR ドラマ"],
+  ["생활·IT", "暮らし OR テクノロジー OR 生活"],
 ] as const;
 type News = { id: string; category: string; title: string; source: string; url: string; publishedAt: string };
 const ALLOWED_ORIGIN = "https://kojer-lab.github.io";
