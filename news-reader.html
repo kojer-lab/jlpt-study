@@ -5,12 +5,12 @@ button{border:1px solid #3e4860;background:#252f43;color:#e6edff;border-radius:1
 button:disabled{opacity:.6}button.primary{background:#315fbb;border-color:#315fbb;color:white;font-weight:700}
 a{color:#a4c5ff}.top{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:20px}.dim{color:#9da9bb}
 .card{background:#1b2230;border:1px solid #3a4355;border-radius:17px;padding:clamp(16px,4vw,30px);margin:14px 0}
-h1{font-size:clamp(22px,3vw,30px);line-height:1.55;margin:15px 0}h2{font-size:19px}
+h1{font-size:clamp(22px,3vw,30px);line-height:1.6;margin:15px 0;word-break:keep-all}h2{font-size:19px}
 .pill{display:inline-block;border-radius:100px;padding:5px 9px;color:#b9cdff;background:#2e4268;font-size:12px}
 .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:22px 0 10px;border-bottom:1px solid #40506a;padding-bottom:16px}.controls button.active{background:#315fbb;border-color:#5284e3}
 .status{line-height:1.7;color:#adbad0;font-size:14px;min-height:24px}.status.error{color:#ffb1b1}
 #body{font-size:clamp(17px,2.7vw,20px);line-height:2.45;letter-spacing:.014em;overflow-wrap:anywhere}
-#body p{margin:0 0 1.35em}#body ruby{cursor:pointer;user-select:text}#body rt{font-size:.58em;color:#b8cfff;visibility:hidden;user-select:none}
+#body p{margin:0 0 1.5em;line-height:2.18}#body p:last-child{margin-bottom:0}#body ruby{cursor:pointer;user-select:text}#body rt{font-size:.58em;color:#b8cfff;visibility:hidden;user-select:none}
 #body.mode-all rt,#body.mode-click ruby.shown rt{visibility:visible}#body.mode-off rt{display:none}
 #body .marked{box-shadow:inset 0 -3px #6698ff;cursor:pointer}#body .marked:hover{background:#29436a}
 #hint{padding:15px;background:#131a27;border:1px solid #3a4961;border-radius:13px;line-height:1.7;margin-top:18px}
@@ -19,7 +19,7 @@ details summary{cursor:pointer;font-weight:700}details .dim{font-size:13px;line-
 small{font-size:12px}.help{font-size:13px;line-height:1.7;color:#b7c2d4}.row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><main>
-<div class="top"><a href="./news-reading-test.html">← 뉴스 목록으로</a><span class="pill">뉴스 정리 읽기 · 무료</span></div>
+<div class="top"><a href="./news-reading-test.html">← 뉴스 목록으로</a><span class="pill">뉴스 문장 정리 · 무료</span></div>
 <div class="card"><small id="meta" class="dim"></small><h1 id="title" lang="ja">뉴스 읽기</h1><p id="status" class="status" role="status">뉴스를 정리해서 표시합니다.</p>
 <div class="controls"><small class="dim">후리가나</small><button class="active" id="m-click" onclick="mode('click')">한자 클릭</button><button id="m-all" onclick="mode('all')">모두 보기</button><button id="m-off" onclick="mode('off')">숨기기</button></div>
 <div class="row" style="margin:2px 0 16px"><span id="brief-type" class="pill">확인된 뉴스만 정리</span><small id="brief-detail" class="dim"></small></div>
@@ -29,7 +29,7 @@ small{font-size:12px}.help{font-size:13px;line-height:1.7;color:#b7c2d4}.row{dis
 <textarea id="usertext" placeholder="읽고 싶은 일본어 기사 본문을 붙여넣으세요." spellcheck="false"></textarea>
 <div class="row"><small class="dim">최대 3만 자 · 개인 기기에서 처리</small><button class="primary" onclick="importText()">본문 읽기</button></div>
 </details>
-<p class="help">이 화면은 뉴스의 제목과 RSS 소개문에서 확인되는 사실만 읽기 편하게 정리합니다. 기사 전문이나 AI가 작성한 장문 지문이 아닙니다. 별도의 유료 AI API를 호출하지 않습니다. 후리가나 읽기는 자동 분석이므로 인명과 다의어에 오류가 있을 수 있습니다.</p>
+<p class="help">이 화면은 뉴스 제목과 RSS 소개문을 문장·문단 기준으로 정돈합니다. 기사 표현을 임의로 바꾸거나 새로운 사실을 만들어 넣지 않으며, 기사 전문이나 AI 작성 지문은 아닙니다. 별도의 유료 AI API를 호출하지 않습니다. 후리가나 읽기는 자동 분석이므로 인명과 다의어에 오류가 있을 수 있습니다.</p>
 </main><script>
 const $=id=>document.getElementById(id);
 const esc=x=>String(x??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
@@ -152,40 +152,88 @@ async function importText(){
  const value=$("usertext").value.trim();
  if(!value){status("일본어 본문을 먼저 붙여넣어주세요.",true);return}
  if(value.length>30000){status("3만 자 이하만 입력할 수 있습니다.",true);return}
+ briefIsHeadlineOnly=false;
+ $("brief-type").textContent="직접 입력한 일본어";
+ $("brief-detail").textContent="작성자가 입력한 텍스트";
  paragraphs=value.replace(/\r/g,"").split(/\n+/).map(x=>x.trim()).filter(Boolean).slice(0,130);
  $("import").open=false;await render()
 }
-function prepareBrief(raw){
- const normalized=String(raw||"").replace(/\s+/g," ").trim();
- const headline=String(news.title||"").replace(/\s*[-－]\s*[^-－]{2,45}$/,"").trim();
- // Never generate journalistic facts from a headline. Discard duplicate metadata.
- const sentences=normalized.split(/(?<=[。！？!?])\s*/).map(x=>x.trim()).filter(Boolean);
- const accepted=[];
- for(const sentence of sentences){
-   if(sentence.length<15 || !/[一-龯ぁ-ゖァ-ヺ]/.test(sentence))continue;
-   if(sentence===headline||sentence===news.title)continue;
-   if(accepted.some(x=>x===sentence))continue;
-   accepted.push(sentence);
+// No paid AI or remote rewrite: do not introduce unverified details.
+function cleanBriefText(raw){
+ return String(raw||"").normalize("NFC")
+  .replace(/<br\s*\/?>/gi,"\n").replace(/<[^>]+>/g," ")
+  .replace(/[\u200b-\u200d\ufeff]/g,"")
+  .replace(/&(?:nbsp|emsp|ensp);/gi," ")
+  .replace(/[ \t　]+/g," ")
+  .replace(/ *\n+ */g,"\n")
+  .replace(/ *([、。！？!?]) */g,"$1")
+  .replace(/(?:続きを読む|この記事を読む|記事全文はこちら)[\s。]*$/g,"")
+  .trim();
+}
+function newsComparable(v){
+ return String(v||"").replace(/[\s、。．.,!?！？「」『』（）()【】]/g,"").toLowerCase();
+}
+function splitNewsSentences(text){
+ const out=[];let part="",quoteDepth=0;
+ const push=()=>{if(part.trim())out.push(part.trim());part=""};
+ for(let i=0;i<text.length;i++){
+  const char=text[i];part+=char;
+  if(char==="「"||char==="『")quoteDepth++;
+  if(char==="」"||char==="』")quoteDepth=Math.max(0,quoteDepth-1);
+  if(char==="\n"){push();continue}
+  if(/[。！？!?]/.test(char)&&quoteDepth===0){
+   while(i+1<text.length&&/[」』）)]/.test(text[i+1]))part+=text[++i];
+   push();
+  }else if((char==="」"||char==="』")&&quoteDepth===0&&/[。！？!?][」』]$/.test(part))push();
  }
- const result=accepted.join(" ");
- if(result.length>=18)return {paragraphs:accepted.slice(0,7),hasDescription:true};
- return {paragraphs:[],hasDescription:false}
+ push();return out;
+}
+function prepareBrief(raw){
+ const header=cleanBriefText(news.title);
+ let source=cleanBriefText(raw);
+ if(!source)return {paragraphs:[],hasDescription:false,sentenceCount:0};
+ // Drop verbatim repeated titles only at the beginning.
+ if(header.length>=8&&source.startsWith(header)){
+  const suffix=source.slice(header.length);
+  if(/^[ \n:：。．\-－]/.test(suffix))source=suffix.replace(/^[ \n:：。．\-－]+/,"").trim();
+ }
+ const known=new Set([newsComparable(header)]);
+ const sentences=[];
+ for(const text of splitNewsSentences(source)){
+  const sentence=text.trim(),key=newsComparable(sentence);
+  if(sentence.length<7||!/[一-龯ぁ-ゖァ-ヺ]/.test(sentence))continue;
+  if(!key||known.has(key))continue;
+  if(/^(?:続きを読む|この記事を読む|記事全文はこちら)/.test(sentence))continue;
+  known.add(key);sentences.push(sentence);
+  if(sentences.length>=16)break;
+ }
+ if(!sentences.length)return {paragraphs:[],hasDescription:false,sentenceCount:0};
+ const groups=[];let paragraph="",count=0;
+ for(const sentence of sentences){
+  if(paragraph&&(count>=2||paragraph.length+sentence.length>140)){
+   groups.push(paragraph);paragraph="";count=0;
+  }
+  paragraph+=sentence;count++;
+ }
+ if(paragraph)groups.push(paragraph);
+ return {paragraphs:groups.slice(0,8),hasDescription:true,sentenceCount:sentences.length};
 }
 function initial(){
  const brief=prepareBrief(rssSummary);
  $("brief-type").textContent=brief.hasDescription?"RSS 소개문 정리":"제목만 확인됨";
  if(brief.hasDescription){
    briefIsHeadlineOnly=false;
-   paragraphs=[news.title,...brief.paragraphs];
-   $("brief-detail").textContent="출처에서 제공한 공개 소개문 · 기사 전문 아님";
+   paragraphs=brief.paragraphs;
+   $("brief-detail").textContent=brief.sentenceCount+"개 문장 정리 · 뉴스 출처의 공개 소개문 · 전문 아님";
    render();
    return;
  }
  $("brief-detail").textContent="소개문을 제공하지 않는 기사";
  briefIsHeadlineOnly=true;
- paragraphs=[news.title];render();
- $("brief-detail").textContent="기사 전문 제공 없음 · 제목만 학습";
- status("현재 확인되는 내용은 제목뿐이야. 한자 읽기는 준비되는 대로 적용되고, RSS에 없는 기사 내용을 임의로 만들지 않았어.");
+ paragraphs=[];
+ $("body").innerHTML='<p class="dim" lang="ko">이 뉴스는 RSS에 소개문이 없어 제목만 확인됐어. 기사에 없는 내용을 임의로 만들지 않았어. 소개문이 있는 다른 뉴스를 선택하면 일본어 지문으로 읽을 수 있어.</p>';
+ $("brief-detail").textContent="제목만 확인 · 지문 없음";
+ status("지문이 없는 항목이야. 뉴스 제목에서 확인되는 사실만 표시했어.");
 }
 initial();
 </script></body></html>
