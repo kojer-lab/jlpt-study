@@ -1,5 +1,102 @@
 {
   "version": 1,
-  "batch_id": "end-sound-trim-ffmpeg-ci-validation-20261009",
-  "items": []
+  "batch_id": "reviewed-user-approved-ending-20261009-a",
+  "items": [
+    {
+      "word_id": "makanau",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        5
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    },
+    {
+      "word_id": "makanau",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        6
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    },
+    {
+      "word_id": "uketamawaru",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        7
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    },
+    {
+      "word_id": "uketamawaru",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        8
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    },
+    {
+      "word_id": "moyoosu",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        9
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    },
+    {
+      "word_id": "moyoosu",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 160,
+      "report_ids": [
+        10
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    },
+    {
+      "word_id": "oginau",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 240,
+      "report_ids": [
+        11
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    },
+    {
+      "word_id": "oginau",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 160,
+      "report_ids": [
+        12
+      ],
+      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+    }
+  ]
 }
