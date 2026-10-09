@@ -7,7 +7,7 @@ const ORIGIN = "https://kojer-lab.github.io";
 const CORS = { "Access-Control-Allow-Origin": ORIGIN, "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info", "Access-Control-Allow-Methods": "POST, OPTIONS", "Vary": "Origin" };
 const ok = (body: unknown, status=200) => new Response(JSON.stringify(body), {status, headers:{...CORS,"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});
 const HOSTS = new Set([
- "news.google.com","ja.wikinews.org","www3.nhk.or.jp","www.nhk.or.jp",
+ "news.google.com","news.web.nhk","ja.wikinews.org","www3.nhk.or.jp","www.nhk.or.jp",
  "www.asahi.com","www.yomiuri.co.jp","mainichi.jp","www.nikkei.com",
  "news.yahoo.co.jp","www.nikkansports.com","www.sponichi.co.jp",
  "www.oricon.co.jp","news.tv-asahi.co.jp","www.fnn.jp","www.tokyo-np.co.jp",
