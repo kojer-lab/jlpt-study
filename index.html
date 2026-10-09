@@ -242,6 +242,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .pron-actions .primary{background:var(--accent);color:#fff;border-color:var(--accent)}
 .pron-actions button:disabled{opacity:.55;cursor:not-allowed}.pron-alternatives{margin-top:10px}.pron-alternatives summary{font-size:12px;color:var(--muted);cursor:pointer;margin:6px 0 10px}.pron-alternatives .pron-actions{margin-top:8px}.pron-feedback{min-height:18px;font-size:13px;line-height:1.5;margin-top:8px;white-space:pre-wrap}
 .pron-feedback{font-size:12px;color:var(--good);min-height:18px;margin-top:10px}
+.pron-receipt-toast{position:fixed;z-index:1001;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);padding:12px 18px;background:var(--panel);color:var(--good);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 30px #0002;text-align:center;font-size:14px;font-weight:750;pointer-events:none}
 </style>
 <!-- static-vocab-audio-build-v1 -->
 </head>
@@ -667,6 +668,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 <p class="pron-hint" id="pronHint">신고 접수 버튼만 누르면 이 사이트에서 Supabase로 바로 저장돼. 외부 페이지는 열리지 않아.</p>
 <div class="pron-actions"><button class="primary" type="button" id="pronSubmit">신고 접수</button><button type="button" id="pronLogin" class="hidden">사이트에서 로그인</button></div><details class="pron-alternatives"><summary>접수가 안 될 때</summary><div class="pron-actions"><button type="button" id="pronCopy">신고 내용 복사</button></div></details>
 <div id="pronFeedback" class="pron-feedback" role="status" aria-live="polite"></div></section></div>
+<div class="pron-receipt-toast hidden" id="pronReceiptToast" role="status" aria-live="polite" aria-atomic="true"></div>
 <script>
 function F(b,r){
  b=String(b??"");r=String(r??"");
@@ -2216,6 +2218,14 @@ function openPronReport(id,ix,trigger){
  staticVocabAudioUrl(w,index).then(path=>{if(pronCurrent===data)data.path=path||null}).catch(()=>{});
 }
 function closePronReport(){$("pronOverlay").classList.add("hidden");pronCurrent=null;if(pronReturnFocus?.isConnected)pronReturnFocus.focus();pronReturnFocus=null}
+let pronReceiptTimer=null;
+function showPronReceipt(){
+ const toast=$("pronReceiptToast");
+ clearTimeout(pronReceiptTimer);
+ toast.textContent="✓ 발음 오류 신고 접수 완료";
+ toast.classList.remove("hidden");
+ pronReceiptTimer=setTimeout(()=>toast.classList.add("hidden"),3000);
+}
 function pronReportPayload(){
  if(!pronCurrent)return null;const r=pronCurrent,w=wordById.get(r.id);if(!w)return null;
  const kind=r.index===null?"단어":"예문 "+(r.index+1),title="[발음 오류] "+kind+" · "+plain(w.w).slice(0,65);
@@ -2273,8 +2283,8 @@ async function submitPronReport(){
   const {error}=await cloudClient.from("jlpt_pronunciation_reports").insert(payload);
   if(error)throw error;
   if(pronCurrent!==current)return;
-  $("pronFeedback").textContent="접수 완료! 오류 신고가 Supabase에 저장됐어. 검토 후 음성을 수정할 수 있어.";
-  $("pronSubmit").disabled=true;
+  closePronReport();
+  showPronReceipt();
  }catch(error){
   console.warn("Pronunciation report submission failed",error);
   if(pronCurrent===current)$("pronFeedback").textContent=pronSubmissionError(error);
