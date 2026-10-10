@@ -5,6 +5,26 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const source=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
 const archiveIndex=Array.isArray(window.KOJER_NEWS_INDEX?.articles)?window.KOJER_NEWS_INDEX.articles:[];
+// Reviewed title translations for the existing sixteen archived articles.
+// Future news data can provide its own titleTranslation field.
+const titleTranslations={
+ "2026-10-09-digger-mappa":"톰 크루즈, MAPPA 전시에서 애니메이션 제작 현장에 다가가다",
+ "2026-10-08-boj-regional-inflation":"일본은행, 물가 상승의 확산을 경계… 기업과 가계에 미치는 영향",
+ "2026-10-09-tokyo-cyber-emergency":"잇따르는 사이버 공격… 도쿄도가 긴급회의에서 대응을 확인",
+ "2026-10-09-russia-icc-extradition":"러시아, ICC 소장 등의 인도를 요구… 국제 사법을 둘러싼 대립이 심화되다",
+ "2026-10-09-tomoe-gozen-universe":"우주의 한순간을 포착하는 ‘토모에고젠’… 넓은 하늘을 고속으로 관측",
+ "2026-10-09-nanji-hoshi-premiere":"영화 《그대, 별과 같이》 개봉… 요코하마 류세이와 마쓰무라 호쿠토가 말하는 공동 출연의 기억",
+ "2026-10-09-generative-ai-usage-japan":"일본에서 생성형 AI의 이용이 확대… 이용자 수만으로는 보이지 않는 변화",
+ "2026-10-08-satellite-5g-ntn-kashima":"위성과 지상의 통신을 연결… 일본 국내에 ‘5G NTN’ 실증 설비",
+ "2026-10-09-children-smartphone-filtering":"초등학생의 스마트폰 이용, 필터링에 대한 이해가 과제로",
+ "2026-10-09-suica-penguin-reissue":"인기 투표로 선정된 ‘Suica 펭귄’ 상품, 복각 판매 예정",
+ "jlpt-news-2026-10-10-01":"쌀값 하락이 이어지는 가운데, 가격을 가늠하는 방법이 쟁점으로",
+ "jlpt-news-2026-10-10-02":"수입 금지 육류 제품이 매장에서 확인돼, 검역의 역할을 생각하다",
+ "jlpt-news-2026-10-10-03":"숙박 예약 시스템에 대한 부정 접근, 정보 관리의 맹점",
+ "jlpt-news-2026-10-10-04":"중국과 EU의 통상 협의, 대립과 협조 사이에서",
+ "jlpt-news-2026-10-10-05":"월드컵을 둘러싼 비방과 중상, 숫자가 들이민 과제",
+ "jlpt-news-2026-10-10-06":"애니메이션과 공예가 만나는, 니지가사키의 가죽 제품 기획"
+};
 const inFlightAssets=new Map();
 // Load a day's articles only when an article from that day is opened.
 // All the other dates remain tiny index entries, not downloaded article bodies.
@@ -36,7 +56,7 @@ async function loadArchivedArticle(id){
 
 window.KOJER_ADD_GENERATED_NEWS=function(articles){if(!Array.isArray(articles))return;for(const a of articles){if(a&&typeof a.id==="string"&&!source.some(x=>x.id===a.id))source.push(a)}if(typeof renderCuratedNewsHome==="function")renderCuratedNewsHome()};
 const storeKey="jlpt-news-expression-test-v2";
-let article=null,translationOpen=false,selectedExpression=null,expressionOpen=false;
+let article=null,translationOpen=false,titleOpen=false,selectedExpression=null,expressionOpen=false;
 let paragraphOpen=new Set(),lastProgressSave=0,suppressProgressSaveUntil=0;
 const progressKey="jlptNewsReadProgressV1";
 function savedProgress(){try{const v=JSON.parse(localStorage.getItem(progressKey)||"{}");return v&&typeof v==="object"?v:{}}catch{return {}}}
@@ -224,6 +244,28 @@ function annotate(str){
   }else{output+=esc(text[offset]);offset++}
  }
  return {output,covered,kanji};
+}
+// Fill title-only reading gaps without affecting context-dependent body readings.
+const titleReadingFixes=[
+ ["実証設備","じっしょうせつび"],["見極め方","みきわめかた"],
+ ["突き付けた","つきつけた"],["警戒","けいかい"],["深まる","ふかまる"],
+ ["一瞬","いっしゅん"],["語る","かたる"],["記憶","きおく"],
+ ["盲点","もうてん"],["協調","きょうちょう"],["工芸","こうげい"],
+ ["交わる","まじわる"],["W杯","わーるどかっぷ"],["展","てん"]
+].sort((a,b)=>b[0].length-a[0].length);
+function titleHTML(text){
+ const title=String(text||"");let result="",unmatched="",i=0;
+ const flush=()=>{if(unmatched){result+=annotate(unmatched).output;unmatched=""}};
+ while(i<title.length){
+  const hit=titleReadingFixes.find(([form])=>title.startsWith(form,i));
+  if(hit){flush();result+=wordHTML(hit[0],hit[1]);i+=hit[0].length}
+  else {unmatched+=title[i];i++}
+ }
+ flush();return result;
+}
+function getTitleTranslation(a){
+ const meta=archiveIndex.find(x=>x.id===a?.id);
+ return String(a?.titleTranslation||meta?.titleTranslation||titleTranslations[a?.id]||"").trim();
 }
 function paragraphHTML(text){
  const expressions=(article?.expressions||[]).filter(e=>e?.form&&text.includes(e.form)).sort((a,b)=>b.form.length-a.form.length);
@@ -420,6 +462,13 @@ function renderSavedNotebook(){
 }
 function updateParagraphTranslation(){
  if(!article)return;
+ const titleKo=getTitleTranslation(article),showTitle=!!titleKo&&(translationOpen||titleOpen);
+ const titleButton=$("newsTitleTranslate"),titleBody=$("newsTitleKo");
+ titleButton.classList.toggle("hidden",!titleKo);
+ titleButton.textContent=showTitle?"제목 번역 숨기기":"제목 번역 보기";
+ titleButton.setAttribute("aria-expanded",String(showTitle));
+ titleBody.textContent=titleKo;
+ titleBody.classList.toggle("hidden",!showTitle);
  $("newsArticleBody").querySelectorAll(".news-paragraph").forEach((node,i)=>{
   const open=translationOpen||paragraphOpen.has(i);
   const body=node.querySelector(".news-paragraph-ko");
@@ -497,11 +546,12 @@ function refreshMode(){
 function displayArticle(id){
  const a=source.find(x=>x.id===id);
  if(!a){displayList();return}
- article=a;translationOpen=false;paragraphOpen=new Set();
+ article=a;translationOpen=false;titleOpen=false;paragraphOpen=new Set();
  $("newsCuratedBrowser").classList.add("hidden");
  $("newsCuratedDetail").classList.remove("hidden");
  $("newsArticleMeta").textContent=[a.category,a.date,a.bodyLength+"자"].join(" · ");
- $("newsArticleTitle").textContent=a.title;
+ $("newsArticleTitle").innerHTML=titleHTML(a.title);
+ if(typeof restoreInteractiveFuriState==="function")restoreInteractiveFuriState($("newsArticleTitle"));
  let marked=0,total=0;
  $("newsArticleBody").innerHTML=a.paragraphs.map((p,i)=>{
   const r=paragraphHTML(p);marked+=r.covered;total+=r.kanji;
@@ -542,6 +592,7 @@ async function route(){
   $("newsCuratedDetail").classList.remove("hidden");
   $("newsArticleMeta").textContent="";
   $("newsArticleTitle").textContent="기사를 불러오는 중…";
+   $("newsTitleTranslate").classList.add("hidden");$("newsTitleKo").classList.add("hidden");
   $("newsArticleBody").textContent="";
   $("newsArticleExpressions").textContent="";
   $("newsReadResume").classList.add("hidden");
@@ -559,6 +610,7 @@ async function route(){
  }catch(error){
   if(serial!==routeSerial||!location.hash.startsWith("#newsreader/"))return;
   $("newsArticleTitle").textContent="기사를 불러오지 못했어";
+   $("newsTitleTranslate").classList.add("hidden");$("newsTitleKo").classList.add("hidden");
   $("newsArticleBody").textContent=error.message||"잠시 후 다시 시도해 줘.";
   $("newsArticleExpressions").textContent="";
   $("newsArticleMeta").textContent="기사 파일을 확인해 줘. 뒤로 이동 후 다시 열면 재시도할 수 있어.";
@@ -569,10 +621,16 @@ function init(){
  for(const id of ["newsCuratedBack","newsCuratedBottomBack"])$(id).addEventListener("click",()=>{location.hash="#newsreader"});
  $("newsReadResume").addEventListener("click",resumeProgress);
  $("newsMarkRead").addEventListener("click",toggleNewsRead);
+ $("newsTitleTranslate").addEventListener("click",()=>{
+  if(!article||!getTitleTranslation(article))return;
+  if(translationOpen){translationOpen=false;paragraphOpen=new Set(article.paragraphs.map((_,i)=>i));titleOpen=false}
+  else titleOpen=!titleOpen;
+  updateParagraphTranslation();
+ });
  $("newsArticleTranslate").addEventListener("click",()=>{
   if(!article)return;
   translationOpen=!translationOpen;
-  if(!translationOpen)paragraphOpen.clear();
+  if(!translationOpen){paragraphOpen.clear();titleOpen=false}
   updateParagraphTranslation();
  });
  $("newsArticleTools").addEventListener("click",e=>{
