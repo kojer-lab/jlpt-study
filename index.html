@@ -489,12 +489,11 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
           <div class="sub" id="newsArticleMeta" style="font-size:13px;margin:0 0 10px"></div>
           <h2 id="newsArticleTitle" lang="ja" style="font-size:clamp(22px,3.4vw,31px);line-height:1.55;word-break:keep-all;margin:0"></h2>
           <p class="sub" style="font-size:12px;margin:12px 0 20px">실제 보도를 기반으로 다시 작성한 학습용 기사입니다. 원문을 그대로 게재한 것은 아닙니다.</p>
-          <div class="toolbar" id="newsArticleTools" style="padding:13px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 22px">
-            <span style="font-size:13px;color:var(--muted)">후리가나</span>
-            <button class="secondary" type="button" data-news-furi="interactive">한자 클릭</button>
-            <button class="secondary" type="button" data-news-furi="always">모두 보기</button>
-            <button class="secondary" type="button" data-news-furi="off">숨기기</button>
-            <button class="secondary" type="button" id="newsArticleTranslate">한국어 번역 보기</button>
+          <div id="newsArticleTools" class="hidden" aria-hidden="true">
+            <button type="button" data-news-furi="interactive">한자 클릭</button>
+            <button type="button" data-news-furi="always">모두 보기</button>
+            <button type="button" data-news-furi="off">숨기기</button>
+            <button type="button" id="newsArticleTranslate">전체 번역 보기</button>
           </div>
           <div id="newsReadResume" class="sub" style="margin:4px 0 14px;font-size:12px" aria-live="polite"></div>
           <div id="newsArticleBody" class="news-article-body" lang="ja"></div>
@@ -3528,7 +3527,7 @@ applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);ren
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-ai-news-pipeline1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-clean-reader1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-gpt-source1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
