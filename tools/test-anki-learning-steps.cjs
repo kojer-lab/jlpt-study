@@ -44,7 +44,7 @@ assert(reviewHard.due-when>=DAY,"Hard on established review is day-based");
 assert.equal(sandbox.focusMissEligible(again,when+5*MIN),false,"First-day learning is exempt");
 assert.equal(sandbox.focusMissEligible(again,when+DAY),false,"Learning/relearning retries never count as mature review failures");
 assert.equal(sandbox.focusMissEligible({...review,firstStudyDay:"2026-10-10"},when),false,"First calendar day is excluded");
-assert.equal(sandbox.focusMissEligible(review,when),true,"A graduated older card is eligible");
+assert.equal(sandbox.focusMissEligible({...review,firstStudyDay:"2026-10-01"},when),true,"A graduated older card is eligible");
 assert.equal(sandbox.focusMissEligible({reviews:3},when),true,"Existing legacy progress remains eligible");
 assert.equal(sandbox.focusMissEligible(fromNew,when),false,"Never-studied cards are exempt");
 assert(!extract("function promoteQuickWord(){","function persistWordSession(){").includes("wordSessionQueue.unshift"),"No early turn-based shortcut");
