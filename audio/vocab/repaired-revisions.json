@@ -500,6 +500,9 @@
     "audio/vocab/zeijaku-ex1.mp3": "legacy-rebuilt-952fc414fe1c",
     "audio/vocab/zeijaku-ex2.mp3": "legacy-rebuilt-952fc414fe1c",
     "audio/vocab/zesei-ex1.mp3": "legacy-rebuilt-952fc414fe1c",
-    "audio/vocab/zesei-ex2.mp3": "legacy-rebuilt-952fc414fe1c"
+    "audio/vocab/zesei-ex2.mp3": "legacy-rebuilt-952fc414fe1c",
+    "audio/vocab/openjlpt/oj-b29a4ed96a-ex1.mp3": "93668845fcc4070d",
+    "audio/vocab/openjlpt/oj-7f1212c5b6-ex1.mp3": "58ef26b5ef565c4c",
+    "audio/vocab/openjlpt/oj-b4f987e2d7-ex1.mp3": "89c1ac0c334a800b"
   }
 }
