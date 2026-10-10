@@ -454,6 +454,13 @@ function sentenceKoForItem(item,a,paraIndex,example){
  if(a&&paraIndex>=0){
   const computed=alignedSentenceKo(a,paraIndex,example);
   if(computed)return computed;
+  // An older saved excerpt can still contain kanji dates or quantities.
+  // If its expression occurs in exactly one current Japanese sentence, use
+  // that sentence's Korean translation instead of exposing the whole paragraph.
+  const jpLines=sentencesJP(a.paragraphs?.[paraIndex]);
+  const koLines=sentencesKO(a.translationParagraphs?.[paraIndex]);
+  const hits=jpLines.map((line,i)=>line.includes(item?.form||"")?i:-1).filter(i=>i>=0);
+  if(item?.form&&hits.length===1&&jpLines.length===koLines.length)return koLines[hits[0]]||"";
  }
  if(item?.sentenceTranslation)return String(item.sentenceTranslation);
  const old=sentencesKO(item?.translation||"");
