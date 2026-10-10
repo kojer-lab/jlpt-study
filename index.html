@@ -2356,6 +2356,10 @@ function renderCuratedNewsHome(){
  const monthPicker=$("newsMonthSelect"),olderPicker=$("newsOlderDateSelect"),moreButton=$("newsMoreButton");
  if(!list||!dateFilters||!category||!monthPicker||!olderPicker||!moreButton)return;
  $("newsArticleCount").textContent=bank.length+"개";
+ const isRead=id=>typeof window.KOJER_NEWS_IS_READ==="function"&&window.KOJER_NEWS_IS_READ(id);
+ const completedCount=bank.filter(item=>isRead(item.id)).length;
+ const completedLabel=$("newsReadCount");
+ if(completedLabel)completedLabel.textContent="읽음 "+completedCount+"개";
  const validDate=value=>/^\d{4}-\d{2}-\d{2}$/.test(String(value||""));
  const datesAll=[...new Set(bank.map(x=>x.date).filter(validDate))].sort().reverse();
  const months=[...new Set(datesAll.map(d=>d.slice(0,7)))];
@@ -2429,11 +2433,18 @@ function renderCuratedNewsHome(){
   const meta=document.createElement("div");meta.className="sub";
   meta.textContent=[item.category,item.date,item.bodyLength+"자"].filter(Boolean).join(" · ");
   meta.style.cssText="font-size:12px;line-height:1.6;color:var(--muted)";
+  const readBadge=document.createElement("span");
+  readBadge.className="news-card-read"+(isRead(item.id)?"":" is-empty");
+  readBadge.textContent="✓ 읽음";
+  readBadge.setAttribute("aria-label",isRead(item.id)?"읽음 완료":"미완료");
+  const metaRow=document.createElement("div");metaRow.className="news-card-toprow";
+  metaRow.style.cssText="display:flex;justify-content:space-between;align-items:baseline;gap:6px";
+  metaRow.append(meta,readBadge);
   const title=document.createElement("strong");title.textContent=item.title;title.lang="ja";
   title.style.cssText="font-size:17px;line-height:1.6;word-break:normal;overflow-wrap:anywhere;white-space:normal;max-width:100%;min-width:0;display:block";
   const link=document.createElement("a");link.href="#newsreader/"+encodeURIComponent(item.id);
   link.textContent="기사 읽기 →";link.style.cssText="margin-top:auto;display:inline-block;color:var(--accent);font-weight:700;text-decoration:none";
-  card.append(meta,title,link);list.appendChild(card);
+  card.append(metaRow,title,link);list.appendChild(card);
  }
 }
 function showView(name){
@@ -3820,8 +3831,8 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-furi-2026-10-10-reviewed.js?v=20261010-furi-full2"></script>
-<script src="data/news-reader-embedded.js?v=20261010-saved-accordion1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-news-read1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-literal-translation1"></script>
-<script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
+<script src="data/news-sync-bridge.js?v=20261010-news-read1"></script>
 </body>
 </html>
