@@ -255,6 +255,12 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-paragraph .news-japanese-paragraph{margin:0;padding:6px 0 0}
 .news-paragraph-translate{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:8px;font-size:12px;padding:6px 11px;margin:0 0 7px;cursor:pointer}
 .news-paragraph-ko{background:var(--accent-soft);border:1px solid var(--line);padding:12px 14px;border-radius:10px;margin:0 0 14px;font-size:15px;line-height:1.85;color:var(--text)}
+/* A headline uses the same tap-to-reveal reading and translation interaction as paragraphs. */
+#newsArticleTitle .furi::before{font-size:.57em;bottom:calc(100% - .36em);line-height:1}
+#newsTitleTranslate{display:inline-flex;margin:9px 0 10px;font-size:12px}
+#newsTitleTranslate.hidden{display:none}
+#newsTitleKo{margin:0 0 18px;font-size:15px;line-height:1.8;overflow-wrap:break-word}
+#newsArticleTitle .furi{white-space:nowrap}
 .news-saved-card{border-top:1px solid var(--line);padding:15px 0;line-height:1.8}
 .news-saved-card .sub{font-size:13px;margin:5px 0}
 .news-saved-card .news-reading{color:var(--accent);font-size:13px;margin-left:8px}
@@ -720,7 +726,9 @@ ruby rt { font-weight:600!important; }
         <button id="newsCuratedBack" class="secondary" type="button" style="margin-bottom:16px">← 뉴스 목록으로</button>
         <div class="card" style="padding:clamp(18px,4vw,32px)">
           <div class="sub" id="newsArticleMeta" style="font-size:13px;margin:0 0 10px"></div>
-          <h2 id="newsArticleTitle" lang="ja" style="font-size:clamp(22px,3.4vw,31px);line-height:1.55;word-break:keep-all;margin:0"></h2>
+          <h2 id="newsArticleTitle" lang="ja" style="font-size:clamp(22px,3.4vw,31px);line-height:1.65;word-break:keep-all;margin:0"></h2>
+           <button type="button" id="newsTitleTranslate" class="news-paragraph-translate hidden" aria-expanded="false" aria-controls="newsTitleKo">제목 번역 보기</button>
+           <div id="newsTitleKo" class="news-paragraph-ko hidden" lang="ko"></div>
           
           <div id="newsArticleTools" class="hidden" aria-hidden="true">
             <button type="button" data-news-furi="interactive">한자 클릭</button>
@@ -3850,7 +3858,7 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-furi-2026-10-10-reviewed.js?v=20261010-furi-full2"></script>
-<script src="data/news-reader-embedded.js?v=20261010-expression-example-fix1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-headline-ruby-ko1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-literal-translation1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-read1"></script>
 </body>
