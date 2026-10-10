@@ -352,6 +352,52 @@ ruby rt { font-weight:600!important; }
  #newsSavedList .news-saved-detail{padding:14px 12px}
  #newsSavedList .news-sentence{font-size:16px}
 }
+
+/* Minimal RSS discovery: collapsed by default, headlines first when expanded. */
+#newsCollectorSection .news-collector-help{margin:8px 0 14px;font-size:13px;line-height:1.7}
+#newsCollectorSection .news-collector-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#newsCollectorSection #newsCollectStatus{font-size:12px;margin:11px 0 0;line-height:1.6}
+#newsCollectorSection .news-rss-results{margin-top:15px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+#newsCollectorSection .news-rss-results-toggle{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;font-size:14px}
+#newsCollectorSection .news-rss-results-toggle::-webkit-details-marker{display:none}
+#newsCollectorSection .news-rss-results-toggle::marker{content:""}
+#newsCollectorSection .news-rss-results-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
+#newsCollectorSection .news-rss-results-title{font-weight:750}
+#newsCollectorSection .news-rss-results-title b{color:var(--accent);margin-left:3px}
+#newsCollectorSection .news-rss-results-action{color:var(--muted);white-space:nowrap;font-size:12px}
+#newsCollectorSection .news-rss-results-arrow{display:inline-block;transition:transform .2s}
+#newsCollectorSection .news-rss-results[open] .news-rss-results-arrow{transform:rotate(180deg)}
+#newsCollectorSection .news-rss-results-content{padding:0 16px 7px;border-top:1px solid var(--line)}
+#newsCollectorSection .news-rss-filters{gap:5px;margin:12px 0!important;flex-wrap:wrap}
+#newsCollectorSection .news-rss-filters button{font-size:12px;padding:6px 10px;border-radius:8px}
+#newsCollectorSection .news-rss-filters button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+#newsCollectorSection .news-rss-item{border-top:1px solid var(--line);padding:0;margin:0;line-height:1.6}
+#newsCollectorSection .news-rss-item:first-child{border-top:0}
+#newsCollectorSection .news-rss-row{display:flex;gap:10px;align-items:center;list-style:none;cursor:pointer;padding:12px 3px;min-height:54px}
+#newsCollectorSection .news-rss-row::-webkit-details-marker{display:none}
+#newsCollectorSection .news-rss-row::marker{content:""}
+#newsCollectorSection .news-rss-row:hover{background:var(--accent-soft)}
+#newsCollectorSection .news-rss-row:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+#newsCollectorSection .news-rss-category{flex:none;font-size:11px;line-height:1.4;white-space:nowrap;border-radius:7px;background:var(--bg);border:1px solid var(--line);padding:4px 7px;color:var(--muted)}
+#newsCollectorSection .news-rss-title{flex:1;min-width:0;overflow-wrap:anywhere;font-size:14px;font-weight:680;line-height:1.55;color:var(--text)}
+#newsCollectorSection .news-rss-source{flex:none;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;color:var(--muted)}
+#newsCollectorSection .news-rss-chevron{flex:none;font-size:18px;color:var(--muted);transition:transform .2s}
+#newsCollectorSection .news-rss-item[open] .news-rss-chevron{transform:rotate(180deg)}
+#newsCollectorSection .news-rss-body{padding:0 8px 14px 12px}
+#newsCollectorSection .news-rss-meta{font-size:11px;color:var(--muted);margin:1px 0 8px}
+#newsCollectorSection .news-rss-body .news-rss-summary{font-size:14px;line-height:1.85;white-space:pre-wrap;margin:0 0 13px;overflow-wrap:anywhere}
+#newsCollectorSection .news-rss-source-link{display:inline-flex;align-items:center;min-height:34px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-size:12px;color:var(--accent)}
+#newsCollectorSection .news-import-options{margin-top:12px;font-size:12px;color:var(--muted)}
+#newsCollectorSection .news-import-options>summary{display:list-item;cursor:pointer;width:max-content;max-width:100%;padding:2px 0}
+#newsCollectorSection .news-import-options>summary:hover{color:var(--accent)}
+@media(max-width:600px){
+ #newsCollectorSection .news-rss-results-content{padding:0 10px 7px}
+ #newsCollectorSection .news-rss-results-toggle{padding:12px}
+ #newsCollectorSection .news-rss-row{gap:7px;padding:10px 1px}
+ #newsCollectorSection .news-rss-title{font-size:13px}
+ #newsCollectorSection .news-rss-source{display:none}
+ #newsCollectorSection .news-rss-category{font-size:10px}
+}
 </style>
 </head>
 <body>
@@ -511,16 +557,31 @@ ruby rt { font-weight:600!important; }
  <div id="newsSavedList"></div>
       </section>
       <section class="card" id="newsCollectorSection" style="margin-bottom:18px">
-       <div class="toolbar" style="justify-content:space-between;align-items:center">
-        <strong>🗞️ 오늘의 일본 뉴스</strong><span class="tag">RSS · 짧은 소개문</span>
+       <div class="toolbar news-collector-header" style="justify-content:space-between;align-items:center">
+        <strong>🗞️ 오늘의 일본 뉴스</strong><span class="tag">RSS · 기사 후보</span>
        </div>
-       <p class="sub" style="margin:8px 0 13px;font-size:13px">최근 일본 소식을 직접 모아봐. 900~1,200자 편집 지문과 달리 이곳은 RSS 소개문만 제공해. 충분한 내용이 있는 기사만 표시하며, 원문은 언론사 사이트에서 열 수 있어.</p>
-       <div class="toolbar"><button id="newsCollectButton" type="button">↻ 오늘의 기사 모으기</button><button id="newsGenerateButton" type="button" class="secondary">✨ GPT에게 원문 기반 기사 요청</button><button id="newsCollectorGoCloud" type="button" class="secondary" style="display:none">동기화 로그인·설정</button></div>
-       <div class="toolbar" style="margin:8px 0"><button type="button" class="secondary" id="newsImportButton">📥 GPT 기사 JSON 가져오기</button><input type="file" id="newsImportFile" accept=".json,application/json" class="hidden" aria-label="GPT 기사 JSON 파일"></div>
-       <p class="sub" id="newsImportStatus" role="status" aria-live="polite" style="font-size:12px"></p>
-       <p class="sub" id="newsCollectStatus" style="font-size:13px;margin:10px 0" role="status" aria-live="polite">버튼을 누르면 최신 일본 뉴스를 가져와.</p>
-       <div id="newsCollectFilters" class="toolbar" style="margin:12px 0"></div>
-       <div id="newsCollectList"></div>
+       <p class="sub news-collector-help">최신 뉴스 후보를 모아 GPT에게 학습 기사 작성을 요청할 수 있어. RSS 소개문은 필요할 때만 펼쳐 봐.</p>
+       <div class="toolbar news-collector-actions">
+        <button id="newsCollectButton" type="button">↻ 오늘의 기사 모으기</button>
+        <button id="newsGenerateButton" type="button" class="secondary">✨ GPT에게 원문 기반 기사 요청</button>
+        <button id="newsCollectorGoCloud" type="button" class="secondary hidden">동기화 로그인·설정</button>
+       </div>
+       <p class="sub" id="newsCollectStatus" role="status" aria-live="polite">버튼을 누르면 최신 일본 뉴스를 가져와.</p>
+       <details id="newsRssResults" class="news-rss-results hidden">
+        <summary class="news-rss-results-toggle">
+         <span class="news-rss-results-title">수집한 뉴스 후보 <b id="newsRssCount">0건</b></span>
+         <span class="news-rss-results-action"><span id="newsRssExpandLabel">목록 펼치기</span> <span class="news-rss-results-arrow" aria-hidden="true">⌄</span></span>
+        </summary>
+        <div class="news-rss-results-content">
+         <div id="newsCollectFilters" class="toolbar news-rss-filters"></div>
+         <div id="newsCollectList" class="news-rss-list"></div>
+        </div>
+       </details>
+       <details class="news-import-options">
+        <summary>기사 JSON 가져오기 · 고급 옵션</summary>
+        <div class="toolbar" style="margin:10px 0 0"><button type="button" class="secondary" id="newsImportButton">📥 GPT 기사 JSON 가져오기</button><input type="file" id="newsImportFile" accept=".json,application/json" class="hidden" aria-label="GPT 기사 JSON 파일"></div>
+        <p class="sub" id="newsImportStatus" role="status" aria-live="polite" style="font-size:12px;margin:8px 0 0"></p>
+       </details>
       </section>
       <div id="newsCuratedFilters" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0"></div>
       <div class="grid3" id="newsCuratedList"></div>
@@ -3571,7 +3632,7 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-reader-embedded.js?v=20261010-saved-collapsible1"></script>
-<script src="data/news-collector-embedded.js?v=20261010-gpt-import2"></script>
+<script src="data/news-collector-embedded.js?v=20261010-rss-compact1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
 </html>
