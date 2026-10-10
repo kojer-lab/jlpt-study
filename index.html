@@ -626,7 +626,6 @@ ruby rt { font-weight:600!important; }
           </div>
           <div class="word-settings-note">변경하면 자동 저장됩니다. 이미 학습한 단어와 복습 기록은 유지됩니다.</div>
         </div>
-        <div id="wordSessionSummary" class="word-dashboard-sub hidden" style="margin:9px 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;background:var(--panel)"></div>
         <button class="primary word-start" type="button" id="startWordStudy">지금 학습 시작</button>
         <div class="word-dash-actions">
           <button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button>
@@ -2678,15 +2677,6 @@ function renderWordDashboard(){
  $("wordCountPill").textContent=`현재 ${words.length} words`;if($("wordLibraryCount"))$("wordLibraryCount").textContent=words.length;
  const total=due.length+fresh.length;
  const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0||wordQuickRepeats.length>0)||(!wordSessionTotal&&restoreWordSession());
- const sessionSummary=$("wordSessionSummary");
- if(sessionSummary){
-  const remaining=wordSessionQueue.length+wordLearningQueue.length+wordQuickRepeats.length+(wordQuickActive?1:0);
-  sessionSummary.classList.toggle("hidden",!active);
-  if(active){
-   const pending=wordLearningQueue.length;
-   sessionSummary.textContent=`진행 중인 세션: ${wordSessionDone}/${wordSessionTotal}개 완료 · 남은 학습 ${remaining}개${pending?` (단기 재학습 대기 ${pending}개 포함)`:""} · 위 숫자는 현재 FSRS 복습 대상 기준`;
-  }
- }
  $("startWordStudy").disabled=!active&&total===0;
  $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`지금 학습 시작 · ${total}장`:"지금 학습할 단어 없음 ✓";
 }
