@@ -648,7 +648,7 @@ ruby rt { font-weight:600!important; }
             <button type="button" data-news-furi="off">숨기기</button>
             <button type="button" id="newsArticleTranslate">전체 번역 보기</button>
           </div>
-          <div id="newsReadResume" class="sub" style="margin:4px 0 14px;font-size:12px" aria-live="polite"></div>
+          <button type="button" id="newsReadResume" class="secondary hidden" style="display:inline-flex;align-items:center;margin:4px 0 14px;font-size:12px;padding:7px 11px" aria-label="이전에 읽던 문단부터 이어 읽기"></button>
           <div id="newsArticleBody" class="news-article-body" lang="ja"></div>
           <div class="news-expression-tools">
             <button id="newsExpressionToggle" class="secondary" type="button" aria-expanded="false" aria-controls="newsExpressionPanel" style="width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px">
@@ -2318,7 +2318,7 @@ function renderCuratedNewsHome(){
   const card=document.createElement("div");card.className="card";
   card.style.cssText="display:flex;flex-direction:column;gap:12px;min-width:0";
   const meta=document.createElement("div");meta.className="sub";
-  meta.textContent=[item.category,item.date,item.source,item.bodyLength+"자"].join(" · ");
+  meta.textContent=[item.category,item.date,item.bodyLength+"자"].join(" · ");
   meta.style.cssText="font-size:12px;line-height:1.6;color:var(--muted)";
   const title=document.createElement("strong");title.textContent=item.title;title.lang="ja";
   title.style.cssText="font-size:17px;line-height:1.6;word-break:normal;overflow-wrap:anywhere;white-space:normal;max-width:100%;min-width:0;display:block";
@@ -3709,7 +3709,7 @@ applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);ren
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-saved-collapsible1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-article-top1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-github-publish1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
