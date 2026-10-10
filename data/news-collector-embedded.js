@@ -95,7 +95,7 @@ function countKoreanSentences(value){
 function formatNewsKanjiNumber(value){
  const digits={"〇":0,"零":0,"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9};
  const run=s=>{
-  if(["十","百","千","万","億","兆"].includes(s))return s;
+  if(s==="十")return "10";if(s==="百")return "100";if(s==="千")return "1,000";if(["万","億","兆"].includes(s))return s;
   if(s.endsWith("万")&&!s.includes("億"))return run(s.slice(0,-1))+"万";
   if([...s].every(c=>Object.prototype.hasOwnProperty.call(digits,c)))return [...s].map(c=>digits[c]).join("");
   let total=0,block=0,buffer="";
