@@ -4186,9 +4186,20 @@ if(location.hash==="#newsreader")showView("newsreader");
 <script>
 // Keep Safari double-tap zoom disabled inside the news expression review.
 // Single taps (including furigana) and two-finger pinch remain available.
-document.getElementById("newsReviewArea")?.addEventListener("dblclick",function(event){
-  event.preventDefault();
-},{passive:false});
+const newsReviewTouchArea=document.getElementById("newsReviewArea");
+if(newsReviewTouchArea){
+ let lastTapTime=0,lastTapX=0,lastTapY=0;
+ newsReviewTouchArea.addEventListener("touchend",function(event){
+  if(event.touches.length||event.changedTouches.length!==1)return;
+  const touch=event.changedTouches[0],time=Date.now();
+  const repeated=time-lastTapTime<340&&Math.abs(touch.clientX-lastTapX)<28&&Math.abs(touch.clientY-lastTapY)<28;
+  lastTapTime=time;lastTapX=touch.clientX;lastTapY=touch.clientY;
+  if(repeated&&event.cancelable)event.preventDefault();
+ },{passive:false});
+ newsReviewTouchArea.addEventListener("dblclick",function(event){
+  if(event.cancelable)event.preventDefault();
+ },{passive:false});
+}
 </script>
 </body>
 </html>
