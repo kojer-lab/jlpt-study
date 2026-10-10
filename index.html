@@ -290,8 +290,17 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-jump-to-expression:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .news-saved-card .news-expression-ruby{font-size:16px}
 
-.news-article-body .news-phrase{text-decoration:none;background:transparent;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.news-article-body .news-phrase.news-phrase-selected{background:color-mix(in srgb,var(--accent) 24%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 24%,transparent);outline:1px solid color-mix(in srgb,var(--accent) 44%,transparent)}
+/* Highlight the glyphs only. Outlines and outer shadows on a ruby-containing
+   inline span produce broken rectangular fragments around its inline-block furigana. */
+.news-article-body .news-phrase{text-decoration:none;background:transparent}
+.news-article-body .news-phrase.news-phrase-selected{
+ background:rgba(79,70,229,.23);
+ box-shadow:none;outline:none;border:0;border-radius:0;
+ -webkit-box-decoration-break:slice;box-decoration-break:slice;
+}
+body.dark .news-article-body .news-phrase.news-phrase-selected{
+ background:rgba(250,204,21,.39);
+}
 .news-expression-tools{margin-top:26px;border-top:1px solid var(--line);padding-top:20px}
 .news-expression-tools #newsExpressionToggle{font-size:15px;font-weight:750;padding:14px 16px}
 .news-expression-tools [data-news-expression-button].active{background:var(--accent);color:#fff;border-color:var(--accent)}
