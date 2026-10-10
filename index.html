@@ -442,7 +442,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
       </div>
       <div class="toolbar" style="margin:14px 0 12px">
  <button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button>
- <button type="button" id="newsSyncButton" class="secondary" style="font-size:12px">☁️ 뉴스 기록 지금 동기화</button>
+ <button type="button" id="newsSyncButton" class="secondary" style="display:none;font-size:12px">☁️ 뉴스 기록 지금 동기화</button>
  <span class="sub" id="newsSyncState" style="font-size:12px" role="status" aria-live="polite">뉴스 학습 기록: 이 기기에 저장</span>
 </div>
       <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
@@ -475,7 +475,7 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
         <strong>🗞️ 오늘의 일본 뉴스</strong><span class="tag">RSS · 짧은 소개문</span>
        </div>
        <p class="sub" style="margin:8px 0 13px;font-size:13px">최근 일본 소식을 직접 모아봐. 900~1,200자 편집 지문과 달리 이곳은 RSS 소개문만 제공해. 충분한 내용이 있는 기사만 표시하며, 원문은 언론사 사이트에서 열 수 있어.</p>
-       <div class="toolbar"><button id="newsCollectButton" type="button">↻ 오늘의 기사 모으기</button><button id="newsGenerateButton" type="button" class="secondary">✨ GPT에게 학습 기사 요청</button><button id="newsCollectorGoCloud" type="button" class="secondary">동기화 로그인·설정</button></div>
+       <div class="toolbar"><button id="newsCollectButton" type="button">↻ 오늘의 기사 모으기</button><button id="newsGenerateButton" type="button" class="secondary">✨ GPT에게 원문 기반 기사 요청</button><button id="newsCollectorGoCloud" type="button" class="secondary" style="display:none">동기화 로그인·설정</button></div>
        <p class="sub" id="newsCollectStatus" style="font-size:13px;margin:10px 0" role="status" aria-live="polite">버튼을 누르면 최신 일본 뉴스를 가져와.</p>
        <div id="newsCollectFilters" class="toolbar" style="margin:12px 0"></div>
        <div id="newsCollectList"></div>
@@ -3529,7 +3529,7 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-reader-embedded.js?v=20261010-ai-news-pipeline1"></script>
-<script src="data/news-collector-embedded.js?v=20261010-gpt-handoff1"></script>
+<script src="data/news-collector-embedded.js?v=20261010-gpt-source1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
 </html>
