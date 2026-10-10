@@ -378,7 +378,7 @@ function renderSavedNotebook(){
    '<summary class="news-saved-summary"><span class="news-saved-head"><strong class="news-saved-form" lang="ja">'+expressionDetailRuby(item.form,reading)+'</strong></span><span class="news-saved-chevron" aria-hidden="true">⌄</span></summary>'+
    '<div class="news-saved-detail">'+
    '<p class="news-saved-direct-meaning"><b>뜻</b> '+esc(meaning)+'</p>'+
-   (example?'<div class="news-saved-label">기사 속 예문</div><div class="news-sentence" lang="ja">'+annotateExpressionSentence(example,item.form,reading)+'</div>':"")+
+   (example?'<div class="news-sentence" lang="ja">'+annotateExpressionSentence(example,item.form,reading)+'</div>':"")+
    (similar?'<p><b>유사 표현</b> <span lang="ja">'+similarExpressionHTML(similar)+'</span></p>':"")+
    (usage?'<p><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+
    (ko?'<button type="button" class="secondary news-saved-reveal" data-news-reveal-answer="'+esc(id)+'" aria-expanded="false">번역 보기</button>':"")+
