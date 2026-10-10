@@ -1,54 +1,126 @@
 {
   "version": 1,
-  "batch_id": "20261009-new-ending-reports-5-through-12",
+  "batch_id": "20261010-current-endings-a",
   "items": [
     {
-      "word_id": "makanau",
+      "word_id": "todokooru",
       "kind": "example",
       "index": 0,
-      "report_id": 5
+      "report_id": 2
     },
     {
-      "word_id": "makanau",
+      "word_id": "todokooru",
       "kind": "example",
       "index": 1,
-      "report_id": 6
+      "report_id": 4
     },
     {
-      "word_id": "uketamawaru",
+      "word_id": "obiyakasu",
       "kind": "example",
       "index": 0,
-      "report_id": 7
+      "report_id": 13
     },
     {
-      "word_id": "uketamawaru",
-      "kind": "example",
-      "index": 1,
-      "report_id": 8
-    },
-    {
-      "word_id": "moyoosu",
+      "word_id": "somuku",
       "kind": "example",
       "index": 0,
-      "report_id": 9
+      "report_id": 14
     },
     {
-      "word_id": "moyoosu",
+      "word_id": "somuku",
       "kind": "example",
       "index": 1,
-      "report_id": 10
+      "report_id": 15
     },
     {
-      "word_id": "oginau",
-      "kind": "example",
-      "index": 1,
-      "report_id": 11
-    },
-    {
-      "word_id": "oginau",
+      "word_id": "fumaeru",
       "kind": "example",
       "index": 0,
-      "report_id": 12
+      "report_id": 16
+    },
+    {
+      "word_id": "fumaeru",
+      "kind": "example",
+      "index": 1,
+      "report_id": 18
+    },
+    {
+      "word_id": "sutareru",
+      "kind": "example",
+      "index": 0,
+      "report_id": 19
+    },
+    {
+      "word_id": "sutareru",
+      "kind": "example",
+      "index": 1,
+      "report_id": 20
+    },
+    {
+      "word_id": "hagukumu",
+      "kind": "example",
+      "index": 0,
+      "report_id": 21
+    },
+    {
+      "word_id": "hagukumu",
+      "kind": "example",
+      "index": 1,
+      "report_id": 22
+    },
+    {
+      "word_id": "tsugunau",
+      "kind": "example",
+      "index": 0,
+      "report_id": 23
+    },
+    {
+      "word_id": "tsugunau",
+      "kind": "example",
+      "index": 1,
+      "report_id": 24
+    },
+    {
+      "word_id": "habamu",
+      "kind": "example",
+      "index": 0,
+      "report_id": 25
+    },
+    {
+      "word_id": "habamu",
+      "kind": "example",
+      "index": 1,
+      "report_id": 26
+    },
+    {
+      "word_id": "yudaneru",
+      "kind": "example",
+      "index": 0,
+      "report_id": 27
+    },
+    {
+      "word_id": "yudaneru",
+      "kind": "example",
+      "index": 1,
+      "report_id": 28
+    },
+    {
+      "word_id": "okotaru",
+      "kind": "example",
+      "index": 1,
+      "report_id": 29
+    },
+    {
+      "word_id": "hikaeru",
+      "kind": "example",
+      "index": 0,
+      "report_id": 31
+    },
+    {
+      "word_id": "hikaeru",
+      "kind": "example",
+      "index": 1,
+      "report_id": 32
     }
   ]
 }
