@@ -75,6 +75,22 @@ async function loadArchive(){
  if(!error&&Array.isArray(data))window.KOJER_ADD_GENERATED_NEWS?.(data.map(x=>x.article));
 }
 function importStatus(message,error=false){const el=$("newsImportStatus");if(el){el.textContent=message;el.style.color=error?"var(--danger,var(--muted))":"var(--muted)";}}
+function countJapaneseSentences(value){
+ return (String(value||"").match(/[^。！？!?]+[。！？!?]?/gu)||[]).map(x=>x.trim()).filter(Boolean).length;
+}
+function countKoreanSentences(value){
+ const text=String(value||"");let count=0,current="";
+ for(let i=0;i<text.length;i++){
+  const c=text[i];current+=c;
+  if(!/[.!?。！？]/u.test(c))continue;
+  if(c==="."&&/[0-9]/.test(text[i-1]||"")&&/[0-9]/.test(text[i+1]||""))continue;
+  if(c==="."&&/(?:^|\s)[A-Z]\.$/.test(current)&&/\s/.test(text[i+1]||""))continue;
+  if(current.trim())count++;
+  current="";
+ }
+ if(current.trim())count++;
+ return count;
+}
 function normalizeImport(payload){
  const list=Array.isArray(payload)?payload:Array.isArray(payload?.articles)?payload.articles:Array.isArray(payload?.data)?payload.data:null;
  if(!list||!list.length||list.length>30)throw Error("기사 배열이 없거나 30개를 초과해.");
@@ -86,6 +102,10 @@ function normalizeImport(payload){
   const expressions=a.expressions;
   if(!a.title||paragraphs.length<5||paragraphs.length>10||!paragraphs.every(x=>typeof x==="string"&&x.length>30))throw Error((i+1)+"번 기사 본문 형식이 올바르지 않아.");
   if(translationParagraphs.length!==paragraphs.length||!translationParagraphs.every(x=>typeof x==="string"&&x.trim()))throw Error((i+1)+"번 기사 문단별 번역이 누락됐어.");
+  for(let k=0;k<paragraphs.length;k++){
+   if(countJapaneseSentences(paragraphs[k])!==countKoreanSentences(translationParagraphs[k]))
+    throw Error((i+1)+"번 기사 "+(k+1)+"문단의 일본어·한국어 문장 수가 달라. 문장별 직역을 다시 검수해 줘.");
+  }
   if(!Array.isArray(expressions)||expressions.length<5||!expressions.every(x=>x&&typeof x.form==="string"&&typeof x.reading==="string"&&typeof x.meaning==="string"))throw Error((i+1)+"번 기사 N1 표현 형식이 올바르지 않아.");
   const titleTranslation=String(a.titleTranslation||a.titleKo||"").trim();
   if(!titleTranslation)throw Error((i+1)+"번 기사 제목의 직역 번역(titleTranslation)이 누락됐어.");
