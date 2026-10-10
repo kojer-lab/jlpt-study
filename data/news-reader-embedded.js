@@ -41,6 +41,30 @@ let paragraphOpen=new Set(),lastProgressSave=0,suppressProgressSaveUntil=0;
 const progressKey="jlptNewsReadProgressV1";
 function savedProgress(){try{const v=JSON.parse(localStorage.getItem(progressKey)||"{}");return v&&typeof v==="object"?v:{}}catch{return {}}}
 function progressFor(id){const p=savedProgress()[id];return p&&Number.isInteger(p.index)?p:null}
+function newsReadCompleted(id){return Number(progressFor(id)?.completedAt)>0}
+window.KOJER_NEWS_IS_READ=newsReadCompleted;
+function updateNewsReadButton(){
+ const button=$("newsMarkRead");
+ if(!button)return;
+ const done=!!article&&newsReadCompleted(article.id);
+ button.setAttribute("aria-pressed",String(done));
+ button.textContent=done?"✓ 읽음 완료 · 취소하기":"✓ 읽음 표시";
+ button.setAttribute("aria-label",done?"읽음 표시 취소":"이 기사를 다 읽었다고 표시");
+}
+function toggleNewsRead(){
+ if(!article)return;
+ const id=article.id,now=Date.now(),state=savedProgress(),old=state[id]||{};
+ const completed=Number(old.completedAt)>0;
+ state[id]={...old,index:Number.isInteger(old.index)?old.index:0,offset:Number(old.offset)||0,
+  completedAt:completed?0:now,updatedAt:now};
+ try{
+  localStorage.setItem(progressKey,JSON.stringify(state));
+  updateNewsReadButton();
+  if(typeof renderCuratedNewsHome==="function")renderCuratedNewsHome();
+  window.dispatchEvent(new Event("kojer-news:changed"));
+ }catch(e){console.warn("뉴스 읽음 상태 저장 실패",e)}
+}
+
 function captureProgress(force=false){
  if(!article||!$("newsreaderView")?.classList.contains("active")||!$("newsCuratedDetail")||$("newsCuratedDetail").classList.contains("hidden"))return;
  const now=Date.now();
@@ -52,7 +76,7 @@ function captureProgress(force=false){
  const offset=Math.max(0,Math.min(1100,Math.round(Math.min(window.innerHeight*.43,280)-nodes[index].getBoundingClientRect().top)));
  try{
   const state=savedProgress();
-  state[article.id]={index,offset,updatedAt:now};
+  state[article.id]={...(state[article.id]||{}),index,offset,updatedAt:now};
   localStorage.setItem(progressKey,JSON.stringify(state));
   lastProgressSave=now;
   window.dispatchEvent(new Event("kojer-news:changed"));
@@ -492,6 +516,7 @@ function displayArticle(id){
  if(typeof restoreInteractiveFuriState==="function")restoreInteractiveFuriState($("newsArticleBody"));
  $("newsArticleBody").dataset.readingCoverage=total?String(Math.round(100*marked/total)):"100";
  restoreProgress(a.id);
+ updateNewsReadButton();
 }
 function displayList(){
  if(article){captureProgress(true);expressionTab(false)}
@@ -542,6 +567,7 @@ function init(){
  if(!$("newsCuratedDetail"))return;
  for(const id of ["newsCuratedBack","newsCuratedBottomBack"])$(id).addEventListener("click",()=>{location.hash="#newsreader"});
  $("newsReadResume").addEventListener("click",resumeProgress);
+ $("newsMarkRead").addEventListener("click",toggleNewsRead);
  $("newsArticleTranslate").addEventListener("click",()=>{
   if(!article)return;
   translationOpen=!translationOpen;
@@ -646,7 +672,9 @@ function init(){
   renderSavedNotebook();
   if(article&&$("newsreaderView").classList.contains("active")){
    restoreProgress(article.id);
+   updateNewsReadButton();
   }
+  if(typeof renderCuratedNewsHome==="function"&&$("newsreaderView").classList.contains("active"))renderCuratedNewsHome();
  });
  renderSavedNotebook();
  route();
