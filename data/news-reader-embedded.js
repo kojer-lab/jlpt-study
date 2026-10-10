@@ -564,9 +564,13 @@ function init(){
  });
  $("newsSavedToggle").addEventListener("click",()=>{
   const target=$("newsSavedPanel"),open=target.classList.contains("hidden");
-  target.classList.toggle("hidden",!open);
-  $("newsSavedToggle").setAttribute("aria-expanded",String(open));
-  if(open)renderSavedNotebook();
+  if(!open){
+   resetNewsPanels();
+  }else{
+   target.classList.remove("hidden");
+   $("newsSavedToggle").setAttribute("aria-expanded","true");
+   renderSavedNotebook();
+  }
  });
  $("newsStartReview").addEventListener("click",beginReview);
  $("newsReviewReveal").addEventListener("click",revealReview);
