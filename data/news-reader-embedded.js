@@ -295,7 +295,7 @@ function saved(){
 }
 function clearExpressionSelection(){
  selectedExpression=null;
- $("newsArticleBody").querySelectorAll("[data-news-expression]").forEach(el=>el.classList.remove("news-phrase-selected"));
+ $("newsArticleBody").querySelectorAll("[data-news-expression]").forEach(el=>el.classList.remove("news-phrase-selected","news-jump-emphasis"));
  $("newsArticleExpressions").querySelectorAll("[data-news-expression-button]").forEach(el=>{
   el.classList.remove("active");
   el.setAttribute("aria-pressed","false");
@@ -568,6 +568,7 @@ function phrase(key,{preserve=false}={}){
  $("newsArticleBody").querySelectorAll("[data-news-expression]").forEach(el=>{
   const active=el.dataset.newsExpression===key;
   el.classList.toggle("news-phrase-selected",active);
+  el.classList.remove("news-jump-emphasis");
   if(active&&!firstHighlight)firstHighlight=el;
  });
  $("newsArticleExpressions").querySelectorAll("[data-news-expression-button]").forEach(el=>{
@@ -600,9 +601,17 @@ function phrase(key,{preserve=false}={}){
   node.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
  });
  $("newsJumpToExpression").addEventListener("click",()=>{
-  // The only action that scrolls from expression notes to the highlighted article text.
-  const target=$("newsArticleBody").querySelector(".news-phrase-selected");
-  if(target)target.scrollIntoView({block:"center",behavior:"smooth"});
+  // Refresh the yellow emphasis when jumping, including desktop Chromium browsers.
+  const body=$("newsArticleBody");
+  body.querySelectorAll(".news-jump-emphasis").forEach(node=>node.classList.remove("news-jump-emphasis"));
+  const matches=[...body.querySelectorAll("[data-news-expression]")].filter(node=>node.dataset.newsExpression===selectedExpression);
+  if(!matches.length)return;
+  matches.forEach(node=>{
+   node.classList.add("news-phrase-selected","news-jump-emphasis");
+  });
+  const target=matches[0];
+  // Inline ruby/spans can scroll inconsistently in Chromium. Scroll the paragraph instead.
+  (target.closest(".news-paragraph")||target).scrollIntoView({block:"center",behavior:"smooth"});
  });
  $("newsSavePhrase").addEventListener("click",()=>{
   const all=saved();
