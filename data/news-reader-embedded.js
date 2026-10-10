@@ -95,24 +95,28 @@ for(const [surface,reading] of Object.entries(reviewed)){
  extra.set(first,arr);
 }
 for(const arr of extra.values())arr.sort((a,b)=>b.surface.length-a.surface.length);
+// Cross-checked reading aids for the current news expression synonyms.
+// These are only shown when a kanji word is clicked, not pre-rendered ruby.
+const reviewedSimilarReadings=new Map([["関心を寄せる","かんしんをよせる"],["見逃すおそれがある","みのがすおそれがある"],["推移","すいい"],["直接関わる","ちょくせつかかわる"],["注目を集める","ちゅうもくをあつめる"],["中断せず","ちゅうだんせず"],["判断する","はんだんする"],["一様に","いちように"],["注意を払う","ちゅういをはらう"],["傾向","けいこう"],["気を取られる","きをとられる"],["解釈する","かいしゃくする"],["明らかになる","あきらかになる"],["区分","くぶん"],["心配","しんぱい"],["与える恐れがある","あたえるおそれがある"],["終結する","しゅうけつする"],["実施","じっし"],["判断を誤る","はんだんをあやまる"],["促進する","そくしんする"],["検疫措置","けんえきそち"],["不正侵入","ふせいしんにゅう"],["漏えい","ろうえい"],["把握する","はあくする"],["用心深い","ようじんぶかい"],["顕在化","けんざいか"],["全体像","ぜんたいぞう"],["統合","とうごう"],["例外なく","れいがいなく"],["言い切ること","いいきること"],["予防措置","よぼうそち"],["大臣レベル","だいじんれべる"],["通商対立","つうしょうたいりつ"],["段階","だんかい"],["考慮する","こうりょする"],["組み入れる","くみいれる"],["性急","せいきゅう"],["取り違える","とりちがえる"],["別に","べつに"],["仕組み","しくみ"],["悪口","わるぐち"],["通る","とおる"],["背後","はいご"],["同じとみなす","おなじとみなす"],["排除する","はいじょする"],["抑え込む","おさえこむ"],["すぐ採用する","すぐさいようする"],["慎重に検討する","しんちょうにけんとうする"],["欠かせない","かかせない"],["共同事業","きょうどうじぎょう"],["慣れ親しむ","なれしたしむ"],["比較する","ひかくする"],["強調する","きょうちょうする"],["発見する","はっけんする"],["共存させる","きょうぞんさせる"],["左右される","さゆうされる"]]);
+const kanaHiragana=s=>String(s||"").replace(/[ァ-ヺ]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-0x60));
 function wordHTML(surface,reading){
  const hasKanji=/[一-龯々〇〆ヵヶ]/;
+ surface=String(surface||"");reading=String(reading||"");
  if(!hasKanji.test(surface))return esc(surface);
- // Only Kanji runs may receive furigana. Preserve visible hiragana/katakana as plain text.
- // Never annotate mixed kana/kanji text with one large ruby spanning the kana.
  const runs=[];
  for(const char of surface){
-   const type=hasKanji.test(char)?"kanji":"plain";
-   if(runs.length&&runs[runs.length-1].type===type)runs[runs.length-1].text+=char;
-   else runs.push({type,text:char});
+  const type=hasKanji.test(char)?"kanji":"plain";
+  if(runs.length&&runs[runs.length-1].type===type)runs[runs.length-1].text+=char;
+  else runs.push({type,text:char});
  }
  let out="",position=0,valid=true;
  const kanaOnly=x=>/^[ぁ-ゖァ-ヺー]+$/.test(x);
+ const normalizedReading=kanaHiragana(reading);
  for(let i=0;i<runs.length;i++){
   const run=runs[i];
   if(run.type==="plain"){
    if(kanaOnly(run.text)){
-    if(!reading.startsWith(run.text,position)){valid=false;break}
+    if(!normalizedReading.startsWith(kanaHiragana(run.text),position)){valid=false;break}
     position+=run.text.length;
    }
    out+=esc(run.text);
@@ -122,33 +126,46 @@ function wordHTML(surface,reading){
   const next=runs.slice(i+1).find(run=>run.type==="plain"&&kanaOnly(run.text));
   if(next){
    const nextAt=runs.indexOf(next);
-   end=nextAt===runs.length-1?reading.lastIndexOf(next.text):reading.indexOf(next.text,position+1);
+   const target=kanaHiragana(next.text);
+   end=nextAt===runs.length-1?normalizedReading.lastIndexOf(target):normalizedReading.indexOf(target,position+1);
   }
   if(end<=position){valid=false;break}
   const sound=reading.slice(position,end);
   if(!/^[ぁ-ゖァ-ヺー]+$/.test(sound)){valid=false;break}
-  out+='<span class="furi" data-r="'+esc(sound)+'">'+esc(run.text)+'</span>';
+  out+='<span class="furi" data-r="'+esc(kanaHiragana(sound))+'">'+esc(run.text)+'</span>';
   position=end;
  }
  if(valid&&position===reading.length)return out;
- // Bad or ambiguous segmentation: keep the actual text unchanged, no misleading ruby.
+ // Never invent a furigana segmentation if the stored reading is inconsistent.
  return esc(surface);
 }
 function expressionDetailRuby(form,reading){
  const converted=wordHTML(String(form||""),String(reading||""));
  return converted.includes('class="furi"')?converted:annotate(form).output;
 }
-// Hide parenthesized kana readings in similar expressions, but preserve
-// click-to-reveal furigana in the expanded expression detail.
 function similarWithoutReading(value){
  return String(value||"").replace(/\s*[（(][ぁ-ゖァ-ヺー\s]+[）)]\s*$/u,"").trim();
 }
 function similarExpressionHTML(value){
  const raw=String(value||"").trim();
  const match=raw.match(/^(.+?)\s*[（(]([ぁ-ゖァ-ヺー\s]+)[）)]\s*$/u);
- if(!match)return annotate(similarWithoutReading(raw)).output;
- const surface=match[1].trim(),reading=match[2].replace(/\s/g,"");
- return expressionDetailRuby(surface,reading);
+ const surface=match?match[1].trim():similarWithoutReading(raw);
+ const reading=match?match[2].replace(/\s/g,""):reviewedSimilarReadings.get(surface);
+ if(reading)return expressionDetailRuby(surface,reading);
+ return annotate(surface).output;
+}
+// Ensure the vocabulary word uses its reviewed reading inside Japanese examples,
+// rather than relying on a generic context dictionary that might omit it.
+function annotateExpressionSentence(sentence,form,reading){
+ const text=String(sentence||""),target=String(form||"");
+ if(!target||!text.includes(target))return annotate(text).output;
+ let cursor=0,out="",index;
+ while((index=text.indexOf(target,cursor))!==-1){
+  out+=annotate(text.slice(cursor,index)).output;
+  out+=expressionDetailRuby(target,reading);
+  cursor=index+target.length;
+ }
+ return out+annotate(text.slice(cursor)).output;
 }
 function expressionRuby(form,reading){
  // Expressions use visible <ruby>, not interactive .furi elements.
@@ -195,8 +212,11 @@ function paragraphHTML(text){
   }
   if(!hit){const a=annotate(text.slice(offset));html+=a.output;covered+=a.covered;kanji+=a.kanji;break}
   const a=annotate(text.slice(offset,hit.pos));covered+=a.covered;kanji+=a.kanji;html+=a.output;
-  const b=annotate(hit.exp.form);covered+=b.covered;kanji+=b.kanji;
-  html+='<span class="news-phrase" data-news-expression="'+esc(hit.exp.form)+'">'+b.output+"</span>";
+  const b=annotate(hit.exp.form);
+  const reviewed=expressionDetailRuby(hit.exp.form,hit.exp.reading);
+  covered+=reviewed.includes('class="furi"')?(hit.exp.form.match(/[一-龯々〇]/g)||[]).length:b.covered;
+  kanji+=b.kanji;
+  html+='<span class="news-phrase" data-news-expression="'+esc(hit.exp.form)+'">'+reviewed+"</span>";
   offset=hit.pos+hit.exp.form.length;
  }
  return {html,covered,kanji};
@@ -339,7 +359,7 @@ function renderSavedNotebook(){
   return '<details class="news-saved-card" data-news-saved-id="'+esc(id)+'"'+(opened.has(id)?" open":"")+'>'+
    '<summary class="news-saved-summary"><span class="news-saved-head"><strong class="news-saved-form" lang="ja">'+expressionDetailRuby(item.form,reading)+'</strong></span><span class="news-saved-chevron" aria-hidden="true">⌄</span></summary>'+
    '<div class="news-saved-detail">'+
-   (example?'<div class="news-saved-label">기사 속 예문</div><div class="news-sentence" lang="ja">'+annotate(example).output+'</div>':"")+
+   (example?'<div class="news-saved-label">기사 속 예문</div><div class="news-sentence" lang="ja">'+annotateExpressionSentence(example,item.form,reading).output+'</div>':"")+
    (similar?'<p><b>유사 표현</b> <span lang="ja">'+similarExpressionHTML(similar)+'</span></p>':"")+
    (usage?'<p><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+
    '<button type="button" class="secondary news-saved-reveal" data-news-reveal-answer="'+esc(id)+'" aria-expanded="false">뜻 보기</button>'+
@@ -390,7 +410,7 @@ function phrase(key,{preserve=false}={}){
  panel.innerHTML='<div class="news-expression-info-heading"><strong class="news-expression-ruby news-expression-interactive" lang="ja">'+expressionDetailRuby(key,e.reading)+'</strong> <span class="tag">실전 표현</span>'+
  '<button type="button" class="secondary news-jump-to-expression" id="newsJumpToExpression" aria-label="본문에서 이 표현의 위치로 이동" title="본문의 표현 위치로 이동">↗ <span>본문으로</span></button></div>'+
  '<p style="margin:8px 0">뜻 · '+esc(e.meaning||"")+'</p>'+
- '<p lang="ja" class="news-expression-example" style="font-size:17px;margin:11px 0;line-height:2.15">'+annotate(sentence).output+'</p>'+
+ '<p lang="ja" class="news-expression-example" style="font-size:17px;margin:11px 0;line-height:2.15">'+annotateExpressionSentence(sentence,key,e.reading).output+'</p>'+
  (e.similar?'<p class="news-similar-expression" style="margin:8px 0"><b>유사 표현</b> '+similarExpressionHTML(e.similar)+'</p>':"")+
  (e.note?'<p style="margin:8px 0"><b>사용 뉘앙스</b> '+esc(e.note)+'</p>':"")+
  '<button type="button" class="secondary" id="newsSavePhrase">'+(already?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+"</button>";
