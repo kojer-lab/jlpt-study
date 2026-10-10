@@ -48,7 +48,7 @@ function updateNewsReadButton(){
  if(!button)return;
  const done=!!article&&newsReadCompleted(article.id);
  button.setAttribute("aria-pressed",String(done));
- button.textContent="✓";
+ button.textContent="읽음";
  button.setAttribute("aria-label",done?"읽음 표시 취소":"이 기사를 다 읽었다고 표시");
  button.title=done?"읽음 완료 · 다시 눌러 취소":"읽음 표시";
 }
