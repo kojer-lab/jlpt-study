@@ -2339,6 +2339,10 @@ document.addEventListener("click",e=>{
  collector.scrollIntoView({behavior:"smooth",block:"start"});
 });
 function showView(name){
+ // Other tabs do not use URL fragments. Remove an old news fragment when leaving news.
+ if(name!=="newsreader"&&location.hash.startsWith("#newsreader")){
+  history.replaceState(history.state,"",location.pathname+location.search);
+ }
  const restartingAi=name==="listening"&&!$("listeningView")?.classList.contains("active")&&!$("aiListeningPanel")?.classList.contains("hidden");
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
  if(name==="mock"){setupMock();if(!mockItems.length)mockRestore();}else if(mockItems.length&&!$("mockRunning").classList.contains("hidden")){mockStopListening();}if(name==="home")renderHome();if(name==="newsreader")renderCuratedNewsHome();if(name==="words")showWordDashboard();if(name==="review")startReview();if(name==="mistakes")renderMistakes();if(name==="cloud")updateSyncUI();if(name==="stats")renderStats();if(name==="listening"){setupListening();if(restartingAi)restartAiListening()}window.scrollTo({top:0,behavior:"smooth"});}
@@ -3707,6 +3711,12 @@ window.__jlptAudioManifest=()=>words.flatMap(w=>[
  ...w.examples.map((ex,i)=>({id:w.id,kind:"example",index:i,text:wordAudioText(w,i),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-ex"+(i+1)+".wav"}))
 ]);
 applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
+// A refresh always returns to Home, like every other tab. Directly opened
+// news links still work on first navigation; only reloads discard the old fragment.
+const newsNavigationEntry=performance.getEntriesByType?.("navigation")?.[0];
+if(newsNavigationEntry?.type==="reload"&&location.hash.startsWith("#newsreader")){
+ history.replaceState(history.state,"",location.pathname+location.search);
+}
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
