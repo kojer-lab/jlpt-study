@@ -2243,8 +2243,18 @@ function studyLocalDay(t=Date.now()){
  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 }
 function focusMissEligible(s,t=Date.now()){
- // Pre-existing records without a first-study date are previously learned.
- return s.reviews>0&&(!s.firstStudyDay||s.firstStudyDay!==studyLocalDay(t));
+ // Only a graduated card on an actual review may count as a lapse.
+ // A brand-new card's first day is never a failed long-term review.
+ return s.reviews>0&&s.state==="review"&&
+  (!s.firstStudyDay||s.firstStudyDay!==studyLocalDay(t));
+}
+const FOCUS_FAILURE_WINDOW_DAYS=30,FOCUS_FAILURE_DAYS_REQUIRED=3;
+function recentReviewFailureDays(days,t=Date.now()){
+ const boundary=new Date(t);boundary.setHours(0,0,0,0);
+ boundary.setDate(boundary.getDate()-FOCUS_FAILURE_WINDOW_DAYS+1);
+ const minDay=studyLocalDay(boundary.getTime()),maxDay=studyLocalDay(t);
+ return [...new Set((Array.isArray(days)?days:[])
+  .filter(d=>typeof d==="string"&&/^\\d{4}-\\d{2}-\\d{2}$/.test(d)&&d>=minDay&&d<=maxDay))].sort();
 }
 function clampNum(v,min,max){return Math.max(min,Math.min(max,v))}
 function desiredRetention(){return clampNum(Number(state.settings?.desiredRetention)||.90,.80,.97)}
@@ -2358,8 +2368,13 @@ function scheduleFsrs(s,rating,t=now()){
  }
  x.stability=Math.round(newS*1000)/1000;x.difficulty=Math.round(newD*1000)/1000;
  x.retrievabilityAtReview=Math.round(r*1000)/1000;x.scheduler="fsrs6";
- // New cards are exempt from the focus-learning threshold until tomorrow.
+ // Only failed mature reviews on separate calendar days count toward focus.
+ // Repeated attempts in learning/relearning do not count, even after midnight.
  if(wasNew&&!x.firstStudyDay)x.firstStudyDay=studyLocalDay(t);
+ x.reviewFailureDays=recentReviewFailureDays(x.reviewFailureDays,t);
+ if(rating==="again"&&!x.focusPending&&focusMissEligible(x,t)){
+  x.reviewFailureDays=recentReviewFailureDays([...x.reviewFailureDays,studyLocalDay(t)],t);
+ }
  const failStreak=Math.max(0,Number(x.consecutiveAgain)||0);
  if(rating==="again"){
    if(wasGraduated)x.lapses++;
@@ -2375,6 +2390,12 @@ function scheduleFsrs(s,rating,t=now()){
    x.interval=fsrsInterval(x.stability);x.due=t+x.interval*DAY;x.state="review";x.streak=(x.streak||0)+1;
  }
  x.reviews++;x.last=t;x.updatedAt=t;
+ if(!x.focusPending&&x.reviewFailureDays.length>=FOCUS_FAILURE_DAYS_REQUIRED){
+  x.focusPending=true;
+  x.focusUntil=nextLocalDayStart(t);
+  x.due=Math.max(x.due,x.focusUntil);
+  x.interval=0;x.state="relearning";
+ }
  return x;
 }
 function previewLabel(ms,interval){
@@ -2383,6 +2404,7 @@ function previewLabel(ms,interval){
 }
 function nextPreview(s,rating){
  const t=now(),n=scheduleFsrs(s,rating,t);
+ if(!s.focusPending&&n.focusPending)return "내일 집중 학습";
  return previewLabel(Math.max(0,n.due-t),n.interval);
 }
 function rateWord(id,rating){
@@ -2650,7 +2672,7 @@ function renderWordDashboard(){
  $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`지금 학습 시작 · ${total}장`:"지금 학습할 단어 없음 ✓";
 }
 const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
-let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null,wordSessionFails={};
+let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null;
 let focusQueue=[];
 function promoteQuickWord(){
  // Quick repeats by card-count could violate the actual 10/15-minute delay.
@@ -2661,7 +2683,7 @@ function persistWordSession(){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length)))return;
  const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
   immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),quick:wordQuickRepeats,quickTurn:wordQuickTurn,quickActive:wordQuickActive,
-  history:wordSessionHistory.map(h=>({...h,word:undefined})),failCounts:wordSessionFails,mixedOrder:true,savedAt:Date.now()};
+  history:wordSessionHistory.map(h=>({...h,word:undefined})),mixedOrder:true,savedAt:Date.now()};
  try{localStorage.setItem(WORD_SESSION_KEY,JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
 }
 function restoreWordSession(){
@@ -2695,12 +2717,11 @@ function restoreWordSession(){
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
  wordSessionHistory=(data.history||[]).map(h=>({...h,id:canonicalWordId(h.id),word:wordById.get(h.id)})).filter(h=>h.word);
- wordSessionFails=(data.failCounts&&typeof data.failCounts==="object"&&!Array.isArray(data.failCounts))?data.failCounts:{};
- if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
+  if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
  return true;
 }
 function clearWordSession(){
- wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionFails={};wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
+ wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
  localStorage.removeItem(WORD_SESSION_KEY);
 }
 function showWordDashboard(){
@@ -2711,7 +2732,7 @@ function showWordDashboard(){
 }
 function startWordStudy(mode="daily"){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length))&&!restoreWordSession()){
-  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionFails={};
+  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
   wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
   wordSessionTotal=wordSessionQueue.length;
  }
@@ -2725,8 +2746,8 @@ function startWordStudy(mode="daily"){
 function wordLibraryStateLabel(w){
  const r=getSrs(w.id);
  if(r.reviews===0)return "미학습";
- if(r.stability>=30)return "정착";
  if(r.focusPending)return "집중 학습";
+ if(r.stability>=30)return "정착";
  if(r.due<=now())return "복습 예정";
  return "학습 중";
 }
@@ -2784,7 +2805,7 @@ function renderFocusStudy(){
  if(!focusQueue.length){showWordDashboard();return}
  const w=focusQueue[0],breakdown=wordBreakdownFor(w);
  $("focusStudyProgress").textContent="집중 학습 · "+focusQueue.length+"개 남음";
- $("focusLesson").innerHTML=`<div class="word-focus-hint">반복해서 어려웠던 단어예요. 뜻·한자·예문을 먼저 이해하고 다시 기억해 보세요.</div>
+ $("focusLesson").innerHTML=`<div class="word-focus-hint">최근 30일 중 서로 다른 3일에 복습을 실패한 단어예요. 뜻·한자·예문을 먼저 이해하고 다시 기억해 보세요.</div>
    <div class="word-main">${w.w}</div>
    <div class="word-reading">${readingOf(w.w)}</div>
    <div style="text-align:center;margin:12px 0"><button type="button" class="secondary" data-focus-audio="word">🔊 단어 듣기</button></div>
@@ -2829,6 +2850,8 @@ $("focusRating").addEventListener("click",e=>{
   x.focusPending=true;x.focusUntil=nextLocalDayStart();x.due=Math.max(x.due,x.focusUntil);x.interval=0;x.state="relearning";
  }else{
   x.focusPending=false;x.focusUntil=0;
+  // After successfully revisiting a difficult word, start a new observation cycle.
+  x.reviewFailureDays=[];
  }
  x.updatedAt=now();setSrs(w.id,x);
  focusQueue.shift();clearStudyFuriganaState();renderFocusStudy();
@@ -3200,19 +3223,16 @@ $("wordRating").addEventListener("click",e=>{
  const reviewLogLength=(state.reviewLog||[]).length,profileBefore=JSON.parse(JSON.stringify(state.fsrsProfile||{})),learningQueueBefore=JSON.parse(JSON.stringify(wordLearningQueue));
  const quickBefore=JSON.parse(JSON.stringify(wordQuickRepeats)),quickTurnBefore=wordQuickTurn,quickActiveBefore=wordQuickActive?{...wordQuickActive}:null;
  const isQuick=!!wordQuickActive&&wordQuickActive.id===currentId;
- const failsBefore=Number(wordSessionFails[currentId])||0;
- wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,failsBefore,countedDone:false});
- // A word first seen today may be difficult without being a leech.
- const focusEligible=b.dataset.rate==="again"&&focusMissEligible(getSrs(currentId));
- wordSessionFails[currentId]=focusEligible?failsBefore+1:0;
+ wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,countedDone:false});
  if(!isQuick)rateWord(currentId,b.dataset.rate);
  // A new card attempt must start with all tap-to-reveal furigana hidden.
  clearStudyFuriganaState();
  const after=getSrs(currentId),needsRepeat=!isQuick&&(after.state==="learning"||after.state==="relearning");
- const toFocus=wordSessionFails[currentId]>=5;
+ const toFocus=!before?.focusPending&&after.focusPending===true;
  wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
  if(toFocus){
-  deferWordForFocus(currentId);
+  // scheduleFsrs already suspended this card until tomorrow; do not
+  // schedule it again or count same-day learning steps as extra failures.
   wordLearningQueue=wordLearningQueue.filter(x=>x.id!==currentId);
   wordQuickRepeats=wordQuickRepeats.filter(x=>x.id!==currentId);
   if(isQuick)wordQuickActive=null;
@@ -3234,8 +3254,7 @@ $("undoWordRating").addEventListener("click",()=>{
  }
  if(Number.isInteger(h.reviewLogLength))state.reviewLog=(state.reviewLog||[]).slice(0,h.reviewLogLength);
  if(h.profileBefore)state.fsrsProfile=h.profileBefore;
- wordSessionFails[h.id]=Number(h.failsBefore)||0;
- if(Array.isArray(h.learningQueueBefore))wordLearningQueue=h.learningQueueBefore;
+  if(Array.isArray(h.learningQueueBefore))wordLearningQueue=h.learningQueueBefore;
  if(Array.isArray(h.quickBefore))wordQuickRepeats=h.quickBefore;
  if(Number.isFinite(h.quickTurnBefore))wordQuickTurn=h.quickTurnBefore;
  wordQuickActive=h.quickActiveBefore||null;
