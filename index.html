@@ -452,6 +452,17 @@ ruby rt { font-weight:600!important; }
  .news-date-heading{justify-content:space-between}
  .news-older-date{align-self:flex-end}
 }
+
+/* Saved expressions share the same full-width accordion treatment as the news collector. */
+#newsreaderView .news-reader-toolbar{margin-bottom:13px}
+#newsSavedShell.news-saved-shell{margin:20px 0 0}
+#newsSavedShell .news-saved-wide-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:49px;cursor:pointer;appearance:none;-webkit-appearance:none;text-align:left;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-radius:11px;color:var(--muted);font-size:13px;font-weight:650;line-height:1.5}
+#newsSavedShell .news-saved-wide-toggle:hover{color:var(--accent);border-color:var(--accent)}
+#newsSavedShell .news-saved-wide-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#newsSavedShell .news-saved-count-inline{color:var(--accent);font-weight:700}
+#newsSavedShell .news-saved-toggle-arrow{font-size:17px;font-weight:450;display:inline-block;transition:transform .16s}
+#newsSavedShell .news-saved-wide-toggle[aria-expanded="true"] .news-saved-toggle-arrow{transform:rotate(180deg)}
+#newsSavedShell #newsSavedPanel{margin-top:10px!important;margin-bottom:0!important}
 </style>
 </head>
 <body>
@@ -577,16 +588,33 @@ ruby rt { font-weight:600!important; }
       <div id="newsCuratedBrowser">
        <div class="news-reader-toolbar">
         <strong class="news-reader-count">학습 기사 <span id="newsArticleCount" class="tag">16개</span></strong>
-        <div class="news-reader-tools">
-         <button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button>
-         <button class="secondary" id="newsCollectorOpen" type="button" aria-controls="newsCollectorShell">🗞️ 새 기사 만들기</button>
-        </div>
         <button type="button" id="newsSyncButton" class="secondary hidden" aria-hidden="true">뉴스 기록 동기화</button>
         <span class="sub hidden" id="newsSyncState" role="status" aria-live="polite">뉴스 학습 기록: 이 기기에 저장</span>
        </div>
-      <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
-       <strong>내 실전 표현 수첩</strong>
-       <p class="sub" style="font-size:13px;margin-top:6px">표현을 펼쳐 일본어 예문을 읽고, 뜻 보기를 누르면 정답과 해설을 확인할 수 있어.</p>
+      <div class="news-curated-controls">
+       <div class="news-date-heading">
+        <strong>날짜별 기사</strong><span id="newsVisibleCount" class="sub" aria-live="polite"></span>
+        <label class="news-month-label" for="newsMonthSelect">월 선택
+         <select id="newsMonthSelect" aria-label="기사 연도와 월 선택"><option value="">최근 월</option></select>
+        </label>
+       </div>
+       <div class="news-curated-controls-line">
+        <div id="newsDateFilters" class="news-date-filters" role="group" aria-label="학습 기사 날짜 선택"></div>
+        <select id="newsOlderDateSelect" class="news-older-date hidden" aria-label="이전 날짜 선택"></select>
+        <label class="news-category-label" for="newsCuratedCategorySelect">분야
+         <select id="newsCuratedCategorySelect" aria-label="기사 분야 선택"><option value="전체">전체 분야</option></select>
+        </label>
+       </div>
+      </div>
+      <div class="grid3" id="newsCuratedList"></div>
+      <div class="news-more-area"><button type="button" id="newsMoreButton" class="secondary hidden">기사 더 보기</button></div>
+      <section id="newsSavedShell" class="news-collector-shell news-saved-shell">
+       <button id="newsSavedToggle" type="button" class="news-saved-wide-toggle" aria-expanded="false" aria-controls="newsSavedPanel">
+        <span>저장한 실전 표현 <span class="news-saved-count-inline" id="newsSavedCount">0</span>개</span>
+        <span class="news-saved-toggle-arrow" aria-hidden="true">⌄</span>
+       </button>
+      <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin:10px 0 0">
+       <p class="sub" style="font-size:13px;margin-top:6px">표현을 펼치면 뜻·일본어 예문·유사 표현·사용 설명이 바로 나와. 한국어 예문 번역은 버튼으로 확인할 수 있어.</p>
        <div class="toolbar news-saved-toolbar" style="margin:12px 0">
  <button id="newsStartReview" type="button" class="secondary">🧠 실전 표현 복습 시작 <span id="newsDueCount"></span></button>
  
@@ -610,25 +638,9 @@ ruby rt { font-weight:600!important; }
  </div>
  <div id="newsSavedList"></div>
       </section>
-      <div class="news-curated-controls">
-       <div class="news-date-heading">
-        <strong>날짜별 기사</strong><span id="newsVisibleCount" class="sub" aria-live="polite"></span>
-        <label class="news-month-label" for="newsMonthSelect">월 선택
-         <select id="newsMonthSelect" aria-label="기사 연도와 월 선택"><option value="">최근 월</option></select>
-        </label>
-       </div>
-       <div class="news-curated-controls-line">
-        <div id="newsDateFilters" class="news-date-filters" role="group" aria-label="학습 기사 날짜 선택"></div>
-        <select id="newsOlderDateSelect" class="news-older-date hidden" aria-label="이전 날짜 선택"></select>
-        <label class="news-category-label" for="newsCuratedCategorySelect">분야
-         <select id="newsCuratedCategorySelect" aria-label="기사 분야 선택"><option value="전체">전체 분야</option></select>
-        </label>
-       </div>
-      </div>
-      <div class="grid3" id="newsCuratedList"></div>
-      <div class="news-more-area"><button type="button" id="newsMoreButton" class="secondary hidden">기사 더 보기</button></div>
+      </section>
       <details id="newsCollectorShell" class="news-collector-shell">
-       <summary>🗞️ 오늘의 뉴스 모으기 · GPT 기사 작성 <span aria-hidden="true">⌄</span></summary>
+       <summary>오늘의 뉴스 모으기 · GPT 기사 작성 <span aria-hidden="true">⌄</span></summary>
       <section class="card" id="newsCollectorSection" style="margin:10px 0 0">
        <div class="toolbar news-collector-header" style="justify-content:space-between;align-items:center">
         <strong>🗞️ 오늘의 일본 뉴스</strong><span class="tag">RSS · 기사 후보</span>
@@ -2392,14 +2404,6 @@ function renderCuratedNewsHome(){
   card.append(meta,title,link);list.appendChild(card);
  }
 }
-document.addEventListener("click",e=>{
- const button=e.target.closest("#newsCollectorOpen");
- if(!button)return;
- const collector=$("newsCollectorShell");
- if(!collector)return;
- collector.open=true;
- collector.scrollIntoView({behavior:"smooth",block:"start"});
-});
 function showView(name){
  if(name==="newsreader")window.KOJER_NEWS_RESET_PANELS?.();
  // Other tabs do not use URL fragments. Remove an old news fragment when leaving news.
@@ -3784,7 +3788,7 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-furi-2026-10-10-reviewed.js?v=20261010-furi-full2"></script>
-<script src="data/news-reader-embedded.js?v=20261010-furi-full2"></script>
+<script src="data/news-reader-embedded.js?v=20261010-saved-accordion1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-furi-review3"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
