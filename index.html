@@ -318,6 +318,40 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 #wordsView .word-main .furi::before,
 .news-expression-ruby rt,
 ruby rt { font-weight:600!important; }
+
+/* Compact, disclosure-based news expression notebook. */
+#newsSavedPanel .news-saved-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#newsSavedPanel #newsToggleMeanings[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+#newsSavedList{border-top:1px solid var(--line)}
+#newsSavedList .news-saved-card{border:0;border-bottom:1px solid var(--line);padding:0;line-height:1.65}
+#newsSavedList .news-saved-summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 6px;border-radius:8px;min-height:64px}
+#newsSavedList .news-saved-summary::-webkit-details-marker{display:none}
+#newsSavedList .news-saved-summary::marker{content:""}
+#newsSavedList .news-saved-summary:hover{background:var(--accent-soft)}
+#newsSavedList .news-saved-summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+#newsSavedList .news-saved-head{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
+#newsSavedList .news-saved-form{font-size:18px;font-weight:700;color:var(--text);overflow-wrap:anywhere}
+#newsSavedList .news-saved-meaning{font-size:14px;color:var(--muted);line-height:1.5}
+#newsSavedList .news-saved-chevron{flex:none;font-size:21px;color:var(--muted);transition:transform .16s ease}
+#newsSavedList details[open] .news-saved-chevron{transform:rotate(180deg)}
+#newsSavedList .news-saved-detail{border-radius:12px;background:var(--bg);padding:16px 18px 18px;margin:0 2px 14px}
+#newsSavedList .news-saved-label{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:8px}
+#newsSavedList .news-sentence{font-size:17px;line-height:2.15;background:transparent;padding:0;margin:0 0 10px;overflow-wrap:anywhere}
+#newsSavedList .news-saved-detail p{font-size:14px;line-height:1.75;margin:8px 0;color:var(--text)}
+#newsSavedList .news-saved-detail .news-saved-ko{color:var(--muted)}
+#newsSavedList .news-saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+#newsSavedList .news-saved-actions button{margin-top:0}
+#newsSavedList .news-saved-actions a{font-size:12px}
+#newsSavedPanel.news-meanings-hidden .news-saved-meaning,
+#newsSavedPanel.news-meanings-hidden .news-saved-answer:not(.is-revealed){display:none}
+#newsSavedPanel:not(.news-meanings-hidden) .news-saved-reveal{display:none}
+#newsSavedList .news-saved-detail .furi{cursor:pointer}
+@media(max-width:600px){
+ #newsSavedList .news-saved-summary{padding:12px 2px;min-height:59px}
+ #newsSavedList .news-saved-form{font-size:17px}
+ #newsSavedList .news-saved-detail{padding:14px 12px}
+ #newsSavedList .news-sentence{font-size:16px}
+}
 </style>
 </head>
 <body>
@@ -452,9 +486,10 @@ ruby rt { font-weight:600!important; }
 </div>
       <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
        <strong>내 실전 표현 수첩</strong>
-       <p class="sub" style="font-size:13px;margin-top:6px">기사에서 저장한 표현의 읽기, 뜻, 원문 문맥과 유사 표현을 모아 볼 수 있어.</p>
-       <div class="toolbar" style="margin:12px 0">
+       <p class="sub" style="font-size:13px;margin-top:6px">표현을 눌러 예문과 해설을 펼쳐 봐. 뜻을 숨기면 스스로 뜻을 떠올리며 공부할 수 있어.</p>
+       <div class="toolbar news-saved-toolbar" style="margin:12px 0">
  <button id="newsStartReview" type="button" class="secondary">🧠 실전 표현 복습 시작 <span id="newsDueCount"></span></button>
+ <button id="newsToggleMeanings" type="button" class="secondary" aria-pressed="false">뜻 숨기기</button>
  </div>
  <div id="newsReviewArea" class="hidden" aria-live="polite">
    <div class="news-review-card">
@@ -3535,7 +3570,7 @@ applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);ren
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-expression-ui2"></script>
+<script src="data/news-reader-embedded.js?v=20261010-saved-collapsible1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-gpt-import2"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
