@@ -425,7 +425,21 @@ function resetNewsPanels(){
 window.KOJER_NEWS_RESET_PANELS=resetNewsPanels;
 
 function sentencesJP(value){return (String(value||"").match(/[^。！？!?]+[。！？!?]?/gu)||[]).map(x=>x.trim()).filter(Boolean)}
-function sentencesKO(value){return (String(value||"").match(/[^.!?。！？]+[.!?。！？]?/gu)||[]).map(x=>x.trim()).filter(Boolean)}
+function sentencesKO(value){
+ const text=String(value||""),out=[];let current="";
+ for(let i=0;i<text.length;i++){
+  const c=text[i];current+=c;
+  if(!/[.!?。！？]/u.test(c))continue;
+  // Japanese names written with initials (e.g. G.) and decimals (18.5%)
+  // are not Korean sentence boundaries.
+  if(c==="."&&/[0-9]/.test(text[i-1]||"")&&/[0-9]/.test(text[i+1]||""))continue;
+  if(c==="."&&/(?:^|\\s)[A-Z]\\.$/.test(current)&&/\\s/.test(text[i+1]||""))continue;
+  if(current.trim())out.push(current.trim());
+  current="";
+ }
+ if(current.trim())out.push(current.trim());
+ return out;
+}
 // Align the Korean text with the selected Japanese sentence, not its paragraph.
 function alignedSentenceKo(a,k,japaneseSentence){
  if(!a||k<0)return "";
