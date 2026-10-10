@@ -380,7 +380,8 @@ function renderReviewCard(){
  if(!item){reviewIndex++;renderReviewCard();return}
  const due=dueExpressions().length;
  $("newsReviewProgress").textContent=(reviewIndex+1)+" / "+reviewQueue.length+" · "+(due?"오늘 복습":"자유 복습");
- $("newsReviewQuestion").textContent=item.form;
+ const reviewReading=item.reading||source.find(x=>item.id.startsWith(x.id+":"))?.expressions.find(e=>e.form===item.form)?.reading||"";
+ $("newsReviewQuestion").innerHTML=expressionDetailRuby(item.form,reviewReading);
  $("newsReviewAnswer").innerHTML="";
 }
 function revealReview(){
@@ -399,7 +400,7 @@ function revealReview(){
  const answer=$("newsReviewAnswer");
  answer.innerHTML='<p><strong class="news-expression-ruby" lang="ja">'+expressionRuby(item.form,reading)+'</strong></p>'+
   '<p><b>뜻</b> '+esc(meaning)+'</p>'+
-  (example?'<p lang="ja">'+esc(example)+'</p>':"")+
+  (example?'<p lang="ja" class="news-expression-interactive">'+annotate(example).output+'</p>':"")+
   (sentenceKo?'<p class="sub">'+esc(sentenceKo)+'</p>':"")+
   (similar?'<p class="sub"><b>유사 표현</b> '+esc(similarWithoutReading(similar))+'</p>':"")+
   (note?'<p class="sub"><b>사용 뉘앙스</b> '+esc(note)+'</p>':"");
