@@ -72,15 +72,17 @@ async function generateSix(){
  if(!items.length){setStatus("먼저 오늘의 기사 모으기를 실행해 줘.",true);return}
  const candidates=items.slice(0,14).map(x=>({title:x.title,summary:x.summary,source:x.source,category:x.category,publishedAt:x.publishedAt,url:x.url}));
  const prompt=[
- "내 JLPT N1 뉴스 읽기 사이트의 학습 기사 6개를 작성해 줘. 아래 RSS 후보를 바탕으로 분야를 다양하게 골라 줘.",
- "원문 전문을 확인하지 않은 RSS 소개문 기반임을 명시하고, 확인되지 않은 숫자·인용·사실을 만들어 내지 마.",
- "기사마다 일본어 900~1200자, 5~8개 문단, 문단별 자연스러운 한국어 번역, 본문에 실제 등장하는 N1 핵심 표현 5~15개(표현·읽기·한국어 뜻·유의어·사용 설명)를 만들어 줘.",
- "기존 10개 기사는 보존하고, 가능하면 연결된 Supabase 프로젝트의 jlpt_news_generated_articles에 내 로그인 계정 소유로 저장해 줘. 저장 권한이나 계정 식별이 불가능하면 저장했다고 말하지 말고 결과를 보여 줘.",
+ "내 JLPT N1 뉴스 읽기 사이트에 오늘의 학습 기사 6개를 만들어 줘. 이 요청은 기사 작성과 저장을 한 번에 진행하기 위한 것이야.",
+ "아래 RSS 후보에서 경제·사회·국제·문화·과학 등 서로 다른 분야의 6건을 선택하고, 각 기사 URL의 언론사 원문을 웹으로 직접 열어 사실관계를 확인해 줘. RSS 요약만 보고 원문을 읽었다고 주장하지 마. 원문에 접근할 수 없으면 다른 신뢰할 수 있는 보도와 교차 검증하고 그 사실을 명시해 줘. 검증이 불가능한 기사는 제외해 줘.",
+ "원문을 그대로 복제하지 말고 사실에 충실한 독립적인 일본어 학습 기사를 각 900~1200자, 5~8문단으로 작성해 줘. 원문에 없는 숫자·인용·고유명사·사실을 만들어내지 마. 원문과 학습용 설명은 구분해 줘.",
+ "각 문단의 자연스러운 한국어 번역과 본문에 실제 등장하는 JLPT N1 핵심 표현 5~15개를 만들어 줘. 각 표현은 form(일본어),reading(히라가나),meaning(한국어),similar(유의어),note(한국어 설명)로 구성해 줘.",
+ "가능하면 내 연결된 Supabase 프로젝트 honnatvsuwzhdcyyftzl의 jlpt_news_generated_articles 테이블에 로그인 사용자 소유로 저장해 줘. 기존 10개 기사와 학습 기록은 절대 삭제하거나 덮어쓰지 마. 사용자 식별 또는 저장 권한이 없으면 저장했다고 주장하지 말고 결과와 필요한 다음 단계만 알려 줘.",
+ "완료 후 기사별 원문 확인 여부, 기사 수, 실제 저장 성공 여부를 구분해 보고해 줘.",
  "아래는 수집된 기사 후보 JSON이야:",JSON.stringify(candidates)
  ].join("\n\n");
  try{
   await navigator.clipboard.writeText(prompt);
-  setStatus("GPT 요청문을 복사했어. 열린 ChatGPT 대화창에 붙여넣고 전송해 줘. 아직 기사 생성·저장은 실행되지 않았어.");
+  setStatus("원문 확인·기사 작성·저장 요청문을 복사했어. ChatGPT에 붙여넣고 전송해 줘.");
   window.open("https://chatgpt.com/","_blank","noopener,noreferrer");
  }catch(e){
   const area=document.createElement("textarea");area.value=prompt;area.style.cssText="position:fixed;left:10%;top:15%;width:80%;height:55%;z-index:9999;background:var(--panel);color:var(--text);padding:16px";
