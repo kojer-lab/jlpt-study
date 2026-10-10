@@ -120,16 +120,16 @@ async function generateSix(){
  if(!items.length){setStatus("먼저 오늘의 기사 모으기를 실행해 줘.",true);return}
  const candidates=items.slice(0,14).map(x=>({title:x.title,summary:x.summary,source:x.source,category:x.category,publishedAt:x.publishedAt,url:x.url}));
  const prompt=[
- "내 GitHub Pages JLPT N1 뉴스 읽기 사이트에 새 학습 기사 6개를 작성하고, 연결된 GitHub 저장소에 바로 게시해 줘. 작업 완료 후 JSON 파일을 나에게 다시 보내거나 내가 다른 대화에 첨부하는 단계는 없애고 싶어.",
- "대상 GitHub 저장소: kojer-lab/jlpt-study. 기존 코드를 먼저 읽어. 특히 index.html, data/news-curated-v1.js, data/news-generated-2026-10-10.js, data/news-reader-embedded.js의 기존 기사 배열 구조와 스크립트 로드 순서를 참고해 줘. 나에게 파일 복사·붙여넣기나 수동 업로드를 시키지 마.",
- "1) 아래 RSS 후보에서 경제·사회·국제·문화·기술·스포츠 등 다양한 분야의 기사 6개를 고르고, 각 원문 URL을 직접 열어 사실관계를 확인해. 원문에 접근이 안 되면 신뢰할 만한 다른 보도/공식 자료로 교차 확인하되 사실과 해석을 구분하고, 검증할 수 없으면 다른 후보로 교체해. 원문을 읽지 못했는데 읽었다고 주장하지 마.",
- "2) 원문을 복제하지 말고 각 기사마다 독립적인 학습용 일본어 900~1,200자, 5~8문단과 동일 개수의 자연스러운 한국어 문단 번역, 실제 본문에 나오는 N1 핵심 표현 5~15개를 만들어 줘. 표현 객체는 form, reading(히라가나), meaning(한국어), similar, note를 사용하고, 부정 표현의 뜻과 예문·한자 읽기도 검사해 줘. 확인되지 않은 수치/인용/사실을 만들지 마.",
- "3) 기사 데이터는 각 항목에 id(기존과 중복되지 않는 고유 문자열), date(YYYY-MM-DD), title, category, source, sourceUrl, kind, bodyLength, paragraphs(일본어 문자열 배열), translationParagraphs(같은 길이의 한국어 문자열 배열), expressions(객체 배열)를 갖추게 해. article.id가 기존 기사와 겹치지 않는지, bodyLength가 실제 본문 길이와 일치하는지 검수해.",
- "4) 연결된 GitHub 도구로 저장소의 현재 파일들을 확인한 다음, 기존 data/news-generated-2026-10-10.js 방식과 동일하게 window.KOJER_CURATED_NEWS.articles에 새 기사만 id 중복 없이 push하는 신규 data/news-generated-YYYY-MM-DD-batchNN.js 파일을 생성해 줘. 이미 있는 파일·기존 기사 16개(또는 그 이후 누적된 기사)·학습 기록·기타 사이트 기능은 절대 덮어쓰거나 삭제하지 마. 같은 날짜에 파일이 있으면 batch 번호를 달리해.",
- "5) index.html의 기존 뉴스 데이터 스크립트 태그 다음에 새 스크립트 태그를 추가해 사이트에서 읽히도록 GitHub에 커밋해 줘. 새 데이터가 기사 목록/날짜 필터에 나타나도록 기존 스키마를 지켜. JS 문법 및 기사 개수, 날짜/번역/표현 검증을 하고 실제 변경이 성공했을 때만 'GitHub 등록 완료'라고 알려 줘.",
- "6) 이 대화에서 GitHub 연결이 없거나 쓰기 권한이 없어 게시할 수 없다면 등록을 성공했다고 말하지 마. 대신 6개를 전부 완성한 JSON 파일과 실패 이유를 제공하고, GitHub 연결 권한이 필요한지 알려 줘. Supabase 사용자 ID나 로그인 토큰은 요구하지 마. 별도 유료 AI API·Gemini는 사용하지 마.",
- "최종 보고는 선택한 기사 6개의 제목, 원문 검증 상태, 실제 GitHub 커밋 및 사이트 게시 성공 여부를 구분해 알려 줘.",
- "다음은 수집된 RSS 뉴스 후보 JSON이야:",JSON.stringify(candidates)
+ "내 JLPT N1 사이트의 최신 일본 뉴스 학습 기사 6개를 작성·검수하고 연결된 GitHub 저장소 kojer-lab/jlpt-study에 직접 추가해 줘. 최종 JSON 파일을 내게 다시 전달하거나 수동 업로드하게 만들지 마.",
+ "현재 뉴스는 날짜별 선택 로딩 구조야. 먼저 GitHub의 data/news-index-v1.js, data/news-articles-2026-10-10.json, index.html 및 data/news-reader-embedded.js를 열어 실제 스키마와 로딩 구조를 확인해. 과거 data/news-curated-v1.js, data/news-generated-2026-10-10.js는 백업이며 사이트에서 직접 로드하지 않아. 절대로 옛 news-generated-*.js 파일이나 오래된 방식의 script 태그만 생성하면 안 돼.",
+ "1) 아래 RSS 후보에서 경제·사회·국제·문화·과학·스포츠 등 서로 다른 분야 6개를 골라 언론사 URL 원문을 직접 확인해. 접근 불가하면 신뢰할 만한 다른 보도/공식 발표로 교차 확인하고, 검증할 수 없으면 제외해. 원문을 읽지 않았다면 그 사실을 반드시 밝혀.",
+ "2) 확인된 사실에 근거해 독립적으로 재작성한 JLPT N1 일본어 기사 900~1,200자 5~8문단, 문단별 자연스러운 한국어 번역 및 본문에 실제 등장하는 N1 표현 5~15개를 작성해. 인용문·수치·인물·사실을 꾸며내거나 원문을 복제하지 마. 한자 읽기, 부정형 표현 뜻, 문단 번역을 검수해.",
+ "3) 기사 객체 필수 필드: id(중복 없는 문자열),date(YYYY-MM-DD),title,category,source,sourceUrl,kind,bodyLength(일본어 paragraph 합계 글자 수),paragraphs(일본어 문자열 배열),translationParagraphs(같은 길이의 한국어 문자열 배열),expressions([{form,reading,meaning,similar,note}]). 기존 ID 및 같은 뉴스 주제 중복을 조사해.",
+ "4) 새 기사 전체를 {version:1,date:'YYYY-MM-DD',articles:[...]} 형태의 JSON으로 묶어 GitHub data/news-articles-YYYY-MM-DD-batchNN.json 에 직접 생성해. 날짜에 기존 파일이 있으면 덮어쓰지 않고 새 batch 번호로 저장해. 기사 날짜가 여러 개면 날짜별로 파일을 나눠. 기존 기사·파일·SRS·저장 기록은 모두 보존해.",
+ "5) data/news-index-v1.js의 window.KOJER_NEWS_INDEX.articles 배열에 신규 기사 각각의 가벼운 메타데이터 {id,date,category,title,bodyLength,source,asset:'data/news-articles-YYYY-MM-DD-batchNN.json'}를 추가해. 기존 index 항목 전체를 유지하고 ID 중복을 막아. 새 콘텐츠 파일 경로(asset)는 GitHub에 실제 생성한 JSON을 가리켜야 해. window.KOJER_CURATED_NEWS의 빈 articles 초기화는 유지해.",
+ "6) index.html의 data/news-index-v1.js 스크립트 URL에서 쿼리 버전만 새 값(예: v=YYYYMMDD-batchNN)으로 갱신해 브라우저 캐시를 무효화해. 전체 기사를 동기 스크립트로 불러오거나 날짜별 기사 본문을 첫 화면에 로드하지 마. JS 문법·JSON 구조·모든 파일 URL·기사 목록 수와 날짜 필터 작동을 점검해.",
+ "7) GitHub 연결/쓰기 권한이 없으면 직접 게시했다고 주장하지 마. 저장에 실패하면 원인과 구조화 JSON 파일을 제공해. 로그인 토큰 요구 및 별도 유료 AI API/Gemini 사용은 금지야. 작업이 성공하면 새 파일, index 변경, HTML 캐시 변경에 대한 실제 GitHub 커밋과 새 기사 수를 보고해.",
+ "아래는 RSS에서 수집된 뉴스 후보 목록이야:",JSON.stringify(candidates)
  ].join("\n\n");
  try{
   await navigator.clipboard.writeText(prompt);
