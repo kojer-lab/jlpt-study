@@ -313,6 +313,25 @@ function expressionTab(open){
 
 /* News-only spaced-expression review. Does not touch the main JLPT SRS deck. */
 let reviewQueue=[],reviewIndex=0,reviewRevealed=false;
+// One unbiased shuffle for each new session; unfinished sessions retain order.
+function shuffleReviewCards(cards){
+ const groups=[[],[],[],[]],now=Date.now();
+ for(const card of cards){
+  const review=card.review||{};
+  const grade=review.lastGrade;
+  const recent=Number(review.lastReviewedAt)>0&&now-Number(review.lastReviewedAt)<86400000;
+  const priority=grade==="again"||grade==="hard"?0:
+   !Number(review.lastReviewedAt)?1:grade==="easy"||recent?3:2;
+  groups[priority].push(card.id);
+ }
+ for(const group of groups){
+  for(let i=group.length-1;i>0;i--){
+   const j=Math.floor(Math.random()*(i+1));
+   [group[i],group[j]]=[group[j],group[i]];
+  }
+ }
+ return groups.flat();
+}
 function dueExpressions(){
  const now=Date.now();
  return saved().filter(x=>x&&!x.deleted&&(!x.review||!Number.isFinite(x.review.due)||x.review.due<=now));
@@ -333,8 +352,14 @@ function beginReview(){
   $("newsReviewRatings").classList.add("hidden");
   return;
  }
+ // Opening the review again after navigating tabs resumes the exact same
+ // card (even a revealed answer) until the user exits or finishes the session.
+ if(reviewQueue.length&&reviewIndex<reviewQueue.length){
+  $("newsReviewArea").classList.remove("hidden");
+  return;
+ }
  const due=dueExpressions();
- reviewQueue=(due.length?due:saved()).map(x=>x.id).sort(()=>Math.random()-.5);
+ reviewQueue=shuffleReviewCards(due.length?due:saved());
  reviewIndex=0;reviewRevealed=false;
  $("newsReviewArea").classList.remove("hidden");
  renderReviewCard();
