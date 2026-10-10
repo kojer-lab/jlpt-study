@@ -24,6 +24,8 @@ body.dark{
 html{-webkit-text-size-adjust:100%}
 /* Prevent double-tap zoom on interactive study content while preserving pinch zoom. */
 @media (pointer:coarse){html,body,.app,.main,.view,.furi{touch-action:manipulation}}
+/* News reading and review: avoid Safari double-tap zoom without disabling pinch zoom. */
+#newsreaderView,#newsreaderView .news-review-card,#newsreaderView .news-review-question,#newsreaderView .news-review-question .furi,#newsreaderView .news-article-body{touch-action:manipulation}
 body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Noto Sans JP",Arial,sans-serif}
 button,input,select{font:inherit}
 button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
@@ -4177,7 +4179,7 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-furi-2026-10-10-reviewed.js?v=20261010-furi-full2"></script>
-<script src="data/news-reader-embedded.js?v=20261010-random-review1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-review-furi2"></script>
 <script src="data/news-collector-embedded.js?v=20261010-numerals2"></script>
 <script src="data/news-sync-bridge.js?v=20261010-independent-progress2"></script>
 </body>
