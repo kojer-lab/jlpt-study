@@ -3270,9 +3270,58 @@ function lockQuizAnswerChoices(item,idx){
   if(i===idx&&idx!==item.a)button.classList.add("wrong");
  });
 }
+// Supplement grammar furigana from the site's reading passages.
+// Skip spelling with conflicting readings rather than inventing a pronunciation.
+let grammarExtraFuriIndex=null;
+function grammarFuriganaLexicon(){
+ if(grammarExtraFuriIndex)return grammarExtraFuriIndex;
+ const candidates=new Map(),rx=/<span class="furi" data-r="([^"]+)">([^<>]+)<\/span>/g;
+ for(const set of Object.values(window.N1_READING_FURIGANA||{})){
+  const texts=[set?.passage,...(set?.questions||[]).flatMap(q=>[q?.q,...(q?.c||[])])];
+  for(const html of texts){
+   rx.lastIndex=0;
+   for(const match of String(html||"").matchAll(rx)){
+    const reading=match[1],surface=match[2];
+    if(!/[一-龯々〆ヵヶ]/u.test(surface)||!/^[ぁ-ゖァ-ヺー]+$/u.test(reading))continue;
+    if(!candidates.has(surface))candidates.set(surface,new Set());
+    candidates.get(surface).add(reading);
+   }
+  }
+ }
+ grammarExtraFuriIndex=new Map();
+ for(const [surface,readings] of candidates){
+  if(readings.size!==1)continue;
+  const first=surface[0],group=grammarExtraFuriIndex.get(first)||[];
+  group.push({surface,reading:[...readings][0]});
+  grammarExtraFuriIndex.set(first,group);
+ }
+ for(const group of grammarExtraFuriIndex.values())group.sort((a,b)=>b.surface.length-a.surface.length);
+ return grammarExtraFuriIndex;
+}
+function enrichGrammarFurigana(html){
+ const index=grammarFuriganaLexicon(),box=document.createElement("div");box.innerHTML=html||"";
+ const walker=document.createTreeWalker(box,NodeFilter.SHOW_TEXT),nodes=[];let node;
+ while((node=walker.nextNode())){
+  if(node.parentElement?.closest(".furi,script,style")||!/[一-龯々〆ヵヶ]/u.test(node.nodeValue))continue;
+  nodes.push(node);
+ }
+ for(const node of nodes){
+  const text=node.nodeValue;let output="",at=0,changed=false;
+  while(at<text.length){
+   const hit=(index.get(text[at])||[]).find(x=>text.startsWith(x.surface,at));
+   if(hit){output+=F(hit.surface,hit.reading);at+=hit.surface.length;changed=true}
+   else{output+=escapeExampleText(text[at]);at++}
+  }
+  if(!changed)continue;
+  const wrapper=document.createElement("span");wrapper.innerHTML=output;
+  node.replaceWith(...wrapper.childNodes);
+ }
+ return box.innerHTML;
+}
 function quizJP(html,item){
  const w=quizMode==="vocab"?quizTargetWord(item):null;
- return renderExampleJP(html||"",w);
+ const markup=renderExampleJP(html||"",w);
+ return quizMode==="grammar"?enrichGrammarFurigana(markup):markup;
 }
 function normalizeQuizExplanation(value){
  let t=String(value||"");
