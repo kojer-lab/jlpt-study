@@ -66,6 +66,44 @@ async function loadArchive(){
  const {data,error}=await cloudClient.from("jlpt_news_generated_articles").select("article").eq("owner_id",cloudUser.id).order("created_at",{ascending:false}).limit(500);
  if(!error&&Array.isArray(data))window.KOJER_ADD_GENERATED_NEWS?.(data.map(x=>x.article));
 }
+function importStatus(message,error=false){const el=$("newsImportStatus");if(el){el.textContent=message;el.style.color=error?"var(--danger,var(--muted))":"var(--muted)";}}
+function normalizeImport(payload){
+ const list=Array.isArray(payload)?payload:Array.isArray(payload?.articles)?payload.articles:Array.isArray(payload?.data)?payload.data:null;
+ if(!list||!list.length||list.length>30)throw Error("기사 배열이 없거나 30개를 초과해.");
+ return list.map((raw,i)=>{
+  const a=raw.article&&typeof raw.article==="object"?raw.article:raw;
+  const paragraphs=a.paragraphs,translationParagraphs=a.translationParagraphs||a.translations;
+  const expressions=a.expressions;
+  if(!a.title||!Array.isArray(paragraphs)||paragraphs.length<5||paragraphs.length>10||!paragraphs.every(x=>typeof x==="string"&&x.length>30))throw Error((i+1)+"번 기사 본문 형식이 올바르지 않아.");
+  if(!Array.isArray(translationParagraphs)||translationParagraphs.length!==paragraphs.length||!translationParagraphs.every(x=>typeof x==="string"&&x.trim()))throw Error((i+1)+"번 기사 문단별 번역이 누락됐어.");
+  if(!Array.isArray(expressions)||expressions.length<5||!expressions.every(x=>x&&typeof x.form==="string"&&typeof x.reading==="string"&&typeof x.meaning==="string"))throw Error((i+1)+"번 기사 N1 표현 형식이 올바르지 않아.");
+  const title=String(a.title).trim(),id=String(a.id||"gpt-"+Array.from(title).map(c=>c.codePointAt(0).toString(36)).join("-")).slice(0,240);
+  return {id,title,category:String(a.category||"시사"),source:String(a.source||"GPT 학습 기사"),date:String(a.date||new Date().toISOString().slice(0,10)),paragraphs,translationParagraphs,expressions,bodyLength:paragraphs.join("").length,sourceUrl:String(a.sourceUrl||a.source_url||raw.source_url||"")};
+ });
+}
+async function importArticles(file){
+ const btn=$("newsImportButton");btn.disabled=true;
+ try{
+  if(typeof cloudClient==="undefined"||!cloudClient||typeof cloudUser==="undefined"||!cloudUser)throw Error("먼저 사이트의 클라우드 동기화 설정에서 로그인해 줘.");
+  if(file.size>2500000)throw Error("파일이 너무 커. 2.5MB 이하 JSON을 사용해 줘.");
+  const articles=normalizeImport(JSON.parse(await file.text()));
+  const ids=articles.map(a=>a.id);
+  if(new Set(ids).size!==ids.length)throw Error("JSON 안에 중복 기사 ID가 있어.");
+  const {data:existing,error:checkError}=await cloudClient.from("jlpt_news_generated_articles").select("id").in("id",ids);
+  if(checkError)throw checkError;
+  const known=new Set((existing||[]).map(x=>x.id));
+  const fresh=articles.filter(a=>!known.has(a.id));
+  if(!fresh.length){importStatus("이미 저장된 기사야. 중복 저장하지 않았어.");await loadArchive();return}
+  const rows=fresh.map(a=>({id:a.id,owner_id:cloudUser.id,source_url:a.sourceUrl||null,article:a}));
+  const {error}=await cloudClient.from("jlpt_news_generated_articles").insert(rows);
+  if(error)throw error;
+  window.KOJER_ADD_GENERATED_NEWS?.(fresh);
+  importStatus(fresh.length+"개 기사 저장 완료 · 중복 "+(articles.length-fresh.length)+"개 제외. 뉴스 읽기 목록에서 확인해 줘.");
+ }catch(e){importStatus("가져오기 실패: "+(e.message||String(e)),true)}
+ finally{btn.disabled=false;$("newsImportFile").value=""}
+}
+const importBtn=$("newsImportButton"),importFile=$("newsImportFile");
+if(importBtn&&importFile){importBtn.addEventListener("click",()=>importFile.click());importFile.addEventListener("change",()=>{if(importFile.files?.[0])importArticles(importFile.files[0])})}
 async function generateSix(){
  const btn=$("newsGenerateButton");
  if(!btn||busy)return;
