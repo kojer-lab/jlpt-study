@@ -536,7 +536,9 @@ function init(){
   const link=e.target.closest('a[href^="#newsreader/"]');
   if(link&&location.hash!=="#newsreader")history.replaceState(null,"","#newsreader");
   if(e.target.closest('[data-view="newsreader"],[data-go="newsreader"]')){
-   history.replaceState(null,"","#newsreader");displayList();
+   // The news list is a normal tab and should not leave #newsreader in the URL.
+   history.replaceState(history.state,"",location.pathname+location.search);
+   displayList();
   }
  },true);
  window.addEventListener("hashchange",route);
