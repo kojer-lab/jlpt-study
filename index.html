@@ -2565,6 +2565,34 @@ function promoteLearningCards(immediate,delayed,allowAhead=true){
  }
 }
 function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,false);promoteQuickWord();return wordSessionQueue}
+// A resumed session may have been created before today's new/due cards were
+// selected, or another device may have synced newer due items mid-session.
+// Reconcile the live day's queue before claiming completion. Do not requeue
+// pending learning steps, quick repeats, or cards set aside for focus study.
+function reconcileDailyWordSession(){
+ if(wordMode!=="daily")return 0;
+ const tracked=new Set([
+  ...wordSessionQueue.map(w=>canonicalWordId(w.id)),
+  ...wordLearningQueue.map(w=>canonicalWordId(w.id)),
+  ...wordQuickRepeats.map(w=>canonicalWordId(w.id)),
+  ...(wordQuickActive?[canonicalWordId(wordQuickActive.id)]:[])
+ ]);
+ const missing=buildWordStudyQueue().filter(w=>!tracked.has(canonicalWordId(w.id)));
+ if(!missing.length)return 0;
+ wordSessionQueue.push(...missing);
+ // The expected total is the number completed plus the unique unfinished
+ // cards, so newly synced cards are reflected in a consistent progress display.
+ const remaining=new Set([
+  ...wordSessionQueue.map(w=>canonicalWordId(w.id)),
+  ...wordLearningQueue.map(w=>canonicalWordId(w.id)),
+  ...wordQuickRepeats.map(w=>canonicalWordId(w.id)),
+  ...(wordQuickActive?[canonicalWordId(wordQuickActive.id)]:[])
+ ]);
+ wordSessionTotal=wordSessionDone+remaining.size;
+ wordIndex=0;
+ persistWordSession();
+ return missing.length;
+}
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
 function renderWordDashboard(){
  const daily=ensureDailyNew(true),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
@@ -2646,6 +2674,7 @@ function startWordStudy(mode="daily"){
   wordSessionTotal=wordSessionQueue.length;
  }
  if(!wordSessionTotal){renderWordDashboard();return}
+ if(wordMode==="daily")reconcileDailyWordSession();
  persistWordSession();
  $("wordDashboard").classList.add("hidden");$("wordFocusPanel").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordStudyPanel").classList.remove("hidden");
  renderWord();wordTop();
@@ -2786,8 +2815,10 @@ function showWordLibrary(){
 function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wordSessionHistory.length===0}
 function finishWordStudy(){
  localStorage.removeItem(WORD_SESSION_KEY);
- wordSessionTotal=0;wordSessionQueue=[];wordLearningQueue=[];
- updateWordUndo();$("wordStudyProgress").textContent=`${wordSessionDone} / ${wordSessionTotal}`;
+ // Preserve the finished denominator in the UI; the next session resets it.
+ const completedTotal=Math.max(wordSessionDone,wordSessionTotal);
+ wordSessionTotal=completedTotal;wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickActive=null;
+ updateWordUndo();$("wordStudyProgress").textContent=`${wordSessionDone} / ${completedTotal}`;
  $("wordIndexText").textContent="완료";$("wordDueText").textContent="";
  $("wordMain").innerHTML="✓";$("wordStarBtn").classList.add("hidden");$("wordSpeakBtn").classList.add("hidden");$("wordSpeakBtn").disabled=true;$("wordFocusHint").textContent="오늘의 단어 학습을 마쳤습니다.";$("wordTtsStatus").textContent="";
  $("showMeaningBtn").textContent="학습 목표로 돌아가기";$("showMeaningBtn").classList.remove("hidden");$("showMeaningBtn").dataset.finished="1";
@@ -2795,6 +2826,9 @@ function finishWordStudy(){
 }
 function renderWord(){
  wordAudioPrefetchRun++;
+ // Also refresh the queue after every rating: do not show "완료" while
+ // another due card or today's new words remain outside a stale session.
+ if(wordMode==="daily")reconcileDailyWordSession();
  const queue=currentWordQueue();
  updateWordUndo();
  if(!queue.length){
