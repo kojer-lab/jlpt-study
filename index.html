@@ -463,6 +463,33 @@ ruby rt { font-weight:600!important; }
 #newsSavedShell .news-saved-toggle-arrow{font-size:17px;font-weight:450;display:inline-block;transition:transform .16s}
 #newsSavedShell .news-saved-wide-toggle[aria-expanded="true"] .news-saved-toggle-arrow{transform:rotate(180deg)}
 #newsSavedShell #newsSavedPanel{margin-top:10px!important;margin-bottom:0!important}
+
+/* Compact news archive controls: counts + month + category on one line. */
+#newsreaderView .news-reader-compact-tools{display:flex;align-items:center;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;margin:0 0 10px}
+#newsreaderView .news-reader-counts{display:flex;align-items:center;gap:9px;flex-wrap:wrap;min-width:0}
+#newsreaderView .news-reader-counts strong{font-size:15px}
+#newsreaderView .news-reader-counts .tag{padding:5px 8px;font-size:12px}
+#newsreaderView .news-read-progress{font-size:12px;font-weight:600;color:var(--accent)}
+#newsreaderView .news-visible-count{font-size:12px;color:var(--muted)}
+#newsreaderView .news-reader-selects{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
+#newsreaderView .news-filter-compact{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-size:12px;color:var(--muted)}
+#newsreaderView .news-filter-compact select{font-size:13px;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:9px;min-height:35px;padding:6px 26px 6px 9px;max-width:155px}
+#newsreaderView .news-date-shortcuts{display:flex;align-items:center;gap:8px;margin:0 0 13px;min-width:0}
+#newsreaderView .news-date-shortcuts .news-date-filters{padding:0 0 2px}
+#newsreaderView .news-date-shortcuts .news-date-filters button{min-height:33px;padding:7px 10px}
+#newsreaderView .news-date-shortcuts .news-older-date{font-size:12px;min-height:33px;max-width:155px}
+#newsreaderView .news-card-read{display:inline-flex;gap:3px;align-items:center;color:var(--accent);font-size:11px;font-weight:700;white-space:nowrap}
+#newsreaderView .news-card-read.is-empty{visibility:hidden}
+#newsreaderView .news-finish-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:15px 4px 12px;border-top:1px solid var(--line);flex-wrap:wrap}
+#newsreaderView .news-finish-caption{font-size:12px;line-height:1.6;color:var(--muted)}
+#newsreaderView #newsMarkRead{padding:9px 15px;min-height:38px;font-size:13px;font-weight:650;white-space:nowrap}
+#newsreaderView #newsMarkRead[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+@media(max-width:640px){
+ #newsreaderView .news-reader-compact-tools{gap:9px;margin-bottom:10px}
+ #newsreaderView .news-reader-selects{width:100%;justify-content:flex-start;margin-left:0}
+ #newsreaderView .news-filter-compact select{max-width:135px;font-size:12px}
+ #newsreaderView .news-date-shortcuts{margin-bottom:11px}
+}
 </style>
 </head>
 <body>
@@ -586,26 +613,27 @@ ruby rt { font-weight:600!important; }
     <section class="view" id="newsreaderView">
       <div class="topbar"><div><h1>ニュースを読む · 뉴스 읽기</h1><div class="sub">실제 일본 뉴스를 바탕으로 다시 쓴 900~1,200자 기사 · 문제 없이 읽는 일본어</div></div></div>
       <div id="newsCuratedBrowser">
-       <div class="news-reader-toolbar">
-        <strong class="news-reader-count">학습 기사 <span id="newsArticleCount" class="tag">16개</span></strong>
+       <div class="news-reader-compact-tools">
+        <div class="news-reader-counts">
+         <strong>학습 기사 <span id="newsArticleCount" class="tag">16개</span></strong>
+         <span class="news-read-progress" id="newsReadCount" aria-live="polite">읽음 0개</span>
+         <span id="newsVisibleCount" class="news-visible-count" aria-live="polite"></span>
+        </div>
+        <div class="news-reader-selects">
+         <label class="news-filter-compact" for="newsMonthSelect">월
+          <select id="newsMonthSelect" aria-label="기사 연도와 월 선택"><option value="">최근 월</option></select>
+         </label>
+         <label class="news-filter-compact" for="newsCuratedCategorySelect">분야
+          <select id="newsCuratedCategorySelect" aria-label="기사 분야 선택"><option value="전체">전체 분야</option></select>
+         </label>
+        </div>
         <button type="button" id="newsSyncButton" class="secondary hidden" aria-hidden="true">뉴스 기록 동기화</button>
         <span class="sub hidden" id="newsSyncState" role="status" aria-live="polite">뉴스 학습 기록: 이 기기에 저장</span>
        </div>
-      <div class="news-curated-controls">
-       <div class="news-date-heading">
-        <strong>날짜별 기사</strong><span id="newsVisibleCount" class="sub" aria-live="polite"></span>
-        <label class="news-month-label" for="newsMonthSelect">월 선택
-         <select id="newsMonthSelect" aria-label="기사 연도와 월 선택"><option value="">최근 월</option></select>
-        </label>
-       </div>
-       <div class="news-curated-controls-line">
+       <div class="news-date-shortcuts">
         <div id="newsDateFilters" class="news-date-filters" role="group" aria-label="학습 기사 날짜 선택"></div>
         <select id="newsOlderDateSelect" class="news-older-date hidden" aria-label="이전 날짜 선택"></select>
-        <label class="news-category-label" for="newsCuratedCategorySelect">분야
-         <select id="newsCuratedCategorySelect" aria-label="기사 분야 선택"><option value="전체">전체 분야</option></select>
-        </label>
        </div>
-      </div>
       <div class="grid3" id="newsCuratedList"></div>
       <div class="news-more-area"><button type="button" id="newsMoreButton" class="secondary hidden">기사 더 보기</button></div>
       <section id="newsSavedShell" class="news-collector-shell news-saved-shell">
@@ -686,6 +714,10 @@ ruby rt { font-weight:600!important; }
           </div>
           <button type="button" id="newsReadResume" class="secondary hidden" style="display:inline-flex;align-items:center;margin:4px 0 14px;font-size:12px;padding:7px 11px" aria-label="이전에 읽던 문단부터 이어 읽기"></button>
           <div id="newsArticleBody" class="news-article-body" lang="ja"></div>
+          <div class="news-finish-row">
+           <div class="news-finish-caption">끝까지 읽었나요? 읽음 표시는 학습 기록에 저장돼요.</div>
+           <button type="button" id="newsMarkRead" class="secondary" aria-pressed="false">✓ 읽음 표시</button>
+          </div>
           <div class="news-expression-tools">
             <button id="newsExpressionToggle" class="secondary" type="button" aria-expanded="false" aria-controls="newsExpressionPanel" style="width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px">
               <span>🔎 실전 표현 보기 <span id="newsExpressionCount"></span></span><span id="newsExpressionArrow" aria-hidden="true">＋</span>
