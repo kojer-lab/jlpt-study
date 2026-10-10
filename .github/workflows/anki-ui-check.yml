@@ -6,6 +6,7 @@ on:
       - "index.html"
       - "tools/test-anki-queue.cjs"
       - "tools/test-grammar-furigana.cjs"
+      - "tools/test-anki-session-recovery.cjs"
       - ".github/workflows/anki-ui-check.yml"
   workflow_dispatch:
 
@@ -22,3 +23,4 @@ jobs:
         run: |
           node tools/test-anki-queue.cjs
           node tools/test-grammar-furigana.cjs
+          node tools/test-anki-session-recovery.cjs
