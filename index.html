@@ -2570,7 +2570,9 @@ function renderCuratedNewsHome(){
  category.value=newsCuratedCategory;
  category.onchange=()=>{newsCuratedCategory=category.value;newsVisibleLimit=24;renderCuratedNewsHome()};
  const selected=dated.filter(x=>newsCuratedCategory==="전체"||x.category===newsCuratedCategory)
-  .sort((x,y)=>String(y.date).localeCompare(String(x.date))||String(x.id).localeCompare(String(y.id)));
+  .sort((x,y)=>Number(isRead(x.id))-Number(isRead(y.id))
+   ||String(y.date).localeCompare(String(x.date))
+   ||String(x.id).localeCompare(String(y.id)));
  const page=selected.slice(0,newsVisibleLimit);
  $("newsVisibleCount").textContent=page.length===selected.length?selected.length+"개 표시":page.length+" / "+selected.length+"개 표시";
  moreButton.classList.toggle("hidden",page.length===selected.length);
