@@ -3237,7 +3237,7 @@ $("toggleWordSettings").addEventListener("click",()=>{
  const opening=panel.classList.contains("hidden");
  panel.classList.toggle("hidden",!opening);
  button.setAttribute("aria-expanded",String(opening));
- if(opening)$("dailyNewLimit").focus({preventScroll:true});
+ // Keep the gear focused on iPhone; do not open the native select picker.
 });
 $("wordSettingsPanel").addEventListener("keydown",e=>{
  if(e.key!=="Escape")return;
