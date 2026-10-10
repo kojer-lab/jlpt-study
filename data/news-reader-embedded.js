@@ -296,6 +296,7 @@ function renderSavedNotebook(){
   const matched=source.find(a=>id.startsWith(a.id+":"));
   const e=matched?.expressions?.find(x=>matched.id+":"+x.form===id);
   const meaning=e?.meaning||item.meaning||"";
+  const reading=e?.reading||item.reading||"";
   const similar=e?.similar||item.compare||"";
   const usage=e?.note||item.note||"";
   const paraIndex=matched?.paragraphs?.findIndex(p=>p.includes(e?.form||item.form))??-1;
@@ -304,20 +305,20 @@ function renderSavedNotebook(){
   const articleLink=matched?'<a href="#newsreader/'+encodeURIComponent(matched.id)+'" class="secondary" style="display:inline-block;padding:6px 10px;text-decoration:none">기사로 이동 →</a>':"";
   const answer='<div class="news-saved-answer" id="newsSavedAnswer-'+esc(id)+'">'+
    '<p><b>뜻</b> '+esc(meaning)+'</p>'+
-   (ko?'<p class="news-saved-ko">'+esc(ko)+'</p>':"")+
-   (similar?'<p><b>유사 표현</b> <span lang="ja">'+similarExpressionHTML(similar)+'</span></p>':"")+
-   (usage?'<p><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+'</div>';
+   (ko?'<p class="news-saved-ko">'+esc(ko)+'</p>':"")+'</div>';
   return '<details class="news-saved-card" data-news-saved-id="'+esc(id)+'"'+(opened.has(id)?" open":"")+'>'+
-   '<summary class="news-saved-summary"><span class="news-saved-head"><strong class="news-saved-form" lang="ja">'+esc(item.form)+'</strong></span><span class="news-saved-chevron" aria-hidden="true">⌄</span></summary>'+
+   '<summary class="news-saved-summary"><span class="news-saved-head"><strong class="news-saved-form" lang="ja">'+expressionDetailRuby(item.form,reading)+'</strong></span><span class="news-saved-chevron" aria-hidden="true">⌄</span></summary>'+
    '<div class="news-saved-detail">'+
    (example?'<div class="news-saved-label">기사 속 예문</div><div class="news-sentence" lang="ja">'+annotate(example).output+'</div>':"")+
+   (similar?'<p><b>유사 표현</b> <span lang="ja">'+similarExpressionHTML(similar)+'</span></p>':"")+
+   (usage?'<p><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+
    '<button type="button" class="secondary news-saved-reveal" data-news-reveal-answer="'+esc(id)+'" aria-expanded="false">뜻 보기</button>'+
    answer+
    '<div class="news-saved-actions">'+articleLink+
    '<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div>'+
    '</div></details>';
  }).join("");
- list.querySelectorAll(".news-saved-detail .furi").forEach(node=>{
+ list.querySelectorAll(".news-saved-card .furi").forEach(node=>{
   node.setAttribute("role","button");
   node.setAttribute("tabindex","0");
   node.setAttribute("aria-label",node.textContent+" 후리가나 보기");
@@ -486,10 +487,14 @@ function init(){
   const b=e.target.closest("[data-news-grade]");if(b)rateReview(b.dataset.newsGrade);
  });
  $("newsSavedList").addEventListener("click",e=>{
-  const ruby=e.target.closest(".news-saved-detail .furi");
+  const ruby=e.target.closest(".news-saved-card .furi");
   if(ruby){
+   // The expression heading is inside a <summary>; clicking a kanji must
+   // reveal its furigana without accidentally folding the card.
+   e.preventDefault();
+   e.stopPropagation();
    if(!document.body.classList.contains("furi-off"))ruby.classList.toggle("show");
-   e.stopPropagation();return;
+   return;
   }
   const reveal=e.target.closest("[data-news-reveal-answer]");
   if(reveal){
@@ -519,7 +524,7 @@ function init(){
   if(button){button.textContent="뜻 보기";button.setAttribute("aria-expanded","false")}
  },true);
  $("newsSavedList").addEventListener("keydown",e=>{
-  const ruby=e.target.closest(".news-saved-detail .furi");
+  const ruby=e.target.closest(".news-saved-card .furi");
   if(ruby&&(e.key==="Enter"||e.key===" ")){
    e.preventDefault();
    if(!document.body.classList.contains("furi-off"))ruby.classList.toggle("show");
