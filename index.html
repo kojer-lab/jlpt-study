@@ -2237,6 +2237,15 @@ const $=id=>document.getElementById(id);
 const FSRS_W=[.212,1.2931,2.3065,8.2956,6.4133,.8334,3.0194,.001,1.8722,.1666,.796,1.4835,.0614,.2629,1.6483,.6014,1.8729,.5425,.0912,.0658,.1542];
 const FSRS_DECAY=-FSRS_W[20],FSRS_FACTOR=Math.pow(.9,1/FSRS_DECAY)-1,FSRS_MAX_INTERVAL=36500;
 const SRS_GRADE={again:1,hard:2,good:3,easy:4};
+const ANKI_AGAIN_MINUTES=10,ANKI_HARD_MINUTES=15;
+function studyLocalDay(t=Date.now()){
+ const d=new Date(t);
+ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function focusMissEligible(s,t=Date.now()){
+ // Pre-existing records without a first-study date are previously learned.
+ return s.reviews>0&&(!s.firstStudyDay||s.firstStudyDay!==studyLocalDay(t));
+}
 function clampNum(v,min,max){return Math.max(min,Math.min(max,v))}
 function desiredRetention(){return clampNum(Number(state.settings?.desiredRetention)||.90,.80,.97)}
 function fsrsStabilityScale(){return clampNum(Number(state.fsrsProfile?.stabilityScale)||1,.55,1.8)}
@@ -2349,19 +2358,18 @@ function scheduleFsrs(s,rating,t=now()){
  }
  x.stability=Math.round(newS*1000)/1000;x.difficulty=Math.round(newD*1000)/1000;
  x.retrievabilityAtReview=Math.round(r*1000)/1000;x.scheduler="fsrs6";
- // Short learning steps adapt per card; long-term intervals remain FSRS-based.
- // A first failure gets 3 minutes, then repeated failures get 2 / 1 minute.
+ // New cards are exempt from the focus-learning threshold until tomorrow.
+ if(wasNew&&!x.firstStudyDay)x.firstStudyDay=studyLocalDay(t);
  const failStreak=Math.max(0,Number(x.consecutiveAgain)||0);
  if(rating==="again"){
    if(wasGraduated)x.lapses++;
-   const minutes=failStreak===0?3:failStreak===1?2:1;
    x.consecutiveAgain=failStreak+1;
-   x.interval=0;x.due=t+minutes*MIN;x.state=wasGraduated?"relearning":"learning";x.streak=0;
+   x.interval=0;x.due=t+ANKI_AGAIN_MINUTES*MIN;
+   x.state=wasGraduated?"relearning":"learning";x.streak=0;
  }else if((wasNew||wasLearning||wasRelearning)&&rating==="hard"){
-   // Previously failed words return sooner, while difficult new cards can wait longer.
-   const minutes=failStreak>=2?8:failStreak===1?10:Math.round(8+7*(x.difficulty-1)/9);
    x.consecutiveAgain=0;
-   x.interval=0;x.due=t+minutes*MIN;x.state=wasRelearning?"relearning":"learning";x.streak=(x.streak||0)+1;
+   x.interval=0;x.due=t+ANKI_HARD_MINUTES*MIN;
+   x.state=wasRelearning?"relearning":"learning";x.streak=(x.streak||0)+1;
  }else{
    x.consecutiveAgain=0;
    x.interval=fsrsInterval(x.stability);x.due=t+x.interval*DAY;x.state="review";x.streak=(x.streak||0)+1;
@@ -2645,12 +2653,8 @@ const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
 let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null,wordSessionFails={};
 let focusQueue=[];
 function promoteQuickWord(){
- if(wordQuickActive||!wordQuickRepeats.length)return;
- const eligible=wordQuickRepeats.find(x=>x.turn<=wordQuickTurn)||(!wordSessionQueue.length?wordQuickRepeats[0]:null);
- if(!eligible)return;
- wordQuickRepeats=wordQuickRepeats.filter(x=>x!==eligible);
- const w=wordById.get(eligible.id);
- if(w){wordQuickActive=eligible;wordSessionQueue.unshift(w);}
+ // Quick repeats by card-count could violate the actual 10/15-minute delay.
+ // They have been disabled in favor of the scheduled learning queue.
 }
 
 function persistWordSession(){
@@ -2675,7 +2679,19 @@ function restoreWordSession(){
   const active=wordById.get(data.quickActive?.id);if(active)wordSessionQueue.unshift(active);
  }
  wordLearningQueue=[...new Set(data.learning.map(canonicalWordId))].filter(id=>wordById.has(id)).map(id=>({id,due:getSrs(id).due}));
- wordQuickRepeats=(data.quick||[]).map(x=>({...x,id:canonicalWordId(x.id)})).filter(x=>wordById.has(x.id));wordQuickTurn=Number(data.quickTurn)||0;wordQuickActive=data.quickActive?{...data.quickActive,id:canonicalWordId(data.quickActive.id)}:null;
+ // Convert pending shortcuts in older saved sessions into timed learning steps.
+ for(const entry of data.quick||[]){
+  const w=wordById.get(canonicalWordId(entry.id));
+  if(w)queueLearningCard(wordLearningQueue,w);
+ }
+ if(data.quickActive?.id){
+  const id=canonicalWordId(data.quickActive.id),w=wordById.get(id),sr=getSrs(id);
+  if(w&&(sr.state==="learning"||sr.state==="relearning")&&sr.due>now()){
+   wordSessionQueue=wordSessionQueue.filter(x=>x.id!==id);
+   queueLearningCard(wordLearningQueue,w);
+  }
+ }
+ wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
  wordSessionHistory=(data.history||[]).map(h=>({...h,id:canonicalWordId(h.id),word:wordById.get(h.id)})).filter(h=>h.word);
@@ -3186,7 +3202,9 @@ $("wordRating").addEventListener("click",e=>{
  const isQuick=!!wordQuickActive&&wordQuickActive.id===currentId;
  const failsBefore=Number(wordSessionFails[currentId])||0;
  wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,failsBefore,countedDone:false});
- wordSessionFails[currentId]=b.dataset.rate==="again"?failsBefore+1:0;
+ // A word first seen today may be difficult without being a leech.
+ const focusEligible=b.dataset.rate==="again"&&focusMissEligible(getSrs(currentId));
+ wordSessionFails[currentId]=focusEligible?failsBefore+1:0;
  if(!isQuick)rateWord(currentId,b.dataset.rate);
  // A new card attempt must start with all tap-to-reveal furigana hidden.
  clearStudyFuriganaState();
@@ -3202,9 +3220,6 @@ $("wordRating").addEventListener("click",e=>{
  }else if(isQuick){wordQuickActive=null;}
  else if(needsRepeat){
   queueLearningCard(wordLearningQueue,currentWord);
-  if((b.dataset.rate==="again"||b.dataset.rate==="hard")&&wordQuickRepeats.filter(x=>x.id===currentId).length<1){
-   wordQuickRepeats.push({id:currentId,turn:wordQuickTurn+(b.dataset.rate==="again"?4:10)});
-  }
  }else{wordSessionDone++;wordSessionHistory[wordSessionHistory.length-1].countedDone=true}
  wordQuickTurn++;
  promoteLearningCards(wordSessionQueue,wordLearningQueue,false);
