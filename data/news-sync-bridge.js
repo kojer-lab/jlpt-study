@@ -33,7 +33,7 @@ function items(){
  for(const [id,p] of Object.entries(progress&&typeof progress==="object"?progress:{})){
   if(!p||id.length>200||!Number.isInteger(p.index))continue;
   const ts=timestamp(p.updatedAt);if(!ts)continue;
-  results.set("progress:"+id,{item_type:"progress",item_key:id,ts,data:{index:Math.max(0,p.index),offset:Math.max(0,Math.min(1300,Number(p.offset)||0)),updatedAt:ts}});
+  results.set("progress:"+id,{item_type:"progress",item_key:id,ts,data:{index:Math.max(0,p.index),offset:Math.max(0,Math.min(1300,Number(p.offset)||0)),completedAt:Math.max(0,Number(p.completedAt)||0),updatedAt:ts}});
  }
  return results;
 }
@@ -61,7 +61,7 @@ function applyRemote(type,key,data,ms){
   }
  }else if(type==="progress"&&Number.isInteger(data.index)){
   const all=storageRead(PROGRESS,{});
-  all[key]={index:Math.max(0,data.index),offset:Math.max(0,Math.min(1300,Number(data.offset)||0)),updatedAt:ms};
+  all[key]={index:Math.max(0,data.index),offset:Math.max(0,Math.min(1300,Number(data.offset)||0)),completedAt:Math.max(0,Number(data.completedAt)||0),updatedAt:ms};
   save(PROGRESS,all);
  }
 }
