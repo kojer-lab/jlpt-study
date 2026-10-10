@@ -120,17 +120,20 @@ async function generateSix(){
  if(!items.length){setStatus("먼저 오늘의 기사 모으기를 실행해 줘.",true);return}
  const candidates=items.slice(0,14).map(x=>({title:x.title,summary:x.summary,source:x.source,category:x.category,publishedAt:x.publishedAt,url:x.url}));
  const prompt=[
- "내 JLPT N1 뉴스 읽기 사이트에 오늘의 학습 기사 6개를 만들어 줘. 이 요청은 기사 작성과 저장을 한 번에 진행하기 위한 것이야.",
- "아래 RSS 후보에서 경제·사회·국제·문화·과학 등 서로 다른 분야의 6건을 선택하고, 각 기사 URL의 언론사 원문을 웹으로 직접 열어 사실관계를 확인해 줘. RSS 요약만 보고 원문을 읽었다고 주장하지 마. 원문에 접근할 수 없으면 다른 신뢰할 수 있는 보도와 교차 검증하고 그 사실을 명시해 줘. 검증이 불가능한 기사는 제외해 줘.",
- "원문을 그대로 복제하지 말고 사실에 충실한 독립적인 일본어 학습 기사를 각 900~1200자, 5~8문단으로 작성해 줘. 원문에 없는 숫자·인용·고유명사·사실을 만들어내지 마. 원문과 학습용 설명은 구분해 줘.",
- "각 문단의 자연스러운 한국어 번역과 본문에 실제 등장하는 JLPT N1 핵심 표현 5~15개를 만들어 줘. 각 표현은 form(일본어),reading(히라가나),meaning(한국어),similar(유의어),note(한국어 설명)로 구성해 줘.",
- "가능하면 내 연결된 Supabase 프로젝트 honnatvsuwzhdcyyftzl의 jlpt_news_generated_articles 테이블에 로그인 사용자 소유로 저장해 줘. 기존 10개 기사와 학습 기록은 절대 삭제하거나 덮어쓰지 마. 사용자 식별 또는 저장 권한이 없으면 저장했다고 주장하지 말고 결과와 필요한 다음 단계만 알려 줘.",
- "완료 후 기사별 원문 확인 여부, 기사 수, 실제 저장 성공 여부를 구분해 보고해 줘.",
- "아래는 수집된 기사 후보 JSON이야:",JSON.stringify(candidates)
+ "내 GitHub Pages JLPT N1 뉴스 읽기 사이트에 새 학습 기사 6개를 작성하고, 연결된 GitHub 저장소에 바로 게시해 줘. 작업 완료 후 JSON 파일을 나에게 다시 보내거나 내가 다른 대화에 첨부하는 단계는 없애고 싶어.",
+ "대상 GitHub 저장소: kojer-lab/jlpt-study. 기존 코드를 먼저 읽어. 특히 index.html, data/news-curated-v1.js, data/news-generated-2026-10-10.js, data/news-reader-embedded.js의 기존 기사 배열 구조와 스크립트 로드 순서를 참고해 줘. 나에게 파일 복사·붙여넣기나 수동 업로드를 시키지 마.",
+ "1) 아래 RSS 후보에서 경제·사회·국제·문화·기술·스포츠 등 다양한 분야의 기사 6개를 고르고, 각 원문 URL을 직접 열어 사실관계를 확인해. 원문에 접근이 안 되면 신뢰할 만한 다른 보도/공식 자료로 교차 확인하되 사실과 해석을 구분하고, 검증할 수 없으면 다른 후보로 교체해. 원문을 읽지 못했는데 읽었다고 주장하지 마.",
+ "2) 원문을 복제하지 말고 각 기사마다 독립적인 학습용 일본어 900~1,200자, 5~8문단과 동일 개수의 자연스러운 한국어 문단 번역, 실제 본문에 나오는 N1 핵심 표현 5~15개를 만들어 줘. 표현 객체는 form, reading(히라가나), meaning(한국어), similar, note를 사용하고, 부정 표현의 뜻과 예문·한자 읽기도 검사해 줘. 확인되지 않은 수치/인용/사실을 만들지 마.",
+ "3) 기사 데이터는 각 항목에 id(기존과 중복되지 않는 고유 문자열), date(YYYY-MM-DD), title, category, source, sourceUrl, kind, bodyLength, paragraphs(일본어 문자열 배열), translationParagraphs(같은 길이의 한국어 문자열 배열), expressions(객체 배열)를 갖추게 해. article.id가 기존 기사와 겹치지 않는지, bodyLength가 실제 본문 길이와 일치하는지 검수해.",
+ "4) 연결된 GitHub 도구로 저장소의 현재 파일들을 확인한 다음, 기존 data/news-generated-2026-10-10.js 방식과 동일하게 window.KOJER_CURATED_NEWS.articles에 새 기사만 id 중복 없이 push하는 신규 data/news-generated-YYYY-MM-DD-batchNN.js 파일을 생성해 줘. 이미 있는 파일·기존 기사 16개(또는 그 이후 누적된 기사)·학습 기록·기타 사이트 기능은 절대 덮어쓰거나 삭제하지 마. 같은 날짜에 파일이 있으면 batch 번호를 달리해.",
+ "5) index.html의 기존 뉴스 데이터 스크립트 태그 다음에 새 스크립트 태그를 추가해 사이트에서 읽히도록 GitHub에 커밋해 줘. 새 데이터가 기사 목록/날짜 필터에 나타나도록 기존 스키마를 지켜. JS 문법 및 기사 개수, 날짜/번역/표현 검증을 하고 실제 변경이 성공했을 때만 'GitHub 등록 완료'라고 알려 줘.",
+ "6) 이 대화에서 GitHub 연결이 없거나 쓰기 권한이 없어 게시할 수 없다면 등록을 성공했다고 말하지 마. 대신 6개를 전부 완성한 JSON 파일과 실패 이유를 제공하고, GitHub 연결 권한이 필요한지 알려 줘. Supabase 사용자 ID나 로그인 토큰은 요구하지 마. 별도 유료 AI API·Gemini는 사용하지 마.",
+ "최종 보고는 선택한 기사 6개의 제목, 원문 검증 상태, 실제 GitHub 커밋 및 사이트 게시 성공 여부를 구분해 알려 줘.",
+ "다음은 수집된 RSS 뉴스 후보 JSON이야:",JSON.stringify(candidates)
  ].join("\n\n");
  try{
   await navigator.clipboard.writeText(prompt);
-  setStatus("원문 확인·기사 작성·저장 요청문을 복사했어. ChatGPT에 붙여넣고 전송해 줘.");
+  setStatus("GPT 기사 작성·GitHub 직접 등록 요청문을 복사했어. ChatGPT에 붙여넣고 전송해 줘. GitHub 연결 권한이 필요할 수 있어.");
   window.open("https://chatgpt.com/","_blank","noopener,noreferrer");
  }catch(e){
   const area=document.createElement("textarea");area.value=prompt;area.style.cssText="position:fixed;left:10%;top:15%;width:80%;height:55%;z-index:9999;background:var(--panel);color:var(--text);padding:16px";
