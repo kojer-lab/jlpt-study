@@ -1,102 +1,246 @@
 {
   "version": 1,
-  "batch_id": "reviewed-user-approved-ending-20261009-a",
+  "batch_id": "user-default-220ms-20261010-a",
   "items": [
     {
-      "word_id": "makanau",
+      "word_id": "todokooru",
       "kind": "example",
       "index": 0,
       "error_type": "문장 끝에 이상한 소리",
       "reviewed": true,
       "remove_tail_ms": 220,
       "report_ids": [
-        5
+        2
       ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
     },
     {
-      "word_id": "makanau",
+      "word_id": "todokooru",
       "kind": "example",
       "index": 1,
       "error_type": "문장 끝에 이상한 소리",
       "reviewed": true,
       "remove_tail_ms": 220,
       "report_ids": [
-        6
+        4
       ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
     },
     {
-      "word_id": "uketamawaru",
+      "word_id": "obiyakasu",
       "kind": "example",
       "index": 0,
       "error_type": "문장 끝에 이상한 소리",
       "reviewed": true,
       "remove_tail_ms": 220,
       "report_ids": [
-        7
+        13
       ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
     },
     {
-      "word_id": "uketamawaru",
-      "kind": "example",
-      "index": 1,
-      "error_type": "문장 끝에 이상한 소리",
-      "reviewed": true,
-      "remove_tail_ms": 220,
-      "report_ids": [
-        8
-      ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
-    },
-    {
-      "word_id": "moyoosu",
+      "word_id": "somuku",
       "kind": "example",
       "index": 0,
       "error_type": "문장 끝에 이상한 소리",
       "reviewed": true,
       "remove_tail_ms": 220,
       "report_ids": [
-        9
+        14
       ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
     },
     {
-      "word_id": "moyoosu",
+      "word_id": "somuku",
       "kind": "example",
       "index": 1,
       "error_type": "문장 끝에 이상한 소리",
       "reviewed": true,
-      "remove_tail_ms": 160,
+      "remove_tail_ms": 220,
       "report_ids": [
-        10
+        15
       ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
     },
     {
-      "word_id": "oginau",
-      "kind": "example",
-      "index": 1,
-      "error_type": "문장 끝에 이상한 소리",
-      "reviewed": true,
-      "remove_tail_ms": 240,
-      "report_ids": [
-        11
-      ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
-    },
-    {
-      "word_id": "oginau",
+      "word_id": "fumaeru",
       "kind": "example",
       "index": 0,
       "error_type": "문장 끝에 이상한 소리",
       "reviewed": true,
-      "remove_tail_ms": 160,
+      "remove_tail_ms": 220,
       "report_ids": [
-        12
+        16
       ],
-      "reason": "사용자가 원본과 미리듣기를 비교한 뒤 끝소리 절단 길이를 확정함; 원래 목소리를 유지"
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "fumaeru",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        18
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "sutareru",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        19
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "sutareru",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        20
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "hagukumu",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        21
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "hagukumu",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        22
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "tsugunau",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        23
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "tsugunau",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        24
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "habamu",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        25
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "habamu",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        26
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "yudaneru",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        27
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "yudaneru",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        28
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "okotaru",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        29
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "hikaeru",
+      "kind": "example",
+      "index": 0,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        31
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
+    },
+    {
+      "word_id": "hikaeru",
+      "kind": "example",
+      "index": 1,
+      "error_type": "문장 끝에 이상한 소리",
+      "reviewed": true,
+      "remove_tail_ms": 220,
+      "report_ids": [
+        32
+      ],
+      "reason": "동일 유형 신고에 대한 사용자 승인 기본값 220ms 일괄 보정. 변경 후 실제 발음 확인 필요."
     }
   ]
 }
