@@ -123,12 +123,16 @@ async function generateSix(){
  "내 JLPT N1 사이트의 최신 일본 뉴스 학습 기사 6개를 작성·검수하고 연결된 GitHub 저장소 kojer-lab/jlpt-study에 직접 추가해 줘. 최종 JSON 파일을 내게 다시 전달하거나 수동 업로드하게 만들지 마.",
  "현재 뉴스는 날짜별 선택 로딩 구조야. 먼저 GitHub의 data/news-index-v1.js, data/news-articles-2026-10-10.json, index.html 및 data/news-reader-embedded.js를 열어 실제 스키마와 로딩 구조를 확인해. 과거 data/news-curated-v1.js, data/news-generated-2026-10-10.js는 백업이며 사이트에서 직접 로드하지 않아. 절대로 옛 news-generated-*.js 파일이나 오래된 방식의 script 태그만 생성하면 안 돼.",
  "1) 아래 RSS 후보에서 경제·사회·국제·문화·과학·스포츠 등 서로 다른 분야 6개를 골라 언론사 URL 원문을 직접 확인해. 접근 불가하면 신뢰할 만한 다른 보도/공식 발표로 교차 확인하고, 검증할 수 없으면 제외해. 원문을 읽지 않았다면 그 사실을 반드시 밝혀.",
- "2) 확인된 사실에 근거해 독립적으로 재작성한 JLPT N1 일본어 기사 900~1,200자 5~8문단, 문단별 자연스러운 한국어 번역 및 본문에 실제 등장하는 N1 표현 5~15개를 작성해. 인용문·수치·인물·사실을 꾸며내거나 원문을 복제하지 마. 한자 읽기, 부정형 표현 뜻, 문단 번역을 검수해.",
+ "2) 확인된 사실에 근거해 독립적으로 재작성한 JLPT N1 일본어 기사 900~1,200자 5~8문단, 문단별 자연스러운 한국어 번역 및 본문에 실제 등장하는 N1 표현 5~15개를 작성해. 인용문·수치·인물·사실을 꾸며내거나 원문을 복제하지 마.",
+ "2-1) 초안 작성이 끝나면 배포 전에 반드시 별도의 2차 검수 단계를 수행해. 모든 문단의 사실관계·한국어 번역·일본어 문법·숫자·고유명사를 다시 확인하고, 기사별 N1 실전 표현 전체를 표로 추출해 본문에 실제 등장하는지, 각 form과 reading의 한자 구간이 정확히 대응하는지, 동사 활용형·부정형 읽기가 맞는지 하나씩 대조해. '不正アクセス'처럼 한자+가타카나 혼합 표현도 빠뜨리지 마. 한자 없는 표현은 임의의 후리가나를 덧붙이지 마.",
+ "2-2) 유사 표현(similar)에도 한자가 있으면 괄호 안에 정확한 히라가나 읽기(예: 共同事業（きょうどうじぎょう）)를 함께 제공해. 사이트에서는 괄호를 그대로 표시하지 않고 클릭 후리가나 데이터로 사용해. 유사 표현과 본문 예문 속 한자도 가능한 읽기 검증을 수행하되 확실하지 않은 읽기는 만들어내지 말고 표시해. 표현마다 reading과 meaning을 서로 바꿔 적지 않았는지, 단어 뜻의 긍정/부정 방향이 맞는지도 검수해.",
+ "2-3) 신규 날짜별 JSON을 저장하기 전에 실제 기사별 전체 문단 수, 일본어 글자 수, 번역 문단 수, N1 표현 수, 글자+읽기의 후리가나 정합성, 이미 수록된 기사와 주제/ID 중복 여부를 자동 점검해. 오류가 나오면 수정 후 다시 검사해. 검수를 했다는 말만 하지 말고 검수 결과와 수정한 항목 수를 최종 보고에 포함해.",
  "3) 기사 객체 필수 필드: id(중복 없는 문자열),date(YYYY-MM-DD),title,category,source,sourceUrl,kind,bodyLength(일본어 paragraph 합계 글자 수),paragraphs(일본어 문자열 배열),translationParagraphs(같은 길이의 한국어 문자열 배열),expressions([{form,reading,meaning,similar,note}]). 기존 ID 및 같은 뉴스 주제 중복을 조사해.",
  "4) 새 기사 전체를 {version:1,date:'YYYY-MM-DD',articles:[...]} 형태의 JSON으로 묶어 GitHub data/news-articles-YYYY-MM-DD-batchNN.json 에 직접 생성해. 날짜에 기존 파일이 있으면 덮어쓰지 않고 새 batch 번호로 저장해. 기사 날짜가 여러 개면 날짜별로 파일을 나눠. 기존 기사·파일·SRS·저장 기록은 모두 보존해.",
  "5) data/news-index-v1.js의 window.KOJER_NEWS_INDEX.articles 배열에 신규 기사 각각의 가벼운 메타데이터 {id,date,category,title,bodyLength,source,asset:'data/news-articles-YYYY-MM-DD-batchNN.json'}를 추가해. 기존 index 항목 전체를 유지하고 ID 중복을 막아. 새 콘텐츠 파일 경로(asset)는 GitHub에 실제 생성한 JSON을 가리켜야 해. window.KOJER_CURATED_NEWS의 빈 articles 초기화는 유지해.",
  "6) index.html의 data/news-index-v1.js 스크립트 URL에서 쿼리 버전만 새 값(예: v=YYYYMMDD-batchNN)으로 갱신해 브라우저 캐시를 무효화해. 전체 기사를 동기 스크립트로 불러오거나 날짜별 기사 본문을 첫 화면에 로드하지 마. JS 문법·JSON 구조·모든 파일 URL·기사 목록 수와 날짜 필터 작동을 점검해.",
  "7) GitHub 연결/쓰기 권한이 없으면 직접 게시했다고 주장하지 마. 저장에 실패하면 원인과 구조화 JSON 파일을 제공해. 로그인 토큰 요구 및 별도 유료 AI API/Gemini 사용은 금지야. 작업이 성공하면 새 파일, index 변경, HTML 캐시 변경에 대한 실제 GitHub 커밋과 새 기사 수를 보고해.",
+ "8) 현재 기사 뉴스읽기 환경은 후리가나 클릭 방식이므로 data/news-reader-embedded.js의 expressionDetailRuby, annotateExpressionSentence, similarExpressionHTML과 호환되는 읽기를 작성해야 해. 신규 기사 저장 후 실전 표현 전체를 글자/후리가나 렌더링 관점에서도 한번 더 검수해. 기존 16개와 학습 기록은 절대로 훼손하지 마.",
  "아래는 RSS에서 수집된 뉴스 후보 목록이야:",JSON.stringify(candidates)
  ].join("\n\n");
  try{
