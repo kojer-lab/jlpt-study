@@ -5,6 +5,7 @@ on:
     paths:
       - "index.html"
       - "tools/test-anki-queue.cjs"
+      - "tools/test-grammar-furigana.cjs"
       - ".github/workflows/anki-ui-check.yml"
   workflow_dispatch:
 
@@ -18,4 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Check inline syntax and scheduler behavior
-        run: node tools/test-anki-queue.cjs
+        run: |
+          node tools/test-anki-queue.cjs
+          node tools/test-grammar-furigana.cjs
