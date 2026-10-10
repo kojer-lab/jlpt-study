@@ -108,6 +108,11 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 /* Quiz answer/explanation blocks have headings directly above Japanese text.
    Lower furigana there as well so it does not overlap the heading. */
 #quizExplanation .furi::before{bottom:calc(100% - .46em)}
+/* Graded choices are locked for scoring, but their kanji remain tappable. */
+#quizView .choice.answer-locked{cursor:default}
+#quizView .choice.answer-locked .furi{cursor:pointer}
+#quizView .choice.answer-locked:hover:not(.correct):not(.wrong){border-color:var(--line)}
+#quizView .quiz-furi-tip{font-size:12px;color:var(--muted);margin:5px 0 12px;line-height:1.5}
 /* Match the same closer-to-kanji position in the rest of the interactive JP UI.
    Line heights are intentionally left unchanged. */
 #quizQuestion .furi::before,
@@ -794,7 +799,8 @@ ruby rt { font-weight:600!important; }
         <div class="quiz-head"><div class="tag" id="quizTypeTag"></div><div class="counter" id="quizCounter"></div></div>
         <div class="card">
           <div class="passage hidden" id="quizPassage"></div>
-          <div class="question" id="quizQuestion"></div>
+          <div class="quiz-furi-tip hidden" id="quizFuriganaTip">한자를 누르면 후리가나를 확인하고 숨길 수 있어요. 정답 후에도 가능합니다.</div>
+           <div class="question" id="quizQuestion"></div>
           <div class="choices" id="quizChoices"></div>
           <div class="explain" id="quizExplanation"></div>
           <div class="next-row"><button class="primary hidden" id="nextQuizBtn" type="button">다음 문제</button></div>
@@ -1158,7 +1164,7 @@ function furiStateKey(el){
  const quizView=el.closest("#quizView");
  if(quizView){
   const list=[...quizView.querySelectorAll(".furi")];
-  return `quiz:${quizMode}:${quizIndex}:${list.indexOf(el)}:${base}:${reading}`;
+  return `quiz:${quizMode}:${mistakeRetryActive?"retry-"+mistakeRetryIndex:quizIndex}:${list.indexOf(el)}:${base}:${reading}`;
  }
  const readingView=el.closest("#readingView");
  if(readingView){
@@ -3222,6 +3228,7 @@ function renderMistakeRetry(){
  const item=entry.item;mistakeRetryAnswered=false;quizAnswered=false;quizMode=entry.type;
  const label=entry.type==="vocab"?"語彙 · 어휘":entry.type==="grammar"?"文法 · 문법":"読解 · 독해";
  $("quizTypeTag").textContent="오답 재도전 · "+label;
+  $("quizFuriganaTip").classList.toggle("hidden",entry.type!=="grammar");
  $("quizCounter").textContent=`${mistakeRetryIndex+1} / ${mistakeRetryQueue.length}`;
  if(entry.type==="reading"){
   const fq=entry.set.furigana?.questions?.[entry.questionIndex];
@@ -3231,7 +3238,7 @@ function renderMistakeRetry(){
   $("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${fq?.c?.[i]||readingJP(choice)}</button>`).join("");
  }else{
   $("quizPassage").classList.add("hidden");$("quizPassage").innerHTML="";
-  $("quizQuestion").innerHTML=item.noFurigana?item.q:quizJP(item.q,item);
+  $("quizQuestion").innerHTML=(item.noFurigana&&quizMode!=="grammar")?item.q:quizJP(item.q,item);
   $("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(normalizeQuizChoice(choice),item)}</button>`).join("");
  }
  $("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");$("nextQuizBtn").disabled=false;
@@ -3239,8 +3246,8 @@ function renderMistakeRetry(){
 }
 function answerMistakeRetry(idx){
  if(!mistakeRetryActive||mistakeRetryAnswered)return;
- const entry=mistakeRetryQueue[mistakeRetryIndex],item=entry.item;mistakeRetryAnswered=true;quizAnswered=true;if(entry.type!=="reading"&&item.noFurigana){$("quizQuestion").innerHTML=quizJP(item.q,item);restoreInteractiveFuriState($("quizQuestion"));}
- [...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});
+ const entry=mistakeRetryQueue[mistakeRetryIndex],item=entry.item;mistakeRetryAnswered=true;quizAnswered=true;if(entry.type!=="reading"&&entry.type!=="grammar"&&item.noFurigana){$("quizQuestion").innerHTML=quizJP(item.q,item);restoreInteractiveFuriState($("quizQuestion"));}
+ lockQuizAnswerChoices(item,idx);
  recordAnswer(entry.type,item,idx);
  if(entry.type==="reading"){
   const fq=entry.set.furigana?.questions?.[entry.questionIndex];
@@ -3255,6 +3262,14 @@ function answerMistakeRetry(idx){
 }
 
 function startQuiz(mode){mistakeRetryActive=false;quizMode=mode;quizOrder=[...Array(quizData[mode].length).keys()].sort(()=>Math.random()-.5);quizIndex=0;renderQuiz()}
+function lockQuizAnswerChoices(item,idx){
+ [...$("quizChoices").children].forEach((button,i)=>{
+  button.classList.add("answer-locked");
+  button.dataset.answerLocked="true";
+  if(i===item.a)button.classList.add("correct");
+  if(i===idx&&idx!==item.a)button.classList.add("wrong");
+ });
+}
 function quizJP(html,item){
  const w=quizMode==="vocab"?quizTargetWord(item):null;
  return renderExampleJP(html||"",w);
@@ -3270,8 +3285,8 @@ function normalizeQuizExplanation(value){
 function normalizeQuizChoice(value){
  return String(value??"").trim().replace(/[。．.]\s*$/u,"").trim();
 }
-function renderQuiz(){$("nextQuizBtn").disabled=false;const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘"+(item.type?" · "+item.type:""):"文法 · 문법"+(item.type?" · "+item.type:"");$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=item.noFurigana?item.q:quizJP(item.q,item);$("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(choice,item)}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");restoreInteractiveFuriState($("quizView"))}
-$("quizChoices").addEventListener("click",e=>{if(e.target.closest(".furi"))return;const b=e.target.closest(".choice");if(!b)return;if(mistakeRetryActive){answerMistakeRetry(+b.dataset.i);return}if(quizAnswered)return;quizAnswered=true;const item=quizData[quizMode][quizOrder[quizIndex]],idx=+b.dataset.i;if(item.noFurigana){$("quizQuestion").innerHTML=quizJP(item.q,item);restoreInteractiveFuriState($("quizQuestion"));}[...$("quizChoices").children].forEach((x,i)=>{x.disabled=true;if(i===item.a)x.classList.add("correct");if(i===idx&&idx!==item.a)x.classList.add("wrong")});recordAnswer(quizMode,item,idx);const details=item.details?`<div class="detail-list">${item.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${quizJP(d,item)}</div>`).join("")}</div>`:"";$("quizExplanation").innerHTML=`<strong>${idx===item.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${item.a+1}. ${quizJP(item.c[item.a],item)}<div class="translation"><strong>문제 뜻</strong><br>${quizJP(item.translation||"",item)}</div><div style="margin-top:12px"><strong>해설</strong><br>${quizJP(normalizeQuizExplanation(item.e),item)}</div>${quizMode==="vocab"?renderVocabDeepDive(item):""}${details}`;$("quizExplanation").classList.add("show");$("nextQuizBtn").classList.remove("hidden");restoreInteractiveFuriState($("quizExplanation"));refreshAll()});
+function renderQuiz(){$("nextQuizBtn").disabled=false;$("quizFuriganaTip").classList.toggle("hidden",quizMode!=="grammar");const item=quizData[quizMode][quizOrder[quizIndex]];quizAnswered=false;$("quizTypeTag").textContent=quizMode==="vocab"?"語彙 · 어휘"+(item.type?" · "+item.type:""):"文法 · 문법"+(item.type?" · "+item.type:"");$("quizCounter").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizPassage").classList.add("hidden");$("quizQuestion").innerHTML=(item.noFurigana&&quizMode!=="grammar")?item.q:quizJP(item.q,item);$("quizChoices").innerHTML=item.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${quizJP(choice,item)}</button>`).join("");$("quizExplanation").className="explain";$("quizExplanation").innerHTML="";$("nextQuizBtn").classList.add("hidden");restoreInteractiveFuriState($("quizView"))}
+$("quizChoices").addEventListener("click",e=>{if(e.target.closest(".furi"))return;const b=e.target.closest(".choice");if(!b)return;if(mistakeRetryActive){answerMistakeRetry(+b.dataset.i);return}if(quizAnswered)return;quizAnswered=true;const item=quizData[quizMode][quizOrder[quizIndex]],idx=+b.dataset.i;if(item.noFurigana&&quizMode!=="grammar"){$("quizQuestion").innerHTML=quizJP(item.q,item);restoreInteractiveFuriState($("quizQuestion"));}lockQuizAnswerChoices(item,idx);recordAnswer(quizMode,item,idx);const details=item.details?`<div class="detail-list">${item.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${quizJP(d,item)}</div>`).join("")}</div>`:"";$("quizExplanation").innerHTML=`<strong>${idx===item.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${item.a+1}. ${quizJP(item.c[item.a],item)}<div class="translation"><strong>문제 뜻</strong><br>${quizJP(item.translation||"",item)}</div><div style="margin-top:12px"><strong>해설</strong><br>${quizJP(normalizeQuizExplanation(item.e),item)}</div>${quizMode==="vocab"?renderVocabDeepDive(item):""}${details}`;$("quizExplanation").classList.add("show");$("nextQuizBtn").classList.remove("hidden");restoreInteractiveFuriState($("quizExplanation"));refreshAll()});
 $("quizExplanation").addEventListener("click",e=>{const b=e.target.closest("[data-vocab-star]");if(!b)return;const id=b.dataset.vocabStar;if(!words.some(w=>w.id===id))return;toggleStar(id);const active=isStarred(id);b.textContent=active?"★":"☆";b.classList.toggle("on",active);b.setAttribute("aria-label",active?"즐겨찾기 해제":"단어 즐겨찾기 저장");});
 function scrollToNewQuestion(viewId){
  const view=$(viewId);
