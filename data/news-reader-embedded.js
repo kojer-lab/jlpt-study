@@ -4,6 +4,36 @@
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const source=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
+const archiveIndex=Array.isArray(window.KOJER_NEWS_INDEX?.articles)?window.KOJER_NEWS_INDEX.articles:[];
+const inFlightAssets=new Map();
+// Load a day's articles only when an article from that day is opened.
+// All the other dates remain tiny index entries, not downloaded article bodies.
+async function loadArchivedArticle(id){
+ const cached=source.find(x=>x.id===id);
+ if(cached)return cached;
+ const meta=archiveIndex.find(x=>x.id===id);
+ if(!meta)throw new Error("해당 기사를 찾지 못했어.");
+ const asset=String(meta.asset||"");
+ if(!/^data\/news-articles-\d{4}-\d{2}-\d{2}(?:-batch\d+)?\.json$/.test(asset))throw new Error("기사 파일 주소가 올바르지 않아.");
+ if(!inFlightAssets.has(asset)){
+  const request=fetch(asset,{cache:"force-cache"})
+   .then(response=>{if(!response.ok)throw new Error("기사 파일을 읽을 수 없어 ("+response.status+")");return response.json()})
+   .then(payload=>{
+    if(!Array.isArray(payload?.articles))throw new Error("기사 파일 형식이 올바르지 않아.");
+    for(const item of payload.articles){
+     if(!item||typeof item.id!=="string"||!Array.isArray(item.paragraphs)||!Array.isArray(item.translationParagraphs)||item.paragraphs.length!==item.translationParagraphs.length||!Array.isArray(item.expressions))continue;
+     if(!source.some(x=>x.id===item.id))source.push(item);
+    }
+   })
+   .catch(error=>{inFlightAssets.delete(asset);throw error});
+  inFlightAssets.set(asset,request);
+ }
+ await inFlightAssets.get(asset);
+ const item=source.find(x=>x.id===id);
+ if(!item)throw new Error("선택한 기사 데이터가 파일에 없어.");
+ return item;
+}
+
 window.KOJER_ADD_GENERATED_NEWS=function(articles){if(!Array.isArray(articles))return;for(const a of articles){if(a&&typeof a.id==="string"&&!source.some(x=>x.id===a.id))source.push(a)}if(typeof renderCuratedNewsHome==="function")renderCuratedNewsHome()};
 const storeKey="jlpt-news-expression-test-v2";
 let article=null,translationOpen=false,selectedExpression=null,expressionOpen=false;
@@ -293,7 +323,7 @@ function renderSavedNotebook(){
  if(!arr.length){list.innerHTML='<p class="sub">아직 저장한 표현이 없어. 기사를 읽은 뒤 아래 실전 표현 탭에서 저장해 봐.</p>';return}
  list.innerHTML=arr.map(item=>{
   const id=String(item.id||"");
-  const matched=source.find(a=>id.startsWith(a.id+":"));
+  const matched=source.find(a=>id.startsWith(a.id+":"))||archiveIndex.find(a=>id.startsWith(a.id+":"));
   const e=matched?.expressions?.find(x=>matched.id+":"+x.form===id);
   const meaning=e?.meaning||item.meaning||"";
   const reading=e?.reading||item.reading||"";
@@ -428,24 +458,45 @@ function displayList(){
  if(article){captureProgress(true);expressionTab(false)}
  article=null;$("newsCuratedBrowser").classList.remove("hidden");$("newsCuratedDetail").classList.add("hidden");
 }
-function route(){
+let routeSerial=0;
+async function route(){
  let hash=location.hash||"";
  try{hash=decodeURIComponent(hash)}catch{}
  if(!hash.startsWith("#newsreader"))return;
  if(!$("newsreaderView")?.classList.contains("active")&&typeof showView==="function")showView("newsreader");
  const id=hash.startsWith("#newsreader/")?hash.slice("#newsreader/".length):"";
- if(id){
-  if(article&&article.id!==id)captureProgress(true);
-  displayArticle(id);
-  // A hash route keeps the previous scroll position unless explicitly reset.
-  // Set it immediately and after the article layout is painted (including Safari).
-  window.scrollTo({top:0,behavior:"auto"});
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-   if(article&&article.id===id)window.scrollTo({top:0,behavior:"auto"});
-  }));
- }else{
+ const serial=++routeSerial;
+ if(!id){
   displayList();
   window.scrollTo({top:0,behavior:"auto"});
+  return;
+ }
+ if(article&&article.id!==id)captureProgress(true);
+ if(!source.some(x=>x.id===id)){
+  $("newsCuratedBrowser").classList.add("hidden");
+  $("newsCuratedDetail").classList.remove("hidden");
+  $("newsArticleMeta").textContent="";
+  $("newsArticleTitle").textContent="기사를 불러오는 중…";
+  $("newsArticleBody").textContent="";
+  $("newsArticleExpressions").textContent="";
+  $("newsReadResume").classList.add("hidden");
+ }
+ window.scrollTo({top:0,behavior:"auto"});
+ try{
+  await loadArchivedArticle(id);
+  // Ignore a stale request when the user picked another article or left the news tab.
+  if(serial!==routeSerial||!location.hash.startsWith("#newsreader/")||decodeURIComponent(location.hash.slice(12))!==id)return;
+  displayArticle(id);
+  window.scrollTo({top:0,behavior:"auto"});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   if(serial===routeSerial&&article?.id===id)window.scrollTo({top:0,behavior:"auto"});
+  }));
+ }catch(error){
+  if(serial!==routeSerial||!location.hash.startsWith("#newsreader/"))return;
+  $("newsArticleTitle").textContent="기사를 불러오지 못했어";
+  $("newsArticleBody").textContent=error.message||"잠시 후 다시 시도해 줘.";
+  $("newsArticleExpressions").textContent="";
+  $("newsArticleMeta").textContent="기사 파일을 확인해 줘. 뒤로 이동 후 다시 열면 재시도할 수 있어.";
  }
 }
 function init(){
