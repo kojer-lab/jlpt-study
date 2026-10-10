@@ -1,0 +1,18 @@
+const fs=require("node:fs"),assert=require("node:assert/strict");
+const source=fs.readFileSync("index.html","utf8");
+const area=source.match(/<div id="wordDashboard" class="word-dashboard">([\s\S]*?)<div id="wordStudyPanel"/)?.[1];
+assert(area,"Word dashboard found");
+assert(area.includes('id="toggleWordSettings"')&&area.includes('aria-expanded="false"'),"Accessible gear button");
+assert(area.includes('id="wordSettingsPanel" class="word-settings-panel hidden"'),"Settings collapsed by default");
+const panel=area.match(/<div id="wordSettingsPanel"[\s\S]*?<div class="word-settings-note">[\s\S]*?<\/div>\s*<\/div>/)?.[0];
+assert(panel&&panel.includes('id="dailyNewLimit"')&&panel.includes('id="desiredRetention"'),"Original preferences retained");
+assert(/class="word-dash-actions"[\s\S]*?id="startStarredStudy"[\s\S]*?data-go="review"[\s\S]*?id="startFocusStudy"/.test(area),"Three existing study actions grouped together");
+assert(!/class="word-dash-actions"[^\n]*style="margin-top:8px"/.test(area),"No empty second action row");
+assert(source.includes("grid-template-columns:repeat(3,minmax(0,1fr))"),"Three equal desktop/mobile columns");
+const script=source.match(/<script>\s*function F\(b,r\)[\s\S]*?<\/script>/)?.[0]||"";
+assert(script.includes('$("toggleWordSettings").addEventListener("click"'),"Settings click handler");
+assert(script.includes('button.setAttribute("aria-expanded",String(opening))'),"Accessible open state");
+assert(script.includes('if(e.key!=="Escape")return;'),"Escape closes settings");
+assert(script.includes('state.settings=Object.assign({},state.settings,{dailyNewLimit:n,updatedAt:Date.now()})'),"Daily limit saved as before");
+assert(script.includes('state.settings=Object.assign({},state.settings,{desiredRetention:r,updatedAt:Date.now()})'),"FSRS retention saved as before");
+console.log("PASS: compact settings gear and three-column Anki action menu");
