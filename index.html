@@ -2254,7 +2254,7 @@ function recentReviewFailureDays(days,t=Date.now()){
  boundary.setDate(boundary.getDate()-FOCUS_FAILURE_WINDOW_DAYS+1);
  const minDay=studyLocalDay(boundary.getTime()),maxDay=studyLocalDay(t);
  return [...new Set((Array.isArray(days)?days:[])
-  .filter(d=>typeof d==="string"&&/^\\d{4}-\\d{2}-\\d{2}$/.test(d)&&d>=minDay&&d<=maxDay))].sort();
+  .filter(d=>typeof d==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(d)&&d>=minDay&&d<=maxDay))].sort();
 }
 function clampNum(v,min,max){return Math.max(min,Math.min(max,v))}
 function desiredRetention(){return clampNum(Number(state.settings?.desiredRetention)||.90,.80,.97)}
