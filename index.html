@@ -398,6 +398,43 @@ ruby rt { font-weight:600!important; }
  #newsCollectorSection .news-rss-source{display:none}
  #newsCollectorSection .news-rss-category{font-size:10px}
 }
+
+/* News reading: prioritize dated article cards over collector tools. */
+#newsreaderView>.topbar{margin-bottom:13px}
+#newsreaderView>.topbar .sub{margin-top:5px;font-size:13px}
+.news-reader-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+.news-reader-count{display:inline-flex;align-items:center;gap:9px;font-size:16px;white-space:nowrap}
+.news-reader-count .tag{padding:5px 9px;font-size:12px}
+.news-reader-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.news-reader-tools button{font-size:13px;padding:9px 12px;min-height:38px}
+.news-curated-controls{margin:0 0 13px}
+.news-date-heading{display:flex;gap:10px;align-items:center;margin:0 0 9px}
+.news-date-heading strong{font-size:15px}
+.news-date-heading .sub{margin:0;font-size:12px}
+.news-curated-controls-line{display:flex;gap:12px;align-items:center;justify-content:space-between;min-width:0}
+.news-date-filters{display:flex;flex:1;gap:6px;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;-webkit-overflow-scrolling:touch;padding:1px 0 5px}
+.news-date-filters button{flex:none;border-radius:9px;padding:8px 11px;font-size:12px;min-height:36px;white-space:nowrap}
+.news-date-filters button.active{background:var(--accent);color:white;border-color:var(--accent)}
+.news-category-label{display:flex;align-items:center;gap:7px;flex:none;white-space:nowrap;font-size:12px;color:var(--muted)}
+.news-category-label select{max-width:160px;min-width:110px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:9px;padding:8px 24px 8px 10px;font-size:13px;min-height:36px}
+.news-collector-shell{margin:22px 0 0}
+.news-collector-shell>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);background:var(--panel);border-radius:11px;padding:12px 16px;font-weight:650;font-size:13px;color:var(--muted)}
+.news-collector-shell>summary::-webkit-details-marker{display:none}
+.news-collector-shell>summary::marker{content:""}
+.news-collector-shell>summary:hover{color:var(--accent);border-color:var(--accent)}
+.news-collector-shell>summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.news-collector-shell>summary span{display:inline-block;transition:transform .16s ease}
+.news-collector-shell[open]>summary span{transform:rotate(180deg)}
+.news-collector-shell #newsCollectorSection{margin:10px 0 0!important}
+@media(max-width:640px){
+ #newsreaderView>.topbar{margin-bottom:11px}
+ .news-reader-toolbar{gap:8px;margin-bottom:11px}
+ .news-reader-tools{gap:6px}
+ .news-reader-tools button{padding:8px 9px;font-size:12px}
+ .news-curated-controls-line{flex-direction:column;align-items:stretch;gap:8px}
+ .news-category-label{align-self:flex-end}
+ .news-date-filters button{padding:8px 9px}
+}
 </style>
 </head>
 <body>
@@ -521,15 +558,15 @@ ruby rt { font-weight:600!important; }
     <section class="view" id="newsreaderView">
       <div class="topbar"><div><h1>ニュースを読む · 뉴스 읽기</h1><div class="sub">실제 일본 뉴스를 바탕으로 다시 쓴 900~1,200자 기사 · 문제 없이 읽는 일본어</div></div></div>
       <div id="newsCuratedBrowser">
-      <div class="card" style="line-height:1.75;margin-bottom:18px">
-        <strong>엄선한 일본 뉴스 <span id="newsArticleCount" class="tag">10개</span></strong>
-        <p style="margin:6px 0 0;color:var(--muted);font-size:14px">기사별로 보도 사실을 확인하고 일본어 문체를 살려 재구성했어. 기사 원문 전체를 복사한 것이 아니며, 별도 유료 AI API를 사용하지 않아. 읽기 화면에서는 후리가나와 한국어 번역을 이용할 수 있어.</p>
-      </div>
-      <div class="toolbar" style="margin:14px 0 12px">
- <button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button>
- <button type="button" id="newsSyncButton" class="secondary" style="display:none;font-size:12px">☁️ 뉴스 기록 지금 동기화</button>
- <span class="sub" id="newsSyncState" style="font-size:12px" role="status" aria-live="polite">뉴스 학습 기록: 이 기기에 저장</span>
-</div>
+       <div class="news-reader-toolbar">
+        <strong class="news-reader-count">학습 기사 <span id="newsArticleCount" class="tag">16개</span></strong>
+        <div class="news-reader-tools">
+         <button class="secondary" id="newsSavedToggle" type="button" aria-expanded="false" aria-controls="newsSavedPanel">📒 저장한 실전 표현 <span id="newsSavedCount">0</span></button>
+         <button class="secondary" id="newsCollectorOpen" type="button" aria-controls="newsCollectorShell">🗞️ 새 기사 만들기</button>
+        </div>
+        <button type="button" id="newsSyncButton" class="secondary hidden" aria-hidden="true">뉴스 기록 동기화</button>
+        <span class="sub hidden" id="newsSyncState" role="status" aria-live="polite">뉴스 학습 기록: 이 기기에 저장</span>
+       </div>
       <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
        <strong>내 실전 표현 수첩</strong>
        <p class="sub" style="font-size:13px;margin-top:6px">표현을 눌러 예문과 해설을 펼쳐 봐. 뜻을 숨기면 스스로 뜻을 떠올리며 공부할 수 있어.</p>
@@ -556,7 +593,19 @@ ruby rt { font-weight:600!important; }
  </div>
  <div id="newsSavedList"></div>
       </section>
-      <section class="card" id="newsCollectorSection" style="margin-bottom:18px">
+      <div class="news-curated-controls">
+       <div class="news-date-heading"><strong>날짜별 기사</strong><span id="newsVisibleCount" class="sub" aria-live="polite"></span></div>
+       <div class="news-curated-controls-line">
+        <div id="newsDateFilters" class="news-date-filters" role="group" aria-label="학습 기사 날짜 선택"></div>
+        <label class="news-category-label" for="newsCuratedCategorySelect">분야
+         <select id="newsCuratedCategorySelect" aria-label="기사 분야 선택"><option value="전체">전체 분야</option></select>
+        </label>
+       </div>
+      </div>
+      <div class="grid3" id="newsCuratedList"></div>
+      <details id="newsCollectorShell" class="news-collector-shell">
+       <summary>🗞️ 오늘의 뉴스 모으기 · GPT 기사 작성 <span aria-hidden="true">⌄</span></summary>
+      <section class="card" id="newsCollectorSection" style="margin:10px 0 0">
        <div class="toolbar news-collector-header" style="justify-content:space-between;align-items:center">
         <strong>🗞️ 오늘의 일본 뉴스</strong><span class="tag">RSS · 기사 후보</span>
        </div>
@@ -583,8 +632,9 @@ ruby rt { font-weight:600!important; }
         <p class="sub" id="newsImportStatus" role="status" aria-live="polite" style="font-size:12px;margin:8px 0 0"></p>
        </details>
       </section>
-      <div id="newsCuratedFilters" style="display:flex;gap:8px;flex-wrap:wrap;margin:16px 0"></div>
-      <div class="grid3" id="newsCuratedList"></div>
+
+      </details>
+
       </div>
       <div id="newsCuratedDetail" class="hidden" style="max-width:850px;margin:auto">
         <button id="newsCuratedBack" class="secondary" type="button" style="margin-bottom:16px">← 뉴스 목록으로</button>
@@ -2224,25 +2274,45 @@ function todayNewPending(){return ensureDailyNew(true).filter(w=>getSrs(w.id).re
 function refreshAll(){renderHome();renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
 let newsCuratedCategory="전체";
+let newsCuratedDate=null; // On first visit, show the latest day; "전체" shows the full archive.
 function renderCuratedNewsHome(){
  const bank=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
- const filters=$("newsCuratedFilters"),list=$("newsCuratedList");
- if(!filters||!list)return;
+ const list=$("newsCuratedList"),dateFilters=$("newsDateFilters"),category=$("newsCuratedCategorySelect");
+ if(!list||!dateFilters||!category)return;
  $("newsArticleCount").textContent=bank.length+"개";
- const genres=["전체",...new Set(bank.map(a=>a.category).filter(Boolean))];
- filters.replaceChildren();
- for(const cat of genres){
+ const dates=[...new Set(bank.map(a=>String(a.date||"")).filter(d=>/^\\d{4}-\\d{2}-\\d{2}$/.test(d)))].sort().reverse();
+ if(newsCuratedDate===null||(newsCuratedDate!=="전체"&&!dates.includes(newsCuratedDate)))newsCuratedDate=dates[0]||"전체";
+ const scrollPosition=dateFilters.scrollLeft;
+ dateFilters.replaceChildren();
+ for(const day of ["전체",...dates]){
+  const count=day==="전체"?bank.length:bank.filter(x=>x.date===day).length;
+  const label=day==="전체"?"전체 날짜":day.split("-").map((n,i)=>i?String(Number(n)):n).join(".");
   const btn=document.createElement("button");
-  btn.type="button";btn.className="secondary";btn.textContent=cat;
-  btn.style.cssText="border-radius:10px;padding:9px 14px"+(cat===newsCuratedCategory?";background:#315fbb;color:#fff;border-color:#5284e3":"");
-  btn.addEventListener("click",()=>{newsCuratedCategory=cat;renderCuratedNewsHome()});
-  filters.appendChild(btn);
+  btn.type="button";btn.className="secondary"+(day===newsCuratedDate?" active":"");
+  btn.textContent=label+" · "+count;
+  btn.setAttribute("aria-pressed",String(day===newsCuratedDate));
+  btn.addEventListener("click",()=>{newsCuratedDate=day;newsCuratedCategory="전체";renderCuratedNewsHome()});
+  dateFilters.appendChild(btn);
  }
+ dateFilters.scrollLeft=scrollPosition;
+ const datedBank=bank.filter(x=>newsCuratedDate==="전체"||x.date===newsCuratedDate);
+ const genres=["전체",...new Set(datedBank.map(a=>a.category).filter(Boolean))].sort((a,b)=>a==="전체"?-1:b==="전체"?1:a.localeCompare(b,"ko"));
+ if(!genres.includes(newsCuratedCategory))newsCuratedCategory="전체";
+ category.replaceChildren();
+ for(const genre of genres){
+  const option=document.createElement("option");
+  option.value=genre;
+  option.textContent=genre==="전체"?"전체 분야":genre;
+  category.appendChild(option);
+ }
+ category.value=newsCuratedCategory;
+ category.onchange=()=>{newsCuratedCategory=category.value;renderCuratedNewsHome()};
+ const selected=datedBank.filter(x=>newsCuratedCategory==="전체"||x.category===newsCuratedCategory).sort((a,b)=>String(b.date).localeCompare(String(a.date))||bank.indexOf(b)-bank.indexOf(a));
+ $("newsVisibleCount").textContent=selected.length+"개 표시";
  list.replaceChildren();
- const selected=bank.filter(a=>newsCuratedCategory==="전체"||a.category===newsCuratedCategory).sort((a,b)=>String(b.date).localeCompare(String(a.date))||bank.indexOf(b)-bank.indexOf(a));
  if(!selected.length){
   const box=document.createElement("div");box.className="card";
-  box.textContent="이 분야의 편집 기사는 아직 없어.";list.appendChild(box);return
+  box.textContent="이 날짜와 분야에 해당하는 학습 기사가 없어.";list.appendChild(box);return;
  }
  for(const item of selected){
   const card=document.createElement("div");card.className="card";
@@ -2255,10 +2325,18 @@ function renderCuratedNewsHome(){
   const link=document.createElement("a");
   link.href="#newsreader/"+encodeURIComponent(item.id);
   link.textContent="기사 읽기 →";
-  link.style.cssText="margin-top:auto;display:inline-block;color:#9ec5ff;font-weight:700;text-decoration:none";
+  link.style.cssText="margin-top:auto;display:inline-block;color:var(--accent);font-weight:700;text-decoration:none";
   card.append(meta,title,link);list.appendChild(card);
  }
 }
+document.addEventListener("click",e=>{
+ const button=e.target.closest("#newsCollectorOpen");
+ if(!button)return;
+ const collector=$("newsCollectorShell");
+ if(!collector)return;
+ collector.open=true;
+ collector.scrollIntoView({behavior:"smooth",block:"start"});
+});
 function showView(name){
  const restartingAi=name==="listening"&&!$("listeningView")?.classList.contains("active")&&!$("aiListeningPanel")?.classList.contains("hidden");
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));const el=$(name+"View");if(el)el.classList.add("active");document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
