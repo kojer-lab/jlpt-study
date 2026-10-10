@@ -1,0 +1,21 @@
+name: Validate Anki scheduler
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "tools/test-anki-queue.cjs"
+      - ".github/workflows/anki-ui-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check inline syntax and scheduler behavior
+        run: node tools/test-anki-queue.cjs
