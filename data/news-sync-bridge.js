@@ -33,7 +33,12 @@ function items(){
  for(const [id,p] of Object.entries(progress&&typeof progress==="object"?progress:{})){
   if(!p||id.length>200||!Number.isInteger(p.index))continue;
   const ts=timestamp(p.updatedAt);if(!ts)continue;
-  results.set("progress:"+id,{item_type:"progress",item_key:id,ts,data:{index:Math.max(0,p.index),offset:Math.max(0,Math.min(1300,Number(p.offset)||0)),completedAt:Math.max(0,Number(p.completedAt)||0),updatedAt:ts}});
+  const completedAt=Math.max(0,Number(p.completedAt)||0);
+  results.set("progress:"+id,{item_type:"progress",item_key:id,ts,data:{
+   index:Math.max(0,p.index),offset:Math.max(0,Math.min(1300,Number(p.offset)||0)),
+   completedAt,completionChangedAt:Math.max(0,Number(p.completionChangedAt)||completedAt),
+   positionUpdatedAt:Math.max(0,Number(p.positionUpdatedAt)||ts),updatedAt:ts
+  }});
  }
  return results;
 }
@@ -61,9 +66,46 @@ function applyRemote(type,key,data,ms){
   }
  }else if(type==="progress"&&Number.isInteger(data.index)){
   const all=storageRead(PROGRESS,{});
-  all[key]={index:Math.max(0,data.index),offset:Math.max(0,Math.min(1300,Number(data.offset)||0)),completedAt:Math.max(0,Number(data.completedAt)||0),updatedAt:ms};
+  all[key]={
+   index:Math.max(0,data.index),offset:Math.max(0,Math.min(1300,Number(data.offset)||0)),
+   completedAt:Math.max(0,Number(data.completedAt)||0),
+   completionChangedAt:Math.max(0,Number(data.completionChangedAt)||Number(data.completedAt)||0),
+   positionUpdatedAt:Math.max(0,Number(data.positionUpdatedAt)||ms),
+   updatedAt:ms
+  };
   save(PROGRESS,all);
  }
+}
+// Scrolling and marking an article read are independent operations.
+// Merging by one updatedAt used to erase the read flag on another device.
+function normalizedProgress(data){
+ const x=data&&typeof data==="object"?data:{};
+ const updatedAt=timestamp(x.updatedAt);
+ const completedAt=Math.max(0,Number(x.completedAt)||0);
+ return {
+  index:Math.max(0,Math.floor(Number(x.index)||0)),
+  offset:Math.max(0,Math.min(1300,Number(x.offset)||0)),
+  completedAt,
+  completionChangedAt:Math.max(0,Number(x.completionChangedAt)||completedAt),
+  positionUpdatedAt:Math.max(0,Number(x.positionUpdatedAt)||updatedAt),
+  updatedAt
+ };
+}
+function mergeProgressData(local,remote){
+ const a=normalizedProgress(local),b=normalizedProgress(remote);
+ const pos=b.positionUpdatedAt>a.positionUpdatedAt?b:a;
+ const completed=b.completionChangedAt>a.completionChangedAt?b:
+  b.completionChangedAt<a.completionChangedAt?a:(a.completedAt>0?a:b);
+ return {
+  index:pos.index,offset:pos.offset,
+  completedAt:completed.completedAt,completionChangedAt:completed.completionChangedAt,
+  positionUpdatedAt:pos.positionUpdatedAt,
+  updatedAt:Math.max(a.updatedAt,b.updatedAt)
+ };
+}
+function sameProgress(a,b){
+ const x=normalizedProgress(a),y=normalizedProgress(b);
+ return ["index","offset","completedAt","completionChangedAt","positionUpdatedAt"].every(k=>x[k]===y[k]);
 }
 function available(){
  return typeof cloudClient!=="undefined"&&!!cloudClient&&typeof cloudUser!=="undefined"&&!!cloudUser&&navigator.onLine;
@@ -95,10 +137,31 @@ async function sync(){
   const allKeys=new Set([...current.keys(),...remoteMap.keys()]);
   for(const id of allKeys){
    if(currentUser!==cloudUser?.id)break;
-   const existing=items().get(id);
+   const existing=current.get(id);
    const cloud=remoteMap.get(id);
    const remoteTime=timestamp(cloud?.updated_at);
    const localTime=existing?.ts||0;
+   if(cloud&&existing&&cloud.item_type==="progress"){
+    const merged=mergeProgressData(existing.data,cloud.data);
+    const localSame=sameProgress(merged,existing.data);
+    const remoteSame=sameProgress(merged,cloud.data);
+    if(!remoteSame){
+     // Record a true merged version newer than either input for the guarded RPC.
+     const mergeTime=Math.max(Date.now(),localTime+1,remoteTime+1);
+     merged.updatedAt=mergeTime;
+     applyRemote("progress",cloud.item_key,merged,mergeTime);
+     updated=true;
+     const {error:saveError}=await cloudClient.rpc("jlpt_news_merge_item",{
+      p_item_type:"progress",p_item_key:cloud.item_key,p_data:merged,
+      p_updated_at:new Date(mergeTime).toISOString()
+     });
+     if(saveError){errors++;console.warn("뉴스 읽음 기록 병합 실패",saveError.message)}
+    }else if(!localSame){
+     applyRemote("progress",cloud.item_key,merged,remoteTime);
+     updated=true;
+    }
+    continue;
+   }
    if(cloud&&remoteTime>localTime){
     applyRemote(cloud.item_type,cloud.item_key,cloud.data||{},remoteTime);
     updated=true;
