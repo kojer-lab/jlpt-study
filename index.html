@@ -313,6 +313,11 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
  #newsArticleBody .news-paragraph{margin-bottom:1.05em}
  #newsArticleBody .furi::before{font-size:.60em;bottom:calc(100% - .38em)}
 }
+/* Softer furigana weight across vocabulary, examples, quizzes and news. */
+.furi::before,
+#wordsView .word-main .furi::before,
+.news-expression-ruby rt,
+ruby rt { font-weight:600!important; }
 </style>
 </head>
 <body>
