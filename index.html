@@ -22,6 +22,16 @@ body.dark{
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+/* iPhone Safari: taps on large word glyphs must reveal furigana, not zoom the page.
+   Apply to the complete study card as well as its nested text nodes. */
+#wordsView #wordStudyPanel,
+#wordsView #wordStudyPanel .word-card,
+#wordsView #wordStudyPanel .word-card-body,
+#wordsView #wordStudyPanel .word-title-row,
+#wordsView #wordStudyPanel .word-main,
+#wordsView #wordStudyPanel .word-main *,
+#wordsView #wordStudyPanel .example,
+#wordsView #wordStudyPanel .example * { touch-action:manipulation; }
 /* Prevent double-tap zoom on interactive study content while preserving pinch zoom. */
 @media (pointer:coarse){html,body,.app,.main,.view,.furi{touch-action:manipulation}}
 /* News reading and review: avoid Safari double-tap zoom without disabling pinch zoom. */
