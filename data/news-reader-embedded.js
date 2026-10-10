@@ -42,16 +42,21 @@ function captureProgress(force=false){
  }catch(e){console.warn("뉴스 읽기 위치 저장 실패",e)}
 }
 function restoreProgress(id){
- suppressProgressSaveUntil=Date.now()+1000;
- const p=progressFor(id);
- $("newsReadResume").textContent=p?"지난번 읽던 "+(p.index+1)+"번째 문단부터 이어 읽기":"기사별로 마지막 읽던 문단을 이 기기에 저장해.";
- requestAnimationFrame(()=>requestAnimationFrame(()=>{
-  if(!article||article.id!==id)return;
-  const target=p?$("newsParagraph"+p.index):null;
-  if(target){target.scrollIntoView({block:"start",behavior:"auto"});window.scrollBy(0,Math.min(p.offset||0,750))}
-  else window.scrollTo({top:0,behavior:"auto"});
-  suppressProgressSaveUntil=Date.now()+650;
- }));
+ // Remember the last position but never jump there automatically when opening an article.
+ // The reader always starts at the title; resume is an explicit optional action.
+ suppressProgressSaveUntil=Date.now()+1200;
+ const p=progressFor(id),button=$("newsReadResume");
+ const canResume=!!(p&&(p.index>0||p.offset>120)&&$("newsParagraph"+p.index));
+ button.classList.toggle("hidden",!canResume);
+ button.textContent=canResume?"↪ 지난번 읽던 "+(p.index+1)+"번째 문단 이어 읽기":"";
+}
+function resumeProgress(){
+ if(!article)return;
+ const p=progressFor(article.id),target=p?$("newsParagraph"+p.index):null;
+ if(!target)return;
+ suppressProgressSaveUntil=Date.now()+1500;
+ target.scrollIntoView({block:"start",behavior:"auto"});
+ window.scrollBy(0,Math.min(p.offset||0,750));
 }
 
 const extra=new Map();
@@ -413,7 +418,7 @@ function displayArticle(id){
  article=a;translationOpen=false;paragraphOpen=new Set();
  $("newsCuratedBrowser").classList.add("hidden");
  $("newsCuratedDetail").classList.remove("hidden");
- $("newsArticleMeta").textContent=[a.category,a.source,a.date,a.bodyLength+"자"].join(" · ");
+ $("newsArticleMeta").textContent=[a.category,a.date,a.bodyLength+"자"].join(" · ");
  $("newsArticleTitle").textContent=a.title;
  let marked=0,total=0;
  $("newsArticleBody").innerHTML=a.paragraphs.map((p,i)=>{
@@ -441,12 +446,24 @@ function route(){
  if(!hash.startsWith("#newsreader"))return;
  if(!$("newsreaderView")?.classList.contains("active")&&typeof showView==="function")showView("newsreader");
  const id=hash.startsWith("#newsreader/")?hash.slice("#newsreader/".length):"";
- if(id){if(article&&article.id!==id)captureProgress(true);displayArticle(id)}else displayList();
- if(!id)window.scrollTo({top:0,behavior:"auto"});
+ if(id){
+  if(article&&article.id!==id)captureProgress(true);
+  displayArticle(id);
+  // A hash route keeps the previous scroll position unless explicitly reset.
+  // Set it immediately and after the article layout is painted (including Safari).
+  window.scrollTo({top:0,behavior:"auto"});
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+   if(article&&article.id===id)window.scrollTo({top:0,behavior:"auto"});
+  }));
+ }else{
+  displayList();
+  window.scrollTo({top:0,behavior:"auto"});
+ }
 }
 function init(){
  if(!$("newsCuratedDetail"))return;
  for(const id of ["newsCuratedBack","newsCuratedBottomBack"])$(id).addEventListener("click",()=>{location.hash="#newsreader"});
+ $("newsReadResume").addEventListener("click",resumeProgress);
  $("newsArticleTranslate").addEventListener("click",()=>{
   if(!article)return;
   translationOpen=!translationOpen;
@@ -544,7 +561,7 @@ function init(){
  window.addEventListener("kojer-news:updated",()=>{
   renderSavedNotebook();
   if(article&&$("newsreaderView").classList.contains("active")){
-   $("newsReadResume").textContent="PC·아이폰 뉴스 학습 기록을 동기화했어. 다음에 기사를 열면 저장된 위치로 이어져.";
+   restoreProgress(article.id);
   }
  });
  renderSavedNotebook();
