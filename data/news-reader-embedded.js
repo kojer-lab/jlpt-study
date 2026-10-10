@@ -36,7 +36,7 @@ async function loadArchivedArticle(id){
  const asset=String(meta.asset||"");
  if(!/^data\/news-articles-\d{4}-\d{2}-\d{2}(?:-batch\d+)?\.json$/.test(asset))throw new Error("기사 파일 주소가 올바르지 않아.");
  if(!inFlightAssets.has(asset)){
-  const request=fetch(asset+"?v=20261010-arabic-numerals1",{cache:"force-cache"})
+  const request=fetch(asset+"?v=20261010-arabic-numerals2",{cache:"force-cache"})
    .then(response=>{if(!response.ok)throw new Error("기사 파일을 읽을 수 없어 ("+response.status+")");return response.json()})
    .then(payload=>{
     if(!Array.isArray(payload?.articles))throw new Error("기사 파일 형식이 올바르지 않아.");
