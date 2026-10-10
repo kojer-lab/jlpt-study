@@ -8,6 +8,7 @@ on:
       - "tools/test-grammar-furigana.cjs"
       - "tools/test-anki-session-recovery.cjs"
       - "tools/test-anki-dashboard-ui.cjs"
+      - "tools/test-anki-learning-steps.cjs"
       - ".github/workflows/anki-ui-check.yml"
   workflow_dispatch:
 
@@ -26,3 +27,4 @@ jobs:
           node tools/test-grammar-furigana.cjs
           node tools/test-anki-session-recovery.cjs
           node tools/test-anki-dashboard-ui.cjs
+          node tools/test-anki-learning-steps.cjs
