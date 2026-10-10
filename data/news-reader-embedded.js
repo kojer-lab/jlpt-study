@@ -103,6 +103,18 @@ function expressionDetailRuby(form,reading){
  const converted=wordHTML(String(form||""),String(reading||""));
  return converted.includes('class="furi"')?converted:annotate(form).output;
 }
+// Hide parenthesized kana readings in similar expressions, but preserve
+// click-to-reveal furigana in the expanded expression detail.
+function similarWithoutReading(value){
+ return String(value||"").replace(/\s*[（(][ぁ-ゖァ-ヺー\s]+[）)]\s*$/u,"").trim();
+}
+function similarExpressionHTML(value){
+ const raw=String(value||"").trim();
+ const match=raw.match(/^(.+?)\s*[（(]([ぁ-ゖァ-ヺー\s]+)[）)]\s*$/u);
+ if(!match)return annotate(similarWithoutReading(raw)).output;
+ const surface=match[1].trim(),reading=match[2].replace(/\s/g,"");
+ return expressionDetailRuby(surface,reading);
+}
 function expressionRuby(form,reading){
  // Expressions use visible <ruby>, not interactive .furi elements.
  // This keeps the expression button clickable, even when its entire label is kanji.
@@ -238,7 +250,7 @@ function revealReview(){
   '<p><b>뜻</b> '+esc(meaning)+'</p>'+
   (example?'<p lang="ja">'+esc(example)+'</p>':"")+
   (item.translation?'<p class="sub">'+esc(item.translation)+'</p>':"")+
-  (similar?'<p class="sub"><b>유사 표현</b> '+esc(similar)+'</p>':"")+
+  (similar?'<p class="sub"><b>유사 표현</b> '+esc(similarWithoutReading(similar))+'</p>':"")+
   (note?'<p class="sub"><b>사용 뉘앙스</b> '+esc(note)+'</p>':"");
  answer.classList.remove("hidden");
  $("newsReviewReveal").classList.add("hidden");
@@ -285,7 +297,7 @@ function renderSavedNotebook(){
   const example=item.example||(paraIndex>=0?matched.paragraphs[paraIndex].split(/(?<=[。！？!?])/).find(p=>p.includes(item.form)):"")||"";
   const ko=item.translation||(paraIndex>=0?matched.translationParagraphs[paraIndex]:"")||"";
   const articleLink=matched?'<a href="#newsreader/'+encodeURIComponent(matched.id)+'" class="secondary" style="display:inline-block;padding:6px 10px;text-decoration:none;font-size:12px">기사로 이동 →</a>':"";
-  return '<article class="news-saved-card"><div lang="ja"><strong class="news-expression-ruby">'+expressionRuby(item.form,reading)+'</strong></div><p class="sub"><b>뜻</b> '+esc(meaning)+'</p>'+(example?'<div class="news-sentence" lang="ja">'+esc(example)+'</div>':"")+(ko?'<p class="sub">'+esc(ko)+'</p>':"")+(similar?'<p class="sub"><b>유사 표현</b> '+esc(similar)+'</p>':"")+(usage?'<p class="sub"><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+'<div class="toolbar">'+articleLink+'<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div></article>';
+  return '<article class="news-saved-card"><div lang="ja"><strong class="news-expression-ruby">'+expressionRuby(item.form,reading)+'</strong></div><p class="sub"><b>뜻</b> '+esc(meaning)+'</p>'+(example?'<div class="news-sentence" lang="ja">'+esc(example)+'</div>':"")+(ko?'<p class="sub">'+esc(ko)+'</p>':"")+(similar?'<p class="sub"><b>유사 표현</b> '+esc(similarWithoutReading(similar))+'</p>':"")+(usage?'<p class="sub"><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+'<div class="toolbar">'+articleLink+'<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div></article>';
  }).join("");
 }
 function updateParagraphTranslation(){
@@ -323,16 +335,15 @@ function phrase(key,{preserve=false}={}){
  const panel=$("newsArticleExpressionInfo");
  panel.innerHTML='<div class="news-expression-info-heading"><strong class="news-expression-ruby news-expression-interactive" lang="ja">'+expressionDetailRuby(key,e.reading)+'</strong> <span class="tag">실전 표현</span>'+
  '<button type="button" class="secondary news-jump-to-expression" id="newsJumpToExpression" aria-label="본문에서 이 표현의 위치로 이동" title="본문의 표현 위치로 이동">↗ <span>본문으로</span></button></div>'+
- (e.reading?'<p style="margin:7px 0;color:var(--accent)">읽기 · '+esc(e.reading)+'</p>':"")+
  '<p style="margin:8px 0">뜻 · '+esc(e.meaning||"")+'</p>'+
- '<p lang="ja" class="news-expression-example" style="font-size:14px;margin:8px 0;line-height:2.2">'+annotate(sentence).output+'</p>'+
- (e.similar?'<p style="margin:8px 0"><b>유사 표현</b> '+esc(e.similar)+'</p>':"")+
+ '<p lang="ja" class="news-expression-example" style="font-size:17px;margin:11px 0;line-height:2.15">'+annotate(sentence).output+'</p>'+
+ (e.similar?'<p class="news-similar-expression" style="margin:8px 0"><b>유사 표현</b> '+similarExpressionHTML(e.similar)+'</p>':"")+
  (e.note?'<p style="margin:8px 0"><b>사용 뉘앙스</b> '+esc(e.note)+'</p>':"")+
  '<button type="button" class="secondary" id="newsSavePhrase">'+(already?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+"</button>";
  panel.classList.remove("hidden");
  // The global furigana click delegate is scoped to the article body.
  // Handle explanation-only furigana locally, without toggling the expression selection.
- panel.querySelectorAll(".news-expression-interactive .furi, .news-expression-example .furi").forEach(node=>{
+ panel.querySelectorAll(".news-expression-interactive .furi, .news-expression-example .furi, .news-similar-expression .furi").forEach(node=>{
   node.setAttribute("role","button");
   node.setAttribute("tabindex","0");
   node.setAttribute("aria-label",node.textContent+" 후리가나 보기");
