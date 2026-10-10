@@ -600,6 +600,7 @@ ruby rt { font-weight:600!important; }
         </div>
         <button class="primary word-start" type="button" id="startWordStudy">지금 학습 시작</button>
         <div class="word-dash-actions"><button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button><button class="secondary" type="button" data-go="review">복습만 보기</button></div>
+        <div class="word-dash-actions" style="margin-top:8px"><button class="secondary" type="button" id="startFocusStudy">🧠 집중 학습 · <span id="wordFocusDueCount">0</span>개</button><span id="wordFocusPendingInfo" class="sub" style="align-self:center;font-size:12px"></span></div>
         <button class="secondary word-start" type="button" id="openWordLibrary" style="margin-top:8px">📚 N1 전체 단어장 · <span id="wordLibraryCount">0</span>개</button>
       </div>
       <div id="wordStudyPanel" class="hidden">
@@ -618,6 +619,20 @@ ruby rt { font-weight:600!important; }
             <div class="next-row hidden"><button class="secondary" type="button" id="prevWordBtn">이전</button><button class="primary" type="button" id="nextWordBtn">다음</button></div>
           </div>
         </div></div>
+      </div>
+      <div id="wordFocusPanel" class="hidden">
+        <div class="word-study-head"><button class="secondary" id="exitFocusStudy" type="button">← 단어 학습</button><div id="focusStudyProgress" class="word-study-progress"></div></div>
+        <div class="word-shell"><div class="card word-card"><div class="word-card-body">
+          <div id="focusLesson"></div>
+          <button type="button" id="focusStartTest" class="primary word-start" style="margin-top:12px">뜻 가리고 기억력 확인하기</button>
+          <div id="focusQuiz" class="hidden">
+            <div class="word-focus-hint">예문과 해부를 떠올리며 단어 뜻을 생각해 보세요.</div>
+            <div class="word-main" id="focusQuizWord"></div>
+            <button type="button" class="primary word-start" id="focusRevealAnswer">뜻 확인하기</button>
+            <div class="reveal-box hidden" id="focusAnswer"></div>
+            <div class="rating hidden" id="focusRating"></div>
+          </div>
+        </div></div></div>
       </div>
       <div id="wordLibraryPanel" class="word-library hidden">
         <div class="word-library-head"><div><div class="word-library-title">N1 전체 단어장</div><div class="sub">안키 학습과 별개로 자유롭게 찾아보고 들을 수 있습니다. <a href="data/ATTRIBUTION.md" target="_blank" rel="noopener">어휘 데이터 출처</a></div></div><button class="secondary" type="button" id="exitWordLibrary">← 학습 화면</button></div>
@@ -2336,7 +2351,17 @@ function rateWord(id,rating){
  logFsrsReview(id,before,rating,t);
  setSrs(id,s);refreshAll();
 }
-function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
+// Cards set aside after repeated failure are reviewed in their own guided mode.
+function focusPendingWords(){return words.filter(w=>getSrs(w.id).focusPending===true)}
+function focusDueWords(){return focusPendingWords().filter(w=>getSrs(w.id).focusUntil<=now()).sort((a,b)=>getSrs(a.id).focusUntil-getSrs(b.id).focusUntil)}
+function nextLocalDayStart(t=now()){const d=new Date(t);d.setHours(0,0,0,0);d.setDate(d.getDate()+1);return d.getTime()}
+function deferWordForFocus(id){
+ const x=getSrs(id),t=now();
+ x.focusPending=true;x.focusUntil=nextLocalDayStart(t);
+ x.due=Math.max(x.due,x.focusUntil);x.state=x.reviews>0?"relearning":"learning";x.interval=0;x.updatedAt=t;
+ setSrs(id,x);
+}
+function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&!s.focusPending&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
 function unseenWords(){return words.filter(w=>getSrs(w.id).reviews===0)}
 function isStarred(id){return !!state.stars?.[canonicalWordId(id)]?.value}
 function starredWords(){return words.filter(w=>isStarred(w.id))}
@@ -2546,6 +2571,10 @@ function renderWordDashboard(){
  $("wordGoalFill").style.width=(words.length?Math.min(100,learned/words.length*100):0)+"%";
  $("wordDashDue").textContent=due.length;$("wordDashNew").textContent=fresh.length;
  $("wordDashTotal").textContent=due.length+fresh.length;$("wordDashMastered").textContent=mastered;
+ const focusDue=focusDueWords().length,focusWaiting=focusPendingWords().length-focusDue;
+ $("wordFocusDueCount").textContent=focusDue;
+ $("startFocusStudy").disabled=focusDue===0;
+ $("wordFocusPendingInfo").textContent=focusWaiting?("다음 학습 대기 "+focusWaiting+"개"):"";
  $("wordCountPill").textContent=`현재 ${words.length} words`;if($("wordLibraryCount"))$("wordLibraryCount").textContent=words.length;
  const total=due.length+fresh.length;
  const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0||wordQuickRepeats.length>0)||(!wordSessionTotal&&restoreWordSession());
@@ -2553,7 +2582,8 @@ function renderWordDashboard(){
  $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`지금 학습 시작 · ${total}장`:"지금 학습할 단어 없음 ✓";
 }
 const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
-let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null;
+let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null,wordSessionFails={};
+let focusQueue=[];
 function promoteQuickWord(){
  if(wordQuickActive||!wordQuickRepeats.length)return;
  const eligible=wordQuickRepeats.find(x=>x.turn<=wordQuickTurn)||(!wordSessionQueue.length?wordQuickRepeats[0]:null);
@@ -2567,7 +2597,7 @@ function persistWordSession(){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length)))return;
  const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
   immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),quick:wordQuickRepeats,quickTurn:wordQuickTurn,quickActive:wordQuickActive,
-  history:wordSessionHistory.map(h=>({...h,word:undefined})),mixedOrder:true,savedAt:Date.now()};
+  history:wordSessionHistory.map(h=>({...h,word:undefined})),failCounts:wordSessionFails,mixedOrder:true,savedAt:Date.now()};
  try{localStorage.setItem(WORD_SESSION_KEY,JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
 }
 function restoreWordSession(){
@@ -2589,28 +2619,29 @@ function restoreWordSession(){
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
  wordSessionHistory=(data.history||[]).map(h=>({...h,id:canonicalWordId(h.id),word:wordById.get(h.id)})).filter(h=>h.word);
+ wordSessionFails=(data.failCounts&&typeof data.failCounts==="object"&&!Array.isArray(data.failCounts))?data.failCounts:{};
  if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
  return true;
 }
 function clearWordSession(){
- wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
+ wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionFails={};wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
  localStorage.removeItem(WORD_SESSION_KEY);
 }
 function showWordDashboard(){
  // Leaving for the dashboard must not discard the active Anki queue.
  persistWordSession();
- $("wordStudyPanel").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordDashboard").classList.remove("hidden");
+ $("wordStudyPanel").classList.add("hidden");$("wordFocusPanel").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordDashboard").classList.remove("hidden");
  renderWordDashboard();wordTop();
 }
 function startWordStudy(mode="daily"){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length))&&!restoreWordSession()){
-  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
+  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionFails={};
   wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
   wordSessionTotal=wordSessionQueue.length;
  }
  if(!wordSessionTotal){renderWordDashboard();return}
  persistWordSession();
- $("wordDashboard").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordStudyPanel").classList.remove("hidden");
+ $("wordDashboard").classList.add("hidden");$("wordFocusPanel").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordStudyPanel").classList.remove("hidden");
  renderWord();wordTop();
 }
 
@@ -2618,6 +2649,7 @@ function wordLibraryStateLabel(w){
  const r=getSrs(w.id);
  if(r.reviews===0)return "미학습";
  if(r.stability>=30)return "정착";
+ if(r.focusPending)return "집중 학습";
  if(r.due<=now())return "복습 예정";
  return "학습 중";
 }
@@ -2673,7 +2705,7 @@ function showWordLibrary(){
  wordSessionQueue=[];wordLearningQueue=[];wordSessionHistory=[];wordLibraryVisible=80;
  wordLibraryOrder=words.map(w=>w.id);
  for(let i=wordLibraryOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[wordLibraryOrder[i],wordLibraryOrder[j]]=[wordLibraryOrder[j],wordLibraryOrder[i]]}
- $("wordDashboard").classList.add("hidden");$("wordStudyPanel").classList.add("hidden");$("wordLibraryPanel").classList.remove("hidden");
+ $("wordDashboard").classList.add("hidden");$("wordStudyPanel").classList.add("hidden");$("wordFocusPanel").classList.add("hidden");$("wordLibraryPanel").classList.remove("hidden");
  renderWordLibrary();wordTop();
 }
 function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wordSessionHistory.length===0}
@@ -3017,13 +3049,22 @@ $("wordRating").addEventListener("click",e=>{
  const reviewLogLength=(state.reviewLog||[]).length,profileBefore=JSON.parse(JSON.stringify(state.fsrsProfile||{})),learningQueueBefore=JSON.parse(JSON.stringify(wordLearningQueue));
  const quickBefore=JSON.parse(JSON.stringify(wordQuickRepeats)),quickTurnBefore=wordQuickTurn,quickActiveBefore=wordQuickActive?{...wordQuickActive}:null;
  const isQuick=!!wordQuickActive&&wordQuickActive.id===currentId;
- wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,countedDone:false});
+ const failsBefore=Number(wordSessionFails[currentId])||0;
+ wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,failsBefore,countedDone:false});
+ wordSessionFails[currentId]=b.dataset.rate==="again"?failsBefore+1:0;
  if(!isQuick)rateWord(currentId,b.dataset.rate);
  // A new card attempt must start with all tap-to-reveal furigana hidden.
  clearStudyFuriganaState();
  const after=getSrs(currentId),needsRepeat=!isQuick&&(after.state==="learning"||after.state==="relearning");
+ const toFocus=wordSessionFails[currentId]>=5;
  wordSessionQueue=wordSessionQueue.filter(w=>w.id!==currentId);
- if(isQuick){wordQuickActive=null;}
+ if(toFocus){
+  deferWordForFocus(currentId);
+  wordLearningQueue=wordLearningQueue.filter(x=>x.id!==currentId);
+  wordQuickRepeats=wordQuickRepeats.filter(x=>x.id!==currentId);
+  if(isQuick)wordQuickActive=null;
+  wordSessionDone++;wordSessionHistory[wordSessionHistory.length-1].countedDone=true;
+ }else if(isQuick){wordQuickActive=null;}
  else if(needsRepeat){
   queueLearningCard(wordLearningQueue,currentWord);
   if((b.dataset.rate==="again"||b.dataset.rate==="hard")&&wordQuickRepeats.filter(x=>x.id===currentId).length<1){
@@ -3043,6 +3084,7 @@ $("undoWordRating").addEventListener("click",()=>{
  }
  if(Number.isInteger(h.reviewLogLength))state.reviewLog=(state.reviewLog||[]).slice(0,h.reviewLogLength);
  if(h.profileBefore)state.fsrsProfile=h.profileBefore;
+ wordSessionFails[h.id]=Number(h.failsBefore)||0;
  if(Array.isArray(h.learningQueueBefore))wordLearningQueue=h.learningQueueBefore;
  if(Array.isArray(h.quickBefore))wordQuickRepeats=h.quickBefore;
  if(Number.isFinite(h.quickTurnBefore))wordQuickTurn=h.quickTurnBefore;
