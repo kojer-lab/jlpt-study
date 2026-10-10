@@ -331,6 +331,8 @@ ruby rt { font-weight:600!important; }
 #newsSavedList .news-saved-summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 #newsSavedList .news-saved-head{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
 #newsSavedList .news-saved-form{font-size:18px;font-weight:700;color:var(--text);overflow-wrap:anywhere}
+#newsSavedList .news-saved-form .furi{cursor:pointer}
+#newsSavedList .news-saved-form .furi::before{font-weight:600}
 #newsSavedList .news-saved-meaning{font-size:14px;color:var(--muted);line-height:1.5}
 #newsSavedList .news-saved-chevron{flex:none;font-size:21px;color:var(--muted);transition:transform .16s ease}
 #newsSavedList details[open] .news-saved-chevron{transform:rotate(180deg)}
@@ -344,7 +346,7 @@ ruby rt { font-weight:600!important; }
 #newsSavedList .news-saved-actions a{font-size:12px}
 #newsSavedList .news-saved-answer{display:none;margin:14px 0 0;border-top:1px solid var(--line);padding-top:12px}
 #newsSavedList .news-saved-answer.is-revealed{display:block}
-#newsSavedList .news-saved-reveal{display:block;width:100%;margin:14px 0 0!important;min-height:44px;color:var(--accent);border-color:var(--accent);font-size:14px;font-weight:650}
+#newsSavedList .news-saved-reveal{display:inline-flex;align-items:center;justify-content:center;width:auto;max-width:100%;margin:12px 0 2px!important;padding:8px 15px;min-height:38px;color:var(--accent);border-color:var(--accent);font-size:13px;font-weight:600}
 #newsSavedList .news-saved-reveal:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #newsSavedList .news-saved-detail .furi{cursor:pointer}
 @media(max-width:600px){
@@ -3720,7 +3722,7 @@ if(newsNavigationEntry?.type==="reload"&&location.hash.startsWith("#newsreader")
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-hash-nav1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-saved-compact2"></script>
 <script src="data/news-collector-embedded.js?v=20261010-github-publish1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
