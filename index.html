@@ -629,6 +629,7 @@ ruby rt { font-weight:600!important; }
         <div class="card action" data-go="vocab"><strong>語彙 · 어휘</strong><p><span id="vocabQuizTotal">문제 수 확인 중</span> · 읽기, 의미, 문맥, 유의어와 용법을 확인합니다.</p></div>
         <div class="card action" data-go="grammar"><strong>文法 · 문법</strong><p><span id="grammarQuizTotal">문제 수 확인 중</span> · 형식, 문맥, 문장 배열과 해설을 연습합니다.</p></div>
         <div class="card action" data-go="reading"><strong>読解 · 독해</strong><p>20세트 · 단문·중문·장문·시사독해를 순서대로 풉니다.</p></div><div class="card action" data-go="mock"><strong>模擬試験 · 실전 모의고사</strong><p>언어지식·독해·청해를 시간제한과 함께 풀고 결과를 확인합니다.</p></div>
+         <div class="card action" data-go="mistakes"><strong>📝 오답노트</strong><p>틀린 문제를 모아 확인하고 다시 풀 수 있습니다. 기존 오답과 복습 기록은 그대로 유지됩니다.</p></div>
       </div>
     </section>
 
@@ -934,7 +935,7 @@ ruby rt { font-weight:600!important; }
   <button type="button" data-view="words"><span>単</span>단어</button>
   <button type="button" data-view="quizhub"><span>問</span>문제</button>
   <button type="button" data-view="listening"><span>🎧</span>청해</button>
-  <button type="button" data-view="mistakes"><span>📝</span>오답노트</button>
+  <button type="button" data-view="newsreader"><span>📰</span>뉴스 읽기</button>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2361,7 +2362,7 @@ function ensureDailyNew(save=true){
  return ids.map(id=>words.find(w=>w.id===id)).filter(Boolean);
 }
 function todayNewPending(){return ensureDailyNew(true).filter(w=>getSrs(w.id).reviews===0)}
-function refreshAll(){renderHome();renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
+function refreshAll(){renderHome();if($("statsView")?.classList.contains("active"))renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
 let newsCuratedCategory="전체";
 let newsCuratedDate=null;
@@ -3847,7 +3848,9 @@ window.__jlptAudioManifest=()=>words.flatMap(w=>[
  {id:w.id,kind:"word",index:null,text:readingOf(w.w),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-word.wav"},
  ...w.examples.map((ex,i)=>({id:w.id,kind:"example",index:i,text:wordAudioText(w,i),voice:"jf_alpha",path:"audio/vocab/"+w.id+"-ex"+(i+1)+".wav"}))
 ]);
-applyTheme();applyFuri();loadStaticVocabAudioManifest();ensureDailyNew(true);renderHome();renderStats();renderWord();bindCloudControls();updateSyncUI();initializeCloudClient(true);
+// The first paint should not fetch the audio manifest or render inactive
+// Anki/Statistics views. Each initializes on first entry instead.
+applyTheme();applyFuri();renderHome();bindCloudControls();updateSyncUI();initializeCloudClient(true);
 // A refresh always returns to Home, like every other tab. Directly opened
 // news links still work on first navigation; only reloads discard the old fragment.
 const newsNavigationEntry=performance.getEntriesByType?.("navigation")?.[0];
