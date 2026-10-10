@@ -22,30 +22,38 @@ function button(text,handler){
  el.type="button";el.className="secondary";el.textContent=text;el.addEventListener("click",handler);return el;
 }
 function publish(){
- const list=$("newsCollectList"),filters=$("newsCollectFilters");clear(list);clear(filters);
- const cats=["전체",...new Set(items.map(a=>a.category))];
+ const list=$("newsCollectList"),filters=$("newsCollectFilters");
+ const results=$("newsRssResults"),total=$("newsRssCount"),hint=$("newsRssExpandLabel");
+ clear(list);clear(filters);
+ if(results)results.classList.toggle("hidden",!items.length);
+ if(total)total.textContent=items.length+"건";
+ if(hint)hint.textContent=results?.open?"접기":"목록 펼치기";
+ if(!items.length)return;
+ const cats=["전체",...new Set(items.map(a=>a.category).filter(Boolean))];
+ if(!cats.includes(selected))selected="전체";
  for(const cat of cats){
   const b=button(cat,()=>{selected=cat;publish()});
-  if(cat===selected)b.style.cssText="background:var(--accent);color:#fff;border-color:var(--accent)";
+  b.classList.toggle("active",cat===selected);
+  b.setAttribute("aria-pressed",String(cat===selected));
   filters.appendChild(b);
  }
  const matches=items.filter(x=>selected==="전체"||x.category===selected);
- if(!matches.length){const p=document.createElement("p");p.className="sub";p.textContent=items.length?"이 분야에 읽을 만한 소개문이 없어.":"수집된 뉴스가 없어. 기사 모으기를 눌러줘.";list.appendChild(p);return}
+ if(!matches.length){const p=document.createElement("p");p.className="sub";p.textContent="이 분야에 해당하는 뉴스 후보가 없어.";list.appendChild(p);return}
  const fmt=time=>{try{return new Date(time).toLocaleString("ko-KR",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"})+" JST"}catch{return""}};
  for(const a of matches){
   if(typeof a.url!=="string"||!/^https:\/\//i.test(a.url))continue;
-  const art=document.createElement("article");art.className="news-rss-item";
-  const meta=document.createElement("div");meta.className="sub";
-  meta.textContent=[a.category,a.source,fmt(a.publishedAt)].filter(Boolean).join(" · ");
-  const title=document.createElement("h3");title.lang="ja";title.textContent=a.title;
-  const details=document.createElement("details");const summary=document.createElement("summary");
-  summary.textContent="일본어 RSS 소개문 읽기";
+  const art=document.createElement("details");art.className="news-rss-item";
+  const head=document.createElement("summary");head.className="news-rss-row";
+  const category=document.createElement("span");category.className="news-rss-category";category.textContent=a.category||"뉴스";
+  const title=document.createElement("strong");title.className="news-rss-title";title.lang="ja";title.textContent=a.title;
+  const source=document.createElement("span");source.className="news-rss-source";source.textContent=a.source||"";
+  const arrow=document.createElement("span");arrow.className="news-rss-chevron";arrow.setAttribute("aria-hidden","true");arrow.textContent="⌄";
+  head.append(category,title,source,arrow);
+  const body=document.createElement("div");body.className="news-rss-body";
+  const meta=document.createElement("p");meta.className="news-rss-meta";meta.textContent=[a.source,fmt(a.publishedAt)].filter(Boolean).join(" · ");
   const passage=document.createElement("p");passage.className="news-rss-summary";passage.lang="ja";passage.textContent=a.summary;
-  details.append(summary,passage);
-  const link=document.createElement("a");link.href=a.url;link.target="_blank";link.rel="noopener noreferrer";
-  link.className="secondary";link.style.cssText="display:inline-block;padding:7px 12px;border:1px solid var(--line);border-radius:8px;font-size:13px;text-decoration:none;color:var(--accent)";
-  link.textContent="언론사 원문 열기 ↗";
-  art.append(meta,title,details,link);list.appendChild(art);
+  const link=document.createElement("a");link.href=a.url;link.target="_blank";link.rel="noopener noreferrer";link.className="news-rss-source-link";link.textContent="언론사 원문 확인 ↗";
+  body.append(meta,passage,link);art.append(head,body);list.appendChild(art);
  }
 }
 function loadCache(){
@@ -138,7 +146,12 @@ setTimeout(loadArchive,1800);
 async function collect(){
  if(busy)return;
  busy=true;
- const btn=$("newsCollectButton");btn.disabled=true;btn.textContent="뉴스 수집 중…";
+ const rssResults=$("newsRssResults");
+if(rssResults)rssResults.addEventListener("toggle",()=>{
+ const hint=$("newsRssExpandLabel");
+ if(hint)hint.textContent=rssResults.open?"접기":"목록 펼치기";
+});
+const btn=$("newsCollectButton");btn.disabled=true;btn.textContent="뉴스 수집 중…";
  setStatus("최근 일본 뉴스를 분야별로 수집하고 있어…");
  try{
   // Reuse the main JLPT Supabase session; do not create a second auth client.
