@@ -6,6 +6,19 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const source=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
 window.KOJER_ADD_GENERATED_NEWS=function(articles){if(!Array.isArray(articles))return;for(const a of articles){if(a&&typeof a.id==="string"&&!source.some(x=>x.id===a.id))source.push(a)}if(typeof renderCuratedNewsHome==="function")renderCuratedNewsHome()};
 const storeKey="jlpt-news-expression-test-v2";
+const savedMeaningPreferenceKey="jlpt-news-saved-hide-meaning-v1";
+let newsHideSavedMeanings=false;
+try{newsHideSavedMeanings=localStorage.getItem(savedMeaningPreferenceKey)==="1"}catch{}
+function updateSavedMeaningVisibility(){
+ const panel=$("newsSavedPanel"),button=$("newsToggleMeanings");
+ if(panel)panel.classList.toggle("news-meanings-hidden",newsHideSavedMeanings);
+ if(button){
+  button.textContent=newsHideSavedMeanings?"뜻 보기":"뜻 숨기기";
+  button.setAttribute("aria-pressed",String(newsHideSavedMeanings));
+  button.setAttribute("aria-label",newsHideSavedMeanings?"저장한 표현의 한국어 뜻 모두 보기":"저장한 표현의 한국어 뜻 모두 숨기기");
+ }
+}
+
 let article=null,translationOpen=false,selectedExpression=null,expressionOpen=false;
 let paragraphOpen=new Set(),lastProgressSave=0,suppressProgressSaveUntil=0;
 const progressKey="jlptNewsReadProgressV1";
@@ -284,21 +297,39 @@ function renderSavedNotebook(){
  $("newsSavedCount").textContent=String(arr.length);
  countReviews();
  const list=$("newsSavedList");
+ const opened=new Set([...list.querySelectorAll("details.news-saved-card[open]")].map(node=>node.dataset.newsSavedId));
+ updateSavedMeaningVisibility();
+ $("newsToggleMeanings").disabled=!arr.length;
  if(!arr.length){list.innerHTML='<p class="sub">아직 저장한 표현이 없어. 기사를 읽은 뒤 아래 실전 표현 탭에서 저장해 봐.</p>';return}
  list.innerHTML=arr.map(item=>{
   const id=String(item.id||"");
   const matched=source.find(a=>id.startsWith(a.id+":"));
   const e=matched?.expressions?.find(x=>matched.id+":"+x.form===id);
-  const reading=e?.reading||item.reading||"";
   const meaning=e?.meaning||item.meaning||"";
   const similar=e?.similar||item.compare||"";
   const usage=e?.note||item.note||"";
   const paraIndex=matched?.paragraphs?.findIndex(p=>p.includes(e?.form||item.form))??-1;
   const example=item.example||(paraIndex>=0?matched.paragraphs[paraIndex].split(/(?<=[。！？!?])/).find(p=>p.includes(item.form)):"")||"";
   const ko=item.translation||(paraIndex>=0?matched.translationParagraphs[paraIndex]:"")||"";
-  const articleLink=matched?'<a href="#newsreader/'+encodeURIComponent(matched.id)+'" class="secondary" style="display:inline-block;padding:6px 10px;text-decoration:none;font-size:12px">기사로 이동 →</a>':"";
-  return '<article class="news-saved-card"><div lang="ja"><strong class="news-expression-ruby">'+expressionRuby(item.form,reading)+'</strong></div><p class="sub"><b>뜻</b> '+esc(meaning)+'</p>'+(example?'<div class="news-sentence" lang="ja">'+esc(example)+'</div>':"")+(ko?'<p class="sub">'+esc(ko)+'</p>':"")+(similar?'<p class="sub"><b>유사 표현</b> '+esc(similarWithoutReading(similar))+'</p>':"")+(usage?'<p class="sub"><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+'<div class="toolbar">'+articleLink+'<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div></article>';
+  const articleLink=matched?'<a href="#newsreader/'+encodeURIComponent(matched.id)+'" class="secondary" style="display:inline-block;padding:6px 10px;text-decoration:none">기사로 이동 →</a>':"";
+  const answer='<div class="news-saved-answer"><p><b>뜻</b> '+esc(meaning)+'</p>'+
+   (ko?'<p class="news-saved-ko">'+esc(ko)+'</p>':"")+
+   (usage?'<p><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+'</div>';
+  return '<details class="news-saved-card" data-news-saved-id="'+esc(id)+'"'+(opened.has(id)?" open":"")+'>'+
+   '<summary class="news-saved-summary"><span class="news-saved-head"><strong class="news-saved-form" lang="ja">'+esc(item.form)+'</strong><span class="news-saved-meaning">'+esc(meaning)+'</span></span><span class="news-saved-chevron" aria-hidden="true">⌄</span></summary>'+
+   '<div class="news-saved-detail">'+
+   (example?'<div class="news-saved-label">기사 속 예문</div><div class="news-sentence" lang="ja">'+annotate(example).output+'</div>':"")+
+   (similar?'<p><b>유사 표현</b> <span lang="ja">'+similarExpressionHTML(similar)+'</span></p>':"")+
+   answer+
+   '<div class="news-saved-actions"><button type="button" class="secondary news-saved-reveal" data-news-reveal-answer="'+esc(id)+'" aria-expanded="false">뜻·해설 확인</button>'+
+   articleLink+'<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div>'+
+   '</div></details>';
  }).join("");
+ list.querySelectorAll(".news-saved-detail .furi").forEach(node=>{
+  node.setAttribute("role","button");
+  node.setAttribute("tabindex","0");
+  node.setAttribute("aria-label",node.textContent+" 후리가나 보기");
+ });
 }
 function updateParagraphTranslation(){
  if(!article)return;
@@ -442,6 +473,18 @@ function init(){
   $("newsSavedToggle").setAttribute("aria-expanded",String(open));
   if(open)renderSavedNotebook();
  });
+ $("newsToggleMeanings").addEventListener("click",()=>{
+  newsHideSavedMeanings=!newsHideSavedMeanings;
+  try{localStorage.setItem(savedMeaningPreferenceKey,newsHideSavedMeanings?"1":"0")}catch{}
+  updateSavedMeaningVisibility();
+  if(newsHideSavedMeanings){
+   $("newsSavedList").querySelectorAll(".news-saved-answer.is-revealed").forEach(node=>node.classList.remove("is-revealed"));
+   $("newsSavedList").querySelectorAll("[data-news-reveal-answer]").forEach(button=>{
+    button.textContent="뜻·해설 확인";
+    button.setAttribute("aria-expanded","false");
+   });
+  }
+ });
  $("newsStartReview").addEventListener("click",beginReview);
  $("newsReviewReveal").addEventListener("click",revealReview);
  $("newsReviewExit").addEventListener("click",()=>{
@@ -451,6 +494,20 @@ function init(){
   const b=e.target.closest("[data-news-grade]");if(b)rateReview(b.dataset.newsGrade);
  });
  $("newsSavedList").addEventListener("click",e=>{
+  const ruby=e.target.closest(".news-saved-detail .furi");
+  if(ruby){
+   if(!document.body.classList.contains("furi-off"))ruby.classList.toggle("show");
+   e.stopPropagation();return;
+  }
+  const reveal=e.target.closest("[data-news-reveal-answer]");
+  if(reveal){
+   const answer=reveal.closest(".news-saved-detail")?.querySelector(".news-saved-answer");
+   if(!answer)return;
+   const showing=answer.classList.toggle("is-revealed");
+   reveal.textContent=showing?"뜻·해설 다시 숨기기":"뜻·해설 확인";
+   reveal.setAttribute("aria-expanded",String(showing));
+   return;
+  }
   const btn=e.target.closest("[data-delete-news-expression]");
   if(!btn)return;
   const remaining=saved().filter(x=>x.id!==btn.dataset.deleteNewsExpression);
@@ -460,6 +517,13 @@ function init(){
    window.dispatchEvent(new Event("kojer-news:changed"));
    renderSavedNotebook()
   }catch(e){console.warn(e)}
+ });
+ $("newsSavedList").addEventListener("keydown",e=>{
+  const ruby=e.target.closest(".news-saved-detail .furi");
+  if(ruby&&(e.key==="Enter"||e.key===" ")){
+   e.preventDefault();
+   if(!document.body.classList.contains("furi-off"))ruby.classList.toggle("show");
+  }
  });
  window.addEventListener("scroll",()=>captureProgress(),{passive:true});
  window.addEventListener("pagehide",()=>captureProgress(true));
