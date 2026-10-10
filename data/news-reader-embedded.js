@@ -77,7 +77,7 @@ function toggleNewsRead(){
  const id=article.id,now=Date.now(),state=savedProgress(),old=state[id]||{};
  const completed=Number(old.completedAt)>0;
  state[id]={...old,index:Number.isInteger(old.index)?old.index:0,offset:Number(old.offset)||0,
-  completedAt:completed?0:now,updatedAt:now};
+  completedAt:completed?0:now,completionChangedAt:now,updatedAt:now};
  try{
   localStorage.setItem(progressKey,JSON.stringify(state));
   updateNewsReadButton();
@@ -89,7 +89,7 @@ function toggleNewsRead(){
 function captureProgress(force=false){
  if(!article||!$("newsreaderView")?.classList.contains("active")||!$("newsCuratedDetail")||$("newsCuratedDetail").classList.contains("hidden"))return;
  const now=Date.now();
- if(!force&&(now-lastProgressSave<400||now<suppressProgressSaveUntil))return;
+ if(!force&&(now-lastProgressSave<1400||now<suppressProgressSaveUntil))return;
  const nodes=[...$("newsArticleBody").querySelectorAll(".news-paragraph")];
  if(!nodes.length)return;
  let index=0;
@@ -97,7 +97,9 @@ function captureProgress(force=false){
  const offset=Math.max(0,Math.min(1100,Math.round(Math.min(window.innerHeight*.43,280)-nodes[index].getBoundingClientRect().top)));
  try{
   const state=savedProgress();
-  state[article.id]={...(state[article.id]||{}),index,offset,updatedAt:now};
+  const previous=state[article.id]||{};
+  if(!force&&previous.index===index&&Math.abs((Number(previous.offset)||0)-offset)<45)return;
+  state[article.id]={...previous,index,offset,positionUpdatedAt:now,updatedAt:now};
   localStorage.setItem(progressKey,JSON.stringify(state));
   lastProgressSave=now;
   window.dispatchEvent(new Event("kojer-news:changed"));
@@ -366,12 +368,14 @@ function revealReview(){
  const meaning=e?.meaning||item.meaning||"";
  const similar=e?.similar||item.compare||"";
  const note=e?.note||item.note||"";
- const example=item.example||a?.paragraphs.find(x=>x.includes(item.form))?.split(/(?<=[。！？!?])/).find(x=>x.includes(item.form))||"";
+ const paraIndex=a?.paragraphs.findIndex(x=>x.includes(item.form))??-1;
+ const example=item.example||(paraIndex>=0?sentencesJP(a.paragraphs[paraIndex]).find(x=>x.includes(item.form)):"")||"";
+ const sentenceKo=sentenceKoForItem(item,a,paraIndex,example);
  const answer=$("newsReviewAnswer");
  answer.innerHTML='<p><strong class="news-expression-ruby" lang="ja">'+expressionRuby(item.form,reading)+'</strong></p>'+
   '<p><b>뜻</b> '+esc(meaning)+'</p>'+
   (example?'<p lang="ja">'+esc(example)+'</p>':"")+
-  (item.translation?'<p class="sub">'+esc(item.translation)+'</p>':"")+
+  (sentenceKo?'<p class="sub">'+esc(sentenceKo)+'</p>':"")+
   (similar?'<p class="sub"><b>유사 표현</b> '+esc(similarWithoutReading(similar))+'</p>':"")+
   (note?'<p class="sub"><b>사용 뉘앙스</b> '+esc(note)+'</p>':"");
  answer.classList.remove("hidden");
@@ -420,6 +424,36 @@ function resetNewsPanels(){
 }
 window.KOJER_NEWS_RESET_PANELS=resetNewsPanels;
 
+function sentencesJP(value){return (String(value||"").match(/[^。！？!?]+[。！？!?]?/gu)||[]).map(x=>x.trim()).filter(Boolean)}
+function sentencesKO(value){return (String(value||"").match(/[^.!?。！？]+[.!?。！？]?/gu)||[]).map(x=>x.trim()).filter(Boolean)}
+// Align the Korean text with the selected Japanese sentence, not its paragraph.
+function alignedSentenceKo(a,k,japaneseSentence){
+ if(!a||k<0)return "";
+ const jp=sentencesJP(a.paragraphs?.[k]),ko=sentencesKO(a.translationParagraphs?.[k]);
+ const i=jp.findIndex(x=>x===String(japaneseSentence||"").trim());
+ if(i<0)return "";
+ if(jp.length===ko.length)return ko[i]||"";
+ if(jp.length===1)return String(a.translationParagraphs?.[k]||"");
+ return "";
+}
+function sentenceKoForItem(item,a,paraIndex,example){
+ if(a&&paraIndex>=0){
+  const computed=alignedSentenceKo(a,paraIndex,example);
+  if(computed)return computed;
+ }
+ if(item?.sentenceTranslation)return String(item.sentenceTranslation);
+ const old=sentencesKO(item?.translation||"");
+ return old.length===1?old[0]:"";
+}
+let loadingSavedSources=false;
+async function loadSavedSources(){
+ if(loadingSavedSources)return;
+ const ids=[...new Set(saved().map(x=>String(x.id||"").split(":")[0]).filter(id=>archiveIndex.some(a=>a.id===id)&&!source.some(a=>a.id===id)))];
+ if(!ids.length)return;
+ loadingSavedSources=true;
+ try{await Promise.allSettled(ids.map(id=>loadArchivedArticle(id)))}
+ finally{loadingSavedSources=false;if(!$("newsSavedPanel").classList.contains("hidden"))renderSavedNotebook()}
+}
 function renderSavedNotebook(){
  const arr=saved().slice().sort((a,b)=>String(b.savedAt||"").localeCompare(String(a.savedAt||"")));
  $("newsSavedCount").textContent=String(arr.length);
@@ -437,7 +471,7 @@ function renderSavedNotebook(){
   const usage=e?.note||item.note||"";
   const paraIndex=matched?.paragraphs?.findIndex(p=>p.includes(e?.form||item.form))??-1;
   const example=item.example||(paraIndex>=0?matched.paragraphs[paraIndex].split(/(?<=[。！？!?])/).find(p=>p.includes(item.form)):"")||"";
-  const ko=item.translation||(paraIndex>=0?matched.translationParagraphs[paraIndex]:"")||"";
+  const ko=sentenceKoForItem(item,matched,paraIndex,example);
   const articleLink=matched?'<a href="#newsreader/'+encodeURIComponent(matched.id)+'" class="secondary" style="display:inline-block;padding:6px 10px;text-decoration:none">기사로 이동 →</a>':"";
   const answer=ko?'<div class="news-saved-answer" id="newsSavedAnswer-'+esc(id)+'">'+
    '<p class="news-saved-ko">'+esc(ko)+'</p></div>':"";
@@ -496,8 +530,8 @@ function phrase(key,{preserve=false}={}){
  });
  const index=article.paragraphs.findIndex(x=>x.includes(key));
  const jp=index>=0?article.paragraphs[index]:"";
- const sentence=jp.split(/(?<=[。！？!?])/).find(x=>x.includes(key))||jp;
- const ko=index>=0?(article.translationParagraphs?.[index]||""):"";
+ const sentence=sentencesJP(jp).find(x=>x.includes(key))||jp;
+ const ko=index>=0?alignedSentenceKo(article,index,sentence):"";
  const id=article.id+":"+key,already=saved().some(x=>x.id===id);
  const panel=$("newsArticleExpressionInfo");
  panel.innerHTML='<div class="news-expression-info-heading"><strong class="news-expression-ruby news-expression-interactive" lang="ja">'+expressionDetailRuby(key,e.reading)+'</strong> <span class="tag">실전 표현</span>'+
@@ -526,7 +560,7 @@ function phrase(key,{preserve=false}={}){
  $("newsSavePhrase").addEventListener("click",()=>{
   const all=saved();
   const now=Date.now();
-  const next=all.some(x=>x.id===id)?all.filter(x=>x.id!==id):[...all,{id,type:"뉴스 표현",form:key,reading:e.reading||"",meaning:e.meaning||"",example:sentence,translation:ko,note:e.note||"보도를 바탕으로 재구성한 학습 기사 표현",compare:e.similar||"",source:article.source,title:article.title,cat:article.category,savedAt:new Date(now).toISOString(),updatedAt:now,review:{due:now,intervalDays:0,reps:0,lapses:0,updatedAt:now}}];
+  const next=all.some(x=>x.id===id)?all.filter(x=>x.id!==id):[...all,{id,type:"뉴스 표현",form:key,reading:e.reading||"",meaning:e.meaning||"",example:sentence,translation:ko,sentenceTranslation:ko,note:e.note||"보도를 바탕으로 재구성한 학습 기사 표현",compare:e.similar||"",source:article.source,title:article.title,cat:article.category,savedAt:new Date(now).toISOString(),updatedAt:now,review:{due:now,intervalDays:0,reps:0,lapses:0,updatedAt:now}}];
   try{
    localStorage.setItem(storeKey,JSON.stringify(next));
    if(already)window.KOJER_NEWS_SYNC?.markDeleted(id);
@@ -655,6 +689,7 @@ function init(){
    target.classList.remove("hidden");
    $("newsSavedToggle").setAttribute("aria-expanded","true");
    renderSavedNotebook();
+   loadSavedSources();
   }
  });
  $("newsStartReview").addEventListener("click",beginReview);
