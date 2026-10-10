@@ -454,7 +454,7 @@ function phrase(key,{preserve=false}={}){
  panel.innerHTML='<div class="news-expression-info-heading"><strong class="news-expression-ruby news-expression-interactive" lang="ja">'+expressionDetailRuby(key,e.reading)+'</strong> <span class="tag">실전 표현</span>'+
  '<button type="button" class="secondary news-jump-to-expression" id="newsJumpToExpression" aria-label="본문에서 이 표현의 위치로 이동" title="본문의 표현 위치로 이동">↗ <span>본문으로</span></button></div>'+
  '<p style="margin:8px 0">뜻 · '+esc(e.meaning||"")+'</p>'+
- '<p lang="ja" class="news-expression-example" style="font-size:17px;margin:11px 0;line-height:2.15">'+annotateExpressionSentence(sentence,key,e.reading).output+'</p>'+
+ '<p lang="ja" class="news-expression-example" style="font-size:17px;margin:11px 0;line-height:2.15">'+annotateExpressionSentence(sentence,key,e.reading)+'</p>'+
  (e.similar?'<p class="news-similar-expression" style="margin:8px 0"><b>유사 표현</b> '+similarExpressionHTML(e.similar)+'</p>':"")+
  (e.note?'<p style="margin:8px 0"><b>사용 뉘앙스</b> '+esc(e.note)+'</p>':"")+
  '<button type="button" class="secondary" id="newsSavePhrase">'+(already?"✓ 저장됨 · 해제":"＋ 실전 표현 수첩에 저장")+"</button>";
