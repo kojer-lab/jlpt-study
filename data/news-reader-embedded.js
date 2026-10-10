@@ -97,7 +97,7 @@ for(const [surface,reading] of Object.entries(reviewed)){
 for(const arr of extra.values())arr.sort((a,b)=>b.surface.length-a.surface.length);
 // Cross-checked reading aids for the current news expression synonyms.
 // These are only shown when a kanji word is clicked, not pre-rendered ruby.
-const reviewedSimilarReadings=new Map([["関心を寄せる","かんしんをよせる"],["見逃すおそれがある","みのがすおそれがある"],["推移","すいい"],["直接関わる","ちょくせつかかわる"],["注目を集める","ちゅうもくをあつめる"],["中断せず","ちゅうだんせず"],["判断する","はんだんする"],["一様に","いちように"],["注意を払う","ちゅういをはらう"],["傾向","けいこう"],["気を取られる","きをとられる"],["解釈する","かいしゃくする"],["明らかになる","あきらかになる"],["区分","くぶん"],["心配","しんぱい"],["与える恐れがある","あたえるおそれがある"],["終結する","しゅうけつする"],["実施","じっし"],["判断を誤る","はんだんをあやまる"],["促進する","そくしんする"],["検疫措置","けんえきそち"],["不正侵入","ふせいしんにゅう"],["漏えい","ろうえい"],["把握する","はあくする"],["用心深い","ようじんぶかい"],["顕在化","けんざいか"],["全体像","ぜんたいぞう"],["統合","とうごう"],["例外なく","れいがいなく"],["言い切ること","いいきること"],["予防措置","よぼうそち"],["大臣レベル","だいじんれべる"],["通商対立","つうしょうたいりつ"],["段階","だんかい"],["考慮する","こうりょする"],["組み入れる","くみいれる"],["性急","せいきゅう"],["取り違える","とりちがえる"],["別に","べつに"],["仕組み","しくみ"],["悪口","わるぐち"],["通る","とおる"],["背後","はいご"],["同じとみなす","おなじとみなす"],["排除する","はいじょする"],["抑え込む","おさえこむ"],["すぐ採用する","すぐさいようする"],["慎重に検討する","しんちょうにけんとうする"],["欠かせない","かかせない"],["共同事業","きょうどうじぎょう"],["慣れ親しむ","なれしたしむ"],["比較する","ひかくする"],["強調する","きょうちょうする"],["発見する","はっけんする"],["共存させる","きょうぞんさせる"],["左右される","さゆうされる"]]);
+const reviewedSimilarReadings=new Map([["じっと見つめる","じっとみつめる"],["関心を寄せる","かんしんをよせる"],["見逃すおそれがある","みのがすおそれがある"],["推移","すいい"],["直接関わる","ちょくせつかかわる"],["注目を集める","ちゅうもくをあつめる"],["中断せず","ちゅうだんせず"],["判断する","はんだんする"],["一様に","いちように"],["注意を払う","ちゅういをはらう"],["傾向","けいこう"],["気を取られる","きをとられる"],["解釈する","かいしゃくする"],["明らかになる","あきらかになる"],["区分","くぶん"],["心配","しんぱい"],["与える恐れがある","あたえるおそれがある"],["終結する","しゅうけつする"],["実施","じっし"],["判断を誤る","はんだんをあやまる"],["促進する","そくしんする"],["検疫措置","けんえきそち"],["不正侵入","ふせいしんにゅう"],["漏えい","ろうえい"],["把握する","はあくする"],["用心深い","ようじんぶかい"],["顕在化","けんざいか"],["全体像","ぜんたいぞう"],["統合","とうごう"],["例外なく","れいがいなく"],["言い切ること","いいきること"],["予防措置","よぼうそち"],["大臣レベル","だいじんれべる"],["通商対立","つうしょうたいりつ"],["段階","だんかい"],["考慮する","こうりょする"],["組み入れる","くみいれる"],["性急","せいきゅう"],["取り違える","とりちがえる"],["別に","べつに"],["仕組み","しくみ"],["悪口","わるぐち"],["通る","とおる"],["背後","はいご"],["同じとみなす","おなじとみなす"],["排除する","はいじょする"],["抑え込む","おさえこむ"],["すぐ採用する","すぐさいようする"],["慎重に検討する","しんちょうにけんとうする"],["欠かせない","かかせない"],["共同事業","きょうどうじぎょう"],["慣れ親しむ","なれしたしむ"],["比較する","ひかくする"],["強調する","きょうちょうする"],["発見する","はっけんする"],["共存させる","きょうぞんさせる"],["左右される","さゆうされる"]]);
 const kanaHiragana=s=>String(s||"").replace(/[ァ-ヺ]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-0x60));
 function wordHTML(surface,reading){
  const hasKanji=/[一-龯々〇〆ヵヶ]/;
@@ -334,6 +334,25 @@ function rateReview(grade){
  renderReviewCard();
 }
 
+function resetNewsPanels(){
+ // Keep saved articles/SRS data, but reset only the open UI when entering News.
+ const panel=$("newsSavedPanel"),toggle=$("newsSavedToggle"),list=$("newsSavedList");
+ if(panel)panel.classList.add("hidden");
+ if(toggle)toggle.setAttribute("aria-expanded","false");
+ const review=$("newsReviewArea");
+ if(review)review.classList.add("hidden");
+ if(list){
+  list.querySelectorAll("details.news-saved-card").forEach(node=>{node.open=false});
+  list.querySelectorAll(".news-saved-answer.is-revealed").forEach(node=>node.classList.remove("is-revealed"));
+  list.querySelectorAll("[data-news-reveal-answer]").forEach(button=>{
+   button.textContent="번역 보기";
+   button.setAttribute("aria-expanded","false");
+  });
+ }
+ if($("newsExpressionPanel")&&!$("newsExpressionPanel").classList.contains("hidden"))expressionTab(false);
+}
+window.KOJER_NEWS_RESET_PANELS=resetNewsPanels;
+
 function renderSavedNotebook(){
  const arr=saved().slice().sort((a,b)=>String(b.savedAt||"").localeCompare(String(a.savedAt||"")));
  $("newsSavedCount").textContent=String(arr.length);
@@ -353,16 +372,16 @@ function renderSavedNotebook(){
   const example=item.example||(paraIndex>=0?matched.paragraphs[paraIndex].split(/(?<=[。！？!?])/).find(p=>p.includes(item.form)):"")||"";
   const ko=item.translation||(paraIndex>=0?matched.translationParagraphs[paraIndex]:"")||"";
   const articleLink=matched?'<a href="#newsreader/'+encodeURIComponent(matched.id)+'" class="secondary" style="display:inline-block;padding:6px 10px;text-decoration:none">기사로 이동 →</a>':"";
-  const answer='<div class="news-saved-answer" id="newsSavedAnswer-'+esc(id)+'">'+
-   '<p><b>뜻</b> '+esc(meaning)+'</p>'+
-   (ko?'<p class="news-saved-ko">'+esc(ko)+'</p>':"")+'</div>';
+  const answer=ko?'<div class="news-saved-answer" id="newsSavedAnswer-'+esc(id)+'">'+
+   '<p class="news-saved-ko">'+esc(ko)+'</p></div>':"";
   return '<details class="news-saved-card" data-news-saved-id="'+esc(id)+'"'+(opened.has(id)?" open":"")+'>'+
    '<summary class="news-saved-summary"><span class="news-saved-head"><strong class="news-saved-form" lang="ja">'+expressionDetailRuby(item.form,reading)+'</strong></span><span class="news-saved-chevron" aria-hidden="true">⌄</span></summary>'+
    '<div class="news-saved-detail">'+
-   (example?'<div class="news-saved-label">기사 속 예문</div><div class="news-sentence" lang="ja">'+annotateExpressionSentence(example,item.form,reading).output+'</div>':"")+
+   '<p class="news-saved-direct-meaning"><b>뜻</b> '+esc(meaning)+'</p>'+
+   (example?'<div class="news-saved-label">기사 속 예문</div><div class="news-sentence" lang="ja">'+annotateExpressionSentence(example,item.form,reading)+'</div>':"")+
    (similar?'<p><b>유사 표현</b> <span lang="ja">'+similarExpressionHTML(similar)+'</span></p>':"")+
    (usage?'<p><b>사용 뉘앙스</b> '+esc(usage)+'</p>':"")+
-   '<button type="button" class="secondary news-saved-reveal" data-news-reveal-answer="'+esc(id)+'" aria-expanded="false">뜻 보기</button>'+
+   (ko?'<button type="button" class="secondary news-saved-reveal" data-news-reveal-answer="'+esc(id)+'" aria-expanded="false">번역 보기</button>':"")+
    answer+
    '<div class="news-saved-actions">'+articleLink+
    '<button type="button" class="secondary" data-delete-news-expression="'+esc(id)+'" style="font-size:12px">수첩에서 삭제</button></div>'+
@@ -572,7 +591,7 @@ function init(){
    const answer=reveal.closest(".news-saved-detail")?.querySelector(".news-saved-answer");
    if(!answer)return;
    const showing=answer.classList.toggle("is-revealed");
-   reveal.textContent=showing?"뜻 가리기":"뜻 보기";
+   reveal.textContent=showing?"번역 숨기기":"번역 보기";
    reveal.setAttribute("aria-expanded",String(showing));
    return;
   }
@@ -592,7 +611,7 @@ function init(){
   const answer=details.querySelector(".news-saved-answer");
   if(answer)answer.classList.remove("is-revealed");
   const button=details.querySelector("[data-news-reveal-answer]");
-  if(button){button.textContent="뜻 보기";button.setAttribute("aria-expanded","false")}
+  if(button){button.textContent="번역 보기";button.setAttribute("aria-expanded","false")}
  },true);
  $("newsSavedList").addEventListener("keydown",e=>{
   const ruby=e.target.closest(".news-saved-card .furi");
