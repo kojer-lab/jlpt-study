@@ -67,31 +67,26 @@ async function loadArchive(){
  if(!error&&Array.isArray(data))window.KOJER_ADD_GENERATED_NEWS?.(data.map(x=>x.article));
 }
 async function generateSix(){
- const button=$("newsGenerateButton");
- if(!button||busy)return;
- if(typeof cloudClient==="undefined"||!cloudClient||typeof cloudUser==="undefined"||!cloudUser){setStatus("먼저 PC·모바일 동기화 메뉴에서 로그인해 줘.",true);return}
+ const btn=$("newsGenerateButton");
+ if(!btn||busy)return;
  if(!items.length){setStatus("먼저 오늘의 기사 모으기를 실행해 줘.",true);return}
- button.disabled=true;button.textContent="6개 학습 기사 생성 중…";
- setStatus("무료 AI로 학습 기사를 순서대로 만들고 있어. 최대 몇 분 걸릴 수 있어.");
+ const candidates=items.slice(0,14).map(x=>({title:x.title,summary:x.summary,source:x.source,category:x.category,publishedAt:x.publishedAt,url:x.url}));
+ const prompt=[
+ "내 JLPT N1 뉴스 읽기 사이트의 학습 기사 6개를 작성해 줘. 아래 RSS 후보를 바탕으로 분야를 다양하게 골라 줘.",
+ "원문 전문을 확인하지 않은 RSS 소개문 기반임을 명시하고, 확인되지 않은 숫자·인용·사실을 만들어 내지 마.",
+ "기사마다 일본어 900~1200자, 5~8개 문단, 문단별 자연스러운 한국어 번역, 본문에 실제 등장하는 N1 핵심 표현 5~15개(표현·읽기·한국어 뜻·유의어·사용 설명)를 만들어 줘.",
+ "기존 10개 기사는 보존하고, 가능하면 연결된 Supabase 프로젝트의 jlpt_news_generated_articles에 내 로그인 계정 소유로 저장해 줘. 저장 권한이나 계정 식별이 불가능하면 저장했다고 말하지 말고 결과를 보여 줘.",
+ "아래는 수집된 기사 후보 JSON이야:",JSON.stringify(candidates)
+ ].join("\n\n");
  try{
-  const config=loadCloudConfig();
-  const {data:auth,error:authError}=await cloudClient.auth.getSession();
-  if(authError||!auth?.session?.access_token)throw new Error("로그인이 만료됐어.");
-  const response=await fetch("https://honnatvsuwzhdcyyftzl.supabase.co/functions/v1/news-generate",{
-   method:"POST",headers:{"authorization":"Bearer "+auth.session.access_token,"apikey":config.key,"content-type":"application/json"},
-   body:JSON.stringify({candidates:items.slice(0,25)})
-  });
-  const result=await response.json().catch(()=>({}));
-  if(!response.ok)throw new Error(result.error||"기사 생성 실패");
-  const added=Array.isArray(result.articles)?result.articles:[];
-  window.KOJER_ADD_GENERATED_NEWS?.(added);
-  const issues=Array.isArray(result.errors)?result.errors:[];
-  const reasons=[...new Set(issues.map(e=>String(e?.error||"원인 미상").slice(0,180)))];
-  const detail=reasons.length?" · 실패 원인: "+reasons.slice(0,3).join(" / "):"";
-  setStatus(added.length+"개 학습 기사 생성·저장 완료"+(issues.length?" · "+issues.length+"개 실패":"")+(result.selected===0?" · 생성 가능한 새 기사 없음":"")+detail+". 기존 10개 기사는 유지돼.",issues.length>0||added.length===0);
-  if(issues.length)console.warn("학습 기사 생성 실패 상세",issues);
- }catch(e){setStatus(e.message||"기사 생성 실패",true)}
- finally{button.disabled=false;button.textContent="✨ 학습 기사 6개 만들기"}
+  await navigator.clipboard.writeText(prompt);
+  setStatus("GPT 요청문을 복사했어. 열린 ChatGPT 대화창에 붙여넣고 전송해 줘. 아직 기사 생성·저장은 실행되지 않았어.");
+  window.open("https://chatgpt.com/","_blank","noopener,noreferrer");
+ }catch(e){
+  const area=document.createElement("textarea");area.value=prompt;area.style.cssText="position:fixed;left:10%;top:15%;width:80%;height:55%;z-index:9999;background:var(--panel);color:var(--text);padding:16px";
+  area.setAttribute("aria-label","GPT 요청문 — 전체 선택 후 복사");document.body.appendChild(area);area.focus();area.select();
+  setStatus("자동 복사가 차단됐어. 화면의 요청문을 복사해서 ChatGPT에 붙여넣어 줘.",true);
+ }
 }
 const gen=$("newsGenerateButton");
 if(gen)gen.addEventListener("click",generateSix);
