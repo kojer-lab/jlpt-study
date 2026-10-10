@@ -1,5 +1,39 @@
 {
   "version": 1,
-  "batch_id": "paused-persistent-end-vowel-20261009",
-  "items": []
+  "batch_id": "readings-20261010-a",
+  "items": [
+    {
+      "word_id": "oj-b29a4ed96a",
+      "kind": "example",
+      "index": 0,
+      "spoken_text": "こうじはにかげつにまたがるよていだ",
+      "voice": "jf_alpha",
+      "report_ids": [
+        36
+      ],
+      "reason": "'工事は二か月にまたがる予定だ。' 다른 문장 발음 신고: 올바른 일본어 읽기 명시, 기존 jf_alpha 유지"
+    },
+    {
+      "word_id": "oj-7f1212c5b6",
+      "kind": "example",
+      "index": 0,
+      "spoken_text": "そのせつめいはめいりょうだった",
+      "voice": "jf_alpha",
+      "report_ids": [
+        55
+      ],
+      "reason": "'その説明は明瞭だった。' 다른 문장 발음 신고: めいりょう 포함 전체 읽기 명시, 기존 jf_alpha 유지"
+    },
+    {
+      "word_id": "oj-b4f987e2d7",
+      "kind": "example",
+      "index": 0,
+      "spoken_text": "そのひょうろんかはしんじんにはあまくちのひょうかをする",
+      "voice": "jf_alpha",
+      "report_ids": [
+        58
+      ],
+      "reason": "'その評論家は新人には甘口の評価をする。' 읽기 명시, 기존 jf_alpha 유지"
+    }
+  ]
 }
