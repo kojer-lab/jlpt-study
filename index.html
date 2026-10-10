@@ -2280,7 +2280,7 @@ function renderCuratedNewsHome(){
  const list=$("newsCuratedList"),dateFilters=$("newsDateFilters"),category=$("newsCuratedCategorySelect");
  if(!list||!dateFilters||!category)return;
  $("newsArticleCount").textContent=bank.length+"개";
- const dates=[...new Set(bank.map(a=>String(a.date||"")).filter(d=>/^\\d{4}-\\d{2}-\\d{2}$/.test(d)))].sort().reverse();
+ const dates=[...new Set(bank.map(a=>String(a.date||"")).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)))].sort().reverse();
  if(newsCuratedDate===null||(newsCuratedDate!=="전체"&&!dates.includes(newsCuratedDate)))newsCuratedDate=dates[0]||"전체";
  const scrollPosition=dateFilters.scrollLeft;
  dateFilters.replaceChildren();
