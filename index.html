@@ -579,7 +579,7 @@ ruby rt { font-weight:600!important; }
       <div class="topbar"><div><h1>단어 학습</h1><div class="sub">학습 목표를 확인한 뒤 시작하면, 다른 요소를 숨기고 단어 한 장에 집중합니다.</div></div><span class="pill" id="wordCountPill"></span></div>
       <div id="wordDashboard" class="word-dashboard">
         <div class="word-dashboard-title">오늘의 단어 학습</div>
-        <div class="word-dashboard-sub">복습할 단어를 먼저 처리하고, 설정한 수만큼 새 단어를 이어서 학습합니다.</div>
+        <div class="word-dashboard-sub">복습 5개마다 새 단어 1개를 섞어 학습합니다. 복습 일정은 FSRS가 그대로 관리합니다.</div>
         <div class="word-goal">
           <div class="word-goal-head"><strong id="wordGoalText">0 / 50개</strong><span>현재 단어 은행</span></div>
           <div class="word-goal-track"><div class="word-goal-fill" id="wordGoalFill"></div></div>
@@ -2496,9 +2496,18 @@ document.addEventListener("click",e=>{const nav=e.target.closest("[data-view]");
 
 function renderHome(){const due=dueWords().length,daily=ensureDailyNew(true),pending=daily.filter(w=>getSrs(w.id).reviews===0).length,done=daily.length-pending;$("dueStat").textContent=due;$("dueBar").style.width=Math.min(100,due/Math.max(1,words.length)*100)+"%";$("newStat").textContent=`${done}/${daily.length}`;$("dailyNewSub").textContent=`남은 ${pending}개 · 하루 ${state.settings.dailyNewLimit}개`;$("accuracyStat").textContent=(state.solved?Math.round(state.correct/state.solved*100):0)+"%";$("mistakeStat").textContent=state.mistakes.length;$("todayText").textContent=new Date().toLocaleDateString("ko-KR",{year:"numeric",month:"long",day:"numeric"});const dn=dailyNewsSet();if(dn){$("homeNewsDate").textContent=todayKey().replaceAll("-",".")+" · 時事読解";$("homeNewsTitle").textContent="오늘의 시사독해 · "+newsArticlesForDate(dn.date).length+"개 기사";$("homeNewsSub").textContent=(dn.sourceDate?dn.sourceDate+" 기사 기반 · ":"")+"일본 시간 오전 6시 기준 · 하루 3기사, 9문제"}}
 
+// Present five due cards and one new card in turn; do not alter FSRS due times.
+function interleaveDueAndNew(due, fresh){
+ const result=[],seen=new Set();let i=0,j=0;
+ const append=w=>{if(w&&!seen.has(w.id)){seen.add(w.id);result.push(w)}};
+ while(i<due.length||j<fresh.length){
+  for(let n=0;n<5&&i<due.length;n++)append(due[i++]);
+  if(j<fresh.length)append(fresh[j++]);
+ }
+ return result;
+}
 function buildWordStudyQueue(){
- const due=dueWords(),fresh=todayNewPending(),seen=new Set();
- return [...due,...fresh].filter(w=>w&&!seen.has(w.id)&&seen.add(w.id));
+ return interleaveDueAndNew(dueWords(),todayNewPending());
 }
 const LEARN_AHEAD_LIMIT=20*MIN;
 function queueLearningCard(list,w){
@@ -2558,7 +2567,7 @@ function persistWordSession(){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length)))return;
  const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
   immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),quick:wordQuickRepeats,quickTurn:wordQuickTurn,quickActive:wordQuickActive,
-  history:wordSessionHistory.map(h=>({...h,word:undefined})),savedAt:Date.now()};
+  history:wordSessionHistory.map(h=>({...h,word:undefined})),mixedOrder:true,savedAt:Date.now()};
  try{localStorage.setItem(WORD_SESSION_KEY,JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
 }
 function restoreWordSession(){
@@ -2568,6 +2577,13 @@ function restoreWordSession(){
  if(data.total<=0)return false;
  wordMode=data.mode==="starred"?"starred":"daily";
  wordSessionQueue=[...new Map(data.immediate.map(id=>wordById.get(id)).filter(Boolean).map(w=>[w.id,w])).values()];
+ // An unfinished old-style session is also mixed on resume, without losing any cards.
+ if(wordMode==="daily"&&!data.mixedOrder){
+  const upcoming=wordSessionQueue.filter(w=>!data.quickActive||w.id!==data.quickActive.id);
+  const due=upcoming.filter(w=>getSrs(w.id).reviews>0),fresh=upcoming.filter(w=>getSrs(w.id).reviews===0);
+  wordSessionQueue=interleaveDueAndNew(due,fresh);
+  const active=wordById.get(data.quickActive?.id);if(active)wordSessionQueue.unshift(active);
+ }
  wordLearningQueue=[...new Set(data.learning.map(canonicalWordId))].filter(id=>wordById.has(id)).map(id=>({id,due:getSrs(id).due}));
  wordQuickRepeats=(data.quick||[]).map(x=>({...x,id:canonicalWordId(x.id)})).filter(x=>wordById.has(x.id));wordQuickTurn=Number(data.quickTurn)||0;wordQuickActive=data.quickActive?{...data.quickActive,id:canonicalWordId(data.quickActive.id)}:null;
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
