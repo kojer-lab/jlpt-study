@@ -342,9 +342,10 @@ ruby rt { font-weight:600!important; }
 #newsSavedList .news-saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
 #newsSavedList .news-saved-actions button{margin-top:0}
 #newsSavedList .news-saved-actions a{font-size:12px}
-#newsSavedPanel.news-meanings-hidden .news-saved-meaning,
-#newsSavedPanel.news-meanings-hidden .news-saved-answer:not(.is-revealed){display:none}
-#newsSavedPanel:not(.news-meanings-hidden) .news-saved-reveal{display:none}
+#newsSavedList .news-saved-answer{display:none;margin:14px 0 0;border-top:1px solid var(--line);padding-top:12px}
+#newsSavedList .news-saved-answer.is-revealed{display:block}
+#newsSavedList .news-saved-reveal{display:block;width:100%;margin:14px 0 0!important;min-height:44px;color:var(--accent);border-color:var(--accent);font-size:14px;font-weight:650}
+#newsSavedList .news-saved-reveal:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #newsSavedList .news-saved-detail .furi{cursor:pointer}
 @media(max-width:600px){
  #newsSavedList .news-saved-summary{padding:12px 2px;min-height:59px}
@@ -569,10 +570,10 @@ ruby rt { font-weight:600!important; }
        </div>
       <section id="newsSavedPanel" class="card hidden" aria-label="저장한 실전 표현" style="margin-bottom:16px">
        <strong>내 실전 표현 수첩</strong>
-       <p class="sub" style="font-size:13px;margin-top:6px">표현을 눌러 예문과 해설을 펼쳐 봐. 뜻을 숨기면 스스로 뜻을 떠올리며 공부할 수 있어.</p>
+       <p class="sub" style="font-size:13px;margin-top:6px">표현을 펼쳐 일본어 예문을 읽고, 뜻 보기를 누르면 정답과 해설을 확인할 수 있어.</p>
        <div class="toolbar news-saved-toolbar" style="margin:12px 0">
  <button id="newsStartReview" type="button" class="secondary">🧠 실전 표현 복습 시작 <span id="newsDueCount"></span></button>
- <button id="newsToggleMeanings" type="button" class="secondary" aria-pressed="false">뜻 숨기기</button>
+ 
  </div>
  <div id="newsReviewArea" class="hidden" aria-live="polite">
    <div class="news-review-card">
