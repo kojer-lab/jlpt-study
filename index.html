@@ -2387,7 +2387,14 @@ function scheduleFsrs(s,rating,t=now()){
    x.state=wasRelearning?"relearning":"learning";x.streak=(x.streak||0)+1;
  }else{
    x.consecutiveAgain=0;
-   x.interval=fsrsInterval(x.stability);x.due=t+x.interval*DAY;x.state="review";x.streak=(x.streak||0)+1;
+   x.interval=fsrsInterval(x.stability);
+   // Day rounding can give Hard and Good identical intervals. Keep Hard
+   // strictly earlier on graduated reviews without changing FSRS stability.
+   if(rating==="hard"&&!wasNew&&!wasLearning&&!wasRelearning){
+     const goodInterval=scheduleFsrs(s,"good",t).interval;
+     if(goodInterval>1)x.interval=Math.min(x.interval,goodInterval-1);
+   }
+   x.due=t+x.interval*DAY;x.state="review";x.streak=(x.streak||0)+1;
  }
  x.reviews++;x.last=t;x.updatedAt=t;
  if(!x.focusPending&&x.reviewFailureDays.length>=FOCUS_FAILURE_DAYS_REQUIRED){
