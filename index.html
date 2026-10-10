@@ -2701,6 +2701,75 @@ function renderWordLibrary(){
  if(more){more.classList.toggle("hidden",shown.length>=list.length);more.textContent=`더 보기 · ${Math.max(0,list.length-shown.length)}개 남음`;}
  restoreInteractiveFuriState($("wordLibraryList"));
 }
+
+function renderFocusStudy(){
+ focusQueue=focusQueue.filter(w=>getSrs(w.id).focusPending&&getSrs(w.id).focusUntil<=now());
+ if(!focusQueue.length){showWordDashboard();return}
+ const w=focusQueue[0],breakdown=wordBreakdownFor(w);
+ $("focusStudyProgress").textContent="집중 학습 · "+focusQueue.length+"개 남음";
+ $("focusLesson").innerHTML=`<div class="word-focus-hint">반복해서 어려웠던 단어예요. 뜻·한자·예문을 먼저 이해하고 다시 기억해 보세요.</div>
+   <div class="word-main">${w.w}</div>
+   <div class="word-reading">${readingOf(w.w)}</div>
+   <div style="text-align:center;margin:12px 0"><button type="button" class="secondary" data-focus-audio="word">🔊 단어 듣기</button></div>
+   <div class="reveal-box" style="margin:12px 0">${w.meaning}</div>
+   ${breakdown?`<div class="word-breakdown" style="margin:12px 0">${studyBreakdownHTML(breakdown,w.id)}</div>`:""}
+   <div class="examples">${w.examples.slice(0,2).map((ex,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-line"><div class="example-jp">${renderExampleJP(ex.jp,w,i)}</div><button type="button" class="tts-btn ex-speak" data-focus-audio="${i}">🔊 듣기</button></div><div class="example-ko">${ex.ko}</div></div>`).join("")}</div>`;
+ $("focusQuizWord").innerHTML=w.w;
+ $("focusAnswer").textContent=w.meaning;
+ $("focusStartTest").classList.remove("hidden");
+ $("focusLesson").classList.remove("hidden");
+ $("focusQuiz").classList.add("hidden");
+ $("focusRevealAnswer").classList.remove("hidden");
+ $("focusAnswer").classList.add("hidden");
+ $("focusRating").classList.add("hidden");
+ $("focusRating").innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-focus-rate="${r}"><strong>${{again:"다음 학습에 재도전",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong></button>`).join("");
+ restoreInteractiveFuriState($("wordFocusPanel"));
+ wordTop();
+}
+function startFocusStudy(){
+ focusQueue=focusDueWords().slice(0,5);
+ if(!focusQueue.length)return;
+ persistWordSession();
+ $("wordDashboard").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordStudyPanel").classList.add("hidden");
+ $("wordFocusPanel").classList.remove("hidden");
+ renderFocusStudy();
+}
+$("startFocusStudy").addEventListener("click",startFocusStudy);
+$("exitFocusStudy").addEventListener("click",showWordDashboard);
+$("focusStartTest").addEventListener("click",()=>{
+ clearStudyFuriganaState();
+ $("focusLesson").classList.add("hidden");$("focusStartTest").classList.add("hidden");$("focusQuiz").classList.remove("hidden");wordTop();
+});
+$("focusRevealAnswer").addEventListener("click",()=>{
+ $("focusAnswer").classList.remove("hidden");$("focusRating").classList.remove("hidden");$("focusRevealAnswer").classList.add("hidden");
+});
+$("focusRating").addEventListener("click",e=>{
+ const b=e.target.closest("[data-focus-rate]");if(!b||!focusQueue.length)return;
+ const w=focusQueue[0],rating=b.dataset.focusRate;
+ rateWord(w.id,rating);
+ const x=getSrs(w.id);
+ if(rating==="again"){
+  x.focusPending=true;x.focusUntil=nextLocalDayStart();x.due=Math.max(x.due,x.focusUntil);x.interval=0;x.state="relearning";
+ }else{
+  x.focusPending=false;x.focusUntil=0;
+ }
+ x.updatedAt=now();setSrs(w.id,x);
+ focusQueue.shift();clearStudyFuriganaState();renderFocusStudy();
+});
+$("focusLesson").addEventListener("click",e=>{
+ const speak=e.target.closest("[data-focus-audio]");
+ if(speak){
+  const w=focusQueue[0];if(w)playWordAudio(w,speak.dataset.focusAudio==="word"?null:Number(speak.dataset.focusAudio),speak);
+  return;
+ }
+ const toggle=e.target.closest(".word-breakdown-toggle");
+ if(toggle){
+  const body=toggle.nextElementSibling;if(!body)return;
+  body.classList.toggle("hidden");
+  const arrow=toggle.querySelector(".word-breakdown-arrow");if(arrow)arrow.textContent=body.classList.contains("hidden")?"＋":"−";
+ }
+});
+
 function showWordLibrary(){
  wordSessionQueue=[];wordLearningQueue=[];wordSessionHistory=[];wordLibraryVisible=80;
  wordLibraryOrder=words.map(w=>w.id);
