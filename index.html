@@ -90,6 +90,16 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .review-empty{text-align:center;padding:42px 20px;color:var(--muted)}
 .word-dashboard{max-width:560px;margin:0 auto 14px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--accent-soft),var(--panel))}
 .word-dashboard-title{font-size:20px;font-weight:850;margin-bottom:5px}
+.word-dashboard-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.word-dashboard-heading .word-dashboard-title{margin-bottom:0}
+.word-settings-toggle{display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:42px;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--muted);cursor:pointer;transition:border-color .15s,background .15s,color .15s}
+.word-settings-toggle:hover,.word-settings-toggle[aria-expanded="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.word-settings-toggle:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.word-settings-toggle svg{width:21px;height:21px}
+.word-settings-panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px 12px;margin-top:12px}
+.word-settings-panel .word-dash-setting{border:0;border-radius:0;padding:9px 3px;margin:0}
+.word-settings-panel .word-dash-setting+.word-dash-setting{border-top:1px solid var(--line)}
+.word-settings-panel .word-settings-note{font-size:11px;color:var(--muted);margin:0 3px 9px;line-height:1.5}
 .word-dashboard-sub{color:var(--muted);font-size:13px;line-height:1.6}
 .word-goal{margin:13px 0;padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
 .word-goal-head{display:flex;justify-content:space-between;align-items:end;gap:10px}.word-goal-head strong{font-size:18px}.word-goal-head span{font-size:12px;color:var(--muted)}
@@ -98,7 +108,10 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .word-dash-setting{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}.word-dash-setting label{font-size:13px;font-weight:800}.word-dash-setting select{min-width:100px;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:9px 10px;border-radius:10px;font-weight:800}
 .word-library{max-width:760px;margin:0 auto 18px}.word-library-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.word-library-title{font-size:19px;font-weight:850}.word-library-tools{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:8px;margin-bottom:10px}.word-library-tools input,.word-library-tools select{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:11px 12px;border-radius:12px;font-size:14px}.word-library-summary{font-size:12px;color:var(--muted);margin:2px 2px 10px}.word-library-list{display:grid;gap:10px}.word-library-item{border:1px solid var(--line);background:var(--panel);border-radius:16px;overflow:hidden}.word-library-row{display:grid;grid-template-columns:42px minmax(0,1fr) 40px;align-items:center;gap:8px;padding:13px 12px}.word-library-speak,.word-library-star{width:38px;height:38px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text);cursor:pointer}.word-library-star{font-size:19px}.word-library-main{min-width:0}.word-library-word{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-size:23px;font-weight:800;line-height:1.6;padding-top:12px}.word-library-word .furi{pointer-events:auto}.word-library-word .furi::before{font-size:.56em;bottom:calc(100% - .42em)}.word-library-state{display:inline-block;margin-top:5px;padding:3px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:10px;font-weight:800}.word-library-section{border-top:1px solid var(--line)}.word-library-section-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;border:0;background:transparent;color:var(--text);padding:12px 14px;cursor:pointer;text-align:left;font-size:13px;font-weight:800}.word-library-section-toggle .hint{color:var(--muted);font-size:11px;font-weight:700}.word-library-section-toggle .chev{color:var(--muted);font-size:13px}.word-library-meaning-panel{padding:0 14px 13px}.word-library-reading{font-size:13px;color:var(--accent);font-weight:800;margin-bottom:5px}.word-library-meaning{font-size:14px;color:var(--text);line-height:1.6}.word-library-detail{border-top:1px dashed var(--line);padding:2px 13px 4px;background:var(--bg)}.word-library-example{display:grid;grid-template-columns:32px minmax(0,1fr) 26px;column-gap:8px;row-gap:1px;align-items:start;padding:5px 0 7px}.word-library-example+.word-library-example{border-top:1px dashed var(--line)}.word-library-example button[data-lib-example]{grid-column:1;grid-row:1;width:32px;height:32px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);cursor:pointer;align-self:start;margin:0}.word-library-example-jp{grid-column:2;grid-row:1;min-width:0;font-size:17px;line-height:1.7;padding:1px 0 0;overflow:visible;overflow-wrap:anywhere}.word-library-example-jp .furi::before{font-size:.68em;bottom:calc(100% - .44em)}.word-library-example-ko{grid-column:2/4;grid-row:2;min-width:0;font-size:13px;color:var(--muted);line-height:1.5;margin-top:1px}.word-library-empty{text-align:center;padding:35px 12px;color:var(--muted)}
 @media(max-width:640px){.word-library-tools{grid-template-columns:1fr}.word-library-row{grid-template-columns:40px minmax(0,1fr) 38px;padding:12px 10px}.word-library-word{font-size:22px}.word-library-section-toggle{padding:12px 11px}.word-library-meaning-panel{padding:0 11px 12px}.word-library-detail{padding-left:10px;padding-right:10px}}
-.word-start{width:100%;min-height:52px;font-size:16px}.word-dash-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.word-study-head{max-width:560px;margin:0 auto 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}.word-study-left{display:flex;align-items:center;gap:7px}.word-undo{padding:10px 12px}.word-undo:disabled{opacity:.38;cursor:default}.word-study-progress{font-size:13px;color:var(--muted);font-weight:800}.word-focus-hint{color:var(--muted);font-size:12px;margin:5px 0 12px;text-align:center}
+.word-start{width:100%;min-height:52px;font-size:16px}.word-dash-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+.word-dash-actions .secondary{min-width:0;min-height:48px;padding:10px 6px;font-size:13px;line-height:1.35;text-align:center;white-space:normal}
+.word-focus-pending-info{font-size:12px;line-height:1.5;color:var(--muted);margin:6px 2px 2px;text-align:right}
+@media(max-width:480px){.word-dash-actions{gap:6px}.word-dash-actions .secondary{font-size:12px;padding:9px 4px;min-height:52px}.word-dashboard-heading .word-dashboard-title{font-size:19px}.word-settings-panel{padding:4px 9px}.word-settings-panel .word-dash-setting{gap:7px}.word-settings-panel .word-dash-setting label{font-size:12px}.word-settings-panel .word-dash-setting select{min-width:104px;font-size:12px;padding:8px 6px}}.word-study-head{max-width:560px;margin:0 auto 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}.word-study-left{display:flex;align-items:center;gap:7px}.word-undo{padding:10px 12px}.word-undo:disabled{opacity:.38;cursor:default}.word-study-progress{font-size:13px;color:var(--muted);font-weight:800}.word-focus-hint{color:var(--muted);font-size:12px;margin:5px 0 12px;text-align:center}
 .srs-chip{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--muted);font-size:12px}
 .reading-modes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.reading-modes button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:8px 12px;cursor:pointer}.reading-modes button.active{background:var(--accent);color:white;border-color:var(--accent)}
 .long-passage{font-size:17px;line-height:2.15}
@@ -583,7 +596,12 @@ ruby rt { font-weight:600!important; }
     <section class="view" id="wordsView">
       <div class="topbar"><div><h1>단어 학습</h1><div class="sub">학습 목표를 확인한 뒤 시작하면, 다른 요소를 숨기고 단어 한 장에 집중합니다.</div></div><span class="pill" id="wordCountPill"></span></div>
       <div id="wordDashboard" class="word-dashboard">
-        <div class="word-dashboard-title">오늘의 단어 학습</div>
+        <div class="word-dashboard-heading">
+          <div class="word-dashboard-title">오늘의 단어 학습</div>
+          <button type="button" class="word-settings-toggle" id="toggleWordSettings" aria-label="단어 학습 설정" aria-controls="wordSettingsPanel" aria-expanded="false" title="학습 설정">
+            <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19.4 15.1a1.7 1.7 0 0 0 .34 1.88l.06.06-1.9 1.9-.06-.06a1.7 1.7 0 0 0-1.88-.34l-.1.04a1.7 1.7 0 0 0-1 1.56V21H9.14v-.86a1.7 1.7 0 0 0-1-1.56l-.1-.04a1.7 1.7 0 0 0-1.88.34l-.06.06-1.9-1.9.06-.06a1.7 1.7 0 0 0 .34-1.88l-.04-.1a1.7 1.7 0 0 0-1.56-1H2v-2.8h.86a1.7 1.7 0 0 0 1.56-1l.04-.1a1.7 1.7 0 0 0-.34-1.88l-.06-.06 1.9-1.9.06.06a1.7 1.7 0 0 0 1.88.34l.1-.04a1.7 1.7 0 0 0 1-1.56V3h2.86v.86a1.7 1.7 0 0 0 1 1.56l.1.04a1.7 1.7 0 0 0 1.88-.34l.06-.06 1.9 1.9-.06.06a1.7 1.7 0 0 0-.34 1.88l.04.1a1.7 1.7 0 0 0 1.56 1H22v2.8h-.86a1.7 1.7 0 0 0-1.56 1Z" transform="translate(0 -0.5) scale(.96)"/></svg>
+          </button>
+        </div>
         <div class="word-dashboard-sub">복습 5개마다 새 단어 1개를 섞어 학습합니다. 복습 일정은 FSRS가 그대로 관리합니다.</div>
         <div class="word-goal">
           <div class="word-goal-head"><strong id="wordGoalText">0 / 50개</strong><span>현재 단어 은행</span></div>
@@ -595,17 +613,24 @@ ruby rt { font-weight:600!important; }
           <div class="word-dash-stat"><strong id="wordDashTotal">0</strong><span>지금 학습할 단어</span></div>
           <div class="word-dash-stat"><strong id="wordDashMastered">0</strong><span>정착</span></div>
         </div>
-        <div class="word-dash-setting">
-          <label for="dailyNewLimit">하루 새 단어</label>
-          <select id="dailyNewLimit"><option value="5">5개</option><option value="10">10개</option><option value="15">15개</option><option value="20">20개</option><option value="30">30개</option><option value="50">50개</option></select>
-        </div>
-        <div class="word-dash-setting">
-          <label for="desiredRetention">FSRS 목표 기억률</label>
-          <select id="desiredRetention"><option value="0.85">85% · 여유</option><option value="0.90">90% · 추천</option><option value="0.93">93% · 촘촘</option><option value="0.95">95% · 집중</option></select>
+        <div id="wordSettingsPanel" class="word-settings-panel hidden" role="region" aria-label="단어 학습 설정">
+          <div class="word-dash-setting">
+            <label for="dailyNewLimit">하루 새 단어</label>
+            <select id="dailyNewLimit"><option value="5">5개</option><option value="10">10개</option><option value="15">15개</option><option value="20">20개</option><option value="30">30개</option><option value="50">50개</option></select>
+          </div>
+          <div class="word-dash-setting">
+            <label for="desiredRetention">FSRS 목표 기억률</label>
+            <select id="desiredRetention"><option value="0.85">85% · 여유</option><option value="0.90">90% · 추천</option><option value="0.93">93% · 촘촘</option><option value="0.95">95% · 집중</option></select>
+          </div>
+          <div class="word-settings-note">변경하면 자동 저장됩니다. 이미 학습한 단어와 복습 기록은 유지됩니다.</div>
         </div>
         <button class="primary word-start" type="button" id="startWordStudy">지금 학습 시작</button>
-        <div class="word-dash-actions"><button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button><button class="secondary" type="button" data-go="review">복습만 보기</button></div>
-        <div class="word-dash-actions" style="margin-top:8px"><button class="secondary" type="button" id="startFocusStudy">🧠 집중 학습 · <span id="wordFocusDueCount">0</span>개</button><span id="wordFocusPendingInfo" class="sub" style="align-self:center;font-size:12px"></span></div>
+        <div class="word-dash-actions">
+          <button class="secondary" type="button" id="startStarredStudy">★ 별표 단어 학습</button>
+          <button class="secondary" type="button" data-go="review">복습만 보기</button>
+          <button class="secondary" type="button" id="startFocusStudy">🧠 집중 학습 · <span id="wordFocusDueCount">0</span>개</button>
+        </div>
+        <div id="wordFocusPendingInfo" class="word-focus-pending-info hidden" role="status"></div>
         <button class="secondary word-start" type="button" id="openWordLibrary" style="margin-top:8px">📚 N1 전체 단어장 · <span id="wordLibraryCount">0</span>개</button>
       </div>
       <div id="wordStudyPanel" class="hidden">
@@ -2608,7 +2633,8 @@ function renderWordDashboard(){
  const focusDue=focusDueWords().length,focusWaiting=focusPendingWords().length-focusDue;
  $("wordFocusDueCount").textContent=focusDue;
  $("startFocusStudy").disabled=focusDue===0;
- $("wordFocusPendingInfo").textContent=focusWaiting?("다음 학습 대기 "+focusWaiting+"개"):"";
+ $("wordFocusPendingInfo").textContent=focusWaiting?("집중 학습 다음 학습 대기 "+focusWaiting+"개"):"";
+ $("wordFocusPendingInfo").classList.toggle("hidden",!focusWaiting);
  $("wordCountPill").textContent=`현재 ${words.length} words`;if($("wordLibraryCount"))$("wordLibraryCount").textContent=words.length;
  const total=due.length+fresh.length;
  const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0||wordQuickRepeats.length>0)||(!wordSessionTotal&&restoreWordSession());
@@ -3206,6 +3232,19 @@ $("undoWordRating").addEventListener("click",()=>{
  });
 });
 $("wordStarBtn").addEventListener("click",()=>{const id=$("wordStarBtn").dataset.word;if(!id)return;toggleStar(id);$("wordStarBtn").textContent=isStarred(id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(id))});
+$("toggleWordSettings").addEventListener("click",()=>{
+ const panel=$("wordSettingsPanel"),button=$("toggleWordSettings");
+ const opening=panel.classList.contains("hidden");
+ panel.classList.toggle("hidden",!opening);
+ button.setAttribute("aria-expanded",String(opening));
+ if(opening)$("dailyNewLimit").focus({preventScroll:true});
+});
+$("wordSettingsPanel").addEventListener("keydown",e=>{
+ if(e.key!=="Escape")return;
+ $("wordSettingsPanel").classList.add("hidden");
+ $("toggleWordSettings").setAttribute("aria-expanded","false");
+ $("toggleWordSettings").focus();
+});
 $("dailyNewLimit").addEventListener("change",()=>{const n=Math.max(1,Math.min(50,Number($("dailyNewLimit").value)||10));state.settings=Object.assign({},state.settings,{dailyNewLimit:n,updatedAt:Date.now()});ensureDailyNew(false);saveState(state);renderWordDashboard();refreshAll()});
 $("desiredRetention").addEventListener("change",()=>{const r=clampNum(Number($("desiredRetention").value)||.90,.80,.97);state.settings=Object.assign({},state.settings,{desiredRetention:r,updatedAt:Date.now()});saveState(state);renderWordDashboard();refreshAll()});
 $("startWordStudy").addEventListener("click",()=>startWordStudy("daily"));
