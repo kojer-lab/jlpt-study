@@ -341,6 +341,7 @@ ruby rt { font-weight:600!important; }
 #newsSavedList .news-sentence{font-size:17px;line-height:2.15;background:transparent;padding:0;margin:0 0 10px;overflow-wrap:anywhere}
 #newsSavedList .news-saved-detail p{font-size:14px;line-height:1.75;margin:8px 0;color:var(--text)}
 #newsSavedList .news-saved-detail .news-saved-ko{color:var(--text)}
+#newsSavedList .news-saved-direct-meaning{font-size:15px;font-weight:500;color:var(--text);margin:2px 0 14px;line-height:1.8}
 #newsSavedList .news-saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
 #newsSavedList .news-saved-actions button{margin-top:0}
 #newsSavedList .news-saved-actions a{font-size:12px}
@@ -2400,6 +2401,7 @@ document.addEventListener("click",e=>{
  collector.scrollIntoView({behavior:"smooth",block:"start"});
 });
 function showView(name){
+ if(name==="newsreader")window.KOJER_NEWS_RESET_PANELS?.();
  // Other tabs do not use URL fragments. Remove an old news fragment when leaving news.
  if(name!=="newsreader"&&location.hash.startsWith("#newsreader")){
   history.replaceState(history.state,"",location.pathname+location.search);
@@ -3781,7 +3783,7 @@ if(newsNavigationEntry?.type==="reload"&&location.hash.startsWith("#newsreader")
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-lazy-month1"></script>
+<script src="data/news-reader-embedded.js?v=20261010-furi-check2"></script>
 <script src="data/news-collector-embedded.js?v=20261010-archive-publish1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
