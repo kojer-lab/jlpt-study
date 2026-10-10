@@ -433,7 +433,7 @@ function sentencesKO(value){
   // Japanese names written with initials (e.g. G.) and decimals (18.5%)
   // are not Korean sentence boundaries.
   if(c==="."&&/[0-9]/.test(text[i-1]||"")&&/[0-9]/.test(text[i+1]||""))continue;
-  if(c==="."&&/(?:^|\\s)[A-Z]\\.$/.test(current)&&/\\s/.test(text[i+1]||""))continue;
+  if(c==="."&&/(?:^|\s)[A-Z]\.$/.test(current)&&/\s/.test(text[i+1]||""))continue;
   if(current.trim())out.push(current.trim());
   current="";
  }
