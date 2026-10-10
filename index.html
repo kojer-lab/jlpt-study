@@ -313,16 +313,27 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-jump-to-expression:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .news-saved-card .news-expression-ruby{font-size:16px}
 
-/* Highlight the glyphs only. Outlines and outer shadows on a ruby-containing
-   inline span produce broken rectangular fragments around its inline-block furigana. */
+/* Highlight expression glyphs in consistent yellow across Safari and desktop Chromium.
+   Avoid outlines/shadows around inline furigana: they create broken boxes at line wraps. */
 .news-article-body .news-phrase{text-decoration:none;background:transparent}
 .news-article-body .news-phrase.news-phrase-selected{
- background:rgba(79,70,229,.23);
+ background:rgba(250,204,21,.54);
+ color:#24201a;
  box-shadow:none;outline:none;border:0;border-radius:0;
  -webkit-box-decoration-break:slice;box-decoration-break:slice;
 }
 body.dark .news-article-body .news-phrase.news-phrase-selected{
- background:rgba(250,204,21,.39);
+ background:rgba(250,204,21,.62);
+ color:#191b21;
+}
+/* The explicit "본문으로" action boosts the same phrase for a clear desktop target. */
+.news-article-body .news-phrase.news-jump-emphasis{
+ background:rgba(250,204,21,.78);
+ color:#191b21;
+}
+body.dark .news-article-body .news-phrase.news-jump-emphasis{
+ background:rgba(250,204,21,.82);
+ color:#151922;
 }
 .news-expression-tools{margin-top:26px;border-top:1px solid var(--line);padding-top:20px}
 .news-expression-tools #newsExpressionToggle{font-size:15px;font-weight:750;padding:14px 16px}
@@ -529,15 +540,26 @@ ruby rt { font-weight:600!important; }
  #newsreaderView .news-date-shortcuts{margin-bottom:11px}
 }
 
-/* Read state is discernible without relying on the tiny badge alone. */
+/* A completed article is visibly distinct even in dark mode. */
 #newsreaderView .news-article-card{transition:background-color .18s ease,border-color .18s ease}
 #newsreaderView .news-article-card.news-card-completed{
- background:color-mix(in srgb,var(--panel) 91%,var(--text) 9%);
- border-color:color-mix(in srgb,var(--line) 70%,var(--text) 30%);
+ background:#edf0f8;
+ border-color:#c2c9e1;
+ border-left:3px solid #7c76d6;
  box-shadow:none
 }
-#newsreaderView .news-article-card.news-card-completed>strong{opacity:.85}
-#newsreaderView .news-article-card.news-card-completed .news-card-read{color:var(--accent)}
+body.dark #newsreaderView .news-article-card.news-card-completed{
+ background:#28283b;
+ border-color:#555276;
+ border-left-color:#938aff;
+}
+#newsreaderView .news-article-card.news-card-completed>strong{opacity:.78}
+#newsreaderView .news-article-card.news-card-completed .news-card-read{
+ color:var(--accent);
+ background:var(--accent-soft);
+ border-radius:6px;
+ padding:3px 7px;
+}
 /* Compact, icon-only reading check at the end of the article. */
 #newsreaderView .news-finish-row{display:flex;justify-content:flex-start;align-items:center;gap:0;margin:12px 0 5px;padding:0;border:0}
 #newsreaderView #newsMarkRead{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:58px;height:36px;min-height:36px;padding:0 13px;border-radius:9px;font-size:13px;line-height:1;font-weight:650}
@@ -4180,7 +4202,7 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-furi-2026-10-10-reviewed.js?v=20261010-furi-full2"></script>
-<script src="data/news-reader-embedded.js?v=20261010-review-furi2"></script>
+<script src="data/news-reader-embedded.js?v=20261010-desktop-highlight1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-numerals2"></script>
 <script src="data/news-sync-bridge.js?v=20261010-independent-progress2"></script>
 <script>
