@@ -91,13 +91,35 @@ function countKoreanSentences(value){
  if(current.trim())count++;
  return count;
 }
+// News typography: Arabic digits for statistics; lexical kanji remain intact.
+function formatNewsKanjiNumber(value){
+ const digits={"〇":0,"零":0,"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9};
+ const run=s=>{
+  if(["十","百","千","万","億","兆"].includes(s))return s;
+  if(s.endsWith("万")&&!s.includes("億"))return run(s.slice(0,-1))+"万";
+  if([...s].every(c=>Object.prototype.hasOwnProperty.call(digits,c)))return [...s].map(c=>digits[c]).join("");
+  let total=0,block=0,buffer="";
+  for(const ch of s){
+   if(Object.prototype.hasOwnProperty.call(digits,ch)){buffer+=digits[ch];continue}
+   if(["十","百","千"].includes(ch)){block+=(buffer?Number(buffer):1)*({"十":10,"百":100,"千":1000}[ch]);buffer="";continue}
+   if(["万","億","兆"].includes(ch)){block+=buffer?Number(buffer):0;total+=block*({"万":1e4,"億":1e8,"兆":1e12}[ch]);block=0;buffer="";}
+  }
+  return new Intl.NumberFormat("en-US").format(total+block+(buffer?Number(buffer):0));
+ };
+ return String(value||"")
+  .replace(/([〇零一二三四五六七八九十百千万億兆]+)・([〇零一二三四五六七八九十百千万億兆]+)(?=[％%])/gu,(_,a,b)=>run(a)+"."+run(b))
+  .replace(/([〇零一二三四五六七八九十百千万億兆]+)(?=年|月|日|週間|週|人|名|円|件|票|％|%|キロ|センチ|メートル|平方度|倍|回|度|代|歳|才|台|枚|種類|商品|地域|ポイント|割|つ|か月|カ月|ヶ月)/gu,(original,n,offset,full)=>{
+   if(n==="一"&&full.slice(Math.max(0,offset-3),offset+7).includes("一つ一つ"))return original;
+   return run(n);
+  });
+}
 function normalizeImport(payload){
  const list=Array.isArray(payload)?payload:Array.isArray(payload?.articles)?payload.articles:Array.isArray(payload?.data)?payload.data:null;
  if(!list||!list.length||list.length>30)throw Error("기사 배열이 없거나 30개를 초과해.");
  return list.map((raw,i)=>{
   const a=raw.article&&typeof raw.article==="object"?raw.article:raw;
   const rawParagraphs=a.paragraphs;
-  const paragraphs=Array.isArray(rawParagraphs)?rawParagraphs.map(p=>typeof p==="string"?p:(typeof p?.ja==="string"?p.ja:"")):[];
+  const paragraphs=Array.isArray(rawParagraphs)?rawParagraphs.map(p=>formatNewsKanjiNumber(typeof p==="string"?p:(typeof p?.ja==="string"?p.ja:""))):[];
   const translationParagraphs=Array.isArray(a.translationParagraphs)?a.translationParagraphs:Array.isArray(a.translations)?a.translations:Array.isArray(rawParagraphs)?rawParagraphs.map(p=>p?.ko||""):[];
   const expressions=a.expressions;
   if(!a.title||paragraphs.length<5||paragraphs.length>10||!paragraphs.every(x=>typeof x==="string"&&x.length>30))throw Error((i+1)+"번 기사 본문 형식이 올바르지 않아.");
@@ -109,7 +131,7 @@ function normalizeImport(payload){
   if(!Array.isArray(expressions)||expressions.length<5||!expressions.every(x=>x&&typeof x.form==="string"&&typeof x.reading==="string"&&typeof x.meaning==="string"))throw Error((i+1)+"번 기사 N1 표현 형식이 올바르지 않아.");
   const titleTranslation=String(a.titleTranslation||a.titleKo||"").trim();
   if(!titleTranslation)throw Error((i+1)+"번 기사 제목의 직역 번역(titleTranslation)이 누락됐어.");
-  const title=String(a.title).trim(),id=String(a.id||"gpt-"+Array.from(title).map(c=>c.codePointAt(0).toString(36)).join("-")).slice(0,240);
+  const title=formatNewsKanjiNumber(String(a.title).trim()),id=String(a.id||"gpt-"+Array.from(title).map(c=>c.codePointAt(0).toString(36)).join("-")).slice(0,240);
   return {id,title,titleTranslation,category:String(a.category||"시사"),source:String(a.source||"GPT 학습 기사"),date:String(a.date||new Date().toISOString().slice(0,10)),paragraphs,translationParagraphs,expressions,bodyLength:paragraphs.join("").length,sourceUrl:String(a.sourceUrl||a.source_url||raw.source_url||""),kind:String(a.kind||"학습용 재구성"),verification:a.verification||null};
  });
 }
@@ -148,11 +170,12 @@ async function generateSix(){
  "2) 확인된 사실에 근거해 독립적으로 재작성한 JLPT N1 일본어 기사 900~1,200자 5~8문단, 각 문단과 문장 순서에 대응하는 '직역 중심' 한국어 번역 및 본문에 실제 등장하는 N1 표현 5~15개를 작성해. 인용문·수치·인물·사실을 꾸며내거나 원문을 복제하지 마.",
  "2-0) 한국어 번역은 쉬운 의역·해설식 재서술보다 JLPT 독해 학습에 유용한 충실한 직역을 최우선으로 해. 원문 각 문장을 같은 순서로 빠짐없이 옮기고, 핵심 한자어·조사 관계·시제·부정·추측·조건·수동·문장 논리를 정확히 유지해. 일본어의 欠かせない→없어서는 안 된다, 動向→동향, 直結する→직결된다처럼 중요 표현의 대응을 살려. 다만 한국어 문법상 부자연스러운 어순은 최소한만 다듬어. 원문에 없는 배경 설명, 해석, 평가, 요약, 사실, 강조 문구를 번역에 덧붙이지 마. 원문의 확률·미확정 표현(可能性がある, おそれがある, とみられる 등)을 단정으로 바꾸지 마. 독자 설명이 필요하면 본문 번역과 분리된 표현 note에서만 제공해.",
  "2-0a) 기사 제목 역시 별도의 titleTranslation 필드에 일본어 원문을 충실하게 직역한 한국어 문장을 저장해. 전체 제목의 의미·인명·수치·부정 표현이 빠지지 않아야 하며 제목 아래의 독립적인 번역 토글로 표시해. 제목의 모든 한자도 문맥에 맞는 읽기를 검수해.",
+ "2-0a-2) 가독성을 위해 기사 제목·본문의 연도, 월·일, 금액·가격, 인원·건수·횟수·기간, 거리·수량·퍼센트·통계를 아라비아 숫자로 써. 예: 二〇二六年→2026年, 十月九日→10月9日, 二千八百六十円→2,860円, 六十五人→65人, 四八・〇％→48.0％, 二千六百七十万人→2,670万人. 단, 一方·一般·一部·一定·万一·十分·一つ一つ처럼 어휘·관용어의 한자는 바꾸지 마. 근거가 없는 숫자를 새로 만들지 말고, 숫자와 단위 및 번역의 수치가 일치하는지 검수해.",
  "2-0a-1) 실전 표현 수첩과 복습은 해당 일본어 예문 한 문장만 표시하며, 번역 역시 같은 순서의 한국어 문장 하나만 보여야 해. 따라서 문단별 일본어 문장 수와 한국어 문장 수를 1:1로 맞춰. 문단 전체를 요약해서 한 문장으로 옮기거나 번역 여러 문장을 합치지 마. 고유명사와 숫자의 마침표는 문장 경계를 오인하지 않도록 점검해.",
  "2-0b) 번역 최종검수는 일본어 원문과 한국어 번역을 문장별 1:1로 대조해. 누락·병합·추가·과도한 의역이 있는지 확인하고, 문단별 일본어 문장 수와 대응하는 한국어 문장 수가 맞도록 조정해. 의미만 통하는 느슨한 요약형 번역을 그대로 게시하지 마.",
  "2-1) 초안 작성이 끝나면 배포 전에 반드시 별도의 2차 검수 단계를 수행해. 모든 문단의 사실관계·한국어 번역·일본어 문법·숫자·고유명사를 다시 확인하고, 기사별 N1 실전 표현 전체를 표로 추출해 본문에 실제 등장하는지, 각 form과 reading의 한자 구간이 정확히 대응하는지, 동사 활용형·부정형 읽기가 맞는지 하나씩 대조해. '不正アクセス'처럼 한자+가타카나 혼합 표현도 빠뜨리지 마. 한자 없는 표현은 임의의 후리가나를 덧붙이지 마.",
  "2-2) 유사 표현(similar)에도 한자가 있으면 괄호 안에 정확한 히라가나 읽기(예: 共同事業（きょうどうじぎょう）)를 함께 제공해. 사이트에서는 괄호를 그대로 표시하지 않고 클릭 후리가나 데이터로 사용해. 유사 표현과 본문 예문 속 한자도 가능한 읽기 검증을 수행하되 확실하지 않은 읽기는 만들어내지 말고 표시해. 표현마다 reading과 meaning을 서로 바꿔 적지 않았는지, 단어 뜻의 긍정/부정 방향이 맞는지도 검수해.",
- "2-3) 신규 날짜별 JSON을 저장하기 전에 실제 기사별 전체 문단 수, 일본어 글자 수, 번역 문단 수, N1 표현 수, 글자+읽기의 후리가나 정합성, 제목 한자 읽기 누락, 일본어/한국어 문장별 1:1 정렬, 이미 수록된 기사와 주제/ID 중복 여부를 자동 점검해. 오류가 나오면 수정 후 다시 검사해. 검수를 했다는 말만 하지 말고 검수 결과와 수정한 항목 수를 최종 보고에 포함해.",
+ "2-3) 신규 날짜별 JSON을 저장하기 전에 실제 기사별 전체 문단 수, 일본어 글자 수, 번역 문단 수, N1 표현 수, 글자+읽기의 후리가나 정합성, 날짜·통계·가격·수량의 아라비아 숫자 표기, 제목 한자 읽기 누락, 일본어/한국어 문장별 1:1 정렬, 이미 수록된 기사와 주제/ID 중복 여부를 자동 점검해. 오류가 나오면 수정 후 다시 검사해. 검수를 했다는 말만 하지 말고 검수 결과와 수정한 항목 수를 최종 보고에 포함해.",
  "2-4) 실전 표현 제목만 확인하는 것으로는 부족해. article.expressions의 모든 form, example(해당 표현이 포함된 본문 문장), similar에 등장하는 한자를 별도로 검수해. 기존 data/news-furi-reviewed-v1.js와 날짜별 교정 사전 data/news-furi-2026-10-10-reviewed.js, data/news-reader-embedded.js의 annotate, wordHTML, annotateExpressionSentence를 참고해. 확인된 한자 읽기를 새 날짜의 data/news-furi-YYYY-MM-DD-reviewed.js 파일에 객체 병합 형태로 추가하고, index.html에 news-reader-embedded.js 앞에 script를 넣어 실제 표시되도록 해. 괄호 후리가나를 일본어 본문에 중복 표시하지 마. 적용률을 기계적으로 측정하고 가능하면 예문 한자 95% 이상을 확인하되, 확인되지 않은 읽기를 절대 지어내지 마. 미확인 항목은 별도 보고해.",
  "3) 기사 객체 필수 필드: id(중복 없는 문자열),date(YYYY-MM-DD),title,titleTranslation(일본어 제목과 1:1로 대응하는 직역 중심 한국어 제목),category,source,sourceUrl,kind,bodyLength(일본어 paragraph 합계 글자 수),paragraphs(일본어 문자열 배열),translationParagraphs(같은 길이의 한국어 문자열 배열),expressions([{form,reading,meaning,similar,note}]). 기존 ID 및 같은 뉴스 주제 중복을 조사해.",
  "4) 새 기사 전체를 {version:1,date:'YYYY-MM-DD',articles:[...]} 형태의 JSON으로 묶어 GitHub data/news-articles-YYYY-MM-DD-batchNN.json 에 직접 생성해. 날짜에 기존 파일이 있으면 덮어쓰지 않고 새 batch 번호로 저장해. 기사 날짜가 여러 개면 날짜별로 파일을 나눠. 기존 기사·파일·SRS·저장 기록은 모두 보존해.",
