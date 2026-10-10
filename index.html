@@ -438,6 +438,19 @@ ruby rt { font-weight:600!important; }
  .news-category-label{align-self:flex-end}
  .news-date-filters button{padding:8px 9px}
 }
+
+/* Scalable news history: pick a month, view recent dates, browse older days. */
+.news-date-heading{flex-wrap:wrap}
+.news-month-label{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:500;color:var(--muted)}
+.news-month-label select,.news-older-date{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);min-height:36px;padding:6px 10px;max-width:170px}
+.news-older-date{flex:none;max-width:190px}
+.news-more-area{display:flex;justify-content:center;margin-top:16px}
+.news-more-area button{padding:10px 19px;font-size:13px}
+@media(max-width:640px){
+ .news-month-label{margin-left:0}
+ .news-date-heading{justify-content:space-between}
+ .news-older-date{align-self:flex-end}
+}
 </style>
 </head>
 <body>
@@ -597,15 +610,22 @@ ruby rt { font-weight:600!important; }
  <div id="newsSavedList"></div>
       </section>
       <div class="news-curated-controls">
-       <div class="news-date-heading"><strong>날짜별 기사</strong><span id="newsVisibleCount" class="sub" aria-live="polite"></span></div>
+       <div class="news-date-heading">
+        <strong>날짜별 기사</strong><span id="newsVisibleCount" class="sub" aria-live="polite"></span>
+        <label class="news-month-label" for="newsMonthSelect">월 선택
+         <select id="newsMonthSelect" aria-label="기사 연도와 월 선택"><option value="">최근 월</option></select>
+        </label>
+       </div>
        <div class="news-curated-controls-line">
         <div id="newsDateFilters" class="news-date-filters" role="group" aria-label="학습 기사 날짜 선택"></div>
+        <select id="newsOlderDateSelect" class="news-older-date hidden" aria-label="이전 날짜 선택"></select>
         <label class="news-category-label" for="newsCuratedCategorySelect">분야
          <select id="newsCuratedCategorySelect" aria-label="기사 분야 선택"><option value="전체">전체 분야</option></select>
         </label>
        </div>
       </div>
       <div class="grid3" id="newsCuratedList"></div>
+      <div class="news-more-area"><button type="button" id="newsMoreButton" class="secondary hidden">기사 더 보기</button></div>
       <details id="newsCollectorShell" class="news-collector-shell">
        <summary>🗞️ 오늘의 뉴스 모으기 · GPT 기사 작성 <span aria-hidden="true">⌄</span></summary>
       <section class="card" id="newsCollectorSection" style="margin:10px 0 0">
@@ -850,8 +870,7 @@ ruby rt { font-weight:600!important; }
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="data/news-curated-v1.js?v=20261010-news10"></script>
-<script src="data/news-generated-2026-10-10.js?v=20261010-six1"></script>
+<script src="data/news-index-v1.js?v=20261010-lazy1"></script>
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
 <script src="data/n1-extra-words-3.js"></script>
@@ -2277,58 +2296,98 @@ function todayNewPending(){return ensureDailyNew(true).filter(w=>getSrs(w.id).re
 function refreshAll(){renderHome();renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
 let newsCuratedCategory="전체";
-let newsCuratedDate=null; // On first visit, show the latest day; "전체" shows the full archive.
+let newsCuratedDate=null;
+let newsCuratedMonth=null;
+let newsVisibleLimit=24;
 function renderCuratedNewsHome(){
- const bank=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
+ const indexed=Array.isArray(window.KOJER_NEWS_INDEX?.articles)?window.KOJER_NEWS_INDEX.articles:[];
+ const loaded=Array.isArray(window.KOJER_CURATED_NEWS?.articles)?window.KOJER_CURATED_NEWS.articles:[];
+ const byId=new Map();
+ // Only the lightweight metadata is needed for the article cards.
+ for(const entry of indexed){if(entry?.id&&!byId.has(entry.id))byId.set(entry.id,entry)}
+ for(const entry of loaded){if(entry?.id&&!byId.has(entry.id))byId.set(entry.id,entry)}
+ const bank=[...byId.values()];
  const list=$("newsCuratedList"),dateFilters=$("newsDateFilters"),category=$("newsCuratedCategorySelect");
- if(!list||!dateFilters||!category)return;
+ const monthPicker=$("newsMonthSelect"),olderPicker=$("newsOlderDateSelect"),moreButton=$("newsMoreButton");
+ if(!list||!dateFilters||!category||!monthPicker||!olderPicker||!moreButton)return;
  $("newsArticleCount").textContent=bank.length+"개";
- const dates=[...new Set(bank.map(a=>String(a.date||"")).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)))].sort().reverse();
+ const validDate=value=>/^\d{4}-\d{2}-\d{2}$/.test(String(value||""));
+ const datesAll=[...new Set(bank.map(x=>x.date).filter(validDate))].sort().reverse();
+ const months=[...new Set(datesAll.map(d=>d.slice(0,7)))];
+ if(newsCuratedMonth===null||(newsCuratedMonth!=="전체"&&!months.includes(newsCuratedMonth))){
+  newsCuratedMonth=months[0]||"전체";
+  newsCuratedDate=null;
+ }
+ monthPicker.replaceChildren();
+ for(const month of ["전체",...months]){
+  const opt=document.createElement("option");
+  opt.value=month;
+  opt.textContent=month==="전체"?"전체 기간":month.slice(0,4)+"년 "+Number(month.slice(5))+"월";
+  monthPicker.appendChild(opt);
+ }
+ monthPicker.value=newsCuratedMonth;
+ monthPicker.onchange=()=>{
+  newsCuratedMonth=monthPicker.value;newsCuratedDate=null;newsCuratedCategory="전체";newsVisibleLimit=24;
+  renderCuratedNewsHome();
+ };
+ const monthly=bank.filter(x=>newsCuratedMonth==="전체"||String(x.date||"").startsWith(newsCuratedMonth));
+ const dates=[...new Set(monthly.map(x=>x.date).filter(validDate))].sort().reverse();
  if(newsCuratedDate===null||(newsCuratedDate!=="전체"&&!dates.includes(newsCuratedDate)))newsCuratedDate=dates[0]||"전체";
- const scrollPosition=dateFilters.scrollLeft;
+ const chooseDate=day=>{newsCuratedDate=day;newsCuratedCategory="전체";newsVisibleLimit=24;renderCuratedNewsHome()};
  dateFilters.replaceChildren();
- for(const day of ["전체",...dates]){
-  const count=day==="전체"?bank.length:bank.filter(x=>x.date===day).length;
-  const label=day==="전체"?"전체 날짜":day.split("-").map((n,i)=>i?String(Number(n)):n).join(".");
+ for(const day of ["전체",...dates.slice(0,5)]){
+  const count=day==="전체"?monthly.length:monthly.filter(x=>x.date===day).length;
+  const label=day==="전체"?(newsCuratedMonth==="전체"?"전체 날짜":"이 달 전체"):Number(day.slice(5,7))+"/"+Number(day.slice(8,10));
   const btn=document.createElement("button");
   btn.type="button";btn.className="secondary"+(day===newsCuratedDate?" active":"");
   btn.textContent=label+" · "+count;
   btn.setAttribute("aria-pressed",String(day===newsCuratedDate));
-  btn.addEventListener("click",()=>{newsCuratedDate=day;newsCuratedCategory="전체";renderCuratedNewsHome()});
+  btn.addEventListener("click",()=>chooseDate(day));
   dateFilters.appendChild(btn);
  }
- dateFilters.scrollLeft=scrollPosition;
- const datedBank=bank.filter(x=>newsCuratedDate==="전체"||x.date===newsCuratedDate);
- const genres=["전체",...new Set(datedBank.map(a=>a.category).filter(Boolean))].sort((a,b)=>a==="전체"?-1:b==="전체"?1:a.localeCompare(b,"ko"));
+ const older=dates.slice(5);
+ olderPicker.classList.toggle("hidden",!older.length);
+ olderPicker.replaceChildren();
+ if(older.length){
+  const option=document.createElement("option");option.value="";option.textContent="이전 날짜 ("+older.length+")";
+  olderPicker.appendChild(option);
+  for(const day of older){
+   const o=document.createElement("option");o.value=day;o.textContent=day+" · "+monthly.filter(x=>x.date===day).length+"개";
+   olderPicker.appendChild(o);
+  }
+  olderPicker.value=older.includes(newsCuratedDate)?newsCuratedDate:"";
+  olderPicker.onchange=()=>{if(olderPicker.value)chooseDate(olderPicker.value)};
+ }
+ const dated=monthly.filter(x=>newsCuratedDate==="전체"||x.date===newsCuratedDate);
+ const genres=["전체",...new Set(dated.map(a=>a.category).filter(Boolean))].sort((x,y)=>x==="전체"?-1:y==="전체"?1:x.localeCompare(y,"ko"));
  if(!genres.includes(newsCuratedCategory))newsCuratedCategory="전체";
  category.replaceChildren();
  for(const genre of genres){
-  const option=document.createElement("option");
-  option.value=genre;
-  option.textContent=genre==="전체"?"전체 분야":genre;
-  category.appendChild(option);
+  const option=document.createElement("option");option.value=genre;option.textContent=genre==="전체"?"전체 분야":genre;category.appendChild(option);
  }
  category.value=newsCuratedCategory;
- category.onchange=()=>{newsCuratedCategory=category.value;renderCuratedNewsHome()};
- const selected=datedBank.filter(x=>newsCuratedCategory==="전체"||x.category===newsCuratedCategory).sort((a,b)=>String(b.date).localeCompare(String(a.date))||bank.indexOf(b)-bank.indexOf(a));
- $("newsVisibleCount").textContent=selected.length+"개 표시";
+ category.onchange=()=>{newsCuratedCategory=category.value;newsVisibleLimit=24;renderCuratedNewsHome()};
+ const selected=dated.filter(x=>newsCuratedCategory==="전체"||x.category===newsCuratedCategory)
+  .sort((x,y)=>String(y.date).localeCompare(String(x.date))||String(x.id).localeCompare(String(y.id)));
+ const page=selected.slice(0,newsVisibleLimit);
+ $("newsVisibleCount").textContent=page.length===selected.length?selected.length+"개 표시":page.length+" / "+selected.length+"개 표시";
+ moreButton.classList.toggle("hidden",page.length===selected.length);
+ moreButton.textContent="기사 더 보기 · "+(selected.length-page.length)+"개 남음";
+ moreButton.onclick=()=>{newsVisibleLimit+=24;renderCuratedNewsHome()};
  list.replaceChildren();
  if(!selected.length){
-  const box=document.createElement("div");box.className="card";
-  box.textContent="이 날짜와 분야에 해당하는 학습 기사가 없어.";list.appendChild(box);return;
+  const box=document.createElement("div");box.className="card";box.textContent="해당 날짜와 분야에 학습 기사가 없어.";list.appendChild(box);return;
  }
- for(const item of selected){
+ for(const item of page){
   const card=document.createElement("div");card.className="card";
   card.style.cssText="display:flex;flex-direction:column;gap:12px;min-width:0";
   const meta=document.createElement("div");meta.className="sub";
-  meta.textContent=[item.category,item.date,item.bodyLength+"자"].join(" · ");
+  meta.textContent=[item.category,item.date,item.bodyLength+"자"].filter(Boolean).join(" · ");
   meta.style.cssText="font-size:12px;line-height:1.6;color:var(--muted)";
   const title=document.createElement("strong");title.textContent=item.title;title.lang="ja";
   title.style.cssText="font-size:17px;line-height:1.6;word-break:normal;overflow-wrap:anywhere;white-space:normal;max-width:100%;min-width:0;display:block";
-  const link=document.createElement("a");
-  link.href="#newsreader/"+encodeURIComponent(item.id);
-  link.textContent="기사 읽기 →";
-  link.style.cssText="margin-top:auto;display:inline-block;color:var(--accent);font-weight:700;text-decoration:none";
+  const link=document.createElement("a");link.href="#newsreader/"+encodeURIComponent(item.id);
+  link.textContent="기사 읽기 →";link.style.cssText="margin-top:auto;display:inline-block;color:var(--accent);font-weight:700;text-decoration:none";
   card.append(meta,title,link);list.appendChild(card);
  }
 }
@@ -3722,7 +3781,7 @@ if(newsNavigationEntry?.type==="reload"&&location.hash.startsWith("#newsreader")
 if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
-<script src="data/news-reader-embedded.js?v=20261010-saved-compact2"></script>
+<script src="data/news-reader-embedded.js?v=20261010-lazy-month1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-github-publish1"></script>
 <script src="data/news-sync-bridge.js?v=20261010-news-sync-review3"></script>
 </body>
