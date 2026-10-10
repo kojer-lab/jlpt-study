@@ -72,13 +72,15 @@ function normalizeImport(payload){
  if(!list||!list.length||list.length>30)throw Error("기사 배열이 없거나 30개를 초과해.");
  return list.map((raw,i)=>{
   const a=raw.article&&typeof raw.article==="object"?raw.article:raw;
-  const paragraphs=a.paragraphs,translationParagraphs=a.translationParagraphs||a.translations;
+  const rawParagraphs=a.paragraphs;
+  const paragraphs=Array.isArray(rawParagraphs)?rawParagraphs.map(p=>typeof p==="string"?p:(typeof p?.ja==="string"?p.ja:"")):[];
+  const translationParagraphs=Array.isArray(a.translationParagraphs)?a.translationParagraphs:Array.isArray(a.translations)?a.translations:Array.isArray(rawParagraphs)?rawParagraphs.map(p=>p?.ko||""):[];
   const expressions=a.expressions;
-  if(!a.title||!Array.isArray(paragraphs)||paragraphs.length<5||paragraphs.length>10||!paragraphs.every(x=>typeof x==="string"&&x.length>30))throw Error((i+1)+"번 기사 본문 형식이 올바르지 않아.");
-  if(!Array.isArray(translationParagraphs)||translationParagraphs.length!==paragraphs.length||!translationParagraphs.every(x=>typeof x==="string"&&x.trim()))throw Error((i+1)+"번 기사 문단별 번역이 누락됐어.");
+  if(!a.title||paragraphs.length<5||paragraphs.length>10||!paragraphs.every(x=>typeof x==="string"&&x.length>30))throw Error((i+1)+"번 기사 본문 형식이 올바르지 않아.");
+  if(translationParagraphs.length!==paragraphs.length||!translationParagraphs.every(x=>typeof x==="string"&&x.trim()))throw Error((i+1)+"번 기사 문단별 번역이 누락됐어.");
   if(!Array.isArray(expressions)||expressions.length<5||!expressions.every(x=>x&&typeof x.form==="string"&&typeof x.reading==="string"&&typeof x.meaning==="string"))throw Error((i+1)+"번 기사 N1 표현 형식이 올바르지 않아.");
   const title=String(a.title).trim(),id=String(a.id||"gpt-"+Array.from(title).map(c=>c.codePointAt(0).toString(36)).join("-")).slice(0,240);
-  return {id,title,category:String(a.category||"시사"),source:String(a.source||"GPT 학습 기사"),date:String(a.date||new Date().toISOString().slice(0,10)),paragraphs,translationParagraphs,expressions,bodyLength:paragraphs.join("").length,sourceUrl:String(a.sourceUrl||a.source_url||raw.source_url||"")};
+  return {id,title,category:String(a.category||"시사"),source:String(a.source||"GPT 학습 기사"),date:String(a.date||new Date().toISOString().slice(0,10)),paragraphs,translationParagraphs,expressions,bodyLength:paragraphs.join("").length,sourceUrl:String(a.sourceUrl||a.source_url||raw.source_url||""),kind:String(a.kind||"학습용 재구성"),verification:a.verification||null};
  });
 }
 async function importArticles(file){
