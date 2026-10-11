@@ -4218,21 +4218,42 @@ if(location.hash==="#newsreader")showView("newsreader");
 <script src="data/news-collector-embedded.js?v=20261010-numerals2"></script>
 <script src="data/news-sync-bridge.js?v=20261010-independent-progress2"></script>
 <script>
-// Safari can still double-tap zoom a large inline kanji even with touch-action.
-// Cancel only the second tap within the active vocabulary study card.
-const vocabStudyTouchArea=document.querySelector("#wordsView #wordStudyPanel .word-card");
+// Safari smart zoom may begin at the second touchstart, before touchend/dblclick.
+// Intercept that second touch early, without interfering with single-tap furigana
+// or two-finger pinch gestures. Bind the entire study panel, not just the card.
+const vocabStudyTouchArea=document.getElementById("wordStudyPanel");
 if(vocabStudyTouchArea){
- let lastTapTime=0,lastTapX=0,lastTapY=0;
+ let lastTapTime=0,lastTapX=0,lastTapY=0,blockSecondTap=false;
+ vocabStudyTouchArea.addEventListener("touchstart",function(event){
+  blockSecondTap=false;
+  if(event.touches.length!==1||event.changedTouches.length!==1){
+   lastTapTime=0;return;
+  }
+  const touch=event.touches[0],time=Date.now();
+  blockSecondTap=time-lastTapTime<450
+   &&Math.abs(touch.clientX-lastTapX)<48
+   &&Math.abs(touch.clientY-lastTapY)<48;
+  if(blockSecondTap&&event.cancelable){
+   event.preventDefault();
+   lastTapTime=0;
+  }
+ },{capture:true,passive:false});
  vocabStudyTouchArea.addEventListener("touchend",function(event){
-  if(event.touches.length||event.changedTouches.length!==1)return;
-  const touch=event.changedTouches[0],time=Date.now();
-  const repeated=time-lastTapTime<340&&Math.abs(touch.clientX-lastTapX)<28&&Math.abs(touch.clientY-lastTapY)<28;
-  lastTapTime=time;lastTapX=touch.clientX;lastTapY=touch.clientY;
-  if(repeated&&event.cancelable)event.preventDefault();
- },{passive:false});
+  if(event.changedTouches.length!==1||event.touches.length)return;
+  if(blockSecondTap){
+   if(event.cancelable)event.preventDefault();
+   blockSecondTap=false;
+   lastTapTime=0;
+   return;
+  }
+  const touch=event.changedTouches[0];
+  lastTapTime=Date.now();
+  lastTapX=touch.clientX;lastTapY=touch.clientY;
+ },{capture:true,passive:false});
+ vocabStudyTouchArea.addEventListener("touchcancel",()=>{lastTapTime=0;blockSecondTap=false},{passive:true});
  vocabStudyTouchArea.addEventListener("dblclick",function(event){
   if(event.cancelable)event.preventDefault();
- },{passive:false});
+ },{capture:true,passive:false});
 }
 // Keep Safari double-tap zoom disabled inside the news expression review.
 // Single taps (including furigana) and two-finger pinch remain available.
