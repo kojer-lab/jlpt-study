@@ -1,0 +1,122 @@
+name: Compress 3104 browser Kokoro example MP3s to 64kbps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/compress-example-mp3-64k.yml"
+      - "audio/vocab/compression-plan.json"
+  workflow_dispatch:
+    inputs:
+      batch_number:
+        description: "The next 300-clip 64kbps batch (1..11)"
+        required: true
+        type: number
+        default: 1
+
+permissions:
+  contents: write
+  actions: write
+
+# Never overlap with the original 128kbps regeneration workflow or with
+# another compression batch. A failed job does not start the next batch.
+concurrency:
+  group: jlpt-browser-example-300
+  cancel-in-progress: false
+
+jobs:
+  compress:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    env:
+      BROWSER_AUDIO_COMPRESS_BATCH_NUMBER: \${{ github.event_name == 'workflow_dispatch' && inputs.batch_number || 1 }}
+    steps:
+      - name: Check out latest main with audio checkpoints
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate compression plan and script before changing MP3s
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/compress-example-mp3-64k.mjs
+          python3 - <<'PY'
+          import json,os
+          p=json.load(open("audio/vocab/compression-plan.json"))
+          n=int(os.environ["BROWSER_AUDIO_COMPRESS_BATCH_NUMBER"])
+          assert p["version"]==1 and p["mode"]=="transcode-example-only"
+          assert p["total_examples"]==3104 and p["batch_size"]==300
+          assert p["checkpoint_size"]==50
+          assert p["original_kbps"]==128 and p["target_kbps"]==64
+          assert 1<=n<=11
+          total=0
+          for i in range(1,12):
+            name=f"audio/vocab/browser-batches/batch-{i:04}.json"
+            j=json.load(open(name))
+            expected=min(300,3104-(i-1)*300)
+            assert j["status"]=="complete" and j["count"]==expected and len(j["completed"])==expected
+            total+=len(j["completed"])
+          assert total==3104
+          print("Approved 128kbps originals:",total,"batch",n)
+          PY
+
+      - name: Ensure ffmpeg and ffprobe are available
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffprobe >/dev/null 2>&1 || ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          command -v ffprobe
+          command -v ffmpeg
+
+      - name: Compress, validate and publish 50-file checkpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/compress-example-mp3-64k.mjs
+
+      - name: Assert current batch is complete and audio revisions are valid
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,hashlib
+          from pathlib import Path
+          n=int(os.environ["BROWSER_AUDIO_COMPRESS_BATCH_NUMBER"])
+          ledger=json.load(open(f"audio/vocab/compression-batches/batch-{n:04}.json"))
+          expected=min(300,3104-(n-1)*300)
+          assert ledger["batch_number"]==n and ledger["status"]=="complete"
+          assert ledger["count"]==expected and len(ledger["completed"])==expected
+          revision=json.load(open("audio/vocab/repaired-revisions.json"))["files"]
+          for item in ledger["completed"]:
+            path=Path(item["path"])
+            data=path.read_bytes()
+            digest=hashlib.sha256(data).hexdigest()
+            assert digest==item["new_sha256"]
+            assert revision[str(path)]==digest[:16]
+            assert item["compressed_bytes"]<item["original_bytes"]
+          print("SUCCESS: batch",n,"64kbps MP3s",expected,"validated")
+          PY
+
+      - name: Start next 300-file batch only after successful validation
+        shell: bash
+        env:
+          GH_TOKEN: \${{ github.token }}
+        run: |
+          set -euo pipefail
+          next=$((BROWSER_AUDIO_COMPRESS_BATCH_NUMBER + 1))
+          if [ "$next" -le 11 ]; then
+            echo "Finished current batch. Queueing compression batch $next of 11"
+            gh workflow run compress-example-mp3-64k.yml --repo "$GITHUB_REPOSITORY" --ref main -f batch_number="$next"
+          else
+            echo "COMPLETE: all 3104 examples converted to 64kbps"
+          fi
