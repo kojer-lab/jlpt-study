@@ -2702,28 +2702,32 @@ function reconcileDailyWordSession(){
 }
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
 function renderWordDashboard(){
- const daily=ensureDailyNew(true),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords();
- const learned=words.filter(w=>getSrs(w.id).reviews>0).length;
- const mastered=words.filter(w=>getSrs(w.id).reviews>0&&getSrs(w.id).stability>=30).length;
+ const pool=wordsForLevel(wordStudyLevel),daily=ensureDailyNew(true,wordStudyLevel),fresh=daily.filter(w=>getSrs(w.id).reviews===0),due=dueWords(wordStudyLevel);
+ const learned=pool.filter(w=>getSrs(w.id).reviews>0).length;
+ const mastered=pool.filter(w=>getSrs(w.id).reviews>0&&getSrs(w.id).stability>=30).length;
+ $("wordLevelN1").classList.toggle("active",wordStudyLevel==="N1");
+ $("wordLevelN2").classList.toggle("active",wordStudyLevel==="N2");
+ $("wordLevelN1").setAttribute("aria-pressed",String(wordStudyLevel==="N1"));
+ $("wordLevelN2").setAttribute("aria-pressed",String(wordStudyLevel==="N2"));
  $("dailyNewLimit").value=String(state.settings.dailyNewLimit||10);
  if($("desiredRetention"))$("desiredRetention").value=Number(state.settings.desiredRetention||.90).toFixed(2);
 
- $("wordGoalText").textContent=`${learned} / ${words.length}개`;
- $("wordGoalFill").style.width=(words.length?Math.min(100,learned/words.length*100):0)+"%";
+ $("wordGoalText").textContent=`${learned} / ${pool.length}개`;
+ $("wordGoalFill").style.width=(pool.length?Math.min(100,learned/pool.length*100):0)+"%";
  $("wordDashDue").textContent=due.length;$("wordDashNew").textContent=fresh.length;
  $("wordDashTotal").textContent=due.length+fresh.length;$("wordDashMastered").textContent=mastered;
- const focusDue=focusDueWords().length,focusWaiting=focusPendingWords().length-focusDue;
+ const focusDue=focusDueWords(wordStudyLevel).length,focusWaiting=focusPendingWords(wordStudyLevel).length-focusDue;
  $("wordFocusDueCount").textContent=focusDue;
  $("startFocusStudy").disabled=focusDue===0;
  $("wordFocusPendingInfo").textContent=focusWaiting?("집중 학습 다음 학습 대기 "+focusWaiting+"개"):"";
  $("wordFocusPendingInfo").classList.toggle("hidden",!focusWaiting);
- $("wordCountPill").textContent=`현재 ${words.length} words`;if($("wordLibraryCount"))$("wordLibraryCount").textContent=words.length;
+ $("wordCountPill").textContent=`${wordStudyLevel} · ${pool.length} words`;if($("wordLibraryCount"))$("wordLibraryCount").textContent=pool.length;
  const total=due.length+fresh.length;
  const active=wordSessionTotal>0&&(wordSessionQueue.length>0||wordLearningQueue.length>0||wordQuickRepeats.length>0)||(!wordSessionTotal&&restoreWordSession());
  $("startWordStudy").disabled=!active&&total===0;
  $("startWordStudy").textContent=active?`진행 중인 학습 이어하기 · ${wordSessionDone}/${wordSessionTotal}`:total?`지금 학습 시작 · ${total}장`:"지금 학습할 단어 없음 ✓";
 }
-const WORD_SESSION_KEY="jlptN1ActiveWordSessionV1";
+function wordSessionStorageKey(){return wordStudyLevel==="N2"?"jlptN2ActiveWordSessionV1":"jlptN1ActiveWordSessionV1"}
 let wordQuickRepeats=[],wordQuickTurn=0,wordQuickActive=null;
 let focusQueue=[];
 function promoteQuickWord(){
@@ -2736,11 +2740,11 @@ function persistWordSession(){
  const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
   immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),quick:wordQuickRepeats,quickTurn:wordQuickTurn,quickActive:wordQuickActive,
   history:wordSessionHistory.map(h=>({...h,word:undefined})),mixedOrder:true,savedAt:Date.now()};
- try{localStorage.setItem(WORD_SESSION_KEY,JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
+ try{localStorage.setItem(wordSessionStorageKey(),JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
 }
 function restoreWordSession(){
  let data;
- try{data=JSON.parse(localStorage.getItem(WORD_SESSION_KEY)||"null")}catch(e){return false}
+ try{data=JSON.parse(localStorage.getItem(wordSessionStorageKey())||"null")}catch(e){return false}
  if(!data||!Array.isArray(data.immediate)||!Array.isArray(data.learning)||!Number.isFinite(data.total))return false;
  if(data.total<=0)return false;
  wordMode=data.mode==="starred"?"starred":"daily";
@@ -2769,12 +2773,12 @@ function restoreWordSession(){
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
  wordSessionHistory=(data.history||[]).map(h=>({...h,id:canonicalWordId(h.id),word:wordById.get(h.id)})).filter(h=>h.word);
-  if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(WORD_SESSION_KEY);return false}
+  if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(wordSessionStorageKey());return false}
  return true;
 }
 function clearWordSession(){
  wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
- localStorage.removeItem(WORD_SESSION_KEY);
+ localStorage.removeItem(wordSessionStorageKey());
 }
 function showWordDashboard(){
  // Leaving for the dashboard must not discard the active Anki queue.
@@ -2785,7 +2789,7 @@ function showWordDashboard(){
 function startWordStudy(mode="daily"){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length))&&!restoreWordSession()){
   wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
-  wordSessionQueue=mode==="starred"?starredWords():buildWordStudyQueue();
+  wordSessionQueue=mode==="starred"?starredWords(wordStudyLevel):buildWordStudyQueue();
   wordSessionTotal=wordSessionQueue.length;
  }
  if(!wordSessionTotal){renderWordDashboard();return}
@@ -2810,10 +2814,12 @@ function renderWordLibrary(){
  const q=($("wordLibrarySearch")?.value||"").trim().toLowerCase();
  const filter=$("wordLibraryFilter")?.value||"all";
  const category=$("wordLibraryCategory")?.value||"all";
+ const level=$("wordLibraryLevel")?.value||"all";
  const orderedWords=wordLibraryOrder.length===words.length?wordLibraryOrder.map(id=>wordById.get(id)).filter(Boolean):words;
  const list=orderedWords.filter(w=>{
    const r=getSrs(w.id);
-   if(category!=="all"&&(w.category||"vocab")!==category)return false;
+   if(level!=="all"&&(w.level||"N1")!==level)return false;
+    if(category!=="all"&&(w.category||"vocab")!==category)return false;
    if(filter==="new"&&r.reviews>0)return false;
    if(filter==="learned"&&r.reviews===0)return false;
    if(filter==="starred"&&!isStarred(w.id))return false;
@@ -2821,7 +2827,7 @@ function renderWordLibrary(){
    return [plain(w.w),readingOf(w.w),w.meaning,...w.examples.flatMap(ex=>[plain(ex.jp),ex.ko])].join(" ").toLowerCase().includes(q);
  });
  const shown=list.slice(0,wordLibraryVisible);
- $("wordLibrarySummary").textContent=`${words.length}개 중 검색 결과 ${list.length}개 · 현재 ${shown.length}개 표시 · ① 단어 → ② 뜻·읽기(단어 해부) → ③ 예문 순서로 확인하세요.`;
+ $("wordLibrarySummary").textContent=`${level==="all"?words.length:wordsForLevel(level).length}개 중 검색 결과 ${list.length}개 · 현재 ${shown.length}개 표시 · ① 단어 → ② 뜻·읽기(단어 해부) → ③ 예문 순서로 확인하세요.`;
  $("wordLibraryList").innerHTML=shown.length?shown.map(w=>{
    const meaningOpen=wordLibraryOpen.has(w.id),examplesOpen=wordLibraryExamplesOpen.has(w.id),breakdown=wordBreakdownFor(w),breakdownOpen=wordLibraryBreakdownOpen.has(w.id),breakdownDetailOpen=wordLibraryBreakdownDetailOpen.has(w.id),r=getSrs(w.id);
    return `<div class="word-library-item${meaningOpen?" meaning-open":""}${examplesOpen?" examples-open":""}" data-id="${w.id}">
@@ -2829,7 +2835,7 @@ function renderWordLibrary(){
        <button type="button" class="word-library-speak" data-lib-speak="${w.id}" aria-label="단어 음성">🔊</button>
        <div class="word-library-main">
          <div class="word-library-word">${w.w}</div>
-         <span class="word-library-state">${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${wordLibraryStateLabel(w)} · ${r.reviews||0}회</span><button type="button" class="pron-inline" data-pron-id="${w.id}" data-pron-ex="word">⚑ 신고</button>
+         <span class="word-library-state">${w.level==="N2"?"N2 · ":""}${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${wordLibraryStateLabel(w)} · ${r.reviews||0}회</span><button type="button" class="pron-inline" data-pron-id="${w.id}" data-pron-ex="word">⚑ 신고</button>
        </div>
        <button type="button" class="word-library-star" data-lib-star="${w.id}" aria-label="별표">${isStarred(w.id)?"★":"☆"}</button>
      </div>
@@ -2877,7 +2883,7 @@ function renderFocusStudy(){
  wordTop();
 }
 function startFocusStudy(){
- focusQueue=focusDueWords().slice(0,5);
+ focusQueue=focusDueWords(wordStudyLevel).slice(0,5);
  if(!focusQueue.length)return;
  persistWordSession();
  $("wordDashboard").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordStudyPanel").classList.add("hidden");
@@ -2923,6 +2929,7 @@ $("focusLesson").addEventListener("click",e=>{
 });
 
 function showWordLibrary(){
+ $("wordLibraryLevel").value=wordStudyLevel;
  wordSessionQueue=[];wordLearningQueue=[];wordSessionHistory=[];wordLibraryVisible=80;
  wordLibraryOrder=words.map(w=>w.id);
  for(let i=wordLibraryOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[wordLibraryOrder[i],wordLibraryOrder[j]]=[wordLibraryOrder[j],wordLibraryOrder[i]]}
@@ -2931,7 +2938,7 @@ function showWordLibrary(){
 }
 function updateWordUndo(){if($("undoWordRating"))$("undoWordRating").disabled=wordSessionHistory.length===0}
 function finishWordStudy(){
- localStorage.removeItem(WORD_SESSION_KEY);
+ localStorage.removeItem(wordSessionStorageKey());
  // Preserve the finished denominator in the UI; the next session resets it.
  const completedTotal=Math.max(wordSessionDone,wordSessionTotal);
  wordSessionTotal=completedTotal;wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickActive=null;
@@ -2971,7 +2978,7 @@ function renderWord(){
  $("wordStudyProgress").textContent=`${Math.min(wordSessionDone+1,wordSessionTotal)} / ${wordSessionTotal}`;
  const extraDue=wordMode==="daily"?reconcileDailyWordSession():0;
  $("wordIndexText").textContent=(wordMode==="starred"?"★ ":"")+`${Math.min(wordSessionDone+1,wordSessionTotal)} / ${wordSessionTotal}`+(extraDue?` · 추가 복습 ${extraDue}개`:"");
- $("wordDueText").textContent=`${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${sr.reviews?(sr.due<=now()?"복습":"학습 중"):(w.category==="vocab"?"새 단어":"새 표현")}`;
+ $("wordDueText").textContent=`${w.level==="N2"?"N2 · ":""}${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${sr.reviews?(sr.due<=now()?"복습":"학습 중"):(w.category==="vocab"?"새 단어":"새 표현")}`;
  $("pronStudy").dataset.pronId=w.id;$("pronStudy").classList.remove("hidden");$("wordMain").innerHTML=w.w;$("wordReading").textContent="";$("wordSpeakBtn").dataset.word=w.id;$("wordSpeakBtn").disabled=false;$("wordSpeakBtn").classList.remove("loading","playing","audio-error");$("wordTtsStatus").textContent="";
  $("wordStarBtn").textContent=isStarred(w.id)?"★":"☆";$("wordStarBtn").classList.toggle("on",isStarred(w.id));$("wordStarBtn").dataset.word=w.id;
  $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
@@ -3007,6 +3014,8 @@ function wordAudioText(w,exampleIndex=null){
 }
 async function prefetchWordAudio(w){
  if(!w||$("wordSpeakBtn").dataset.word!==w.id)return;
+ // N2 pilot has no prebuilt audio yet; avoid automatic slow device-local TTS loading.
+ if(w.level==="N2")return;
  const run=++wordAudioPrefetchRun;
  const stillCurrent=()=>run===wordAudioPrefetchRun&&$("wordSpeakBtn").dataset.word===w.id;
  const status=msg=>{if(stillCurrent())$("wordTtsStatus").textContent=msg};
@@ -3211,12 +3220,25 @@ $("pronClose").addEventListener("click",closePronReport);
 $("pronOverlay").addEventListener("click",e=>{if(e.target===$("pronOverlay"))closePronReport()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("pronOverlay").classList.contains("hidden"))closePronReport()});
 $("pronCopy").addEventListener("click",async()=>{const r=pronReportPayload();if(!r)return;try{if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(r.text);else{const t=document.createElement("textarea");t.value=r.text;document.body.appendChild(t);t.select();const ok=document.execCommand("copy");t.remove();if(!ok)throw Error("copy failed")};$("pronFeedback").textContent="복사 완료! 채팅에 붙여넣으면 확인할 수 있어."}catch(e){$("pronFeedback").textContent="복사할 수 없어. 브라우저의 복사 권한을 확인해 줘."}});
+function switchWordLevel(level){
+ if(!["N1","N2"].includes(level)||level===wordStudyLevel)return;
+ persistWordSession();
+ wordStudyLevel=level;localStorage.setItem(WORD_LEVEL_KEY,level);
+ wordIndex=0;wordMode="daily";wordSessionQueue=[];wordLearningQueue=[];
+ wordSessionTotal=0;wordSessionDone=0;wordSessionHistory=[];
+ wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
+ restoreWordSession();
+ renderWordDashboard();
+}
+$("wordLevelN1").addEventListener("click",()=>switchWordLevel("N1"));
+$("wordLevelN2").addEventListener("click",()=>switchWordLevel("N2"));
 $("openWordLibrary").addEventListener("click",showWordLibrary);
 $("desktopWordLibrary").addEventListener("click",()=>{showView("words");showWordLibrary()});
 $("exitWordLibrary").addEventListener("click",showWordDashboard);
 $("wordLibrarySearch").addEventListener("input",()=>{wordLibraryVisible=80;renderWordLibrary()});
 $("wordLibraryFilter").addEventListener("change",()=>{wordLibraryVisible=80;renderWordLibrary()});
 $("wordLibraryCategory").addEventListener("change",()=>{wordLibraryVisible=80;renderWordLibrary()});
+$("wordLibraryLevel").addEventListener("change",()=>{wordLibraryVisible=80;renderWordLibrary()});
 $("wordLibraryMore").addEventListener("click",()=>{wordLibraryVisible+=80;renderWordLibrary()});
 $("wordLibraryList").addEventListener("click",e=>{
  const speak=e.target.closest("[data-lib-speak]");
@@ -3664,6 +3686,11 @@ function mergeStudyStates(a,b){
   const mergedIds=[...new Set([...(newerDaily.ids||[]),...((newerDaily===da?db:da).ids||[])])];
   out.dailyNew={date:da.date,ids:mergedIds,updatedAt:Math.max(Number(da.updatedAt)||0,Number(db.updatedAt)||0)};
  }else out.dailyNew=da.date>db.date?da:db;
+ const na=a.dailyNewN2||{date:"",ids:[],updatedAt:0},nb=b.dailyNewN2||{date:"",ids:[],updatedAt:0};
+ if(na.date===nb.date&&na.date){
+  const recent=Number(na.updatedAt||0)>=Number(nb.updatedAt||0)?na:nb;
+  out.dailyNewN2={date:na.date,ids:[...new Set([...(recent.ids||[]),...((recent===na?nb:na).ids||[])])],updatedAt:Math.max(Number(na.updatedAt)||0,Number(nb.updatedAt)||0)};
+ }else out.dailyNewN2=na.date>nb.date?na:nb;
  out.stars={};const starIds=new Set([...Object.keys(a.stars||{}),...Object.keys(b.stars||{})]);starIds.forEach(id=>{const x=a.stars?.[id],y=b.stars?.[id];if(!x)out.stars[id]=y;else if(!y)out.stars[id]=x;else out.stars[id]=Number(x.updatedAt||0)>=Number(y.updatedAt||0)?x:y});
  const ids=new Set([...Object.keys(a.srs||{}),...Object.keys(b.srs||{})]);
  ids.forEach(id=>{const x=a.srs[id],y=b.srs[id];if(!x)out.srs[id]=y;else if(!y)out.srs[id]=x;else{const tx=Number(x.updatedAt||x.last||0),ty=Number(y.updatedAt||y.last||0);out.srs[id]=tx>=ty?x:y}});
