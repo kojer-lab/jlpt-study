@@ -35,6 +35,18 @@ jobs:
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
 
+      - name: Install and verify FFmpeg audio validators
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffprobe >/dev/null 2>&1 || ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          command -v ffmpeg
+          command -v ffprobe
+          ffprobe -version
+
       - name: Generate 20 new MP3s using browser Kokoro JS
         run: |
           node --check tools/browser-kokoro-qa20.mjs
