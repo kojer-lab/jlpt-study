@@ -18,20 +18,24 @@ import {chromium} from "playwright";
 const root=resolve(".");
 const base="audio/vocab/";
 const plan=JSON.parse(await readFile(join(root,base,"browser-batch-plan.json"),"utf8"));
+// A workflow_dispatch input selects one isolated, restartable batch. The
+// checked-in plan remains the approval policy and never needs to be rewritten.
+const batchNumber=Number(process.env.BROWSER_AUDIO_BATCH_NUMBER||batchNumber);
 const source=JSON.parse(await readFile(join(root,base,"source.json"),"utf8"));
 const manifest=JSON.parse(await readFile(join(root,base,"manifest.json"),"utf8"));
 const hash=data=>createHash("sha256").update(data).digest("hex");
-if(plan.version!==1||!Number.isInteger(plan.batch_number)||plan.batch_number<1||
+if(plan.version!==1||!Number.isSafeInteger(batchNumber)||batchNumber<1||
+ !Number.isInteger(plan.batch_number)||plan.batch_number!==1||
  plan.batch_size!==300||plan.engine!=="kokoro-js-jp@0.2.0"||
  plan.voice!=="jf_alpha"||plan.mode!=="replace-example-only"){
  throw new Error("Unexpected browser batch plan: will not modify production audio");
 }
 const all=source.items.filter(x=>x.kind==="example");
-const start=(plan.batch_number-1)*plan.batch_size;
+const start=(batchNumber-1)*plan.batch_size;
 const end=Math.min(start+plan.batch_size,all.length);
 if(start>=all.length)throw new Error("Batch beyond example count");
-if(plan.batch_number!==1){
- const previous=join(root,base,"browser-batches/batch-"+String(plan.batch_number-1).padStart(4,"0")+".json");
+if(batchNumber!==1){
+ const previous=join(root,base,"browser-batches/batch-"+String(batchNumber-1).padStart(4,"0")+".json");
  const ledger=JSON.parse(await readFile(previous,"utf8"));
  if(ledger.status!=="complete"||ledger.count!==300)throw new Error("Previous batch was not completed; cannot skip ahead");
 }
@@ -45,13 +49,13 @@ for(const x of chosen){
  await stat(join(root,x.path));
 }
 const digest=hash(JSON.stringify(chosen.map(x=>[x.id,x.index,x.path,x.text,x.voice])));
-const ledgerPath=base+"browser-batches/batch-"+String(plan.batch_number).padStart(4,"0")+".json";
+const ledgerPath=base+"browser-batches/batch-"+String(batchNumber).padStart(4,"0")+".json";
 const revisionPath=base+"repaired-revisions.json";
 await mkdir(dirname(join(root,ledgerPath)),{recursive:true});
 let ledger;
 try{ledger=JSON.parse(await readFile(join(root,ledgerPath),"utf8"))}
 catch(e){if(e.code!=="ENOENT")throw e;
- ledger={version:1,batch_number:plan.batch_number,start_index:start,count:chosen.length,
+ ledger={version:1,batch_number:batchNumber,start_index:start,count:chosen.length,
   total_examples:all.length,source_sha256:digest,engine:plan.engine,voice:"jf_alpha",
   status:"in_progress",completed:[]};
 }
@@ -117,7 +121,7 @@ async function publishCheckpoint(){
  git("add","--",...staged);
  const diff=git("diff","--cached","--name-only").split("\n").filter(Boolean);
  if(diff.length!==staged.length||diff.some(x=>!staged.includes(x)))throw new Error("Staged unexpected repository changes");
- git("commit","-m","audio: browser Kokoro batch "+plan.batch_number+" clips "+(progress-pending.length+1)+"-"+progress+"/"+chosen.length);
+ git("commit","-m","audio: browser Kokoro batch "+batchNumber+" clips "+(progress-pending.length+1)+"-"+progress+"/"+chosen.length);
  for(let i=1;i<=5;i++){
   git("fetch","origin","main");
   try{git("rebase","origin/main")}catch(error){
@@ -125,7 +129,7 @@ async function publishCheckpoint(){
    throw new Error("Concurrent MP3 changes conflict; manual inspection required");
   }
   try{git("push","origin","HEAD:main");
-   console.log("CHECKPOINT PUBLISHED",progress,"/",chosen.length,"batch",plan.batch_number);
+   console.log("CHECKPOINT PUBLISHED",progress,"/",chosen.length,"batch",batchNumber);
    pending=[];return;
   }catch(error){if(i===5)throw new Error("Failed to publish progress after five tries")}
  }
@@ -141,7 +145,7 @@ try{
  await page.waitForFunction(()=>typeof window.__kojerBatchGenerate==="function",{timeout:120000});
  const runtime=await page.evaluate(()=>navigator.gpu?"webgpu":"wasm_q8");
  if(runtime!=="wasm_q8")throw new Error("Runner is not forced to the validated WASM q8 engine");
- console.log("START BROWSER AUDIO BATCH",plan.batch_number,"example indices",start,"..",end-1,"resume",already,"/",chosen.length,runtime);
+ console.log("START BROWSER AUDIO BATCH",batchNumber,"example indices",start,"..",end-1,"resume",already,"/",chosen.length,runtime);
  git("config","user.name","github-actions[bot]");
  git("config","user.email","41898282+github-actions[bot]@users.noreply.github.com");
  for(let i=already;i<chosen.length;i++){
@@ -174,7 +178,7 @@ try{
   console.log("GENERATED",progress,"/",chosen.length,item.path,bytes.length);
   if(pending.length>=50||progress===chosen.length)await publishCheckpoint();
  }
- console.log("COMPLETE BATCH",plan.batch_number,chosen.length,"/",all.length,"examples replaced; FSRS untouched");
+ console.log("COMPLETE BATCH",batchNumber,chosen.length,"/",all.length,"examples replaced; FSRS untouched");
 }finally{
  if(browser)await browser.close();
  await new Promise(resolve=>server.close(resolve));
