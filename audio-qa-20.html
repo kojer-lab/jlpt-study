@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Kojer · 예문 MP3 20개 음성 검수</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:Canvas;color:CanvasText;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+main{max-width:850px;margin:auto;padding:22px 16px 65px}
+a{color:LinkText}h1{font-size:25px;margin:9px 0}h2{font-size:19px}
+p{line-height:1.7}.sub{font-size:14px;color:GrayText}
+.summary{position:sticky;top:0;background:Canvas;border-bottom:1px solid color-mix(in srgb,CanvasText 18%,transparent);padding:10px 0;z-index:3}
+.card{border:1px solid color-mix(in srgb,CanvasText 18%,transparent);border-radius:15px;padding:17px;margin:14px 0;background:color-mix(in srgb,Canvas 95%,CanvasText 5%)}
+.head{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.id{font-size:13px;color:GrayText}.jp{font-size:18px;line-height:1.65;margin:12px 0;overflow-wrap:anywhere}
+.clips{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+audio{width:100%;margin:9px 0}
+label{display:block;font-weight:700}
+.buttons{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
+button{font:inherit;padding:10px 13px;border-radius:9px;border:1px solid color-mix(in srgb,CanvasText 25%,transparent);background:Canvas;color:CanvasText;cursor:pointer}
+button.selected{border-color:#706be4;background:color-mix(in srgb,#706be4 20%,Canvas)}
+.btn{background:#4f4ecb;border-color:#4f4ecb;color:white;font-weight:700}
+.error{color:#d45d5d}
+@media(max-width:600px){.clips{grid-template-columns:1fr}h1{font-size:21px}}
+</style>
+</head>
+<body>
+<main>
+<a href="./" class="sub">← JLPT 공부 화면</a>
+<h1>예문 MP3 20개 비교 검수</h1>
+<p>발음 오류가 신고된 예문 19개와 이전에 끝소리를 확인한 <strong>促す</strong> 예문 1개를 비교합니다. 왼쪽은 기존 저장 MP3, 오른쪽은 <strong>브라우저 기반 Kokoro JS</strong>로 새로 만든 MP3입니다.</p>
+<p class="sub">검수 결과는 이 브라우저에만 저장됩니다. 원래 안키 기록과 실제 MP3는 변경되지 않습니다. 새 후보는 GitHub Actions에서 생성하는 WASM q8 환경이므로 Mac의 WebGPU 합성과 다를 수 있습니다.</p>
+<div class="summary">
+ <strong id="progress">검수 준비 중…</strong>
+ <button class="btn" type="button" id="export" disabled>검수 결과 JSON 저장</button>
+</div>
+<div id="status" role="status"></div>
+<div id="list"></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const storeKey="kojer_browser_kokoro_qa20_reviews_v1";
+let checks=[],meta=null;
+function loadChecks(){try{return JSON.parse(localStorage.getItem(storeKey)||"{}")}catch{return {}}}
+function saveChecks(){try{localStorage.setItem(storeKey,JSON.stringify(checks))}catch{}}
+function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x}
+function update(){
+ const vals=Object.values(checks),ok=vals.filter(x=>x.result==="ok").length,bad=vals.filter(x=>x.result==="bad").length;
+ $("progress").textContent="검수 "+(ok+bad)+" / "+(meta?.count||20)+" · 정상 "+ok+" · 문제 "+bad;
+ $("export").disabled=!meta;
+}
+function createCard(item,i){
+ const card=el("section","card");
+ const head=el("div","head");head.append(el("h2",null,(i+1)+". "+item.word_id+" · 예문 "+(item.index+1)));
+ head.append(el("span","id",item.report_id?"발음 신고 #"+item.report_id:"기존 오류 직접 확인"));card.append(head);
+ card.append(el("div","jp",item.text+"。"));
+ const compare=el("div","clips");
+ for(const [name,path] of [["기존 MP3",item.original_path],["새 MP3",item.candidate_path]]){
+  const c=el("div");c.append(el("label",null,name));
+  const audio=el("audio");audio.controls=true;audio.preload="none";audio.src=path;c.append(audio);compare.append(c);
+ }
+ card.append(compare);
+ const row=el("div","buttons");
+ const key=item.word_id+"|"+item.index;
+ for(const [value,txt] of [["ok","새 MP3 정상"],["bad","새 MP3 문제 있음"],["clear","판정 취소"]]){
+  const btn=el("button",null,txt);btn.type="button";
+  const selected=()=>btn.classList.toggle("selected",checks[key]?.result===value);
+  btn.onclick=()=>{if(value==="clear")delete checks[key];else checks[key]={result:value,original_path:item.original_path,candidate_path:item.candidate_path};
+   saveChecks();for(const b of row.children)b.dispatchEvent(new Event("qa-state"));update()};
+  btn.addEventListener("qa-state",selected);selected();row.append(btn);
+ }
+ card.append(row);return card;
+}
+$("export").addEventListener("click",()=>{
+ if(!meta)return;
+ const out={version:1,source:"kojer-browser-kokoro-qa20",manifest_version:meta.version,checked_at:new Date().toISOString(),checks};
+ const blob=new Blob([JSON.stringify(out,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="kojer-audio-qa20-review.json";a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+(async()=>{
+ try{
+  const response=await fetch("audio/vocab/browser-qa-20/manifest.json",{cache:"no-store"});
+  if(!response.ok)throw new Error("QA용 20개 MP3 생성 작업이 아직 완료되지 않았습니다.");
+  meta=await response.json();
+  if(meta.count!==20||meta.production_replaced!==false||meta.items?.length!==20)throw new Error("검수용 데이터가 아직 완성되지 않았습니다.");
+  checks=loadChecks();
+  meta.items.forEach((item,i)=>$("list").append(createCard(item,i)));
+  $("status").textContent="원본과 새 MP3를 번갈아 들으면서 새 음성이 정상인지 판정하세요.";
+  update();
+ }catch(err){$("status").className="error";$("status").textContent=String(err.message||err)+" GitHub Actions → Browser Kokoro QA - 20 example MP3s 상태를 확인해 주세요."}
+})();
+</script>
+</body></html>
