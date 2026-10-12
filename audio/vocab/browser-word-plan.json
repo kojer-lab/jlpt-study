@@ -15,7 +15,7 @@
     "verified_batches": 11,
     "verified_examples": 3104,
     "action": "start first word batch via plan push after all original example compression ledgers are complete",
-    "run_attempt": 2,
-    "reason": "Resume after investigating invalid first 64kbps word clip. No originals modified."
+    "run_attempt": 3,
+    "reason": "Prior browser Kokoro word output exactly matched existing SHA-256; identical validated files are safely counted without overwriting"
   }
 }
