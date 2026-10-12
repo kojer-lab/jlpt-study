@@ -1348,7 +1348,12 @@ function loadStaticVocabAudioManifest(){
 }
 function readyStaticVocabAudioUrl(w,exampleIndex=null){
  if(!staticVocabAudio||!w)return null;
- if(w.id==="oj-08cfe03cb3"&&exampleIndex===null)return null;
+ if(w.id==="oj-08cfe03cb3"&&exampleIndex===null){
+  // The old baked audio read 吐く incorrectly. Use the static word MP3 only
+  // after the new 64kbps Kokoro file has been published with a new revision.
+  const current=staticVocabAudio?.[w.id]?.word;
+  if(!current||!staticVocabAudioRevisions[current])return null;
+ }
  const entry=staticVocabAudio[w.id];
  return exampleIndex===null?(entry?.word||null):(entry?.examples?.[exampleIndex]||null);
 }
@@ -1375,7 +1380,10 @@ function warmVocabAudio(w){
 async function staticVocabAudioUrl(w,exampleIndex=null){
  const files=await loadStaticVocabAudioManifest(),entry=files&&w?files[w.id]:null;
  // 吐く is now taught as はく; the older baked word file says つく.
- if(w?.id==="oj-08cfe03cb3"&&exampleIndex===null)return null;
+ if(w?.id==="oj-08cfe03cb3"&&exampleIndex===null){
+  const current=files?.[w.id]?.word;
+  if(!current||!staticVocabAudioRevisions[current])return null;
+ }
  if(!entry)return null;
  return exampleIndex===null?(entry.word||null):((entry.examples||[])[exampleIndex]||null);
 }
