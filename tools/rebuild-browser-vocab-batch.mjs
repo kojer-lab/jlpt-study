@@ -20,7 +20,7 @@ const base="audio/vocab/";
 const plan=JSON.parse(await readFile(join(root,base,"browser-batch-plan.json"),"utf8"));
 // A workflow_dispatch input selects one isolated, restartable batch. The
 // checked-in plan remains the approval policy and never needs to be rewritten.
-const batchNumber=Number(process.env.BROWSER_AUDIO_BATCH_NUMBER||batchNumber);
+const batchNumber=Number(process.env.BROWSER_AUDIO_BATCH_NUMBER||plan.batch_number);
 const source=JSON.parse(await readFile(join(root,base,"source.json"),"utf8"));
 const manifest=JSON.parse(await readFile(join(root,base,"manifest.json"),"utf8"));
 const hash=data=>createHash("sha256").update(data).digest("hex");
