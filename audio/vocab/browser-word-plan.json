@@ -14,6 +14,8 @@
     "compression_completed": true,
     "verified_batches": 11,
     "verified_examples": 3104,
-    "action": "start first word batch via plan push after all original example compression ledgers are complete"
+    "action": "start first word batch via plan push after all original example compression ledgers are complete",
+    "run_attempt": 2,
+    "reason": "Resume after investigating invalid first 64kbps word clip. No originals modified."
   }
 }
