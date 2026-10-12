@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Kojer · Kokoro 예문 마침표 음성 비교</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}body{margin:0;background:Canvas;color:CanvasText}main{max-width:750px;margin:0 auto;padding:24px 17px 70px}
+h1{font-size:25px;margin:10px 0 4px}p{line-height:1.7}.sub,.note{color:GrayText;font-size:14px}.note{margin-top:20px}
+.card{border:1px solid color-mix(in srgb,CanvasText 17%,transparent);border-radius:16px;padding:18px;margin:15px 0;background:color-mix(in srgb,Canvas 94%,CanvasText 6%)}
+h2{font-size:17px;margin:0 0 8px}.jp{font-size:18px;line-height:1.65;overflow-wrap:anywhere}audio{width:100%;margin:12px 0 4px}
+button,.dl{font:inherit;border:0;border-radius:10px;padding:13px 16px;cursor:pointer;background:#504fd1;color:white;font-weight:700}
+button:disabled{opacity:.6;cursor:wait}.dl{display:inline-block;text-decoration:none;background:#157868;margin-top:8px}.dl[hidden]{display:none}
+#status{min-height:52px;font-size:14px;line-height:1.6;background:color-mix(in srgb,CanvasText 8%,Canvas);border-radius:10px;padding:10px 12px}
+a{color:LinkText}.labels{font-size:13px;color:GrayText;margin-top:6px}.tip{font-size:14px;padding:12px 14px;border-left:3px solid #706de5;background:color-mix(in srgb,CanvasText 7%,Canvas);line-height:1.65}
+</style>
+</head>
+<body>
+<main>
+<p class="sub"><a href="./">← JLPT 사이트</a> · 독립 음성 검수 도구</p>
+<h1>예문 끝의 「。」 음성 비교</h1>
+<p>앱과 같은 <strong>Kokoro-82M · jf_alpha</strong>로 같은 문장을 두 번 합성해 비교합니다. 예문 표시는 바꾸지 않으며 학습 기록도 변경하지 않습니다.</p>
+<div class="tip">이 페이지는 기존에 저장된 MP3를 수정하지 않습니다. A/B 비교 음성을 새로 생성한 뒤 MP3 파일로 변환합니다. 최초에는 Kokoro 모델과 일본어 사전을 내려받아야 하므로 Mac 또는 PC에서 먼저 시험해 보세요.</div>
+<div class="card">
+<h2>0 · 현재 앱의 기존 저장 MP3</h2>
+<div class="jp">政府は企業に早急な対応を促した。</div>
+<div class="labels">저장 파일 · unagasu-ex1.mp3 · 생성 당시 입력 마침표 여부 미검증</div>
+<audio controls preload="none" src="audio/vocab/unagasu-ex1.mp3"></audio>
+</div>
+<button type="button" id="run">A/B 음성 새로 만들기</button>
+<p id="status" role="status" aria-live="polite">아직 음성을 생성하지 않았습니다.</p>
+<div class="card">
+<h2>A · 끝에 「。」 있음</h2>
+<div class="jp">政府は企業に早急な対応を促した。</div>
+<audio id="audioA" controls preload="none"></audio>
+<a class="dl" id="downloadA" hidden> A · MP3 저장</a>
+</div>
+<div class="card">
+<h2>B · 끝에 「。」 없음</h2>
+<div class="jp">政府は企業に早急な対応を促した</div>
+<audio id="audioB" controls preload="none"></audio>
+<a class="dl" id="downloadB" hidden> B · MP3 저장</a>
+</div>
+<p class="note">판정 포인트: 마지막 모음 뒤에 불필요한 「い」, 웅웅거리는 꼬리 소리, 부자연스러운 억양이 붙는지 확인하세요. 화면의 문장 부호가 아니라 Kokoro에 전달한 텍스트만 다른 테스트입니다. MP3 인코딩은 브라우저 내에서 처리합니다.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
+<script type="module">
+const $=id=>document.getElementById(id);
+const sentence="政府は企業に早急な対応を促した";
+const source="https://cdn.jsdelivr.net/npm/kokoro-js-jp@0.2.0/dist/kokoro-jp.web.js";
+let modelPromise=null;
+const audioUrls=[];
+const mp3Urls=[];
+function status(text){$("status").textContent=text}
+async function getTts(){
+ if(modelPromise)return modelPromise;
+ modelPromise=(async()=>{
+  const {KokoroJP}=await import(source);
+  const gpu=!!navigator.gpu;
+  try{
+   status(gpu?"Kokoro WebGPU 모델을 준비하는 중…":"Kokoro WASM q8 모델을 준비하는 중…");
+   return await KokoroJP.load(gpu?{device:"webgpu",dtype:"fp32"}:{device:"wasm",dtype:"q8"});
+  }catch(error){
+   if(!gpu)throw error;
+   status("WebGPU가 지원되지 않아 WASM q8로 재시도 중…");
+   return await KokoroJP.load({device:"wasm",dtype:"q8"});
+  }
+ })().catch(e=>{modelPromise=null;throw e});
+ return modelPromise;
+}
+async function wavToMp3(wav){
+ if(!window.lamejs?.Mp3Encoder)throw new Error("MP3 변환 모듈을 불러오지 못했습니다.");
+ const ctx=new (window.AudioContext||window.webkitAudioContext)();
+ let decoded;
+ try{decoded=await ctx.decodeAudioData(await wav.arrayBuffer());}finally{ctx.close().catch(()=>{})}
+ const targetRate=24000;
+ const src=decoded.getChannelData(0),srcRate=decoded.sampleRate;
+ const mono=new Int16Array(Math.round(src.length*targetRate/srcRate));
+ for(let i=0;i<mono.length;i++){
+  const t=i*srcRate/targetRate,j=Math.floor(t),f=t-j;
+  const x=(src[j]||0)*(1-f)+(src[Math.min(j+1,src.length-1)]||0)*f;
+  mono[i]=Math.round(Math.max(-1,Math.min(1,x))*32767);
+ }
+ const enc=new window.lamejs.Mp3Encoder(1,targetRate,128),chunks=[];
+ for(let i=0;i<mono.length;i+=1152){const piece=enc.encodeBuffer(mono.subarray(i,i+1152));if(piece.length)chunks.push(new Uint8Array(piece))}
+ const end=enc.flush();if(end.length)chunks.push(new Uint8Array(end));
+ return new Blob(chunks,{type:"audio/mpeg"});
+}
+async function createVariant(tts,letter,text){
+ status(letter+" 버전을 Kokoro로 합성하고 있습니다…");
+ const raw=await tts.speak(text,"jf_alpha");
+ const wav=raw.toBlob();
+ const playable=URL.createObjectURL(wav);audioUrls.push(playable);
+ $("audio"+letter).src=playable;
+ status(letter+" 버전을 MP3로 변환하고 있습니다…");
+ const mp3=await wavToMp3(wav);
+ if(mp3.size<1000)throw new Error("MP3 출력 크기가 비정상적입니다.");
+ const u=URL.createObjectURL(mp3);mp3Urls.push(u);
+ const a=$("download"+letter);a.href=u;a.download="kokoro_example_"+(letter==="A"?"with_period":"without_period")+".mp3";a.hidden=false;
+ return {wavBytes:wav.size,mp3Bytes:mp3.size};
+}
+$("run").addEventListener("click",async()=>{
+ $("run").disabled=true;
+ try{
+  const tts=await getTts();
+  const a=await createVariant(tts,"A",sentence+"。");
+  const b=await createVariant(tts,"B",sentence);
+  status("두 버전 생성 완료. A/B 재생을 비교하고 MP3 저장 버튼을 눌러 파일을 확인하세요. (A: "+Math.round(a.mp3Bytes/1024)+"KB, B: "+Math.round(b.mp3Bytes/1024)+"KB)");
+ }catch(e){console.error(e);status("음성 생성 또는 MP3 변환 실패: "+String(e?.message||e)+" · 이 브라우저의 WebGPU/WASM·네트워크 허용 여부를 확인하세요.");}
+ finally{$("run").disabled=false;}
+});
+window.addEventListener("pagehide",()=>{for(const u of [...audioUrls,...mp3Urls])URL.revokeObjectURL(u)});
+</script>
+</body>
+</html>
