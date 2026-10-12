@@ -409,7 +409,407 @@
       "original_bytes": 56064,
       "compressed_bytes": 28653,
       "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/n1x176-ex1.mp3",
+      "original_sha256": "de44d234bfe02fce31979464d51de9cdaa4cf0ddb0e5eb9074eeeffb1e8d463d",
+      "new_sha256": "3f602440051593c8c198233f363651c8bf8fd2750461404f07b88f839d62e859",
+      "original_bytes": 57216,
+      "compressed_bytes": 29229,
+      "duration_s": 3.624
+    },
+    {
+      "path": "audio/vocab/n1x176-ex2.mp3",
+      "original_sha256": "5356940dca9a9cd6e8e65df040ffca9fae3147bc8c465a4333333f62e7f768dc",
+      "new_sha256": "54f094f2d51977338a5e8832cfa9de4b2ae297dfca8070c5998ca989ac8c1c60",
+      "original_bytes": 57216,
+      "compressed_bytes": 29229,
+      "duration_s": 3.624
+    },
+    {
+      "path": "audio/vocab/n1x177-ex1.mp3",
+      "original_sha256": "b8948fc41012f2cc198756ffe2348e41b064d817efcc79649e04ce9eecda1fb8",
+      "new_sha256": "135953b91fb9617c79a2381a6e184d99896babe8e13c73285cdf0643ebe76da0",
+      "original_bytes": 50304,
+      "compressed_bytes": 25773,
+      "duration_s": 3.192
+    },
+    {
+      "path": "audio/vocab/n1x177-ex2.mp3",
+      "original_sha256": "cab40a6b0956f3c926293b48c12bc193d109f0a844f8407084b2af595d9b9ed0",
+      "new_sha256": "a235107ece0b5d1d85d8a53484b84ece857c7667fe6ac472ad89bb46334cb0b5",
+      "original_bytes": 61056,
+      "compressed_bytes": 31149,
+      "duration_s": 3.864
+    },
+    {
+      "path": "audio/vocab/n1x178-ex1.mp3",
+      "original_sha256": "2c5072d9b6527325c291f54203f60691c1da2ecd26c618976e69580d606516b6",
+      "new_sha256": "6cbb23c1b059cd8dcb4c1709d83ece2d3642fd8281ec840330bbccd9f8ada883",
+      "original_bytes": 60288,
+      "compressed_bytes": 30765,
+      "duration_s": 3.816
+    },
+    {
+      "path": "audio/vocab/n1x178-ex2.mp3",
+      "original_sha256": "48b8435bd692027c497a94384e1114c13d1c197a7e668850ab389594ca657715",
+      "new_sha256": "6ffe16b3443c5eca84d08ff96cc97645a691908774927c92aa23e5822f0b92dd",
+      "original_bytes": 56448,
+      "compressed_bytes": 28845,
+      "duration_s": 3.576
+    },
+    {
+      "path": "audio/vocab/n1x179-ex1.mp3",
+      "original_sha256": "eac2ddce0fec32e33353a918e32add9f45b508614df46785a06c5580332f8753",
+      "new_sha256": "8a1526527278af54aea1838a84df5c3f390c941d0ebb7bca6a8fcd5507717508",
+      "original_bytes": 55296,
+      "compressed_bytes": 28269,
+      "duration_s": 3.504
+    },
+    {
+      "path": "audio/vocab/n1x179-ex2.mp3",
+      "original_sha256": "d7914ca7b4644fc13aef66800481527858a508d3047570102c1a71b42aca3a71",
+      "new_sha256": "4b3ce585911bbee057aac0fe4b96db32a0d404ae2b2966b566dffc66559e1240",
+      "original_bytes": 50304,
+      "compressed_bytes": 25773,
+      "duration_s": 3.192
+    },
+    {
+      "path": "audio/vocab/n1x180-ex1.mp3",
+      "original_sha256": "74111449bd92eead22e5182b7cc513e43947a70e4649bdf01fdab725a97a532f",
+      "new_sha256": "310d2531874f33d470fcfbc0a5411575d289163720a9dc081261d4bde6034e45",
+      "original_bytes": 63744,
+      "compressed_bytes": 32493,
+      "duration_s": 4.032
+    },
+    {
+      "path": "audio/vocab/n1x180-ex2.mp3",
+      "original_sha256": "32093f354e04d320f98c2627109ddbec3db6ff5001ecec1289b7ec04e25cf735",
+      "new_sha256": "dd127c229f5d6674d1f9746f190476144b33893dccad3c70cc2c851d1fc26a1f",
+      "original_bytes": 59520,
+      "compressed_bytes": 30381,
+      "duration_s": 3.768
+    },
+    {
+      "path": "audio/vocab/n1x181-ex1.mp3",
+      "original_sha256": "ec4fdfc23b9a164c297764497a6d24ea3b63a5a789c5b6c83dae1c61c9bfa3a2",
+      "new_sha256": "fdf54b04c87a072d2474bc7c9b4a755ba336d834c6f6f96812a0da4750f49380",
+      "original_bytes": 61440,
+      "compressed_bytes": 31341,
+      "duration_s": 3.888
+    },
+    {
+      "path": "audio/vocab/n1x181-ex2.mp3",
+      "original_sha256": "bea07854b2a9e031afead25a2b4aa3c25ef545bc0f15f5eef341c4aa5fbfc668",
+      "new_sha256": "7c20b1b7125427aac104a8991806790f57da9e3a66ece0177740d4075c701770",
+      "original_bytes": 46464,
+      "compressed_bytes": 23853,
+      "duration_s": 2.952
+    },
+    {
+      "path": "audio/vocab/n1x182-ex1.mp3",
+      "original_sha256": "b11288503a492051d86c9000637776a331932d52766df20d108188025c86e6d3",
+      "new_sha256": "f33e7fd36f26ad4c86bc3b9fd4b763f8b60ea75f153df6ff29cef97a68ede925",
+      "original_bytes": 48000,
+      "compressed_bytes": 24621,
+      "duration_s": 3.048
+    },
+    {
+      "path": "audio/vocab/n1x182-ex2.mp3",
+      "original_sha256": "81a7b9351c487cbb1ca67d28bda16c4d0bb5b088e3f5e73a3c11d9feb020c14d",
+      "new_sha256": "7eca42a93e64d204e7de21162ec740ae97646d38647ffa1bed6c84323784f08f",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/n1x183-ex1.mp3",
+      "original_sha256": "08975eb7dfddc2d83cd279f96d204e0c61c3d5ca04334393f2da0a14f3083c1c",
+      "new_sha256": "2b39ca03ce73d06b03700df9175a6e33f4c46e901a3046856142d619697b1ff2",
+      "original_bytes": 55296,
+      "compressed_bytes": 28269,
+      "duration_s": 3.504
+    },
+    {
+      "path": "audio/vocab/n1x183-ex2.mp3",
+      "original_sha256": "97e6464e78e3823ff88404b73f28cf49cdd0205a9e9a7e62b746611636098723",
+      "new_sha256": "a443b43d1f7db3c0685661476acd33bc205cf6692d3bb2fbfd11e4ff5bfa0732",
+      "original_bytes": 50304,
+      "compressed_bytes": 25773,
+      "duration_s": 3.192
+    },
+    {
+      "path": "audio/vocab/n1x184-ex1.mp3",
+      "original_sha256": "89511244ba8a7dbc7b81ca34e2efbb5308e60b8c027889d3dfa849537347734e",
+      "new_sha256": "2f8e0c8f6dbe3572ccc0371affc06747d11a99cde5f2a9f206f3304a3d723431",
+      "original_bytes": 66816,
+      "compressed_bytes": 34029,
+      "duration_s": 4.224
+    },
+    {
+      "path": "audio/vocab/n1x184-ex2.mp3",
+      "original_sha256": "83eda765392dc661309c539496aa7c0a58e4ccc9d627a2c81531b49ea6715d4e",
+      "new_sha256": "d8f221718c13baf338d310bbe0274554b030698dfc732e0d8a4f75966104df26",
+      "original_bytes": 59904,
+      "compressed_bytes": 30573,
+      "duration_s": 3.792
+    },
+    {
+      "path": "audio/vocab/n1x185-ex1.mp3",
+      "original_sha256": "394d00bacac8581d672066978db8676ce2645bb19969eb0bde82cca085f005a9",
+      "new_sha256": "51a192afaaa5cf6519ac77b78d151329652ec8f64bf5f62572b78c11268e49a1",
+      "original_bytes": 44544,
+      "compressed_bytes": 22893,
+      "duration_s": 2.832
+    },
+    {
+      "path": "audio/vocab/n1x185-ex2.mp3",
+      "original_sha256": "7faf7f273cc4a3e88a9493e56d9e81f78de19333c9b22b9d0b449cf252ba10cd",
+      "new_sha256": "6f72722caf314a1349490fe427ef71801cbd7d8b78a99e4bed1e9e29eb685e8d",
+      "original_bytes": 54528,
+      "compressed_bytes": 27885,
+      "duration_s": 3.456
+    },
+    {
+      "path": "audio/vocab/n1x186-ex1.mp3",
+      "original_sha256": "57118159e348e3907f92730a67d365c53923e55a391551f3726f851f4c97ad3f",
+      "new_sha256": "e2b046818210e9d2eeb12aad7a21d8e36e09bbfe52afd4c0cceb9526a8a5ca96",
+      "original_bytes": 65280,
+      "compressed_bytes": 33261,
+      "duration_s": 4.128
+    },
+    {
+      "path": "audio/vocab/n1x186-ex2.mp3",
+      "original_sha256": "5ede46bf4ea7fb037aa95e48e996cefbbded1d59bfeed1955ffc30e5d751ada7",
+      "new_sha256": "f5a40bfa45af6230cd4c7c3fdc8714618dab781e58b93d7b173a7c95ff54801b",
+      "original_bytes": 72960,
+      "compressed_bytes": 37101,
+      "duration_s": 4.608
+    },
+    {
+      "path": "audio/vocab/n1x187-ex1.mp3",
+      "original_sha256": "3596f6459daf472d33da26eeec6266def3fe63a9215df38ae936277ce2829d8b",
+      "new_sha256": "14e1094ec3f875dc751188b69058cf19cc66198e96f0a4d6a150cce9917f3cf0",
+      "original_bytes": 60288,
+      "compressed_bytes": 30765,
+      "duration_s": 3.816
+    },
+    {
+      "path": "audio/vocab/n1x187-ex2.mp3",
+      "original_sha256": "bc184a4324cfedd62d7c814f66e6b257d0c47ed751c4aa73119a28f8b42a0489",
+      "new_sha256": "25f67c1c4f93dd9c8b0322d542ade38cd61e972e174b3b0753059067020f8c83",
+      "original_bytes": 57216,
+      "compressed_bytes": 29229,
+      "duration_s": 3.624
+    },
+    {
+      "path": "audio/vocab/n1x188-ex1.mp3",
+      "original_sha256": "c18a0e5820fdfb51ae969480fcc870eb85d62b4d803b0f673abedf26faf18225",
+      "new_sha256": "674a8f85795c98651bd259eb76e822478d3b7552c2630cb67958da7dee7ea3a6",
+      "original_bytes": 47232,
+      "compressed_bytes": 24237,
+      "duration_s": 3
+    },
+    {
+      "path": "audio/vocab/n1x188-ex2.mp3",
+      "original_sha256": "854f8ac2e5cbb1acc365a33d958fba14c8a2e3de7d71c704ddfe9928de42c9c3",
+      "new_sha256": "71787355a5bae21fd71d852da25d08c9880b4292cf7488fa75643868aca47943",
+      "original_bytes": 51456,
+      "compressed_bytes": 26349,
+      "duration_s": 3.264
+    },
+    {
+      "path": "audio/vocab/n1x189-ex1.mp3",
+      "original_sha256": "2e9745a1e3ce99b1299a418e1755b57e6e20fc2cbf1c6a120d5c26bd09ab127d",
+      "new_sha256": "7a55712839fcdc9f31b3fd0be6359f9d31206c0a4850f5e6d96b2ac1e70712c4",
+      "original_bytes": 66048,
+      "compressed_bytes": 33645,
+      "duration_s": 4.176
+    },
+    {
+      "path": "audio/vocab/n1x189-ex2.mp3",
+      "original_sha256": "bf08e4f5012ce8d79542bb8e568f9a01fb33387064cb51fbf1ba38bd1a760d7a",
+      "new_sha256": "cc648118c4fea70b4c79f375821d67ddb08c052057523f473006602936791981",
+      "original_bytes": 46464,
+      "compressed_bytes": 23853,
+      "duration_s": 2.952
+    },
+    {
+      "path": "audio/vocab/n1x190-ex1.mp3",
+      "original_sha256": "d0fd02934ca9199735ba171c3ea5d99f32b2c0b6bc74cb663d19a184447a5350",
+      "new_sha256": "a269c8f8936e2647374583e5fbb149959d63fe0900a2aef939686d4b22605151",
+      "original_bytes": 55680,
+      "compressed_bytes": 28461,
+      "duration_s": 3.528
+    },
+    {
+      "path": "audio/vocab/n1x190-ex2.mp3",
+      "original_sha256": "633c0caa6b5b40bfebc1493d1575041257bda7a8b6c1341da5304cf431ef4779",
+      "new_sha256": "8698733cd4fc0237075a32618719d0bc07751e5debe87c9b4289c57f5682b3ed",
+      "original_bytes": 60288,
+      "compressed_bytes": 30765,
+      "duration_s": 3.816
+    },
+    {
+      "path": "audio/vocab/n1x191-ex1.mp3",
+      "original_sha256": "1e3d786622db5df11893fda1fe2860d78c3b067f3720e9104059ee782d6f4a14",
+      "new_sha256": "dabe106d36c75f6e5d20861c2c0bec8b795f96a9250b9e1b8d29f111c4be7339",
+      "original_bytes": 52224,
+      "compressed_bytes": 26733,
+      "duration_s": 3.312
+    },
+    {
+      "path": "audio/vocab/n1x191-ex2.mp3",
+      "original_sha256": "8925b02e6f66874c51befee8e7fbb4c54ea5e7d09d7747c3f1d3f5f8e50e75b6",
+      "new_sha256": "e2f50d5a0e04047e69e5f927b0e2308ca603f1547351ae6860d11c04c8062908",
+      "original_bytes": 50688,
+      "compressed_bytes": 25965,
+      "duration_s": 3.216
+    },
+    {
+      "path": "audio/vocab/n1x192-ex1.mp3",
+      "original_sha256": "ff802f579c1eb78d4c5383f44fde8f0f037808766049fcc90446026603a5a593",
+      "new_sha256": "a152e9b2ba7e8cec8571b86300a45c8db5ba6e920d0cdfcffa05500f24d9a609",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/n1x192-ex2.mp3",
+      "original_sha256": "33f162b4d9bdeecd4ff0affd58c6a25dd73eb9283c0f2a10d2c2604f5e78e7a9",
+      "new_sha256": "9fedb202768a714b0dc7190bedd61633c7d21af48694f073a292ed4f1a20fbda",
+      "original_bytes": 48384,
+      "compressed_bytes": 24813,
+      "duration_s": 3.072
+    },
+    {
+      "path": "audio/vocab/n1x193-ex1.mp3",
+      "original_sha256": "eb4e22d7a1e49b0cc0d5a9a65987df7f3cc7885f2665ba1b0944b759a2176e24",
+      "new_sha256": "f13f7ef4799f2f3d9b91827c2d643a1ba92f9a2f345c56fc0740e1620a6c2b74",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/n1x193-ex2.mp3",
+      "original_sha256": "9f2d3e6f0b2f9491801b6a6811432af6e0a3c7774a0c90884fc51189c877e4ef",
+      "new_sha256": "92bd74926e1799ab793cc9d5438d715b08421809994ab7614a0a226da22b5021",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/n1x194-ex1.mp3",
+      "original_sha256": "22cff337e6aeb38cb079ce357eadfbf84063b4d6a895064dad0c2c72a89090e0",
+      "new_sha256": "95cedfdbcb825cf31cf60efc36177f32373472b00b1e1b4e5286441daba439af",
+      "original_bytes": 60672,
+      "compressed_bytes": 30957,
+      "duration_s": 3.84
+    },
+    {
+      "path": "audio/vocab/n1x194-ex2.mp3",
+      "original_sha256": "3db9dc00fa333a12453f55d28ff5757b0717761f63b8530e4cbfd61ee78422d1",
+      "new_sha256": "71e1216f177216bb0862d5b1e1994bf209ec786f359348bee803f875cc2e6dad",
+      "original_bytes": 60672,
+      "compressed_bytes": 30957,
+      "duration_s": 3.84
+    },
+    {
+      "path": "audio/vocab/n1x195-ex1.mp3",
+      "original_sha256": "adfabbc07593dbce167d05117c0dcca2cfdea350edf2dd6dfebe56dbbb75dba8",
+      "new_sha256": "458b01c740fd4cda9a38881443e7e55b7259122688555df8451ba30017ce991c",
+      "original_bytes": 55680,
+      "compressed_bytes": 28461,
+      "duration_s": 3.528
+    },
+    {
+      "path": "audio/vocab/n1x195-ex2.mp3",
+      "original_sha256": "626480e04aa30f85441ecd117646021593f86384798bc5d63447bfd568cec228",
+      "new_sha256": "11f5e10d69b66026e29c0a2bfe652399593212107fe8a6afbca731d54b4cf417",
+      "original_bytes": 52224,
+      "compressed_bytes": 26733,
+      "duration_s": 3.312
+    },
+    {
+      "path": "audio/vocab/n1x196-ex1.mp3",
+      "original_sha256": "6bd02e0d319391b70fc359261c1e24b6bd4caea3c5c5a699809aec868c1857ee",
+      "new_sha256": "0beef52f24da10dd07e9f14916cb1c44b5ab64a233101bbe5dc0795f44c0efa3",
+      "original_bytes": 54912,
+      "compressed_bytes": 28077,
+      "duration_s": 3.48
+    },
+    {
+      "path": "audio/vocab/n1x196-ex2.mp3",
+      "original_sha256": "707ede5abe59b9214d3ad0c8fe1f6b4834625ff9a057aa4944d697212376dd20",
+      "new_sha256": "cdb5cc54f2cca8103180a055ede0b62bcc8289e54e5ae237c7c68ddd166f2abf",
+      "original_bytes": 51840,
+      "compressed_bytes": 26541,
+      "duration_s": 3.288
+    },
+    {
+      "path": "audio/vocab/n1x197-ex1.mp3",
+      "original_sha256": "c3fbb77555cd15bc5377481cc90807224ef95b65ac36ebee51230d1abd0ddfa1",
+      "new_sha256": "791b8c1c4f2c39adf9c0ec9ecfaa826747063b9a4666e5da2627f08bb672da89",
+      "original_bytes": 61440,
+      "compressed_bytes": 31341,
+      "duration_s": 3.888
+    },
+    {
+      "path": "audio/vocab/n1x197-ex2.mp3",
+      "original_sha256": "9a9e27d9a2440d5bab9c4fc1b32f63256f35d41aa119c16ed54f3b9497e700e3",
+      "new_sha256": "ff1b8100307d0d97dcac06c2069b1fa4fb15436fe7041304f09be589ddef45cd",
+      "original_bytes": 60672,
+      "compressed_bytes": 30957,
+      "duration_s": 3.84
+    },
+    {
+      "path": "audio/vocab/n1x198-ex1.mp3",
+      "original_sha256": "a40b0bf62ccbf7783be2d5fc7953ad2a8928aeecc700cf6a763f8e68c963845a",
+      "new_sha256": "155ed0c48538f8d846d9a1a21814dbc3e70eb3616f603a2dec0a5cc694ab72ca",
+      "original_bytes": 65664,
+      "compressed_bytes": 33453,
+      "duration_s": 4.152
+    },
+    {
+      "path": "audio/vocab/n1x198-ex2.mp3",
+      "original_sha256": "543c3dd39b143eadd9c6bdec8dd6990b48f38cf444d95158df3d2222f21d08a8",
+      "new_sha256": "c075510ee3885376052940ea9f5f9c75cc91e1e6f7a9afe7df852c5e8a2cfb8e",
+      "original_bytes": 64512,
+      "compressed_bytes": 32877,
+      "duration_s": 4.08
+    },
+    {
+      "path": "audio/vocab/n1x199-ex1.mp3",
+      "original_sha256": "69066a7226b00f6c0994691b9199c4feb030f27bf03153fc16f2b5ced7d32e60",
+      "new_sha256": "b61756899b52b362fe56b4a366b4bef656d347d60c4bf4940d723429fc9e5368",
+      "original_bytes": 51072,
+      "compressed_bytes": 26157,
+      "duration_s": 3.24
+    },
+    {
+      "path": "audio/vocab/n1x199-ex2.mp3",
+      "original_sha256": "57aa1a3a160129f6a5f8ee63674c45a344892ebb1749528db59901a19cfbc128",
+      "new_sha256": "40220eb04c8e1c46d0216ecf171e25ce57ce67984a014349aab0be80c4047201",
+      "original_bytes": 57600,
+      "compressed_bytes": 29421,
+      "duration_s": 3.648
+    },
+    {
+      "path": "audio/vocab/n1x200-ex1.mp3",
+      "original_sha256": "37cdadf8302084d569309438e0c8dc82f679eae00977085e9984a53f39b7eb60",
+      "new_sha256": "d2c568b2a5b00ebcb716dbf303b9708659ab80ea8e4cbd5a012ca9de910601d5",
+      "original_bytes": 61056,
+      "compressed_bytes": 31149,
+      "duration_s": 3.864
+    },
+    {
+      "path": "audio/vocab/n1x200-ex2.mp3",
+      "original_sha256": "a5c5895960819d2c9f0d121326bb835f0201dd59e827eacdfc526d883e6297c0",
+      "new_sha256": "10d0c6935a5eaecfdbec1632278fbeb9cbfb0410c2b7e9c40ac6a62c900ab4bc",
+      "original_bytes": 57984,
+      "compressed_bytes": 29613,
+      "duration_s": 3.672
     }
   ],
-  "updated_at": "2026-10-12T11:22:47.323Z"
+  "updated_at": "2026-10-12T11:22:53.562Z"
 }
