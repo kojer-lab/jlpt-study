@@ -809,7 +809,407 @@
       "original_bytes": 59136,
       "compressed_bytes": 30189,
       "duration_s": 3.744
+    },
+    {
+      "path": "audio/vocab/oyobosu-ex1.mp3",
+      "original_sha256": "329e7295b8f2384778a17858143a62f95ca8d96e30ba18568add5df2fe09a3eb",
+      "new_sha256": "fb8503ef4b3622d396a34d28d0c4d46cd55109d3db43418bf4d5809f36f3635e",
+      "original_bytes": 44160,
+      "compressed_bytes": 22701,
+      "duration_s": 2.808
+    },
+    {
+      "path": "audio/vocab/oyobosu-ex2.mp3",
+      "original_sha256": "e5996601d510b4520884d838d8da34400d4c139fb0e3528eb877481ae130b937",
+      "new_sha256": "b19df28a1f32b26eabf3fda8fef8ab5fc90e1b7c3f3da2ab285aaf87ec27a10b",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/obiyakasu-ex1.mp3",
+      "original_sha256": "3f823487265d6ee18526eff4818d53bcac35b51b7b2aaa6d337cab3bd1c5df4c",
+      "new_sha256": "883718a320589896c9754244921a00d7116c13799aa5fcb12020c93cd3204892",
+      "original_bytes": 69888,
+      "compressed_bytes": 35565,
+      "duration_s": 4.416
+    },
+    {
+      "path": "audio/vocab/obiyakasu-ex2.mp3",
+      "original_sha256": "ab762316ea9e28a870b90de5951e518afe2290819b475fbfe23f2a66b7ea4c58",
+      "new_sha256": "c4b1dde9c359d17feceacf59afff88daf21921b2554cb432c712edbb1b70afa2",
+      "original_bytes": 54912,
+      "compressed_bytes": 28077,
+      "duration_s": 3.48
+    },
+    {
+      "path": "audio/vocab/saegiru-ex1.mp3",
+      "original_sha256": "d300cbf6bd5d6abdf52c95e23a5bd73039fd98d86164f24fea95f72e05518327",
+      "new_sha256": "d30525399b6a49d7cbd02429383ddafa3025cdda7731d5bce999009a4edd2eca",
+      "original_bytes": 54912,
+      "compressed_bytes": 28077,
+      "duration_s": 3.48
+    },
+    {
+      "path": "audio/vocab/saegiru-ex2.mp3",
+      "original_sha256": "dc275ae67086c18a98258b6fe9b0da5063ab3643da83461566ae0e047ced21ef",
+      "new_sha256": "aabcd146dc1409e286a5594b2197cc27cedbb687ed890b58d9bdd265a4b50ede",
+      "original_bytes": 62208,
+      "compressed_bytes": 31725,
+      "duration_s": 3.936
+    },
+    {
+      "path": "audio/vocab/shinogu-ex1.mp3",
+      "original_sha256": "24e8813f4f6f929ad3e62511d64d92869af8136e84d0b20a4158267ead55f62e",
+      "new_sha256": "a1c7505e11704449712fcc07cd8285fe69601d7ab52e2d72d07ef54a8b9a716b",
+      "original_bytes": 61824,
+      "compressed_bytes": 31533,
+      "duration_s": 3.912
+    },
+    {
+      "path": "audio/vocab/shinogu-ex2.mp3",
+      "original_sha256": "b4752b395102d1d02f88352546d9a85af2526650df2ba0c5e6cd5379e45a0c46",
+      "new_sha256": "c48bd9bfa165b6e90ee46f29d84678892ebc626f388a608e7f47e67b54f69ced",
+      "original_bytes": 54528,
+      "compressed_bytes": 27885,
+      "duration_s": 3.456
+    },
+    {
+      "path": "audio/vocab/sutareru-ex1.mp3",
+      "original_sha256": "358cba9fbe45f3cce993caa535228310631764c48b7e670377b5f41433deae7a",
+      "new_sha256": "d800a503cd580ba76f1bcda252313e4dbdaeed60a4a04dbaccfcea3f4b4432df",
+      "original_bytes": 55680,
+      "compressed_bytes": 28461,
+      "duration_s": 3.528
+    },
+    {
+      "path": "audio/vocab/sutareru-ex2.mp3",
+      "original_sha256": "23c35eee24fa6ceb460bc6959f72886539a5d89c0f6350870f76e1033282f4c3",
+      "new_sha256": "f8786deeea54dcf3c28df29ce9a761127405f0a4d70dd51df3c17d13b4d88026",
+      "original_bytes": 46464,
+      "compressed_bytes": 23853,
+      "duration_s": 2.952
+    },
+    {
+      "path": "audio/vocab/somuku-ex1.mp3",
+      "original_sha256": "1f55ab84b0d09e561e2f5fe4e82d2b987979719add6417863915c46ee60c4fea",
+      "new_sha256": "4d36b1b0b5e7e2b320b886dd97ede5210c1b57dc948d17d344e29bab84b9e3f5",
+      "original_bytes": 61440,
+      "compressed_bytes": 31341,
+      "duration_s": 3.888
+    },
+    {
+      "path": "audio/vocab/somuku-ex2.mp3",
+      "original_sha256": "62b8ec2fcb4de0fd24f1b78f830472dd93cc610181133b343ea7fe055aad6a09",
+      "new_sha256": "ddc0333ec73c41562133e7b08372a9f842bce3dd8283703c321079d0232dd658",
+      "original_bytes": 48768,
+      "compressed_bytes": 25005,
+      "duration_s": 3.096
+    },
+    {
+      "path": "audio/vocab/tsugunau-ex1.mp3",
+      "original_sha256": "50cb22a2213f2cd4a7494822bde6e06892cd41fd9f8c0b5088b3695cd6367c38",
+      "new_sha256": "5f7a38d815350c5aa404b0d219e48c4422db39eb0e46d07d320614cfb46b1f96",
+      "original_bytes": 43008,
+      "compressed_bytes": 22125,
+      "duration_s": 2.736
+    },
+    {
+      "path": "audio/vocab/tsugunau-ex2.mp3",
+      "original_sha256": "916710b17ea664c8ef7c2bc2d27a87ea7d1d9d804564f14408ca24dc0b8df8ec",
+      "new_sha256": "483d8007cd7b127ff6bb9697ac6fee9887b011eeb081e214d2639b9feb4d00b4",
+      "original_bytes": 52992,
+      "compressed_bytes": 27117,
+      "duration_s": 3.36
+    },
+    {
+      "path": "audio/vocab/togameru-ex1.mp3",
+      "original_sha256": "dc06490db58d06a314fbab0645632f91abb899456256e42db86c547a011d702e",
+      "new_sha256": "0498fc5358a2f89199404698bcfc769739a0043f0b711e929b111d117955d734",
+      "original_bytes": 52992,
+      "compressed_bytes": 27117,
+      "duration_s": 3.36
+    },
+    {
+      "path": "audio/vocab/togameru-ex2.mp3",
+      "original_sha256": "026f47434c3035f48e607dff40f13e6aa45b5b48464922130d96840ea287c7db",
+      "new_sha256": "92d2efb81ea0798e2830e162f83e6afb4731e26257992f05dfdfb5e034c54412",
+      "original_bytes": 61440,
+      "compressed_bytes": 31341,
+      "duration_s": 3.888
+    },
+    {
+      "path": "audio/vocab/hagukumu-ex1.mp3",
+      "original_sha256": "6cda914daf4f653c44c5c7bb838ef433bde21ad0b9c7e823fda2a27d4774c0db",
+      "new_sha256": "7533e561b79ed060199aa7bcc6a37719237384d7efc7b3f70e8a1316be16cc94",
+      "original_bytes": 54528,
+      "compressed_bytes": 27885,
+      "duration_s": 3.456
+    },
+    {
+      "path": "audio/vocab/hagukumu-ex2.mp3",
+      "original_sha256": "c25010e83468734116a510d90f255510f5a8484e912d51d7b80af8dd8a9e699b",
+      "new_sha256": "037c6fee25cf9ddda20329352a1cb13486ad48145ef2c77da04a388e4d8cb10b",
+      "original_bytes": 60672,
+      "compressed_bytes": 30957,
+      "duration_s": 3.84
+    },
+    {
+      "path": "audio/vocab/habamu-ex1.mp3",
+      "original_sha256": "d2da4db3912547b100b97430b7691538d42b4b3b00ca5bf721c27251288b21f9",
+      "new_sha256": "5214c374b9bd1024f10f0dfc03202ae8e721f1095c1dde3bb9c3786ba692f1b0",
+      "original_bytes": 62976,
+      "compressed_bytes": 32109,
+      "duration_s": 3.984
+    },
+    {
+      "path": "audio/vocab/habamu-ex2.mp3",
+      "original_sha256": "668f59f6b7d68f9763f965c6ed4624b5be06ff05277b0eea43dc1e0b3e999459",
+      "new_sha256": "4aa3c4defd981b5aad2e995c76e07b589e44941b50dacb9544ff73adf969ff3f",
+      "original_bytes": 45312,
+      "compressed_bytes": 23277,
+      "duration_s": 2.88
+    },
+    {
+      "path": "audio/vocab/hirumu-ex1.mp3",
+      "original_sha256": "8ca77ebd71d89ac9514be38f1c469152823b73cb570b73c3b0b6e1f20af21d05",
+      "new_sha256": "1f2684761e6a31ff5a2fd5ba6a06a22d076118d02c7f4277e5c6d400c14daf8b",
+      "original_bytes": 47232,
+      "compressed_bytes": 24237,
+      "duration_s": 3
+    },
+    {
+      "path": "audio/vocab/hirumu-ex2.mp3",
+      "original_sha256": "9e4925e840aaf28029d8ac57f633fafff5818da26329c6ae4585d2587b36761f",
+      "new_sha256": "ad86a5bf396d770827de81b5f906c04c359e018eae3573f6535d1ff3b8c9010a",
+      "original_bytes": 52608,
+      "compressed_bytes": 26925,
+      "duration_s": 3.336
+    },
+    {
+      "path": "audio/vocab/yudaneru-ex1.mp3",
+      "original_sha256": "ead2b5c770ccaf04924d62f1ae6020c20e31db53b067bf35e4a156c7ed8c36b5",
+      "new_sha256": "2047c0d46b1a66ada2733f92e658b5d66f06136e2d4c633542c35cbd2336df46",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/yudaneru-ex2.mp3",
+      "original_sha256": "bf96aa1f38518c5b71bad3a77a6c10eba452408db7eff0e47b7acc97a6d90513",
+      "new_sha256": "a9535e1899d2ecc3bfe06e4618ea4b4039619cbcbe5940fee9113d3815267863",
+      "original_bytes": 36480,
+      "compressed_bytes": 18861,
+      "duration_s": 2.328
+    },
+    {
+      "path": "audio/vocab/motarasu-ex1.mp3",
+      "original_sha256": "9a9dc98e423784193782ce7a8ad88d59fd16a31d168de211ed5bea40d9c5fd87",
+      "new_sha256": "30b830090a274d21deb5cd14aaf210999597a8fbceb5932b90c68ac991a37fae",
+      "original_bytes": 67200,
+      "compressed_bytes": 34221,
+      "duration_s": 4.248
+    },
+    {
+      "path": "audio/vocab/motarasu-ex2.mp3",
+      "original_sha256": "edd0b2355bd76ebc07b67bea4c55f863b5594d3242974f9135b1719a154964c9",
+      "new_sha256": "3dbdaf35c0b3ee6c32bf001c631382966d29b4747c7279a5169c76cd7589b475",
+      "original_bytes": 65664,
+      "compressed_bytes": 33453,
+      "duration_s": 4.152
+    },
+    {
+      "path": "audio/vocab/kasamu-ex1.mp3",
+      "original_sha256": "0d6f5b987e25d3fe3a374d33982fa29a402afcbe8aa43fa8691d0bd95616115b",
+      "new_sha256": "be55fb4cdea46b161fa5d5efb2acc6ad21f028bcab4e3375ff60431de591fd7d",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/kasamu-ex2.mp3",
+      "original_sha256": "e09eefd4370a117826da0e8f4ebd28342b2ea571f5989cb537ea4bc9e11a5ea2",
+      "new_sha256": "e51416894055de32761558d05db239845eb69cb8580d14c59d5445d49440f0b7",
+      "original_bytes": 53376,
+      "compressed_bytes": 27309,
+      "duration_s": 3.384
+    },
+    {
+      "path": "audio/vocab/azamuku-ex1.mp3",
+      "original_sha256": "2005c30c07e742433a5a60d92cc490e949744296d13c2ee68885fc93ddf88553",
+      "new_sha256": "21a429ccb1d92e8375e22f9ff9f7ce4f00e772104ed60478132a146fd0d5183e",
+      "original_bytes": 61440,
+      "compressed_bytes": 31341,
+      "duration_s": 3.888
+    },
+    {
+      "path": "audio/vocab/azamuku-ex2.mp3",
+      "original_sha256": "6e438f80f3bbbd6a4ec1d9419901a30fed48b04ee1e5dd07d6c9395400f597e8",
+      "new_sha256": "bd547193ccc335831d8666feab1991d24f2a1209fe50afaf465d5c4b6594ff3a",
+      "original_bytes": 54912,
+      "compressed_bytes": 28077,
+      "duration_s": 3.48
+    },
+    {
+      "path": "audio/vocab/ayatsuru-ex1.mp3",
+      "original_sha256": "c61b7f88f1f1bb1fb8cd9ff30efd0d44df49f86470e257a0e4d1c857a3153d7f",
+      "new_sha256": "c151b5c8fb05393b3c4f501db20386f5b1890aabb6773ecdc60443b5e2bfb816",
+      "original_bytes": 50688,
+      "compressed_bytes": 25965,
+      "duration_s": 3.216
+    },
+    {
+      "path": "audio/vocab/ayatsuru-ex2.mp3",
+      "original_sha256": "594f1b8ca5628583a5088fda83e2740e6aaa6f2abe4267c2bdfc460fa5dc9eda",
+      "new_sha256": "25f337c3fcef5f1196b451a13b459e8f829d0223189df66d019ab2749fb6e146",
+      "original_bytes": 43008,
+      "compressed_bytes": 22125,
+      "duration_s": 2.736
+    },
+    {
+      "path": "audio/vocab/itawaru-ex1.mp3",
+      "original_sha256": "da39961a6a828c182aedf6f702007d874df8f128632ca05259e456b685c1cac4",
+      "new_sha256": "bb652d522bd285f438f037901a45c5ba879e7dbc2ffe89be6a989d1513321198",
+      "original_bytes": 41088,
+      "compressed_bytes": 21165,
+      "duration_s": 2.616
+    },
+    {
+      "path": "audio/vocab/itawaru-ex2.mp3",
+      "original_sha256": "d39aa86b9d64a6aa3d9d522e7f41d89ed2371582da2bf1d5bcebea829150da5b",
+      "new_sha256": "2baf71c32c95a24e54ef8713e88623f89dbecd51d62ad7b208b588ba9fbee10b",
+      "original_bytes": 51072,
+      "compressed_bytes": 26157,
+      "duration_s": 3.24
+    },
+    {
+      "path": "audio/vocab/kabau-ex1.mp3",
+      "original_sha256": "50210d7e6a5aef5470abdf688fea0ec03157043e1798fac3816a69ad0803a6a8",
+      "new_sha256": "b68984c31ce6d509d4fed6645e46a051172ebadc24e294462486ae361b6c4360",
+      "original_bytes": 52992,
+      "compressed_bytes": 27117,
+      "duration_s": 3.36
+    },
+    {
+      "path": "audio/vocab/kabau-ex2.mp3",
+      "original_sha256": "6918a8ed701b72ca5c28f64e931d35abc0456040f1164e357800b9d8d87cf096",
+      "new_sha256": "2e9cef8a06fac605255f598828ee0b16561a673ddeefbaf5f4d895e7052b15f3",
+      "original_bytes": 44160,
+      "compressed_bytes": 22701,
+      "duration_s": 2.808
+    },
+    {
+      "path": "audio/vocab/obitadashii-ex1.mp3",
+      "original_sha256": "af61580f5088f7422aefcc2d540074b323a62814816bf817ff9a8b4730df4715",
+      "new_sha256": "4f4e147777696af1b14992bc9a03e2fc888e6c23a02e1a48265b1770cb1567ee",
+      "original_bytes": 69120,
+      "compressed_bytes": 35181,
+      "duration_s": 4.368
+    },
+    {
+      "path": "audio/vocab/obitadashii-ex2.mp3",
+      "original_sha256": "e5414eb9da1dee506ac74a2963acc303b80a3cb42e0dd6f7f5c646b7e73458d9",
+      "new_sha256": "2610d782b2c40071dc17292324329ad8b86308802d7d64bdf8c6c9e2cd33034e",
+      "original_bytes": 52608,
+      "compressed_bytes": 26925,
+      "duration_s": 3.336
+    },
+    {
+      "path": "audio/vocab/sumiyaka-ex1.mp3",
+      "original_sha256": "d23edc17d5837161c2ad62995902cb7399e547dc3b2457b22426def59b9076a8",
+      "new_sha256": "12fe48be2bf1d33e50d524943dbdb1455995b0f722b73b5c593f41d4e42d1077",
+      "original_bytes": 71424,
+      "compressed_bytes": 36333,
+      "duration_s": 4.512
+    },
+    {
+      "path": "audio/vocab/sumiyaka-ex2.mp3",
+      "original_sha256": "e98984989620219cfc6f67040419d5ba046adc11ad779e925f275d7963418e5c",
+      "new_sha256": "ac85d73dba5a5d84dbadad9fb9092b64e4c8d6787aa13c9109aafd7cfc75fcc4",
+      "original_bytes": 47616,
+      "compressed_bytes": 24429,
+      "duration_s": 3.024
+    },
+    {
+      "path": "audio/vocab/takumashii-ex1.mp3",
+      "original_sha256": "7b134c5f787288e97622743b20d0c188073e5f7265169bd50367ec2a737d3828",
+      "new_sha256": "11a45be5e9e4d9165a27b0ae22d5d379ba78043b07e6fbbe1fa917244a3d5052",
+      "original_bytes": 50304,
+      "compressed_bytes": 25773,
+      "duration_s": 3.192
+    },
+    {
+      "path": "audio/vocab/takumashii-ex2.mp3",
+      "original_sha256": "8a2469e4dcfcd2b1f92f0062c8554426a8974b9f54b76c38204179c2457ba607",
+      "new_sha256": "e671c94f3e64ed33f48f6652016f5094a89bde9996c4b762f172f3520a3f1330",
+      "original_bytes": 54528,
+      "compressed_bytes": 27885,
+      "duration_s": 3.456
+    },
+    {
+      "path": "audio/vocab/rokotsu-ex1.mp3",
+      "original_sha256": "b717f98835da8500d0c0f48621f9d5b8ae0573bfc6dc19992f130ba009f913ac",
+      "new_sha256": "7ba92bbdd18b928e1b1ce8c9c0e7aa7c3772f3f3a183192f71ca719cb38f87c4",
+      "original_bytes": 56448,
+      "compressed_bytes": 28845,
+      "duration_s": 3.576
+    },
+    {
+      "path": "audio/vocab/rokotsu-ex2.mp3",
+      "original_sha256": "b552a7e9bfe769d9b37df4621a3eb09ffaaf18bde6ce230e34d04db9375a00ad",
+      "new_sha256": "4a1bbb92c2e5fa0073d2152f85743eb8f096f83359ffa5ffaea2c018399d7156",
+      "original_bytes": 51072,
+      "compressed_bytes": 26157,
+      "duration_s": 3.24
+    },
+    {
+      "path": "audio/vocab/enkatsu-ex1.mp3",
+      "original_sha256": "cfd465dd34cd36a5217d662c7be2cb4c1fa846076e0adc79b275c5ae8a9e51ec",
+      "new_sha256": "7f1a013b5b82dfce4e420a8bf15a4d0780a6c906cdc4cd7a37388a659dad02d8",
+      "original_bytes": 43776,
+      "compressed_bytes": 22509,
+      "duration_s": 2.784
+    },
+    {
+      "path": "audio/vocab/enkatsu-ex2.mp3",
+      "original_sha256": "58ef136d998a39603c5b4e1b52509bdc0ce74dcd533fab25def9a3d08f700ecf",
+      "new_sha256": "bf389e372cd2bc8044386e5490e33c9b29d476efba7af2ac94daec8baba896fe",
+      "original_bytes": 59520,
+      "compressed_bytes": 30381,
+      "duration_s": 3.768
+    },
+    {
+      "path": "audio/vocab/genmitsu-ex1.mp3",
+      "original_sha256": "a5b014a2078b6868c245be6061874ac5f039a187664ae4682099751d1511c5d6",
+      "new_sha256": "a45e0521d177d0be77a547ecd40eabf61b5610c2776eb6628c46751c1001fa70",
+      "original_bytes": 70272,
+      "compressed_bytes": 35757,
+      "duration_s": 4.44
+    },
+    {
+      "path": "audio/vocab/genmitsu-ex2.mp3",
+      "original_sha256": "67acc344aafc7fa0ec0244a1ebdfc0deb69d21b3e031a2a928fc77edd4dea6e7",
+      "new_sha256": "65dbdaa8d9826aa9de90a8008f443a899b271687478b1952d88ef49878457d88",
+      "original_bytes": 46080,
+      "compressed_bytes": 23661,
+      "duration_s": 2.928
+    },
+    {
+      "path": "audio/vocab/menmitsu-ex1.mp3",
+      "original_sha256": "0743b94f24114ec9009357be2cca1f9a58cb3259be61795210f019bf0b64a9d7",
+      "new_sha256": "be8a120742d27821202d7913a6a01295efafecf4497f0b0a474615176fafe934",
+      "original_bytes": 41472,
+      "compressed_bytes": 21357,
+      "duration_s": 2.64
+    },
+    {
+      "path": "audio/vocab/menmitsu-ex2.mp3",
+      "original_sha256": "56617b440ec826df6819e4cb0124f341998e4d45a6e941affbc1a78560c79adc",
+      "new_sha256": "3fd023e0e2a41389955ca0f0f1ea7ecab791d901813cea5882a32e4e4a9bcca7",
+      "original_bytes": 48000,
+      "compressed_bytes": 24621,
+      "duration_s": 3.048
     }
   ],
-  "updated_at": "2026-10-12T11:20:44.925Z"
+  "updated_at": "2026-10-12T11:20:55.176Z"
 }
