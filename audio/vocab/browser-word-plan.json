@@ -9,5 +9,11 @@
   "word_count": 3233,
   "batch_size": 300,
   "checkpoint_size": 50,
-  "notes": "After the final 64kbps example-compression batch succeeds, regenerate all existing word MP3s directly from browser Kokoro WAV at 64kbps. No sample pilot, no new N2 material, no FSRS or example edits. Override known misreading oj-08cfe03cb3 to はく."
+  "notes": "After the final 64kbps example-compression batch succeeds, regenerate all existing word MP3s directly from browser Kokoro WAV at 64kbps. No sample pilot, no new N2 material, no FSRS or example edits. Override known misreading oj-08cfe03cb3 to はく.",
+  "activation": {
+    "compression_completed": true,
+    "verified_batches": 11,
+    "verified_examples": 3104,
+    "action": "start first word batch via plan push after all original example compression ledgers are complete"
+  }
 }
