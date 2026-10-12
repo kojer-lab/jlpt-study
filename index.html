@@ -1255,9 +1255,9 @@ function restoreInteractiveFuriState(root=document){
 const DAY=86400000, MIN=60000;
 const STORE_KEY="jlptN1StudyV3";
 const CLOUD_CONFIG_KEY="jlptN1CloudConfigV31", CLOUD_META_KEY="jlptN1CloudMetaV31";
-const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},newsProgress:{},_updatedAt:0};
+const defaultState={solved:0,correct:0,mistakes:[],srs:{},stars:{},reviewLog:[],fsrsProfile:{stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},settings:{dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},dailyNew:{date:"",ids:[],updatedAt:0},dailyNewN2:{date:"",ids:[],updatedAt:0},newsProgress:{},_updatedAt:0};
 function freshState(){return JSON.parse(JSON.stringify(defaultState));}
-function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});delete x.settings.ankiTapSound;delete x.settings.ankiTapSoundStyle;x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.newsProgress=normalizeNewsProgress(x.newsProgress);x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return reconcileDuplicateWordState(x);}
+function normalizeState(obj){const x=Object.assign(freshState(),obj||{});x.srs=x.srs||{};x.stars=x.stars||{};x.mistakes=Array.isArray(x.mistakes)?x.mistakes:[];x.mistakes.forEach(m=>{if(!Number.isFinite(m.due))m.due=0;if(!Number.isFinite(m.interval))m.interval=0;if(!Number.isFinite(m.ease))m.ease=2.5;if(!Number.isFinite(m.streak))m.streak=0;});x.reviewLog=Array.isArray(x.reviewLog)?x.reviewLog.slice(-5000):[];x.fsrsProfile=Object.assign({stabilityScale:1,sampleCount:0,loss:null,updatedAt:0},x.fsrsProfile||{});x.fsrsProfile.stabilityScale=Math.max(.55,Math.min(1.8,Number(x.fsrsProfile.stabilityScale)||1));x.fsrsProfile.sampleCount=Math.max(0,Number(x.fsrsProfile.sampleCount)||0);x.settings=Object.assign({dailyNewLimit:10,desiredRetention:.90,showWordImages:true,updatedAt:0},x.settings||{});delete x.settings.ankiTapSound;delete x.settings.ankiTapSoundStyle;x.settings.dailyNewLimit=Math.max(1,Math.min(50,Number(x.settings.dailyNewLimit)||10));x.settings.desiredRetention=Math.max(.80,Math.min(.97,Number(x.settings.desiredRetention)||.90));x.dailyNew=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNew||{});x.dailyNew.ids=Array.isArray(x.dailyNew.ids)?x.dailyNew.ids:[];x.dailyNewN2=Object.assign({date:"",ids:[],updatedAt:0},x.dailyNewN2||{});x.dailyNewN2.ids=Array.isArray(x.dailyNewN2.ids)?x.dailyNewN2.ids:[];x.newsProgress=normalizeNewsProgress(x.newsProgress);x.solved=Number(x.solved)||0;x.correct=Number(x.correct)||0;x._updatedAt=Number(x._updatedAt)||0;return reconcileDuplicateWordState(x);}
 
 // Normalize alias IDs when reading local or Supabase state; keep historical records.
 function reconcileDuplicateWordState(x){
@@ -1279,6 +1279,7 @@ function reconcileDuplicateWordState(x){
   }
  }
  if(x.dailyNew&&Array.isArray(x.dailyNew.ids))x.dailyNew.ids=[...new Set(x.dailyNew.ids.map(canonicalWordId))];
+  if(x.dailyNewN2&&Array.isArray(x.dailyNewN2.ids))x.dailyNewN2.ids=[...new Set(x.dailyNewN2.ids.map(canonicalWordId))];
  return x;
 }
 
@@ -2288,7 +2289,11 @@ function finishNewsDay(){
  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-let state=loadState();let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordLearningQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewLearningQueue=[],reviewIndex=0;let mistakeRetryActive=false,mistakeRetryQueue=[],mistakeRetryIndex=0,mistakeRetryAnswered=false;
+let state=loadState();
+const WORD_LEVEL_KEY="jlptWordStudyLevelV1";
+let wordStudyLevel=localStorage.getItem(WORD_LEVEL_KEY)==="N2"?"N2":"N1";
+function wordsForLevel(level){return words.filter(w=>(w.level||"N1")===level)}
+let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordLearningQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewLearningQueue=[],reviewIndex=0;let mistakeRetryActive=false,mistakeRetryQueue=[],mistakeRetryIndex=0,mistakeRetryAnswered=false;
 const $=id=>document.getElementById(id);
 const FSRS_W=[.212,1.2931,2.3065,8.2956,6.4133,.8334,3.0194,.001,1.8722,.1666,.796,1.4835,.0614,.2629,1.6483,.6014,1.8729,.5425,.0912,.0658,.1542];
 const FSRS_DECAY=-FSRS_W[20],FSRS_FACTOR=Math.pow(.9,1/FSRS_DECAY)-1,FSRS_MAX_INTERVAL=36500;
@@ -2476,8 +2481,8 @@ function rateWord(id,rating){
  setSrs(id,s);refreshAll();
 }
 // Cards set aside after repeated failure are reviewed in their own guided mode.
-function focusPendingWords(){return words.filter(w=>getSrs(w.id).focusPending===true)}
-function focusDueWords(){return focusPendingWords().filter(w=>getSrs(w.id).focusUntil<=now()).sort((a,b)=>getSrs(a.id).focusUntil-getSrs(b.id).focusUntil)}
+function focusPendingWords(level=null){return (level?wordsForLevel(level):words).filter(w=>getSrs(w.id).focusPending===true)}
+function focusDueWords(level=null){return focusPendingWords(level).filter(w=>getSrs(w.id).focusUntil<=now()).sort((a,b)=>getSrs(a.id).focusUntil-getSrs(b.id).focusUntil)}
 function nextLocalDayStart(t=now()){const d=new Date(t);d.setHours(0,0,0,0);d.setDate(d.getDate()+1);return d.getTime()}
 function deferWordForFocus(id){
  const x=getSrs(id),t=now();
@@ -2485,41 +2490,34 @@ function deferWordForFocus(id){
  x.due=Math.max(x.due,x.focusUntil);x.state=x.reviews>0?"relearning":"learning";x.interval=0;x.updatedAt=t;
  setSrs(id,x);
 }
-function dueWords(){return words.filter(w=>{const s=getSrs(w.id);return s.reviews>0&&!s.focusPending&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
-function unseenWords(){return words.filter(w=>getSrs(w.id).reviews===0)}
+function dueWords(level=null){return (level?wordsForLevel(level):words).filter(w=>{const s=getSrs(w.id);return s.reviews>0&&!s.focusPending&&s.due<=now()}).sort((a,b)=>getSrs(a.id).due-getSrs(b.id).due)}
+function unseenWords(level=null){return (level?wordsForLevel(level):words).filter(w=>getSrs(w.id).reviews===0)}
 function isStarred(id){return !!state.stars?.[canonicalWordId(id)]?.value}
-function starredWords(){return words.filter(w=>isStarred(w.id))}
+function starredWords(level=null){return (level?wordsForLevel(level):words).filter(w=>isStarred(w.id))}
 function toggleStar(id){
  const key=canonicalWordId(id),old=state.stars?.[key],value={value:!old?.value,updatedAt:Date.now()};
  state.stars[key]=value;
  for(const alias of duplicateWordAliases.get(key)||[])state.stars[alias]=value;
  saveState(state);
 }
-function ensureDailyNew(save=true){
- const key=todayKey(),limit=state.settings.dailyNewLimit||10;
+function ensureDailyNew(save=true,level="N1"){
+ const slot=level==="N2"?"dailyNewN2":"dailyNew",key=todayKey(),limit=state.settings.dailyNewLimit||10;
+ if(!state[slot])state[slot]={date:"",ids:[],updatedAt:0};
+ const bucket=state[slot],valid=new Set(wordsForLevel(level).map(w=>w.id));
  let changed=false;
- if(state.dailyNew.date!==key){state.dailyNew={date:key,ids:[],updatedAt:Date.now()};changed=true}
- const valid=new Set(words.map(w=>w.id));
- let ids=state.dailyNew.ids.filter(id=>valid.has(id));
- if(ids.length!==state.dailyNew.ids.length)changed=true;
- const studied=ids.filter(id=>getSrs(id).reviews>0);
- const pending=ids.filter(id=>getSrs(id).reviews===0);
- const keepPending=pending.slice(0,Math.max(0,limit-studied.length));
- let next=[...studied,...keepPending];
- if(next.length<limit){
-   const used=new Set(next);
-   for(const w of unseenWords()){
-     if(used.has(w.id))continue;
-     next.push(w.id);used.add(w.id);
-     if(next.length>=limit)break;
-   }
- }
- if(JSON.stringify(next)!==JSON.stringify(state.dailyNew.ids)){changed=true;ids=next}else ids=next;
- state.dailyNew.ids=ids;
- if(changed){state.dailyNew.updatedAt=Date.now();if(save)saveState(state)}
- return ids.map(id=>words.find(w=>w.id===id)).filter(Boolean);
+ if(bucket.date!==key){bucket.date=key;bucket.ids=[];changed=true}
+ const current=bucket.ids.filter(id=>valid.has(id));
+ if(current.length!==bucket.ids.length)changed=true;
+ const studied=current.filter(id=>getSrs(id).reviews>0);
+ const pending=current.filter(id=>getSrs(id).reviews===0);
+ const next=[...studied,...pending.slice(0,Math.max(0,limit-studied.length))],used=new Set(next);
+ if(next.length<limit)for(const w of unseenWords(level)){if(used.has(w.id))continue;next.push(w.id);used.add(w.id);if(next.length>=limit)break}
+ if(JSON.stringify(next)!==JSON.stringify(bucket.ids))changed=true;
+ bucket.ids=next;
+ if(changed){bucket.updatedAt=Date.now();if(save)saveState(state)}
+ return next.map(id=>wordById.get(id)).filter(Boolean);
 }
-function todayNewPending(){return ensureDailyNew(true).filter(w=>getSrs(w.id).reviews===0)}
+function todayNewPending(level=wordStudyLevel){return ensureDailyNew(true,level).filter(w=>getSrs(w.id).reviews===0)}
 function refreshAll(){if($("homeView")?.classList.contains("active"))renderHome();if($("statsView")?.classList.contains("active"))renderStats();if($("wordsView")?.classList.contains("active")&&$("wordDashboard")&&!$("wordDashboard").classList.contains("hidden"))renderWordDashboard();}
 
 let newsCuratedCategory="전체";
@@ -2658,7 +2656,7 @@ function interleaveDueAndNew(due, fresh){
  return result;
 }
 function buildWordStudyQueue(){
- return interleaveDueAndNew(dueWords(),todayNewPending());
+ return interleaveDueAndNew(dueWords(wordStudyLevel),todayNewPending(wordStudyLevel));
 }
 const LEARN_AHEAD_LIMIT=20*MIN;
 function queueLearningCard(list,w){
