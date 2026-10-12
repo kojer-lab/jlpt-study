@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-22.04
     timeout-minutes: 120
     env:
-      BROWSER_AUDIO_COMPRESS_BATCH_NUMBER: \${{ github.event_name == 'workflow_dispatch' && inputs.batch_number || 1 }}
+      BROWSER_AUDIO_COMPRESS_BATCH_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.batch_number || 1 }}
     steps:
       - name: Check out latest main with audio checkpoints
         uses: actions/checkout@v4
@@ -110,7 +110,7 @@ jobs:
       - name: Start next 300-file batch only after successful validation
         shell: bash
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           next=$((BROWSER_AUDIO_COMPRESS_BATCH_NUMBER + 1))
