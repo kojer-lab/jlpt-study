@@ -191,9 +191,20 @@ try{
     "-b:a","64k","-f","mp3",mp3Temp],{timeout:60000});
    const bytes=await readFile(mp3Temp),newsha=hash(bytes);
    const duration=checkMp3(mp3Temp);
-   if(bytes.length<1200||newsha===oldsha||
-    (bytes.subarray(0,3).toString()!=="ID3"&&bytes[0]!==255))
-    throw new Error("64kbps word MP3 invalid or identical: "+item.path);
+   const hasId3=bytes.subarray(0,3).toString()==="ID3";
+   const hasMpegSync=bytes[0]===255&&(bytes[1]&0xe0)===0xe0;
+   // Log diagnostics BEFORE touching production audio. Do not bypass any
+   // MP3 validation when a source word produces unexpected short audio.
+   console.log("WORD MP3 CHECK",JSON.stringify({
+    path:item.path,reading:item.text,wavBytes:wav.length,oldBytes:old.length,
+    mp3Bytes:bytes.length,duration_s:duration,first16:bytes.subarray(0,16).toString("hex"),
+    validMp3Header:hasId3||hasMpegSync,sameSha:newsha===oldsha
+   }));
+   if(bytes.length<1200||newsha===oldsha||!(hasId3||hasMpegSync))
+    throw new Error("64kbps word MP3 validation failed: "+item.path+
+     " / bytes="+bytes.length+" / seconds="+duration+
+     " / prefix="+bytes.subarray(0,12).toString("hex")+
+     " / sameSha="+(newsha===oldsha));
    const probe=JSON.parse(execFileSync("ffprobe",["-v","error",
     "-show_entries","format=bit_rate","-of","json",mp3Temp],{encoding:"utf8"}));
    const rate=Number(probe.format?.bit_rate);
