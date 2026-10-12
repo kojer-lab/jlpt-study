@@ -2304,7 +2304,7 @@ let state=loadState();
 const WORD_LEVEL_KEY="jlptWordStudyLevelV1";
 let wordStudyLevel=localStorage.getItem(WORD_LEVEL_KEY)==="N2"?"N2":"N1";
 function wordsForLevel(level){return words.filter(w=>level==="N2"?(w.level==="N2"||w.levels?.includes("N2")):(w.level||"N1")==="N1")}
-let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordLearningQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewLearningQueue=[],reviewIndex=0;let mistakeRetryActive=false,mistakeRetryQueue=[],mistakeRetryIndex=0,mistakeRetryAnswered=false;
+let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordLearningQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordNonNewStreak=0,wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewLearningQueue=[],reviewIndex=0;let mistakeRetryActive=false,mistakeRetryQueue=[],mistakeRetryIndex=0,mistakeRetryAnswered=false;
 const $=id=>document.getElementById(id);
 const FSRS_W=[.212,1.2931,2.3065,8.2956,6.4133,.8334,3.0194,.001,1.8722,.1666,.796,1.4835,.0614,.2629,1.6483,.6014,1.8729,.5425,.0912,.0658,.1542];
 const FSRS_DECAY=-FSRS_W[20],FSRS_FACTOR=Math.pow(.9,1/FSRS_DECAY)-1,FSRS_MAX_INTERVAL=36500;
@@ -2693,7 +2693,35 @@ function promoteLearningCards(immediate,delayed,allowAhead=true){
    const x=delayed.shift(),w=wordById.get(x.id);if(w)immediate.push(w);
  }
 }
-function currentWordQueue(){promoteLearningCards(wordSessionQueue,wordLearningQueue,false);promoteQuickWord();return wordSessionQueue}
+// Timed learning reviews can jump ahead of new cards even after the original
+// 5:1 queue was mixed. Enforce the ratio on the *next actual card*, not just
+// at the initial queue construction, while preserving due timestamps.
+function prioritizePendingNewWord(queue){
+ if(wordMode!=="daily"||wordNonNewStreak<5||!queue.length)return;
+ const index=queue.findIndex(w=>getSrs(w.id).reviews===0);
+ if(index>0)queue.unshift(queue.splice(index,1)[0]);
+}
+function currentWordQueue(){
+ promoteLearningCards(wordSessionQueue,wordLearningQueue,false);
+ promoteQuickWord();
+ prioritizePendingNewWord(wordSessionQueue);
+ return wordSessionQueue;
+}
+// A saved Anki session may predate today's daily-new assignment or a settings
+// change. Add only today's reserved unseen cards not already in the session.
+function includeMissingDailyNewInSession(){
+ if(wordMode!=="daily"||wordSessionTotal<=0)return 0;
+ const tracked=new Set([
+  ...wordSessionQueue.map(w=>canonicalWordId(w.id)),
+  ...wordLearningQueue.map(x=>canonicalWordId(x.id)),
+  ...wordSessionHistory.map(x=>canonicalWordId(x.id))
+ ]);
+ const missing=todayNewPending(wordStudyLevel).filter(w=>!tracked.has(canonicalWordId(w.id)));
+ if(!missing.length)return 0;
+ wordSessionQueue.push(...missing);
+ wordSessionTotal+=missing.length;
+ return missing.length;
+}
 // Keep a study session's starting target fixed. Newly due cards are shown
 // separately and enter the next session, never silently increase its denominator.
 function reconcileDailyWordSession(){
@@ -2750,7 +2778,7 @@ function persistWordSession(){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length)))return;
  const data={mode:wordMode,total:wordSessionTotal,done:wordSessionDone,index:wordIndex,
   immediate:wordSessionQueue.map(w=>w.id),learning:wordLearningQueue.map(x=>x.id),quick:wordQuickRepeats,quickTurn:wordQuickTurn,quickActive:wordQuickActive,
-  history:wordSessionHistory.map(h=>({...h,word:undefined})),mixedOrder:true,savedAt:Date.now()};
+  history:wordSessionHistory.map(h=>({...h,word:undefined})),mixedOrder:true,newGap:wordNonNewStreak,savedAt:Date.now()};
  try{localStorage.setItem(wordSessionStorageKey(),JSON.stringify(data))}catch(e){console.warn("Word session save failed",e)}
 }
 function restoreWordSession(){
@@ -2784,11 +2812,22 @@ function restoreWordSession(){
  wordSessionDone=Math.max(0,Number(data.done)||0);wordSessionTotal=data.total;
  wordIndex=Math.max(0,Number(data.index)||0);
  wordSessionHistory=(data.history||[]).map(h=>({...h,id:canonicalWordId(h.id),word:wordById.get(h.id)})).filter(h=>h.word);
+ // Restore the number of reviewed cards since the most recent new card.
+ // Existing sessions without this field can derive it from their history.
+ if(Number.isFinite(data.newGap))wordNonNewStreak=Math.max(0,Math.min(5,Math.floor(data.newGap)));
+ else{
+  wordNonNewStreak=0;
+  for(let i=wordSessionHistory.length-1;i>=0&&wordNonNewStreak<5;i--){
+   const before=wordSessionHistory[i].before;
+   if(!before||!(Number(before.reviews)>0))break;
+   wordNonNewStreak++;
+  }
+ }
   if(!wordSessionQueue.length&&!wordLearningQueue.length&&!wordQuickRepeats.length){localStorage.removeItem(wordSessionStorageKey());return false}
  return true;
 }
 function clearWordSession(){
- wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordIndex=0;
+ wordSessionQueue=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;wordSessionDone=0;wordSessionTotal=0;wordSessionHistory=[];wordNonNewStreak=0;wordIndex=0;
  localStorage.removeItem(wordSessionStorageKey());
 }
 function showWordDashboard(){
@@ -2799,12 +2838,12 @@ function showWordDashboard(){
 }
 function startWordStudy(mode="daily"){
  if(!(wordSessionTotal>0&&(wordSessionQueue.length||wordLearningQueue.length||wordQuickRepeats.length))&&!restoreWordSession()){
-  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
+  wordMode=mode;wordIndex=0;wordSessionDone=0;wordSessionHistory=[];wordNonNewStreak=0;wordLearningQueue=[];wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
   wordSessionQueue=mode==="starred"?starredWords(wordStudyLevel):buildWordStudyQueue();
   wordSessionTotal=wordSessionQueue.length;
  }
  if(!wordSessionTotal){renderWordDashboard();return}
- if(wordMode==="daily")reconcileDailyWordSession();
+ if(wordMode==="daily"){includeMissingDailyNewInSession();reconcileDailyWordSession()}
  persistWordSession();
  $("wordDashboard").classList.add("hidden");$("wordFocusPanel").classList.add("hidden");$("wordLibraryPanel").classList.add("hidden");$("wordStudyPanel").classList.remove("hidden");
  renderWord();wordTop();
@@ -3236,7 +3275,7 @@ function switchWordLevel(level){
  persistWordSession();
  wordStudyLevel=level;localStorage.setItem(WORD_LEVEL_KEY,level);
  wordIndex=0;wordMode="daily";wordSessionQueue=[];wordLearningQueue=[];
- wordSessionTotal=0;wordSessionDone=0;wordSessionHistory=[];
+ wordSessionTotal=0;wordSessionDone=0;wordSessionHistory=[];wordNonNewStreak=0;
  wordQuickRepeats=[];wordQuickTurn=0;wordQuickActive=null;
  restoreWordSession();
  renderWordDashboard();
@@ -3309,8 +3348,9 @@ $("wordRating").addEventListener("click",e=>{
  const reviewLogLength=(state.reviewLog||[]).length,profileBefore=JSON.parse(JSON.stringify(state.fsrsProfile||{})),learningQueueBefore=JSON.parse(JSON.stringify(wordLearningQueue));
  const quickBefore=JSON.parse(JSON.stringify(wordQuickRepeats)),quickTurnBefore=wordQuickTurn,quickActiveBefore=wordQuickActive?{...wordQuickActive}:null;
  const isQuick=!!wordQuickActive&&wordQuickActive.id===currentId;
- wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,countedDone:false});
+ wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,newGapBefore:wordNonNewStreak,countedDone:false});
  if(!isQuick)rateWord(currentId,b.dataset.rate);
+ if(wordMode==="daily"&&!isQuick)wordNonNewStreak=before?.reviews>0?Math.min(5,wordNonNewStreak+1):0;
  // A new card attempt must start with all tap-to-reveal furigana hidden.
  clearStudyFuriganaState();
  const after=getSrs(currentId),needsRepeat=!isQuick&&(after.state==="learning"||after.state==="relearning");
@@ -3344,6 +3384,7 @@ $("undoWordRating").addEventListener("click",()=>{
  if(Array.isArray(h.quickBefore))wordQuickRepeats=h.quickBefore;
  if(Number.isFinite(h.quickTurnBefore))wordQuickTurn=h.quickTurnBefore;
  wordQuickActive=h.quickActiveBefore||null;
+ if(Number.isFinite(h.newGapBefore))wordNonNewStreak=h.newGapBefore;
  if(h.word&&!wordSessionQueue.some(w=>w.id===h.id))wordSessionQueue.unshift(h.word);
  if(h.countedDone)wordSessionDone=Math.max(0,wordSessionDone-1);wordIndex=0;
  saveState(state);persistWordSession();refreshAll();renderWord();wordTop();
