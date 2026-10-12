@@ -35,11 +35,11 @@ button:disabled{opacity:.6}.controls{display:flex;align-items:center;gap:13px;fl
 <h1>단어 MP3 재생성 진행률</h1>
 <p class="muted">예문 64kbps 압축 완료 후 <strong>3,233개 단어 발음</strong>을 새 브라우저 Kokoro JS로 다시 생성해. WAV에서 <strong>곧바로 64kbps MP3</strong>로 저장하고, 300개씩 처리하며 50개마다 GitHub에 게시해.</p>
 <section class="card">
- <div class="top"><h2>전체 단어 음성 교체</h2><strong class="percent" id="pct">—%</strong></div>
+ <div class="top"><h2>전체 단어 음성 재생성·검증</h2><strong class="percent" id="pct">—%</strong></div>
  <div class="value" id="count">확인 중…</div>
  <progress id="bar" max="3233" value="0" aria-label="단어 음성 전체 재생성 완료율"></progress>
  <div class="stats">
-  <div class="stat"><strong id="done">—</strong><span>교체 완료</span></div>
+  <div class="stat"><strong id="done">—</strong><span>생성·검증 완료</span></div>
   <div class="stat"><strong id="remain">—</strong><span>남은 단어</span></div>
   <div class="stat"><strong id="batchDone">—</strong><span>완료 배치 / 전체</span></div>
  </div>
@@ -56,6 +56,7 @@ button:disabled{opacity:.6}.controls{display:flex;align-items:center;gap:13px;fl
  <h2>교체한 단어 MP3 실제 용량</h2>
  <div class="value" id="size">— MB</div>
  <p class="muted" id="details">GitHub에 반영된 단어 MP3 파일 크기만 합산해.</p>
+ <p class="muted" id="same">이미 새 Kokoro 64kbps 음성과 완전히 동일한 파일은 중복 교체하지 않고 검증 완료로 집계해.</p>
  <p class="muted">예문 MP3·단어 뜻·후리가나·안키/FSRS 학습 진도는 변경하지 않아. 기존 단어 MP3는 Git 이력에서 복원할 수 있어.</p>
 </section>
 <div class="controls">
@@ -94,13 +95,13 @@ async function refresh(){
  try{
   const stamp=Date.now();
   const items=await Promise.all(Array.from({length:COUNT},(_,i)=>loadBatch(i+1,stamp)));
-  let done=0,finished=0,oldBytes=0,newBytes=0,latest=null;
+  let done=0,finished=0,oldBytes=0,newBytes=0,identical=0,latest=null;
   for(const batch of items){
    if(!batch)continue;
    done+=batch.completed.length;
    if(batch.status==="complete"&&batch.completed.length===batch.count)finished++;
    if(batch.updated_at&&(!latest||Date.parse(batch.updated_at)>Date.parse(latest)))latest=batch.updated_at;
-   for(const item of batch.completed){oldBytes+=Number(item.original_bytes)||0;newBytes+=Number(item.bytes)||0}
+   for(const item of batch.completed){oldBytes+=Number(item.original_bytes)||0;newBytes+=Number(item.bytes)||0;if(item.unchanged)identical++}
   }
   if(done>TOTAL)throw Error("전체 단어 수를 초과한 진행 데이터");
   const firstIncomplete=items.findIndex((b,i)=>!b||b.status!=="complete"||b.completed.length!==expected(i+1));
@@ -114,7 +115,7 @@ async function refresh(){
   el("batchLabel").textContent=active+" / "+COUNT+"차";
   el("batchCount").textContent=activeDone+" / "+expected(active)+"개";
   el("batchBar").max=expected(active);el("batchBar").value=activeDone;
-  if(allDone)el("status").textContent="전체 단어 MP3 3,233개 재생성 완료";
+  if(allDone)el("status").textContent="전체 단어 MP3 3,233개 재생성·검증 완료";
   else if(activeData)el("status").textContent=active+"차 단어 재생성 중 · 50개마다 GitHub 저장";
   else if(done===0){
    const compression=await loadJson("audio/vocab/compression-batches/batch-0011.json",stamp);
@@ -129,6 +130,7 @@ async function refresh(){
    pill.textContent=n+"차 "+count+"/"+expected(n);steps.append(pill);
   }
   el("size").textContent=(newBytes/1000000).toFixed(2)+" MB";
+  el("same").textContent="실제 변경 "+num(done-identical)+"개 · 기존 파일과 완전히 동일하여 검증만 한 항목 "+num(identical)+"개";
   el("details").textContent=done?num(done)+"개 기준 · 기존 "+(oldBytes/1e6).toFixed(2)+"MB → 새 음성 "+(newBytes/1e6).toFixed(2)+"MB":
    "새 브라우저 Kokoro 단어 음성 저장 시작 전";
   el("last").textContent=latest?"마지막 GitHub 저장: "+new Date(latest).toLocaleString("ko-KR"):"아직 게시된 새 단어 MP3가 없어.";

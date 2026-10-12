@@ -130,10 +130,14 @@ async function publishCheckpoint(){
  ledger.status=progress===chosen.length?"complete":"in_progress";
  ledger.updated_at=new Date().toISOString();
  await writeFile(join(root,ledgerPath),JSON.stringify(ledger,null,2)+"\n");
- const staged=[...pending.map(x=>x.path),revisionPath,ledgerPath];
+ // Identical audio is already the approved 64kbps Kokoro output. Verify and
+ // count it in the progress ledger, but do not overwrite or stage the file.
+ const changedFiles=pending.filter(x=>!x.unchanged).map(x=>x.path);
+ const staged=[...changedFiles,revisionPath,ledgerPath];
  git("add","--",...staged);
  const diff=git("diff","--cached","--name-only").split("\n").filter(Boolean);
- if(diff.length!==staged.length||diff.some(x=>!staged.includes(x)))throw new Error("Staged unexpected repository changes");
+ if(diff.length!==staged.length||diff.some(x=>!staged.includes(x)))
+  throw new Error("Staged unexpected repository changes");
  git("commit","-m","audio: browser Kokoro word batch "+batchNumber+" clips "+(progress-pending.length+1)+"-"+progress+"/"+chosen.length+" 64kbps");
  for(let i=1;i<=5;i++){
   git("fetch","origin","main");
@@ -200,7 +204,7 @@ try{
     mp3Bytes:bytes.length,duration_s:duration,first16:bytes.subarray(0,16).toString("hex"),
     validMp3Header:hasId3||hasMpegSync,sameSha:newsha===oldsha
    }));
-   if(bytes.length<1200||newsha===oldsha||!(hasId3||hasMpegSync))
+   if(bytes.length<1200||!(hasId3||hasMpegSync))
     throw new Error("64kbps word MP3 validation failed: "+item.path+
      " / bytes="+bytes.length+" / seconds="+duration+
      " / prefix="+bytes.subarray(0,12).toString("hex")+
@@ -209,10 +213,12 @@ try{
     "-show_entries","format=bit_rate","-of","json",mp3Temp],{encoding:"utf8"}));
    const rate=Number(probe.format?.bit_rate);
    if(!(rate>=58000&&rate<=74000))throw new Error("Unexpected word MP3 bitrate: "+rate);
-   await rename(mp3Temp,path);
+   const unchanged=newsha===oldsha;
+   if(!unchanged)await rename(mp3Temp,path);
+   else console.log("ALREADY IDENTICAL; verified, no overwrite",item.path);
    ledger.completed.push({path:item.path,id:item.id,reading:item.text,
     old_sha256:oldsha,new_sha256:newsha,original_bytes:old.length,
-    bytes:bytes.length,duration_s:Number(duration.toFixed(3))});
+    bytes:bytes.length,duration_s:Number(duration.toFixed(3)),unchanged});
    pending.push(ledger.completed.at(-1));
   }finally{
    await unlink(wavTemp).catch(()=>{});
