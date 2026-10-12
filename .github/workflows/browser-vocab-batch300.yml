@@ -7,9 +7,16 @@ on:
       - ".github/workflows/browser-vocab-batch300.yml"
       - "audio/vocab/browser-batch-plan.json"
   workflow_dispatch:
+    inputs:
+      batch_number:
+        description: "One 300-example batch to process (auto-chain starts at 2)"
+        required: true
+        type: number
+        default: 2
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: jlpt-browser-example-300
@@ -19,6 +26,8 @@ jobs:
   rebuild:
     runs-on: ubuntu-22.04
     timeout-minutes: 330
+    env:
+      BROWSER_AUDIO_BATCH_NUMBER: ${{ github.event_name == 'workflow_dispatch' && inputs.batch_number || 2 }}
     steps:
       - name: Check out the latest main
         uses: actions/checkout@v4
@@ -42,11 +51,13 @@ jobs:
           plan=json.loads(Path("audio/vocab/browser-batch-plan.json").read_text())
           assert plan["version"] == 1
           assert plan["batch_size"] == 300
-          assert plan["batch_number"] >= 1
+          batch=int(__import__("os").environ["BROWSER_AUDIO_BATCH_NUMBER"])
+          assert batch >= 2
+          assert batch <= (3104 + plan["batch_size"] - 1) // plan["batch_size"]
           assert plan["mode"] == "replace-example-only"
           assert plan["engine"] == "kokoro-js-jp@0.2.0"
           assert plan["voice"] == "jf_alpha"
-          print("READY: approved 300-example batch",plan["batch_number"])
+          print("READY: approved 300-example batch",batch)
           PY
 
       - name: Install browser engine
@@ -81,11 +92,36 @@ jobs:
           import json
           from pathlib import Path
           plan=json.loads(Path("audio/vocab/browser-batch-plan.json").read_text())
-          path=Path("audio/vocab/browser-batches") / f'batch-{plan["batch_number"]:04d}.json'
+          import os
+          batch=int(os.environ["BROWSER_AUDIO_BATCH_NUMBER"])
+          path=Path("audio/vocab/browser-batches") / f'batch-{batch:04d}.json'
           ledger=json.loads(path.read_text())
           assert ledger["status"]=="complete"
-          assert len(ledger["completed"])==ledger["count"]==300
+          expected=min(300,ledger["total_examples"]-(batch-1)*300)
+          assert len(ledger["completed"])==ledger["count"]==expected
           for item in ledger["completed"]:
             assert Path(item["path"]).is_file()
-          print("SUCCESS:",ledger["count"],"new example MP3s published, study records untouched")
+          print("SUCCESS: batch",batch,ledger["count"],"new example MP3s published, study records untouched")
           PY
+
+      - name: Automatically dispatch the next 300-example batch
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          current="$BROWSER_AUDIO_BATCH_NUMBER"
+          total=$(python3 - <<'PY'
+          import json
+          source=json.load(open("audio/vocab/source.json"))
+          n=sum(i["kind"]=="example" for i in source["items"])
+          print((n+299)//300)
+          PY
+          )
+          next=$((current+1))
+          if [ "$next" -le "$total" ]; then
+            echo "Batch $current finished. Dispatching batch $next of $total"
+            gh workflow run browser-vocab-batch300.yml --repo "$GITHUB_REPOSITORY" --ref main -f batch_number="$next"
+          else
+            echo "COMPLETE: all $total browser audio batches have finished."
+          fi
