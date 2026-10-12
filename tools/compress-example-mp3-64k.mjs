@@ -188,3 +188,10 @@ for(let i=ledger.completed.length;i<chosen.length;i++){
 }
 console.log("COMPLETE 64KBPS BATCH",batchNumber,"/",11,
  "converted",ledger.completed.length,"examples; word audio and study records untouched");
+// Rapid 50-file commits cancel in-flight GitHub Pages deploys. Pause only
+// between completed 300-file batches so users can open the progress page and
+// Pages can publish at least one completed batch before the next one starts.
+if(batchNumber<11){
+ console.log("Waiting 135 seconds for GitHub Pages to deploy a stable progress snapshot");
+ await new Promise(resolve=>setTimeout(resolve,135000));
+}

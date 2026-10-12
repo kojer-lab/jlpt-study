@@ -74,8 +74,16 @@ const num=n=>Number(n).toLocaleString("ko-KR");
 let busy=false;
 function expected(n){return Math.min(BATCH,TOTAL-(n-1)*BATCH)}
 async function getBatch(n,t){
- const path="audio/vocab/compression-batches/batch-"+String(n).padStart(4,"0")+".json?t="+t;
- const response=await fetch(path,{cache:"no-store"});
+ const relative="audio/vocab/compression-batches/batch-"+String(n).padStart(4,"0")+".json";
+ // Pull the latest checkpoint straight from main so GitHub Pages build
+ // cancellation/cache delays never freeze this 45-second progress display.
+ // If raw GitHub is unreachable, fall back to the Pages-hosted file.
+ let response;
+ try{
+  response=await fetch("https://raw.githubusercontent.com/kojer-lab/jlpt-study/main/"+relative+"?t="+t,{cache:"no-store"});
+ }catch{
+  response=await fetch(relative+"?t="+t,{cache:"no-store"});
+ }
  if(response.status===404)return null;
  if(!response.ok)throw Error(n+"차 진행 파일을 읽지 못했어 ("+response.status+")");
  const data=await response.json();
