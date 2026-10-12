@@ -1,44 +1,139 @@
-<!doctype html><html lang="ko"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
-<title>JLPT 예문 MP3 재생성 진행률</title>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>JLPT 예문 MP3 전체 재생성 진행률</title>
 <style>
-body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;background:Canvas;color:CanvasText;max-width:660px;margin:auto;padding:25px 18px;line-height:1.75}
-h1{font-size:25px}a{color:LinkText}.card{border:1px solid color-mix(in srgb,CanvasText 20%,transparent);padding:19px;border-radius:16px}
-.muted{color:GrayText;font-size:14px}.count{font-size:32px;font-weight:800;margin:15px 0 3px}
-progress{width:100%;height:19px;accent-color:#6964d9}button{font:inherit;border:0;border-radius:10px;background:#5653c9;color:white;font-weight:700;padding:11px 18px;cursor:pointer}
-</style></head><body><a href="./">← JLPT 학습 화면</a>
-<h1>예문 MP3 재생성 진행률</h1><p>검증된 브라우저 Kokoro로 예문만 교체하는 작업이야. <strong>한 번에 300개, 50개마다 GitHub에 저장</strong>해.</p>
-<div class="card"><div id="status">진행 상황 확인 중…</div>
-<div class="count" id="count">— / 300</div>
-<progress id="bar" max="300" value="0"></progress>
-<p id="detail" class="muted"></p>
-<button type="button" id="refresh">새로고침</button></div>
-<p class="muted">표시되는 숫자는 실제 GitHub 저장을 완료한 MP3 수야. 50개 생성이 끝나기 전에는 숫자가 올라가지 않을 수 있어. 페이지를 닫아도 자동 생성은 계속 진행돼. 기존 안키 기록과 단어 발음은 변경하지 않아.</p>
-<p><a href="https://github.com/kojer-lab/jlpt-study/actions/workflows/browser-vocab-batch300.yml">GitHub Actions 실행 상황 열기</a></p>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:Canvas;color:CanvasText}
+main{max-width:800px;margin:auto;padding:24px 17px 74px;line-height:1.65}
+a{color:LinkText}
+h1{font-size:25px;letter-spacing:-.4px;margin:13px 0 8px}
+h2{font-size:17px;margin:0 0 14px}
+p{margin:10px 0 15px}
+.muted{color:GrayText;font-size:14px}
+.card{border:1px solid color-mix(in srgb,CanvasText 18%,transparent);border-radius:16px;padding:19px;margin:15px 0}
+.head{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.value{font-size:32px;font-weight:800;letter-spacing:-1px;margin-top:8px;font-variant-numeric:tabular-nums}
+.percent{font-size:20px;font-weight:750;font-variant-numeric:tabular-nums}
+progress{display:block;width:100%;height:16px;margin:12px 0;accent-color:#6563d0}
+.smallProgress{height:11px}
+.statgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:18px}
+.stat{padding:9px 4px;border-top:1px solid color-mix(in srgb,CanvasText 15%,transparent)}
+.stat strong{display:block;font-size:19px;font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:GrayText}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.pill{font-size:12px;padding:4px 9px;border:1px solid color-mix(in srgb,CanvasText 20%,transparent);border-radius:18px}
+.pill.complete{background:color-mix(in srgb,#21815b 19%,Canvas);border-color:#21815b}
+.pill.active{border:2px solid #6563d0;padding:3px 8px}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+button{font:inherit;border:0;border-radius:9px;background:#5354c6;color:white;font-weight:700;padding:11px 18px;cursor:pointer}
+#status{font-size:15px}
+#latest{font-size:13px;color:GrayText;margin-top:12px}
+@media(max-width:450px){.value{font-size:28px}.card{padding:15px}.statgrid{gap:4px}.stat strong{font-size:16px}}
+</style>
+</head>
+<body>
+<main>
+<a href="./">← JLPT 학습 화면</a>
+<h1>예문 MP3 전체 재생성 진행률</h1>
+<p class="muted">브라우저 Kokoro JS · <strong>300개씩 자동 진행</strong> · 50개마다 GitHub 저장 · 기존 학습 기록 유지</p>
+<section class="card">
+ <div class="head"><h2>전체 누적 진행률</h2><span class="percent" id="percent">—%</span></div>
+ <div class="value" id="overall">조회 중…</div>
+ <progress id="overallBar" value="0" max="3104" aria-label="예문 전체 재생성 진행률"></progress>
+ <div class="statgrid">
+  <div class="stat"><strong id="done">—</strong><span>교체 완료</span></div>
+  <div class="stat"><strong id="remaining">—</strong><span>남은 예문</span></div>
+  <div class="stat"><strong id="batches">—</strong><span>완료 배치 / 전체</span></div>
+ </div>
+</section>
+<section class="card">
+ <div class="head"><h2>현재 300개 배치</h2><strong id="batchLabel">—</strong></div>
+ <div id="status" role="status" aria-live="polite">GitHub에 저장된 데이터를 확인하고 있어.</div>
+ <div class="value" id="batchCount">— / 300개</div>
+ <progress class="smallProgress" id="batchBar" value="0" max="300" aria-label="현재 배치 진행률"></progress>
+ <div class="pills" id="milestones" aria-label="배치별 완료 내역"></div>
+ <div id="latest">마지막 저장 시각을 확인 중이야.</div>
+</section>
+<div class="controls">
+ <button type="button" id="refresh">지금 갱신하기</button>
+ <span class="muted" id="refreshTime">45초마다 자동 갱신</span>
+</div>
+<p class="muted">생성 도중에는 숫자가 멈춰 보일 수 있어. 50개가 GitHub에 게시되면 진행률이 증가하고, GitHub Pages 반영에는 추가 시간이 걸릴 수 있어. 화면을 닫아도 GitHub Actions 작업은 계속 진행돼.</p>
+<p><a href="https://github.com/kojer-lab/jlpt-study/actions/workflows/browser-vocab-batch300.yml" target="_blank" rel="noopener">GitHub Actions 전체 작업 내역 확인 ↗</a></p>
+</main>
 <script>
-const el=id=>document.getElementById(id);
-async function refresh(){
- el("status").textContent="확인 중…";
- try{
-  const cfg=await fetch("audio/vocab/browser-batch-plan.json?ts="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("설정 파일을 불러오지 못했어.");return r.json()});
-  const batch=cfg.batch_number;
-  const path="audio/vocab/browser-batches/batch-"+String(batch).padStart(4,"0")+".json";
-  const response=await fetch(path+"?ts="+Date.now(),{cache:"no-store"});
-  if(response.status===404){
-   el("status").textContent="첫 번째 50개를 생성 중이거나 작업이 아직 시작되지 않았어.";
-   el("count").textContent="0 / "+cfg.batch_size;
-   el("bar").max=cfg.batch_size;el("bar").value=0;
-   el("detail").textContent="실시간 단계별 결과는 GitHub Actions에서 확인할 수 있어.";
-   return;
-  }
-  if(!response.ok)throw Error("진행 파일을 불러오지 못했어.");
-  const data=await response.json(),done=data.completed?.length||0,total=data.count;
-  el("status").textContent=data.status==="complete"?"이 배치 완료 · 새 MP3 교체 반영됨":"배치 "+batch+" 진행 중";
-  el("count").textContent=done+" / "+total;
-  el("bar").max=total;el("bar").value=done;
-  el("detail").textContent="전체 예문 "+data.total_examples+"개 · 이번 배치 "+batch+" · 완료 "+Math.round(done/total*100)+"%"+
-    (data.updated_at?" · 마지막 저장 "+new Date(data.updated_at).toLocaleString("ko-KR"):"");
- }catch(e){el("status").textContent="진행 상황 조회 실패";el("detail").textContent=String(e.message||e)}
+const $=id=>document.getElementById(id);
+const number=n=>Number(n).toLocaleString("ko-KR");
+const TOTAL=3104,BATCH_SIZE=300,BATCH_COUNT=Math.ceil(TOTAL/BATCH_SIZE);
+let busy=false,interval=null;
+async function getLedger(n,nonce){
+ const name="audio/vocab/browser-batches/batch-"+String(n).padStart(4,"0")+".json";
+ const response=await fetch(name+"?t="+nonce,{cache:"no-store"});
+ if(response.status===404)return null;
+ if(!response.ok)throw new Error("배치 "+n+"의 결과를 불러올 수 없어 ("+response.status+")");
+ const data=await response.json();
+ const expected=Math.min(BATCH_SIZE,TOTAL-(n-1)*BATCH_SIZE);
+ if(data.batch_number!==n||data.count!==expected||!Array.isArray(data.completed)||data.completed.length>expected){
+  throw new Error("배치 "+n+"의 진행 데이터가 일치하지 않아.");
+ }
+ return data;
 }
-el("refresh").addEventListener("click",refresh);refresh();
-</script></body></html>
+async function refresh(){
+ if(busy)return;busy=true;$("refresh").disabled=true;
+ try{
+  const nonce=Date.now();
+  const items=await Promise.all(Array.from({length:BATCH_COUNT},(_,i)=>getLedger(i+1,nonce)));
+  let completed=0,completeBatches=0,latest=null;
+  for(const item of items){
+   if(!item)continue;
+   completed+=item.completed.length;
+   if(item.status==="complete"&&item.completed.length===item.count)completeBatches++;
+   if(item.updated_at&&(!latest||new Date(item.updated_at)>new Date(latest)))latest=item.updated_at;
+  }
+  if(completed>TOTAL)throw new Error("완료 수량이 총 예문 수를 초과했어.");
+  const active=Math.max(1,items.findIndex((item,i)=>!item||item.status!=="complete"||item.completed.length!==item.count)+1)||BATCH_COUNT;
+  const firstIncomplete=items.findIndex((item,i)=>!item||item.status!=="complete"||item.completed.length!==item.count);
+  const batch=firstIncomplete<0?BATCH_COUNT:firstIncomplete+1;
+  const current=items[batch-1];
+  const max=Math.min(BATCH_SIZE,TOTAL-(batch-1)*BATCH_SIZE);
+  const batchDone=current?.completed.length||0;
+  $("overall").textContent=number(completed)+" / "+number(TOTAL)+"개";
+  $("percent").textContent=(100*completed/TOTAL).toFixed(1)+"%";
+  $("overallBar").value=completed;
+  $("done").textContent=number(completed);
+  $("remaining").textContent=number(TOTAL-completed);
+  $("batches").textContent=number(completeBatches)+" / "+number(BATCH_COUNT);
+  $("batchLabel").textContent=number(batch)+" / "+number(BATCH_COUNT)+"차";
+  $("batchCount").textContent=number(batchDone)+" / "+number(max)+"개";
+  $("batchBar").max=max;$("batchBar").value=batchDone;
+  const allDone=completed===TOTAL&&completeBatches===BATCH_COUNT;
+  $("status").textContent=allDone?"전체 "+number(TOTAL)+"개 MP3 교체 완료":
+   current?.status==="in_progress"?"현재 "+batch+"차 배치 재생성 중":
+   "다음 "+batch+"차 배치를 준비 중이거나 첫 50개 생성 중";
+  const pills=$("milestones");pills.replaceChildren();
+  for(let n=1;n<=BATCH_COUNT;n++){
+   const item=items[n-1],done=item?.completed.length||0;
+   const maxN=Math.min(BATCH_SIZE,TOTAL-(n-1)*BATCH_SIZE);
+   const status=item?.status==="complete"&&done===maxN?"complete":n===batch?"active":"";
+   const pill=document.createElement("span");
+   pill.className="pill "+status;pill.textContent=n+"차 "+done+"/"+maxN;
+   pills.append(pill);
+  }
+  $("latest").textContent=latest?"GitHub 마지막 완료 저장: "+new Date(latest).toLocaleString("ko-KR"):"아직 배치 저장 내역이 없어.";
+  $("refreshTime").textContent="방금 확인 · 45초마다 자동 갱신";
+ }catch(error){
+  $("status").textContent="진행률 조회 실패: "+String(error.message||error);
+  $("refreshTime").textContent="다시 갱신해 줘.";
+ }finally{busy=false;$("refresh").disabled=false}
+}
+$("refresh").addEventListener("click",refresh);
+refresh();
+interval=setInterval(()=>{if(!document.hidden)refresh()},45000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()});
+</script>
+</body></html>
