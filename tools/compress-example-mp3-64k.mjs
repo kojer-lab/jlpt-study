@@ -164,7 +164,7 @@ for(let i=ledger.completed.length;i<chosen.length;i++){
   execFileSync("ffmpeg",[
    "-hide_banner","-loglevel","error","-nostdin","-y",
    "-i",file,"-map","0:a:0","-vn","-map_metadata","-1",
-   "-c:a","libmp3lame","-ar","24000","-ac","1","-b:a","64k",temp
+   "-c:a","libmp3lame","-ar","24000","-ac","1","-b:a","64k","-f","mp3",temp
   ],{timeout:60000});
   const converted=await readFile(temp),out=checkMp3(temp),newhash=sha(converted);
   assert(converted.length>2000&&converted.length<prior.length&&newhash!==oldhash,
