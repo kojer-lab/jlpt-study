@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/browser-kokoro-qa20.yml"
+      - "tools/browser-kokoro-qa20.mjs"
   workflow_dispatch:
 
 permissions:

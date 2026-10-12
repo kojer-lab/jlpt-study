@@ -43,8 +43,14 @@ const port=server.address().port;
 let browser=null;
 const checks=[];
 try{
- browser=await chromium.launch({headless:true,args:["--no-sandbox","--disable-dev-shm-usage"]});
+ // CI Chromium exposes navigator.gpu without a usable GPU adapter. The test
+ // page checks navigator.gpu before choosing a device; force a true browser
+ // WASM/q8 run BEFORE the page loads instead of falling back after WebGPU fails.
+ browser=await chromium.launch({headless:true,args:["--no-sandbox","--disable-dev-shm-usage","--disable-features=WebGPU"]});
  const page=await browser.newPage({locale:"ja-JP"});
+ await page.addInitScript(()=>{
+  Object.defineProperty(navigator,"gpu",{configurable:true,value:undefined});
+ });
  page.setDefaultTimeout(120000);
  page.on("console",message=>{if(message.type()==="error")console.error("BROWSER",message.text())});
  page.on("pageerror",err=>console.error("BROWSER PAGE ERROR",String(err)));
