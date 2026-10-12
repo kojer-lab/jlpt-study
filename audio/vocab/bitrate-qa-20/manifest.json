@@ -1,0 +1,542 @@
+{
+  "version": 1,
+  "count": 20,
+  "codec": "mp3",
+  "voice": "jf_alpha",
+  "sample_rate": 24000,
+  "source": "approved browser Kokoro re-generated examples (already 128kbps)",
+  "process": "libmp3lame MP3-to-MP3 conversion; no new synthesis",
+  "production_replaced": false,
+  "options_kbps": [
+    128,
+    96,
+    64
+  ],
+  "total_bytes": {
+    "64": 537732,
+    "96": 806148,
+    "128": 1050624
+  },
+  "items": [
+    {
+      "index": 1,
+      "word_id": "unagasu",
+      "example_index": 0,
+      "text": "政府は企業に早急な対応を促した",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/unagasu-ex1-64k.mp3",
+          "bytes": 32493,
+          "sha256": "a72699f37026f98b49ef692184e94127a02f04d9d3c521e6892ee9fd8476b9e1",
+          "duration_s": 4.032
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/unagasu-ex1-96k.mp3",
+          "bytes": 48717,
+          "sha256": "9a3850ed08e7b8e2c9f608159221d63619feebeb1d33fecff2e2bac16d45d114",
+          "duration_s": 4.032
+        },
+        "128": {
+          "path": "audio/vocab/unagasu-ex1.mp3",
+          "bytes": 63744,
+          "sha256": "56a210d9f0cc76fd772fb47fdb9a64b6a5110dc4595b5f7ad289b78dc0b49d6d",
+          "duration_s": 3.984
+        }
+      }
+    },
+    {
+      "index": 2,
+      "word_id": "todokooru",
+      "example_index": 0,
+      "text": "手続きが滞っている",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/todokooru-ex1-64k.mp3",
+          "bytes": 22317,
+          "sha256": "d1f4d5d29f5d8e9f9ab4f3baab1e16266ec8bfcb7589b7f51799b9354036ed20",
+          "duration_s": 2.76
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/todokooru-ex1-96k.mp3",
+          "bytes": 33453,
+          "sha256": "8d69d49f431144e5e5d35883539262a88ef671fab8c3f723e07ae9d451056fd9",
+          "duration_s": 2.76
+        },
+        "128": {
+          "path": "audio/vocab/todokooru-ex1.mp3",
+          "bytes": 43392,
+          "sha256": "6878c5a1abe3c71b1cdab172bb6c1238d2dec74a685c40ddc88d902fc45d76da",
+          "duration_s": 2.712
+        }
+      }
+    },
+    {
+      "index": 3,
+      "word_id": "todokooru",
+      "example_index": 1,
+      "text": "大雨の影響で物流が滞った",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/todokooru-ex2-64k.mp3",
+          "bytes": 29421,
+          "sha256": "342be5b0562c62f26427ffb6de8548f3b4e610fff839aa0f22e0a40d36cb6ace",
+          "duration_s": 3.648
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/todokooru-ex2-96k.mp3",
+          "bytes": 44109,
+          "sha256": "024aec14f62a02d854332c6da6ba830c44af82be2d3026c3666a6e10d3b15df0",
+          "duration_s": 3.648
+        },
+        "128": {
+          "path": "audio/vocab/todokooru-ex2.mp3",
+          "bytes": 57600,
+          "sha256": "2a7ba1baa412b2611c547df338cb2db8f397ae9c1d6bb844ba248c3e5758593e",
+          "duration_s": 3.6
+        }
+      }
+    },
+    {
+      "index": 4,
+      "word_id": "obiyakasu",
+      "example_index": 0,
+      "text": "気候変動が食料安全保障を脅かしている",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/obiyakasu-ex1-64k.mp3",
+          "bytes": 35565,
+          "sha256": "883718a320589896c9754244921a00d7116c13799aa5fcb12020c93cd3204892",
+          "duration_s": 4.416
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/obiyakasu-ex1-96k.mp3",
+          "bytes": 53325,
+          "sha256": "b80239d5bd7cc4a4231535f160146c1e0e9f216e3877a46dc0eb1da1bec6b0e3",
+          "duration_s": 4.416
+        },
+        "128": {
+          "path": "audio/vocab/obiyakasu-ex1.mp3",
+          "bytes": 69888,
+          "sha256": "3f823487265d6ee18526eff4818d53bcac35b51b7b2aaa6d337cab3bd1c5df4c",
+          "duration_s": 4.368
+        }
+      }
+    },
+    {
+      "index": 5,
+      "word_id": "somuku",
+      "example_index": 0,
+      "text": "規則に背く行為は処分の対象となる",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/somuku-ex1-64k.mp3",
+          "bytes": 31341,
+          "sha256": "4d36b1b0b5e7e2b320b886dd97ede5210c1b57dc948d17d344e29bab84b9e3f5",
+          "duration_s": 3.888
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/somuku-ex1-96k.mp3",
+          "bytes": 46989,
+          "sha256": "cf926847d45b2b13976e00919afb194e01c44e4f248ad76898dfac572f18322d",
+          "duration_s": 3.888
+        },
+        "128": {
+          "path": "audio/vocab/somuku-ex1.mp3",
+          "bytes": 61440,
+          "sha256": "1f55ab84b0d09e561e2f5fe4e82d2b987979719add6417863915c46ee60c4fea",
+          "duration_s": 3.84
+        }
+      }
+    },
+    {
+      "index": 6,
+      "word_id": "somuku",
+      "example_index": 1,
+      "text": "期待に背かないよう努力する",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/somuku-ex2-64k.mp3",
+          "bytes": 25005,
+          "sha256": "ddc0333ec73c41562133e7b08372a9f842bce3dd8283703c321079d0232dd658",
+          "duration_s": 3.096
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/somuku-ex2-96k.mp3",
+          "bytes": 37485,
+          "sha256": "4038637034a6e6d6fc7fc9444d0fa56860f9b9c2424b27e01bb81237fa0b2e06",
+          "duration_s": 3.096
+        },
+        "128": {
+          "path": "audio/vocab/somuku-ex2.mp3",
+          "bytes": 48768,
+          "sha256": "62b8ec2fcb4de0fd24f1b78f830472dd93cc610181133b343ea7fe055aad6a09",
+          "duration_s": 3.048
+        }
+      }
+    },
+    {
+      "index": 7,
+      "word_id": "fumaeru",
+      "example_index": 0,
+      "text": "結果を踏まえて判断する",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/fumaeru-ex1-64k.mp3",
+          "bytes": 22125,
+          "sha256": "158e019933f2a091d9f123c580cf8fbf85f12e33e6b1a04d6491825380959a83",
+          "duration_s": 2.736
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/fumaeru-ex1-96k.mp3",
+          "bytes": 33165,
+          "sha256": "613857aa3057c1616d8f9a5aa838d35e514fbe623551489462fad0ac3a13d8d2",
+          "duration_s": 2.736
+        },
+        "128": {
+          "path": "audio/vocab/fumaeru-ex1.mp3",
+          "bytes": 43008,
+          "sha256": "73a0b4d31057e13376fa879e8b3eef500e78552a2cf8ba060b0102572f77b557",
+          "duration_s": 2.688
+        }
+      }
+    },
+    {
+      "index": 8,
+      "word_id": "fumaeru",
+      "example_index": 1,
+      "text": "過去の経験を踏まえた計画が必要だ",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/fumaeru-ex2-64k.mp3",
+          "bytes": 30957,
+          "sha256": "3204efdf83b87a29c30df527994a42f0dbfdd441743fb7a538daa6642c03c55e",
+          "duration_s": 3.84
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/fumaeru-ex2-96k.mp3",
+          "bytes": 46413,
+          "sha256": "6eb0658c530b8748cf886f30936d36359ea7bfaa8819c693c476c80fcd4d25c6",
+          "duration_s": 3.84
+        },
+        "128": {
+          "path": "audio/vocab/fumaeru-ex2.mp3",
+          "bytes": 60672,
+          "sha256": "320edc4f391164d2972d5d2b1b6ae76e2380489fca4c4c41668d8f2cafb2c054",
+          "duration_s": 3.792
+        }
+      }
+    },
+    {
+      "index": 9,
+      "word_id": "sutareru",
+      "example_index": 0,
+      "text": "昔の習慣が次第に廃れていく",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/sutareru-ex1-64k.mp3",
+          "bytes": 28461,
+          "sha256": "d800a503cd580ba76f1bcda252313e4dbdaeed60a4a04dbaccfcea3f4b4432df",
+          "duration_s": 3.528
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/sutareru-ex1-96k.mp3",
+          "bytes": 42669,
+          "sha256": "b7f5497374dc95805c4adda38b86080dfb1ecf67dc4bb1ee480e3791cf63e718",
+          "duration_s": 3.528
+        },
+        "128": {
+          "path": "audio/vocab/sutareru-ex1.mp3",
+          "bytes": 55680,
+          "sha256": "358cba9fbe45f3cce993caa535228310631764c48b7e670377b5f41433deae7a",
+          "duration_s": 3.48
+        }
+      }
+    },
+    {
+      "index": 10,
+      "word_id": "sutareru",
+      "example_index": 1,
+      "text": "流行はいつか廃れるものだ",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/sutareru-ex2-64k.mp3",
+          "bytes": 23853,
+          "sha256": "f8786deeea54dcf3c28df29ce9a761127405f0a4d70dd51df3c17d13b4d88026",
+          "duration_s": 2.952
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/sutareru-ex2-96k.mp3",
+          "bytes": 35757,
+          "sha256": "c5ec802085da313672e212ce0044b919f6bd34c22815fe7d1fd01ac75aa9a567",
+          "duration_s": 2.952
+        },
+        "128": {
+          "path": "audio/vocab/sutareru-ex2.mp3",
+          "bytes": 46464,
+          "sha256": "23c35eee24fa6ceb460bc6959f72886539a5d89c0f6350870f76e1033282f4c3",
+          "duration_s": 2.904
+        }
+      }
+    },
+    {
+      "index": 11,
+      "word_id": "hagukumu",
+      "example_index": 0,
+      "text": "地域で子供の好奇心を育む",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/hagukumu-ex1-64k.mp3",
+          "bytes": 27885,
+          "sha256": "7533e561b79ed060199aa7bcc6a37719237384d7efc7b3f70e8a1316be16cc94",
+          "duration_s": 3.456
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/hagukumu-ex1-96k.mp3",
+          "bytes": 41805,
+          "sha256": "677b2c7d4b02819bd933b38874259522e05e802eb53223932a2f4744854edca0",
+          "duration_s": 3.456
+        },
+        "128": {
+          "path": "audio/vocab/hagukumu-ex1.mp3",
+          "bytes": 54528,
+          "sha256": "6cda914daf4f653c44c5c7bb838ef433bde21ad0b9c7e823fda2a27d4774c0db",
+          "duration_s": 3.408
+        }
+      }
+    },
+    {
+      "index": 12,
+      "word_id": "hagukumu",
+      "example_index": 1,
+      "text": "長い交流を通じて信頼を育んだ",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/hagukumu-ex2-64k.mp3",
+          "bytes": 30957,
+          "sha256": "037c6fee25cf9ddda20329352a1cb13486ad48145ef2c77da04a388e4d8cb10b",
+          "duration_s": 3.84
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/hagukumu-ex2-96k.mp3",
+          "bytes": 46413,
+          "sha256": "11e4604240efef7e9def6508d35fab6165af110780f0c80b440a54de0f696f23",
+          "duration_s": 3.84
+        },
+        "128": {
+          "path": "audio/vocab/hagukumu-ex2.mp3",
+          "bytes": 60672,
+          "sha256": "c25010e83468734116a510d90f255510f5a8484e912d51d7b80af8dd8a9e699b",
+          "duration_s": 3.792
+        }
+      }
+    },
+    {
+      "index": 13,
+      "word_id": "tsugunau",
+      "example_index": 0,
+      "text": "損害を金銭で償う",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/tsugunau-ex1-64k.mp3",
+          "bytes": 22125,
+          "sha256": "5f7a38d815350c5aa404b0d219e48c4422db39eb0e46d07d320614cfb46b1f96",
+          "duration_s": 2.736
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/tsugunau-ex1-96k.mp3",
+          "bytes": 33165,
+          "sha256": "8915a0c36413e5e97324197e20e643a3b6fec24890ebbac9c09ac78eb69dd4cc",
+          "duration_s": 2.736
+        },
+        "128": {
+          "path": "audio/vocab/tsugunau-ex1.mp3",
+          "bytes": 43008,
+          "sha256": "50cb22a2213f2cd4a7494822bde6e06892cd41fd9f8c0b5088b3695cd6367c38",
+          "duration_s": 2.688
+        }
+      }
+    },
+    {
+      "index": 14,
+      "word_id": "tsugunau",
+      "example_index": 1,
+      "text": "過ちを償うには時間がかかる",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/tsugunau-ex2-64k.mp3",
+          "bytes": 27117,
+          "sha256": "483d8007cd7b127ff6bb9697ac6fee9887b011eeb081e214d2639b9feb4d00b4",
+          "duration_s": 3.36
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/tsugunau-ex2-96k.mp3",
+          "bytes": 40653,
+          "sha256": "9078a1a8f6e6fcbbffbb07445b33bd1a060c17ce3a1de5894dd858acd54021eb",
+          "duration_s": 3.36
+        },
+        "128": {
+          "path": "audio/vocab/tsugunau-ex2.mp3",
+          "bytes": 52992,
+          "sha256": "916710b17ea664c8ef7c2bc2d27a87ea7d1d9d804564f14408ca24dc0b8df8ec",
+          "duration_s": 3.312
+        }
+      }
+    },
+    {
+      "index": 15,
+      "word_id": "habamu",
+      "example_index": 0,
+      "text": "資金不足が研究の進展を阻んでいる",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/habamu-ex1-64k.mp3",
+          "bytes": 32109,
+          "sha256": "5214c374b9bd1024f10f0dfc03202ae8e721f1095c1dde3bb9c3786ba692f1b0",
+          "duration_s": 3.984
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/habamu-ex1-96k.mp3",
+          "bytes": 48141,
+          "sha256": "74a06017ce3f363db79653818087e0e62cda74c8eed486ed36255dc00a598049",
+          "duration_s": 3.984
+        },
+        "128": {
+          "path": "audio/vocab/habamu-ex1.mp3",
+          "bytes": 62976,
+          "sha256": "d2da4db3912547b100b97430b7691538d42b4b3b00ca5bf721c27251288b21f9",
+          "duration_s": 3.936
+        }
+      }
+    },
+    {
+      "index": 16,
+      "word_id": "habamu",
+      "example_index": 1,
+      "text": "高い壁が行く手を阻んだ",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/habamu-ex2-64k.mp3",
+          "bytes": 23277,
+          "sha256": "4aa3c4defd981b5aad2e995c76e07b589e44941b50dacb9544ff73adf969ff3f",
+          "duration_s": 2.88
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/habamu-ex2-96k.mp3",
+          "bytes": 34893,
+          "sha256": "80ae6573694e4f16a16eb871962cb7718b4c3c61577d83779a4c10a91098f270",
+          "duration_s": 2.88
+        },
+        "128": {
+          "path": "audio/vocab/habamu-ex2.mp3",
+          "bytes": 45312,
+          "sha256": "668f59f6b7d68f9763f965c6ed4624b5be06ff05277b0eea43dc1e0b3e999459",
+          "duration_s": 2.832
+        }
+      }
+    },
+    {
+      "index": 17,
+      "word_id": "yudaneru",
+      "example_index": 0,
+      "text": "最終判断を専門家に委ねた",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/yudaneru-ex1-64k.mp3",
+          "bytes": 28653,
+          "sha256": "2047c0d46b1a66ada2733f92e658b5d66f06136e2d4c633542c35cbd2336df46",
+          "duration_s": 3.552
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/yudaneru-ex1-96k.mp3",
+          "bytes": 42957,
+          "sha256": "0cd7e8dd2f33602d025b951ad4c33ad9cfa48117265fbafbd1659089e5ac1468",
+          "duration_s": 3.552
+        },
+        "128": {
+          "path": "audio/vocab/yudaneru-ex1.mp3",
+          "bytes": 56064,
+          "sha256": "ead2b5c770ccaf04924d62f1ae6020c20e31db53b067bf35e4a156c7ed8c36b5",
+          "duration_s": 3.504
+        }
+      }
+    },
+    {
+      "index": 18,
+      "word_id": "yudaneru",
+      "example_index": 1,
+      "text": "流れに身を委ねる",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/yudaneru-ex2-64k.mp3",
+          "bytes": 18861,
+          "sha256": "a9535e1899d2ecc3bfe06e4618ea4b4039619cbcbe5940fee9113d3815267863",
+          "duration_s": 2.328
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/yudaneru-ex2-96k.mp3",
+          "bytes": 28269,
+          "sha256": "b4c95fcfde65ff0b3f793df7ffd19594e72b747601c841d9a6b1d404e56e5575",
+          "duration_s": 2.328
+        },
+        "128": {
+          "path": "audio/vocab/yudaneru-ex2.mp3",
+          "bytes": 36480,
+          "sha256": "bf96aa1f38518c5b71bad3a77a6c10eba452408db7eff0e47b7acc97a6d90513",
+          "duration_s": 2.28
+        }
+      }
+    },
+    {
+      "index": 19,
+      "word_id": "okotaru",
+      "example_index": 1,
+      "text": "努力を怠らなかった",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/okotaru-ex2-64k.mp3",
+          "bytes": 21933,
+          "sha256": "b493bc3fc38655615040bf754db977d56aa1b0f10e2f3c060e0430ef101e1974",
+          "duration_s": 2.712
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/okotaru-ex2-96k.mp3",
+          "bytes": 32877,
+          "sha256": "d4f53a82a2fd194263d30b04e009c08f0d54501ffc9473142e9c29661fe28106",
+          "duration_s": 2.712
+        },
+        "128": {
+          "path": "audio/vocab/okotaru-ex2.mp3",
+          "bytes": 42624,
+          "sha256": "2f1328d49ff2c32a96a4827d5aca27c6036e641f03cc3670fe4cdc31a3453f04",
+          "duration_s": 2.664
+        }
+      }
+    },
+    {
+      "index": 20,
+      "word_id": "hikaeru",
+      "example_index": 0,
+      "text": "試験を来週に控えている",
+      "audio": {
+        "64": {
+          "path": "audio/vocab/bitrate-qa-20/hikaeru-ex1-64k.mp3",
+          "bytes": 23277,
+          "sha256": "899c4085c2e366b833ad924191d2d29e0033278baca8e3676f3bd56bfe2f75c6",
+          "duration_s": 2.88
+        },
+        "96": {
+          "path": "audio/vocab/bitrate-qa-20/hikaeru-ex1-96k.mp3",
+          "bytes": 34893,
+          "sha256": "e23cc74927b56f8730d3433ebeb1a81258352022502d5c569b70bd03b3aa1573",
+          "duration_s": 2.88
+        },
+        "128": {
+          "path": "audio/vocab/hikaeru-ex1.mp3",
+          "bytes": 45312,
+          "sha256": "d90b9909359976db1d2d015bfa637937d212bb44b29e46011064afcd5c103bba",
+          "duration_s": 2.832
+        }
+      }
+    }
+  ]
+}
