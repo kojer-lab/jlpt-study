@@ -1,0 +1,91 @@
+name: Browser Kokoro - rebuild 300 example MP3s
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/browser-vocab-batch300.yml"
+      - "audio/vocab/browser-batch-plan.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jlpt-browser-example-300
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 330
+    steps:
+      - name: Check out the latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate batch plan and JS syntax before any audio generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/rebuild-browser-vocab-batch.mjs
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          plan=json.loads(Path("audio/vocab/browser-batch-plan.json").read_text())
+          assert plan["version"] == 1
+          assert plan["batch_size"] == 300
+          assert plan["batch_number"] >= 1
+          assert plan["mode"] == "replace-example-only"
+          assert plan["engine"] == "kokoro-js-jp@0.2.0"
+          assert plan["voice"] == "jf_alpha"
+          print("READY: approved 300-example batch",plan["batch_number"])
+          PY
+
+      - name: Install browser engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Check MP3 validator before model loading
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffprobe >/dev/null 2>&1 || ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          command -v ffprobe
+          ffprobe -version | head -n 1
+
+      - name: Rebuild and publish 300 example MP3s in 50-clip checkpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/rebuild-browser-vocab-batch.mjs
+
+      - name: Assert complete batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          plan=json.loads(Path("audio/vocab/browser-batch-plan.json").read_text())
+          path=Path("audio/vocab/browser-batches") / f'batch-{plan["batch_number"]:04d}.json'
+          ledger=json.loads(path.read_text())
+          assert ledger["status"]=="complete"
+          assert len(ledger["completed"])==ledger["count"]==300
+          for item in ledger["completed"]:
+            assert Path(item["path"]).is_file()
+          print("SUCCESS:",ledger["count"],"new example MP3s published, study records untouched")
+          PY
