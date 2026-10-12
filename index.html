@@ -1790,12 +1790,19 @@ const extraWords=extraWordRaw.map(x=>({
 words.push(...extraWords);
 // N2 pilot uses unique card IDs. Keep N1 cards as the canonical source on overlaps.
 const n2Source=Array.isArray(window.N2_WORDS_PHASE1)?window.N2_WORDS_PHASE1:[];
-const existingKeys=new Set(words.map(w=>plain(w.w).normalize("NFKC")+"\t"+readingOf(w.w).normalize("NFKC")));
+const existingWordsByKey=new Map(words.map(w=>[plain(w.w).normalize("NFKC")+"\t"+readingOf(w.w).normalize("NFKC"),w]));
+const existingKeys=new Set(existingWordsByKey.keys());
 const n2Accepted=[];
 for(const x of n2Source){
  const surface=String(x.w||"").trim(),reading=String(x.r||"").trim();
  const key=surface.normalize("NFKC")+"\t"+reading.normalize("NFKC");
- if(!surface||!reading||existingKeys.has(key))continue;
+ if(!surface||!reading)continue;
+ if(existingKeys.has(key)){
+  // Reuse the same N1 card and SRS history inside the N2 level as well.
+  const existing=existingWordsByKey.get(key);
+  if(existing)existing.levels=["N1","N2"];
+  continue;
+ }
  existingKeys.add(key);
  n2Accepted.push({id:String(x.id),w:/[一-龯々]/.test(surface)?F(surface,reading):surface,meaning:String(x.meaning||""),examples:(x.examples||[]).slice(0,1).map(ex=>({jp:String(ex.jp||""),ko:String(ex.ko||""),exampleSource:"n2-phase1-curated"})),source:"n2-phase1-curated",category:"vocab",level:"N2"});
 }
@@ -2292,7 +2299,7 @@ function finishNewsDay(){
 let state=loadState();
 const WORD_LEVEL_KEY="jlptWordStudyLevelV1";
 let wordStudyLevel=localStorage.getItem(WORD_LEVEL_KEY)==="N2"?"N2":"N1";
-function wordsForLevel(level){return words.filter(w=>(w.level||"N1")===level)}
+function wordsForLevel(level){return words.filter(w=>level==="N2"?(w.level==="N2"||w.levels?.includes("N2")):(w.level||"N1")==="N1")}
 let wordIndex=0,wordMode="daily",wordSessionQueue=[],wordLearningQueue=[],wordSessionDone=0,wordSessionTotal=0,wordSessionHistory=[],wordLibraryOpen=new Set(),wordLibraryExamplesOpen=new Set(),wordLibraryBreakdownOpen=new Set(),wordLibraryBreakdownDetailOpen=new Set(),wordLibraryOrder=[],wordLibraryVisible=80;let quizMode="vocab",quizOrder=[],quizIndex=0,quizAnswered=false;let readingMode="short",readingSetIndex=0,readingQ=0,readingAnswered=false;let reviewQueue=[],reviewLearningQueue=[],reviewIndex=0;let mistakeRetryActive=false,mistakeRetryQueue=[],mistakeRetryIndex=0,mistakeRetryAnswered=false;
 const $=id=>document.getElementById(id);
 const FSRS_W=[.212,1.2931,2.3065,8.2956,6.4133,.8334,3.0194,.001,1.8722,.1666,.796,1.4835,.0614,.2629,1.6483,.6014,1.8729,.5425,.0912,.0658,.1542];
@@ -2818,7 +2825,7 @@ function renderWordLibrary(){
  const orderedWords=wordLibraryOrder.length===words.length?wordLibraryOrder.map(id=>wordById.get(id)).filter(Boolean):words;
  const list=orderedWords.filter(w=>{
    const r=getSrs(w.id);
-   if(level!=="all"&&(w.level||"N1")!==level)return false;
+   if(level!=="all"&&!wordsForLevel(level).includes(w))return false;
     if(category!=="all"&&(w.category||"vocab")!==category)return false;
    if(filter==="new"&&r.reviews>0)return false;
    if(filter==="learned"&&r.reviews===0)return false;
@@ -2835,7 +2842,7 @@ function renderWordLibrary(){
        <button type="button" class="word-library-speak" data-lib-speak="${w.id}" aria-label="단어 음성">🔊</button>
        <div class="word-library-main">
          <div class="word-library-word">${w.w}</div>
-         <span class="word-library-state">${w.level==="N2"?"N2 · ":""}${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${wordLibraryStateLabel(w)} · ${r.reviews||0}회</span><button type="button" class="pron-inline" data-pron-id="${w.id}" data-pron-ex="word">⚑ 신고</button>
+         <span class="word-library-state">${w.level==="N2"?"N2 · ":w.levels?.includes("N2")?"N1·N2 · ":""}${w.category==="vocab"?"":wordCategoryLabel(w)+" · "}${wordLibraryStateLabel(w)} · ${r.reviews||0}회</span><button type="button" class="pron-inline" data-pron-id="${w.id}" data-pron-ex="word">⚑ 신고</button>
        </div>
        <button type="button" class="word-library-star" data-lib-star="${w.id}" aria-label="별표">${isStarred(w.id)?"★":"☆"}</button>
      </div>
@@ -3632,8 +3639,8 @@ $("nextReadingBtn").addEventListener("click",()=>{
 });
 
 $("newsDateSelect").addEventListener("change",e=>{setupNewsDay(e.target.value);renderReading()});
-function startReview(){reviewQueue=dueWords();reviewIndex=0;renderReview()}
-function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords().length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-card-body"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>연속 ${s.streak||0} · 다시 ${s.lapses}회</span></div><div class="word-title-row"><div><div class="word-main">${w.w}</div></div><button type="button" class="star-btn ${isStarred(w.id)?"on":""}" id="reviewStarBtn" data-word="${w.id}">${isStarred(w.id)?"★":"☆"}</button></div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);restoreInteractiveFuriState(root);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewStarBtn").addEventListener("click",()=>{toggleStar(w.id);renderReview()});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);clearStudyFuriganaState();reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
+function startReview(){reviewQueue=dueWords(wordStudyLevel);reviewIndex=0;renderReview()}
+function renderReview(){const root=$("reviewArea");$("reviewCountPill").textContent=`${reviewQueue.length} due`;if(!reviewQueue.length){const newOnes=unseenWords(wordStudyLevel).length;root.innerHTML=`<div class="card review-empty">오늘 예정된 복습이 없습니다.<br><br><span class="srs-chip">새 단어 ${newOnes}개</span><br><br><button type="button" class="primary" data-go="words">새 단어 공부하기</button></div>`;return}const w=reviewQueue[reviewIndex],s=getSrs(w.id);root.innerHTML=`<div class="word-shell"><div class="card word-card"><div class="word-card-body"><div class="word-meta"><span>${reviewIndex+1} / ${reviewQueue.length}</span><span>연속 ${s.streak||0} · 다시 ${s.lapses}회</span></div><div class="word-title-row"><div><div class="word-main">${w.w}</div></div><button type="button" class="star-btn ${isStarred(w.id)?"on":""}" id="reviewStarBtn" data-word="${w.id}">${isStarred(w.id)?"★":"☆"}</button></div><button type="button" class="reveal-btn" id="reviewMeaningBtn">뜻 보기</button><div class="reveal-box hidden" id="reviewMeaning">${w.meaning}</div><div class="examples">${w.examples.map((x,i)=>`<div class="example"><div class="label">예문 ${i+1}</div><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div></div>`).join("")}</div><div class="rating" id="reviewRating"></div></div></div></div>`;renderRating($("reviewRating"),w.id,s,true);restoreInteractiveFuriState(root);$("reviewMeaningBtn").addEventListener("click",()=>{$("reviewMeaning").classList.toggle("hidden")});$("reviewStarBtn").addEventListener("click",()=>{toggleStar(w.id);renderReview()});$("reviewRating").addEventListener("click",e=>{const b=e.target.closest("[data-rate]");if(!b)return;rateWord(w.id,b.dataset.rate);clearStudyFuriganaState();reviewQueue.splice(reviewIndex,1);if(reviewIndex>=reviewQueue.length)reviewIndex=0;renderReview()})}
 
 function renderMistakes(){const root=$("mistakeList"),retryBtn=$("mistakeRetryBtn");if(retryBtn){retryBtn.disabled=!dueMistakes().length;retryBtn.textContent="오늘의 오답 복습 · "+dueMistakes().length+"개";}const allBtn=$("mistakeAllRetryBtn");if(allBtn)allBtn.disabled=!state.mistakes.length;if(!state.mistakes.length){root.innerHTML='<div class="card review-empty">아직 저장된 오답이 없습니다.</div>';return}root.innerHTML=state.mistakes.map(m=>`<div class="card mistake"><div><div class="tag">${m.type==="vocab"?"語彙 · 어휘":m.type==="grammar"?"文法 · 문법":m.type==="reading"?"読解 · 독해":m.type}</div><div class="q" style="margin-top:8px">${m.q}</div>${m.translation?`<div class="translation"><strong>문제 뜻</strong><br>${m.translation}</div>`:""}<div style="margin-top:12px;line-height:1.8"><strong>정답</strong> ${m.correct}<br><br><strong>해설</strong><br>${m.explanation}</div>${m.details&&m.details.length?`<div class="detail-list">${m.details.map((d,i)=>`<div class="detail"><strong>${i+1}번</strong> ${d}</div>`).join("")}</div>`:""}<div class="meta">틀린 횟수 ${m.count}회 · ${!m.due||m.due<=Date.now()?"지금 복습 가능":"다음 복습 "+new Date(m.due).toLocaleString("ko-KR")} · 연속 정답 ${m.streak||0}회</div></div><button type="button" class="secondary" data-delete="${m.id}">삭제</button></div>`).join("")}
 $("mistakeRetryBtn").addEventListener("click",()=>startMistakeRetry());$("mistakeAllRetryBtn").addEventListener("click",()=>startMistakeRetry(true));$("mistakeList").addEventListener("click",e=>{const b=e.target.closest("[data-delete]");if(!b)return;state.mistakes=state.mistakes.filter(x=>x.id!==b.dataset.delete);saveState(state);renderMistakes();refreshAll()});$("clearMistakesBtn").addEventListener("click",()=>{if(confirm("오답노트를 모두 삭제할까요?")){state.mistakes=[];saveState(state);renderMistakes();refreshAll()}});
