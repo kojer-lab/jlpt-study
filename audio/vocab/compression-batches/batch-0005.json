@@ -1209,7 +1209,407 @@
       "original_bytes": 73344,
       "compressed_bytes": 37293,
       "duration_s": 4.632
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-e822eb5d76-ex1.mp3",
+      "original_sha256": "8ef84e5aec12ac6382d7ca215f8555c6473c3e4d89bd3e39ad8ebcae809e3d36",
+      "new_sha256": "ef4a09347200f162c05d4acc3394576c94341661f512c6cd56ed33a27f5a244c",
+      "original_bytes": 67584,
+      "compressed_bytes": 34413,
+      "duration_s": 4.272
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-f3bcf28ff0-ex1.mp3",
+      "original_sha256": "2655b7df4935897b2415e0e8562acfd8372110915114d868aae1c9011c1f0687",
+      "new_sha256": "9b3204370a7217106db8260aaaed24c11b367ad50d7d1c315292e49a9e78ce75",
+      "original_bytes": 68736,
+      "compressed_bytes": 34989,
+      "duration_s": 4.344
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-6c9978c0ad-ex1.mp3",
+      "original_sha256": "a77fa91565c331ba2a664e244fa315e96cbcc9b691ba179a2141c46deb386274",
+      "new_sha256": "a5b923c45983640eb57930adeb32f27df769fe9f75c7780324a0a86b9062e3dd",
+      "original_bytes": 52608,
+      "compressed_bytes": 26925,
+      "duration_s": 3.336
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-d3a2b00ef3-ex1.mp3",
+      "original_sha256": "17b9a23f651366d701b3d73067aea4cb64fcbaa208c119212f277bc9426ac476",
+      "new_sha256": "1a319f2fb42c45fda85df326752dd07088175bd5620a689ece586f0573dda63e",
+      "original_bytes": 63360,
+      "compressed_bytes": 32301,
+      "duration_s": 4.008
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-d21eb02cf1-ex1.mp3",
+      "original_sha256": "ef1643e7efcb938129ce27c57cbe66085ff62ae9b1e1e6c202f75d043bbb3132",
+      "new_sha256": "68470653f575ed8bb2572bfdade2454e816fc098cb1930a0ecc3eee1b85136b8",
+      "original_bytes": 62208,
+      "compressed_bytes": 31725,
+      "duration_s": 3.936
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-fcaabc719d-ex1.mp3",
+      "original_sha256": "6a8a8d1ef4c08aacc8445ceeb6fe4c255f25a30d30509e070bef974e706567ee",
+      "new_sha256": "66fea5badeadb37f3a43cc0c13bc2b9a62d5aae4261b5537c3e5ddb1c9e324cd",
+      "original_bytes": 47616,
+      "compressed_bytes": 24429,
+      "duration_s": 3.024
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-c9d5fa3c62-ex1.mp3",
+      "original_sha256": "d650c6b01e9ae7f3f38952f6ec2a3ff49dc2a45609e97aa67dd65baa48ed17bd",
+      "new_sha256": "e17e42c9d9728ed1cbef55b000b051d6ff15ac4c1505fba5a5c575104c4a1e9f",
+      "original_bytes": 64512,
+      "compressed_bytes": 32877,
+      "duration_s": 4.08
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-969ea280e7-ex1.mp3",
+      "original_sha256": "1f95a4b5d3a85bbbd50f5f90496950534bc767f7e6e5e5530d15e0a49c634d07",
+      "new_sha256": "4f68ae4cd342eb5dd2ab70a1011efdeb87219c4b10f2145b8b47ef83184a8f6e",
+      "original_bytes": 33024,
+      "compressed_bytes": 17133,
+      "duration_s": 2.112
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-8f4523a0a1-ex1.mp3",
+      "original_sha256": "8430aeaba0285a44068753eea54f6a1cb652cb2c395e88b7ce3b4c6d6e3ae483",
+      "new_sha256": "50ff8967d90ea258ca95222425ce39b577de6400a7f47f15906887dd9b98af51",
+      "original_bytes": 65664,
+      "compressed_bytes": 33453,
+      "duration_s": 4.152
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-771504a003-ex1.mp3",
+      "original_sha256": "d737a1d5bbf0408da7b7b1e3833b23c51a3c4fadf357cc3eb1e33d15f75cf251",
+      "new_sha256": "5ec91a1118474d578581d76622833dcda75e76e3af836df30af0517202eaef31",
+      "original_bytes": 45696,
+      "compressed_bytes": 23469,
+      "duration_s": 2.904
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-c0e7e3b80a-ex1.mp3",
+      "original_sha256": "d7ca9d6b0352c44d97d5d46213f6940311a3e9c3405a0ab32d313350ce044934",
+      "new_sha256": "e5a0acfa0ddc5acb8798ed21e81ada8519c0835969dc13e3a12f296c2725df48",
+      "original_bytes": 55680,
+      "compressed_bytes": 28461,
+      "duration_s": 3.528
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-3a5cd1a9d3-ex1.mp3",
+      "original_sha256": "95cde05e12ae6de8232d39de49b953b33eb445549f084e0fb64fe1f98f9d36d5",
+      "new_sha256": "46900712a617b2e7eb4de27f109d4ebc2dc74250084256a6b154225f3822356d",
+      "original_bytes": 43776,
+      "compressed_bytes": 22509,
+      "duration_s": 2.784
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-67ac742b83-ex1.mp3",
+      "original_sha256": "39d4d33c30c214024d776f1f41c8da0c659b26cc62771262294cfaefb025d838",
+      "new_sha256": "372d31aec824eb672bfc9cac56c1bd522dc87d26638b5e7de4c9c02ee499a077",
+      "original_bytes": 50304,
+      "compressed_bytes": 25773,
+      "duration_s": 3.192
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-a95ab44097-ex1.mp3",
+      "original_sha256": "b5e87913cd28e7304a8ebccd5f07caf2acfae3fca8e96c2d6168b3c4b50a8902",
+      "new_sha256": "f189dd6ce3353f03640f741182c066a1e5a7d0ca5c250401d9d5bbbbe4a32991",
+      "original_bytes": 44544,
+      "compressed_bytes": 22893,
+      "duration_s": 2.832
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-2c6219aa10-ex1.mp3",
+      "original_sha256": "f030665afb8db6e3236ad64f5fb9868c2fde4c3bafe4a49094d06802f1776b46",
+      "new_sha256": "a91763b86eeaa58fa3b4959166923d928c8cdee525a19e874adb69f62b11868e",
+      "original_bytes": 38016,
+      "compressed_bytes": 19629,
+      "duration_s": 2.424
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-62859af8b4-ex1.mp3",
+      "original_sha256": "0f6ef778e00dd8ae45452a6ebd88d2a2b70baced07de8f3dc993233ede12e8ca",
+      "new_sha256": "a4ecb23cf606ea4c4fa7bb77faabe79c0ed236a259c38b5a0357a87c557dda46",
+      "original_bytes": 72960,
+      "compressed_bytes": 37101,
+      "duration_s": 4.608
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-44a0f24b42-ex1.mp3",
+      "original_sha256": "83b9a31bfe196516a69f545a8fed39ddb4b8cf8ae71cb89f48020e834cc09b84",
+      "new_sha256": "5050b83e5843040dbe59ec79512e9d09ba9e01ea691e82015edb6a4d131f48d5",
+      "original_bytes": 114048,
+      "compressed_bytes": 57645,
+      "duration_s": 7.176
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-18beab6691-ex1.mp3",
+      "original_sha256": "b197fa930d477f26e798a908b45a421e5ecc101e6dbfb23b64489f2a5269e264",
+      "new_sha256": "5e72751812bd03670350ed8f66903ed4ccdc690ba60049e051e6fde48e7f22d7",
+      "original_bytes": 61440,
+      "compressed_bytes": 31341,
+      "duration_s": 3.888
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-c480536422-ex1.mp3",
+      "original_sha256": "2db068926254339cabcca8973ec26145e454fcb8f3943f0dd5ffe5caec49645d",
+      "new_sha256": "e6b4a3a586c7f321c6f63fe66f65287ce5f0ec4ba5a9153c87c69d854b7545a7",
+      "original_bytes": 67584,
+      "compressed_bytes": 34413,
+      "duration_s": 4.272
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-2cb6f0e01a-ex1.mp3",
+      "original_sha256": "a4c3c07fb48c9e9077f0f480b033219a3ee53458486c86cd58e7b60b475314c8",
+      "new_sha256": "40441a233ae3f3db0e638078552e18863234e5e0b811ad6b7892cc76646c66ef",
+      "original_bytes": 116736,
+      "compressed_bytes": 58989,
+      "duration_s": 7.344
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-976ec4b001-ex1.mp3",
+      "original_sha256": "fb869a0c71a7ea3c0cd7a434918d04a17cf494c07246b5c7686e766e1a33d3dd",
+      "new_sha256": "de2e81e3a52706a3492200c7dfdb8471e442e32cbdac1b6c1d4e5998121b110f",
+      "original_bytes": 56064,
+      "compressed_bytes": 28653,
+      "duration_s": 3.552
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-f854a31f4a-ex1.mp3",
+      "original_sha256": "a34eead40ee7b3c490c89ed75da67eca3f142a9c32aacf3186500482fa571ce2",
+      "new_sha256": "b22081124e3bae4d315426859d8df7cbb3e614501038b11ebfc96f5cda9b9b5c",
+      "original_bytes": 46848,
+      "compressed_bytes": 24045,
+      "duration_s": 2.976
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-a8e0cc0d2a-ex1.mp3",
+      "original_sha256": "e6d4ff4f34ab0635d6dfdc8cff3c2c9a3a3df08dfbc4684bb4822a171288fca7",
+      "new_sha256": "575fe882095b799a41d140bcedbc0690d94f7d845303402ba9ee62affab8d29c",
+      "original_bytes": 67200,
+      "compressed_bytes": 34221,
+      "duration_s": 4.248
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-ed839ead49-ex1.mp3",
+      "original_sha256": "080f636b0949d28e817a22e397039fcd471b93637fe338e8268dad7930ad39aa",
+      "new_sha256": "dfb91c8f7fa35f55d6d5d27f6a42bb39a7cfc8fabdc1c26a8bee52c1a31e11cd",
+      "original_bytes": 52992,
+      "compressed_bytes": 27117,
+      "duration_s": 3.36
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-bcd1069fd5-ex1.mp3",
+      "original_sha256": "ba33644e447c74f8fcd860796f55396b8145ab11b1b59abdcae349aaadc73531",
+      "new_sha256": "ee7d2d2eb651dcd35e44f8cbfbdb4cd35d333ae9181a9c656d8f9c13ed49052a",
+      "original_bytes": 49920,
+      "compressed_bytes": 25581,
+      "duration_s": 3.168
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-3356c0b63c-ex1.mp3",
+      "original_sha256": "1d21bff54353138db4514a242a91278203d8bf15517c1ba1bc5711dd1a3bb965",
+      "new_sha256": "1bd155dc1e017d32aee4f7b7c4594f62db1b06372d5be599fbb4abc7ef0c45cb",
+      "original_bytes": 101760,
+      "compressed_bytes": 51501,
+      "duration_s": 6.408
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-c78ec3cd4b-ex1.mp3",
+      "original_sha256": "f6320241cfb122edabd22a2aa9a87900cfde430e93af3b1afcc61b5a22c2b810",
+      "new_sha256": "2ec97ebd84ab44b361689bcdf979f9421cce85c8cf0965d042ed54d591689e96",
+      "original_bytes": 55296,
+      "compressed_bytes": 28269,
+      "duration_s": 3.504
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-dbe3b4e73e-ex1.mp3",
+      "original_sha256": "54787fd8ddac49213f6bbc8e30a6c3300fbcd6dc889b4bd45b1c2cfed088ed8f",
+      "new_sha256": "0575281b3bafd7ffd32d522ba1985692f3b98810c06ab9d41aba3ed763e355f5",
+      "original_bytes": 50304,
+      "compressed_bytes": 25773,
+      "duration_s": 3.192
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-fe783aee7a-ex1.mp3",
+      "original_sha256": "6a9d137e21fcfdb53a391db997532b3516ce7e58fcd771548b26b5ca2e44c35d",
+      "new_sha256": "7f115d4f36509e84899dcdbed098ba1d18d6a02cef11bf44007a6abe55543770",
+      "original_bytes": 18816,
+      "compressed_bytes": 10029,
+      "duration_s": 1.224
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-a22764c8da-ex1.mp3",
+      "original_sha256": "3d2d084e5eb84a0fa7ccc9faf7bbb6efbd2d477a921a977630a69b22f7536b5c",
+      "new_sha256": "e0b507d9e8bc1a23f233b1193488038cbb758d3893cc5d54dd9abebf193416eb",
+      "original_bytes": 35328,
+      "compressed_bytes": 18285,
+      "duration_s": 2.256
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-d41ecf3cab-ex1.mp3",
+      "original_sha256": "75663381ce893be34ebedac7a50e1b0fab3c483ea347e6f06b9c838a6972dae6",
+      "new_sha256": "17b60de724b05da34a9410fa07b40e3519905d4400b1d7cc16846b63bbe10c76",
+      "original_bytes": 59520,
+      "compressed_bytes": 30381,
+      "duration_s": 3.768
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-7ec70ac5e6-ex1.mp3",
+      "original_sha256": "c9a44bc5fd4c37c1e43a311777009b3c642ac162390e47b9db7abe75a5667b1c",
+      "new_sha256": "87c2f1a16d9844a07ad35cbd47ac70bc9fc0e730379f20af069d4d014de6cb2d",
+      "original_bytes": 150528,
+      "compressed_bytes": 75885,
+      "duration_s": 9.456
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-a5a31448e1-ex1.mp3",
+      "original_sha256": "05c38057d55324129d274386d47f46ef9ffbc8804b2a14f3446cb4500d19f300",
+      "new_sha256": "48d3020ad981351b7de26bee90435fa39ab5cd4a2106fcc96c0c061bc8d4ac37",
+      "original_bytes": 54912,
+      "compressed_bytes": 28077,
+      "duration_s": 3.48
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-e5e4f44fbe-ex1.mp3",
+      "original_sha256": "81abaf380385fd9a83c1b6d249ca6e0e1be4a118ef322ebb78aa17fa43940829",
+      "new_sha256": "a16e629c0970334d259cad7af134964f60db23c11f12838c4ad46107581e79be",
+      "original_bytes": 67584,
+      "compressed_bytes": 34413,
+      "duration_s": 4.272
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-fb51ca7096-ex1.mp3",
+      "original_sha256": "471aa242e18cc162061314e0c2b30879741a7b2f788d6e92a8a0a92c0dbec456",
+      "new_sha256": "21b75fc67bba9f99f2c567217950eb33c97b6bb50310cacb36293582bd875097",
+      "original_bytes": 63360,
+      "compressed_bytes": 32301,
+      "duration_s": 4.008
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-d67fdd7582-ex1.mp3",
+      "original_sha256": "0552e9baa7d7412cc11eb61e61ae4a21b42e647ffd1eaa269b872a9d19c5bd0f",
+      "new_sha256": "54264be6aadaa21cf9454119053f9d313d4e63d3aabb4faf89ce126209fc3b99",
+      "original_bytes": 122880,
+      "compressed_bytes": 62061,
+      "duration_s": 7.728
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-9f4d23f1c8-ex1.mp3",
+      "original_sha256": "36934fd46bf36a58c47b08ffe6134e5d610084f5ed4fd48c2eef549fb974ea4f",
+      "new_sha256": "b10166b230bc1b50a8acc1d517f463e891535787ce9c6f43a8e91fd986f8f950",
+      "original_bytes": 57984,
+      "compressed_bytes": 29613,
+      "duration_s": 3.672
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-25a859b79f-ex1.mp3",
+      "original_sha256": "79c5091b0c245f81066fc66149026c3dd6a5ac444b877636a9f29a9f97571a1f",
+      "new_sha256": "1f37a3bece2ef091dd65fd71468a6797d2cb3f630a1c4572013e8ccba9da3142",
+      "original_bytes": 104064,
+      "compressed_bytes": 52653,
+      "duration_s": 6.552
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-17a6158213-ex1.mp3",
+      "original_sha256": "5c89a4d61a7d2f22e90a574bc8d45abddced2672edede1314f84cd34112c6ac8",
+      "new_sha256": "9f383fa605422fb11021d581e9d95db205a52cc6bcd967f077a913257eeb7bc8",
+      "original_bytes": 139392,
+      "compressed_bytes": 70317,
+      "duration_s": 8.76
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-ee78c61579-ex1.mp3",
+      "original_sha256": "6ab5b6852aabbf0471e1dc8f764df4de68ca6dcb534f5dc2363375d7ed9472cb",
+      "new_sha256": "b1ba0c10ae1237e5da99c3b03c8e0d1b3b4a67211df20b6cd76007d062d48462",
+      "original_bytes": 50688,
+      "compressed_bytes": 25965,
+      "duration_s": 3.216
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-ee81c93b87-ex1.mp3",
+      "original_sha256": "fb8afa11312feecb195c0c1d5b1f5c3fae8e843ec4ec88f978d9714fa5dad7b1",
+      "new_sha256": "860d3b6a9b812d4fbbd61d29b0cf1330aaaacef179821e8e615b75a29b754c90",
+      "original_bytes": 74880,
+      "compressed_bytes": 38061,
+      "duration_s": 4.728
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-d0b0e94e2a-ex1.mp3",
+      "original_sha256": "69b89d5812275e8c6b3ec7b2608d95004f52757fd20400e2d9a9ab8c4fccb649",
+      "new_sha256": "44b10795143b4c2f6c22d904e061aacbbb3442d202dfefb78195b83cdd3127fc",
+      "original_bytes": 54528,
+      "compressed_bytes": 27885,
+      "duration_s": 3.456
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-6d41c419f1-ex1.mp3",
+      "original_sha256": "a403d97437ede35e468fc3c9a4e01e77abed268fae9cf4e3c172bb83cbbab84d",
+      "new_sha256": "c0beb84129f4a01046151ec0a8e4257ee7bbba7ee6350c94130cb391e02b8eb7",
+      "original_bytes": 61440,
+      "compressed_bytes": 31341,
+      "duration_s": 3.888
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-dcfa49f3a3-ex1.mp3",
+      "original_sha256": "acda3f0a48a29397c3af89d25aa170c0b938329ce49f720339dc9e978c3f2079",
+      "new_sha256": "326986df6653fbabfd09a63cd622fcc54ba1b479ce4c974d184789072d319bb6",
+      "original_bytes": 55680,
+      "compressed_bytes": 28461,
+      "duration_s": 3.528
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-92f3050d57-ex1.mp3",
+      "original_sha256": "5ea3043193a787bc7c1cf389446113d50bff1154ab7329e393c41e3f8ff2e09b",
+      "new_sha256": "ae0872475b327c6ef897bae559496bdae38e4eac05d17b6a916106b5b20b034a",
+      "original_bytes": 35328,
+      "compressed_bytes": 18285,
+      "duration_s": 2.256
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-55e72078ed-ex1.mp3",
+      "original_sha256": "af2cf3084286e181bda460d24c3eb3ea3322b37a7d0e321747e393e6e73363d2",
+      "new_sha256": "f7374519716e19b34863622464cbcaec9f0287c8c80f6d794d61dd316f2d5620",
+      "original_bytes": 58368,
+      "compressed_bytes": 29805,
+      "duration_s": 3.696
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-702d98a819-ex1.mp3",
+      "original_sha256": "060358ad5ec92c00128fa95fcb258375cecc7eed6ec83c96e6b3ee342d2e5582",
+      "new_sha256": "533b7388637ea411a396db0f5dbcc28c9b845c33316c465ccf772a5384753b7c",
+      "original_bytes": 55296,
+      "compressed_bytes": 28269,
+      "duration_s": 3.504
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-b00accb0cc-ex1.mp3",
+      "original_sha256": "d734ac939baec140046195405db5e512091a08581a319491d3bbf92890c02735",
+      "new_sha256": "e324cd6d2016b7cf5d51b13ebe0bbb14005c4eb923e59b12945989b02b0a4654",
+      "original_bytes": 54144,
+      "compressed_bytes": 27693,
+      "duration_s": 3.432
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-25fc642064-ex1.mp3",
+      "original_sha256": "d36a894adf38ffa8ea30cd76898baa9281d84b96379d20f67486e8d7ded2d65c",
+      "new_sha256": "f65b2860d47d07a7c8c43a1359432ef687848d435ebeea2360e0b2833479e69e",
+      "original_bytes": 54528,
+      "compressed_bytes": 27885,
+      "duration_s": 3.456
+    },
+    {
+      "path": "audio/vocab/openjlpt/oj-b5a3ad85f1-ex1.mp3",
+      "original_sha256": "7d085866b672552c7b554996c268aeed75b567cee162438e29675c91d77790e9",
+      "new_sha256": "9203133568ac6aa573aa824698646bf4662328da6cfe34421f882a73063424ab",
+      "original_bytes": 59520,
+      "compressed_bytes": 30381,
+      "duration_s": 3.768
     }
   ],
-  "updated_at": "2026-10-12T11:30:38.127Z"
+  "updated_at": "2026-10-12T11:30:48.084Z"
 }
