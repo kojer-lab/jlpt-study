@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "mode": "transcode-example-only",
+  "source": "browser-kokoro-128kbps-completed-ledgers",
+  "source_batch_count": 11,
+  "total_examples": 3104,
+  "batch_size": 300,
+  "checkpoint_size": 50,
+  "original_kbps": 128,
+  "target_kbps": 64,
+  "encoder": "ffmpeg libmp3lame",
+  "target_sample_rate": 24000,
+  "target_channels": 1,
+  "preserve_original_sha256": true,
+  "notes": "Only replace 3,104 example MP3 files in 11 sequential batches (300 x 10 + 104). Keep words, text, pronunciation engine, manifests and study state unchanged. Commit every 50 verified clips. The original 128kbps files remain recoverable in Git history."
+}
