@@ -1,0 +1,89 @@
+name: Browser Kokoro QA - 20 example MP3s
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/browser-kokoro-qa20.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jlpt-browser-kokoro-qa20
+  cancel-in-progress: false
+
+jobs:
+  compare:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Install Node and headless Chromium
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install browser runner
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Generate 20 new MP3s using browser Kokoro JS
+        run: |
+          node --check tools/browser-kokoro-qa20.mjs
+          node tools/browser-kokoro-qa20.mjs
+
+      - name: Validate output and verify production files untouched
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          batch=Path("audio/vocab/browser-qa-20")
+          meta=json.loads((batch/"manifest.json").read_text())
+          assert meta["count"]==20
+          assert len(meta["items"])==20
+          assert meta["production_replaced"] is False
+          for item in meta["items"]:
+              new=Path(item["candidate_path"])
+              orig=Path(item["original_path"])
+              assert new.is_file() and new.stat().st_size>2500
+              assert orig.is_file()
+              assert item["candidate_sha256"]!=item["original_sha256"]
+          print("Validated:",len(meta["items"]),"independent candidates")
+          PY
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 audio/vocab/browser-qa-20/unagasu-ex1.mp3
+          test "$(find audio/vocab/browser-qa-20 -maxdepth 1 -name '*.mp3' | wc -l)" -eq 20
+          test -z "$(git status --porcelain -- audio/vocab | grep -v '?? audio/vocab/browser-qa-20/' || true)"
+
+      - name: Publish QA candidates only (never overwrite original MP3)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- audio/vocab/browser-qa-20
+          test "$(git diff --cached --name-only | grep -c '^audio/vocab/browser-qa-20/')" -eq 21
+          git commit -m "audio: publish 20 browser Kokoro MP3 QA candidates"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              echo "::error::Conflict, originals and main unchanged."
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Published 20 QA MP3s and comparison manifest; no production audio changed."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::Failed to publish QA audio."
+          exit 1
