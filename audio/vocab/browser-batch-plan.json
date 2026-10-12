@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "batch_number": 1,
+  "batch_size": 300,
+  "engine": "kokoro-js-jp@0.2.0",
+  "voice": "jf_alpha",
+  "mode": "replace-example-only",
+  "notes": "Start with N1 example MP3s. No N2, word-pronunciation, or study-state changes. Commit each 50 clips."
+}
