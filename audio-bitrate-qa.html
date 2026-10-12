@@ -1,0 +1,172 @@
+<!doctype html><html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>JLPT MP3 음질 비교 — 블라인드 128·96·64kbps</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;background:Canvas;color:CanvasText;margin:0}
+main{max-width:810px;margin:0 auto;padding:24px 17px 80px;line-height:1.7}
+a{color:LinkText}
+h1{font-size:26px;line-height:1.4;margin:15px 0 12px}
+h2{font-size:19px;margin:0 0 10px}
+.note{color:GrayText;font-size:14px}
+.card{border:1px solid color-mix(in srgb,CanvasText 18%,transparent);border-radius:17px;padding:19px;margin:17px 0}
+.top{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.progress{width:100%;height:12px;accent-color:#6863d0}
+.jp{font-size:21px;font-weight:700;line-height:1.7;word-break:keep-all}
+.audios{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:19px 0}
+.audioCard{border:1px solid color-mix(in srgb,CanvasText 19%,transparent);border-radius:13px;padding:12px;min-width:0}
+.audioTitle{font-weight:800;font-size:20px;margin-bottom:8px}
+audio{display:block;width:100%;height:42px}
+.audioText{min-height:42px;color:GrayText;font-size:12px;margin:8px 0 0}
+button{font:inherit;cursor:pointer;border:1px solid color-mix(in srgb,CanvasText 25%,transparent);background:Canvas;color:CanvasText;border-radius:11px;padding:10px 14px}
+button:disabled{cursor:not-allowed;opacity:.45}
+.primary{background:#5452c3;color:#fff;border-color:#5452c3;font-weight:700}
+.choice{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.choice button{flex:1 1 100px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:20px}
+#info{min-height:44px}
+#result{border-top:1px solid color-mix(in srgb,CanvasText 17%,transparent);padding-top:13px;margin-top:13px}
+#result[hidden],#qa[hidden],#ready[hidden]{display:none}
+.footer{font-size:13px;color:GrayText}
+#stats{white-space:pre-wrap}
+@media(max-width:610px){
+ .audios{grid-template-columns:1fr}
+ .audioCard{display:grid;grid-template-columns:38px minmax(0,1fr);gap:6px 12px;align-items:center;padding:10px}
+ .audioTitle{grid-row:span 2;align-self:start;margin:1px}
+ .audioText{min-height:0;grid-column:2;margin:0}
+ audio{height:41px}
+ .jp{font-size:20px}
+}
+</style>
+</head><body><main>
+<a href="./">← JLPT 학습 사이트</a>
+<h1>예문 MP3 용량·음질 블라인드 비교</h1>
+<p>새 Kokoro로 생성한 <strong>128kbps 음성</strong>을 원본으로, 같은 음성을 <strong>96kbps·64kbps</strong>로 압축했어. 일본어 발음과 억양은 새로 합성하지 않았고 MP3 압축만 다르게 했어.</p>
+<p class="note">A·B·C의 비트레이트는 매 예문마다 무작위로 섞여 있어. 세 음성을 모두 재생한 후 가장 자연스러운 것을 선택하면 정답(비트레이트)과 실제 파일 용량이 공개돼.</p>
+<div id="ready" class="card">비교용 MP3 생성 완료 여부를 확인 중이야…</div>
+<div id="qa" hidden>
+ <div class="card">
+  <div class="top"><strong id="step">예문 — / 20</strong><strong id="votes">평가 완료 0 / 20</strong></div>
+  <progress class="progress" id="voteBar" max="20" value="0"></progress>
+  <h2 style="margin-top:17px">일본어 예문</h2><div class="jp" id="sentence"></div>
+  <div class="audios" id="players"></div>
+  <p id="info" class="note">A·B·C 모두 들어보고 가장 자연스러운 음성을 선택해 줘.</p>
+  <div class="choice" id="choices"></div>
+  <div id="result" hidden></div>
+  <div class="nav">
+   <button type="button" id="prev">← 이전 예문</button>
+   <button type="button" id="next" class="primary">다음 예문 →</button>
+  </div>
+ </div>
+ <div class="card">
+  <h2>내 청음 결과</h2>
+  <div id="stats" class="note">선택한 결과가 여기에 표시돼.</div>
+  <div class="choice">
+   <button type="button" id="export">평가 결과 JSON 저장</button>
+   <button type="button" id="reset">평가 초기화</button>
+  </div>
+ </div>
+</div>
+<p class="footer">기존 사이트의 3,104개 예문 MP3(128kbps)는 변경하지 않았어. 이 실험은 <strong>128kbps MP3를 한 번 더 압축하는 방식</strong>이므로 96/64kbps를 Kokoro 원본 WAV에서 직접 만든 경우보다 불리할 수 있어. 아이폰 스피커와 이어폰에서 각각 들어보면 차이를 판단하는 데 도움이 돼.</p>
+<p class="footer"><a href="https://github.com/kojer-lab/jlpt-study/actions/workflows/audio-bitrate-qa.yml">비교 MP3 생성 GitHub Actions</a></p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const savedKey="jlptKokoroBitrateBlindQA20v1";
+let manifest=null,sampleIndex=0,votes={},permutations={},played=new Set();
+try{const data=JSON.parse(localStorage.getItem(savedKey)||"{}");votes=data.votes||{};permutations=data.permutations||{}}catch{}
+function persist(){try{localStorage.setItem(savedKey,JSON.stringify({votes,permutations}))}catch{}}
+function permute(row){
+ const id=row.word_id+"|"+row.example_index;
+ if(Array.isArray(permutations[id])&&[...permutations[id]].sort().join(",")==="128,64,96")return permutations[id];
+ const keys=["128","96","64"];
+ for(let n=keys.length-1;n>0;n--){const k=Math.floor(Math.random()*(n+1));[keys[n],keys[k]]=[keys[k],keys[n]]}
+ permutations[id]=keys;persist();return keys;
+}
+function idFor(row){return row.word_id+"|"+row.example_index}
+function kib(bytes){return (bytes/1024).toFixed(1)+"KB"}
+function render(){
+ if(!manifest)return;
+ const row=manifest.items[sampleIndex],id=idFor(row),order=permute(row),previous=votes[id];
+ $("step").textContent="예문 "+(sampleIndex+1)+" / "+manifest.items.length;
+ $("votes").textContent="평가 완료 "+Object.keys(votes).filter(x=>manifest.items.some(r=>idFor(r)===x)).length+" / "+manifest.items.length;
+ $("voteBar").value=Math.min(manifest.items.length,Object.keys(votes).filter(x=>manifest.items.some(r=>idFor(r)===x)).length);
+ $("sentence").textContent=row.text;
+ $("prev").disabled=sampleIndex===0;$("next").disabled=sampleIndex===manifest.items.length-1;
+ played=new Set();const playerRoot=$("players");playerRoot.replaceChildren();
+ order.forEach((rate,i)=>{
+  const label="ABC"[i],audioRow=row.audio[rate];
+  const card=document.createElement("div");card.className="audioCard";
+  const heading=document.createElement("div");heading.className="audioTitle";heading.textContent=label;
+  const audio=document.createElement("audio");audio.controls=true;audio.preload="none";
+  audio.src=audioRow.path+"?v="+audioRow.sha256.slice(0,14);
+  audio.setAttribute("aria-label",label+" 음성 듣기");
+  audio.addEventListener("play",()=>{playerRoot.querySelectorAll("audio").forEach(x=>{if(x!==audio)x.pause()});played.add(label);updateChoices()});
+  const details=document.createElement("p");details.className="audioText";
+  details.textContent=previous?rate+"kbps · "+kib(audioRow.bytes):"재생해서 비교";
+  card.append(heading,audio,details);playerRoot.append(card);
+ });
+ const choices=$("choices");choices.replaceChildren();
+ ["A","B","C","차이를 모르겠어"].forEach((name,i)=>{
+  const button=document.createElement("button");button.type="button";
+  button.textContent=i<3?name+"가 가장 좋음":name;
+  button.dataset.choice=i<3?order[i]:"tie";
+  button.addEventListener("click",()=>rate(button.dataset.choice));choices.append(button);
+ });
+ const result=$("result");
+ result.hidden=!previous;
+ if(previous){
+  const picked=previous==="tie"?"음질 차이를 구별하지 못함":previous+"kbps를 가장 좋다고 평가함";
+  result.textContent="선택 결과: "+picked+" · 실제 용량 "+
+  ["128","96","64"].map(k=>k+"kbps "+kib(row.audio[k].bytes)).join(" / ");
+  $("info").textContent="이미 평가한 예문이야. 다른 선택을 누르면 결과를 수정할 수 있어.";
+ }else $("info").textContent="세 음성을 모두 들어봐. 비트레이트는 평가 후 공개돼.";
+ updateChoices();updateStats();
+}
+function updateChoices(){
+ const completed=played.size===3;
+ for(const button of $("choices").querySelectorAll("button")){
+  button.disabled=!completed&&!votes[idFor(manifest.items[sampleIndex])];
+ }
+}
+function rate(choice){
+ const row=manifest.items[sampleIndex];votes[idFor(row)]=choice;persist();render();
+}
+function updateStats(){
+ if(!manifest)return;
+ const counts={"128":0,"96":0,"64":0,tie:0};
+ let evaluated=0;
+ for(const row of manifest.items){const v=votes[idFor(row)];if(v in counts){counts[v]++;evaluated++}}
+ const all=evaluated===manifest.count;
+ let text="총 "+evaluated+" / "+manifest.count+"개 평가 완료\n"+
+  "128kbps 선호 "+counts["128"]+"개 · 96kbps 선호 "+counts["96"]+"개 · 64kbps 선호 "+counts["64"]+"개\n"+
+  "차이 구별 어려움 "+counts.tie+"개";
+ if(all){
+  const size=manifest.total_bytes,save96=(100*(1-size["96"]/size["128"])).toFixed(1),
+        save64=(100*(1-size["64"]/size["128"])).toFixed(1);
+  text+="\n\n20개 샘플 실제 절약률: 96kbps "+save96+"% · 64kbps "+save64+"%";
+  text+="\n결과를 검토한 뒤에만 전체 3,104개 적용 여부를 결정하자.";
+ }
+ $("stats").textContent=text;
+}
+$("prev").addEventListener("click",()=>{if(sampleIndex>0){sampleIndex--;render();window.scrollTo({top:0,behavior:"smooth"})}});
+$("next").addEventListener("click",()=>{if(sampleIndex<manifest.items.length-1){sampleIndex++;render();window.scrollTo({top:0,behavior:"smooth"})}});
+$("reset").addEventListener("click",()=>{if(!confirm("20개 평가 결과만 초기화할까? 사이트 학습 진도에는 영향이 없어."))return;votes={};persist();sampleIndex=0;render()});
+$("export").addEventListener("click",()=>{
+ if(!manifest)return;
+ const data={version:1,process:manifest.process,choices:votes,total_bytes:manifest.total_bytes,
+ items:manifest.items.map(row=>({id:idFor(row),text:row.text,choice:votes[idFor(row)]||null,bytes:Object.fromEntries(["128","96","64"].map(k=>[k,row.audio[k].bytes]))}))};
+ const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
+ const link=document.createElement("a");link.href=url;link.download="kojer-kokoro-bitrate-qa-results.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+});
+(async()=>{
+ try{
+  const response=await fetch("audio/vocab/bitrate-qa-20/manifest.json?t="+Date.now(),{cache:"no-store"});
+  if(response.status===404){$("ready").textContent="비교용 MP3 40개를 만드는 중이야. 잠시 뒤 새로고침하면 비교를 시작할 수 있어.";return}
+  if(!response.ok)throw new Error("진행 파일 오류: "+response.status);
+  const data=await response.json();
+  if(data.count!==20||!Array.isArray(data.items)||data.items.length!==20)throw new Error("비교 파일 구성 오류");
+  manifest=data;$("ready").hidden=true;$("qa").hidden=false;render();
+ }catch(e){$("ready").textContent="불러오기 실패: "+String(e.message||e)}
+})();
+</script></body></html>

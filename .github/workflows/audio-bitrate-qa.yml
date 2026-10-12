@@ -1,0 +1,77 @@
+name: Browser Kokoro bitrate blind comparison (128 / 96 / 64)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/audio-bitrate-qa.yml"
+      - "tools/make-audio-bitrate-qa.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jlpt-bitrate-qa-20
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify MP3 encoders and sample source
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tools/make-audio-bitrate-qa.mjs
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -hide_banner -version | head -n 1
+          ffprobe -hide_banner -version | head -n 1
+      - name: Generate bitrate comparison MP3s and sizes
+        run: node tools/make-audio-bitrate-qa.mjs
+      - name: Verify comparison set and that no production MP3 was changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("audio/vocab/bitrate-qa-20")
+          j=json.loads((p/"manifest.json").read_text())
+          assert j["count"]==20 and len(j["items"])==20
+          assert j["production_replaced"] is False
+          paths=set()
+          for row in j["items"]:
+            for bitrate in ["128","96","64"]:
+              x=row["audio"][bitrate]
+              assert Path(x["path"]).is_file()
+              if bitrate!="128": paths.add(x["path"])
+            assert row["audio"]["128"]["bytes"]>row["audio"]["96"]["bytes"]>row["audio"]["64"]["bytes"]
+          assert len(paths)==40
+          print("PASS: 40 comparison MP3s, 20 originals checked, production untouched")
+          PY
+          test -z "$(git status --porcelain -- audio/vocab | grep -v '?? audio/vocab/bitrate-qa-20/' || true)"
+      - name: Publish only the comparison media and manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- audio/vocab/bitrate-qa-20/
+          test "$(git diff --cached --name-only | wc -l | tr -d ' ')" -eq 41
+          test -z "$(git diff --cached --name-only | grep -v '^audio/vocab/bitrate-qa-20/' || true)"
+          git commit -m "audio: publish 20 blind 128/96/64kbps comparison sets"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
