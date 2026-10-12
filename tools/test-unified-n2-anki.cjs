@@ -70,7 +70,7 @@ assert.ok(selected.some(w=>w.id===firstId));
 assert.equal(selected.length,20);
 day="2026-10-14";state.dailyNew={date:day,ids:n1.slice(0,20).map(x=>x.id),updatedAt:0};
 const existing=context.ensureDailyNew(true,"ALL");
-assert.deepEqual(Array.from(existing,x=>x.id),state.dailyNew.ids);
+assert.equal(JSON.stringify(Array.from(existing,x=>x.id)),JSON.stringify(Array.from(state.dailyNew.ids)));
 assert.equal(existing.filter(x=>x.level==="N2").length,0);
 srs["n2-4"]={reviews:12,due:123,stability:12};
 const before=srs["n2-4"];
