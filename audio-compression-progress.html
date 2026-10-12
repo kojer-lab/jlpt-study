@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>JLPT 예문 MP3 64kbps 압축 진행률</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+*{box-sizing:border-box}
+body{background:Canvas;color:CanvasText;margin:0}
+main{max-width:790px;padding:24px 17px 70px;margin:auto;line-height:1.65}
+a{color:LinkText}
+h1{font-size:25px;line-height:1.4;margin:15px 0 10px;letter-spacing:-.5px}
+h2{font-size:17px;margin:0 0 13px}
+p{margin:9px 0 15px}
+.muted{font-size:14px;color:GrayText}
+.card{border:1px solid color-mix(in srgb,CanvasText 18%,transparent);border-radius:16px;margin:16px 0;padding:19px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.value{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums;margin:7px 0 0;letter-spacing:-.8px}
+.percent{font-size:21px;font-weight:750;font-variant-numeric:tabular-nums}
+progress{display:block;width:100%;height:16px;accent-color:#6760cf;margin:12px 0}
+.smallProgress{height:11px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:17px}
+.stat{border-top:1px solid color-mix(in srgb,CanvasText 16%,transparent);padding-top:10px}
+.stat strong{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:12px;color:GrayText}
+.batches{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.pill{border:1px solid color-mix(in srgb,CanvasText 22%,transparent);border-radius:20px;padding:4px 8px;font-size:12px}
+.pill.done{border-color:#188854;background:color-mix(in srgb,#188854 15%,Canvas)}
+.pill.active{border:2px solid #6760cf;padding:3px 7px}
+button{border:0;background:#5752c2;color:#fff;padding:11px 18px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer}
+button:disabled{opacity:.6}
+.controls{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+#status{font-size:15px}
+@media(max-width:480px){.value{font-size:28px}.card{padding:15px}.stat strong{font-size:17px}}
+</style></head>
+<body><main>
+<a href="./">← JLPT 학습 화면</a>
+<h1>예문 MP3 64kbps 압축 진행률</h1>
+<p class="muted">브라우저 Kokoro로 생성한 <strong>128kbps 예문 3,104개</strong>를 동일한 발음·억양을 유지하면서 64kbps MP3로 재압축하는 작업이야. <strong>300개씩 진행, 50개마다 GitHub에 저장</strong>해.</p>
+<section class="card">
+ <div class="top"><h2>전체 누적 교체</h2><strong class="percent" id="pct">—%</strong></div>
+ <div class="value" id="count">확인 중…</div>
+ <progress id="bar" max="3104" value="0" aria-label="전체 MP3 압축 완료율"></progress>
+ <div class="stats">
+  <div class="stat"><strong id="done">—</strong><span>교체 완료</span></div>
+  <div class="stat"><strong id="remain">—</strong><span>남은 예문</span></div>
+  <div class="stat"><strong id="batchDone">—</strong><span>완료 배치 / 전체</span></div>
+ </div>
+</section>
+<section class="card">
+ <div class="top"><h2>현재 변환 배치</h2><strong id="batchLabel">—</strong></div>
+ <div id="status" role="status" aria-live="polite">GitHub에 저장된 변환 기록을 읽고 있어.</div>
+ <div class="value" id="batchCount">— / 300개</div>
+ <progress class="smallProgress" id="batchBar" max="300" value="0" aria-label="현재 배치 진행률"></progress>
+ <div class="batches" id="steps"></div>
+ <div id="last" class="muted">마지막 저장: 조회 중</div>
+</section>
+<section class="card">
+ <h2>현재까지 확인된 실제 절약 용량</h2>
+ <div class="value" id="saved">— MB</div>
+ <p id="bytes" class="muted">변환 완료된 MP3만 집계해 실제 용량 차이를 계산해.</p>
+ <p class="muted">128kbps 파일은 별도로 복사해 저장하지 않고 Git의 기존 버전 기록으로 복구할 수 있어. 단어 MP3와 안키/FSRS 학습 진도는 변경하지 않아.</p>
+</section>
+<div class="controls"><button id="refresh" type="button">지금 갱신하기</button><span id="checked" class="muted">45초마다 자동 갱신</span></div>
+<p class="muted">숫자는 GitHub에 실제 게시된 파일만 반영해. 50개를 변환하는 동안에는 숫자가 잠시 멈춰 보일 수 있고, GitHub Pages 배포와 브라우저 캐시 갱신에는 시간이 더 걸릴 수 있어. 페이지를 닫아도 자동 변환은 계속돼.</p>
+<p><a href="https://github.com/kojer-lab/jlpt-study/actions/workflows/compress-example-mp3-64k.yml" target="_blank" rel="noopener">GitHub Actions 작업 기록 보기 ↗</a></p>
+<p class="muted"><a href="./audio-bitrate-qa.html">64·96·128kbps 음질 비교 다시 듣기</a></p>
+</main>
+<script>
+const el=id=>document.getElementById(id);
+const TOTAL=3104,BATCH=300,COUNT=Math.ceil(TOTAL/BATCH);
+const num=n=>Number(n).toLocaleString("ko-KR");
+let busy=false;
+function expected(n){return Math.min(BATCH,TOTAL-(n-1)*BATCH)}
+async function getBatch(n,t){
+ const path="audio/vocab/compression-batches/batch-"+String(n).padStart(4,"0")+".json?t="+t;
+ const response=await fetch(path,{cache:"no-store"});
+ if(response.status===404)return null;
+ if(!response.ok)throw Error(n+"차 진행 파일을 읽지 못했어 ("+response.status+")");
+ const data=await response.json();
+ if(data.batch_number!==n||data.count!==expected(n)||!Array.isArray(data.completed)||
+    data.completed.length>data.count||data.target_kbps!==64)throw Error(n+"차 진행 정보 형식이 잘못됐어");
+ return data;
+}
+async function refresh(){
+ if(busy)return;busy=true;el("refresh").disabled=true;
+ try{
+  const items=await Promise.all(Array.from({length:COUNT},(_,i)=>getBatch(i+1,Date.now())));
+  let done=0,finished=0,oldBytes=0,newBytes=0,latest=null;
+  for(const batch of items){
+   if(!batch)continue;
+   done+=batch.completed.length;
+   if(batch.status==="complete"&&batch.completed.length===batch.count)finished++;
+   if(batch.updated_at&&(!latest||Date.parse(batch.updated_at)>Date.parse(latest)))latest=batch.updated_at;
+   for(const item of batch.completed){
+    oldBytes+=Number(item.original_bytes)||0;
+    newBytes+=Number(item.compressed_bytes)||0;
+   }
+  }
+  if(done>TOTAL)throw Error("완료 건수가 전체 수량을 초과했어");
+  const firstIncomplete=items.findIndex((x,i)=>!x||x.status!=="complete"||x.completed.length!==expected(i+1));
+  const active=firstIncomplete<0?COUNT:firstIncomplete+1;
+  const activeData=items[active-1],activeDone=activeData?.completed.length||0;
+  const allDone=done===TOTAL&&finished===COUNT;
+  el("pct").textContent=(done/TOTAL*100).toFixed(1)+"%";
+  el("count").textContent=num(done)+" / "+num(TOTAL)+"개";
+  el("bar").value=done;
+  el("done").textContent=num(done);
+  el("remain").textContent=num(TOTAL-done);
+  el("batchDone").textContent=finished+" / "+COUNT;
+  el("batchLabel").textContent=active+" / "+COUNT+"차";
+  el("batchCount").textContent=activeDone+" / "+expected(active)+"개";
+  el("batchBar").max=expected(active);el("batchBar").value=activeDone;
+  el("status").textContent=allDone?"전체 3,104개 64kbps MP3 변환 완료":
+   activeData?.status==="in_progress"?active+"차 배치 진행 중":
+   active+"차 배치 준비 중 또는 첫 50개 변환 중";
+  const steps=el("steps");steps.replaceChildren();
+  for(let n=1;n<=COUNT;n++){
+   const batch=items[n-1],count=batch?.completed.length||0;
+   const pill=document.createElement("span");
+   pill.className="pill "+(batch?.status==="complete"&&count===expected(n)?"done":n===active?"active":"");
+   pill.textContent=n+"차 "+count+"/"+expected(n);
+   steps.append(pill);
+  }
+  const saved=Math.max(0,oldBytes-newBytes);
+  el("saved").textContent=(saved/1000000).toFixed(2)+" MB";
+  el("bytes").textContent=done?
+   "변환된 "+num(done)+"개만 집계 · 이전 "+(oldBytes/1000000).toFixed(2)+"MB → 현재 "+(newBytes/1000000).toFixed(2)+
+    "MB · 절약 "+(100*saved/oldBytes).toFixed(1)+"%":
+   "아직 GitHub에 게시된 압축 결과가 없어.";
+  el("last").textContent=latest?"마지막 GitHub 저장: "+new Date(latest).toLocaleString("ko-KR"):"아직 저장된 배치 기록이 없어.";
+  el("checked").textContent="방금 조회 · 45초마다 자동 갱신";
+ }catch(error){
+  el("status").textContent="진행률 조회 실패: "+String(error.message||error);
+  el("checked").textContent="잠시 후 다시 갱신해 줘";
+ }finally{busy=false;el("refresh").disabled=false}
+}
+el("refresh").addEventListener("click",refresh);
+refresh();
+setInterval(()=>{if(!document.hidden)refresh()},45000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()});
+</script></body></html>
