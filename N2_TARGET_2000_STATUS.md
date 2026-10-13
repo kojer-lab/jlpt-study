@@ -3,9 +3,9 @@
 ## 배포된 완성 데이터
 
 - **기존 N2 322개**: 단어·읽기·한국어 뜻·긴 일본어 예문 1개·한국어 번역 포함.
-- **추가 검수 N2 1,480개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개 + `data/n2-words-phase14.js` 70개 + `data/n2-words-phase15.js` 50개 + `data/n2-words-phase16.js` 50개 + `data/n2-words-phase17.js` 50개 + `data/n2-words-phase18.js` 50개 + `data/n2-words-phase19.js` 50개 + `data/n2-words-phase20.js` 95개 + `data/n2-words-phase21.js` 100개 + `data/n2-words-phase22.js` 99개 + `data/n2-words-phase23.js` 100개 + `data/n2-words-phase24.js` 95개 + `data/n2-words-phase25.js` 70개 + `data/n2-words-phase26.js` 75개 + `data/n2-words-phase27.js` 77개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
-- **완성 카드 소스 합계: 1,802개 (2,000개 후보 중 90.10%)**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 1,802개 모두가 별개의 새 카드로 생성되는 것은 아님.
-- 새 1,480개는 N1 단어장의 표제어와 중복되지 않으며, 한 단어당 예문은 **일본어 한 문장(32자 이상) + 한국어 번역**만 포함한다.
+- **추가 검수 N2 1,541개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개 + `data/n2-words-phase14.js` 70개 + `data/n2-words-phase15.js` 50개 + `data/n2-words-phase16.js` 50개 + `data/n2-words-phase17.js` 50개 + `data/n2-words-phase18.js` 50개 + `data/n2-words-phase19.js` 50개 + `data/n2-words-phase20.js` 95개 + `data/n2-words-phase21.js` 100개 + `data/n2-words-phase22.js` 99개 + `data/n2-words-phase23.js` 100개 + `data/n2-words-phase24.js` 95개 + `data/n2-words-phase25.js` 70개 + `data/n2-words-phase26.js` 75개 + `data/n2-words-phase27.js` 77개 + `data/n2-words-phase28.js` 61개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
+- **완성 카드 소스 합계: 1,863개 (2,000개 후보 중 93.15%)**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 1,863개 모두가 별개의 새 카드로 생성되는 것은 아님.
+- 새 1,541개는 N1 단어장의 표제어와 중복되지 않으며, 한 단어당 예문은 **일본어 한 문장(32자 이상) + 한국어 번역**만 포함한다.
 
 ## 중복 검사
 
@@ -22,12 +22,13 @@
 ## 신규 후보 검수 현황
 
 - 후보 파일 `data/n2-target-2000-draft.json`: **1,678개**
-- 검수 후 실제 반영 완료: **1,480개** (`reviewed_promoted`)
+- 검수 후 실제 반영 완료: **1,541개** (`reviewed_promoted`)
 - N1 완전 중복으로 승격 제외: **9개**
 - 같은 표제어·다른 읽기 검토 대기: **20개**
-- 일반 검수 대기: **169개**
+- 일반 검수 대기: **108개**
 - 목표인 2,000개는 **N2 후보 풀 개수**. 전체가 N1과 중복 없는 완성 학습 카드 2,000개라는 뜻은 아니다. 중복을 제외한 실제 카드 목표는 추가 후보 확보와 별도 검수가 필요하다.
 
+- **이번 28차 61개**는 표제어에 맞는 장문 예문과 자연스러운 한국어 뜻·번역을 대조해 승격했다.
 - **이번 27차 77개**는 일본어 표기와 용법을 확인해 한국어 뜻 및 긴 예문 한 문장과 번역을 검수했다.
 - **이번 26차 75개**는 표기별 다른 의미를 구분해 장문 예문 하나 및 한국어 뜻·번역을 작성했다.
 - **이번 25차 70개**는 일본어 예문 한 문장(32자 이상), 한국어 뜻과 대응 번역을 확인하고 통합 단어장에 반영했다.
@@ -42,7 +43,7 @@
 - **이번 16차 50개**는 표제어·읽기·한국어 뜻·자연스러운 일본어 장문 예문 1개와 한국어 번역을 대조하고 반영했다.
 - **이번 15차 50개**는 동음이의·표기 구별을 중심으로 일본어 예문 1개와 한국어 번역을 작성하고 중복 감사 목록과 비교했다.
 - **이번 14차 70개**는 N1 중복 감사 목록과 대조하여 표제어 충돌이 없는 후보만 선정했고, 일본어 예문 1개(32자 이상)와 한국어 번역 1개를 직접 작성했다.
-- 미완료 후보 **198개** = 일반 검수 169 + 동형어 검토 20 + N1 완전 중복 제외 9. 2,000개는 후보 수이지 N1과 중복 없는 신규 카드 수가 아니다.
+- 미완료 후보 **137개** = 일반 검수 108 + 동형어 검토 20 + N1 완전 중복 제외 9. 2,000개는 후보 수이지 N1과 중복 없는 신규 카드 수가 아니다.
 
 ## 카드 작성 원칙
 
