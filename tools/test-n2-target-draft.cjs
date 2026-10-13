@@ -16,16 +16,16 @@ assert.equal(new Set(cards.map(x=>canonical(x.w))).size,2000,"duplicate headword
 assert.equal(new Set(cards.map(x=>x.id)).size,2000,"duplicate N2 card ID");
 assert.equal(cards.filter(x=>x.level==="N2").length,2000);
 const promotedFromPhase=new Map();
-const completed=[6,7,8,9].flatMap(n=>{
+const completed=[6,7,8,9,10].flatMap(n=>{
  const content=fs.readFileSync("data/n2-words-phase"+n+".js","utf8");
  const items=JSON.parse(content.slice(content.indexOf("=[")+1).replace(/;\s*$/,""));
  for(const item of items)promotedFromPhase.set(item.id,"data/n2-words-phase"+n+".js");
  return items;
 });
-assert.equal(completed.length,213);
+assert.equal(completed.length,284);
 const promotedIds=new Set(completed.map(x=>x.id));
-assert.equal(promotedIds.size,213);
-assert.equal(draft.words.filter(x=>x.qa_status==="reviewed_promoted").length,213);
+assert.equal(promotedIds.size,284);
+assert.equal(draft.words.filter(x=>x.qa_status==="reviewed_promoted").length,284);
 assert.equal(draft.words.filter(x=>x.qa_status==="duplicate_exact_n1").length,9);
 assert.equal(draft.words.filter(x=>x.qa_status==="needs_homograph_review").length,20);
 assert.ok(draft.words.filter(x=>x.qa_status==="duplicate_exact_n1").every(x=>x.excluded_from_promotion));
@@ -46,6 +46,7 @@ assert.ok(html.includes("data/n2-words-phase6.js"));
 assert.ok(html.includes("data/n2-words-phase7.js"));
 assert.ok(html.includes("data/n2-words-phase8.js"));
 assert.ok(html.includes("data/n2-words-phase9.js"));
+assert.ok(html.includes("data/n2-words-phase10.js"));
 assert.ok(!html.includes("n2-target-2000-draft.json"),"draft N2 must not load into live Anki");
 const seeded=draft.words.filter(x=>x.example_seed_jp).length;
 console.log("PASS: 322 production cards + 1678 draft source entries = 2000 unique N2 candidate headwords; "+seeded+" Japanese sentence seeds; live Anki unchanged.");
