@@ -16,7 +16,7 @@ assert.equal(new Set(cards.map(x=>canonical(x.w))).size,2000,"duplicate headword
 assert.equal(new Set(cards.map(x=>x.id)).size,2000,"duplicate N2 card ID");
 assert.equal(cards.filter(x=>x.level==="N2").length,2000);
 const reviewedSource=fs.readFileSync("data/n2-words-phase6.js","utf8");
-const reviewed=JSON.parse(reviewedSource.slice(reviewedSource.indexOf("=[")+1).replace(/;\\s*$/,""));
+const reviewed=JSON.parse(reviewedSource.slice(reviewedSource.indexOf("=[")+1).replace(/;\s*$/,""));
 assert.equal(reviewed.length,49);
 const promotedIds=new Set(reviewed.map(x=>x.id));
 assert.equal(draft.words.filter(x=>x.qa_status==="reviewed_promoted").length,49);
