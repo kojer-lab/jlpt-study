@@ -48,39 +48,39 @@ function reset(items=d.concat(fresh.slice(0,4)),gap=0){
  ctx.wordLearningQueue=[];ctx.wordSessionHistory=[];ctx.wordSessionTotal=items.length;
 }
 function test(name,fn){fn();console.log("PASS",name)}
-test("new session starts with 5 due then 1 new",()=>{
+test("new session starts with 4 due then 1 new",()=>{
  reset();
  const mixed=ctx.interleaveDueAndNew(d,fresh.slice(0,4));
- assert.equal(mixed[5].id,"new0");
- assert.equal(mixed[11].id,"new1");
+ assert.equal(mixed[4].id,"new0");
+ assert.equal(mixed[9].id,"new1");
 });
-test("after five actual reviews, new is next even with 30 due",()=>{
- reset(d.concat(fresh.slice(0,4)),5);
+test("after four actual reviews, new is next even with 30 due",()=>{
+ reset(d.concat(fresh.slice(0,4)),4);
  ctx.currentWordQueue();
  assert.equal(ids()[0],"new0");
  assert.equal(ids().length,39);
 });
 test("time-due learning review cannot permanently starve new cards",()=>{
- reset(d.slice(0,30).concat(fresh.slice(0,4)),5);
+ reset(d.slice(0,30).concat(fresh.slice(0,4)),4);
  ctx.wordLearningQueue=[{id:"due34"}];
  ctx.currentWordQueue();
  assert.equal(ids()[0],"new0");
  assert.equal(ids()[1],"due34");
 });
-test("no early promotion below five reviews",()=>{
- reset(d.concat(fresh.slice(0,4)),4);
+test("no early promotion below four reviews",()=>{
+ reset(d.concat(fresh.slice(0,4)),3);
  ctx.currentWordQueue();
  assert.equal(ids()[0],"due0");
 });
 test("if today's quota is exhausted, no extra new is invented",()=>{
- reset(d.slice(0,20),5);
+ reset(d.slice(0,20),4);
  ctx.todayNewPending=()=>[];
  assert.equal(ctx.includeMissingDailyNewInSession(),0);
  assert.equal(ids().length,20);
  ctx.todayNewPending=()=>fresh.slice(0,4);
 });
 test("resume old due-only session adds today's reserved unseen words once",()=>{
- reset(d.slice(0,20),5);
+ reset(d.slice(0,20),4);
  const first=ctx.includeMissingDailyNewInSession();
  assert.equal(first,4);
  assert.equal(ctx.wordSessionTotal,24);
@@ -90,19 +90,31 @@ test("resume old due-only session adds today's reserved unseen words once",()=>{
  assert.equal(ids()[0],"new0");
 });
 test("already-queued new words are not duplicated",()=>{
- reset(d.slice(0,20).concat(fresh.slice(0,2)),5);
+ reset(d.slice(0,20).concat(fresh.slice(0,2)),4);
  assert.equal(ctx.includeMissingDailyNewInSession(),2);
  assert.equal(ids().filter(x=>x==="new0").length,1);
  assert.equal(ctx.wordSessionTotal,24);
 });
-test("restore older persisted sessions derives the five-review gap",()=>{
+test("restore older persisted sessions derives the four-review gap",()=>{
  reset([],0);
  const saved={mode:"daily",total:20,done:0,index:0,
   immediate:d.slice(0,20).map(x=>x.id),learning:[],mixedOrder:true,
   history:d.slice(0,7).map(x=>({id:x.id,before:{reviews:2},countedDone:false}))};
  ctx.localStorage.getItem=()=>JSON.stringify(saved);
  assert.equal(ctx.restoreWordSession(),true);
- assert.equal(ctx.wordNonNewStreak,5);
+ assert.equal(ctx.wordNonNewStreak,4);
+ assert.equal(ctx.wordSessionQueue.length,20);
+ assert.equal(ctx.includeMissingDailyNewInSession(),4);
+ ctx.currentWordQueue();
+ assert.equal(ids()[0],"new0");
+});
+test("restoring a previous five-review streak clamps at four without losing cards",()=>{
+ reset([],0);
+ const saved={mode:"daily",total:20,done:0,index:0,immediate:d.slice(0,20).map(w=>w.id),
+   learning:[],mixedOrder:true,newGap:5,history:[]};
+ ctx.localStorage.getItem=()=>JSON.stringify(saved);
+ assert.equal(ctx.restoreWordSession(),true);
+ assert.equal(ctx.wordNonNewStreak,4);
  assert.equal(ctx.wordSessionQueue.length,20);
  assert.equal(ctx.includeMissingDailyNewInSession(),4);
  ctx.currentWordQueue();
@@ -112,6 +124,6 @@ test("undo and local save store the pre-rating gap",()=>{
  assert.ok(html.includes("newGapBefore:wordNonNewStreak"));
  assert.ok(html.includes("wordNonNewStreak=h.newGapBefore"));
  assert.ok(html.includes("newGap:wordNonNewStreak"));
- assert.ok(html.includes('wordNonNewStreak=before?.reviews>0?Math.min(5,wordNonNewStreak+1):0'));
+ assert.ok(html.includes('wordNonNewStreak=before?.reviews>0?Math.min(4,wordNonNewStreak+1):0'));
 });
-console.log("Anki interleaving regression suite: 9 scenarios verified.");
+console.log("Anki interleaving regression suite: 10 scenarios verified.");

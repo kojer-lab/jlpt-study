@@ -644,7 +644,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
             <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
           </button>
         </div>
-        <div class="word-dashboard-sub">복습 5개마다 새 단어 1개를 섞어 학습합니다. 복습 일정은 FSRS가 그대로 관리합니다.</div>
+        <div class="word-dashboard-sub">복습 4개마다 새 단어 1개를 섞어 학습합니다. 복습 일정은 FSRS가 그대로 관리합니다.</div>
         <div class="word-goal">
           <div class="word-goal-head"><strong id="wordGoalText">0 / 50개</strong><span>현재 단어 은행</span></div>
           <div class="word-goal-track"><div class="word-goal-fill" id="wordGoalFill"></div></div>
@@ -2710,7 +2710,7 @@ function interleaveDueAndNew(due, fresh){
  const result=[],seen=new Set();let i=0,j=0;
  const append=w=>{if(w&&!seen.has(w.id)){seen.add(w.id);result.push(w)}};
  while(i<due.length||j<fresh.length){
-  for(let n=0;n<5&&i<due.length;n++)append(due[i++]);
+  for(let n=0;n<4&&i<due.length;n++)append(due[i++]);
   if(j<fresh.length)append(fresh[j++]);
  }
  return result;
@@ -2746,7 +2746,7 @@ function promoteLearningCards(immediate,delayed,allowAhead=true){
 // 5:1 queue was mixed. Enforce the ratio on the *next actual card*, not just
 // at the initial queue construction, while preserving due timestamps.
 function prioritizePendingNewWord(queue){
- if(wordMode!=="daily"||wordNonNewStreak<5||!queue.length)return;
+ if(wordMode!=="daily"||wordNonNewStreak<4||!queue.length)return;
  const index=queue.findIndex(w=>getSrs(w.id).reviews===0);
  if(index>0)queue.unshift(queue.splice(index,1)[0]);
 }
@@ -2866,10 +2866,10 @@ function restoreWordSession(){
  wordSessionHistory=(data.history||[]).map(h=>({...h,id:canonicalWordId(h.id),word:wordById.get(h.id)})).filter(h=>h.word);
  // Restore the number of reviewed cards since the most recent new card.
  // Existing sessions without this field can derive it from their history.
- if(Number.isFinite(data.newGap))wordNonNewStreak=Math.max(0,Math.min(5,Math.floor(data.newGap)));
+ if(Number.isFinite(data.newGap))wordNonNewStreak=Math.max(0,Math.min(4,Math.floor(data.newGap)));
  else{
   wordNonNewStreak=0;
-  for(let i=wordSessionHistory.length-1;i>=0&&wordNonNewStreak<5;i--){
+  for(let i=wordSessionHistory.length-1;i>=0&&wordNonNewStreak<4;i--){
    const before=wordSessionHistory[i].before;
    if(!before||!(Number(before.reviews)>0))break;
    wordNonNewStreak++;
@@ -3408,7 +3408,7 @@ $("wordRating").addEventListener("click",e=>{
  const isQuick=!!wordQuickActive&&wordQuickActive.id===currentId;
  wordSessionHistory.push({id:currentId,word:currentWord,hadSrs,before,rating:b.dataset.rate,reviewLogLength,profileBefore,learningQueueBefore,quickBefore,quickTurnBefore,quickActiveBefore,isQuick,newGapBefore:wordNonNewStreak,countedDone:false});
  if(!isQuick)rateWord(currentId,b.dataset.rate);
- if(wordMode==="daily"&&!isQuick)wordNonNewStreak=before?.reviews>0?Math.min(5,wordNonNewStreak+1):0;
+ if(wordMode==="daily"&&!isQuick)wordNonNewStreak=before?.reviews>0?Math.min(4,wordNonNewStreak+1):0;
  // A new card attempt must start with all tap-to-reveal furigana hidden.
  clearStudyFuriganaState();
  const after=getSrs(currentId),needsRepeat=!isQuick&&(after.state==="learning"||after.state==="relearning");
