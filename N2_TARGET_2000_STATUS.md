@@ -3,13 +3,13 @@
 ## 배포된 완성 데이터
 
 - **기존 N2 322개**: 단어·읽기·한국어 뜻·긴 일본어 예문 1개·한국어 번역 포함.
-- **추가 검수 N2 964개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개 + `data/n2-words-phase14.js` 70개 + `data/n2-words-phase15.js` 50개 + `data/n2-words-phase16.js` 50개 + `data/n2-words-phase17.js` 50개 + `data/n2-words-phase18.js` 50개 + `data/n2-words-phase19.js` 50개 + `data/n2-words-phase20.js` 95개 + `data/n2-words-phase21.js` 100개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
-- **완성 카드 소스 합계: 1,286개 (2,000개 후보 중 64.30%)**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 1,286개 모두가 별개의 새 카드로 생성되는 것은 아님.
-- 새 964개는 N1 단어장의 표제어와 중복되지 않으며, 한 단어당 예문은 **일본어 한 문장(32자 이상) + 한국어 번역**만 포함한다.
+- **추가 검수 N2 1063개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개 + `data/n2-words-phase14.js` 70개 + `data/n2-words-phase15.js` 50개 + `data/n2-words-phase16.js` 50개 + `data/n2-words-phase17.js` 50개 + `data/n2-words-phase18.js` 50개 + `data/n2-words-phase19.js` 50개 + `data/n2-words-phase20.js` 95개 + `data/n2-words-phase21.js` 100개 + `data/n2-words-phase22.js` 99개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
+- **완성 카드 소스 합계: 1,385개 (2,000개 후보 중 69.25%)**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 1,385개 모두가 별개의 새 카드로 생성되는 것은 아님.
+- 새 1063개는 N1 단어장의 표제어와 중복되지 않으며, 한 단어당 예문은 **일본어 한 문장(32자 이상) + 한국어 번역**만 포함한다.
 
 ## 중복 검사
 
-`data/n2-duplicate-audit-20261013.json`은 최초 N1/N2 중복 감사의 기준 스냅샷이다. 그 안의 `promoted_from_draft: 49`는 최초 6차 검수 시점 수치로, **현재 진행 수치는 `data/n2-promotion-progress.json` 및 `data/n2-target-2000-draft.json`(964개)**를 기준으로 한다.
+`data/n2-duplicate-audit-20261013.json`은 최초 N1/N2 중복 감사의 기준 스냅샷이다. 그 안의 `promoted_from_draft: 49`는 최초 6차 검수 시점 수치로, **현재 진행 수치는 `data/n2-promotion-progress.json` 및 `data/n2-target-2000-draft.json`(1063개)**를 기준으로 한다.
 
 - 기존 N1 항목: **3,233개** (표제어 중복 제거 기준 3,198개)
 - 대상 N2 표제어 후보: **2,000개** (기존 완성 322 + 신규 후보 1,678), 후보끼리 NFKC 정규화 표제어 중복 없음
@@ -22,12 +22,13 @@
 ## 신규 후보 검수 현황
 
 - 후보 파일 `data/n2-target-2000-draft.json`: **1,678개**
-- 검수 후 실제 반영 완료: **964개** (`reviewed_promoted`)
+- 검수 후 실제 반영 완료: **1063개** (`reviewed_promoted`)
 - N1 완전 중복으로 승격 제외: **9개**
 - 같은 표제어·다른 읽기 검토 대기: **20개**
 - 일반 검수 대기: **1030개**
 - 목표인 2,000개는 **N2 후보 풀 개수**. 전체가 N1과 중복 없는 완성 학습 카드 2,000개라는 뜻은 아니다. 중복을 제외한 실제 카드 목표는 추가 후보 확보와 별도 검수가 필요하다.
 
+- **이번 22차 99개**는 개별 일본어 예문과 한국어 번역을 작성·점검하고, 전형적인 구식 표현과 오역 가능성을 검토했다.
 - **이번 21차 100개**는 뜻·읽기와 일본어 예문 한 문장 및 한국어 번역을 작성하고 원본 후보와 대조했다. `塵紙`는 구식 표현으로 검토 보류했다.
 - **이번 20차 95개**는 표제어, 한국어 뜻, 긴 일본어 예문 1개와 한국어 번역을 작성해 검수했으며 5개는 길이 검증 미충족으로 보류했다. 구식 표기 `タイア` 역시 보류했다.
 - **이번 19차 50개**는 동형어·구식 표현을 구별해 한국어 뜻과 긴 일본어 예문 하나 및 번역을 검수했다. `清む`는 별도 검토 대상으로 보류했다.
