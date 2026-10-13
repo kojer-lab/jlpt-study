@@ -1,0 +1,97 @@
+name: Generate N2 Kokoro MP3 (3904 clips)
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/n2-browser-audio.yml"
+      - "audio/n2/plan.json"
+  workflow_dispatch:
+    inputs:
+      batch:
+        description: "1-40, automatically chained"
+        required: true
+        type: number
+        default: 1
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: jlpt-browser-example-300
+  cancel-in-progress: false
+jobs:
+  generate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 330
+    env:
+      N2_AUDIO_BATCH: ${{ github.event_name == 'workflow_dispatch' && inputs.batch || 1 }}
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify N2 source before model initialization
+        run: |
+          set -euo pipefail
+          node --check tools/build-n2-audio-source.mjs
+          node --check tools/run-n2-browser-audio.mjs
+          node tools/build-n2-audio-source.mjs
+          node - <<'NODE'
+          const fs=require('fs');
+          const plan=JSON.parse(fs.readFileSync('audio/n2/plan.json'));
+          const source=JSON.parse(fs.readFileSync('audio/n2/source.json'));
+          const batch=Number(process.env.N2_AUDIO_BATCH);
+          if(plan.total_clips!==3904||source.items.length!==3904||batch<1||batch>40)throw Error('Invalid N2 source and batch');
+          const words=source.items.filter(x=>x.kind==='word'),examples=source.items.filter(x=>x.kind==='example');
+          if(words.length!==1952||examples.length!==1952||source.reused_n1!==48)throw Error('N2 duplication audit mismatch');
+          console.log('N2 AUDIO READY',batch,'/40, word',words.length,'example',examples.length);
+          NODE
+      - name: Install Chromium and browser audio engine
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+          command -v ffmpeg
+          command -v ffprobe
+      - name: Synthesize and publish N2 MP3 at 50-file checkpoints
+        run: |
+          set -euo pipefail
+          node tools/run-n2-browser-audio.mjs
+      - name: Validate finished batch and manifest
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs'),assert=require('assert/strict'),crypto=require('crypto');
+          const p=JSON.parse(fs.readFileSync('audio/n2/progress.json'));
+          const n=Number(process.env.N2_AUDIO_BATCH),expected=Math.min(100,3904-(n-1)*100);
+          const ledger=JSON.parse(fs.readFileSync('audio/n2/batches/batch-'+String(n).padStart(4,'0')+'.json'));
+          assert.equal(ledger.status,'complete');
+          assert.equal(ledger.completed.length,expected);
+          assert(p.completed>=n*100||p.completed===3904);
+          for(const record of ledger.completed){
+            const bytes=fs.readFileSync(record.path);
+            assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),record.sha256);
+          }
+          if(n===40){assert.equal(p.completed,3904);assert.equal(p.completed_words,1952);assert.equal(p.completed_examples,1952);assert.equal(p.status,'complete');}
+          console.log('N2 BATCH VERIFIED',n,p.completed,'/3904');
+          NODE
+      - name: Auto-start next 100 clips until completion
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          next=$((N2_AUDIO_BATCH+1))
+          if [ "$next" -le 40 ]; then
+            echo "Queueing next N2 audio batch $next / 40"
+            gh workflow run n2-browser-audio.yml --repo "$GITHUB_REPOSITORY" --ref main -f batch="$next"
+          else
+            echo "COMPLETE: N2 3904 browser Kokoro MP3 clips."
+          fi
