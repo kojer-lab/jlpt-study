@@ -12,7 +12,7 @@ function section(start,end){
 }
 const mixed=vm.runInNewContext(section("function interleaveDueAndNew(","function buildWordStudyQueue(")+"\ninterleaveDueAndNew");
 const d=Array.from({length:12},(_,i)=>({id:"r"+(i+1)})),n=Array.from({length:3},(_,i)=>({id:"n"+(i+1)}));
-assert.deepEqual(Array.from(mixed(d,n)).map(x=>x.id),["r1","r2","r3","r4","r5","n1","r6","r7","r8","r9","r10","n2","r11","r12","n3"]);
+assert.deepEqual(Array.from(mixed(d,n)).map(x=>x.id),["r1","r2","r3","r4","n1","r5","r6","r7","r8","n2","r9","r10","r11","r12","n3"]);
 assert.deepEqual(Array.from(mixed([],n)).map(x=>x.id),["n1","n2","n3"]);
 assert.deepEqual(Array.from(mixed(d,[])).map(x=>x.id),d.map(x=>x.id));
 assert.equal(mixed([{id:"one"}],[{id:"one"},{id:"two"}]).length,2,"Duplicate words should appear only once");
@@ -26,4 +26,4 @@ assert.equal(state.a.focusPending,true);
 assert(state.a.focusUntil>10000&&state.a.due>=state.a.focusUntil);
 assert.deepEqual(Array.from(context.dueWords()).map(x=>x.id),[]);
 assert.equal(context.focusPendingWords().length,2);
-console.log("PASS: inline JavaScript syntax, review:new 5:1, focus deferral and FSRS selection");
+console.log("PASS: inline JavaScript syntax, review:new 4:1, focus deferral and FSRS selection");
