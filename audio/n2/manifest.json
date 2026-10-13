@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "engine": "kokoro-js-jp@0.2.0",
+  "voice": "jf_alpha",
+  "files": {}
+}

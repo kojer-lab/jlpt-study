@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "engine": "kokoro-js-jp@0.2.0",
+  "runtime": "wasm_q8",
+  "voice": "jf_alpha",
+  "sample_rate": 24000,
+  "target_kbps": 64,
+  "source_total": 2000,
+  "reused_n1": 48,
+  "word_count": 1952,
+  "example_count": 1952,
+  "total_clips": 3904,
+  "batch_size": 100,
+  "checkpoint_size": 50,
+  "approval": "n2-separate-audio-only",
+  "start_batch": 1,
+  "quality": {
+    "min_seconds": 0.12,
+    "max_word_seconds": 24,
+    "max_example_seconds": 75
+  }
+}
