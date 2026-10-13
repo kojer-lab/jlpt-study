@@ -20,6 +20,9 @@ const reviewed=JSON.parse(reviewedSource.slice(reviewedSource.indexOf("=[")+1).r
 assert.equal(reviewed.length,49);
 const promotedIds=new Set(reviewed.map(x=>x.id));
 assert.equal(draft.words.filter(x=>x.qa_status==="reviewed_promoted").length,49);
+assert.equal(draft.words.filter(x=>x.qa_status==="duplicate_exact_n1").length,9);
+assert.equal(draft.words.filter(x=>x.qa_status==="needs_homograph_review").length,20);
+assert.ok(draft.words.filter(x=>x.qa_status==="duplicate_exact_n1").every(x=>x.excluded_from_promotion));
 for(const x of reviewed){
  const original=draft.words.find(y=>y.id===x.id);
  assert.ok(original&&original.promoted_in==="data/n2-words-phase6.js");
@@ -28,7 +31,7 @@ for(const x of reviewed){
 }
 for(const x of draft.words){
   assert.ok(x.w&&x.r&&x.meaning_en&&x.source_id);
-  assert.ok(x.qa_status==="needs_ko_and_long_example"||x.qa_status==="reviewed_promoted");
+  assert.ok(["needs_ko_and_long_example","reviewed_promoted","duplicate_exact_n1","needs_homograph_review"].includes(x.qa_status));
   assert.equal(x.examples,undefined,"draft must not load directly as a card");
   assert.equal(x.meaning,undefined,"English gloss must not be shown as Korean");
 }
