@@ -16,8 +16,8 @@
     "same_written_form": 80,
     "same_written_form_same_reading": 57,
     "same_written_form_different_reading": 23,
-    "existing_source_overlap": 38,
-    "draft_source_overlap": 42,
+    "existing_source_overlap": 51,
+    "draft_source_overlap": 29,
     "reviewed_phase6_n1_overlap": 0
   },
   "alternative_spelling_flags": {
@@ -30,7 +30,7 @@
       "id": "n2p003",
       "word": "あらかじめ",
       "reading": "あらかじめ",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -46,7 +46,7 @@
       "id": "n2p006",
       "word": "見直す",
       "reading": "みなおす",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -68,7 +68,7 @@
       "id": "n2p013",
       "word": "付け加える",
       "reading": "つけくわえる",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -84,7 +84,7 @@
       "id": "n2p016",
       "word": "切り替える",
       "reading": "きりかえる",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -100,7 +100,7 @@
       "id": "n2p019",
       "word": "見逃す",
       "reading": "みのがす",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -116,7 +116,7 @@
       "id": "n2p024",
       "word": "わざわざ",
       "reading": "わざわざ",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -132,7 +132,7 @@
       "id": "n2p029",
       "word": "鮮やか",
       "reading": "あざやか",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -148,7 +148,7 @@
       "id": "n2p031",
       "word": "貯蓄",
       "reading": "ちょちく",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -164,7 +164,7 @@
       "id": "n2p058",
       "word": "余裕",
       "reading": "よゆう",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -180,7 +180,7 @@
       "id": "n2p061",
       "word": "応募",
       "reading": "おうぼ",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -196,7 +196,7 @@
       "id": "n2p069",
       "word": "効率",
       "reading": "こうりつ",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -212,7 +212,7 @@
       "id": "n2p078",
       "word": "負担",
       "reading": "ふたん",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
@@ -228,7 +228,7 @@
       "id": "n2p082",
       "word": "見込み",
       "reading": "みこみ",
-      "source": "draft",
+      "source": "existing",
       "collision_type": "same_word_same_reading",
       "n1_matches": [
         {
