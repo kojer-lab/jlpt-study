@@ -17,7 +17,7 @@ for(const pattern of [
  "window.KOJER_NEWS_AUDIO_STOP=stopNewsParagraphAudio",
  "await kokoroGenerate(segments[n],\"jf_alpha\"",
  "data-news-paragraph-audio",
- "function playNewsAudioBuffer(url,serial){",
+ "function playNewsAudioBuffer(url,serial,onStarted=null){",
  "newsAudioContext.resume()",
  "if(newsAudioIndex===index&&newsAudioArticleId===currentArticle.id)",
  "stopNewsParagraphAudio();\n const a=source.find(x=>x.id===id);",
@@ -51,8 +51,9 @@ console.log("PASS: browser-only Kokoro, 150-190 char paragraphs, long-sentence s
 
 assert(reader.includes("function warmNextNewsParagraphAudio(currentArticle,index,segments,serial){"),
  "Look-ahead worker missing");
-assert(reader.includes("if(n===0)warmNextNewsParagraphAudio(currentArticle,index,segments,serial);"),
- "Warm-up must start only after the first clicked clip has been generated");
+assert(reader.includes("const onStarted=n===0?()=>warmNextNewsParagraphAudio(currentArticle,index,segments,serial):null;"),
+ "Warm-up must start only after the first clicked clip begins playing");
+assert(reader.includes("source.start(0);if(onStarted)onStarted()"),"Warm-up should wait until AudioBufferSource starts");
 assert(reader.includes("const pending=[...segments.slice(1),...nextSegments];"),
  "Must prefetch current remaining segments before the next paragraph");
 assert(!reader.includes("SpeechSynthesisUtterance"),
