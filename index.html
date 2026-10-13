@@ -1358,16 +1358,21 @@ const KOKORO_DB="jlpt-kokoro-audio-v1",KOKORO_STORE="audio";
 let kokoroModulePromise=null,kokoroTTS=null,kokoroEngine=null,kokoroDbPromise=null,kokoroQueue=Promise.resolve(),kokoroCurrentAudio=null,kokoroWakeLock=null;
 const kokoroUrls=new Map(),kokoroInflight=new Map();
 let staticVocabAudio=null,staticVocabAudioPromise=null,staticVocabAudioRevisions={};
+const N2_AUDIO_RAW_ROOT="https://raw.githubusercontent.com/kojer-lab/jlpt-study/main/";
 function loadStaticVocabAudioManifest(){
  if(staticVocabAudioPromise)return staticVocabAudioPromise;
- // The small revision map makes repaired MP3s bypass stale iPhone/Safari caches.
- // Fetch it alongside the existing manifest; no new request per playback.
+ // N1 comes from GitHub Pages; N2 runs publish verified clips to main in
+ // independent 50-file checkpoints. Read the current N2 manifest from raw.
+ const n2Version="?t="+Math.floor(Date.now()/60000);
+ const fetchJson=url=>fetch(url,{cache:"no-store"}).then(r=>r.ok?r.json():null).catch(()=>null);
  staticVocabAudioPromise=Promise.all([
-  fetch("audio/vocab/manifest.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null),
-  fetch("audio/vocab/repaired-revisions.json",{cache:"no-cache"}).then(r=>r.ok?r.json():null).catch(()=>null)
- ]).then(([m,revisions])=>{
-  staticVocabAudio=m&&m.files?m.files:null;
-  staticVocabAudioRevisions=revisions&&revisions.version===1&&revisions.files?revisions.files:{};
+  fetchJson("audio/vocab/manifest.json"),
+  fetchJson("audio/vocab/repaired-revisions.json"),
+  fetchJson(N2_AUDIO_RAW_ROOT+"audio/n2/manifest.json"+n2Version),
+  fetchJson(N2_AUDIO_RAW_ROOT+"audio/n2/revisions.json"+n2Version)
+ ]).then(([m,revisions,n2,n2Revisions])=>{
+  staticVocabAudio={...(m?.files||{}),...(n2?.files||{})};
+  staticVocabAudioRevisions={...(revisions?.version===1?revisions.files:{}),...(n2Revisions?.version===1?n2Revisions.files:{})};
   return staticVocabAudio;
  }).catch(()=>null);
  return staticVocabAudioPromise;
@@ -1385,7 +1390,8 @@ function readyStaticVocabAudioUrl(w,exampleIndex=null){
 }
 function versionedVocabAudioUrl(url){
  const revision=staticVocabAudioRevisions[url];
- return revision?url+(url.includes("?")?"&":"?")+"v="+encodeURIComponent(revision):url;
+ const target=url.startsWith("audio/n2/mp3/")?N2_AUDIO_RAW_ROOT+url:url;
+ return revision?target+(target.includes("?")?"&":"?")+"v="+encodeURIComponent(revision):target;
 }
 // Warm only the visible word and its two examples; avoid loading thousands of files.
 const vocabWarmUrls=new Set();
@@ -3121,8 +3127,19 @@ function wordAudioText(w,exampleIndex=null){
 }
 async function prefetchWordAudio(w){
  if(!w||$("wordSpeakBtn").dataset.word!==w.id)return;
- // N2 pilot has no prebuilt audio yet; avoid automatic slow device-local TTS loading.
- if(w.level==="N2")return;
+ // N2 clips are published incrementally; prefetch only ready static audio.
+ // Never start slow N2 on-device TTS automatically while learning.
+ if(w.level==="N2"){
+  const run=++wordAudioPrefetchRun;
+  try{
+   await loadStaticVocabAudioManifest();
+   if(run!==wordAudioPrefetchRun||$("wordSpeakBtn").dataset.word!==w.id)return;
+   warmVocabAudio(w);
+   $("wordTtsStatus").textContent=hasCompleteStaticVocabAudio(w)
+    ?"N2 단어·예문 MP3 · 즉시 재생":"N2 MP3 순차 제작 중 · 준비된 음성은 즉시 재생";
+  }catch(e){}
+  return;
+ }
  const run=++wordAudioPrefetchRun;
  const stillCurrent=()=>run===wordAudioPrefetchRun&&$("wordSpeakBtn").dataset.word===w.id;
  const status=msg=>{if(stillCurrent())$("wordTtsStatus").textContent=msg};
