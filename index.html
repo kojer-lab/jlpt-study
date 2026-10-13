@@ -580,6 +580,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 </style>
 <link rel="stylesheet" href="data/iphone-redesign.css?v=20261013-news-after-sync">
 <link rel="stylesheet" href="data/iphone-polish-v3.css?v=20261013-rating-v4">
+<link rel="stylesheet" href="data/iphone-compact-v5.css?v=20261013-1500">
 </head>
 <body>
 <div class="mobile-header">
@@ -3361,6 +3362,16 @@ $("wordSpeakBtn").addEventListener("click",()=>{
 $("showMeaningBtn").addEventListener("click",()=>{
   if($("showMeaningBtn").dataset.finished==="1"){showWordDashboard();return}
  $("wordMeaning").classList.remove("hidden");$("wordExamples").classList.remove("hidden");if($("wordBreakdown").innerHTML)$("wordBreakdown").classList.remove("hidden");$("wordRating").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");$("wordFocusHint").textContent="확인했다면 기억 정도를 선택하세요.";
+ if(window.matchMedia("(max-width:760px)").matches){
+  requestAnimationFrame(()=>{
+   const rating=$("wordRating");
+   if(!rating||rating.classList.contains("hidden"))return;
+   const visible=window.visualViewport;
+   const bottom=visible?visible.offsetTop+visible.height:window.innerHeight;
+   const missing=Math.ceil(rating.getBoundingClientRect().bottom-bottom+12);
+   if(missing>0)window.scrollBy({top:missing,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
+  });
+ }
 });
 $("wordExamples").addEventListener("click",e=>{
  const speak=e.target.closest(".ex-speak");
