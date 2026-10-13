@@ -17,6 +17,14 @@ on:
       - "data/n2-words-phase11.js"
       - "data/n2-words-phase12.js"
       - "data/n2-words-phase13.js"
+      - "data/n2-words-phase14.js"
+      - "data/n2-target-2000-draft.json"
+      - "data/n2-duplicate-audit-20261013.json"
+      - "data/n2-progress-live.js"
+      - "data/n2-promotion-progress.json"
+      - "tools/test-n2-target-draft.cjs"
+      - "n2-progress.html"
+      - "N2_TARGET_2000_STATUS.md"
       - "tools/test-unified-n2-anki.cjs"
       - ".github/workflows/test-unified-n2-anki.yml"
   push:
@@ -36,6 +44,14 @@ on:
       - "data/n2-words-phase11.js"
       - "data/n2-words-phase12.js"
       - "data/n2-words-phase13.js"
+      - "data/n2-words-phase14.js"
+      - "data/n2-target-2000-draft.json"
+      - "data/n2-duplicate-audit-20261013.json"
+      - "data/n2-progress-live.js"
+      - "data/n2-promotion-progress.json"
+      - "tools/test-n2-target-draft.cjs"
+      - "n2-progress.html"
+      - "N2_TARGET_2000_STATUS.md"
       - "tools/test-unified-n2-anki.cjs"
       - ".github/workflows/test-unified-n2-anki.yml"
 
@@ -53,6 +69,8 @@ jobs:
           node-version: "22"
       - name: Check unified N1/N2 vocabulary and FSRS
         run: node tools/test-unified-n2-anki.cjs
+      - name: Validate N2 source bank and promoted phase links
+        run: node tools/test-n2-target-draft.cjs
       - name: Check existing Anki mixing regression
         run: node tools/test-anki-new-interleave.mjs
       - name: Check existing Anki session recovery

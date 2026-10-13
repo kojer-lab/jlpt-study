@@ -3,13 +3,13 @@
 ## 배포된 완성 데이터
 
 - **기존 N2 322개**: 단어·읽기·한국어 뜻·긴 일본어 예문 1개·한국어 번역 포함.
-- **추가 검수 N2 449개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
-- **완성 카드 소스 합계: 771개**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 771개 모두가 별개의 새 카드로 생성되는 것은 아님.
-- 새 449개는 N1 단어장의 표제어와 중복되지 않으며, 한 단어당 예문은 **일본어 한 문장(32자 이상) + 한국어 번역**만 포함한다.
+- **추가 검수 N2 519개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개 + `data/n2-words-phase14.js` 70개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
+- **완성 카드 소스 합계: 841개 (2,000개 후보 중 42.05%)**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 841개 모두가 별개의 새 카드로 생성되는 것은 아님.
+- 새 519개는 N1 단어장의 표제어와 중복되지 않으며, 한 단어당 예문은 **일본어 한 문장(32자 이상) + 한국어 번역**만 포함한다.
 
 ## 중복 검사
 
-`data/n2-duplicate-audit-20261013.json` 참조.
+`data/n2-duplicate-audit-20261013.json`은 최초 N1/N2 중복 감사의 기준 스냅샷이다. 그 안의 `promoted_from_draft: 49`는 최초 6차 검수 시점 수치로, **현재 진행 수치는 `data/n2-promotion-progress.json` 및 `data/n2-target-2000-draft.json`(519개)**를 기준으로 한다.
 
 - 기존 N1 항목: **3,233개** (표제어 중복 제거 기준 3,198개)
 - 대상 N2 표제어 후보: **2,000개** (기존 완성 322 + 신규 후보 1,678), 후보끼리 NFKC 정규화 표제어 중복 없음
@@ -22,11 +22,14 @@
 ## 신규 후보 검수 현황
 
 - 후보 파일 `data/n2-target-2000-draft.json`: **1,678개**
-- 검수 후 실제 반영 완료: **449개** (`reviewed_promoted`)
+- 검수 후 실제 반영 완료: **519개** (`reviewed_promoted`)
 - N1 완전 중복으로 승격 제외: **9개**
 - 같은 표제어·다른 읽기 검토 대기: **20개**
-- 일반 검수 대기: **1,200개**
+- 일반 검수 대기: **1,130개**
 - 목표인 2,000개는 **N2 후보 풀 개수**. 전체가 N1과 중복 없는 완성 학습 카드 2,000개라는 뜻은 아니다. 중복을 제외한 실제 카드 목표는 추가 후보 확보와 별도 검수가 필요하다.
+
+- **이번 14차 70개**는 N1 중복 감사 목록과 대조하여 표제어 충돌이 없는 후보만 선정했고, 일본어 예문 1개(32자 이상)와 한국어 번역 1개를 직접 작성했다.
+- 미완료 후보 **1,159개** = 일반 검수 1,130 + 동형어 검토 20 + N1 완전 중복 제외 9. 2,000개는 후보 수이지 N1과 중복 없는 신규 카드 수가 아니다.
 
 ## 카드 작성 원칙
 
@@ -40,7 +43,11 @@
 ```bash
 node tools/test-unified-n2-anki.cjs
 node tools/test-n2-target-draft.cjs
+node tools/test-anki-new-interleave.mjs
+node tools/test-anki-session-recovery.cjs
 ```
+
+GitHub Actions `.github/workflows/test-unified-n2-anki.yml`에서 위 회귀 테스트를 실행한다. **CI 성공 여부는 실제 실행 결과로만 판단한다.**
 
 ## 출처
 
