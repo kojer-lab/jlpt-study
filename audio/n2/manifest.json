@@ -4,195 +4,291 @@
   "voice": "jf_alpha",
   "files": {
     "n2p001": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p001-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p001-word.mp3"
     },
     "n2p002": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p002-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p002-word.mp3"
     },
     "n2p004": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p004-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p004-word.mp3"
     },
     "n2p005": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p005-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p005-word.mp3"
     },
     "n2p007": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p007-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p007-word.mp3"
     },
     "n2p008": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p008-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p008-word.mp3"
     },
     "n2p009": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p009-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p009-word.mp3"
     },
     "n2p010": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p010-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p010-word.mp3"
     },
     "n2p011": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p011-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p011-word.mp3"
     },
     "n2p012": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p012-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p012-word.mp3"
     },
     "n2p014": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p014-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p014-word.mp3"
     },
     "n2p015": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p015-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p015-word.mp3"
     },
     "n2p017": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p017-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p017-word.mp3"
     },
     "n2p018": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p018-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p018-word.mp3"
     },
     "n2p020": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p020-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p020-word.mp3"
     },
     "n2p021": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p021-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p021-word.mp3"
     },
     "n2p022": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p022-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p022-word.mp3"
     },
     "n2p023": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p023-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p023-word.mp3"
     },
     "n2p025": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p025-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p025-word.mp3"
     },
     "n2p026": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p026-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p026-word.mp3"
     },
     "n2p027": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p027-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p027-word.mp3"
     },
     "n2p028": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p028-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p028-word.mp3"
     },
     "n2p030": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p030-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p030-word.mp3"
     },
     "n2p032": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p032-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p032-word.mp3"
     },
     "n2p033": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p033-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p033-word.mp3"
     },
     "n2p034": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p034-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p034-word.mp3"
     },
     "n2p035": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p035-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p035-word.mp3"
     },
     "n2p036": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p036-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p036-word.mp3"
     },
     "n2p037": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p037-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p037-word.mp3"
     },
     "n2p038": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p038-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p038-word.mp3"
     },
     "n2p039": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p039-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p039-word.mp3"
     },
     "n2p040": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p040-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p040-word.mp3"
     },
     "n2p041": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p041-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p041-word.mp3"
     },
     "n2p042": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p042-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p042-word.mp3"
     },
     "n2p043": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p043-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p043-word.mp3"
     },
     "n2p044": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p044-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p044-word.mp3"
     },
     "n2p045": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p045-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p045-word.mp3"
     },
     "n2p046": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p046-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p046-word.mp3"
     },
     "n2p047": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p047-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p047-word.mp3"
     },
     "n2p048": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p048-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p048-word.mp3"
     },
     "n2p049": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p049-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p049-word.mp3"
     },
     "n2p050": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p050-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p050-word.mp3"
     },
     "n2p051": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p051-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p051-word.mp3"
     },
     "n2p052": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p052-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p052-word.mp3"
     },
     "n2p053": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p053-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p053-word.mp3"
     },
     "n2p054": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p054-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p054-word.mp3"
     },
     "n2p055": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p055-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p055-word.mp3"
     },
     "n2p056": {
-      "examples": [],
+      "examples": [
+        "audio/n2/mp3/n2p056-ex1.mp3"
+      ],
       "word": "audio/n2/mp3/n2p056-word.mp3"
     },
     "n2p057": {
@@ -7802,6 +7898,14 @@
     "n2p2017": {
       "examples": [],
       "word": "audio/n2/mp3/n2p2017-word.mp3"
+    },
+    "n2p2018": {
+      "examples": [],
+      "word": "audio/n2/mp3/n2p2018-word.mp3"
+    },
+    "n2p2019": {
+      "examples": [],
+      "word": "audio/n2/mp3/n2p2019-word.mp3"
     }
   }
 }
