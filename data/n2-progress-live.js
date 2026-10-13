@@ -13,7 +13,7 @@ async function update(){
     if(!Array.isArray(data.words))throw new Error("형식 오류");
     const statuses={};
     for(const word of data.words){statuses[word.qa_status]=(statuses[word.qa_status]||0)+1;}
-    const total=data.meta.target_total||2000,base=data.meta.ready_existing||322;
+    const total=data.meta.target_ready_cards||data.meta.target_total||2000,base=data.meta.ready_existing||322;
     const promoted=statuses.reviewed_promoted||0;
     const reviewed=base+promoted, progress=Math.min(100,100*reviewed/total);
     $("complete").textContent=number(reviewed);

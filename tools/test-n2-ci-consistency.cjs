@@ -28,10 +28,12 @@ const promotions=phaseData.filter(p=>p.n>=6).flatMap(p=>p.words);
 const draft=JSON.parse(fs.readFileSync("data/n2-target-2000-draft.json","utf8"));
 const progress=JSON.parse(fs.readFileSync("data/n2-promotion-progress.json","utf8"));
 const target=draft.meta.target_total;
+const readyGoal=draft.meta.target_ready_cards||target;
 assert.equal(draft.meta.status,"source_candidates_only");
 assert.equal(draft.meta.ready_existing,base.length);
 assert.equal(target,base.length+draft.words.length,"source pool total");
 assert.equal(progress.source_target,target);
+assert.equal(progress.target_ready_cards,readyGoal);
 assert.equal(progress.existing_n2_ready,base.length);
 const canonical=s=>s.normalize("NFKC").replace(/\s+/g,"");
 const sourcePool=[...base,...draft.words];
@@ -51,12 +53,13 @@ const ready=count("reviewed_promoted");
 const duplicates=count("duplicate_exact_n1");
 const homographs=count("needs_homograph_review");
 const waiting=count("needs_ko_and_long_example");
+const unsuitable=count("excluded_low_utility");
 assert.equal(ready,promotions.length,"promoted card files must match reviewed status");
-assert.equal(draft.words.length,ready+duplicates+homographs+waiting,"unrecognized draft QA status");
+assert.equal(draft.words.length,ready+duplicates+homographs+waiting+unsuitable,"unrecognized draft QA status");
 assert.equal(draft.meta.reviewed_new,ready,"draft reviewed metadata out of sync");
 assert.equal(draft.meta.pending_new,draft.words.length-ready,"draft pending metadata out of sync");
 assert.equal(draft.meta.unreviewed_unflagged,waiting);
-assert.ok(draft.words.filter(w=>w.qa_status==="duplicate_exact_n1").every(w=>w.excluded_from_promotion));
+assert.ok(draft.words.filter(w=>["duplicate_exact_n1","excluded_low_utility"].includes(w.qa_status)).every(w=>w.excluded_from_promotion));
 const sourceById=new Map(draft.words.map(w=>[w.id,w]));
 for(const word of promotions){
  const original=sourceById.get(word.id);
@@ -84,17 +87,26 @@ for(const word of entries){
  assert.ok(!ex.jp.includes("<")&&!ex.ko.includes("<"),"unsafe example text");
 }
 const audit=JSON.parse(fs.readFileSync("data/n2-duplicate-audit-20261013.json","utf8"));
-const collided=new Set(audit.collisions.filter(x=>x.source==="draft").map(x=>x.id));
-assert.ok(promotions.every(w=>!collided.has(w.id)),
- "promoted vocabulary must not collide with existing N1 written headwords");
+const collided=new Map(audit.collisions.filter(x=>x.source==="draft").map(x=>[x.id,x]));
+for(const word of promotions){
+ const collision=collided.get(word.id);
+ if(!collision)continue;
+ const reviewed=sourceById.get(word.id);
+ assert.equal(collision.collision_type,"same_written_form_different_reading","exact N1 duplicate may not be promoted: "+word.w);
+ assert.equal(reviewed.homograph_review_verified,true,"N1 homograph not reviewed: "+word.w);
+ assert.ok(reviewed.homograph_n1_reading,"missing matched N1 reading for "+word.w);
+ assert.notEqual(canonical(word.r),canonical(reviewed.homograph_n1_reading),"N1 homograph reading identical: "+word.w);
+}
 const totalReady=base.length+ready;
 assert.equal(progress.promoted_new,ready);
 assert.equal(progress.source_ready_total,totalReady);
 assert.equal(progress.pending_general,waiting);
 assert.equal(progress.pending_homograph,homographs);
+assert.equal(progress.excluded_low_utility,unsuitable);
 assert.equal(progress.excluded_exact_n1,duplicates);
 assert.equal(progress.pending_total_including_exclusions,draft.words.length-ready);
-assert.equal(Number(progress.progress_percent),Number((100*totalReady/target).toFixed(2)));
+assert.equal(Number(progress.progress_percent),Number((100*totalReady/readyGoal).toFixed(2)));
+assert.equal(totalReady,readyGoal,"N2 reviewed source goal not reached");
 const latest=phaseData.at(-1);
 assert.equal(progress.latest_phase,latest.path);
 assert.equal(progress.latest_phase_count,latest.words.length);
@@ -167,4 +179,4 @@ assert.equal(selected.length,20);
 const scriptTags=html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g);
 for(const tag of scriptTags){if(tag[1].trim())new vm.Script(tag[1]);}
 console.log("PASS dynamic N2 validation: "+totalReady+" / "+target+
- " source cards; "+ready+" new reviews; "+waiting+" pending; unified Anki and FSRS verified");
+ " N2 source cards; "+ready+" new reviews; "+waiting+" pending; unified Anki and FSRS verified");
