@@ -4,7 +4,7 @@
   "start_index": 500,
   "count": 100,
   "source_sha256": "1d2c7c5a3e66ca81a327499f561f8fbf8cef7ad6f6e9b0830eff8dd2705d38b7",
-  "status": "in_progress",
+  "status": "complete",
   "completed": [
     {
       "id": "n2p0589",
@@ -405,7 +405,407 @@
       "sha256": "b3d5a1365d46da434d619662c0a7d43e0f2ce06be5e08bb32fc31c6eef70e69b",
       "bytes": 8109,
       "duration_s": 0.984
+    },
+    {
+      "id": "n2p0641",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0641-word.mp3",
+      "sha256": "c95ed7d1c86a397d55f059a61779cfa83a9fdd95da48b9c065fe280c21f5605d",
+      "bytes": 7725,
+      "duration_s": 0.936
+    },
+    {
+      "id": "n2p0643",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0643-word.mp3",
+      "sha256": "93556a8de19d96851d2640b24a0722fbe650da92d91a965f33b82678bcae996d",
+      "bytes": 9069,
+      "duration_s": 1.104
+    },
+    {
+      "id": "n2p0644",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0644-word.mp3",
+      "sha256": "dfa119bdf707373a44562c0cbbe039273739898533b484e790656fbd1d49c5f2",
+      "bytes": 9261,
+      "duration_s": 1.128
+    },
+    {
+      "id": "n2p0645",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0645-word.mp3",
+      "sha256": "91e91dfbff355450577fb003da8a3713fa68e53286e9fba55dc74938d0e40ae2",
+      "bytes": 12333,
+      "duration_s": 1.512
+    },
+    {
+      "id": "n2p0646",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0646-word.mp3",
+      "sha256": "7e8342f864bdc386aac1ac4d1eb57d5632a2ab7fe53b9a95a84d912906196d7c",
+      "bytes": 10797,
+      "duration_s": 1.32
+    },
+    {
+      "id": "n2p0647",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0647-word.mp3",
+      "sha256": "e64a4ad858dd27c3a86cbdcfa1ac4a6593ef4126598cbbdc19b7ca8927cedcc1",
+      "bytes": 10797,
+      "duration_s": 1.32
+    },
+    {
+      "id": "n2p0648",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0648-word.mp3",
+      "sha256": "e6ccc191809d6956387e3a81acc5d82d27c0cc8980e52d81582db5ab1c16a436",
+      "bytes": 13101,
+      "duration_s": 1.608
+    },
+    {
+      "id": "n2p0649",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0649-word.mp3",
+      "sha256": "a1064b80e62de3c63f8e7acc251b957c3a790631913a3a8ae4cbd70b07138977",
+      "bytes": 11181,
+      "duration_s": 1.368
+    },
+    {
+      "id": "n2p0650",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0650-word.mp3",
+      "sha256": "b733705907206a3f728c2fa1e02182abad6e448a128925928ef571ab37188009",
+      "bytes": 12909,
+      "duration_s": 1.584
+    },
+    {
+      "id": "n2p0651",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0651-word.mp3",
+      "sha256": "b733705907206a3f728c2fa1e02182abad6e448a128925928ef571ab37188009",
+      "bytes": 12909,
+      "duration_s": 1.584
+    },
+    {
+      "id": "n2p0652",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0652-word.mp3",
+      "sha256": "8f8ef72d9b1c052ef1c65ecec06ae2e6809863c51a67f15c01c2f03ffae537c5",
+      "bytes": 11373,
+      "duration_s": 1.392
+    },
+    {
+      "id": "n2p0653",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0653-word.mp3",
+      "sha256": "f3dcd1b391692a2b392713212c1f62c2d16226c3d60a7088568c8578efeb8606",
+      "bytes": 11565,
+      "duration_s": 1.416
+    },
+    {
+      "id": "n2p0654",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0654-word.mp3",
+      "sha256": "33821a8e2f684ee47ade33e7529095d3e14afc4b77f723693047f8c80928ec7c",
+      "bytes": 11565,
+      "duration_s": 1.416
+    },
+    {
+      "id": "n2p0655",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0655-word.mp3",
+      "sha256": "00f062d18b3a9c41871fe7b583a4699eca27a91c7286f8005391ef7e8fd92f23",
+      "bytes": 13485,
+      "duration_s": 1.656
+    },
+    {
+      "id": "n2p0656",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0656-word.mp3",
+      "sha256": "1f0f0db248725e6ccbe3dd374146bdd65f6a99785019d687058ecc5b1d62ec25",
+      "bytes": 14637,
+      "duration_s": 1.8
+    },
+    {
+      "id": "n2p0657",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0657-word.mp3",
+      "sha256": "2ab0db35ccfa8122a2638fb777f60b31f09fd021349c348c0e335ad05d502edf",
+      "bytes": 10221,
+      "duration_s": 1.248
+    },
+    {
+      "id": "n2p0658",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0658-word.mp3",
+      "sha256": "b60beb7cbf601bbbad9e454719a5c4f1f05db076ca4fc4c5d6f92a7ce4125364",
+      "bytes": 11373,
+      "duration_s": 1.392
+    },
+    {
+      "id": "n2p0659",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0659-word.mp3",
+      "sha256": "31a6d4edea6a67e59b7f67a1294e8d20f7acbb002a77fbceed4e58525d82253a",
+      "bytes": 9069,
+      "duration_s": 1.104
+    },
+    {
+      "id": "n2p0660",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0660-word.mp3",
+      "sha256": "257ee1899beb08e13b09ca79e75169c1ad1e886d07d5770accdadddaa3f95e30",
+      "bytes": 9645,
+      "duration_s": 1.176
+    },
+    {
+      "id": "n2p0661",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0661-word.mp3",
+      "sha256": "b4ff55278ec2e93f0e44a308c4b5d8e07a1de0664868ba2f527767ae97d517b8",
+      "bytes": 11565,
+      "duration_s": 1.416
+    },
+    {
+      "id": "n2p0662",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0662-word.mp3",
+      "sha256": "d16a9cd5a33d9a373ad8b59c3c11a2e871f1daa7030fe3831d9f61feea485ea4",
+      "bytes": 10989,
+      "duration_s": 1.344
+    },
+    {
+      "id": "n2p0663",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0663-word.mp3",
+      "sha256": "e12dc417389f65daaa0cf56ebed3834da4cceedc875ecb104fd3730aa8c40792",
+      "bytes": 7149,
+      "duration_s": 0.864
+    },
+    {
+      "id": "n2p0664",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0664-word.mp3",
+      "sha256": "e347bd17fd2f248524364e62dad2fa5a849fd5690a8fb0f464d14c184ec0a79a",
+      "bytes": 8301,
+      "duration_s": 1.008
+    },
+    {
+      "id": "n2p0666",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0666-word.mp3",
+      "sha256": "1394b67d51d89b3c028571c41bf0f084b1e03274500d929379c11be2cc6b2b65",
+      "bytes": 7725,
+      "duration_s": 0.936
+    },
+    {
+      "id": "n2p0667",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0667-word.mp3",
+      "sha256": "43839ee64d830afd32789cc245109779bc405fda1b2b1b0727ee097d4813bbc2",
+      "bytes": 9645,
+      "duration_s": 1.176
+    },
+    {
+      "id": "n2p0668",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0668-word.mp3",
+      "sha256": "00a930013a4ee8c131eacb9d43302956e898decc17dd1b81fa1442c2f87ffafc",
+      "bytes": 8877,
+      "duration_s": 1.08
+    },
+    {
+      "id": "n2p0669",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0669-word.mp3",
+      "sha256": "98cc7a2cf35cd9daecb0a657170f4ae77813e64bdbc2ebbeaf79194534602ad6",
+      "bytes": 7917,
+      "duration_s": 0.96
+    },
+    {
+      "id": "n2p0670",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0670-word.mp3",
+      "sha256": "0b772d3305dc02980c9586b3b47b9f4327f68a79a075dfc4747e1e203d67b6ef",
+      "bytes": 8877,
+      "duration_s": 1.08
+    },
+    {
+      "id": "n2p0671",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0671-word.mp3",
+      "sha256": "58e98df384233949562a688ae7e7a2476c809478e5e29c97d9034099aef3b0c6",
+      "bytes": 9261,
+      "duration_s": 1.128
+    },
+    {
+      "id": "n2p0672",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0672-word.mp3",
+      "sha256": "d8449e8c75ac33d6964b15e85e5094ceb9b2ae1738efdfb5d52062c12b52421d",
+      "bytes": 8877,
+      "duration_s": 1.08
+    },
+    {
+      "id": "n2p0673",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0673-word.mp3",
+      "sha256": "009cd7ef70aeefd2fec699d142b48fa26a27b996353b6c5f9cdc5986f137ffa9",
+      "bytes": 9645,
+      "duration_s": 1.176
+    },
+    {
+      "id": "n2p0675",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0675-word.mp3",
+      "sha256": "90b66b250cb3b97715f19df9c7ac7098bbbe3aee0e891ab8004db324820d4ef3",
+      "bytes": 9837,
+      "duration_s": 1.2
+    },
+    {
+      "id": "n2p0676",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0676-word.mp3",
+      "sha256": "55c1d129a0336c832df46afd06fd34a33c65b6a4982879b9eab00fab4b772bc1",
+      "bytes": 10029,
+      "duration_s": 1.224
+    },
+    {
+      "id": "n2p0677",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0677-word.mp3",
+      "sha256": "caad82a1c34b3ff714de7c22d93d65592629acd700f47db5053a82e6b771cb96",
+      "bytes": 6957,
+      "duration_s": 0.84
+    },
+    {
+      "id": "n2p0678",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0678-word.mp3",
+      "sha256": "353166aaa6562c28afc3a82d73a068bba0a37b51769a918ce734d3c292b337bd",
+      "bytes": 8493,
+      "duration_s": 1.032
+    },
+    {
+      "id": "n2p0679",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0679-word.mp3",
+      "sha256": "8cd7d31405c6daa66071d431fbb4efe117aab1670764e862a3fb6d2e38b5e397",
+      "bytes": 8877,
+      "duration_s": 1.08
+    },
+    {
+      "id": "n2p0680",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0680-word.mp3",
+      "sha256": "96b3a6095d504852ce371c32501cca3fb952f182f57d7455e8362396a2690c76",
+      "bytes": 9261,
+      "duration_s": 1.128
+    },
+    {
+      "id": "n2p0681",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0681-word.mp3",
+      "sha256": "16f5c2d6c3505bb5c51d264b1c7c64f0abe579cdcdc0ef969fc1fab07e86f3de",
+      "bytes": 11181,
+      "duration_s": 1.368
+    },
+    {
+      "id": "n2p0682",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0682-word.mp3",
+      "sha256": "dae81b1b6e67384b7bdedf7374ca946363a083139c1460af1c13aba6bee70836",
+      "bytes": 7917,
+      "duration_s": 0.96
+    },
+    {
+      "id": "n2p0683",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0683-word.mp3",
+      "sha256": "ee50d4cff40faa96116a6a5d9bf9e31794d126ba5c85a44e44d71483054770a0",
+      "bytes": 13293,
+      "duration_s": 1.632
+    },
+    {
+      "id": "n2p0684",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0684-word.mp3",
+      "sha256": "7fc902db3f6b665b508627e114c65a16b10778021b3fd1622ba77104555284ab",
+      "bytes": 10989,
+      "duration_s": 1.344
+    },
+    {
+      "id": "n2p0686",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0686-word.mp3",
+      "sha256": "5df56d3837f0e9e0d7fb9540005aa9d759af29e1bc34d21d6ad245093efe56f5",
+      "bytes": 9645,
+      "duration_s": 1.176
+    },
+    {
+      "id": "n2p0687",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0687-word.mp3",
+      "sha256": "8755d0a1af6dc4e8505e3bce07e3f7c41c35f1cc9a03fac1a9fcf969be72aa03",
+      "bytes": 12717,
+      "duration_s": 1.56
+    },
+    {
+      "id": "n2p0688",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0688-word.mp3",
+      "sha256": "f869236cd31489f25d6a6616cdfff2dd8d763b06223a2734c96b52fc4cd0720c",
+      "bytes": 10221,
+      "duration_s": 1.248
+    },
+    {
+      "id": "n2p0689",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0689-word.mp3",
+      "sha256": "82c2bf76e98f59699221a46364c58a5da256158dd3b38b624891663fb7f7730c",
+      "bytes": 10605,
+      "duration_s": 1.296
+    },
+    {
+      "id": "n2p0690",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0690-word.mp3",
+      "sha256": "f3aee0ca562a7aeda7425ecc575035d313664f0aaefbfef4f29be5b95a6a1dee",
+      "bytes": 11373,
+      "duration_s": 1.392
+    },
+    {
+      "id": "n2p0691",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0691-word.mp3",
+      "sha256": "30e4350b87539934e5573be9a09849195c4966ec16bc926d1a140508662f579f",
+      "bytes": 9645,
+      "duration_s": 1.176
+    },
+    {
+      "id": "n2p0692",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0692-word.mp3",
+      "sha256": "fca62448026d1e7011188c9fc7e81efd3e31c84b484c5230617b0235542554d1",
+      "bytes": 8109,
+      "duration_s": 0.984
+    },
+    {
+      "id": "n2p0693",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0693-word.mp3",
+      "sha256": "04074d296982fc927abb2ecc741cd90a7906f105aa63d812590b70c5d091d507",
+      "bytes": 10605,
+      "duration_s": 1.296
+    },
+    {
+      "id": "n2p0694",
+      "kind": "word",
+      "path": "audio/n2/mp3/n2p0694-word.mp3",
+      "sha256": "e9524a7b17a115b99878d64d739b95c76e94c262b20f970df8cb3fbb3eace5c0",
+      "bytes": 11565,
+      "duration_s": 1.416
     }
   ],
-  "updated_at": "2026-10-13T07:25:42.039Z"
+  "updated_at": "2026-10-13T07:28:13.673Z"
 }
