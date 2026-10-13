@@ -3,8 +3,8 @@
 ## 배포된 완성 데이터
 
 - **기존 N2 322개**: 단어·읽기·한국어 뜻·긴 일본어 예문 1개·한국어 번역 포함.
-- **추가 검수 N2 1063개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개 + `data/n2-words-phase14.js` 70개 + `data/n2-words-phase15.js` 50개 + `data/n2-words-phase16.js` 50개 + `data/n2-words-phase17.js` 50개 + `data/n2-words-phase18.js` 50개 + `data/n2-words-phase19.js` 50개 + `data/n2-words-phase20.js` 95개 + `data/n2-words-phase21.js` 100개 + `data/n2-words-phase22.js` 99개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
-- **완성 카드 소스 합계: 1,385개 (2,000개 후보 중 69.25%)**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 1,385개 모두가 별개의 새 카드로 생성되는 것은 아님.
+- **추가 검수 N2 1063개**: `data/n2-words-phase6.js` 49개 + `data/n2-words-phase7.js` 52개 + `data/n2-words-phase8.js` 49개 + `data/n2-words-phase9.js` 63개 + `data/n2-words-phase10.js` 71개 + `data/n2-words-phase11.js` 62개 + `data/n2-words-phase12.js` 67개 + `data/n2-words-phase13.js` 36개 + `data/n2-words-phase14.js` 70개 + `data/n2-words-phase15.js` 50개 + `data/n2-words-phase16.js` 50개 + `data/n2-words-phase17.js` 50개 + `data/n2-words-phase18.js` 50개 + `data/n2-words-phase19.js` 50개 + `data/n2-words-phase20.js` 95개 + `data/n2-words-phase21.js` 100개 + `data/n2-words-phase22.js` 99개 + `data/n2-words-phase23.js` 100개. 문맥에 맞는 한국어 뜻, 긴 일본어 예문 한 문장, 번역을 검수했으며 N1 통합 안키·단어장에 로드함.
+- **완성 카드 소스 합계: 1,485개 (2,000개 후보 중 74.25%)**. 단, 기존 322개 중 N1과 표제어·읽기까지 일치하는 48개는 앱에서 **기존 N1 카드/FSRS 기록을 재사용**하므로 1,485개 모두가 별개의 새 카드로 생성되는 것은 아님.
 - 새 1063개는 N1 단어장의 표제어와 중복되지 않으며, 한 단어당 예문은 **일본어 한 문장(32자 이상) + 한국어 번역**만 포함한다.
 
 ## 중복 검사
@@ -28,6 +28,7 @@
 - 일반 검수 대기: **1030개**
 - 목표인 2,000개는 **N2 후보 풀 개수**. 전체가 N1과 중복 없는 완성 학습 카드 2,000개라는 뜻은 아니다. 중복을 제외한 실제 카드 목표는 추가 후보 확보와 별도 검수가 필요하다.
 
+- **이번 23차 100개**는 영어 원뜻과 일본어 용례를 비교해 문맥에 맞는 한국어 뜻과 장문 예문을 작성했다.
 - **이번 22차 99개**는 개별 일본어 예문과 한국어 번역을 작성·점검하고, 전형적인 구식 표현과 오역 가능성을 검토했다.
 - **이번 21차 100개**는 뜻·읽기와 일본어 예문 한 문장 및 한국어 번역을 작성하고 원본 후보와 대조했다. `塵紙`는 구식 표현으로 검토 보류했다.
 - **이번 20차 95개**는 표제어, 한국어 뜻, 긴 일본어 예문 1개와 한국어 번역을 작성해 검수했으며 5개는 길이 검증 미충족으로 보류했다. 구식 표기 `タイア` 역시 보류했다.
