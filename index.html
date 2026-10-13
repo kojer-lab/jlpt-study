@@ -3695,8 +3695,28 @@ function dueMistakes(){return state.mistakes.filter(m=>!m.due||m.due<=Date.now()
 
 
 function readingJP(html){return renderExampleJP(html||"",null)}
+function formatNewsPassageTranslation(set){
+ const korean=String(set.passageKo||"");
+ if(!korean)return "아직 등록된 지문 번역이 없습니다.";
+ if(/<br\s*\/?\s*>|<p[\s>]|\n\s*\n/i.test(korean))return korean;
+ const japanese=String(set.passage||"").split(/<br\s*\/?\s*>\s*<br\s*\/?\s*>/i);
+ if(japanese.length<2)return korean;
+ const sentences=korean.match(/[^.!?。！？]+[.!?。！？]+(?:[”"’」』])?|[^.!?。！？]+$/g)?.map(s=>s.trim()).filter(Boolean)||[];
+ if(sentences.length<japanese.length)return korean;
+ const weights=japanese.map(p=>(p.match(/。|！|？/g)||[]).length||1);
+ const total=weights.reduce((a,b)=>a+b,0),parts=[];
+ let start=0,weight=0;
+ for(let i=0;i<japanese.length-1;i++){
+  weight+=weights[i];
+  const target=Math.round(sentences.length*weight/total);
+  const end=Math.max(start+1,Math.min(target,sentences.length-(japanese.length-i-1)));
+  parts.push(sentences.slice(start,end).join(" "));start=end;
+ }
+ parts.push(sentences.slice(start).join(" "));
+ return parts.join("<br><br>");
+}
 function readingTranslationHTML(set,q){
- const passage=set.passageKo||"";
+ const passage=readingMode==="news"?formatNewsPassageTranslation(set):(set.passageKo||"");
  const question=q.translation||"";
  if(!passage&&!question)return '<div class="translation"><strong>번역</strong><br>아직 등록된 번역이 없습니다.</div>';
  return `<div class="translation"><strong>지문 번역</strong><br>${passage||"아직 등록된 지문 번역이 없습니다."}${question?`<div style="margin-top:12px"><strong>문제 뜻</strong><br>${question}</div>`:""}</div>`;
@@ -3718,7 +3738,7 @@ function renderReading(){
  $("readingPassage").innerHTML=set.furigana?.passage||readingJP(set.passage);
  const passageArea=$("readingPassageTranslationArea"),passageBox=$("readingPassageTranslationBox"),passageBtn=$("readingPassageTranslateBtn");
  passageArea.classList.toggle("hidden",readingMode!=="news");
- passageBox.innerHTML=`<div class="translation"><strong>지문 번역</strong><br>${set.passageKo||"아직 등록된 지문 번역이 없습니다."}</div>`;
+ passageBox.innerHTML=`<div class="translation"><strong>지문 번역</strong><br>${readingMode==="news"?formatNewsPassageTranslation(set):(set.passageKo||"아직 등록된 지문 번역이 없습니다.")}</div>`;
  passageBox.classList.toggle("hidden",!readingTranslationOpen);
  passageBtn.textContent=readingTranslationOpen?"🇰🇷 번역 숨기기":"🇰🇷 번역 보기";
  passageBtn.setAttribute("aria-expanded",String(readingTranslationOpen));
