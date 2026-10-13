@@ -1,0 +1,1346 @@
+{
+  "generated_at": "2026-10-13",
+  "description": "N1/N2 duplicate audit using NFKC-normalized written form, exact reading and OpenJLPT alternate orthographies. Homographs with different readings are warnings, not automatic duplicates.",
+  "n1": {
+    "cards": 3233,
+    "unique_written_forms": 3198
+  },
+  "n2": {
+    "existing_source_cards": 322,
+    "new_draft": 1678,
+    "promoted_from_draft": 49,
+    "overall_unique_candidate_ids": 2000,
+    "overall_unique_written_forms": 2000
+  },
+  "overlap": {
+    "same_written_form": 80,
+    "same_written_form_same_reading": 57,
+    "same_written_form_different_reading": 23,
+    "existing_source_overlap": 38,
+    "draft_source_overlap": 42,
+    "reviewed_phase6_n1_overlap": 0
+  },
+  "alternative_spelling_flags": {
+    "count": 1,
+    "with_n1": 1,
+    "with_n2": 0
+  },
+  "collisions": [
+    {
+      "id": "n2p003",
+      "word": "あらかじめ",
+      "reading": "あらかじめ",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x173",
+          "w": "あらかじめ",
+          "r": "あらかじめ",
+          "meaning": "미리 / 사전에"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p006",
+      "word": "見直す",
+      "reading": "みなおす",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "minaosu",
+          "w": "見直す",
+          "r": null,
+          "meaning": null
+        },
+        {
+          "id": "n1x270",
+          "w": "見直す",
+          "r": "みなおす",
+          "meaning": "재검토하다 / 다시 살펴 고치다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p013",
+      "word": "付け加える",
+      "reading": "つけくわえる",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-6a852ae347",
+          "w": "付け加える",
+          "r": "つけくわえる",
+          "meaning": "덧붙이다 / 추가하다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p016",
+      "word": "切り替える",
+      "reading": "きりかえる",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-424c018f3e",
+          "w": "切り替える",
+          "r": "きりかえる",
+          "meaning": "전환하다 / 바꾸다 / 교체하다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p019",
+      "word": "見逃す",
+      "reading": "みのがす",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-553c385823",
+          "w": "見逃す",
+          "r": "みのがす",
+          "meaning": "놓치다 / 못 보고 지나치다 / 눈감아 주다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p024",
+      "word": "わざわざ",
+      "reading": "わざわざ",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-bc47957953",
+          "w": "わざわざ",
+          "r": "わざわざ",
+          "meaning": "일부러."
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p029",
+      "word": "鮮やか",
+      "reading": "あざやか",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-a7d4d501a5",
+          "w": "鮮やか",
+          "r": "あざやか",
+          "meaning": "선명하다 / 생생하다 / 솜씨가 훌륭하다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p031",
+      "word": "貯蓄",
+      "reading": "ちょちく",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-bb19f947be",
+          "w": "貯蓄",
+          "r": "ちょちく",
+          "meaning": "저축"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p058",
+      "word": "余裕",
+      "reading": "よゆう",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x236",
+          "w": "余裕",
+          "r": "よゆう",
+          "meaning": "여유 / 시간·공간·능력 등에 남는 폭"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p061",
+      "word": "応募",
+      "reading": "おうぼ",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-571519d3bb",
+          "w": "応募",
+          "r": "おうぼ",
+          "meaning": "응모 / 지원 / 모집에 신청함"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p069",
+      "word": "効率",
+      "reading": "こうりつ",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-86c6a0755f",
+          "w": "効率",
+          "r": "こうりつ",
+          "meaning": "효율 / 들인 노력에 비해 얻는 성과의 비율"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p078",
+      "word": "負担",
+      "reading": "ふたん",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x237",
+          "w": "負担",
+          "r": "ふたん",
+          "meaning": "부담 / 비용·책임·수고를 짊어짐"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p082",
+      "word": "見込み",
+      "reading": "みこみ",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-2b0e48cde1",
+          "w": "見込み",
+          "r": "みこみ",
+          "meaning": "전망 / 가능성 / 예상"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p230",
+      "word": "見送る",
+      "reading": "みおくる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x286",
+          "w": "見送る",
+          "r": "みおくる",
+          "meaning": "보류하다 / 계획한 일을 당장은 하지 않다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p231",
+      "word": "取り寄せる",
+      "reading": "とりよせる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-5ce219cc8b",
+          "w": "取り寄せる",
+          "r": "とりよせる",
+          "meaning": "(주문하거나 말하여) 가져오게 하다."
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p236",
+      "word": "取り扱う",
+      "reading": "とりあつかう",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x150",
+          "w": "取り扱う",
+          "r": "とりあつかう",
+          "meaning": "취급하다 / 다루다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p237",
+      "word": "取り除く",
+      "reading": "とりのぞく",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-6964beadb0",
+          "w": "取り除く",
+          "r": "とりのぞく",
+          "meaning": "제거하다 / 없애다 / 치우다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p239",
+      "word": "取り組む",
+      "reading": "とりくむ",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "torikumu",
+          "w": "取り組む",
+          "r": null,
+          "meaning": null
+        },
+        {
+          "id": "n1x273",
+          "w": "取り組む",
+          "r": "とりくむ",
+          "meaning": "착수하다 / 문제 해결을 위해 힘쓰다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p240",
+      "word": "取り締まる",
+      "reading": "とりしまる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x149",
+          "w": "取り締まる",
+          "r": "とりしまる",
+          "meaning": "단속하다 / 규칙 위반을 감독하다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p241",
+      "word": "受け入れる",
+      "reading": "うけいれる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-4b78567357",
+          "w": "受け入れる",
+          "r": "うけいれる",
+          "meaning": "수락하다 / 받다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p242",
+      "word": "受け付ける",
+      "reading": "うけつける",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-5b9fc8d12f",
+          "w": "受け付ける",
+          "r": "うけつける",
+          "meaning": "접수하다 / 받아들이다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p246",
+      "word": "引き起こす",
+      "reading": "ひきおこす",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x152",
+          "w": "引き起こす",
+          "r": "ひきおこす",
+          "meaning": "일으키다 / 문제나 현상을 발생시키다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p249",
+      "word": "立ち寄る",
+      "reading": "たちよる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-e39921582a",
+          "w": "立ち寄る",
+          "r": "たちよる",
+          "meaning": "들르다 / 잠시 찾아가다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p253",
+      "word": "差し出す",
+      "reading": "さしだす",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-97067b8785",
+          "w": "差し出す",
+          "r": "さしだす",
+          "meaning": "내밀다 / 내주다 / 제출하다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p254",
+      "word": "差し引く",
+      "reading": "さしひく",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-d46b54b4ac",
+          "w": "差し引く",
+          "r": "さしひく",
+          "meaning": "빼다 / 공제하다 / 차감하다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p255",
+      "word": "差し支える",
+      "reading": "さしつかえる",
+      "source": "existing",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "sashitsukaeru",
+          "w": "差し支える",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p256",
+      "word": "差し迫る",
+      "reading": "さしせまる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x148",
+          "w": "差し迫る",
+          "r": "さしせまる",
+          "meaning": "임박하다 / 위험·기한 등이 가까이 닥치다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p257",
+      "word": "見込む",
+      "reading": "みこむ",
+      "source": "existing",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "mikomu",
+          "w": "見込む",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p260",
+      "word": "見渡す",
+      "reading": "みわたす",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-5911280a02",
+          "w": "見渡す",
+          "r": "みわたす",
+          "meaning": "한눈에 바라보다 / 널리 내다보다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p265",
+      "word": "見合わせる",
+      "reading": "みあわせる",
+      "source": "existing",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "miawaseru",
+          "w": "見合わせる",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p266",
+      "word": "見落とす",
+      "reading": "みおとす",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "miotosu",
+          "w": "見落とす",
+          "r": null,
+          "meaning": null
+        },
+        {
+          "id": "n1x269",
+          "w": "見落とす",
+          "r": "みおとす",
+          "meaning": "간과하다 / 봐야 할 것을 놓치다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p271",
+      "word": "目覚める",
+      "reading": "めざめる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-d6278ccc96",
+          "w": "目覚める",
+          "r": "めざめる",
+          "meaning": "잠에서 깨다 / 눈뜨다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p274",
+      "word": "手配",
+      "reading": "てはい",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-a4eceaa662",
+          "w": "手配",
+          "r": "てはい",
+          "meaning": "수배 / 준비 / 마련"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p275",
+      "word": "手順",
+      "reading": "てじゅん",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-e6a3f2b972",
+          "w": "手順",
+          "r": "てじゅん",
+          "meaning": "순서, 절차"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p279",
+      "word": "手本",
+      "reading": "てほん",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-1149c0fbcc",
+          "w": "手本",
+          "r": "てほん",
+          "meaning": "모범, 본보기."
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p280",
+      "word": "手元",
+      "reading": "てもと",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-4ac77d3574",
+          "w": "手元",
+          "r": "てもと",
+          "meaning": "손에 닿는 곳 / 수중 / 가까운 곳"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p281",
+      "word": "手軽",
+      "reading": "てがる",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-3551552ed7",
+          "w": "手軽",
+          "r": "てがる",
+          "meaning": "간편함 / 손쉬움 / 부담 없음"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p282",
+      "word": "手分け",
+      "reading": "てわけ",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-3efeebae61",
+          "w": "手分け",
+          "r": "てわけ",
+          "meaning": "분담 / 일을 나누어 맡음"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p283",
+      "word": "手遅れ",
+      "reading": "ておくれ",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-b54b2396f3",
+          "w": "手遅れ",
+          "r": "ておくれ",
+          "meaning": "때가 늦음 / 손쓸 수 없는 상태"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p286",
+      "word": "物足りない",
+      "reading": "ものたりない",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-1bf02a30c2",
+          "w": "物足りない",
+          "r": "ものたりない",
+          "meaning": "어딘가 부족한 / 만족스럽지 못한"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p288",
+      "word": "どうやら",
+      "reading": "どうやら",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-f49ebb3f1c",
+          "w": "どうやら",
+          "r": "どうやら",
+          "meaning": "아무래도 / 아무래도 ~인 듯하다 / 어떻게든"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p291",
+      "word": "むやみに",
+      "reading": "むやみに",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x168",
+          "w": "むやみに",
+          "r": "むやみに",
+          "meaning": "함부로 / 분별없이"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p292",
+      "word": "やたらに",
+      "reading": "やたらに",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x169",
+          "w": "やたらに",
+          "r": "やたらに",
+          "meaning": "마구 / 지나치게"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p297",
+      "word": "ひとまず",
+      "reading": "ひとまず",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x182",
+          "w": "ひとまず",
+          "r": "ひとまず",
+          "meaning": "우선 / 일단"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p300",
+      "word": "あっさり",
+      "reading": "あっさり",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-bd0b0380dc",
+          "w": "あっさり",
+          "r": "あっさり",
+          "meaning": "담백하게 / 쉽게·선뜻 / 미련 없이 / 간단히"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p302",
+      "word": "ややこしい",
+      "reading": "ややこしい",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-7e3f27dbb0",
+          "w": "ややこしい",
+          "r": "ややこしい",
+          "meaning": "복잡한 / 까다로운 / 뒤얽힌"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p303",
+      "word": "几帳面",
+      "reading": "きちょうめん",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-d5ab320203",
+          "w": "几帳面",
+          "r": "きちょうめん",
+          "meaning": "꼼꼼함 / 빈틈없음 / 반듯함"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p304",
+      "word": "慎重",
+      "reading": "しんちょう",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x230",
+          "w": "慎重",
+          "r": "しんちょう",
+          "meaning": "신중 / 충분히 주의하며 판단함"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p306",
+      "word": "頑固",
+      "reading": "がんこ",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-3a51656702",
+          "w": "頑固",
+          "r": "がんこ",
+          "meaning": "완고함 / 고집이 셈"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p307",
+      "word": "柔軟",
+      "reading": "じゅうなん",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x229",
+          "w": "柔軟",
+          "r": "じゅうなん",
+          "meaning": "유연 / 상황에 맞게 바꿀 수 있음"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p315",
+      "word": "気楽",
+      "reading": "きらく",
+      "source": "existing",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-5fda236b3d",
+          "w": "気楽",
+          "r": "きらく",
+          "meaning": "마음 편함 / 부담이 없음 / 느긋함"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p0390",
+      "word": "一定",
+      "reading": "いってい",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-1d578a6738",
+          "w": "一定",
+          "r": "いってい",
+          "meaning": "일정함 / 정해져 변하지 않음 / 일정한 정도"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p0415",
+      "word": "承る",
+      "reading": "うけたまわる",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "uketamawaru",
+          "w": "承る",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p0473",
+      "word": "おおよそ",
+      "reading": "おおよそ",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x179",
+          "w": "おおよそ",
+          "r": "おおよそ",
+          "meaning": "대략 / 대체로"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p0480",
+      "word": "補う",
+      "reading": "おぎなう",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oginau",
+          "w": "補う",
+          "r": null,
+          "meaning": null
+        },
+        {
+          "id": "n1x279",
+          "w": "補う",
+          "r": "おぎなう",
+          "meaning": "보충하다 / 부족한 부분을 채우다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p0485",
+      "word": "怠る",
+      "reading": "おこたる",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "okotaru",
+          "w": "怠る",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p0588",
+      "word": "過剰",
+      "reading": "かじょう",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x296",
+          "w": "過剰",
+          "r": "かじょう",
+          "meaning": "과잉 / 필요한 정도를 지나치게 넘음"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p0640",
+      "word": "為替",
+      "reading": "かわせ",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x246",
+          "w": "為替",
+          "r": "かわせ",
+          "meaning": "환율 / 서로 다른 통화의 교환 비율"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p0844",
+      "word": "擦る",
+      "reading": "こする",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-6ba1bae967",
+          "w": "擦る",
+          "r": "かする",
+          "meaning": "스치다 / 살짝 닿다 / 일부를 떼다"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p0918",
+      "word": "妨げる",
+      "reading": "さまたげる",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "samatageru",
+          "w": "妨げる",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p0999",
+      "word": "洒落",
+      "reading": "しゃれ",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-9ba2fec541",
+          "w": "洒落",
+          "r": "しゃらく",
+          "meaning": "소탈함 / 얽매이지 않고 담백한 태도(드문 읽기 しゃらく)"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1042",
+      "word": "上下",
+      "reading": "じょうげ",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-1f3b016d79",
+          "w": "上下",
+          "r": "うえした",
+          "meaning": "위아래 / 상하"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1179",
+      "word": "迫る",
+      "reading": "せまる",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x287",
+          "w": "迫る",
+          "r": "せまる",
+          "meaning": "다가오다·요구하다 / 상황이 가까워지거나 결정을 요구함"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p1278",
+      "word": "妥当",
+      "reading": "だとう",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "n1x188",
+          "w": "妥当",
+          "r": "だとう",
+          "meaning": "타당함 / 이치에 맞고 적절함"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p1363",
+      "word": "月日",
+      "reading": "つきひ",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-18c78b84a5",
+          "w": "月日",
+          "r": "がっぴ",
+          "meaning": "월일 / 날짜"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1365",
+      "word": "突く",
+      "reading": "つく",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-2564dfcfcb",
+          "w": "突く",
+          "r": "つつく",
+          "meaning": "찌르다 / 쿡 찌르다 / 공격하다"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1384",
+      "word": "艶",
+      "reading": "つや",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-281570f768",
+          "w": "艶",
+          "r": "えん",
+          "meaning": "요염함 / 매혹적인 아름다움 / 윤기"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1385",
+      "word": "強気",
+      "reading": "つよき",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-925301438b",
+          "w": "強気",
+          "r": "ごうぎ",
+          "meaning": "대단함 / 훌륭함 / 기세가 좋음(옛말·드문 읽기 ごうぎ)"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1426",
+      "word": "天皇",
+      "reading": "てんのう",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-f71c5d995e",
+          "w": "天皇",
+          "r": "すめらぎ",
+          "meaning": "천황 / 일본의 황제"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1454",
+      "word": "退く",
+      "reading": "どく",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-dd86bf4e80",
+          "w": "退く",
+          "r": "しりぞく",
+          "meaning": "물러나다 / 퇴진하다 / 은퇴하다"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1462",
+      "word": "退ける",
+      "reading": "どける",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "shirizokeru",
+          "w": "退ける",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1517",
+      "word": "憎い",
+      "reading": "にくい",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-2e8753951c",
+          "w": "憎い",
+          "r": "にくい",
+          "meaning": "밉다 / 증오스럽다 / 얄밉다"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p1581",
+      "word": "梯子",
+      "reading": "はしご",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-82e39c46a6",
+          "w": "梯子",
+          "r": "ていし",
+          "meaning": "사다리"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1599",
+      "word": "甚だしい",
+      "reading": "はなはだしい",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "hanahadashii",
+          "w": "甚だしい",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1764",
+      "word": "膨大",
+      "reading": "ぼうだい",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "bodai",
+          "w": "膨大",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1850",
+      "word": "矛盾",
+      "reading": "むじゅん",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "mujun",
+          "w": "矛盾",
+          "r": null,
+          "meaning": null
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1884",
+      "word": "潜る",
+      "reading": "もぐる",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-91af54997d",
+          "w": "潜る",
+          "r": "くぐる",
+          "meaning": "(아래나 사이를) 빠져나가다 / 통과하다 / 피하다"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1900",
+      "word": "盛る",
+      "reading": "もる",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-4ae5663b6a",
+          "w": "盛る",
+          "r": "さかる",
+          "meaning": "성하다 / 번성하다 / 한창 왕성하다(드문 읽기 さかる)"
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    },
+    {
+      "id": "n2p1911",
+      "word": "火傷",
+      "reading": "やけど",
+      "source": "draft",
+      "collision_type": "same_word_same_reading",
+      "n1_matches": [
+        {
+          "id": "oj-35398ed297",
+          "w": "火傷",
+          "r": "やけど",
+          "meaning": "화상 / 데임"
+        }
+      ],
+      "current_runtime_action": "reuses_n1_srs"
+    },
+    {
+      "id": "n2p1951",
+      "word": "汚す",
+      "reading": "よごす",
+      "source": "draft",
+      "collision_type": "same_written_form_different_reading",
+      "n1_matches": [
+        {
+          "id": "oj-fc259785af",
+          "w": "汚す",
+          "r": "けがす",
+          "meaning": "더럽히다."
+        }
+      ],
+      "current_runtime_action": "review_meaning_before_merging_or_retaining"
+    }
+  ],
+  "alternative_spelling_flags_detail": [
+    {
+      "id": "n2p0502",
+      "word": "おどかす",
+      "reading": "おどかす",
+      "n1_alternative": [
+        "脅かす"
+      ],
+      "n2_alternative": [],
+      "source_id": "3744253331"
+    }
+  ]
+}
