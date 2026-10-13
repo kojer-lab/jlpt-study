@@ -672,13 +672,13 @@ function newsAudioResetButton(button){
 }
 function stopNewsParagraphAudio(){
  newsAudioSerial++;
- const finish=newsAudioFinish;
+ const finish=newsAudioFinish,source=newsAudioSource;
  newsAudioFinish=null;
- if(finish)finish(false);
- else if(newsAudioSource){
-  try{newsAudioSource.onended=null;newsAudioSource.stop()}catch(e){}
-  try{newsAudioSource.disconnect()}catch(e){}
+ if(source){
+  try{source.onended=null;source.stop(0)}catch(e){}
  }
+ if(finish)finish(false);
+ else if(source){try{source.disconnect()}catch(e){}}
  newsAudioSource=null;
  newsAudioResetButton(newsAudioButton);
  newsAudioIndex=-1;newsAudioArticleId=null;newsAudioButton=null;
