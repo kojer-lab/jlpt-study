@@ -48,3 +48,71 @@ assert.deepEqual(words(""),[],"Empty paragraph must produce no chunks");
 assert.equal(words("今日は晴れた。").join(""),"今日は晴れた");
 assert(index.includes("if(name!==\"newsreader\")window.KOJER_NEWS_AUDIO_STOP?.();"),"Leaving news must stop audio");
 console.log("PASS: browser-only Kokoro, 150-190 char paragraphs, long-sentence split, playback cancellation, aria UI, no prebuilt MP3.");
+
+assert(reader.includes("function warmNextNewsParagraphAudio(currentArticle,index,segments,serial){"),
+ "Look-ahead worker missing");
+assert(reader.includes("if(n===0)warmNextNewsParagraphAudio(currentArticle,index,segments,serial);"),
+ "Warm-up must start only after the first clicked clip has been generated");
+assert(reader.includes("const pending=[...segments.slice(1),...nextSegments];"),
+ "Must prefetch current remaining segments before the next paragraph");
+assert(!reader.includes("SpeechSynthesisUtterance"),
+ "Must keep the browser Kokoro and not use built-in iOS voices");
+
+// Exercise the isolated real worker with a controllable fake Kokoro engine.
+// The mock never produces a WAV or MP3; it records synthesis scheduling.
+async function verifyLookahead(){
+ const begin=reader.indexOf("function warmNextNewsParagraphAudio(");
+ const end=reader.indexOf("\nasync function playNewsAudioBuffer(",begin);
+ assert(begin>0&&end>begin,"Cannot isolate look-ahead worker");
+ const code=reader.slice(begin,end);
+ const flush=()=>new Promise(ok=>setImmediate(ok));
+ const makeHarness=()=>{
+  const called=[],resolvers=[];
+  const page={
+   article:{id:"story-1"},newsAudioSerial:7,
+   document:{hidden:false},
+   $:()=>({classList:{contains:()=>true}}),
+   newsAudioSegments:value=>value.split("|"),
+   kokoroGenerate:(value,voice)=>{
+    assert.equal(voice,"jf_alpha");
+    called.push(value);
+    return new Promise(resolve=>resolvers.push(resolve));
+   },
+   console:{warn:()=>{}}
+  };
+  vm.runInNewContext(code,page);
+  return {page,called,resolvers};
+ };
+ // Current paragraph's remaining clips must be scheduled before the next
+ // paragraph's two chunks, and never preload a second upcoming paragraph.
+ const {page,called,resolvers}=makeHarness();
+ page.current={id:"story-1",paragraphs:["A","NEXT-1|NEXT-2","NEVER-1|NEVER-2"]};
+ vm.runInNewContext('warmNextNewsParagraphAudio(current,0,["CURRENT-1","CURRENT-2","CURRENT-3"],7)',page);
+ assert.deepEqual(called,["CURRENT-2"],"Only one TTS request should be queued at once");
+ for(const next of ["CURRENT-3","NEXT-1","NEXT-2"]){
+  resolvers.at(-1)();
+  await flush();
+  assert.equal(called.at(-1),next,"Unexpected synthesis priority");
+ }
+ resolvers.at(-1)();await flush();
+ assert.deepEqual(called,["CURRENT-2","CURRENT-3","NEXT-1","NEXT-2"],
+  "Should not prefetch beyond one paragraph");
+ // Stop mid-generation: the already-running clip may finish, but no further
+ // background work can be enqueued after cancellation.
+ const stopped=makeHarness();
+ stopped.page.current={id:"story-1",paragraphs:["A","NEXT-1|NEXT-2"]};
+ vm.runInNewContext('warmNextNewsParagraphAudio(current,0,["FIRST","SECOND","THIRD"],7)',stopped.page);
+ assert.deepEqual(stopped.called,["SECOND"]);
+ stopped.page.newsAudioSerial=8;
+ stopped.resolvers[0]();await flush();
+ assert.deepEqual(stopped.called,["SECOND"],"Cancellation enqueued unwanted speech");
+ // A hidden browser tab must not start synthesis at all.
+ const hidden=makeHarness();
+ hidden.page.document.hidden=true;
+ hidden.page.current={id:"story-1",paragraphs:["A","B"]};
+ vm.runInNewContext('warmNextNewsParagraphAudio(current,0,["A","B"],7)',hidden.page);
+ assert.deepEqual(hidden.called,[],"Hidden iPhone tabs should not prefetch");
+ console.log("PASS: next-paragraph prefetch priority, bounded queue, cancellation, background limit.");
+}
+verifyLookahead().catch(error=>{console.error(error);process.exitCode=1});
+
