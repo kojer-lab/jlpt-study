@@ -579,7 +579,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 #newsreaderView .news-review-question{font-weight:600}
 </style>
 <link rel="stylesheet" href="data/iphone-redesign.css?v=20261013-reference-v2">
-<link rel="stylesheet" href="data/iphone-polish-v3.css?v=20261013-v3">
+<link rel="stylesheet" href="data/iphone-polish-v3.css?v=20261013-rating-v4">
 </head>
 <body>
 <div class="mobile-header">
@@ -3095,7 +3095,12 @@ function renderWord(){
  restoreInteractiveFuriState($("wordStudyPanel"));
  setTimeout(()=>prefetchWordAudio(w),120);
 }
-function renderRating(root,id,s,isReview){root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><span class="rate-icon" aria-hidden="true">${{"again":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4.5 11a7.5 7.5 0 1 1 2.8 6.8\"/><path d=\"M4 5v6h6\"/></svg>","hard":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 3.5V12h8.5\"/><path d=\"m12 12 6 6\" stroke-width=\"1.2\"/></svg>","good":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m4.5 12.5 5.3 5.2L20 6.5\" stroke-width=\"3.5\"/></svg>","easy":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m12 2.5 2.2 7.3 7.3 2.2-7.3 2.2-2.2 7.3-2.2-7.3-7.3-2.2 7.3-2.2L12 2.5Z\" stroke-width=\"1.5\" fill=\"currentColor\" stroke=\"none\"/></svg>"}[r]}</span><strong>${{again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"}[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("")}
+/* Reference-matched rating icons; nextPreview and FSRS calculation unchanged. */
+const KOJER_RATE_ICONS={"again":"<svg viewBox=\"0 0 36 36\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" focusable=\"false\" aria-hidden=\"true\"><path d=\"M30 16A12 12 0 0 0 9 11.5\"/><path d=\"M9 6.5v5.5h5.5\"/><path d=\"M6 20a12 12 0 0 0 21 4.5\"/><path d=\"M27 29.5V24h-5.5\"/></svg>","hard":"<svg viewBox=\"0 0 36 36\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" focusable=\"false\" aria-hidden=\"true\"><circle cx=\"18\" cy=\"18\" r=\"13.3\"/><circle cx=\"13\" cy=\"15\" r=\"1.35\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"23\" cy=\"15\" r=\"1.35\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M13.3 23.1h9.4\"/></svg>","good":"<svg viewBox=\"0 0 36 36\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" focusable=\"false\" aria-hidden=\"true\"><circle cx=\"18\" cy=\"18\" r=\"13.3\"/><circle cx=\"13\" cy=\"15\" r=\"1.35\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"23\" cy=\"15\" r=\"1.35\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M11.8 21c1.6 3.7 4.1 5.2 6.2 5.2s4.6-1.5 6.2-5.2\"/></svg>","easy":"<svg viewBox=\"0 0 36 36\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" focusable=\"false\" aria-hidden=\"true\"><path d=\"m18 4.2 4.3 8.8 9.7 1.4-7 6.8 1.65 9.6L18 26.3l-8.65 4.5L11 21.2l-7-6.8 9.7-1.4L18 4.2Z\"/></svg>"};
+function renderRating(root,id,s,isReview){
+  const labels={again:"다시",hard:"어려움",good:"알겠음",easy:"쉬움"};
+  root.innerHTML=["again","hard","good","easy"].map(r=>`<button type="button" class="rate-btn" data-rate="${r}" data-word="${id}" data-review="${isReview?1:0}"><span class="rate-icon" aria-hidden="true">${KOJER_RATE_ICONS[r]}</span><strong>${labels[r]}</strong><small>${nextPreview(s,r)}</small></button>`).join("");
+}
 
 let wordAudioPrefetchRun=0;
 // Kokoro's sentence-final Japanese full stop can cause an audible tail artifact

@@ -196,3 +196,59 @@ body.dark #wordsView #wordDashboard .library-action-arrow{background:#30354c;col
  .rate-btn .rate-icon{width:36px;height:36px;flex-basis:36px}
 }
 @media(prefers-reduced-motion:reduce){.rate-btn{transition:none}}
+
+
+/* Anki rating V4 — match the user's 4-color screenshot: icon / label / interval.
+   Same silhouette across cards, no boxed icon background or inset underline. */
+.rating,.rating#wordRating,.rating#reviewRating{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.rating .rate-btn{
+ --rate-bg:#fff;--rate-outline:#dadfea;--rate-ink:var(--text);
+ display:flex;flex-direction:column;justify-content:center;align-items:center;
+ min-width:0;min-height:118px;padding:13px 3px 12px;gap:0;
+ border:1.7px solid var(--rate-outline)!important;
+ border-radius:17px!important;
+ background:linear-gradient(135deg,rgba(255,255,255,.92),var(--rate-bg))!important;
+ color:var(--rate-ink)!important;
+ box-shadow:0 2px 9px rgba(82,79,139,.035)!important
+}
+.rating .rate-btn[data-rate="again"]{--rate-bg:#ffedf0;--rate-outline:#ff9ea8;--rate-ink:#e2354b}
+.rating .rate-btn[data-rate="hard"]{--rate-bg:#fff4e0;--rate-outline:#ffc362;--rate-ink:#c9790e}
+.rating .rate-btn[data-rate="good"]{--rate-bg:#f0edff;--rate-outline:#b5a8ff;--rate-ink:#6554ee}
+.rating .rate-btn[data-rate="easy"]{--rate-bg:#eafaef;--rate-outline:#8adca9;--rate-ink:#159d5e}
+.rating .rate-btn::before,#wordsView .rating .rate-btn::before{display:none!important;content:none!important}
+.rating .rate-btn .rate-icon,
+#wordsView .rating .rate-btn .rate-icon{
+ display:grid;place-items:center;flex:0 0 37px;
+ width:37px;height:37px;margin:0 auto 7px;
+ padding:0;border:0;border-radius:0;
+ background:transparent!important;color:var(--rate-ink)!important
+}
+.rating .rate-btn .rate-icon svg{display:block;width:34px;height:34px;stroke:currentColor}
+.rating .rate-btn strong,#wordsView .rating .rate-btn strong{
+ font-size:15px!important;font-weight:850!important;line-height:1.24!important;
+ margin:0;letter-spacing:-.04em;color:var(--rate-ink)!important;
+ white-space:nowrap
+}
+.rating .rate-btn small,#wordsView .rating .rate-btn small{
+ display:block;margin-top:7px!important;
+ font-size:11px!important;font-weight:600;line-height:1.2;
+ color:var(--muted)!important;white-space:nowrap
+}
+.rating .rate-btn:hover:not(:disabled){filter:saturate(1.08);border-width:2px!important}
+.rating .rate-btn:focus-visible{outline:3px solid var(--rate-ink);outline-offset:3px}
+body.dark .rating .rate-btn{
+ background:linear-gradient(135deg,var(--panel),var(--rate-bg))!important
+}
+body.dark .rating .rate-btn[data-rate="again"]{--rate-bg:#432b39;--rate-outline:#a44d61;--rate-ink:#ff94a5}
+body.dark .rating .rate-btn[data-rate="hard"]{--rate-bg:#403427;--rate-outline:#a17c48;--rate-ink:#f6ba6c}
+body.dark .rating .rate-btn[data-rate="good"]{--rate-bg:#333052;--rate-outline:#7365c5;--rate-ink:#c0b5ff}
+body.dark .rating .rate-btn[data-rate="easy"]{--rate-bg:#244337;--rate-outline:#518e73;--rate-ink:#83ddb0}
+@media(max-width:760px){
+ #wordsView .rating,.rating{gap:7px}
+ #wordsView .rating .rate-btn,.rating .rate-btn{min-height:111px;padding:10px 2px 11px}
+ #wordsView .rating .rate-btn .rate-icon,.rating .rate-btn .rate-icon{width:33px;height:33px;flex-basis:33px;margin-bottom:7px}
+ #wordsView .rating .rate-btn .rate-icon svg,.rating .rate-btn .rate-icon svg{width:32px;height:32px}
+ #wordsView .rating .rate-btn strong,.rating .rate-btn strong{font-size:14px!important}
+ #wordsView .rating .rate-btn small,.rating .rate-btn small{font-size:10px!important}
+}
+@media(max-width:350px){.rating{gap:5px}.rating .rate-btn{border-radius:14px!important}}
