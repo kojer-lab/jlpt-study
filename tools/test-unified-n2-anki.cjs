@@ -1,7 +1,7 @@
 // Unified N1+N2 Anki regression. Run: node tools/test-unified-n2-anki.cjs
 const fs=require("node:fs"),vm=require("node:vm"),assert=require("node:assert/strict");
 const html=fs.readFileSync("index.html","utf8");
-const parts=[1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(n=>{
+const parts=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map(n=>{
  const src=fs.readFileSync("data/n2-words-phase"+n+".js","utf8");
  const context={window:{}};vm.runInNewContext(src,context,{timeout:3000});
  return context.window["N2_WORDS_PHASE"+n];
@@ -21,9 +21,10 @@ assert.equal(parts[10].length,62);
 assert.equal(parts[11].length,67);
 assert.equal(parts[12].length,36);
 assert.equal(parts[13].length,70);
-assert.equal(entries.length,841);
-assert.equal(new Set(entries.map(x=>x.id)).size,841);
-assert.equal(new Set(entries.map(x=>x.w+"\t"+x.r)).size,841);
+assert.equal(parts[14].length,50);
+assert.equal(entries.length,891);
+assert.equal(new Set(entries.map(x=>x.id)).size,891);
+assert.equal(new Set(entries.map(x=>x.w+"\t"+x.r)).size,891);
 for(const w of entries){
  assert.match(w.id,/^n2p\d{3,4}$/);
  assert.equal(w.level,"N2");
@@ -54,6 +55,7 @@ assert.ok(html.includes('data/n2-words-phase11.js'));
 assert.ok(html.includes('data/n2-words-phase12.js'));
 assert.ok(html.includes('data/n2-words-phase13.js'));
 assert.ok(html.includes('data/n2-words-phase14.js'));
+assert.ok(html.includes('data/n2-words-phase15.js'));
 assert.ok(html.includes('window.N2_WORDS_PHASE5'));
 assert.ok(html.includes('window.N2_WORDS_PHASE6'));
 assert.ok(html.includes('window.N2_WORDS_PHASE7'));
@@ -64,6 +66,7 @@ assert.ok(html.includes('window.N2_WORDS_PHASE11'));
 assert.ok(html.includes('window.N2_WORDS_PHASE12'));
 assert.ok(html.includes('window.N2_WORDS_PHASE13'));
 assert.ok(html.includes('window.N2_WORDS_PHASE14'));
+assert.ok(html.includes('window.N2_WORDS_PHASE15'));
 assert.ok(html.includes('(x.examples||[]).slice(0,1)'));
 assert.ok(html.includes('const wordStudyLevel="ALL"'));
 assert.ok(html.includes('window.N2_WORDS_PHASE3'));
@@ -118,4 +121,4 @@ assert.strictEqual(srs["n2-4"],before);
 assert.equal(selected.length,20);
 const scriptTags=html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g);
 for(const tag of scriptTags){if(tag[1].trim())new vm.Script(tag[1])}
-console.log("PASS N1+N2 unified Anki: 841 reviewed N2 candidates, one contextual example per card, common daily cap, FSRS preserved");
+console.log("PASS N1+N2 unified Anki: 891 reviewed N2 candidates, one contextual example per card, common daily cap, FSRS preserved");
