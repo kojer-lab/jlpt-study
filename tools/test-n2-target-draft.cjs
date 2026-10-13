@@ -15,17 +15,20 @@ const canonical=s=>s.normalize("NFKC").replace(/\s+/g,"");
 assert.equal(new Set(cards.map(x=>canonical(x.w))).size,2000,"duplicate headword in N2 target");
 assert.equal(new Set(cards.map(x=>x.id)).size,2000,"duplicate N2 card ID");
 assert.equal(cards.filter(x=>x.level==="N2").length,2000);
-const reviewedSource=fs.readFileSync("data/n2-words-phase6.js","utf8");
-const reviewed=JSON.parse(reviewedSource.slice(reviewedSource.indexOf("=[")+1).replace(/;\s*$/,""));
-assert.equal(reviewed.length,49);
-const promotedIds=new Set(reviewed.map(x=>x.id));
-assert.equal(draft.words.filter(x=>x.qa_status==="reviewed_promoted").length,49);
+const completed=[6,7].flatMap(n=>{
+ const content=fs.readFileSync("data/n2-words-phase"+n+".js","utf8");
+ return JSON.parse(content.slice(content.indexOf("=[")+1).replace(/;\s*$/,""));
+});
+assert.equal(completed.length,101);
+const promotedIds=new Set(completed.map(x=>x.id));
+assert.equal(promotedIds.size,101);
+assert.equal(draft.words.filter(x=>x.qa_status==="reviewed_promoted").length,101);
 assert.equal(draft.words.filter(x=>x.qa_status==="duplicate_exact_n1").length,9);
 assert.equal(draft.words.filter(x=>x.qa_status==="needs_homograph_review").length,20);
 assert.ok(draft.words.filter(x=>x.qa_status==="duplicate_exact_n1").every(x=>x.excluded_from_promotion));
-for(const x of reviewed){
+for(const x of completed){
  const original=draft.words.find(y=>y.id===x.id);
- assert.ok(original&&original.promoted_in==="data/n2-words-phase6.js");
+ assert.ok(original&&original.promoted_in==="data/n2-words-phase"+(Number(x.id.slice(3))<=372?6:7)+".js");
  assert.equal(x.examples.length,1);
  assert.ok(x.examples[0].jp.length>=32&&x.examples[0].ko.length>=15);
 }
@@ -37,6 +40,7 @@ for(const x of draft.words){
 }
 const html=fs.readFileSync("index.html","utf8");
 assert.ok(html.includes("data/n2-words-phase6.js"));
+assert.ok(html.includes("data/n2-words-phase7.js"));
 assert.ok(!html.includes("n2-target-2000-draft.json"),"draft N2 must not load into live Anki");
 const seeded=draft.words.filter(x=>x.example_seed_jp).length;
 console.log("PASS: 322 production cards + 1678 draft source entries = 2000 unique N2 candidate headwords; "+seeded+" Japanese sentence seeds; live Anki unchanged.");
