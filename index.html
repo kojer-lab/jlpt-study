@@ -1034,10 +1034,11 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="data/news-index-v1.js?v=20261010-numerals2"></script>
-<script src="data/n2-words-phase1.js?v=20261013-p2"></script>
-<script src="data/n2-words-phase2.js?v=20261013-p2"></script>
-<script src="data/n2-words-phase3.js?v=20261013-p3"></script>
-<script src="data/n2-words-phase4.js?v=20261013-p4"></script>
+<script src="data/n2-words-phase1.js?v=20261013-single"></script>
+<script src="data/n2-words-phase2.js?v=20261013-single"></script>
+<script src="data/n2-words-phase3.js?v=20261013-single"></script>
+<script src="data/n2-words-phase4.js?v=20261013-single"></script>
+<script src="data/n2-words-phase5.js?v=20261013-single"></script>
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
 <script src="data/n1-extra-words-3.js"></script>
@@ -1796,7 +1797,7 @@ const extraWords=extraWordRaw.map(x=>({
 }));
 words.push(...extraWords);
 // N2 pilot uses unique card IDs. Keep N1 cards as the canonical source on overlaps.
-const n2Source=[...(Array.isArray(window.N2_WORDS_PHASE1)?window.N2_WORDS_PHASE1:[]),...(Array.isArray(window.N2_WORDS_PHASE2)?window.N2_WORDS_PHASE2:[]),...(Array.isArray(window.N2_WORDS_PHASE3)?window.N2_WORDS_PHASE3:[]),...(Array.isArray(window.N2_WORDS_PHASE4)?window.N2_WORDS_PHASE4:[])];
+const n2Source=[...(Array.isArray(window.N2_WORDS_PHASE1)?window.N2_WORDS_PHASE1:[]),...(Array.isArray(window.N2_WORDS_PHASE2)?window.N2_WORDS_PHASE2:[]),...(Array.isArray(window.N2_WORDS_PHASE3)?window.N2_WORDS_PHASE3:[]),...(Array.isArray(window.N2_WORDS_PHASE4)?window.N2_WORDS_PHASE4:[]),...(Array.isArray(window.N2_WORDS_PHASE5)?window.N2_WORDS_PHASE5:[])];
 const existingWordsByKey=new Map();
 for(const w of words){
  const key=plain(w.w).normalize("NFKC")+"\t"+readingOf(w.w).normalize("NFKC");
@@ -1815,7 +1816,7 @@ for(const x of n2Source){
   continue;
  }
  existingKeys.add(key);
- const entry={id:String(x.id),w:/[一-龯々]/.test(surface)?F(surface,reading):surface,meaning:String(x.meaning||""),examples:(x.examples||[]).slice(0,2).map(ex=>({jp:String(ex.jp||""),ko:String(ex.ko||""),exampleSource:x.source||"n2-curated"})),source:x.source||"n2-curated",category:"vocab",level:"N2"};
+ const entry={id:String(x.id),w:/[一-龯々]/.test(surface)?F(surface,reading):surface,meaning:String(x.meaning||""),examples:(x.examples||[]).slice(0,1).map(ex=>({jp:String(ex.jp||""),ko:String(ex.ko||""),exampleSource:x.source||"n2-curated"})),source:x.source||"n2-curated",category:"vocab",level:"N2"};
  existingWordsByKey.set(key,entry);
  n2Accepted.push(entry);
 }
