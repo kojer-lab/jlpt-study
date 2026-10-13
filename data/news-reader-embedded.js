@@ -633,7 +633,150 @@ function refreshMode(){
   button.setAttribute("aria-pressed",String(active));
  });
 }
+
+// Browser-only Kokoro voice for the currently selected Japanese news paragraph.
+// No prebuilt MP3, API request, or article-wide pre-generation. The existing
+// kokoroGenerate() caches synthesized WAV chunks locally after the first click.
+let newsAudioContext=null,newsAudioSource=null,newsAudioFinish=null;
+let newsAudioSerial=0,newsAudioIndex=-1,newsAudioArticleId=null,newsAudioButton=null;
+
+function newsAudioSegments(text){
+ // Kokoro's iPhone WASM runtime handles sentence-size prompts more reliably
+ // than a single 150-200+ character paragraph. Preserve the reading order.
+ const result=[];
+ for(const sentence of sentencesJP(text)){
+  let group="";
+  for(const part of (sentence.match(/[^、]+、?/gu)||[sentence])){
+   if(group&&group.length+part.length>110){result.push(group);group="";}
+   group+=part;
+   while(group.length>145){
+    const lastComma=group.lastIndexOf("、",135);
+    const cut=lastComma>=40?lastComma+1:115;
+    result.push(group.slice(0,cut));
+    group=group.slice(cut);
+   }
+  }
+  if(group.trim())result.push(group);
+ }
+ return result.map(t=>t.trim().replace(/。(?=[」』]?\s*$)/u,"")).filter(Boolean);
+}
+function newsAudioResetButton(button){
+ if(!button?.isConnected)return;
+ button.classList.remove("is-loading","is-playing");
+ button.setAttribute("aria-pressed","false");
+ button.setAttribute("aria-label","이 문단 듣기");
+ const label=button.querySelector(".news-audio-label");
+ if(label)label.textContent="이 문단 듣기";
+ const state=button.parentElement?.querySelector(".news-audio-state");
+ if(state)state.textContent="";
+}
+function stopNewsParagraphAudio(){
+ newsAudioSerial++;
+ const finish=newsAudioFinish;
+ newsAudioFinish=null;
+ if(finish)finish(false);
+ else if(newsAudioSource){
+  try{newsAudioSource.onended=null;newsAudioSource.stop()}catch(e){}
+  try{newsAudioSource.disconnect()}catch(e){}
+ }
+ newsAudioSource=null;
+ newsAudioResetButton(newsAudioButton);
+ newsAudioIndex=-1;newsAudioArticleId=null;newsAudioButton=null;
+}
+window.KOJER_NEWS_AUDIO_STOP=stopNewsParagraphAudio;
+
+async function playNewsAudioBuffer(url,serial){
+ // The AudioContext is resumed synchronously by the original tap. On iPhone
+ // that is more reliable than creating an HTMLAudioElement after an async TTS.
+ const response=await fetch(url);
+ if(!response.ok)throw Error("생성된 음성 파일을 읽지 못했어.");
+ const wav=await response.arrayBuffer();
+ if(serial!==newsAudioSerial)return false;
+ const buffer=await newsAudioContext.decodeAudioData(wav);
+ if(serial!==newsAudioSerial)return false;
+ return new Promise((resolve,reject)=>{
+  const source=newsAudioContext.createBufferSource();
+  newsAudioSource=source;source.buffer=buffer;source.connect(newsAudioContext.destination);
+  let settled=false;
+  const finish=(played)=>{
+   if(settled)return;
+   settled=true;
+   source.onended=null;
+   try{source.disconnect()}catch(e){}
+   if(newsAudioSource===source)newsAudioSource=null;
+   if(newsAudioFinish===finish)newsAudioFinish=null;
+   resolve(played);
+  };
+  newsAudioFinish=finish;
+  source.onended=()=>finish(true);
+  try{source.start(0)}catch(error){finish(false);reject(error)}
+ });
+}
+async function playNewsParagraph(index){
+ const currentArticle=article;
+ if(!currentArticle||!Number.isInteger(index)||index<0||index>=currentArticle.paragraphs.length)return;
+ // A second tap on the active paragraph stops even while synthesis is pending.
+ if(newsAudioIndex===index&&newsAudioArticleId===currentArticle.id){
+  stopNewsParagraphAudio();return;
+ }
+ stopNewsParagraphAudio();
+ const serial=newsAudioSerial;
+ const button=$("newsArticleBody").querySelector('[data-news-paragraph-audio="'+index+'"]');
+ if(!button)return;
+ const state=button.parentElement?.querySelector(".news-audio-state");
+ const live=()=>serial===newsAudioSerial&&article?.id===currentArticle.id;
+ const message=value=>{if(live()&&state)state.textContent=value};
+ const segments=newsAudioSegments(currentArticle.paragraphs[index]);
+ if(!segments.length){message("읽을 일본어 문장이 없어.");return}
+ newsAudioArticleId=currentArticle.id;newsAudioIndex=index;newsAudioButton=button;
+ button.setAttribute("aria-pressed","true");button.setAttribute("aria-label","이 문단 듣기 중지");
+ const label=button.querySelector(".news-audio-label");
+ if(label)label.textContent="중지";
+ button.classList.add("is-loading");
+ let resumed;
+ try{
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass)throw Error("이 브라우저는 음성 출력을 지원하지 않아.");
+  if(!newsAudioContext||newsAudioContext.state==="closed")newsAudioContext=new AudioContextClass();
+  // Must be invoked within the user interaction, before the first await.
+  resumed=newsAudioContext.resume();
+  if(typeof cancelPendingWordAudio==="function")cancelPendingWordAudio();
+ }catch(error){
+  if(live()){newsAudioResetButton(button);newsAudioIndex=-1;newsAudioButton=null;newsAudioArticleId=null;message(error.message)}
+  return;
+ }
+ message("Kokoro 음성 준비 중…");
+ try{
+  await resumed;
+  for(let n=0;n<segments.length;n++){
+   if(!live())return;
+   const position=" ("+(n+1)+"/"+segments.length+")";
+   message("음성 생성 또는 캐시 확인 중"+position);
+   const clip=await kokoroGenerate(segments[n],"jf_alpha",status=>message(status+position));
+   if(!live())return;
+   button.classList.remove("is-loading");button.classList.add("is-playing");
+   message("재생 중"+position);
+   const played=await playNewsAudioBuffer(clip.url,serial);
+   if(!played||!live())return;
+  }
+  if(!live())return;
+  newsAudioResetButton(button);
+  newsAudioIndex=-1;newsAudioArticleId=null;newsAudioButton=null;
+  if(label)label.textContent="다시 듣기";
+  message("재생 완료");
+ }catch(error){
+  if(!live())return;
+  console.error("뉴스 문단 Kokoro 재생 실패",error);
+  newsAudioResetButton(button);
+  newsAudioIndex=-1;newsAudioArticleId=null;newsAudioButton=null;
+  message("음성 준비 실패 · 다시 눌러 줘");
+ }
+}
+document.addEventListener("visibilitychange",()=>{if(document.hidden)stopNewsParagraphAudio()});
+window.addEventListener("pagehide",stopNewsParagraphAudio);
+
 function displayArticle(id){
+ stopNewsParagraphAudio();
  const a=source.find(x=>x.id===id);
  if(!a){displayList();return}
  article=a;translationOpen=false;titleOpen=false;paragraphOpen=new Set();
@@ -646,7 +789,11 @@ function displayArticle(id){
  $("newsArticleBody").innerHTML=a.paragraphs.map((p,i)=>{
   const r=paragraphHTML(p);marked+=r.covered;total+=r.kanji;
   return '<section class="news-paragraph" id="newsParagraph'+i+'" data-paragraph="'+i+'"><p class="news-japanese-paragraph">'+r.html+'</p>'+
+  '<div class="news-paragraph-actions"><button type="button" class="news-paragraph-audio" data-news-paragraph-audio="'+i+'" aria-pressed="false" aria-label="이 문단 듣기">'+
+  '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18 6a8.5 8.5 0 0 1 0 12"/></svg>'+
+  '<span class="news-audio-label">이 문단 듣기</span></button>'+
   '<button type="button" class="news-paragraph-translate" aria-expanded="false" data-news-paragraph-translate="'+i+'">이 문단 번역 보기</button>'+
+  '<span class="news-audio-state" role="status" aria-live="polite"></span></div>'+
   '<div class="news-paragraph-ko hidden" lang="ko">'+esc(a.translationParagraphs?.[i]||"번역 준비 중")+'</div></section>';
  }).join("");
  updateParagraphTranslation();
@@ -660,11 +807,13 @@ function displayArticle(id){
  updateNewsReadButton();
 }
 function displayList(){
+ stopNewsParagraphAudio();
  if(article){captureProgress(true);expressionTab(false)}
  article=null;$("newsCuratedBrowser").classList.remove("hidden");$("newsCuratedDetail").classList.add("hidden");
 }
 let routeSerial=0;
 async function route(){
+ stopNewsParagraphAudio();
  let hash=location.hash||"";
  try{hash=decodeURIComponent(hash)}catch{}
  if(!hash.startsWith("#newsreader"))return;
@@ -730,6 +879,8 @@ function init(){
   refreshMode();
  });
  $("newsArticleBody").addEventListener("click",e=>{
+  const audioButton=e.target.closest("[data-news-paragraph-audio]");
+  if(audioButton){playNewsParagraph(Number(audioButton.dataset.newsParagraphAudio));return}
   const btn=e.target.closest("[data-news-paragraph-translate]");
   if(!btn)return;
   const n=Number(btn.dataset.newsParagraphTranslate);
