@@ -905,6 +905,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
       <div class="quiz-shell" id="readingQuizShell"><div class="card">
         <div class="tag" id="readingTag"></div>
         <div class="passage long-passage" id="readingPassage"></div>
+        <div id="readingPassageTranslationArea" class="hidden" style="margin:10px 0 20px"><button type="button" class="secondary reading-translation-btn" id="readingPassageTranslateBtn" aria-expanded="false" aria-controls="readingPassageTranslationBox">🇰🇷 번역 보기</button><div id="readingPassageTranslationBox" class="hidden" style="margin-top:10px"></div></div>
         <div class="question" id="readingQuestion"></div>
         <div class="choices" id="readingChoices"></div>
         <div class="explain" id="readingExplanation"></div>
@@ -2648,7 +2649,10 @@ function renderCuratedNewsHome(){
   const label=day==="전체"?(newsCuratedMonth==="전체"?"전체 날짜":"이 달 전체"):Number(day.slice(5,7))+"/"+Number(day.slice(8,10));
   const btn=document.createElement("button");
   btn.type="button";btn.className="secondary"+(day===newsCuratedDate?" active":"");
-  btn.textContent=label+" · "+count;
+  const dayItems=day==="전체"?monthly:monthly.filter(x=>x.date===day);
+  const allRead=dayItems.length>0&&dayItems.every(x=>isRead(x.id));
+  btn.textContent=(allRead?"✓ ":"")+label+" · "+count;
+  if(allRead)btn.setAttribute("aria-label",label+" 기사 모두 읽음");
   btn.setAttribute("aria-pressed",String(day===newsCuratedDate));
   btn.addEventListener("click",()=>chooseDate(day));
   dateFilters.appendChild(btn);
@@ -2660,7 +2664,8 @@ function renderCuratedNewsHome(){
   const option=document.createElement("option");option.value="";option.textContent="이전 날짜 ("+older.length+")";
   olderPicker.appendChild(option);
   for(const day of older){
-   const o=document.createElement("option");o.value=day;o.textContent=day+" · "+monthly.filter(x=>x.date===day).length+"개";
+   const o=document.createElement("option");o.value=day;const oldItems=monthly.filter(x=>x.date===day);
+   o.textContent=(oldItems.length&&oldItems.every(x=>isRead(x.id))?"✓ ":"")+day+" · "+oldItems.length+"개";
    olderPicker.appendChild(o);
   }
   olderPicker.value=older.includes(newsCuratedDate)?newsCuratedDate:"";
@@ -3711,6 +3716,12 @@ function renderReading(){
  document.querySelectorAll("#readingModes button").forEach(b=>b.classList.toggle("active",b.dataset.mode===readingMode));
  $("readingTag").textContent=set.title+` · 세트 ${readingSetIndex+1}/${bank.length} · 문제 ${readingQ+1}/${set.questions.length}`;
  $("readingPassage").innerHTML=set.furigana?.passage||readingJP(set.passage);
+ const passageArea=$("readingPassageTranslationArea"),passageBox=$("readingPassageTranslationBox"),passageBtn=$("readingPassageTranslateBtn");
+ passageArea.classList.toggle("hidden",readingMode!=="news");
+ passageBox.innerHTML=`<div class="translation"><strong>지문 번역</strong><br>${set.passageKo||"아직 등록된 지문 번역이 없습니다."}</div>`;
+ passageBox.classList.toggle("hidden",!readingTranslationOpen);
+ passageBtn.textContent=readingTranslationOpen?"🇰🇷 번역 숨기기":"🇰🇷 번역 보기";
+ passageBtn.setAttribute("aria-expanded",String(readingTranslationOpen));
  $("readingQuestion").innerHTML=fq?.q||readingJP(q.q);
  $("readingChoices").innerHTML=q.c.map((choice,i)=>`<button type="button" class="choice" data-i="${i}">${i+1}. ${fq?.c?.[i]||readingJP(choice)}</button>`).join("");
  $("readingExplanation").className="explain";$("readingExplanation").innerHTML="";
@@ -3730,7 +3741,7 @@ function showReadingResult(idx){
  const set=readingSets[readingMode][readingSetIndex],q=set.questions[readingQ],fq=set.furigana?.questions?.[readingQ];
  readingAnswered=true;
  [...$("readingChoices").children].forEach((x,i)=>{x.setAttribute("aria-disabled","true");x.classList.add("answered");if(i===q.a)x.classList.add("correct");if(i===idx&&idx!==q.a)x.classList.add("wrong")});
- $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${readingMode==="news"?readingJP(q.e):(fq?.e||readingJP(q.e))}</div><button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" aria-expanded="${readingTranslationOpen}" aria-controls="readingTranslationBox" style="margin-top:14px">${readingTranslationOpen?"🇰🇷 번역 숨기기":"🇰🇷 번역 보기"}</button><div id="readingTranslationBox" class="${readingTranslationOpen?"":"hidden"}">${readingTranslationHTML(set,q)}</div>`;
+ $("readingExplanation").innerHTML=`<strong>${idx===q.a?"정답입니다.":"오답입니다."}</strong><br>정답: ${q.a+1}. ${fq?.c?.[q.a]||readingJP(q.c[q.a])}<div style="margin-top:12px"><strong>해설</strong><br>${readingMode==="news"?readingJP(q.e):(fq?.e||readingJP(q.e))}</div>${readingMode==="news"?`<div style="margin-top:14px">${readingTranslationHTML(set,q)}</div>`:`<button type="button" class="secondary reading-translation-btn" id="readingTranslationBtn" aria-expanded="${readingTranslationOpen}" aria-controls="readingTranslationBox" style="margin-top:14px">${readingTranslationOpen?"🇰🇷 번역 숨기기":"🇰🇷 번역 보기"}</button><div id="readingTranslationBox" class="${readingTranslationOpen?"":"hidden"}">${readingTranslationHTML(set,q)}</div>`}`;
  $("readingExplanation").classList.add("show");$("nextReadingBtn").classList.remove("hidden");
  if(readingMode==="news"){
   const score=newsScore(selectedNewsDate);newsAnsweredCount=score.answered;newsCorrect=score.correct;
@@ -3748,6 +3759,12 @@ $("readingChoices").addEventListener("click",e=>{
   saveState(state);
  }else recordAnswer("reading",q,idx);
  showReadingResult(idx);
+});
+$("readingPassageTranslateBtn").addEventListener("click",()=>{
+ const box=$("readingPassageTranslationBox"),btn=$("readingPassageTranslateBtn");
+ readingTranslationOpen=box.classList.toggle("hidden")===false;
+ btn.textContent=readingTranslationOpen?"🇰🇷 번역 숨기기":"🇰🇷 번역 보기";
+ btn.setAttribute("aria-expanded",String(readingTranslationOpen));
 });
 $("readingExplanation").addEventListener("click",e=>{
  const b=e.target.closest("#readingTranslationBtn");if(!b)return;
