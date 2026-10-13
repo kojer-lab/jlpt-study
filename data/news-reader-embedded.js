@@ -714,7 +714,7 @@ function warmNextNewsParagraphAudio(currentArticle,index,segments,serial){
  })();
 }
 
-async function playNewsAudioBuffer(url,serial){
+async function playNewsAudioBuffer(url,serial,onStarted=null){
  // The AudioContext is resumed synchronously by the original tap. On iPhone
  // that is more reliable than creating an HTMLAudioElement after an async TTS.
  const response=await fetch(url);
@@ -738,7 +738,7 @@ async function playNewsAudioBuffer(url,serial){
   };
   newsAudioFinish=finish;
   source.onended=()=>finish(true);
-  try{source.start(0)}catch(error){finish(false);reject(error)}
+  try{source.start(0);if(onStarted)onStarted()}catch(error){finish(false);reject(error)}
  });
 }
 async function playNewsParagraph(index){
@@ -785,10 +785,10 @@ async function playNewsParagraph(index){
    if(!live())return;
    button.classList.remove("is-loading");button.classList.add("is-playing");
    message("재생 중"+position);
-   // Start look-ahead only after this first clip is actually synthesized.
-   // The foreground remains responsive: no await on the warm-up job.
-   if(n===0)warmNextNewsParagraphAudio(currentArticle,index,segments,serial);
-   const played=await playNewsAudioBuffer(clip.url,serial);
+   // Start low-priority synthesis only after the first audio source starts.
+   // This lets iPhone decode and begin playing before the WASM work resumes.
+   const onStarted=n===0?()=>warmNextNewsParagraphAudio(currentArticle,index,segments,serial):null;
+   const played=await playNewsAudioBuffer(clip.url,serial,onStarted);
    if(!played||!live())return;
   }
   if(!live())return;
