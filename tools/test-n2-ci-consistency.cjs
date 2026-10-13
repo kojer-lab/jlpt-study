@@ -1,5 +1,6 @@
 // Dynamic N2 source, app wiring and FSRS regression checks.
 // Phase count and totals are derived from files; no stale phase-specific constants.
+// Maintained separately from batch-specific generated validation scripts.
 "use strict";
 const fs=require("node:fs");
 const vm=require("node:vm");
