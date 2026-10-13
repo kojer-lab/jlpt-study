@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#4f46e5">
+<meta name="theme-color" content="#f5f5fd">
 <meta name="apple-mobile-web-app-title" content="JLPT N1">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/n1-study-icon.png?v=20261008-book1">
 <link rel="icon" type="image/png" sizes="180x180" href="assets/n1-study-icon.png?v=20261008-book1">
@@ -578,15 +578,16 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 /* News expression Anki: reduce weight without changing other study typography. */
 #newsreaderView .news-review-question{font-weight:600}
 </style>
+<link rel="stylesheet" href="data/iphone-redesign.css?v=20261013-v1">
 </head>
 <body>
 <div class="mobile-header">
-  <div class="mobile-brand"><div class="brand-badge">N1</div>JLPT N1 STUDY</div>
+  <div class="mobile-brand"><div class="brand-badge">N1·2</div><div class="brand-name"><span>JLPT STUDY</span><small>KOJER · N1 + N2</small></div></div>
   <div class="mobile-tools"><button id="mobileCloud" type="button" title="클라우드 동기화">☁</button><button id="mobileFuri" type="button" title="후리가나">あ</button><button id="mobileTheme" type="button" title="테마">◐</button></div>
 </div>
 <div class="app">
   <aside class="sidebar">
-    <div class="brand"><div class="brand-badge">N1</div>JLPT N1 STUDY</div>
+    <div class="brand"><div class="brand-badge">N1·2</div><div class="brand-name"><span>JLPT STUDY</span><small>KOJER · N1 + N2</small></div></div>
     <nav class="nav">
       <button type="button" data-view="home" class="active">🏠 홈</button>
       <button type="button" data-view="words">🗂 단어 학습</button>
@@ -606,7 +607,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 
   <main class="main">
     <section class="view active" id="homeView">
-      <div class="topbar"><div><h1>오늘 공부할 N1</h1><div class="sub">단어는 SRS로 복습 시점을 자동 계산하고, 문제는 오답 이유까지 남깁니다.</div></div><div class="pill" id="todayText"></div></div>
+      <div class="topbar"><div><h1>오늘의 일본어</h1><div class="sub">N1과 N2, 오늘도 내 속도에 맞춰 차근차근 공부해요.</div></div><div class="pill" id="todayText"></div></div>
       <div class="grid4">
         <div class="card stat"><div class="label">오늘 복습</div><div class="num" id="dueStat">0</div><div class="progress"><span id="dueBar"></span></div></div>
         <div class="card stat"><div class="label">오늘 새 단어</div><div class="num" id="newStat">0</div><div class="label" id="dailyNewSub" style="margin-top:6px">하루 10개</div></div>
@@ -618,10 +619,10 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
       </div>
       <div class="section-title">바로 시작</div>
       <div class="grid3">
-        <div class="card action" data-go="review"><strong>🔁 오늘의 복습</strong><p>복습 예정일이 된 단어만 자동으로 모아서 보여줍니다.</p></div>
-        <div class="card action" data-go="reading"><strong>📖 독해</strong><p>단문·중문·장문·오늘의 시사독해를 단계별로 풉니다.</p></div>
-        <div class="card action" data-go="newsreader"><strong>📰 뉴스 읽기</strong><p>일본 최신 소식을 900~1,200자 실전 기사로 읽고, 후리가나·번역·표현을 익힙니다.</p></div>
-        <div class="card action" data-go="listening"><strong>🎧 청해 연습</strong><p>AI 모의문제를 먼저 풀고, 공식 JLPT 음원도 선택해 연습합니다.</p></div>
+        <div class="card action" data-go="review"><strong><span class="home-action-icon" aria-hidden="true">↻</span>오늘의 복습</strong><p>복습 예정일이 된 단어만 자동으로 모아서 보여줍니다.</p></div>
+        <div class="card action" data-go="reading"><strong><span class="home-action-icon" aria-hidden="true">📖</span>독해</strong><p>단문·중문·장문·오늘의 시사독해를 단계별로 풉니다.</p></div>
+        <div class="card action" data-go="newsreader"><strong><span class="home-action-icon" aria-hidden="true">📰</span>뉴스 읽기</strong><p>일본 최신 소식을 900~1,200자 실전 기사로 읽고, 후리가나·번역·표현을 익힙니다.</p></div>
+        <div class="card action" data-go="listening"><strong><span class="home-action-icon" aria-hidden="true">🎧</span>청해 연습</strong><p>AI 모의문제를 먼저 풀고, 공식 JLPT 음원도 선택해 연습합니다.</p></div>
       </div>
       <div class="section-title">오늘의 시사독해</div>
       <div class="card action" data-go="newsreading">
