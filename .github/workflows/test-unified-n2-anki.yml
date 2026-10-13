@@ -1,69 +1,29 @@
 name: Validate unified N1 + N2 Anki
 
+# N2 batches arrive as several successive commits. Run push validation only
+# after the final promotion-progress marker is updated, not on partial batches.
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - "index.html"
-      - "data/n2-words-phase1.js"
-      - "data/n2-words-phase2.js"
-      - "data/n2-words-phase3.js"
-      - "data/n2-words-phase4.js"
-      - "data/n2-words-phase5.js"
-      - "data/n2-words-phase6.js"
-      - "data/n2-words-phase7.js"
-      - "data/n2-words-phase8.js"
-      - "data/n2-words-phase9.js"
-      - "data/n2-words-phase10.js"
-      - "data/n2-words-phase11.js"
-      - "data/n2-words-phase12.js"
-      - "data/n2-words-phase13.js"
-      - "data/n2-words-phase14.js"
-      - "data/n2-words-phase15.js"
-      - "data/n2-words-phase16.js"
-      - "data/n2-words-phase17.js"
-      - "data/n2-words-phase18.js"
-      - "data/n2-words-phase19.js"
+      - "data/n2-words-phase*.js"
       - "data/n2-target-2000-draft.json"
       - "data/n2-duplicate-audit-20261013.json"
-      - "data/n2-progress-live.js"
       - "data/n2-promotion-progress.json"
-      - "tools/test-n2-target-draft.cjs"
+      - "data/n2-progress-live.js"
       - "n2-progress.html"
-      - "N2_TARGET_2000_STATUS.md"
-      - "tools/test-unified-n2-anki.cjs"
+      - "tools/test-n2-ci-consistency.cjs"
       - ".github/workflows/test-unified-n2-anki.yml"
   push:
     branches: [main]
     paths:
-      - "index.html"
-      - "data/n2-words-phase1.js"
-      - "data/n2-words-phase2.js"
-      - "data/n2-words-phase3.js"
-      - "data/n2-words-phase4.js"
-      - "data/n2-words-phase5.js"
-      - "data/n2-words-phase6.js"
-      - "data/n2-words-phase7.js"
-      - "data/n2-words-phase8.js"
-      - "data/n2-words-phase9.js"
-      - "data/n2-words-phase10.js"
-      - "data/n2-words-phase11.js"
-      - "data/n2-words-phase12.js"
-      - "data/n2-words-phase13.js"
-      - "data/n2-words-phase14.js"
-      - "data/n2-words-phase15.js"
-      - "data/n2-words-phase16.js"
-      - "data/n2-words-phase17.js"
-      - "data/n2-words-phase18.js"
-      - "data/n2-words-phase19.js"
-      - "data/n2-target-2000-draft.json"
-      - "data/n2-duplicate-audit-20261013.json"
-      - "data/n2-progress-live.js"
       - "data/n2-promotion-progress.json"
-      - "tools/test-n2-target-draft.cjs"
-      - "n2-progress.html"
-      - "N2_TARGET_2000_STATUS.md"
-      - "tools/test-unified-n2-anki.cjs"
-      - ".github/workflows/test-unified-n2-anki.yml"
+      - "tools/test-n2-ci-consistency.cjs"
+
+concurrency:
+  group: n2-unified-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -77,10 +37,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Check unified N1/N2 vocabulary and FSRS
-        run: node tools/test-unified-n2-anki.cjs
-      - name: Validate N2 source bank and promoted phase links
-        run: node tools/test-n2-target-draft.cjs
+      - name: Validate complete N2 batch, source bank, unified N1/N2 Anki and FSRS
+        run: node tools/test-n2-ci-consistency.cjs
       - name: Check existing Anki mixing regression
         run: node tools/test-anki-new-interleave.mjs
       - name: Check existing Anki session recovery
