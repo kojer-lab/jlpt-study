@@ -1,0 +1,198 @@
+/* KOJER JLPT iPhone polish v3 — source: approved reference screenshots.
+   Gentle canvas, balanced study cards, clear action glyphs, accessible Anki buttons. */
+:root{
+  --bg:#f8f9fe;
+  --muted:#6c7694;
+  --kojer-surface:linear-gradient(130deg,#fcfbff 0%,#f6f8ff 100%);
+  --shadow:0 7px 24px rgba(60,68,116,.045);
+}
+body:not(.dark){
+ background:radial-gradient(ellipse 580px 450px at 8% 2%,rgba(205,207,252,.09),transparent 80%),var(--bg);
+}
+body.dark{
+ --bg:#151925;--kojer-surface:linear-gradient(130deg,#262a3a 0%,#252c40 100%);
+ --shadow:0 8px 23px rgba(0,0,0,.11);
+}
+#homeView>.topbar{background:var(--kojer-surface)}
+#homeView>.grid4 .home-stat-card,#homeView>.grid3 .action{box-shadow:var(--shadow)}
+#homeView>.grid4 .home-stat-card:nth-child(3){background:#fcfffe}
+#homeView>.grid4 .home-stat-card:nth-child(4){background:#fffefd}
+body.dark #homeView>.grid4 .home-stat-card:nth-child(3),
+body.dark #homeView>.grid4 .home-stat-card:nth-child(4){background:var(--panel)}
+
+/* Large word-study container is now nearly white rather than purple. */
+#wordsView #wordDashboard.word-dashboard{
+ background:linear-gradient(145deg,#fcfbff 0%,#f8faff 85%);
+ border:1px solid #e8eafa;
+ box-shadow:var(--shadow);
+}
+body.dark #wordsView #wordDashboard.word-dashboard{
+ background:var(--kojer-surface);
+ border-color:var(--line)
+}
+#wordsView #wordDashboard .word-goal{
+ border-color:#e3e7f5;
+ background:var(--panel);
+ box-shadow:none;
+}
+
+/* Dashboard numbers use the same typography and baseline, regardless of digits. */
+#wordsView #wordDashboard .word-dash-stats{
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ align-items:stretch;gap:10px;
+}
+#wordsView #wordDashboard .word-dash-stat{
+ position:relative;box-sizing:border-box;
+ display:grid;grid-template-columns:38px minmax(0,1fr);
+ grid-template-rows:1fr;
+ align-items:start;gap:11px;
+ min-width:0;min-height:114px;
+ padding:17px 14px;
+ border-radius:19px;text-align:left;
+ background:var(--panel);
+ border:1px solid var(--line);
+ box-shadow:0 3px 13px rgba(74,70,141,.025)
+}
+#wordsView #wordDashboard .word-dash-icon{
+ grid-column:1;grid-row:1;width:38px;height:38px;
+ border-radius:13px;align-self:start;margin-top:1px;
+}
+#wordsView #wordDashboard .word-dash-icon svg{width:23px;height:23px}
+#wordsView #wordDashboard .word-dash-copy{
+ grid-column:2;grid-row:1;min-width:0;
+ display:flex;flex-direction:column;align-items:flex-start;
+ justify-content:flex-start;gap:6px;padding:0 0 2px;
+}
+#wordsView #wordDashboard .word-dash-copy span{
+ order:-1;margin:1px 0 0;
+ color:var(--muted);font-size:12px;line-height:1.4;
+ font-weight:600;letter-spacing:-.025em;word-break:keep-all;
+}
+#wordsView #wordDashboard .word-dash-copy strong{
+ display:block;margin:0;align-self:flex-start;
+ font-size:31px;line-height:1.08;letter-spacing:-.04em;
+ font-variant-numeric:tabular-nums;font-weight:850;color:var(--text)
+}
+#wordsView #wordDashboard .word-dash-chevron{display:none}
+
+/* A common rhythm and icon treatment for the three secondary actions. */
+#wordsView #wordDashboard .word-dash-actions{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+ align-items:stretch;gap:9px;margin-top:12px;
+}
+#wordsView #wordDashboard .word-dash-actions .secondary{
+ display:flex;align-items:center;justify-content:center;flex-direction:column;
+ min-width:0;min-height:83px;gap:8px;
+ padding:12px 6px;border-radius:17px;
+ background:var(--panel);border:1px solid var(--line);
+ box-shadow:0 3px 9px rgba(70,70,130,.025);
+ color:var(--text);white-space:normal;font-size:12px;line-height:1.25;
+ font-weight:730;text-align:center;
+}
+#wordsView #wordDashboard .mini-action-icon{
+ width:26px;height:26px;flex:0 0 26px;
+ display:grid;place-items:center;color:#6f63e8;
+}
+#wordsView #wordDashboard .mini-action-icon svg{width:23px;height:23px}
+#wordsView #wordDashboard .word-dash-actions .secondary:first-child .mini-action-icon{color:#e4ad39}
+#wordsView #wordDashboard .word-dash-actions .secondary:nth-child(2) .mini-action-icon{color:#6961c2}
+#wordsView #wordDashboard .word-dash-actions .secondary:nth-child(3) .mini-action-icon{color:#d47f9b}
+#wordsView #wordDashboard .mini-action-label{
+ display:block;white-space:normal;overflow-wrap:normal;
+ letter-spacing:-.035em;font-size:11.5px;line-height:1.3;
+}
+#wordsView #wordDashboard .word-dash-actions .secondary:disabled{opacity:.5}
+#wordsView #wordDashboard .word-dash-actions .secondary:focus-visible,
+#wordsView #wordDashboard #openWordLibrary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* Full dictionary button: left illustration / text / right arrow, all centered. */
+#wordsView #wordDashboard #openWordLibrary.library-action{
+ display:flex;align-items:center;justify-content:flex-start;
+ gap:14px;box-sizing:border-box;
+ min-height:73px;height:auto;width:100%;
+ padding:13px 17px;margin:12px 0 0!important;
+ border-radius:19px;border:1px solid var(--line);
+ background:var(--panel);box-shadow:0 4px 15px rgba(75,72,130,.04);
+ text-align:left;font-weight:800;color:var(--text)
+}
+#wordsView #wordDashboard #openWordLibrary::after{content:none!important}
+#wordsView #wordDashboard .library-action-icon{
+ flex:0 0 45px;width:45px;height:45px;
+ display:grid;place-items:center;
+ border-radius:14px;background:#f0eefe;color:#6659da
+}
+#wordsView #wordDashboard .library-action-icon svg{width:29px;height:29px}
+#wordsView #wordDashboard .library-action-copy{
+ flex:1;min-width:0;font-size:17px;line-height:1.3;
+ white-space:normal;letter-spacing:-.04em;
+}
+#wordsView #wordDashboard .library-action-arrow{
+ flex:0 0 26px;width:26px;height:26px;
+ display:grid;place-items:center;
+ color:#828ca9;background:#f4f5fb;border-radius:50%
+}
+#wordsView #wordDashboard .library-action-arrow svg{width:18px;height:18px}
+
+/* Four individually recognizable iPhone-style icons on Anki ratings. */
+.rate-btn::before,#wordsView .rate-btn::before{content:none!important;display:none!important}
+.rate-btn,.rating .rate-btn,#wordsView .rate-btn{
+ display:flex;flex-direction:column;justify-content:center;align-items:center;
+ min-width:0;min-height:117px;padding:10px 3px 12px;
+ gap:0;border:1px solid var(--line);border-radius:18px;
+ background:var(--panel);color:var(--text);
+}
+.rate-btn .rate-icon{
+ width:44px;height:44px;flex:0 0 44px;
+ display:grid;place-items:center;border-radius:15px;
+ margin-bottom:10px;color:#ce657b;background:#ffedf1
+}
+.rate-btn .rate-icon svg{width:27px;height:27px}
+.rate-btn[data-rate="again"] .rate-icon{color:#d76178;background:#ffedf1}
+.rate-btn[data-rate="hard"] .rate-icon{color:#c68a36;background:#fff1d9}
+.rate-btn[data-rate="good"] .rate-icon{color:#6d5ce6;background:#f0edff}
+.rate-btn[data-rate="easy"] .rate-icon{color:#209d76;background:#e3f9ee}
+.rate-btn strong{font-size:14px;line-height:1.2;letter-spacing:-.03em}
+.rate-btn small{margin-top:8px!important;font-size:11px!important;line-height:1.25;color:var(--muted)!important}
+.rate-btn[data-rate="again"]{box-shadow:inset 0 -4px #ffd0db!important}
+.rate-btn[data-rate="hard"]{box-shadow:inset 0 -4px #ffe3b5!important}
+.rate-btn[data-rate="good"]{box-shadow:inset 0 -4px #dcd7ff!important}
+.rate-btn[data-rate="easy"]{box-shadow:inset 0 -4px #c5efd9!important}
+.rate-btn:disabled{opacity:.6}
+body.dark .rate-btn[data-rate]{background:var(--panel);color:var(--text)}
+body.dark .rate-btn[data-rate="again"] .rate-icon{color:#ffa2b2;background:#52313f}
+body.dark .rate-btn[data-rate="hard"] .rate-icon{color:#ffd28c;background:#523f2f}
+body.dark .rate-btn[data-rate="good"] .rate-icon{color:#c2b7ff;background:#3c355f}
+body.dark .rate-btn[data-rate="easy"] .rate-icon{color:#91e9bf;background:#274c3d}
+body.dark #wordsView #wordDashboard .library-action-icon{background:#353258;color:#b9afff}
+body.dark #wordsView #wordDashboard .library-action-arrow{background:#30354c;color:#b1bad4}
+
+/* Mobile-first consistency without sacrificing the compact iPhone display. */
+@media(max-width:760px){
+ .main{padding:16px 12px 36px}
+ #wordsView #wordDashboard.word-dashboard{padding:19px 14px}
+ #wordsView #wordDashboard .word-dash-stats{gap:9px}
+ #wordsView #wordDashboard .word-dash-stat{min-height:112px;padding:15px 10px;grid-template-columns:35px minmax(0,1fr);gap:9px}
+ #wordsView #wordDashboard .word-dash-icon{width:35px;height:35px;border-radius:12px}
+ #wordsView #wordDashboard .word-dash-icon svg{width:21px;height:21px}
+ #wordsView #wordDashboard .word-dash-copy{gap:7px}
+ #wordsView #wordDashboard .word-dash-copy span{font-size:11px}
+ #wordsView #wordDashboard .word-dash-copy strong{font-size:29px}
+ #wordsView #wordDashboard .word-dash-actions .secondary{min-height:82px;padding:11px 4px}
+ #wordsView #wordDashboard .mini-action-label{font-size:11px}
+ #wordsView #wordDashboard #openWordLibrary.library-action{min-height:71px;padding:12px 14px;gap:11px}
+ #wordsView #wordDashboard .library-action-copy{font-size:16px}
+ #wordsView .rate-btn{min-height:111px;padding:10px 3px}
+ #wordsView .rate-btn .rate-icon{height:40px;width:40px;flex-basis:40px;margin-bottom:8px}
+ #wordsView .rate-btn .rate-icon svg{width:26px;height:26px}
+ #wordsView .rate-btn strong{font-size:13px}
+}
+@media(max-width:355px){
+ #wordsView #wordDashboard .word-dash-stat{grid-template-columns:31px minmax(0,1fr);gap:7px;padding:12px 8px}
+ #wordsView #wordDashboard .word-dash-icon{height:31px;width:31px}
+ #wordsView #wordDashboard .word-dash-copy span{font-size:10px}
+ #wordsView #wordDashboard .word-dash-copy strong{font-size:27px}
+ #wordsView #wordDashboard .mini-action-label{font-size:10px}
+ #wordsView #wordDashboard .library-action-copy{font-size:14px}
+ .rate-btn .rate-icon{width:36px;height:36px;flex-basis:36px}
+}
+@media(prefers-reduced-motion:reduce){.rate-btn{transition:none}}
