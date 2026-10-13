@@ -1,0 +1,27 @@
+name: Validate N2 2000 draft source pool
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/n2-target-2000-draft.json"
+      - "data/n2-words-phase*.js"
+      - "tools/test-n2-target-draft.cjs"
+      - ".github/workflows/test-n2-target-draft.yml"
+  pull_request:
+    paths:
+      - "data/n2-target-2000-draft.json"
+      - "data/n2-words-phase*.js"
+      - "tools/test-n2-target-draft.cjs"
+      - ".github/workflows/test-n2-target-draft.yml"
+permissions:
+  contents: read
+jobs:
+  check-draft-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node tools/test-n2-target-draft.cjs
+      - run: node tools/test-unified-n2-anki.cjs
