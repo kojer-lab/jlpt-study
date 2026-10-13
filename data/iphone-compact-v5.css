@@ -74,3 +74,60 @@
  #homeView>.grid4 .home-stat-main .num{font-size:25px!important}
  #wordsView #wordStudyPanel .word-main{font-size:clamp(37px,10vw,44px)!important}
 }
+
+
+/* News feature contrast V6: elevated white surface against pale page canvas.
+   High contrast without making the whole page more purple. */
+#homeView>.home-news-feature{
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
+ cursor:pointer;
+ background:#ffffff!important;
+ border:1.5px solid #cbd1f8!important;
+ border-radius:21px;
+ box-shadow:0 9px 27px rgba(70,73,142,.105),0 2px 5px rgba(80,78,148,.035)!important;
+ padding-left:25px;
+ transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+#homeView>.home-news-feature::before{
+ content:"";
+ position:absolute;top:17px;bottom:17px;left:0;width:5px;
+ border-radius:0 6px 6px 0;
+ background:linear-gradient(180deg,#6e54f5,#5b8aef);
+}
+#homeView>.home-news-feature:hover{
+ transform:translateY(-2px);
+ border-color:#9187ee!important;
+ box-shadow:0 12px 30px rgba(75,73,145,.15)!important;
+}
+#homeView>.home-news-feature .news-badge{
+ display:inline-flex;align-items:center;gap:7px;
+ border-radius:999px;
+ background:#f0edff;color:#5a4bd4;
+ padding:6px 11px;
+ font-weight:850;
+}
+#homeView>.home-news-feature .news-badge .dot{background:#6b52f0}
+#homeView>.home-news-feature h2{color:#1b2446;letter-spacing:-.035em}
+#homeView>.home-news-feature .sub{color:#687693}
+body.dark #homeView>.home-news-feature{
+ background:#24293c!important;
+ border-color:#6262a5!important;
+ box-shadow:0 12px 24px rgba(0,0,0,.18)!important;
+}
+body.dark #homeView>.home-news-feature .news-badge{background:#373154;color:#c5baff}
+body.dark #homeView>.home-news-feature h2{color:#f3f3ff}
+body.dark #homeView>.home-news-feature .sub{color:#b0bad2}
+@media(max-width:760px){
+ #homeView>.home-news-feature{
+  padding:13px 14px 14px 19px!important;
+  border-radius:18px!important
+ }
+ #homeView>.home-news-feature::before{top:13px;bottom:13px;width:4px}
+ #homeView>.home-news-feature .news-badge{padding:5px 9px;font-size:10.5px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #homeView>.home-news-feature{transition:none!important}
+ #homeView>.home-news-feature:hover{transform:none!important}
+}
