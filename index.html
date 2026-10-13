@@ -580,7 +580,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 </style>
 <link rel="stylesheet" href="data/iphone-redesign.css?v=20261013-news-after-sync">
 <link rel="stylesheet" href="data/iphone-polish-v3.css?v=20261013-rating-v4">
-<link rel="stylesheet" href="data/iphone-compact-v5.css?v=20261013-newscontrast-v6">
+<link rel="stylesheet" href="data/iphone-compact-v5.css?v=20261013-navspacing-v7">
 </head>
 <body>
 <div class="mobile-header">
@@ -3367,7 +3367,10 @@ $("showMeaningBtn").addEventListener("click",()=>{
    const rating=$("wordRating");
    if(!rating||rating.classList.contains("hidden"))return;
    const visible=window.visualViewport;
-   const bottom=visible?visible.offsetTop+visible.height:window.innerHeight;
+   const viewportBottom=visible?visible.offsetTop+visible.height:window.innerHeight;
+   const nav=document.querySelector(".bottom-nav");
+   const navTop=nav&&getComputedStyle(nav).display!=="none"?nav.getBoundingClientRect().top:viewportBottom;
+   const bottom=Math.min(viewportBottom,navTop);
    const missing=Math.ceil(rating.getBoundingClientRect().bottom-bottom+12);
    if(missing>0)window.scrollBy({top:missing,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
   });

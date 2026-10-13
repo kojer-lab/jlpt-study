@@ -37,8 +37,8 @@
  #homeView>.grid3 .action strong{font-size:14px!important;margin-bottom:2px!important}
  #homeView>.grid3 .action p{font-size:11px!important;line-height:1.4!important}
  /* Full-screen Anki: the 5-tab floating footer cannot cover the rating buttons. */
- body:has(#wordsView.active #wordStudyPanel:not(.hidden)) .bottom-nav{display:none!important}
- body:has(#wordsView.active #wordStudyPanel:not(.hidden)){padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))!important}
+ /* The original fixed 5-tab navigation stays visible during Anki. */
+
  body:has(#wordsView.active #wordStudyPanel:not(.hidden)) .mobile-header{padding-top:8px!important;padding-bottom:8px!important}
  #wordsView .word-study-head{margin-bottom:7px!important;gap:7px!important}
  #wordsView .word-study-head .secondary{min-height:38px!important;padding:8px 11px!important;font-size:12px!important;border-radius:11px!important}
@@ -130,4 +130,43 @@ body.dark #homeView>.home-news-feature .sub{color:#b0bad2}
 @media(prefers-reduced-motion:reduce){
  #homeView>.home-news-feature{transition:none!important}
  #homeView>.home-news-feature:hover{transform:none!important}
+}
+
+
+/* V7: restore the permanent iPhone navigation during Anki. Only trim the
+   upper air around the progress line and the two example sentences. */
+@media(max-width:760px){
+ body:has(#wordsView.active #wordStudyPanel:not(.hidden)) .bottom-nav{
+  display:grid!important;position:fixed!important
+ }
+ /* Room to scroll all rating controls ABOVE the fixed bottom bar. */
+ #wordsView #wordStudyPanel{
+  padding-bottom:calc(108px + env(safe-area-inset-bottom,0px))!important;
+  scroll-margin-bottom:110px;
+ }
+ #wordsView #wordStudyPanel .word-card-body{
+  padding-top:5px!important
+ }
+ #wordsView #wordStudyPanel .word-meta{
+  margin-top:0!important;padding-top:0!important;line-height:1.15!important
+ }
+ #wordsView #wordStudyPanel #wordExamples .example{
+  padding-top:6px!important
+ }
+ #wordsView #wordStudyPanel #wordExamples .example-head{
+  min-height:24px!important
+ }
+ #wordsView #wordStudyPanel #wordExamples .example-head .example-report{
+  height:24px!important;min-height:24px!important;flex-basis:26px!important
+ }
+ /* Keep some furigana clearance; remove only unnecessary upper whitespace. */
+ #wordsView #wordStudyPanel #wordExamples .example-jp{
+  padding-top:4px!important;line-height:1.75!important
+ }
+ #wordsView #wordStudyPanel #wordExamples .example-line .example-speak{
+  margin-top:4px!important
+ }
+ #wordsView #wordStudyPanel #wordExamples .example .ex-reveal{
+  margin-top:4px!important
+ }
 }
