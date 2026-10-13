@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "batch": 40,
+  "start_index": 3900,
+  "count": 4,
+  "source_sha256": "ba95f4d39a596ac10079dc5c9778acc49fdfd33115cf4e50a89fdf2283c6aa60",
+  "status": "complete",
+  "completed": [
+    {
+      "id": "n2p2016",
+      "kind": "example",
+      "path": "audio/n2/mp3/n2p2016-ex1.mp3",
+      "sha256": "a6e8dbe7e11e6332a11e82c277e4f1518356b31197d385325e188f5c81d9c579",
+      "bytes": 65901,
+      "duration_s": 8.208
+    },
+    {
+      "id": "n2p2017",
+      "kind": "example",
+      "path": "audio/n2/mp3/n2p2017-ex1.mp3",
+      "sha256": "71e8b43e1881d6b0dab5a9f50810c6acc3eb68c3ae63840b4fe231572fa9c90d",
+      "bytes": 61293,
+      "duration_s": 7.632
+    },
+    {
+      "id": "n2p2018",
+      "kind": "example",
+      "path": "audio/n2/mp3/n2p2018-ex1.mp3",
+      "sha256": "014cbadaafbe501118436bf05cc25198562c8a80e12b3e44e3a1664d98f3ea0f",
+      "bytes": 66861,
+      "duration_s": 8.328
+    },
+    {
+      "id": "n2p2019",
+      "kind": "example",
+      "path": "audio/n2/mp3/n2p2019-ex1.mp3",
+      "sha256": "c3dc03985266d0cca57791beea8779a2d32543b190df1f8b142dd4b9d1977945",
+      "bytes": 72621,
+      "duration_s": 9.048
+    }
+  ],
+  "updated_at": "2026-10-13T18:26:11.876Z"
+}
