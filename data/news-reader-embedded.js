@@ -555,7 +555,7 @@ function updateParagraphTranslation(){
   const body=node.querySelector(".news-paragraph-ko");
   const btn=node.querySelector(".news-paragraph-translate");
   if(body)body.classList.toggle("hidden",!open);
-  if(btn){btn.textContent=open?"문단 번역 숨기기":"이 문단 번역 보기";btn.setAttribute("aria-expanded",String(open))}
+  if(btn){btn.textContent=open?"번역 숨기기":"번역 보기";btn.setAttribute("aria-expanded",String(open))}
  });
  $("newsArticleTranslate").textContent=translationOpen?"전체 번역 숨기기":"전체 번역 보기";
 }
@@ -666,7 +666,7 @@ function newsAudioResetButton(button){
  button.setAttribute("aria-pressed","false");
  button.setAttribute("aria-label","이 문단 듣기");
  const label=button.querySelector(".news-audio-label");
- if(label)label.textContent="이 문단 듣기";
+ if(label)label.textContent="";
  const state=button.parentElement?.querySelector(".news-audio-state");
  if(state)state.textContent="";
 }
@@ -760,7 +760,7 @@ async function playNewsParagraph(index){
  newsAudioArticleId=currentArticle.id;newsAudioIndex=index;newsAudioButton=button;
  button.setAttribute("aria-pressed","true");button.setAttribute("aria-label","이 문단 듣기 중지");
  const label=button.querySelector(".news-audio-label");
- if(label)label.textContent="중지";
+ if(label)label.textContent="";
  button.classList.add("is-loading");
  let resumed;
  try{
@@ -823,8 +823,8 @@ function displayArticle(id){
   return '<section class="news-paragraph" id="newsParagraph'+i+'" data-paragraph="'+i+'"><p class="news-japanese-paragraph">'+r.html+'</p>'+
   '<div class="news-paragraph-actions"><button type="button" class="news-paragraph-audio" data-news-paragraph-audio="'+i+'" aria-pressed="false" aria-label="이 문단 듣기">'+
   '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18 6a8.5 8.5 0 0 1 0 12"/></svg>'+
-  '<span class="news-audio-label">이 문단 듣기</span></button>'+
-  '<button type="button" class="news-paragraph-translate" aria-expanded="false" data-news-paragraph-translate="'+i+'">이 문단 번역 보기</button>'+
+  '</button>'+
+  '<button type="button" class="news-paragraph-translate" aria-expanded="false" data-news-paragraph-translate="'+i+'">번역 보기</button>'+
   '<span class="news-audio-state" role="status" aria-live="polite"></span></div>'+
   '<div class="news-paragraph-ko hidden" lang="ko">'+esc(a.translationParagraphs?.[i]||"번역 준비 중")+'</div></section>';
  }).join("");
