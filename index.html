@@ -287,6 +287,19 @@ h1{font-size:30px;line-height:1.2;margin:0}.sub{color:var(--muted);line-height:1
 .news-article-translation p{margin:0 0 1.3em}
 .news-paragraph{position:relative;scroll-margin-top:22px;margin-bottom:1.3em}
 .news-paragraph .news-japanese-paragraph{margin:0;padding:6px 0 0}
+
+/* Curated news: on-demand Kokoro paragraph listening.
+   Keep the existing translation below each paragraph and avoid layout shift. */
+.news-paragraph-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:9px 0 8px}
+.news-paragraph-actions .news-paragraph-translate{margin:0;min-height:37px}
+.news-paragraph-audio{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:37px;border:1px solid var(--accent);border-radius:10px;padding:7px 11px;color:var(--accent);background:var(--accent-soft);font-size:12px;font-weight:750;cursor:pointer;touch-action:manipulation;white-space:nowrap}
+.news-paragraph-audio svg{flex:none}
+.news-paragraph-audio.is-loading{opacity:.8;border-style:dashed}
+.news-paragraph-audio.is-playing{background:var(--accent);color:#fff}
+.news-paragraph-audio:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.news-audio-state{font-size:11px;line-height:1.5;color:var(--muted);min-width:0;flex:1 1 150px}
+@media(max-width:550px){.news-paragraph-actions{gap:7px}.news-paragraph-audio{padding:7px 10px}.news-audio-state{flex:1 0 100%;font-size:11px}}
+
 .news-paragraph-translate{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:8px;font-size:12px;padding:6px 11px;margin:0 0 7px;cursor:pointer}
 .news-paragraph-ko{background:var(--accent-soft);border:1px solid var(--line);padding:12px 14px;border-radius:10px;margin:0 0 14px;font-size:15px;line-height:1.85;color:var(--text)}
 /* A headline uses the same tap-to-reveal reading and translation interaction as paragraphs. */
@@ -2698,6 +2711,7 @@ function renderCuratedNewsHome(){
  }
 }
 function showView(name){
+ if(name!=="newsreader")window.KOJER_NEWS_AUDIO_STOP?.();
  if(name==="newsreader")window.KOJER_NEWS_RESET_PANELS?.();
  // Other tabs do not use URL fragments. Remove an old news fragment when leaving news.
  if(name!=="newsreader"&&location.hash.startsWith("#newsreader")){
@@ -4375,7 +4389,7 @@ if(location.hash==="#newsreader")showView("newsreader");
 </script>
 <script src="data/news-furi-reviewed-v1.js?v=20261010-news10"></script>
 <script src="data/news-furi-2026-10-10-reviewed.js?v=20261010-furi-full2"></script>
-<script src="data/news-reader-embedded.js?v=20261010-desktop-highlight1"></script>
+<script src="data/news-reader-embedded.js?v=20261014-news-kokoro1"></script>
 <script src="data/news-collector-embedded.js?v=20261010-numerals2"></script>
 <script src="data/news-sync-bridge.js?v=20261010-independent-progress2"></script>
 <script>
