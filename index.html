@@ -1044,6 +1044,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 <script src="data/n2-words-phase8.js?v=20261013-reviewed3"></script>
 <script src="data/n2-words-phase9.js?v=20261013-reviewed4"></script>
 <script src="data/n2-words-phase10.js?v=20261013-reviewed5"></script>
+<script src="data/n2-words-phase11.js?v=20261013-reviewed6"></script>
 <script src="data/n1-extra-words-1.js"></script>
 <script src="data/n1-extra-words-2.js"></script>
 <script src="data/n1-extra-words-3.js"></script>
@@ -1802,7 +1803,7 @@ const extraWords=extraWordRaw.map(x=>({
 }));
 words.push(...extraWords);
 // N2 pilot uses unique card IDs. Keep N1 cards as the canonical source on overlaps.
-const n2Source=[...(Array.isArray(window.N2_WORDS_PHASE1)?window.N2_WORDS_PHASE1:[]),...(Array.isArray(window.N2_WORDS_PHASE2)?window.N2_WORDS_PHASE2:[]),...(Array.isArray(window.N2_WORDS_PHASE3)?window.N2_WORDS_PHASE3:[]),...(Array.isArray(window.N2_WORDS_PHASE4)?window.N2_WORDS_PHASE4:[]),...(Array.isArray(window.N2_WORDS_PHASE5)?window.N2_WORDS_PHASE5:[]),...(Array.isArray(window.N2_WORDS_PHASE6)?window.N2_WORDS_PHASE6:[]),...(Array.isArray(window.N2_WORDS_PHASE7)?window.N2_WORDS_PHASE7:[]),...(Array.isArray(window.N2_WORDS_PHASE8)?window.N2_WORDS_PHASE8:[]),...(Array.isArray(window.N2_WORDS_PHASE9)?window.N2_WORDS_PHASE9:[]),...(Array.isArray(window.N2_WORDS_PHASE10)?window.N2_WORDS_PHASE10:[])];
+const n2Source=[...(Array.isArray(window.N2_WORDS_PHASE1)?window.N2_WORDS_PHASE1:[]),...(Array.isArray(window.N2_WORDS_PHASE2)?window.N2_WORDS_PHASE2:[]),...(Array.isArray(window.N2_WORDS_PHASE3)?window.N2_WORDS_PHASE3:[]),...(Array.isArray(window.N2_WORDS_PHASE4)?window.N2_WORDS_PHASE4:[]),...(Array.isArray(window.N2_WORDS_PHASE5)?window.N2_WORDS_PHASE5:[]),...(Array.isArray(window.N2_WORDS_PHASE6)?window.N2_WORDS_PHASE6:[]),...(Array.isArray(window.N2_WORDS_PHASE7)?window.N2_WORDS_PHASE7:[]),...(Array.isArray(window.N2_WORDS_PHASE8)?window.N2_WORDS_PHASE8:[]),...(Array.isArray(window.N2_WORDS_PHASE9)?window.N2_WORDS_PHASE9:[]),...(Array.isArray(window.N2_WORDS_PHASE10)?window.N2_WORDS_PHASE10:[]),...(Array.isArray(window.N2_WORDS_PHASE11)?window.N2_WORDS_PHASE11:[])];
 const existingWordsByKey=new Map();
 for(const w of words){
  const key=plain(w.w).normalize("NFKC")+"\t"+readingOf(w.w).normalize("NFKC");
