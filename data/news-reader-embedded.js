@@ -685,6 +685,35 @@ function stopNewsParagraphAudio(){
 }
 window.KOJER_NEWS_AUDIO_STOP=stopNewsParagraphAudio;
 
+// One low-priority browser synthesis at a time. The foreground clip always
+// starts first. While it plays, prepare the rest of this paragraph and then
+// just ONE following paragraph (including on iPhone); never the whole article.
+// KokoroJS owns the IndexedDB WAV cache and deduplicates overlapping requests.
+// Switching/stopping invalidates future warm-up work, with no background MP3s.
+function warmNextNewsParagraphAudio(currentArticle,index,segments,serial){
+ const next=index+1;
+ const nextSegments=next<currentArticle.paragraphs.length
+  ?newsAudioSegments(currentArticle.paragraphs[next]):[];
+ const pending=[...segments.slice(1),...nextSegments];
+ if(!pending.length)return;
+ const active=()=>serial===newsAudioSerial
+  &&article?.id===currentArticle.id
+  &&!document.hidden
+  &&$("newsreaderView")?.classList.contains("active");
+ // Only ONE pending Kokoro request is queued at any time. This bounds the
+ // delay when the reader stops audio or jumps to another paragraph.
+ void (async()=>{
+  for(const text of pending){
+   if(!active())return;
+   try{await kokoroGenerate(text,"jf_alpha")}
+   catch(error){
+    if(active())console.warn("뉴스 Kokoro 선행 준비 실패",error);
+    return; // Foreground playback still retries on demand if needed.
+   }
+  }
+ })();
+}
+
 async function playNewsAudioBuffer(url,serial){
  // The AudioContext is resumed synchronously by the original tap. On iPhone
  // that is more reliable than creating an HTMLAudioElement after an async TTS.
@@ -756,6 +785,9 @@ async function playNewsParagraph(index){
    if(!live())return;
    button.classList.remove("is-loading");button.classList.add("is-playing");
    message("재생 중"+position);
+   // Start look-ahead only after this first clip is actually synthesized.
+   // The foreground remains responsive: no await on the warm-up job.
+   if(n===0)warmNextNewsParagraphAudio(currentArticle,index,segments,serial);
    const played=await playNewsAudioBuffer(clip.url,serial);
    if(!played||!live())return;
   }
