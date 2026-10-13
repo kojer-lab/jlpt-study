@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 240">
+<defs><linearGradient id="p" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".62" stop-color="#f5f4ff"/><stop offset="1" stop-color="#c8c9f8"/></linearGradient><linearGradient id="l" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#7266fd"/><stop offset="1" stop-color="#403ed5"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="9" stdDeviation="7" flood-color="#6255be" flood-opacity=".35"/></filter></defs>
+<circle cx="251" cy="57" r="50" fill="#bdd0ff" opacity=".45"/><circle cx="61" cy="111" r="30" fill="#c6b2ff" opacity=".5"/>
+<g filter="url(#s)" transform="rotate(12 150 130)">
+<path d="M46 62q60-26 104 14 44-40 104-14l-6 128q-52-7-98 24-47-30-98-24Z" fill="url(#l)"/>
+<path d="M53 54q54-23 97 12v129q-43-31-91-22Z" fill="url(#p)" stroke="#dedcfb" stroke-width="2"/>
+<path d="M150 66q43-35 97-12l-6 119q-50-9-91 22Z" fill="url(#p)" stroke="#d3d3f8" stroke-width="2"/>
+<path d="M150 66v129" stroke="#c6c8f4" stroke-width="4"/>
+<path d="M61 65q42-14 89 13M240 66q-46-13-90 13" stroke="#fff" stroke-width="3" fill="none"/>
+<text x="109" y="136" fill="#6657e5" font-family="Arial,Helvetica,sans-serif" font-size="37" font-weight="900" text-anchor="middle" transform="rotate(-4 109 118)">N1</text>
+<path d="M67 174q45-8 83 22 43-30 83-22" fill="none" stroke="#9b96f5" stroke-width="3"/>
+</g></svg>
