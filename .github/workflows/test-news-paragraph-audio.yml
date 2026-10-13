@@ -1,0 +1,27 @@
+name: Test news Kokoro paragraph listening
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/news-reader-embedded.js"
+      - "index.html"
+      - "tools/test-news-paragraph-audio.cjs"
+      - ".github/workflows/test-news-paragraph-audio.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check news JavaScript syntax
+        run: node --check data/news-reader-embedded.js
+      - name: Test Kokoro paragraph audio integration
+        run: node tools/test-news-paragraph-audio.cjs
