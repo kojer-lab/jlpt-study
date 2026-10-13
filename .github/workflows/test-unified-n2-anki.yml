@@ -9,6 +9,7 @@ on:
       - "data/n2-words-phase3.js"
       - "data/n2-words-phase4.js"
       - "data/n2-words-phase5.js"
+      - "data/n2-words-phase6.js"
       - "tools/test-unified-n2-anki.cjs"
       - ".github/workflows/test-unified-n2-anki.yml"
   push:
@@ -20,6 +21,7 @@ on:
       - "data/n2-words-phase3.js"
       - "data/n2-words-phase4.js"
       - "data/n2-words-phase5.js"
+      - "data/n2-words-phase6.js"
       - "tools/test-unified-n2-anki.cjs"
       - ".github/workflows/test-unified-n2-anki.yml"
 
