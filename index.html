@@ -578,7 +578,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 /* News expression Anki: reduce weight without changing other study typography. */
 #newsreaderView .news-review-question{font-weight:600}
 </style>
-<link rel="stylesheet" href="data/iphone-redesign.css?v=20261013-reference-v2">
+<link rel="stylesheet" href="data/iphone-redesign.css?v=20261013-news-after-sync">
 <link rel="stylesheet" href="data/iphone-polish-v3.css?v=20261013-rating-v4">
 </head>
 <body>
@@ -618,6 +618,12 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
       <div class="card home-sync-card">
         <div class="sync-status"><span class="sync-dot" id="homeSyncDot"></span><div><strong id="homeSyncTitle">이 기기에서만 저장 중</strong><div class="label" id="homeSyncSub">클라우드를 연결하면 PC와 모바일 학습 기록이 자동으로 맞춰집니다.</div></div><button type="button" class="sync-cloud-link" data-go="cloud" aria-label="동기화 화면 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.8L3 9V4M3 9h5M4 13a8 8 0 0 0 14.3 4.8L21 15v5M21 15h-5"/></svg></button></div>
       </div>
+      <div class="section-title home-news-heading">오늘의 시사독해</div>
+      <div class="card action home-news-feature" data-go="newsreading">
+        <div class="news-badge"><span class="dot"></span><span id="homeNewsDate">오늘 · 時事読解</span></div>
+        <h2 style="margin:10px 0 6px" id="homeNewsTitle">오늘의 일본 시사독해</h2>
+        <div class="sub" id="homeNewsSub">최근 일본 시사를 N1 독해로 재구성했습니다.</div>
+      </div>
       <div class="section-title">바로 시작</div>
       <div class="grid3">
 <div class="card action" data-go="review" tabindex="0" role="button"><span class="home-action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.8L3 9V4M3 9h5M4 13a8 8 0 0 0 14.3 4.8L21 15v5M21 15h-5"/></svg></span><div class="home-action-copy"><strong>오늘의 복습</strong><p>복습 예정일이 된 단어만 자동으로 모아서 보여줍니다.</p></div><span class="action-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></div>
@@ -625,12 +631,6 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 <div class="card action" data-go="newsreader" tabindex="0" role="button"><span class="home-action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h5v5H7zM15 8h3M15 11h3M7 16h11"/></svg></span><div class="home-action-copy"><strong>뉴스 읽기</strong><p>일본 최신 소식을 900~1,200자 실전 기사로 읽고, 후리가나·번역·표현을 익힙니다.</p></div><span class="action-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></div>
 <div class="card action" data-go="listening" tabindex="0" role="button"><span class="home-action-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="12" width="4" height="8" rx="2"/><rect x="17.5" y="12" width="4" height="8" rx="2"/></svg></span><div class="home-action-copy"><strong>청해 연습</strong><p>AI 모의문제를 먼저 풀고, 공식 JLPT 음원도 선택해 연습합니다.</p></div><span class="action-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></span></div>
 </div>
-      <div class="section-title">오늘의 시사독해</div>
-      <div class="card action" data-go="newsreading">
-        <div class="news-badge"><span class="dot"></span><span id="homeNewsDate">오늘 · 時事読解</span></div>
-        <h2 style="margin:10px 0 6px" id="homeNewsTitle">오늘의 일본 시사독해</h2>
-        <div class="sub" id="homeNewsSub">최근 일본 시사를 N1 독해로 재구성했습니다.</div>
-      </div>
     </section>
 
     <section class="view" id="wordsView">

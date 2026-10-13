@@ -136,10 +136,10 @@ h1{letter-spacing:-.045em;font-weight:850}
 #homeView>.grid3 .action:nth-child(3) .home-action-icon{background:#e9f8f4}
 #homeView>.grid3 .action:nth-child(4) .home-action-icon{background:#fff0e8}
 #homeView>.grid3 .action p{font-size:12px;line-height:1.65;letter-spacing:-.012em}
-#homeView>.grid3+.section-title+.card.action{
+#homeView>.home-news-feature{
   border-radius:22px;background:var(--kojer-surface);padding:22px
 }
-#homeView>.grid3+.section-title+.card.action h2{letter-spacing:-.035em}
+#homeView>.home-news-feature h2{letter-spacing:-.035em}
 #homeView .sync-status{gap:12px}
 #homeView .sync-status>div{min-width:0}
 #homeView .sync-status strong{font-size:13px}
@@ -272,8 +272,8 @@ body.dark .rate-btn[data-rate="easy"]::before{background:#25463c;color:#90ebbe}
   .home-action-icon{width:44px;height:44px;border-radius:15px;font-size:22px}
   #homeView>.grid3 .action p{font-size:11px;line-height:1.6}
   #homeView .section-title{margin:26px 2px 12px;font-size:18px}
-  #homeView>.grid3+.section-title+.card.action{padding:19px 17px}
-  #homeView>.grid3+.section-title+.card.action h2{font-size:19px;line-height:1.4}
+  #homeView>.home-news-feature{padding:19px 17px}
+  #homeView>.home-news-feature h2{font-size:19px;line-height:1.4}
   #homeView .sync-status .label{font-size:11px}
   #wordsView #wordDashboard,#wordsView .word-shell,#wordsView .word-study-head{max-width:460px}
   #wordsView .word-dashboard{padding:18px 16px;border-radius:23px}
@@ -470,3 +470,12 @@ body.dark .bottom-nav button.active{background:#302b4d;color:#bdadff}
  body.dark .bottom-nav{background:rgba(28,34,51,.98)}
 }
 @media(max-width:350px){.word-dashboard .word-dash-stat{grid-template-columns:30px minmax(0,1fr);gap:4px}.word-dashboard .word-dash-chevron{display:none}.word-dashboard .word-dash-icon{width:29px;height:29px}.word-dashboard .word-dash-copy strong{font-size:24px}}
+
+/* News study now follows sync status on both desktop and iPhone. */
+#homeView>.home-news-heading{margin-top:24px;margin-bottom:12px}
+#homeView>.home-news-feature{cursor:pointer;background:var(--kojer-surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}
+#homeView>.home-news-feature:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(max-width:760px){
+ #homeView>.home-news-heading{margin-top:23px;margin-bottom:11px}
+ #homeView>.home-news-feature{padding:19px 17px}
+}
