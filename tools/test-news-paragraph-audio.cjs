@@ -8,7 +8,7 @@ const vm=require("node:vm");
 const reader=fs.readFileSync("data/news-reader-embedded.js","utf8");
 const index=fs.readFileSync("index.html","utf8");
 new vm.Script(reader,{filename:"data/news-reader-embedded.js"});
-assert(index.includes("data/news-reader-embedded.js?v=20261014-news-kokoro-prefetch1"),"Missing cache-busted news script");
+assert(index.includes("data/news-reader-embedded.js?v=20261014-news-kokoro-prefetch2"),"Missing cache-busted news script");
 for(const name of ["news-paragraph-audio","news-paragraph-actions","news-audio-state","KOJER_NEWS_AUDIO_STOP?.()"])
  assert(index.includes(name), "Missing news UI/styles/tab stop: "+name);
 for(const pattern of [
