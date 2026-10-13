@@ -12,8 +12,8 @@ assert.equal(parts[1].length,61);
 assert.equal(parts[2].length,60);
 assert.equal(parts[3].length,60);
 assert.equal(entries.length,227);
-assert.equal(new Set(entries.map(x=>x.id)).size,107);
-assert.equal(new Set(entries.map(x=>x.w+"\t"+x.r)).size,107);
+assert.equal(new Set(entries.map(x=>x.id)).size,227);
+assert.equal(new Set(entries.map(x=>x.w+"\t"+x.r)).size,227);
 for(const w of entries){
  assert.match(w.id,/^n2p\d{3}$/);
  assert.equal(w.level,"N2");
