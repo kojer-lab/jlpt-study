@@ -2806,12 +2806,32 @@ function reconcileDailyWordSession(){
   ...wordQuickRepeats.map(w=>canonicalWordId(w.id)),
   ...(wordQuickActive?[canonicalWordId(wordQuickActive.id)]:[])
  ]);
- // Exclude cards already completed in this session to avoid counting them as
- // "extra" again if their short-term learning interval expires.
  for(const entry of wordSessionHistory){
   if(entry.countedDone)tracked.add(canonicalWordId(entry.id));
  }
- return buildWordStudyQueue().filter(w=>!tracked.has(canonicalWordId(w.id))).length;
+ // Count only: rendering a card must not rebuild/sort the entire due/new queue.
+ const t=now();let extra=0;
+ for(const w of wordsForLevel(wordStudyLevel)){
+  const id=canonicalWordId(w.id);
+  if(tracked.has(id))continue;
+  const s=getSrs(id);
+  if(s.reviews>0&&!s.focusPending&&s.due<=t){extra++;tracked.add(id)}
+ }
+ const slot=wordStudyLevel==="N2"?"dailyNewN2":"dailyNew";
+ const saved=state[slot];
+ // The session setup already allocated today's new cards. A date rollover
+ // still uses the normal allocator, without doing it for every card.
+ const allocated=saved?.date===todayKey()
+  ?saved.ids.map(id=>wordById.get(id)).filter(Boolean)
+  :ensureDailyNew(true,wordStudyLevel);
+ for(const w of allocated){
+  const id=canonicalWordId(w.id);
+  if(tracked.has(id)||getSrs(id).reviews!==0)continue;
+  if(wordStudyLevel==="N2"&&w.level!=="N2"&&!w.levels?.includes("N2"))continue;
+  if(wordStudyLevel==="N1"&&(w.level||"N1")!=="N1")continue;
+  tracked.add(id);extra++;
+ }
+ return extra;
 }
 function wordTop(){requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"}));}
 function renderWordDashboard(){
@@ -3075,11 +3095,21 @@ function finishWordStudy(){
  $("showMeaningBtn").textContent="학습 목표로 돌아가기";$("showMeaningBtn").classList.remove("hidden");$("showMeaningBtn").dataset.finished="1";
  $("wordMeaning").classList.add("hidden");$("wordExamples").classList.add("hidden");$("wordBreakdown").classList.add("hidden");$("wordRating").classList.add("hidden");
 }
+function renderStudyWordDetails(w){
+ if(!w)return;
+ $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="pron-inline example-report" data-pron-id="${w.id}" data-pron-ex="${i}" title="예문 음성 신고" aria-label="예문 음성 신고">⚑</button></div><div class="example-line"><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+
+ const breakdown=wordBreakdownFor(w);
+ $("wordBreakdown").innerHTML=breakdown?studyBreakdownHTML(breakdown,w.id):"";
+
+ restoreInteractiveFuriState($("wordExamples"));
+ restoreInteractiveFuriState($("wordBreakdown"));
+}
+
 function renderWord(){
  wordAudioPrefetchRun++;
  // Also refresh the queue after every rating: do not show "완료" while
  // another due card or today's new words remain outside a stale session.
- if(wordMode==="daily")reconcileDailyWordSession();
  const queue=currentWordQueue();
  updateWordUndo();
  if(!queue.length){
@@ -3111,11 +3141,8 @@ function renderWord(){
  $("wordFocusHint").textContent="뜻을 먼저 떠올린 뒤 확인하세요.";
  $("wordMeaning").textContent=w.meaning;$("wordMeaning").classList.add("hidden");
  $("showMeaningBtn").textContent="뜻 · 예문 보기";
- $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="pron-inline example-report" data-pron-id="${w.id}" data-pron-ex="${i}" title="예문 음성 신고" aria-label="예문 음성 신고">⚑</button></div><div class="example-line"><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
- $("wordExamples").classList.add("hidden");
- const breakdown=wordBreakdownFor(w);
- $("wordBreakdown").innerHTML=breakdown?studyBreakdownHTML(breakdown,w.id):"";
- $("wordBreakdown").classList.add("hidden");
+ $("wordExamples").innerHTML="";$("wordExamples").classList.add("hidden");
+ $("wordBreakdown").innerHTML="";$("wordBreakdown").classList.add("hidden");
  $("wordRating").classList.add("hidden");
  renderRating($("wordRating"),w.id,sr,false);
  restoreInteractiveFuriState($("wordStudyPanel"));
@@ -3397,6 +3424,8 @@ $("wordSpeakBtn").addEventListener("click",()=>{
 });
 $("showMeaningBtn").addEventListener("click",()=>{
   if($("showMeaningBtn").dataset.finished==="1"){showWordDashboard();return}
+ const w=wordById.get($("wordSpeakBtn").dataset.word);
+ renderStudyWordDetails(w);
  $("wordMeaning").classList.remove("hidden");$("wordExamples").classList.remove("hidden");if($("wordBreakdown").innerHTML)$("wordBreakdown").classList.remove("hidden");$("wordRating").classList.remove("hidden");$("showMeaningBtn").classList.add("hidden");$("wordFocusHint").textContent="확인했다면 기억 정도를 선택하세요.";
  if(window.matchMedia("(max-width:760px)").matches){
   requestAnimationFrame(()=>{
