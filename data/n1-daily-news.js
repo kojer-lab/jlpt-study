@@ -1307,11 +1307,7 @@ window.N1_DAILY_NEWS=[
         ]
       }
     ]
-  }
-];
-
-// Source-verified news set for 2026-10-18 through 2026-10-24 (part 1).
-window.N1_DAILY_NEWS.push(...[
+  },
   {
     "date": "2026-10-18",
     "sourceDate": "2026-10-13",
@@ -1878,11 +1874,7 @@ window.N1_DAILY_NEWS.push(...[
         ]
       }
     ]
-  }
-]);
-
-// Source-verified news set for 2026-10-18 through 2026-10-24 (part 2).
-window.N1_DAILY_NEWS.push(...[
+  },
   {
     "date": "2026-10-21",
     "sourceDate": "2026-10-16",
@@ -2449,11 +2441,7 @@ window.N1_DAILY_NEWS.push(...[
         ]
       }
     ]
-  }
-]);
-
-// Source-verified news set for 2026-10-18 through 2026-10-24 (part 3).
-window.N1_DAILY_NEWS.push(...[
+  },
   {
     "date": "2026-10-24",
     "sourceDate": "2026-10-16",
@@ -2643,4 +2631,4 @@ window.N1_DAILY_NEWS.push(...[
       }
     ]
   }
-]);
+];
