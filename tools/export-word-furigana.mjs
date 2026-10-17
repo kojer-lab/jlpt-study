@@ -74,6 +74,32 @@ for(const w of words){
   }
 }
 
+// Include all N2 Anki example sentences in the authoritative furigana bank.
+// The previous exporter handled only N1 cards, leaving N2 kanji partially
+// annotated by the browser's limited vocabulary fallback.
+const n2Names=names.filter(n=>/^n2-words-phase\d+\.js$/.test(n))
+  .sort((a,b)=>Number(a.match(/(\d+)/)[1])-Number(b.match(/(\d+)/)[1]));
+const seenIds=new Set(words.map(w=>w.id));
+let n2Count=0,n2ExampleCount=0;
+for(const name of n2Names){
+  const batch=await assignedJson("data/"+name);
+  if(!Array.isArray(batch))throw new Error("Invalid N2 word batch: "+name);
+  for(const x of batch){
+    const id=String(x.id||"");
+    if(!id||seenIds.has(id))continue;
+    const examples=(Array.isArray(x.examples)?x.examples:[]).slice(0,1)
+      .map(ex=>({jp:String(ex.jp||""),ko:String(ex.ko||"")}));
+    if(!examples.length||!examples[0].jp.trim())
+      throw new Error("N2 example missing: "+name+" / "+id);
+    words.push({id,w:String(x.w||""),examples});
+    seenIds.add(id);
+    n2Count++;
+    n2ExampleCount+=examples.length;
+  }
+}
+if(!n2Names.length||!n2Count)throw new Error("N2 word batches not found");
+console.log(`Included ${n2Count} N2 cards with ${n2ExampleCount} examples from ${n2Names.length} phases.`);
+
 const breakdownNames=names.filter(n=>/^n1-word-breakdowns-\d+\.js$/.test(n))
   .sort((a,b)=>Number(a.match(/(\d+)/)[1])-Number(b.match(/(\d+)/)[1]));
 const breakdowns={};
