@@ -22,6 +22,7 @@ create table if not exists public.jlpt_pronunciation_reports (
   ),
   error_type text not null check (error_type in (
     '한자 읽기가 다름',
+    '후리가나 없음',
     '발음·억양이 부자연스러움',
     '문장 끝에 이상한 소리',
     '다른 단어·문장을 읽음',
@@ -37,6 +38,21 @@ create table if not exists public.jlpt_pronunciation_reports (
     or (target_kind = 'example' and example_index between 0 and 9)
   )
 );
+
+-- Apply the latest report types to existing installations too. CREATE TABLE IF
+-- NOT EXISTS does not update an existing column CHECK constraint.
+alter table public.jlpt_pronunciation_reports
+  drop constraint if exists jlpt_pronunciation_reports_error_type_check;
+alter table public.jlpt_pronunciation_reports
+  add constraint jlpt_pronunciation_reports_error_type_check check (error_type in (
+    '한자 읽기가 다름',
+    '후리가나 없음',
+    '발음·억양이 부자연스러움',
+    '문장 끝에 이상한 소리',
+    '다른 단어·문장을 읽음',
+    '음성이 없거나 재생 실패',
+    '기타'
+  ));
 
 create index if not exists jlpt_pron_reports_user_recent_idx
   on public.jlpt_pronunciation_reports (user_id, created_at desc);
