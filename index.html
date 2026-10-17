@@ -687,7 +687,7 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
         <div class="word-study-head"><div class="word-study-left"><button class="secondary" type="button" id="exitWordStudy">← 학습 목표</button><button class="secondary word-undo" type="button" id="undoWordRating" disabled>↶ 전 단어</button></div><span id="wordStudyProgress" hidden aria-hidden="true"></span></div>
         <div class="word-shell"><div class="card word-card">
           <div class="word-card-body">
-            <div class="word-meta"><span id="wordIndexText"></span><span class="word-meta-right"><span id="wordDueText"></span><button type="button" class="pron-inline pron-word" id="pronStudy" data-pron-id="" data-pron-ex="word" title="단어 발음 오류 신고" aria-label="단어 발음 오류 신고">⚑</button></span></div>
+            <div class="word-meta"><span id="wordIndexText"></span><span class="word-meta-right"><span id="wordDueText"></span><button type="button" class="pron-inline pron-word" id="pronStudy" data-pron-id="" data-pron-ex="word" title="단어 발음·후리가나 오류 신고" aria-label="단어 발음·후리가나 오류 신고">⚑</button></span></div>
             <div class="word-title-row"><button type="button" class="tts-btn word-speak-btn" id="wordSpeakBtn" aria-label="단어 발음 듣기" title="Kokoro로 단어 듣기">🔊</button><div><div class="word-main" id="wordMain"></div><div class="word-reading" id="wordReading"></div></div><button type="button" class="star-btn" id="wordStarBtn" aria-label="별표">☆</button></div>
             <div class="word-focus-hint" id="wordFocusHint">뜻을 먼저 떠올린 뒤 확인하세요.</div>
             <div id="wordTtsStatus" hidden aria-hidden="true" style="display:none!important"></div>
@@ -1197,9 +1197,9 @@ body.dark #newsreaderView .news-article-card.news-card-completed{
 <script src="data/n1-word-breakdowns-65.js?v=20261008-wb65"></script>
 <script src="data/n1-word-breakdowns-66.js?v=20261008-wb66"></script>
 <div class="pron-overlay hidden" id="pronOverlay"><section class="pron-modal" role="dialog" aria-modal="true" aria-labelledby="pronHeading">
-<button type="button" class="pron-close" id="pronClose" aria-label="닫기">✕</button><h3 id="pronHeading">⚑ 발음 오류 신고</h3><div id="pronTarget" class="pron-target"></div>
-<label for="pronType">오류 유형</label><select id="pronType"><option>한자 읽기가 다름</option><option>발음·억양이 부자연스러움</option><option>문장 끝에 이상한 소리</option><option>다른 단어·문장을 읽음</option><option>음성이 없거나 재생 실패</option><option>기타</option></select>
-<label for="pronNote">잘못 들린 부분 / 올바른 발음 (선택)</label><textarea id="pronNote" rows="3" maxlength="1000" placeholder="예: はく인데 つく로 들려요"></textarea>
+<button type="button" class="pron-close" id="pronClose" aria-label="닫기">✕</button><h3 id="pronHeading">⚑ 발음·후리가나 오류 신고</h3><div id="pronTarget" class="pron-target"></div>
+<label for="pronType">오류 유형</label><select id="pronType"><option>한자 읽기가 다름</option><option>후리가나 없음</option><option>발음·억양이 부자연스러움</option><option>문장 끝에 이상한 소리</option><option>다른 단어·문장을 읽음</option><option>음성이 없거나 재생 실패</option><option>기타</option></select>
+<label for="pronNote">오류 내용 / 올바른 읽기 (선택)</label><textarea id="pronNote" rows="3" maxlength="1000" placeholder="예: 人混み에 후리가나가 없어요"></textarea>
 <p class="pron-hint" id="pronHint">신고 접수 버튼만 누르면 이 사이트에서 Supabase로 바로 저장돼. 외부 페이지는 열리지 않아.</p>
 <div class="pron-actions"><button class="primary" type="button" id="pronSubmit">신고 접수</button><button type="button" id="pronLogin" class="hidden">사이트에서 로그인</button></div><details class="pron-alternatives"><summary>접수가 안 될 때</summary><div class="pron-actions"><button type="button" id="pronCopy">신고 내용 복사</button></div></details>
 <div id="pronFeedback" class="pron-feedback" role="status" aria-live="polite"></div></section></div>
@@ -3008,7 +3008,7 @@ function renderWordLibrary(){
        <button type="button" class="word-library-section-toggle" data-lib-examples="${w.id}">
          <span>③ 예문</span><span class="hint">${examplesOpen?"숨기기":"눌러서 확인"} <span class="chev">${examplesOpen?"▲":"▼"}</span></span>
        </button>
-       ${examplesOpen?`<div class="word-library-detail">${w.examples.length?w.examples.slice(0,2).map((ex,i)=>`<div class="word-library-example"><button type="button" data-lib-example="${w.id}" data-example-index="${i}" aria-label="예문 음성">🔊</button><div class="word-library-example-jp">${renderExampleJP(ex.jp,w,i)}</div><button type="button" class="pron-inline word-library-example-report" data-pron-id="${w.id}" data-pron-ex="${i}" title="예문 음성 신고" aria-label="예문 음성 신고">⚑</button><div class="word-library-example-ko">${ex.ko}</div></div>`).join(""):`<div class="word-library-empty" style="padding:16px 8px">자연스러운 한국어 예문을 보강 중입니다.</div>`}</div>`:""}
+       ${examplesOpen?`<div class="word-library-detail">${w.examples.length?w.examples.slice(0,2).map((ex,i)=>`<div class="word-library-example"><button type="button" data-lib-example="${w.id}" data-example-index="${i}" aria-label="예문 음성">🔊</button><div class="word-library-example-jp">${renderExampleJP(ex.jp,w,i)}</div><button type="button" class="pron-inline word-library-example-report" data-pron-id="${w.id}" data-pron-ex="${i}" title="예문 발음·후리가나 오류 신고" aria-label="예문 발음·후리가나 오류 신고">⚑</button><div class="word-library-example-ko">${ex.ko}</div></div>`).join(""):`<div class="word-library-empty" style="padding:16px 8px">자연스러운 한국어 예문을 보강 중입니다.</div>`}</div>`:""}
      </div>
    </div>`;
  }).join(""):`<div class="word-library-empty">조건에 맞는 단어가 없습니다.</div>`;
@@ -3109,7 +3109,7 @@ function finishWordStudy(){
 }
 function renderStudyWordDetails(w){
  if(!w)return;
- $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="pron-inline example-report" data-pron-id="${w.id}" data-pron-ex="${i}" title="예문 음성 신고" aria-label="예문 음성 신고">⚑</button></div><div class="example-line"><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
+ $("wordExamples").innerHTML=w.examples.slice(0,2).map((x,i)=>`<div class="example"><div class="example-head"><div class="label">예문 ${i+1}</div><button type="button" class="pron-inline example-report" data-pron-id="${w.id}" data-pron-ex="${i}" title="예문 발음·후리가나 오류 신고" aria-label="예문 발음·후리가나 오류 신고">⚑</button></div><div class="example-line"><div class="example-jp">${renderExampleJP(x.jp,w,i)}</div><button type="button" class="tts-btn example-speak ex-speak" data-example="${i}" aria-label="예문 ${i+1} 듣기">🔊 듣기</button></div><button type="button" class="reveal-btn ex-reveal" style="margin-top:9px">예문 뜻 보기</button><div class="reveal-box example-ko hidden">${x.ko}</div></div>`).join("");
 
  const breakdown=wordBreakdownFor(w);
  $("wordBreakdown").innerHTML=breakdown?studyBreakdownHTML(breakdown,w.id):"";
@@ -3325,14 +3325,14 @@ let pronReceiptTimer=null;
 function showPronReceipt(){
  const toast=$("pronReceiptToast");
  clearTimeout(pronReceiptTimer);
- toast.textContent="✓ 발음 오류 신고 접수 완료";
+ toast.textContent="✓ 오류 신고 접수 완료";
  toast.classList.remove("hidden");
  pronReceiptTimer=setTimeout(()=>toast.classList.add("hidden"),3000);
 }
 function pronReportPayload(){
  if(!pronCurrent)return null;const r=pronCurrent,w=wordById.get(r.id);if(!w)return null;
- const kind=r.index===null?"단어":"예문 "+(r.index+1),title="[발음 오류] "+kind+" · "+plain(w.w).slice(0,65);
- const body=["## 발음 오류 신고","- 대상: "+kind,"- 단어: "+plain(w.w),"- 읽기: "+readingOf(w.w),"- 단어 ID: "+w.id,"- 예문 번호: "+(r.index===null?"단어":r.index+1),"- MP3 경로: "+(r.path||"미확인 / 브라우저 합성 가능"),"- 오류: "+$("pronType").value,"","## 대상 일본어",r.index===null?plain(w.w):plain(w.examples[r.index].jp),"","## 상세 설명",$("pronNote").value.trim()||"(없음)","", "- 기기: "+(isAppleMobile()?"iPhone/iPad":"PC/Mac")].join("\n");
+ const kind=r.index===null?"단어":"예문 "+(r.index+1),type=$("pronType").value,isFuri=type==="후리가나 없음",title=(isFuri?"[후리가나 누락] ":"[발음 오류] ")+kind+" · "+plain(w.w).slice(0,65);
+ const body=[isFuri?"## 후리가나 누락 신고":"## 발음 오류 신고","- 대상: "+kind,"- 단어: "+plain(w.w),"- 읽기: "+readingOf(w.w),"- 단어 ID: "+w.id,"- 예문 번호: "+(r.index===null?"단어":r.index+1),"- MP3 경로: "+(r.path||"미확인 / 브라우저 합성 가능"),"- 오류: "+$("pronType").value,"","## 대상 일본어",r.index===null?plain(w.w):plain(w.examples[r.index].jp),"","## 상세 설명",$("pronNote").value.trim()||"(없음)","", "- 기기: "+(isAppleMobile()?"iPhone/iPad":"PC/Mac")].join("\n");
  return {title,body,text:title+"\n\n"+body};
 }
 // Reports use the EXISTING signed-in Supabase Auth user; no public writable endpoint
