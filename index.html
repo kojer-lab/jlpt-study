@@ -2113,9 +2113,21 @@ function autoFuriText(text,currentWord){
  }
  return out;
 }
+const verifiedExampleFurigana={
+ // Supabase #72: N1 ひときわ, original example with kanji not in the generated bank.
+ n1x172:{
+  "彼女の声は人混みの中でもひときわ目立った。":
+   F("彼女","かのじょ")+"の"+F("声","こえ")+"は"+F("人混み","ひとごみ")+"の"+F("中","なか")+"でもひときわ"+F("目立","めだ")+"った。"
+ }
+};
 function renderExampleJP(html,currentWord,exampleIndex=null){
- const generated=(currentWord&&Number.isInteger(exampleIndex))?wordFuriganaBank[currentWord.id]?.examples?.[exampleIndex]:null;
- if(generated&&!/class=["\']furi["\']/.test(html)&&plain(generated)===plain(html)&&!/&lt;\/?span\b|&quot;furi&quot;|&amp;lt;\/?span\b/i.test(generated))return generated;
+ const plainSentence=plain(html);
+ const preverified=currentWord&&verifiedExampleFurigana[currentWord.id]?.[plainSentence];
+ if(preverified&&!/class=["\']furi["\']/.test(html))return preverified;
+ // Compare sentence text, not just index: curated examples may have been reordered.
+ const candidates=currentWord?wordFuriganaBank[currentWord.id]?.examples||[]:[];
+ const generated=candidates.find(x=>plain(x)===plainSentence);
+ if(generated&&!/class=["\']furi["\']/.test(html)&&!/&lt;\/?span\b|&quot;furi&quot;|&amp;lt;\/?span\b/i.test(generated))return generated;
  const box=document.createElement("div");box.innerHTML=html||"";
  const walker=document.createTreeWalker(box,NodeFilter.SHOW_TEXT);
  const nodes=[];let n;
