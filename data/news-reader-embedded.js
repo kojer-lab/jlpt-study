@@ -268,7 +268,7 @@ function annotate(str){
    // Irregular Arabic-numeral day readings belong to the complete date:
    // e.g. 9日=ここのか, 4日=よっか, not 日=にち.
    const rendered=(october10&&/^\d{1,2}日$/.test(entry.surface))||
-     (october18&&/^\d{1,2}月\d{1,2}日$/.test(entry.surface))
+     (october18&&/^(?:\d{1,2}月(?:\d{1,2}日)?|\d{1,2}日(?:間)?|\d{1,2}分|第\d+回)$/.test(entry.surface))
     ?'<span class="furi" data-r="'+esc(entry.reading)+'">'+esc(entry.surface)+'</span>'
     :wordHTML(entry.surface,entry.reading);
    if(!rendered.includes('class="furi"'))continue;

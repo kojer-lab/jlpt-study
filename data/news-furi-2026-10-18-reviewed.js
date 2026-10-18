@@ -517,4 +517,14 @@ Object.assign(window.KOJER_NEWS_FURI_2026_10_18, {
   "臨んで": "のぞんで",
   "歴史": "れきし"
 });
+
+// Second-pass actual-renderer QA: inflections and mixed numeric quantities.
+Object.assign(window.KOJER_NEWS_FURI_2026_10_18, {
+  "分けて": "わけて",
+  "扱わなければ": "あつかわなければ",
+  "発表日": "はっぴょうび",
+  "その日": "そのひ",
+  "41分": "よんじゅういっぷん",
+  "設けられている": "もうけられている"
+});
 })();
