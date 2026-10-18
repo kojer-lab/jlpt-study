@@ -14,10 +14,20 @@ function section(from,to){
 }
 const pending=Array.from({length:31},(_,i)=>({id:"word"+i}));
 const events=[];
+// Mock the production function's complete data dependencies. When its logic
+// changes, keep the test harness in sync rather than changing user SRS/FSRS.
 const ctx={
- wordMode:"daily",wordSessionQueue:[],wordLearningQueue:[],wordSessionHistory:[],
+ wordMode:"daily",wordStudyLevel:"ALL",
+ wordSessionQueue:[],wordLearningQueue:[],wordSessionHistory:[],
  wordQuickRepeats:[],wordQuickActive:null,wordSessionDone:6,wordSessionTotal:6,
  wordIndex:0,canonicalWordId:x=>x,
+ now:()=>10000,
+ wordsForLevel:()=>pending,
+ getSrs:()=>({reviews:2,focusPending:false,due:0}),
+ wordById:new Map(pending.map(w=>[w.id,w])),
+ state:{dailyNew:{date:"2026-10-18",ids:[]}},
+ todayKey:()=>"2026-10-18",
+ ensureDailyNew:()=>[],
  buildWordStudyQueue:()=>pending,persistWordSession:()=>events.push("saved")
 };
 vm.runInNewContext(section("function reconcileDailyWordSession(","function wordTop("),ctx);
