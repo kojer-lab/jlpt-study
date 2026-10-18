@@ -1,14 +1,30 @@
 /** Gate: inspect ACTUAL production article/title furigana renderer. */
 const fs=require("node:fs"),vm=require("node:vm"),assert=require("node:assert/strict");
 const read=p=>fs.readFileSync(p,"utf8");
-const articles=JSON.parse(read("data/news-articles-2026-10-18-batch01.json")).articles;
-assert.equal(articles.length,6,"Expected six 2026-10-18 articles");
+// Always audit the newest published day, not a frozen 2026-10-18 test set.
 const index=read("index.html");
-const scripts=["data/news-furi-reviewed-v1.js","data/news-furi-2026-10-10-reviewed.js","data/news-furi-2026-10-18-reviewed.js"];
-for(const name of scripts)assert(index.includes('src="'+name),"Furigana dictionary missing: "+name);
-assert(index.indexOf("data/news-furi-2026-10-18-reviewed.js")<index.indexOf("data/news-reader-embedded.js"),"Dictionary must load before renderer");
 const context=vm.createContext({window:{},console});
-for(const file of scripts)new vm.Script(read(file),{filename:file}).runInContext(context);
+new vm.Script(read("data/news-index-v1.js"),{filename:"news-index-v1.js"}).runInContext(context);
+const entries=context.window.KOJER_NEWS_INDEX?.articles||[];
+assert(entries.length>0,"News index is empty");
+const latestDate=entries.map(x=>x.date).sort().at(-1);
+assert(/^\d{4}-\d{2}-\d{2}$/.test(latestDate),"Invalid latest news date");
+const latest=entries.filter(x=>x.date===latestDate),ids=new Set(latest.map(x=>x.id));
+assert(ids.size===latest.length&&latest.length>0,"Duplicate or missing latest article IDs");
+const assets=[...new Set(latest.map(x=>x.asset))];
+assert(assets.every(p=>/^data\/news-articles-\d{4}-\d{2}-\d{2}(?:-batch\d+)?\.json$/.test(p)),"Unsafe news asset");
+const articles=assets.flatMap(path=>JSON.parse(read(path)).articles||[]).filter(x=>ids.has(x.id));
+assert.equal(articles.length,latest.length,"Some indexed latest news articles are missing from their source data");
+// Load dictionaries in the same order as the actual index.html tags.
+// An unregistered new-day ruby asset must fail the coverage gate rather than
+// silently producing missing furigana in the released app.
+const scripts=[...index.matchAll(/<script\s+src="(data\/news-furi-[^"?]+\.js)(?:\?[^"]*)?"\s*><\/script>/g)].map(x=>x[1]);
+assert(scripts.includes("data/news-furi-reviewed-v1.js"),"Base reviewed dictionary not loaded");
+assert(scripts.length>=2,"No day-specific reviewed readings loaded");
+for(const file of scripts){
+ assert(index.indexOf(file)<index.indexOf("data/news-reader-embedded.js"),"Furigana dictionary must load before reader");
+ new vm.Script(read(file),{filename:file}).runInContext(context);
+}
 const reader=read("data/news-reader-embedded.js");
 const start=reader.indexOf("const extra=new Map();"),finish=reader.indexOf("function saved(){",start);
 assert(start>0&&finish>start,"Cannot isolate production furigana renderer");
@@ -44,7 +60,7 @@ function inspect(html,expected){
 }
 const errors=[];let total=0;
 for(const entry of articles){
- assert.equal(entry.date,"2026-10-18");
+ assert.equal(entry.date,latestDate);
  const htmls=context.renderNewsFuri(entry);
  const blocks=[["title",entry.title],...entry.paragraphs.map((p,i)=>["p"+(i+1),p])];
  assert.equal(htmls.length,blocks.length);
@@ -55,7 +71,7 @@ for(const entry of articles){
  }
 }
 if(errors.length){
- console.error("FAIL: "+errors.length+" unannotated kanji across 6 articles ("+total+" total kanji).");
+ console.error("FAIL "+latestDate+": "+errors.length+" unannotated kanji across "+articles.length+" articles ("+total+" total kanji).");
  for(const gap of errors)console.error(JSON.stringify(gap));
  process.exitCode=1;
-}else console.log("PASS: "+total+" kanji checked in six titles and "+articles.reduce((n,x)=>n+x.paragraphs.length,0)+" paragraphs.");
+}else console.log("PASS "+latestDate+": "+total+" kanji checked across "+articles.length+" titles and "+articles.reduce((n,x)=>n+x.paragraphs.length,0)+" paragraphs.");
