@@ -142,6 +142,17 @@ for(const [surface,reading] of Object.entries(reviewed)){
  extra.set(first,arr);
 }
 for(const arr of extra.values())arr.sort((a,b)=>b.surface.length-a.surface.length);
+// Extra ruby for the 2026-10-10 archive is scoped to that date, so counters
+// and context-sensitive readings do not leak into other days' articles.
+const october10FuriByInitial=new Map();
+for(const [surface,reading] of Object.entries(window.KOJER_NEWS_FURI_2026_10_10||{})){
+ if(!surface||!reading||!/[一-龯々〇]/.test(surface))continue;
+ const initial=surface[0],list=october10FuriByInitial.get(initial)||[];
+ list.push({surface,reading,reviewed:true});
+ october10FuriByInitial.set(initial,list);
+}
+for(const list of october10FuriByInitial.values())list.sort((a,b)=>b.surface.length-a.surface.length);
+
 // Cross-checked reading aids for the current news expression synonyms.
 // These are only shown when a kanji word is clicked, not pre-rendered ruby.
 const reviewedSimilarReadings=new Map([["じっと見つめる","じっとみつめる"],["関心を寄せる","かんしんをよせる"],["見逃すおそれがある","みのがすおそれがある"],["推移","すいい"],["直接関わる","ちょくせつかかわる"],["注目を集める","ちゅうもくをあつめる"],["中断せず","ちゅうだんせず"],["判断する","はんだんする"],["一様に","いちように"],["注意を払う","ちゅういをはらう"],["傾向","けいこう"],["気を取られる","きをとられる"],["解釈する","かいしゃくする"],["明らかになる","あきらかになる"],["区分","くぶん"],["心配","しんぱい"],["与える恐れがある","あたえるおそれがある"],["終結する","しゅうけつする"],["実施","じっし"],["判断を誤る","はんだんをあやまる"],["促進する","そくしんする"],["検疫措置","けんえきそち"],["不正侵入","ふせいしんにゅう"],["漏えい","ろうえい"],["把握する","はあくする"],["用心深い","ようじんぶかい"],["顕在化","けんざいか"],["全体像","ぜんたいぞう"],["統合","とうごう"],["例外なく","れいがいなく"],["言い切ること","いいきること"],["予防措置","よぼうそち"],["大臣レベル","だいじんれべる"],["通商対立","つうしょうたいりつ"],["段階","だんかい"],["考慮する","こうりょする"],["組み入れる","くみいれる"],["性急","せいきゅう"],["取り違える","とりちがえる"],["別に","べつに"],["仕組み","しくみ"],["悪口","わるぐち"],["通る","とおる"],["背後","はいご"],["同じとみなす","おなじとみなす"],["排除する","はいじょする"],["抑え込む","おさえこむ"],["すぐ採用する","すぐさいようする"],["慎重に検討する","しんちょうにけんとうする"],["欠かせない","かかせない"],["共同事業","きょうどうじぎょう"],["慣れ親しむ","なれしたしむ"],["比較する","ひかくする"],["強調する","きょうちょうする"],["発見する","はっけんする"],["共存させる","きょうぞんさせる"],["左右される","さゆうされる"]]);
@@ -229,21 +240,32 @@ function expressionRuby(form,reading){
 function annotate(str){
  const text=String(str||"");let output="",offset=0,covered=0,kanji=0;
  kanji=(text.match(/[一-龯々〇]/g)||[]).length;
+ const october10=article?.date==="2026-10-10";
  while(offset<text.length){
-  let hit=null;
-  for(const entry of extra.get(text[offset])||[]){if(text.startsWith(entry.surface,offset)){hit=entry;break}}
-  if(typeof exampleFuriLexicon!=="undefined"){
-   const choices=exampleFuriLexicon.get(text[offset])||[];
-   for(const entry of choices){
-    if(text.startsWith(entry.surface,offset)&&(!hit||entry.surface.length>hit.surface.length)){hit=entry;break}
-   }
+  let hit=null,html="";
+  const initial=text[offset];
+  // More specific, article-reviewed entries win ties. Invalid long entries
+  // never swallow shorter valid readings and leave visible bare kanji.
+  const candidates=[
+   ...(october10?october10FuriByInitial.get(initial)||[]:[]),
+   ...(extra.get(initial)||[]),
+   ...(typeof exampleFuriLexicon!=="undefined"?exampleFuriLexicon.get(initial)||[]:[])
+  ];
+  for(const entry of candidates){
+   if(!text.startsWith(entry.surface,offset))continue;
+   // Irregular Arabic-numeral day readings belong to the complete date:
+   // e.g. 9日=ここのか, 4日=よっか, not 日=にち.
+   const rendered=october10&&/^\\d{1,2}日$/.test(entry.surface)
+    ?'<span class="furi" data-r="'+esc(entry.reading)+'">'+esc(entry.surface)+'</span>'
+    :wordHTML(entry.surface,entry.reading);
+   if(!rendered.includes('class="furi"'))continue;
+   if(!hit||entry.surface.length>hit.surface.length){hit=entry;html=rendered}
   }
   if(hit){
-   const rendered=wordHTML(hit.surface,hit.reading);
-   output+=rendered;
-   if(rendered.includes('class="furi"'))covered+=(hit.surface.match(/[一-龯々〇]/g)||[]).length;
+   output+=html;
+   covered+=(hit.surface.match(/[一-龯々〇]/g)||[]).length;
    offset+=hit.surface.length;
-  }else{output+=esc(text[offset]);offset++}
+  }else{output+=esc(initial);offset++}
  }
  return {output,covered,kanji};
 }
