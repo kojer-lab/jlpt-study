@@ -4495,36 +4495,47 @@ if(location.hash==="#newsreader")showView("newsreader");
 // or two-finger pinch gestures. Bind the entire study panel, not just the card.
 const vocabStudyTouchArea=document.getElementById("wordStudyPanel");
 if(vocabStudyTouchArea){
- let lastTapTime=0,lastTapX=0,lastTapY=0,blockSecondTap=false;
+ let lastTapTime=0,lastTapX=0,lastTapY=0,lastTapTarget=null,blockSecondTap=false;
+ // Safari's double-tap zoom guard must NEVER swallow native button clicks.
+ // When opening the word details, the first example reveal button may occupy
+ // the same screen coordinates as the now-hidden "뜻 · 예문 보기" button.
+ const isStudyControl=target=>!!target?.closest?.("button,a,input,select,textarea,label,[role='button']");
  vocabStudyTouchArea.addEventListener("touchstart",function(event){
   blockSecondTap=false;
-  if(event.touches.length!==1||event.changedTouches.length!==1){
-   lastTapTime=0;return;
+  if(event.touches.length!==1||event.changedTouches.length!==1||isStudyControl(event.target)){
+   lastTapTime=0;lastTapTarget=null;return;
   }
   const touch=event.touches[0],time=Date.now();
-  blockSecondTap=time-lastTapTime<450
+  // A true repeated tap on the SAME non-control target only.
+  blockSecondTap=event.target===lastTapTarget
+   &&time-lastTapTime<450
    &&Math.abs(touch.clientX-lastTapX)<48
    &&Math.abs(touch.clientY-lastTapY)<48;
   if(blockSecondTap&&event.cancelable){
    event.preventDefault();
-   lastTapTime=0;
+   lastTapTime=0;lastTapTarget=null;
   }
  },{capture:true,passive:false});
  vocabStudyTouchArea.addEventListener("touchend",function(event){
   if(event.changedTouches.length!==1||event.touches.length)return;
+  if(isStudyControl(event.target)){
+   lastTapTime=0;lastTapTarget=null;blockSecondTap=false;return;
+  }
   if(blockSecondTap){
    if(event.cancelable)event.preventDefault();
    blockSecondTap=false;
-   lastTapTime=0;
+   lastTapTime=0;lastTapTarget=null;
    return;
   }
   const touch=event.changedTouches[0];
   lastTapTime=Date.now();
   lastTapX=touch.clientX;lastTapY=touch.clientY;
+  lastTapTarget=event.target;
  },{capture:true,passive:false});
- vocabStudyTouchArea.addEventListener("touchcancel",()=>{lastTapTime=0;blockSecondTap=false},{passive:true});
+ vocabStudyTouchArea.addEventListener("touchcancel",()=>{lastTapTime=0;lastTapTarget=null;blockSecondTap=false},{passive:true});
  vocabStudyTouchArea.addEventListener("dblclick",function(event){
-  if(event.cancelable)event.preventDefault();
+  // Native interactive elements handle their own double clicks normally.
+  if(!isStudyControl(event.target)&&event.cancelable)event.preventDefault();
  },{capture:true,passive:false});
 }
 // Keep Safari double-tap zoom disabled inside the news expression review.
