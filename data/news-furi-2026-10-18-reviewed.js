@@ -3,6 +3,8 @@
 "use strict";
 const lexicon=window.KOJER_NEWS_FURI_REVIEWED_V1||(window.KOJER_NEWS_FURI_REVIEWED_V1={});
 Object.assign(lexicon,{
+  "集まり": "あつまり",
+  "週間": "しゅうかん",
   "ヒンドゥー教": "ヒンドゥーきょう",
   "愛知": "あいち",
   "悪影響を及ぼすおそれがある": "あくえいきょうをおよぼすおそれがある",
