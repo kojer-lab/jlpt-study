@@ -64,7 +64,13 @@ finish.finishWordStudy();
 assert.equal(dom.get("wordStudyProgress").textContent,"6 / 6");
 assert.equal(finish.wordSessionTotal,6);
 assert(events.includes("remove session"));
-// When the immediate queue is empty, the current live backlog is still checked
-// for an extra-due indication before the completed/learning-wait display.
-assert(src.includes('if(wordMode==="daily")reconcileDailyWordSession();\n const queue=currentWordQueue();'));
+// While a card is visible, newly due cards are labelled "additional reviews"
+// without inserting them into this session or growing its saved denominator.
+// An empty session instead finishes or waits for its timed learning cards.
+const render=section("function renderWord(){","/* Reference-matched rating icons");
+assert(render.includes("const queue=currentWordQueue();"),"Render must use its established session queue");
+assert(render.includes('const extraDue=wordMode==="daily"?reconcileDailyWordSession():0;'),
+ "An active daily card must still show the separately counted extra reviews");
+assert(render.includes('if(!queue.length){')&&render.includes("finishWordStudy();return;"),
+ "Empty sessions must finish rather than silently absorb the next session backlog");
 console.log("PASS: fixed Anki session target, separate extra-due count, exclusions, finish UI");
