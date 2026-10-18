@@ -1,0 +1,30 @@
+name: Validate daily news furigana coverage
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/news-articles-*.json"
+      - "data/news-furi-*.js"
+      - "data/news-reader-embedded.js"
+      - "tools/test-news-furigana-coverage.cjs"
+      - ".github/workflows/test-news-furigana-coverage.yml"
+      - "index.html"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Syntax
+        run: |
+          node --check data/news-reader-embedded.js
+          node --check data/news-furi-2026-10-18-reviewed.js
+          node --check tools/test-news-furigana-coverage.cjs
+      - name: Render articles and reject missing ruby
+        run: node tools/test-news-furigana-coverage.cjs
