@@ -163,6 +163,18 @@ for(const [surface,reading] of Object.entries(window.KOJER_NEWS_FURI_2026_10_18|
 }
 for(const list of october18FuriByInitial.values())list.sort((a,b)=>b.surface.length-a.surface.length);
 
+// Date-scoped complete readings for mixed digit/kanji news spans (Oct 28).
+// Render the whole numeric token as one clickable unit, without attaching
+// the numeral's sound to only the adjacent kanji.
+const october28FuriByInitial=new Map();
+for(const [surface,reading] of Object.entries(window.KOJER_NEWS_FURI_2026_10_28||{})){
+ if(!surface||!reading||!/[一-龯々〇]/.test(surface))continue;
+ const initial=surface[0],list=october28FuriByInitial.get(initial)||[];
+ list.push({surface,reading,reviewed:true,wholeToken:true});
+ october28FuriByInitial.set(initial,list);
+}
+for(const list of october28FuriByInitial.values())list.sort((a,b)=>b.surface.length-a.surface.length);
+
 // Cross-checked reading aids for the current news expression synonyms.
 // These are only shown when a kanji word is clicked, not pre-rendered ruby.
 const reviewedSimilarReadings=new Map([["じっと見つめる","じっとみつめる"],["関心を寄せる","かんしんをよせる"],["見逃すおそれがある","みのがすおそれがある"],["推移","すいい"],["直接関わる","ちょくせつかかわる"],["注目を集める","ちゅうもくをあつめる"],["中断せず","ちゅうだんせず"],["判断する","はんだんする"],["一様に","いちように"],["注意を払う","ちゅういをはらう"],["傾向","けいこう"],["気を取られる","きをとられる"],["解釈する","かいしゃくする"],["明らかになる","あきらかになる"],["区分","くぶん"],["心配","しんぱい"],["与える恐れがある","あたえるおそれがある"],["終結する","しゅうけつする"],["実施","じっし"],["判断を誤る","はんだんをあやまる"],["促進する","そくしんする"],["検疫措置","けんえきそち"],["不正侵入","ふせいしんにゅう"],["漏えい","ろうえい"],["把握する","はあくする"],["用心深い","ようじんぶかい"],["顕在化","けんざいか"],["全体像","ぜんたいぞう"],["統合","とうごう"],["例外なく","れいがいなく"],["言い切ること","いいきること"],["予防措置","よぼうそち"],["大臣レベル","だいじんれべる"],["通商対立","つうしょうたいりつ"],["段階","だんかい"],["考慮する","こうりょする"],["組み入れる","くみいれる"],["性急","せいきゅう"],["取り違える","とりちがえる"],["別に","べつに"],["仕組み","しくみ"],["悪口","わるぐち"],["通る","とおる"],["背後","はいご"],["同じとみなす","おなじとみなす"],["排除する","はいじょする"],["抑え込む","おさえこむ"],["すぐ採用する","すぐさいようする"],["慎重に検討する","しんちょうにけんとうする"],["欠かせない","かかせない"],["共同事業","きょうどうじぎょう"],["慣れ親しむ","なれしたしむ"],["比較する","ひかくする"],["強調する","きょうちょうする"],["発見する","はっけんする"],["共存させる","きょうぞんさせる"],["左右される","さゆうされる"]]);
@@ -252,6 +264,7 @@ function annotate(str){
  kanji=(text.match(/[一-龯々〇]/g)||[]).length;
  const october10=article?.date==="2026-10-10";
  const october18=article?.date==="2026-10-18";
+ const october28=article?.date==="2026-10-28";
  while(offset<text.length){
   let hit=null,html="";
   const initial=text[offset];
@@ -260,6 +273,7 @@ function annotate(str){
   const candidates=[
    ...(october10?october10FuriByInitial.get(initial)||[]:[]),
    ...(october18?october18FuriByInitial.get(initial)||[]:[]),
+   ...(october28?october28FuriByInitial.get(initial)||[]:[]),
    ...(extra.get(initial)||[]),
    ...(typeof exampleFuriLexicon!=="undefined"?exampleFuriLexicon.get(initial)||[]:[])
   ];
@@ -268,7 +282,8 @@ function annotate(str){
    // Irregular Arabic-numeral day readings belong to the complete date:
    // e.g. 9日=ここのか, 4日=よっか, not 日=にち.
    const rendered=(october10&&/^\d{1,2}日$/.test(entry.surface))||
-     (october18&&/^(?:\d{1,2}月(?:\d{1,2}日)?|\d{1,2}日(?:間)?|\d{1,2}分|第\d+回)$/.test(entry.surface))
+     (october18&&/^(?:\d{1,2}月(?:\d{1,2}日)?|\d{1,2}日(?:間)?|\d{1,2}分|第\d+回)$/.test(entry.surface))||
+     (october28&&entry.wholeToken===true)
     ?'<span class="furi" data-r="'+esc(entry.reading)+'">'+esc(entry.surface)+'</span>'
     :wordHTML(entry.surface,entry.reading);
    if(!rendered.includes('class="furi"'))continue;
